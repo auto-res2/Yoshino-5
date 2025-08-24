@@ -1,0 +1,10 @@
+{
+  "research_topic": "Zero-Shot Diffusion Model One-Step Generation Quality Enhancement Develop a one-step diffusion model using hierarchical feature distillation with EfficientNet-B0-based U-Net to achieve 20% FID score improvement over existing one-step methods, targeting FID <15.0 and CLIP score >0.25 on MS-COCO 2017 (https://cocodataset.org/) and CelebA-HQ datasets with 50x speedup compared to multi-step baselines including DDIM (50 steps), Progressive Distillation, and Consistency Models.",
+  "queries": [
+    "zero-shot diffusion",
+    "hierarchical distillation",
+    "EfficientNet U-Net",
+    "FID CLIP score",
+    "fast one-step generation"
+  ]
+}
