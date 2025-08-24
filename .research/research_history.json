@@ -6,5 +6,142 @@
     "data science automation",
     "MLE-bench improvement",
     "knowledge integration"
+  ],
+  "research_study_list": [
+    {
+      "title": "ACES: Generating a Diversity of Challenging Programming Puzzles with Autotelic Generative Models",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "NAVSIM: Data-Driven Non-Reactive Autonomous Vehicle Simulation and Benchmarking",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "AutoManual: Constructing Instruction Manuals by LLM Agents via Interactive Environmental Learning",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "Human-Timescale Adaptation in an Open-Ended Task Space",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "Human-Timescale Adaptation in an Open-Ended Task Space",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "Adaptable Agent Populations via a Generative Model of Policies",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "DS-Agent: Automated Data Science by Empowering Large Language Models with Case-Based Reasoning",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "Pipeline Combinators for Gradual AutoML",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "Spider2-V: How Far Are Multimodal Agents From Automating Data Science and Engineering Workflows?",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "A Theory of Dynamic Benchmarks",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "Benchopt: Reproducible, efficient and collaborative optimization benchmarks",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "StreamBench: Towards Benchmarking Continuous Improvement of Language Agents",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "Flexible Attention-Based Multi-Policy Fusion for Efficient Deep Reinforcement Learning",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "Knowledge Card: Filling LLMs' Knowledge Gaps with Plug-in Specialized Language Models",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "Knowledge Card: Filling LLMs' Knowledge Gaps with Plug-in Specialized Language Models",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    }
   ]
 }
