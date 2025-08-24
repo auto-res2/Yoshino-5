@@ -268,12 +268,12 @@ s been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.52 ...asumana\_2023-11-30T19:11:01Z\_rethinking}
+l.51 ...asumana\_2023-11-30T19:11:01Z\_rethinking}
                                                   ), the CGM module adaptive...
 
 
 Package natbib Warning: Citation `jayasumana\T1\textunderscore2023-11-30T19:11:
-01Z\T1\textunderscorerethinking' on page 1 undefined on input line 52.
+01Z\T1\textunderscorerethinking' on page 1 undefined on input line 51.
 
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-
 dist/fonts/enc/dvips/base/8r.enc}]
@@ -281,101 +281,101 @@ dist/fonts/enc/dvips/base/8r.enc}]
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.67 ...e{deschenaux\_2024-05-29T15:41:53Z\_going}
+l.66 ...e{deschenaux\_2024-05-29T15:41:53Z\_going}
                                                    and one-step diffusion di...
 
 
 Package natbib Warning: Citation `deschenaux\T1\textunderscore2024-05-29T15:41:
-53Z\T1\textunderscoregoing' on page 2 undefined on input line 67.
+53Z\T1\textunderscoregoing' on page 2 undefined on input line 66.
 
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.67 ...one, liu\_2023-09-12T16:42:09Z\_instaflow}
+l.66 ...one, liu\_2023-09-12T16:42:09Z\_instaflow}
                                                   , and lays the groundwork ...
 
 
 Package natbib Warning: Citation `yin\T1\textunderscore2023-11-30T18:59:20Z\T1\
-textunderscoreone' on page 2 undefined on input line 67.
+textunderscoreone' on page 2 undefined on input line 66.
 
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.67 ...one, liu\_2023-09-12T16:42:09Z\_instaflow}
+l.66 ...one, liu\_2023-09-12T16:42:09Z\_instaflow}
                                                   , and lays the groundwork ...
 
 
 Package natbib Warning: Citation `liu\T1\textunderscore2023-09-12T16:42:09Z\T1\
-textunderscoreinstaflow' on page 2 undefined on input line 67.
+textunderscoreinstaflow' on page 2 undefined on input line 66.
 
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.71 ...e{deschenaux\_2024-05-29T15:41:53Z\_going}
+l.70 ...e{deschenaux\_2024-05-29T15:41:53Z\_going}
                                                    deliver excellent visual ...
 
 
 Package natbib Warning: Citation `deschenaux\T1\textunderscore2024-05-29T15:41:
-53Z\T1\textunderscoregoing' on page 2 undefined on input line 71.
+53Z\T1\textunderscoregoing' on page 2 undefined on input line 70.
 
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.71 ...cite{liu\_2023-09-12T16:42:09Z\_instaflow}
+l.70 ...cite{liu\_2023-09-12T16:42:09Z\_instaflow}
                                                    and Distribution Matching...
 
 
 Package natbib Warning: Citation `liu\T1\textunderscore2023-09-12T16:42:09Z\T1\
-textunderscoreinstaflow' on page 2 undefined on input line 71.
+textunderscoreinstaflow' on page 2 undefined on input line 70.
 
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.71 ...tion \cite{yin\_2023-11-30T18:59:20Z\_one}
+l.70 ...tion \cite{yin\_2023-11-30T18:59:20Z\_one}
                                                    have shown that distilled...
 
 
 Package natbib Warning: Citation `yin\T1\textunderscore2023-11-30T18:59:20Z\T1\
-textunderscoreone' on page 2 undefined on input line 71.
+textunderscoreone' on page 2 undefined on input line 70.
 
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.71 ...asumana\_2023-11-30T19:11:01Z\_rethinking}
+l.70 ...asumana\_2023-11-30T19:11:01Z\_rethinking}
                                                   . This mechanism provides ...
 
 
 Package natbib Warning: Citation `jayasumana\T1\textunderscore2023-11-30T19:11:
-01Z\T1\textunderscorerethinking' on page 2 undefined on input line 71.
+01Z\T1\textunderscorerethinking' on page 2 undefined on input line 70.
 
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.71 ...asumana\_2023-11-30T19:11:01Z\_rethinking}
+l.70 ...asumana\_2023-11-30T19:11:01Z\_rethinking}
                                                   , our work also employs CL...
 
 
 Package natbib Warning: Citation `jayasumana\T1\textunderscore2023-11-30T19:11:
-01Z\T1\textunderscorerethinking' on page 2 undefined on input line 71.
+01Z\T1\textunderscorerethinking' on page 2 undefined on input line 70.
 
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.75 ...asumana\_2023-11-30T19:11:01Z\_rethinking}
+l.74 ...asumana\_2023-11-30T19:11:01Z\_rethinking}
                                                   . The resulting compound m...
 
 
 Package natbib Warning: Citation `jayasumana\T1\textunderscore2023-11-30T19:11:
-01Z\T1\textunderscorerethinking' on page 2 undefined on input line 75.
+01Z\T1\textunderscorerethinking' on page 2 undefined on input line 74.
 
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.75 ...\cite{ma\_2024-03-29T03:48:35Z\_efficient}
+l.74 ...\cite{ma\_2024-03-29T03:48:35Z\_efficient}
                                                   .
 
 Package natbib Warning: Citation `ma\T1\textunderscore2024-03-29T03:48:35Z\T1\t
-extunderscoreefficient' on page 2 undefined on input line 75.
+extunderscoreefficient' on page 2 undefined on input line 74.
 
 [2] [3]
 Underfull \vbox (badness 3471) has occurred while \output is active [4 <./image
@@ -385,43 +385,43 @@ es/fid_vs_noise.pdf> <./images/inference_latency.pdf>]
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.146 ...nstaflow, yin\_2023-11-30T18:59:20Z\_one}
+l.145 ...nstaflow, yin\_2023-11-30T18:59:20Z\_one}
                                                   .
 
 Package natbib Warning: Citation `deschenaux\T1\textunderscore2024-05-29T15:41:
-53Z\T1\textunderscoregoing' on page 6 undefined on input line 146.
+53Z\T1\textunderscoregoing' on page 6 undefined on input line 145.
 
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.146 ...nstaflow, yin\_2023-11-30T18:59:20Z\_one}
+l.145 ...nstaflow, yin\_2023-11-30T18:59:20Z\_one}
                                                   .
 
 Package natbib Warning: Citation `jayasumana\T1\textunderscore2023-11-30T19:11:
-01Z\T1\textunderscorerethinking' on page 6 undefined on input line 146.
+01Z\T1\textunderscorerethinking' on page 6 undefined on input line 145.
 
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.146 ...nstaflow, yin\_2023-11-30T18:59:20Z\_one}
+l.145 ...nstaflow, yin\_2023-11-30T18:59:20Z\_one}
                                                   .
 
 Package natbib Warning: Citation `liu\T1\textunderscore2023-09-12T16:42:09Z\T1\
-textunderscoreinstaflow' on page 6 undefined on input line 146.
+textunderscoreinstaflow' on page 6 undefined on input line 145.
 
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.146 ...nstaflow, yin\_2023-11-30T18:59:20Z\_one}
+l.145 ...nstaflow, yin\_2023-11-30T18:59:20Z\_one}
                                                   .
 
 Package natbib Warning: Citation `yin\T1\textunderscore2023-11-30T18:59:20Z\T1\
-textunderscoreone' on page 6 undefined on input line 146.
+textunderscoreone' on page 6 undefined on input line 145.
 
 [6 <./images/clip_comparison.pdf> <./images/fid_ablation.pdf>]
 
 Package natbib Warning: Citation `airas2025' on page 7 undefined on input line 
-148.
+147.
 
 No file paper.bbl.
 
@@ -765,12 +765,12 @@ s been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.52 ...asumana\_2023-11-30T19:11:01Z\_rethinking}
+l.51 ...asumana\_2023-11-30T19:11:01Z\_rethinking}
                                                   ), the CGM module adaptive...
 
 
 Package natbib Warning: Citation `jayasumana\T1\textunderscore2023-11-30T19:11:
-01Z\T1\textunderscorerethinking' on page 1 undefined on input line 52.
+01Z\T1\textunderscorerethinking' on page 1 undefined on input line 51.
 
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-
 dist/fonts/enc/dvips/base/8r.enc}]
@@ -778,101 +778,101 @@ dist/fonts/enc/dvips/base/8r.enc}]
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.67 ...e{deschenaux\_2024-05-29T15:41:53Z\_going}
+l.66 ...e{deschenaux\_2024-05-29T15:41:53Z\_going}
                                                    and one-step diffusion di...
 
 
 Package natbib Warning: Citation `deschenaux\T1\textunderscore2024-05-29T15:41:
-53Z\T1\textunderscoregoing' on page 2 undefined on input line 67.
+53Z\T1\textunderscoregoing' on page 2 undefined on input line 66.
 
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.67 ...one, liu\_2023-09-12T16:42:09Z\_instaflow}
+l.66 ...one, liu\_2023-09-12T16:42:09Z\_instaflow}
                                                   , and lays the groundwork ...
 
 
 Package natbib Warning: Citation `yin\T1\textunderscore2023-11-30T18:59:20Z\T1\
-textunderscoreone' on page 2 undefined on input line 67.
+textunderscoreone' on page 2 undefined on input line 66.
 
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.67 ...one, liu\_2023-09-12T16:42:09Z\_instaflow}
+l.66 ...one, liu\_2023-09-12T16:42:09Z\_instaflow}
                                                   , and lays the groundwork ...
 
 
 Package natbib Warning: Citation `liu\T1\textunderscore2023-09-12T16:42:09Z\T1\
-textunderscoreinstaflow' on page 2 undefined on input line 67.
+textunderscoreinstaflow' on page 2 undefined on input line 66.
 
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.71 ...e{deschenaux\_2024-05-29T15:41:53Z\_going}
+l.70 ...e{deschenaux\_2024-05-29T15:41:53Z\_going}
                                                    deliver excellent visual ...
 
 
 Package natbib Warning: Citation `deschenaux\T1\textunderscore2024-05-29T15:41:
-53Z\T1\textunderscoregoing' on page 2 undefined on input line 71.
+53Z\T1\textunderscoregoing' on page 2 undefined on input line 70.
 
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.71 ...cite{liu\_2023-09-12T16:42:09Z\_instaflow}
+l.70 ...cite{liu\_2023-09-12T16:42:09Z\_instaflow}
                                                    and Distribution Matching...
 
 
 Package natbib Warning: Citation `liu\T1\textunderscore2023-09-12T16:42:09Z\T1\
-textunderscoreinstaflow' on page 2 undefined on input line 71.
+textunderscoreinstaflow' on page 2 undefined on input line 70.
 
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.71 ...tion \cite{yin\_2023-11-30T18:59:20Z\_one}
+l.70 ...tion \cite{yin\_2023-11-30T18:59:20Z\_one}
                                                    have shown that distilled...
 
 
 Package natbib Warning: Citation `yin\T1\textunderscore2023-11-30T18:59:20Z\T1\
-textunderscoreone' on page 2 undefined on input line 71.
+textunderscoreone' on page 2 undefined on input line 70.
 
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.71 ...asumana\_2023-11-30T19:11:01Z\_rethinking}
+l.70 ...asumana\_2023-11-30T19:11:01Z\_rethinking}
                                                   . This mechanism provides ...
 
 
 Package natbib Warning: Citation `jayasumana\T1\textunderscore2023-11-30T19:11:
-01Z\T1\textunderscorerethinking' on page 2 undefined on input line 71.
+01Z\T1\textunderscorerethinking' on page 2 undefined on input line 70.
 
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.71 ...asumana\_2023-11-30T19:11:01Z\_rethinking}
+l.70 ...asumana\_2023-11-30T19:11:01Z\_rethinking}
                                                   , our work also employs CL...
 
 
 Package natbib Warning: Citation `jayasumana\T1\textunderscore2023-11-30T19:11:
-01Z\T1\textunderscorerethinking' on page 2 undefined on input line 71.
+01Z\T1\textunderscorerethinking' on page 2 undefined on input line 70.
 
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.75 ...asumana\_2023-11-30T19:11:01Z\_rethinking}
+l.74 ...asumana\_2023-11-30T19:11:01Z\_rethinking}
                                                   . The resulting compound m...
 
 
 Package natbib Warning: Citation `jayasumana\T1\textunderscore2023-11-30T19:11:
-01Z\T1\textunderscorerethinking' on page 2 undefined on input line 75.
+01Z\T1\textunderscorerethinking' on page 2 undefined on input line 74.
 
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.75 ...\cite{ma\_2024-03-29T03:48:35Z\_efficient}
+l.74 ...\cite{ma\_2024-03-29T03:48:35Z\_efficient}
                                                   .
 
 Package natbib Warning: Citation `ma\T1\textunderscore2024-03-29T03:48:35Z\T1\t
-extunderscoreefficient' on page 2 undefined on input line 75.
+extunderscoreefficient' on page 2 undefined on input line 74.
 
 [2] [3]
 Underfull \vbox (badness 3471) has occurred while \output is active [4 <./image
@@ -882,43 +882,43 @@ es/fid_vs_noise.pdf> <./images/inference_latency.pdf>]
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.146 ...nstaflow, yin\_2023-11-30T18:59:20Z\_one}
+l.145 ...nstaflow, yin\_2023-11-30T18:59:20Z\_one}
                                                   .
 
 Package natbib Warning: Citation `deschenaux\T1\textunderscore2024-05-29T15:41:
-53Z\T1\textunderscoregoing' on page 6 undefined on input line 146.
+53Z\T1\textunderscoregoing' on page 6 undefined on input line 145.
 
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.146 ...nstaflow, yin\_2023-11-30T18:59:20Z\_one}
+l.145 ...nstaflow, yin\_2023-11-30T18:59:20Z\_one}
                                                   .
 
 Package natbib Warning: Citation `jayasumana\T1\textunderscore2023-11-30T19:11:
-01Z\T1\textunderscorerethinking' on page 6 undefined on input line 146.
+01Z\T1\textunderscorerethinking' on page 6 undefined on input line 145.
 
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.146 ...nstaflow, yin\_2023-11-30T18:59:20Z\_one}
+l.145 ...nstaflow, yin\_2023-11-30T18:59:20Z\_one}
                                                   .
 
 Package natbib Warning: Citation `liu\T1\textunderscore2023-09-12T16:42:09Z\T1\
-textunderscoreinstaflow' on page 6 undefined on input line 146.
+textunderscoreinstaflow' on page 6 undefined on input line 145.
 
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.146 ...nstaflow, yin\_2023-11-30T18:59:20Z\_one}
+l.145 ...nstaflow, yin\_2023-11-30T18:59:20Z\_one}
                                                   .
 
 Package natbib Warning: Citation `yin\T1\textunderscore2023-11-30T18:59:20Z\T1\
-textunderscoreone' on page 6 undefined on input line 146.
+textunderscoreone' on page 6 undefined on input line 145.
 
 [6 <./images/clip_comparison.pdf> <./images/fid_ablation.pdf>]
 
 Package natbib Warning: Citation `airas2025' on page 7 undefined on input line 
-148.
+147.
 
 (./paper.bbl (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd))
 
@@ -1209,12 +1209,12 @@ s been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.52 ...asumana\_2023-11-30T19:11:01Z\_rethinking}
+l.51 ...asumana\_2023-11-30T19:11:01Z\_rethinking}
                                                   ), the CGM module adaptive...
 
 
 Package natbib Warning: Citation `jayasumana\T1\textunderscore2023-11-30T19:11:
-01Z\T1\textunderscorerethinking' on page 1 undefined on input line 52.
+01Z\T1\textunderscorerethinking' on page 1 undefined on input line 51.
 
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-
 dist/fonts/enc/dvips/base/8r.enc}]
@@ -1222,101 +1222,101 @@ dist/fonts/enc/dvips/base/8r.enc}]
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.67 ...e{deschenaux\_2024-05-29T15:41:53Z\_going}
+l.66 ...e{deschenaux\_2024-05-29T15:41:53Z\_going}
                                                    and one-step diffusion di...
 
 
 Package natbib Warning: Citation `deschenaux\T1\textunderscore2024-05-29T15:41:
-53Z\T1\textunderscoregoing' on page 2 undefined on input line 67.
+53Z\T1\textunderscoregoing' on page 2 undefined on input line 66.
 
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.67 ...one, liu\_2023-09-12T16:42:09Z\_instaflow}
+l.66 ...one, liu\_2023-09-12T16:42:09Z\_instaflow}
                                                   , and lays the groundwork ...
 
 
 Package natbib Warning: Citation `yin\T1\textunderscore2023-11-30T18:59:20Z\T1\
-textunderscoreone' on page 2 undefined on input line 67.
+textunderscoreone' on page 2 undefined on input line 66.
 
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.67 ...one, liu\_2023-09-12T16:42:09Z\_instaflow}
+l.66 ...one, liu\_2023-09-12T16:42:09Z\_instaflow}
                                                   , and lays the groundwork ...
 
 
 Package natbib Warning: Citation `liu\T1\textunderscore2023-09-12T16:42:09Z\T1\
-textunderscoreinstaflow' on page 2 undefined on input line 67.
+textunderscoreinstaflow' on page 2 undefined on input line 66.
 
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.71 ...e{deschenaux\_2024-05-29T15:41:53Z\_going}
+l.70 ...e{deschenaux\_2024-05-29T15:41:53Z\_going}
                                                    deliver excellent visual ...
 
 
 Package natbib Warning: Citation `deschenaux\T1\textunderscore2024-05-29T15:41:
-53Z\T1\textunderscoregoing' on page 2 undefined on input line 71.
+53Z\T1\textunderscoregoing' on page 2 undefined on input line 70.
 
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.71 ...cite{liu\_2023-09-12T16:42:09Z\_instaflow}
+l.70 ...cite{liu\_2023-09-12T16:42:09Z\_instaflow}
                                                    and Distribution Matching...
 
 
 Package natbib Warning: Citation `liu\T1\textunderscore2023-09-12T16:42:09Z\T1\
-textunderscoreinstaflow' on page 2 undefined on input line 71.
+textunderscoreinstaflow' on page 2 undefined on input line 70.
 
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.71 ...tion \cite{yin\_2023-11-30T18:59:20Z\_one}
+l.70 ...tion \cite{yin\_2023-11-30T18:59:20Z\_one}
                                                    have shown that distilled...
 
 
 Package natbib Warning: Citation `yin\T1\textunderscore2023-11-30T18:59:20Z\T1\
-textunderscoreone' on page 2 undefined on input line 71.
+textunderscoreone' on page 2 undefined on input line 70.
 
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.71 ...asumana\_2023-11-30T19:11:01Z\_rethinking}
+l.70 ...asumana\_2023-11-30T19:11:01Z\_rethinking}
                                                   . This mechanism provides ...
 
 
 Package natbib Warning: Citation `jayasumana\T1\textunderscore2023-11-30T19:11:
-01Z\T1\textunderscorerethinking' on page 2 undefined on input line 71.
+01Z\T1\textunderscorerethinking' on page 2 undefined on input line 70.
 
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.71 ...asumana\_2023-11-30T19:11:01Z\_rethinking}
+l.70 ...asumana\_2023-11-30T19:11:01Z\_rethinking}
                                                   , our work also employs CL...
 
 
 Package natbib Warning: Citation `jayasumana\T1\textunderscore2023-11-30T19:11:
-01Z\T1\textunderscorerethinking' on page 2 undefined on input line 71.
+01Z\T1\textunderscorerethinking' on page 2 undefined on input line 70.
 
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.75 ...asumana\_2023-11-30T19:11:01Z\_rethinking}
+l.74 ...asumana\_2023-11-30T19:11:01Z\_rethinking}
                                                   . The resulting compound m...
 
 
 Package natbib Warning: Citation `jayasumana\T1\textunderscore2023-11-30T19:11:
-01Z\T1\textunderscorerethinking' on page 2 undefined on input line 75.
+01Z\T1\textunderscorerethinking' on page 2 undefined on input line 74.
 
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.75 ...\cite{ma\_2024-03-29T03:48:35Z\_efficient}
+l.74 ...\cite{ma\_2024-03-29T03:48:35Z\_efficient}
                                                   .
 
 Package natbib Warning: Citation `ma\T1\textunderscore2024-03-29T03:48:35Z\T1\t
-extunderscoreefficient' on page 2 undefined on input line 75.
+extunderscoreefficient' on page 2 undefined on input line 74.
 
 [2] [3]
 Underfull \vbox (badness 3471) has occurred while \output is active [4 <./image
@@ -1326,38 +1326,38 @@ es/fid_vs_noise.pdf> <./images/inference_latency.pdf>]
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.146 ...nstaflow, yin\_2023-11-30T18:59:20Z\_one}
+l.145 ...nstaflow, yin\_2023-11-30T18:59:20Z\_one}
                                                   .
 
 Package natbib Warning: Citation `deschenaux\T1\textunderscore2024-05-29T15:41:
-53Z\T1\textunderscoregoing' on page 6 undefined on input line 146.
+53Z\T1\textunderscoregoing' on page 6 undefined on input line 145.
 
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.146 ...nstaflow, yin\_2023-11-30T18:59:20Z\_one}
+l.145 ...nstaflow, yin\_2023-11-30T18:59:20Z\_one}
                                                   .
 
 Package natbib Warning: Citation `jayasumana\T1\textunderscore2023-11-30T19:11:
-01Z\T1\textunderscorerethinking' on page 6 undefined on input line 146.
+01Z\T1\textunderscorerethinking' on page 6 undefined on input line 145.
 
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.146 ...nstaflow, yin\_2023-11-30T18:59:20Z\_one}
+l.145 ...nstaflow, yin\_2023-11-30T18:59:20Z\_one}
                                                   .
 
 Package natbib Warning: Citation `liu\T1\textunderscore2023-09-12T16:42:09Z\T1\
-textunderscoreinstaflow' on page 6 undefined on input line 146.
+textunderscoreinstaflow' on page 6 undefined on input line 145.
 
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
-l.146 ...nstaflow, yin\_2023-11-30T18:59:20Z\_one}
+l.145 ...nstaflow, yin\_2023-11-30T18:59:20Z\_one}
                                                   .
 
 Package natbib Warning: Citation `yin\T1\textunderscore2023-11-30T18:59:20Z\T1\
-textunderscoreone' on page 6 undefined on input line 146.
+textunderscoreone' on page 6 undefined on input line 145.
 
 [6 <./images/clip_comparison.pdf> <./images/fid_ablation.pdf>] (./paper.bbl
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd))
