@@ -5,3 +5,406 @@
   publisher = {GitHub},
   url       = {https://github.com/airas-org/airas}
 }
+
+% ===========================================
+% REQUIRED CITATIONS
+% These papers must be cited in the manuscript
+% ===========================================
+
+@article{artemev_2022-06-28T16:59:28Z_memory,
+ abstract = {Software packages like TensorFlow and PyTorch are designed to support linear
+algebra operations, and their speed and usability determine their success.
+However, by prioritising speed, they often neglect memory requirements. As a
+consequence, the implementations of memory-intensive algorithms that are
+convenient in terms of software design can often not be run for large problems
+due to memory overflows. Memory-efficient solutions require complex programming
+approaches with significant logic outside the computational framework. This
+impairs the adoption and use of such algorithms. To address this, we developed
+an XLA compiler extension that adjusts the computational data-flow
+representation of an algorithm according to a user-specified memory limit. We
+show that k-nearest neighbour and sparse Gaussian process regression methods
+can be run at a much larger scale on a single device, where standard
+implementations would have failed. Our approach leads to better use of hardware
+resources. We believe that further focus on removing memory constraints at a
+compiler level will widen the range of machine learning methods that can be
+developed in the future.},
+ arxiv_url = {https://arxiv.org/pdf/2206.14148v1.pdf},
+ author = {Artem Artemev and Tilman Roeder and Mark van der Wilk},
+ github_url = {https://github.com/awav/tensorflow},
+ title = {Memory safe computations with XLA compiler},
+ year = {2022-06-28T16:59:28Z}
+}
+
+@article{gu_2021-10-26T19:44:53Z_combining,
+ abstract = {Recurrent neural networks (RNNs), temporal convolutions, and neural
+differential equations (NDEs) are popular families of deep learning models for
+time-series data, each with unique strengths and tradeoffs in modeling power
+and computational efficiency. We introduce a simple sequence model inspired by
+control systems that generalizes these approaches while addressing their
+shortcomings. The Linear State-Space Layer (LSSL) maps a sequence $u \mapsto y$
+by simply simulating a linear continuous-time state-space representation
+$\dot{x} = Ax + Bu, y = Cx + Du$. Theoretically, we show that LSSL models are
+closely related to the three aforementioned families of models and inherit
+their strengths. For example, they generalize convolutions to continuous-time,
+explain common RNN heuristics, and share features of NDEs such as time-scale
+adaptation. We then incorporate and generalize recent theory on continuous-time
+memorization to introduce a trainable subset of structured matrices $A$ that
+endow LSSLs with long-range memory. Empirically, stacking LSSL layers into a
+simple deep neural network obtains state-of-the-art results across time series
+benchmarks for long dependencies in sequential image classification, real-world
+healthcare regression tasks, and speech. On a difficult speech classification
+task with length-16000 sequences, LSSL outperforms prior approaches by 24
+accuracy points, and even outperforms baselines that use hand-crafted features
+on 100x shorter sequences.},
+ arxiv_url = {https://arxiv.org/pdf/2110.13985v1.pdf},
+ author = {Albert Gu and Isys Johnson and Karan Goel and Khaled Saab and Tri Dao and Atri Rudra and Christopher Ré},
+ github_url = {https://github.com/HazyResearch/state-spaces},
+ title = {Combining Recurrent, Convolutional, and Continuous-time Models with Linear State Space Layers},
+ year = {2021-10-26T19:44:53Z}
+}
+
+@article{he_2020-06-05T19:54:34Z_deberta,
+ abstract = {Recent progress in pre-trained neural language models has significantly
+improved the performance of many natural language processing (NLP) tasks. In
+this paper we propose a new model architecture DeBERTa (Decoding-enhanced BERT
+with disentangled attention) that improves the BERT and RoBERTa models using
+two novel techniques. The first is the disentangled attention mechanism, where
+each word is represented using two vectors that encode its content and
+position, respectively, and the attention weights among words are computed
+using disentangled matrices on their contents and relative positions,
+respectively. Second, an enhanced mask decoder is used to incorporate absolute
+positions in the decoding layer to predict the masked tokens in model
+pre-training. In addition, a new virtual adversarial training method is used
+for fine-tuning to improve models' generalization. We show that these
+techniques significantly improve the efficiency of model pre-training and the
+performance of both natural language understanding (NLU) and natural langauge
+generation (NLG) downstream tasks. Compared to RoBERTa-Large, a DeBERTa model
+trained on half of the training data performs consistently better on a wide
+range of NLP tasks, achieving improvements on MNLI by +0.9% (90.2% vs. 91.1%),
+on SQuAD v2.0 by +2.3% (88.4% vs. 90.7%) and RACE by +3.6% (83.2% vs. 86.8%).
+Notably, we scale up DeBERTa by training a larger version that consists of 48
+Transform layers with 1.5 billion parameters. The significant performance boost
+makes the single DeBERTa model surpass the human performance on the SuperGLUE
+benchmark (Wang et al., 2019a) for the first time in terms of macro-average
+score (89.9 versus 89.8), and the ensemble DeBERTa model sits atop the
+SuperGLUE leaderboard as of January 6, 2021, out performing the human baseline
+by a decent margin (90.3 versus 89.8).},
+ arxiv_url = {https://arxiv.org/pdf/2006.03654v6.pdf},
+ author = {Pengcheng He and Xiaodong Liu and Jianfeng Gao and Weizhu Chen},
+ github_url = {https://github.com/huggingface/transformers},
+ title = {Deberta: Decoding-Enhanced Bert With Disentangled Attention},
+ year = {2020-06-05T19:54:34Z}
+}
+
+@article{ho_2022-10-21T17:59:03Z_wikiwhy,
+ abstract = {As large language models (LLMs) grow larger and more sophisticated, assessing
+their "reasoning" capabilities in natural language grows more challenging.
+Recent question answering (QA) benchmarks that attempt to assess reasoning are
+often limited by a narrow scope of covered situations and subject matters. We
+introduce WikiWhy, a QA dataset built around a novel auxiliary task: explaining
+why an answer is true in natural language. WikiWhy contains over 9,000 "why"
+question-answer-rationale triples, grounded on Wikipedia facts across a diverse
+set of topics. Each rationale is a set of supporting statements connecting the
+question to the answer. WikiWhy serves as a benchmark for the reasoning
+capabilities of LLMs because it demands rigorous explicit rationales for each
+answer to demonstrate the acquisition of implicit commonsense knowledge, which
+is unlikely to be easily memorized. GPT-3 baselines achieve only 38.7%
+human-evaluated correctness in the end-to-end answer & explain condition,
+leaving significant room for future improvements.},
+ arxiv_url = {https://arxiv.org/pdf/2210.12152v2.pdf},
+ author = {Matthew Ho and Aditya Sharma and Justin Chang and Michael Saxon and Sharon Levy and Yujie Lu and William Yang Wang},
+ title = {WikiWhy: Answering and Explaining Cause-and-Effect Questions},
+ year = {2022-10-21T17:59:03Z}
+}
+
+@article{ho_2022-10-21T17:59:03Z_wikiwhy,
+ abstract = {As large language models (LLMs) grow larger and more sophisticated, assessing
+their "reasoning" capabilities in natural language grows more challenging.
+Recent question answering (QA) benchmarks that attempt to assess reasoning are
+often limited by a narrow scope of covered situations and subject matters. We
+introduce WikiWhy, a QA dataset built around a novel auxiliary task: explaining
+why an answer is true in natural language. WikiWhy contains over 9,000 "why"
+question-answer-rationale triples, grounded on Wikipedia facts across a diverse
+set of topics. Each rationale is a set of supporting statements connecting the
+question to the answer. WikiWhy serves as a benchmark for the reasoning
+capabilities of LLMs because it demands rigorous explicit rationales for each
+answer to demonstrate the acquisition of implicit commonsense knowledge, which
+is unlikely to be easily memorized. GPT-3 baselines achieve only 38.7%
+human-evaluated correctness in the end-to-end answer & explain condition,
+leaving significant room for future improvements.},
+ arxiv_url = {https://arxiv.org/pdf/2210.12152v2.pdf},
+ author = {Matthew Ho and Aditya Sharma and Justin Chang and Michael Saxon and Sharon Levy and Yujie Lu and William Yang Wang},
+ title = {WikiWhy: Answering and Explaining Cause-and-Effect Questions},
+ year = {2022-10-21T17:59:03Z}
+}
+
+@article{huang_2024-05-31T10:41:03Z_decision,
+ abstract = {Recent works have shown the remarkable superiority of transformer models in
+reinforcement learning (RL), where the decision-making problem is formulated as
+sequential generation. Transformer-based agents could emerge with
+self-improvement in online environments by providing task contexts, such as
+multiple trajectories, called in-context RL. However, due to the quadratic
+computation complexity of attention in transformers, current in-context RL
+methods suffer from huge computational costs as the task horizon increases. In
+contrast, the Mamba model is renowned for its efficient ability to process
+long-term dependencies, which provides an opportunity for in-context RL to
+solve tasks that require long-term memory. To this end, we first implement
+Decision Mamba (DM) by replacing the backbone of Decision Transformer (DT).
+Then, we propose a Decision Mamba-Hybrid (DM-H) with the merits of transformers
+and Mamba in high-quality prediction and long-term memory. Specifically, DM-H
+first generates high-value sub-goals from long-term memory through the Mamba
+model. Then, we use sub-goals to prompt the transformer, establishing
+high-quality predictions. Experimental results demonstrate that DM-H achieves
+state-of-the-art in long and short-term tasks, such as D4RL, Grid World, and
+Tmaze benchmarks. Regarding efficiency, the online testing of DM-H in the
+long-term task is 28$\times$ times faster than the transformer-based baselines.},
+ arxiv_url = {https://arxiv.org/pdf/2406.00079v1.pdf},
+ author = {Sili Huang and Jifeng Hu and Zhejian Yang and Liwei Yang and Tao Luo and Hechang Chen and Lichao Sun and Bo Yang},
+ title = {Decision Mamba: Reinforcement Learning via Hybrid Selective Sequence Modeling},
+ year = {2024-05-31T10:41:03Z}
+}
+
+@article{jiang_2024-07-02T17:59:56Z_minference,
+ abstract = {The computational challenges of Large Language Model (LLM) inference remain a
+significant barrier to their widespread deployment, especially as prompt
+lengths continue to increase. Due to the quadratic complexity of the attention
+computation, it takes 30 minutes for an 8B LLM to process a prompt of 1M tokens
+(i.e., the pre-filling stage) on a single A100 GPU. Existing methods for
+speeding up prefilling often fail to maintain acceptable accuracy or efficiency
+when applied to long-context LLMs. To address this gap, we introduce MInference
+(Milliontokens Inference), a sparse calculation method designed to accelerate
+pre-filling of long-sequence processing. Specifically, we identify three unique
+patterns in long-context attention matrices-the A-shape, Vertical-Slash, and
+Block-Sparsethat can be leveraged for efficient sparse computation on GPUs. We
+determine the optimal pattern for each attention head offline and dynamically
+build sparse indices based on the assigned pattern during inference. With the
+pattern and sparse indices, we perform efficient sparse attention calculations
+via our optimized GPU kernels to significantly reduce the latency in the
+pre-filling stage of long-context LLMs. Our proposed technique can be directly
+applied to existing LLMs without any modifications to the pre-training setup or
+additional fine-tuning. By evaluating on a wide range of downstream tasks,
+including InfiniteBench, RULER, PG-19, and Needle In A Haystack, and models
+including LLaMA-3-1M, GLM4-1M, Yi-200K, Phi-3-128K, and Qwen2-128K, we
+demonstrate that MInference effectively reduces inference latency by up to 10x
+for pre-filling on an A100, while maintaining accuracy. Our code is available
+at https://aka.ms/MInference.},
+ arxiv_url = {https://arxiv.org/pdf/2407.02490v2.pdf},
+ author = {Huiqiang Jiang and Yucheng Li and Chengruidong Zhang and Qianhui Wu and Xufang Luo and Surin Ahn and Zhenhua Han and Amir H. Abdi and Dongsheng Li and Chin-Yew Lin and Yuqing Yang and Lili Qiu},
+ github_url = {https://github.com/huggingface/transformers},
+ title = {MInference 1.0: Accelerating Pre-filling for Long-Context LLMs via Dynamic Sparse Attention},
+ year = {2024-07-02T17:59:56Z}
+}
+
+@article{liao_2023-06-01T09:26:17Z_make,
+ abstract = {Parameter-efficient fine-tuning (PEFT) of pre-trained language models (PLMs)
+has emerged as a highly successful approach, with training only a small number
+of parameters without sacrificing performance and becoming the de-facto
+learning paradigm with the increasing size of PLMs. However, existing PEFT
+methods are not memory-efficient, because they still require caching most of
+the intermediate activations for the gradient calculation, akin to fine-tuning.
+One effective way to reduce the activation memory is to apply a reversible
+model, so the intermediate activations are not necessary to be cached and can
+be recomputed. Nevertheless, modifying a PLM to its reversible variant is not
+straightforward, since the reversible model has a distinct architecture from
+the currently released PLMs. In this paper, we first investigate what is a key
+factor for the success of existing PEFT methods, and realize that it's
+essential to preserve the PLM's starting point when initializing a PEFT method.
+With this finding, we propose memory-efficient fine-tuning (MEFT) that inserts
+adapters into a PLM, preserving the PLM's starting point and making it
+reversible without additional pre-training. We evaluate MEFT on the GLUE
+benchmark and five question-answering tasks with various backbones, BERT,
+RoBERTa, BART and OPT. MEFT significantly reduces the activation memory up to
+84% of full fine-tuning with a negligible amount of trainable parameters.
+Moreover, MEFT achieves the same score on GLUE and a comparable score on the
+question-answering tasks as full fine-tuning. A similar finding is also
+observed for the image classification task.},
+ arxiv_url = {https://arxiv.org/pdf/2306.00477v4.pdf},
+ author = {Baohao Liao and Shaomu Tan and Christof Monz},
+ github_url = {https://github.com/karttikeya/minREV},
+ title = {Make Pre-trained Model Reversible: From Parameter to Memory Efficient Fine-Tuning},
+ year = {2023-06-01T09:26:17Z}
+}
+
+@article{novikov_2022-02-01T14:51:38Z_few,
+ abstract = {Memory footprint is one of the main limiting factors for large neural network
+training. In backpropagation, one needs to store the input to each operation in
+the computational graph. Every modern neural network model has quite a few
+pointwise nonlinearities in its architecture, and such operation induces
+additional memory costs which -- as we show -- can be significantly reduced by
+quantization of the gradients. We propose a systematic approach to compute
+optimal quantization of the retained gradients of the pointwise nonlinear
+functions with only a few bits per each element. We show that such
+approximation can be achieved by computing optimal piecewise-constant
+approximation of the derivative of the activation function, which can be done
+by dynamic programming. The drop-in replacements are implemented for all
+popular nonlinearities and can be used in any existing pipeline. We confirm the
+memory reduction and the same convergence on several open benchmarks.},
+ arxiv_url = {https://arxiv.org/pdf/2202.00441v2.pdf},
+ author = {Georgii Novikov and Daniel Bershatsky and Julia Gusak and Alex Shonenkov and Denis Dimitrov and Ivan Oseledets},
+ title = {Few-bit Backward: Quantized Gradients of Activation Functions for Memory Footprint Reduction},
+ year = {2022-02-01T14:51:38Z}
+}
+
+@article{park_2024-02-06T18:56:35Z_can,
+ abstract = {State-space models (SSMs), such as Mamba (Gu & Dao, 2023), have been proposed
+as alternatives to Transformer networks in language modeling, by incorporating
+gating, convolutions, and input-dependent token selection to mitigate the
+quadratic cost of multi-head attention. Although SSMs exhibit competitive
+performance, their in-context learning (ICL) capabilities, a remarkable
+emergent property of modern language models that enables task execution without
+parameter optimization, remain underexplored compared to Transformers. In this
+study, we evaluate the ICL performance of SSMs, focusing on Mamba, against
+Transformer models across various tasks. Our results show that SSMs perform
+comparably to Transformers in standard regression ICL tasks, while
+outperforming them in tasks like sparse parity learning. However, SSMs fall
+short in tasks involving non-standard retrieval functionality. To address these
+limitations, we introduce a hybrid model, MambaFormer, that combines Mamba with
+attention blocks, surpassing individual models in tasks where they struggle
+independently. Our findings suggest that hybrid architectures offer promising
+avenues for enhancing ICL in language models.},
+ arxiv_url = {https://arxiv.org/pdf/2402.04248v2.pdf},
+ author = {Jongho Park and Jaeseung Park and Zheyang Xiong and Nayoung Lee and Jaewoong Cho and Samet Oymak and Kangwook Lee and Dimitris Papailiopoulos},
+ github_url = {https://github.com/krafton-ai/mambaformer-icl},
+ title = {Can Mamba Learn How To Learn? A Comparative Study on In-Context Learning Tasks},
+ year = {2024-02-06T18:56:35Z}
+}
+
+@article{wang_2023-09-23T15:55:12Z_state,
+ abstract = {State-space models have gained popularity in sequence modelling due to their
+simple and efficient network structures. However, the absence of nonlinear
+activation along the temporal direction limits the model's capacity. In this
+paper, we prove that stacking state-space models with layer-wise nonlinear
+activation is sufficient to approximate any continuous sequence-to-sequence
+relationship. Our findings demonstrate that the addition of layer-wise
+nonlinear activation enhances the model's capacity to learn complex sequence
+patterns. Meanwhile, it can be seen both theoretically and empirically that the
+state-space models do not fundamentally resolve the issue of exponential
+decaying memory. Theoretical results are justified by numerical verifications.},
+ arxiv_url = {https://arxiv.org/pdf/2309.13414v3.pdf},
+ author = {Shida Wang and Beichen Xue},
+ title = {State-space models with layer-wise nonlinearity are universal approximators with exponential decaying memory},
+ year = {2023-09-23T15:55:12Z}
+}
+
+@article{wang_2023-10-30T12:28:53Z_generator,
+ abstract = {In this paper, we present conditions for identifying the generator of a
+linear stochastic differential equation (SDE) from the distribution of its
+solution process with a given fixed initial state. These identifiability
+conditions are crucial in causal inference using linear SDEs as they enable the
+identification of the post-intervention distributions from its observational
+distribution. Specifically, we derive a sufficient and necessary condition for
+identifying the generator of linear SDEs with additive noise, as well as a
+sufficient condition for identifying the generator of linear SDEs with
+multiplicative noise. We show that the conditions derived for both types of
+SDEs are generic. Moreover, we offer geometric interpretations of the derived
+identifiability conditions to enhance their understanding. To validate our
+theoretical results, we perform a series of simulations, which support and
+substantiate the established findings.},
+ arxiv_url = {https://arxiv.org/pdf/2310.19491v2.pdf},
+ author = {Yuanyuan Wang and Xi Geng and Wei Huang and Biwei Huang and Mingming Gong},
+ title = {Generator Identification for Linear SDEs with Additive and Multiplicative Noise},
+ year = {2023-10-30T12:28:53Z}
+}
+
+@article{wang_2024-08-27T17:56:11Z_the,
+ abstract = {Linear RNN architectures, like Mamba, can be competitive with Transformer
+models in language modeling while having advantageous deployment
+characteristics. Given the focus on training large-scale Transformer models, we
+consider the challenge of converting these pretrained models for deployment. We
+demonstrate that it is feasible to distill large Transformers into linear RNNs
+by reusing the linear projection weights from attention layers with academic
+GPU resources. The resulting hybrid model, which incorporates a quarter of the
+attention layers, achieves performance comparable to the original Transformer
+in chat benchmarks and outperforms open-source hybrid Mamba models trained from
+scratch with trillions of tokens in both chat benchmarks and general
+benchmarks. Moreover, we introduce a hardware-aware speculative decoding
+algorithm that accelerates the inference speed of Mamba and hybrid models.
+Overall we show how, with limited computation resources, we can remove many of
+the original attention layers and generate from the resulting model more
+efficiently. Our top-performing model, distilled from Llama3-8B-Instruct,
+achieves a 29.61 length-controlled win rate on AlpacaEval 2 against GPT-4 and
+7.35 on MT-Bench, surpassing the best 8B scale instruction-tuned linear RNN
+model. We also find that the distilled model has natural length extrapolation,
+showing almost perfect accuracy in the needle-in-a-haystack test at 20x the
+distillation length. Code and pre-trained checkpoints are open-sourced at
+https://github.com/jxiw/MambaInLlama and
+https://github.com/itsdaniele/speculative_mamba.},
+ arxiv_url = {https://arxiv.org/pdf/2408.15237v4.pdf},
+ author = {Junxiong Wang and Daniele Paliotta and Avner May and Alexander M. Rush and Tri Dao},
+ github_url = {https://github.com/itsdaniele/speculative_mamba},
+ title = {The Mamba in the Llama: Distilling and Accelerating Hybrid Models},
+ year = {2024-08-27T17:56:11Z}
+}
+
+@article{zhang_2024-05-07T17:44:54Z_switchable,
+ abstract = {Auto-regressive generation models achieve competitive performance across many
+different NLP tasks such as summarization, question answering, and
+classifications. However, they are also known for being slow in inference,
+which makes them challenging to deploy in real-time applications. We propose a
+switchable decision to accelerate inference by dynamically assigning
+computation resources for each data instance. Automatically making decisions on
+where to skip and how to balance quality and computation cost with constrained
+optimization, our dynamic neural generation networks enforce the efficient
+inference path and determine the optimized trade-off. Experiments across
+question answering, summarization, and classification benchmarks show that our
+method benefits from less computation cost during inference while keeping the
+same accuracy. Extensive experiments and ablation studies demonstrate that our
+method can be general, effective, and beneficial for many NLP tasks.},
+ arxiv_url = {https://arxiv.org/pdf/2405.04513v1.pdf},
+ author = {Shujian Zhang and Korawat Tanwisuth and Chengyue Gong and Pengcheng He and Mingyuan Zhou},
+ title = {Switchable Decision: Dynamic Neural Generation Networks},
+ year = {2024-05-07T17:44:54Z}
+}
+
+@article{zheng_2023-05-22T15:36:06Z_response,
+ abstract = {Large language models (LLMs) have revolutionized the field of AI,
+demonstrating unprecedented capacity across various tasks. However, the
+inference process for LLMs comes with significant computational costs. In this
+paper, we propose an efficient LLM inference pipeline that harnesses the power
+of LLMs. Our approach begins by tapping into the potential of LLMs to
+accurately perceive and predict the response length with minimal overhead. By
+leveraging this information, we introduce an efficient sequence scheduling
+technique that groups queries with similar response lengths into micro-batches.
+We evaluate our approach on real-world instruction datasets using the
+LLaMA-based model, and our results demonstrate an impressive 86% improvement in
+inference throughput without compromising effectiveness. Notably, our method is
+orthogonal to other inference acceleration techniques, making it a valuable
+addition to many existing toolkits (e.g., FlashAttention, Quantization) for LLM
+inference.},
+ arxiv_url = {https://arxiv.org/pdf/2305.13144v2.pdf},
+ author = {Zangwei Zheng and Xiaozhe Ren and Fuzhao Xue and Yang Luo and Xin Jiang and Yang You},
+ github_url = {https://github.com/zhengzangw/Sequence-Scheduling},
+ title = {Response Length Perception and  Sequence Scheduling: An LLM-Empowered LLM Inference Pipeline},
+ year = {2023-05-22T15:36:06Z}
+}
+
+% ===========================================
+% REFERENCE CANDIDATES
+% Additional reference papers for context
+% ===========================================
+
+@article{author_year_offline,
+ title = {Offline meta reinforcement learning– identifiability challenges and effective data collection strategies}
+}
+
+@article{devlin_2018-10-11T00:50:01Z_bert,
+ abstract = {We introduce a new language representation model called BERT, which stands
+for Bidirectional Encoder Representations from Transformers. Unlike recent
+language representation models, BERT is designed to pre-train deep
+bidirectional representations from unlabeled text by jointly conditioning on
+both left and right context in all layers. As a result, the pre-trained BERT
+model can be fine-tuned with just one additional output layer to create
+state-of-the-art models for a wide range of tasks, such as question answering
+and language inference, without substantial task-specific architecture
+modifications.
+  BERT is conceptually simple and empirically powerful. It obtains new
+state-of-the-art results on eleven natural language processing tasks, including
+pushing the GLUE score to 80.5% (7.7% point absolute improvement), MultiNLI
+accuracy to 86.7% (4.6% absolute improvement), SQuAD v1.1 question answering
+Test F1 to 93.2 (1.5 point absolute improvement) and SQuAD v2.0 Test F1 to 83.1
+(5.1 point absolute improvement).},
+ arxiv_url = {https://arxiv.org/pdf/1810.04805v2.pdf},
+ author = {Jacob Devlin and Ming-Wei Chang and Kenton Lee and Kristina Toutanova},
+ title = {Bert: Pre-training of deep bidirectional transformers for language understanding},
+ year = {2018-10-11T00:50:01Z}
+}
