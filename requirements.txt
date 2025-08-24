@@ -1,1 +1,6 @@
-# Please list the required python packages.
+torch>=2.0.0
+numpy>=1.21.0
+matplotlib>=3.5.0
+psutil>=5.8.0
+scikit-learn>=1.0.0
+tqdm>=4.62.0
