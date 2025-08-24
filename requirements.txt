@@ -1,1 +1,8 @@
-# Please list the required python packages.
+numpy
+matplotlib
+scikit-learn
+torch
+networkx
+gym
+transformers
+stable-baselines3
