@@ -1,0 +1,251 @@
+=== pip install start Sun Aug 24 14:22:40 UTC 2025 ===
+Collecting torch>=2.0.0 (from -r requirements.txt (line 2))
+  Downloading torch-2.8.0-cp311-cp311-manylinux_2_28_x86_64.whl.metadata (30 kB)
+Collecting torchvision>=0.15.0 (from -r requirements.txt (line 3))
+  Downloading torchvision-0.23.0-cp311-cp311-manylinux_2_28_x86_64.whl.metadata (6.1 kB)
+Collecting numpy>=1.21.0 (from -r requirements.txt (line 4))
+  Downloading numpy-2.3.2-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (62 kB)
+Collecting matplotlib>=3.5.0 (from -r requirements.txt (line 5))
+  Downloading matplotlib-3.10.5-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (11 kB)
+Collecting seaborn>=0.11.0 (from -r requirements.txt (line 6))
+  Downloading seaborn-0.13.2-py3-none-any.whl.metadata (5.4 kB)
+Collecting filelock (from torch>=2.0.0->-r requirements.txt (line 2))
+  Downloading filelock-3.19.1-py3-none-any.whl.metadata (2.1 kB)
+Collecting typing-extensions>=4.10.0 (from torch>=2.0.0->-r requirements.txt (line 2))
+  Downloading typing_extensions-4.14.1-py3-none-any.whl.metadata (3.0 kB)
+Collecting sympy>=1.13.3 (from torch>=2.0.0->-r requirements.txt (line 2))
+  Downloading sympy-1.14.0-py3-none-any.whl.metadata (12 kB)
+Collecting networkx (from torch>=2.0.0->-r requirements.txt (line 2))
+  Downloading networkx-3.5-py3-none-any.whl.metadata (6.3 kB)
+Collecting jinja2 (from torch>=2.0.0->-r requirements.txt (line 2))
+  Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+Collecting fsspec (from torch>=2.0.0->-r requirements.txt (line 2))
+  Downloading fsspec-2025.7.0-py3-none-any.whl.metadata (12 kB)
+Collecting nvidia-cuda-nvrtc-cu12==12.8.93 (from torch>=2.0.0->-r requirements.txt (line 2))
+  Downloading nvidia_cuda_nvrtc_cu12-12.8.93-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl.metadata (1.7 kB)
+Collecting nvidia-cuda-runtime-cu12==12.8.90 (from torch>=2.0.0->-r requirements.txt (line 2))
+  Downloading nvidia_cuda_runtime_cu12-12.8.90-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.7 kB)
+Collecting nvidia-cuda-cupti-cu12==12.8.90 (from torch>=2.0.0->-r requirements.txt (line 2))
+  Downloading nvidia_cuda_cupti_cu12-12.8.90-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.7 kB)
+Collecting nvidia-cudnn-cu12==9.10.2.21 (from torch>=2.0.0->-r requirements.txt (line 2))
+  Downloading nvidia_cudnn_cu12-9.10.2.21-py3-none-manylinux_2_27_x86_64.whl.metadata (1.8 kB)
+Collecting nvidia-cublas-cu12==12.8.4.1 (from torch>=2.0.0->-r requirements.txt (line 2))
+  Downloading nvidia_cublas_cu12-12.8.4.1-py3-none-manylinux_2_27_x86_64.whl.metadata (1.7 kB)
+Collecting nvidia-cufft-cu12==11.3.3.83 (from torch>=2.0.0->-r requirements.txt (line 2))
+  Downloading nvidia_cufft_cu12-11.3.3.83-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.7 kB)
+Collecting nvidia-curand-cu12==10.3.9.90 (from torch>=2.0.0->-r requirements.txt (line 2))
+  Downloading nvidia_curand_cu12-10.3.9.90-py3-none-manylinux_2_27_x86_64.whl.metadata (1.7 kB)
+Collecting nvidia-cusolver-cu12==11.7.3.90 (from torch>=2.0.0->-r requirements.txt (line 2))
+  Downloading nvidia_cusolver_cu12-11.7.3.90-py3-none-manylinux_2_27_x86_64.whl.metadata (1.8 kB)
+Collecting nvidia-cusparse-cu12==12.5.8.93 (from torch>=2.0.0->-r requirements.txt (line 2))
+  Downloading nvidia_cusparse_cu12-12.5.8.93-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.8 kB)
+Collecting nvidia-cusparselt-cu12==0.7.1 (from torch>=2.0.0->-r requirements.txt (line 2))
+  Downloading nvidia_cusparselt_cu12-0.7.1-py3-none-manylinux2014_x86_64.whl.metadata (7.0 kB)
+Collecting nvidia-nccl-cu12==2.27.3 (from torch>=2.0.0->-r requirements.txt (line 2))
+  Downloading nvidia_nccl_cu12-2.27.3-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.0 kB)
+Collecting nvidia-nvtx-cu12==12.8.90 (from torch>=2.0.0->-r requirements.txt (line 2))
+  Downloading nvidia_nvtx_cu12-12.8.90-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.8 kB)
+Collecting nvidia-nvjitlink-cu12==12.8.93 (from torch>=2.0.0->-r requirements.txt (line 2))
+  Downloading nvidia_nvjitlink_cu12-12.8.93-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl.metadata (1.7 kB)
+Collecting nvidia-cufile-cu12==1.13.1.3 (from torch>=2.0.0->-r requirements.txt (line 2))
+  Downloading nvidia_cufile_cu12-1.13.1.3-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (1.7 kB)
+Collecting triton==3.4.0 (from torch>=2.0.0->-r requirements.txt (line 2))
+  Downloading triton-3.4.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (1.7 kB)
+Requirement already satisfied: setuptools>=40.8.0 in /home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages (from triton==3.4.0->torch>=2.0.0->-r requirements.txt (line 2)) (65.5.0)
+Collecting pillow!=8.3.*,>=5.3.0 (from torchvision>=0.15.0->-r requirements.txt (line 3))
+  Downloading pillow-11.3.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (9.0 kB)
+Collecting contourpy>=1.0.1 (from matplotlib>=3.5.0->-r requirements.txt (line 5))
+  Downloading contourpy-1.3.3-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (5.5 kB)
+Collecting cycler>=0.10 (from matplotlib>=3.5.0->-r requirements.txt (line 5))
+  Downloading cycler-0.12.1-py3-none-any.whl.metadata (3.8 kB)
+Collecting fonttools>=4.22.0 (from matplotlib>=3.5.0->-r requirements.txt (line 5))
+  Downloading fonttools-4.59.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (108 kB)
+Collecting kiwisolver>=1.3.1 (from matplotlib>=3.5.0->-r requirements.txt (line 5))
+  Downloading kiwisolver-1.4.9-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (6.3 kB)
+Collecting packaging>=20.0 (from matplotlib>=3.5.0->-r requirements.txt (line 5))
+  Downloading packaging-25.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting pyparsing>=2.3.1 (from matplotlib>=3.5.0->-r requirements.txt (line 5))
+  Downloading pyparsing-3.2.3-py3-none-any.whl.metadata (5.0 kB)
+Collecting python-dateutil>=2.7 (from matplotlib>=3.5.0->-r requirements.txt (line 5))
+  Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+Collecting pandas>=1.2 (from seaborn>=0.11.0->-r requirements.txt (line 6))
+  Downloading pandas-2.3.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (91 kB)
+Collecting pytz>=2020.1 (from pandas>=1.2->seaborn>=0.11.0->-r requirements.txt (line 6))
+  Downloading pytz-2025.2-py2.py3-none-any.whl.metadata (22 kB)
+Collecting tzdata>=2022.7 (from pandas>=1.2->seaborn>=0.11.0->-r requirements.txt (line 6))
+  Downloading tzdata-2025.2-py2.py3-none-any.whl.metadata (1.4 kB)
+Collecting six>=1.5 (from python-dateutil>=2.7->matplotlib>=3.5.0->-r requirements.txt (line 5))
+  Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+Collecting mpmath<1.4,>=1.1.0 (from sympy>=1.13.3->torch>=2.0.0->-r requirements.txt (line 2))
+  Downloading mpmath-1.3.0-py3-none-any.whl.metadata (8.6 kB)
+Collecting MarkupSafe>=2.0 (from jinja2->torch>=2.0.0->-r requirements.txt (line 2))
+  Downloading MarkupSafe-3.0.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (4.0 kB)
+Downloading torch-2.8.0-cp311-cp311-manylinux_2_28_x86_64.whl (888.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 888.1/888.1 MB 36.4 MB/s  0:00:10
+Downloading nvidia_cublas_cu12-12.8.4.1-py3-none-manylinux_2_27_x86_64.whl (594.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 594.3/594.3 MB 50.5 MB/s  0:00:06
+Downloading nvidia_cuda_cupti_cu12-12.8.90-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (10.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 10.2/10.2 MB 14.7 MB/s  0:00:00
+Downloading nvidia_cuda_nvrtc_cu12-12.8.93-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl (88.0 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 88.0/88.0 MB 115.5 MB/s  0:00:00
+Downloading nvidia_cuda_runtime_cu12-12.8.90-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (954 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 954.8/954.8 kB 122.8 MB/s  0:00:00
+Downloading nvidia_cudnn_cu12-9.10.2.21-py3-none-manylinux_2_27_x86_64.whl (706.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 706.8/706.8 MB 33.8 MB/s  0:00:09
+Downloading nvidia_cufft_cu12-11.3.3.83-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (193.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 193.1/193.1 MB 127.7 MB/s  0:00:01
+Downloading nvidia_cufile_cu12-1.13.1.3-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (1.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 131.7 MB/s  0:00:00
+Downloading nvidia_curand_cu12-10.3.9.90-py3-none-manylinux_2_27_x86_64.whl (63.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 63.6/63.6 MB 188.4 MB/s  0:00:00
+Downloading nvidia_cusolver_cu12-11.7.3.90-py3-none-manylinux_2_27_x86_64.whl (267.5 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 267.5/267.5 MB 75.1 MB/s  0:00:03
+Downloading nvidia_cusparse_cu12-12.5.8.93-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (288.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 288.2/288.2 MB 116.0 MB/s  0:00:02
+Downloading nvidia_cusparselt_cu12-0.7.1-py3-none-manylinux2014_x86_64.whl (287.2 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 287.2/287.2 MB 81.6 MB/s  0:00:03
+Downloading nvidia_nccl_cu12-2.27.3-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (322.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 322.4/322.4 MB 62.0 MB/s  0:00:04
+Downloading nvidia_nvjitlink_cu12-12.8.93-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl (39.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 39.3/39.3 MB 223.8 MB/s  0:00:00
+Downloading nvidia_nvtx_cu12-12.8.90-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (89 kB)
+Downloading triton-3.4.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (155.5 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 155.5/155.5 MB 114.5 MB/s  0:00:01
+Downloading torchvision-0.23.0-cp311-cp311-manylinux_2_28_x86_64.whl (8.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 8.6/8.6 MB 186.3 MB/s  0:00:00
+Downloading numpy-2.3.2-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (16.9 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 16.9/16.9 MB 211.1 MB/s  0:00:00
+Downloading matplotlib-3.10.5-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (8.7 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 8.7/8.7 MB 177.2 MB/s  0:00:00
+Downloading seaborn-0.13.2-py3-none-any.whl (294 kB)
+Downloading contourpy-1.3.3-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (355 kB)
+Downloading cycler-0.12.1-py3-none-any.whl (8.3 kB)
+Downloading fonttools-4.59.1-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (5.0 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.0/5.0 MB 187.8 MB/s  0:00:00
+Downloading kiwisolver-1.4.9-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (1.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.4/1.4 MB 152.3 MB/s  0:00:00
+Downloading packaging-25.0-py3-none-any.whl (66 kB)
+Downloading pandas-2.3.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (12.4 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.4/12.4 MB 206.1 MB/s  0:00:00
+Downloading pillow-11.3.0-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (6.6 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.6/6.6 MB 196.3 MB/s  0:00:00
+Downloading pyparsing-3.2.3-py3-none-any.whl (111 kB)
+Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+Downloading pytz-2025.2-py2.py3-none-any.whl (509 kB)
+Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+Downloading sympy-1.14.0-py3-none-any.whl (6.3 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.3/6.3 MB 199.1 MB/s  0:00:00
+Downloading mpmath-1.3.0-py3-none-any.whl (536 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 536.2/536.2 kB 85.6 MB/s  0:00:00
+Downloading typing_extensions-4.14.1-py3-none-any.whl (43 kB)
+Downloading tzdata-2025.2-py2.py3-none-any.whl (347 kB)
+Downloading filelock-3.19.1-py3-none-any.whl (15 kB)
+Downloading fsspec-2025.7.0-py3-none-any.whl (199 kB)
+Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+Downloading MarkupSafe-3.0.2-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (23 kB)
+Downloading networkx-3.5-py3-none-any.whl (2.0 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.0/2.0 MB 167.2 MB/s  0:00:00
+Installing collected packages: pytz, nvidia-cusparselt-cu12, mpmath, tzdata, typing-extensions, triton, sympy, six, pyparsing, pillow, packaging, nvidia-nvtx-cu12, nvidia-nvjitlink-cu12, nvidia-nccl-cu12, nvidia-curand-cu12, nvidia-cufile-cu12, nvidia-cuda-runtime-cu12, nvidia-cuda-nvrtc-cu12, nvidia-cuda-cupti-cu12, nvidia-cublas-cu12, numpy, networkx, MarkupSafe, kiwisolver, fsspec, fonttools, filelock, cycler, python-dateutil, nvidia-cusparse-cu12, nvidia-cufft-cu12, nvidia-cudnn-cu12, jinja2, contourpy, pandas, nvidia-cusolver-cu12, matplotlib, torch, seaborn, torchvision
+
+Successfully installed MarkupSafe-3.0.2 contourpy-1.3.3 cycler-0.12.1 filelock-3.19.1 fonttools-4.59.1 fsspec-2025.7.0 jinja2-3.1.6 kiwisolver-1.4.9 matplotlib-3.10.5 mpmath-1.3.0 networkx-3.5 numpy-2.3.2 nvidia-cublas-cu12-12.8.4.1 nvidia-cuda-cupti-cu12-12.8.90 nvidia-cuda-nvrtc-cu12-12.8.93 nvidia-cuda-runtime-cu12-12.8.90 nvidia-cudnn-cu12-9.10.2.21 nvidia-cufft-cu12-11.3.3.83 nvidia-cufile-cu12-1.13.1.3 nvidia-curand-cu12-10.3.9.90 nvidia-cusolver-cu12-11.7.3.90 nvidia-cusparse-cu12-12.5.8.93 nvidia-cusparselt-cu12-0.7.1 nvidia-nccl-cu12-2.27.3 nvidia-nvjitlink-cu12-12.8.93 nvidia-nvtx-cu12-12.8.90 packaging-25.0 pandas-2.3.2 pillow-11.3.0 pyparsing-3.2.3 python-dateutil-2.9.0.post0 pytz-2025.2 seaborn-0.13.2 six-1.17.0 sympy-1.14.0 torch-2.8.0 torchvision-0.23.0 triton-3.4.0 typing-extensions-4.14.1 tzdata-2025.2
+=== pip install end Sun Aug 24 14:24:36 UTC 2025 ===
+=== experiment start Sun Aug 24 14:24:36 UTC 2025 ===
+===== CDMAD 2.0 Consistency-guided Dual-Modal Adaptive Diffusion Experiments =====
+Starting comprehensive evaluation of the proposed framework...
+
+--- Step 1: Data Preprocessing ---
+Preparing experiment data...
+Generated 5 text prompts and corresponding ground truth images
+Created 5 scenes with varying complexity
+
+--- Step 2: Model Initialization ---
+Initializing models for CDMAD 2.0 experiments...
+Models initialized:
+- CDMAD 2.0 (dynamic): CDMAD20
+- Baseline one-step: OneStepBaseline
+- Multi-step teacher: MultiStepTeacher
+- CDMAD 2.0 (static): CDMAD20
+
+--- Step 3: Running Experiments ---
+
+=== Experiment 1: Benchmark Comparison for Text-to-Image Synthesis ===
+[Model: CDMAD20] Prompt: 'A sample image of item 1' | Dynamic: True | Fused value: -0.0420
+[Model: CDMAD20] Prompt: 'A sample image of item 2' | Dynamic: True | Fused value: -0.0348
+[Model: CDMAD20] Prompt: 'A sample image of item 3' | Dynamic: True | Fused value: -0.0358
+[Model: CDMAD20] Prompt: 'A sample image of item 4' | Dynamic: True | Fused value: -0.0336
+[Model: CDMAD20] Prompt: 'A sample image of item 5' | Dynamic: True | Fused value: -0.0390
+CDMAD 2.0 -> FID: 51.9359, CLIP: 0.3029, Avg Gen Time: 0.0014 sec
+Baseline  -> FID: 45.3250, CLIP: 0.2975, Avg Gen Time: 0.0002 sec
+Teacher   -> FID: 45.3250, CLIP: 0.2975, Avg Gen Time: 0.0504 sec
+Experiment 1 completed. Plots saved to: .research/iteration1/images
+
+=== Experiment 2: Ablation Study on the CGM Module ===
+[Model: CDMAD20] Prompt: 'A sample image of item 1' | Dynamic: True | Fused value: -0.0420
+[Model: CDMAD20] Prompt: 'A sample image of item 2' | Dynamic: True | Fused value: -0.0348
+[Model: CDMAD20] Prompt: 'A sample image of item 3' | Dynamic: True | Fused value: -0.0358
+[Model: CDMAD20] Prompt: 'A sample image of item 4' | Dynamic: True | Fused value: -0.0336
+[Model: CDMAD20] Prompt: 'A sample image of item 5' | Dynamic: True | Fused value: -0.0390
+[Model: CDMAD20] Prompt: 'A sample image of item 1' | Dynamic: False | Fused value: -0.0310
+[Model: CDMAD20] Prompt: 'A sample image of item 2' | Dynamic: False | Fused value: -0.0306
+[Model: CDMAD20] Prompt: 'A sample image of item 3' | Dynamic: False | Fused value: -0.0307
+[Model: CDMAD20] Prompt: 'A sample image of item 4' | Dynamic: False | Fused value: -0.0306
+[Model: CDMAD20] Prompt: 'A sample image of item 5' | Dynamic: False | Fused value: -0.0307
+Full Dynamic Model -> Avg FID: 51.9359, Avg CLIP: 0.3168
+Static Fusion Model -> Avg FID: 51.9935, Avg CLIP: 0.2821
+Experiment 2 completed. Plots saved to: .research/iteration1/images
+
+=== Experiment 3: Real-Time Performance Under Varying Scene Complexity ===
+[Model: CDMAD20] Prompt: 'A sample image of item 1' | Dynamic: True | Fused value: -0.0420
+[Model: CDMAD20] Prompt: 'A sample image of item 2' | Dynamic: True | Fused value: -0.0348
+[Model: CDMAD20] Prompt: 'A sample image of item 3' | Dynamic: True | Fused value: -0.0358
+[Model: CDMAD20] Prompt: 'A sample image of item 4' | Dynamic: True | Fused value: -0.0336
+[Model: CDMAD20] Prompt: 'A sample image of item 5' | Dynamic: True | Fused value: -0.0390
+[Model: CDMAD20] Prompt: 'A sample image of item 1' | Dynamic: True | Fused value: -0.0461
+[Model: CDMAD20] Prompt: 'A sample image of item 2' | Dynamic: True | Fused value: -0.0384
+[Model: CDMAD20] Prompt: 'A sample image of item 3' | Dynamic: True | Fused value: -0.0393
+[Model: CDMAD20] Prompt: 'A sample image of item 4' | Dynamic: True | Fused value: -0.0371
+[Model: CDMAD20] Prompt: 'A sample image of item 5' | Dynamic: True | Fused value: -0.0429
+[Model: CDMAD20] Prompt: 'A sample image of item 1' | Dynamic: True | Fused value: -0.0499
+[Model: CDMAD20] Prompt: 'A sample image of item 2' | Dynamic: True | Fused value: -0.0417
+[Model: CDMAD20] Prompt: 'A sample image of item 3' | Dynamic: True | Fused value: -0.0427
+[Model: CDMAD20] Prompt: 'A sample image of item 4' | Dynamic: True | Fused value: -0.0403
+[Model: CDMAD20] Prompt: 'A sample image of item 5' | Dynamic: True | Fused value: -0.0465
+[Model: CDMAD20] Prompt: 'A sample image of item 1' | Dynamic: True | Fused value: -0.0533
+[Model: CDMAD20] Prompt: 'A sample image of item 2' | Dynamic: True | Fused value: -0.0447
+[Model: CDMAD20] Prompt: 'A sample image of item 3' | Dynamic: True | Fused value: -0.0458
+[Model: CDMAD20] Prompt: 'A sample image of item 4' | Dynamic: True | Fused value: -0.0433
+[Model: CDMAD20] Prompt: 'A sample image of item 5' | Dynamic: True | Fused value: -0.0499
+Noise: 0.0 | Scene Complexity: 1.0 | Exec Time: 0.0015 s | FID: 52.3107 | CLIP: 0.3394
+Noise: 0.0 | Scene Complexity: 2.0 | Exec Time: 0.0012 s | FID: 51.7988 | CLIP: 0.3224
+Noise: 0.0 | Scene Complexity: 3.0 | Exec Time: 0.0011 s | FID: 51.9092 | CLIP: 0.3197
+Noise: 0.0 | Scene Complexity: 4.0 | Exec Time: 0.0011 s | FID: 51.9692 | CLIP: 0.2622
+Noise: 0.0 | Scene Complexity: 5.0 | Exec Time: 0.0011 s | FID: 51.6915 | CLIP: 0.3401
+Noise: 0.1 | Scene Complexity: 1.1 | Exec Time: 0.0010 s | FID: 50.3642 | CLIP: 0.3394
+Noise: 0.1 | Scene Complexity: 2.1 | Exec Time: 0.0010 s | FID: 49.8922 | CLIP: 0.3224
+Noise: 0.1 | Scene Complexity: 3.1 | Exec Time: 0.0010 s | FID: 49.9696 | CLIP: 0.3197
+Noise: 0.1 | Scene Complexity: 4.1 | Exec Time: 0.0010 s | FID: 50.0426 | CLIP: 0.2622
+Noise: 0.1 | Scene Complexity: 5.1 | Exec Time: 0.0011 s | FID: 49.7473 | CLIP: 0.3401
+Noise: 0.2 | Scene Complexity: 1.2 | Exec Time: 0.0010 s | FID: 48.3297 | CLIP: 0.3394
+Noise: 0.2 | Scene Complexity: 2.2 | Exec Time: 0.0011 s | FID: 47.9147 | CLIP: 0.3224
+Noise: 0.2 | Scene Complexity: 3.2 | Exec Time: 0.0010 s | FID: 47.9708 | CLIP: 0.3197
+Noise: 0.2 | Scene Complexity: 4.2 | Exec Time: 0.0010 s | FID: 48.0476 | CLIP: 0.2622
+Noise: 0.2 | Scene Complexity: 5.2 | Exec Time: 0.0010 s | FID: 47.7327 | CLIP: 0.3401
+Noise: 0.3 | Scene Complexity: 1.3 | Exec Time: 0.0011 s | FID: 46.2846 | CLIP: 0.3394
+Noise: 0.3 | Scene Complexity: 2.3 | Exec Time: 0.0011 s | FID: 45.9235 | CLIP: 0.3224
+Noise: 0.3 | Scene Complexity: 3.3 | Exec Time: 0.0011 s | FID: 45.9937 | CLIP: 0.3197
+Noise: 0.3 | Scene Complexity: 4.3 | Exec Time: 0.0010 s | FID: 46.0521 | CLIP: 0.2622
+Noise: 0.3 | Scene Complexity: 5.3 | Exec Time: 0.0010 s | FID: 45.7285 | CLIP: 0.3401
+Experiment 3 completed. Plots saved to: .research/iteration1/images
+
+===== All Experiments Completed Successfully =====
+Results and plots saved to: .research/iteration1/images
+Generated PDF files:
+  - clip_comparison.pdf
+  - fid_comparison.pdf
+  - fid_vs_noise.pdf
+  - clip_ablation.pdf
+  - fid_ablation.pdf
+  - inference_latency.pdf
+
+Experiment status: stopped
+=== experiment end Sun Aug 24 14:24:40 UTC 2025 ===

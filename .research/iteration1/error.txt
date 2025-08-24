@@ -1,0 +1,20 @@
+/home/runner/work/Yoshino-5/Yoshino-5/src/main.py:29: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.barplot(x=models_names, y=fid_scores, palette='viridis')
+/home/runner/work/Yoshino-5/Yoshino-5/src/main.py:39: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.barplot(x=models_names, y=clip_scores, palette='magma')
+/home/runner/work/Yoshino-5/Yoshino-5/src/main.py:64: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.barplot(x=models_names, y=fid_scores, palette='coolwarm')
+/home/runner/work/Yoshino-5/Yoshino-5/src/main.py:74: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.barplot(x=models_names, y=clip_scores, palette='Spectral')
