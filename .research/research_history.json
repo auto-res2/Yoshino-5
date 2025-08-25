@@ -1,0 +1,10 @@
+{
+  "research_topic": "Catastrophic Forgetting Prevention with Theoretical Guarantees in Continual Learning Develop Theoretical Guaranteed Selective Memory Preservation (TG-SMP) using Fisher Information Matrix-based dynamic parameter selection to achieve 30% improvement in average accuracy retention and Backward Transfer (BWT from -15% to -5%) on Split-CIFAR100 (20 tasks), Permuted-MNIST, and Core50 datasets, compared against EWC, PackNet, Progressive Neural Networks, and GEM baselines.",
+  "queries": [
+    "TG-SMP continual learning",
+    "Fisher Information Matrix",
+    "catastrophic forgetting prevention",
+    "dynamic parameter selection",
+    "Split-CIFAR100 Permuted-MNIST Core50"
+  ]
+}
