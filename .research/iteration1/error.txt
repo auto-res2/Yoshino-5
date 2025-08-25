@@ -1,0 +1,24 @@
+Downloading https://www.chrsmrrs.com/graphkerneldatasets/PROTEINS.zip
+Processing...
+Done!
+/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/torch_geometric/deprecation.py:26: UserWarning: 'data.DataLoader' is deprecated, use 'loader.DataLoader' instead
+  warnings.warn(out)
+Downloading https://www.chrsmrrs.com/graphkerneldatasets/IMDB-BINARY.zip
+Processing...
+Done!
+Traceback (most recent call last):
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 113, in <module>
+    experiment_interpretability_analysis()
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 44, in experiment_interpretability_analysis
+    out, token_attention = model(data.x, data.edge_index, batch)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1773, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1784, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/train.py", line 29, in forward
+    token_attention = torch.softmax(torch.randn(x.size(0)), dim=0)
+                                                ^^^^^^
+AttributeError: 'NoneType' object has no attribute 'size'
