@@ -265,164 +265,77 @@ s been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg)
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.50 ...revisit, lu\_2023-09-21T20:05:49Z\_theory}
-                                                  .
 
-Package natbib Warning: Citation `abdollahzadeh\T1\textunderscore2021-10-27T06:
-23:45Z\T1\textunderscorerevisit' on page 1 undefined on input line 50.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.50 ...revisit, lu\_2023-09-21T20:05:49Z\_theory}
-                                                  .
-
-Package natbib Warning: Citation `lu\T1\textunderscore2023-09-21T20:05:49Z\T1\t
-extunderscoretheory' on page 1 undefined on input line 50.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.55 ...ty \cite{lu\_2023-09-21T20:05:49Z\_theory}
-                                                   and developments in meta-...
+Package natbib Warning: Citation `abdollahzadeh_2021-10-27T06:23:45Z_revisit' o
+n page 1 undefined on input line 49.
 
 
-Package natbib Warning: Citation `lu\T1\textunderscore2023-09-21T20:05:49Z\T1\t
-extunderscoretheory' on page 1 undefined on input line 55.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.55 ...ollahzadeh\_2021-10-27T06:23:45Z\_revisit}
-                                                  , we introduce Dynamic Con...
+Package natbib Warning: Citation `lu_2023-09-21T20:05:49Z_theory' on page 1 und
+efined on input line 49.
 
 
-Package natbib Warning: Citation `najdenkoska\T1\textunderscore2023-02-28T17:46
-:18Z\T1\textunderscoremeta' on page 1 undefined on input line 55.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.55 ...ollahzadeh\_2021-10-27T06:23:45Z\_revisit}
-                                                  , we introduce Dynamic Con...
+Package natbib Warning: Citation `lu_2023-09-21T20:05:49Z_theory' on page 1 und
+efined on input line 54.
 
 
-Package natbib Warning: Citation `abdollahzadeh\T1\textunderscore2021-10-27T06:
-23:45Z\T1\textunderscorerevisit' on page 1 undefined on input line 55.
+Package natbib Warning: Citation `najdenkoska_2023-02-28T17:46:18Z_meta' on pag
+e 1 undefined on input line 54.
+
+
+Package natbib Warning: Citation `abdollahzadeh_2021-10-27T06:23:45Z_revisit' o
+n page 1 undefined on input line 54.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd) [1{/var/lib/texmf/fo
 nts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips
 /base/8r.enc}]
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.76 ...ollahzadeh\_2021-10-27T06:23:45Z\_revisit}
-                                                  . Other studies have incor...
+
+Package natbib Warning: Citation `abdollahzadeh_2021-10-27T06:23:45Z_revisit' o
+n page 2 undefined on input line 75.
 
 
-Package natbib Warning: Citation `abdollahzadeh\T1\textunderscore2021-10-27T06:
-23:45Z\T1\textunderscorerevisit' on page 2 undefined on input line 76.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.76 ...04:27:54Z\_clipood, author\_year\_defense}
-                                                  . In parallel, related wor...
+Package natbib Warning: Citation `shu_2023-02-02T04:27:54Z_clipood' on page 2 u
+ndefined on input line 75.
 
 
-Package natbib Warning: Citation `shu\T1\textunderscore2023-02-02T04:27:54Z\T1\
-textunderscoreclipood' on page 2 undefined on input line 76.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.76 ...04:27:54Z\_clipood, author\_year\_defense}
-                                                  . In parallel, related wor...
+Package natbib Warning: Citation `author_year_defense' on page 2 undefined on i
+nput line 75.
 
 
-Package natbib Warning: Citation `author\T1\textunderscoreyear\T1\textunderscor
-edefense' on page 2 undefined on input line 76.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.76 ...rch \cite{zhao\_2020-06-11T22:36:01Z\_few}
-                                                   and parameter-efficient f...
+Package natbib Warning: Citation `zhao_2020-06-11T22:36:01Z_few' on page 2 unde
+fined on input line 75.
 
 
-Package natbib Warning: Citation `zhao\T1\textunderscore2020-06-11T22:36:01Z\T1
-\textunderscorefew' on page 2 undefined on input line 76.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.76 ...\cite{lian\_2022-10-17T08:14:49Z\_scaling}
-                                                   has demonstrated the bene...
+Package natbib Warning: Citation `lian_2022-10-17T08:14:49Z_scaling' on page 2 
+undefined on input line 75.
 
 
-Package natbib Warning: Citation `lian\T1\textunderscore2022-10-17T08:14:49Z\T1
-\textunderscorescaling' on page 2 undefined on input line 76.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.76 ...on \cite{lu\_2023-09-21T20:05:49Z\_theory}
-                                                   has provided insights int...
+Package natbib Warning: Citation `lu_2023-09-21T20:05:49Z_theory' on page 2 und
+efined on input line 75.
 
 
-Package natbib Warning: Citation `lu\T1\textunderscore2023-09-21T20:05:49Z\T1\t
-extunderscoretheory' on page 2 undefined on input line 76.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.80 ...ntafillou\_2021-05-14T18:46:06Z\_learning}
-                                                   has demonstrated that mod...
+Package natbib Warning: Citation `triantafillou_2019-03-07T18:48:55Z_meta' on p
+age 2 undefined on input line 79.
 
 
-Package natbib Warning: Citation `triantafillou\T1\textunderscore2019-03-07T18:
-48:55Z\T1\textunderscoremeta' on page 2 undefined on input line 80.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.80 ...ntafillou\_2021-05-14T18:46:06Z\_learning}
-                                                   has demonstrated that mod...
+Package natbib Warning: Citation `triantafillou_2021-05-14T18:46:06Z_learning' 
+on page 2 undefined on input line 79.
 
 
-Package natbib Warning: Citation `triantafillou\T1\textunderscore2021-05-14T18:
-46:06Z\T1\textunderscorelearning' on page 2 undefined on input line 80.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.80 ...{mayilvahanan\_2023-10-14T11:24:28Z\_does}
-                                                  ; and second, employing a ...
+Package natbib Warning: Citation `mayilvahanan_2023-10-14T11:24:28Z_does' on pa
+ge 2 undefined on input line 79.
 
 
-Package natbib Warning: Citation `mayilvahanan\T1\textunderscore2023-10-14T11:2
-4:28Z\T1\textunderscoredoes' on page 2 undefined on input line 80.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.80 ...ite{shi\_2021-02-25T14:13:44Z\_sparsebert}
-                                                  .
-
-Package natbib Warning: Citation `shi\T1\textunderscore2021-02-25T14:13:44Z\T1\
-textunderscoresparsebert' on page 2 undefined on input line 80.
+Package natbib Warning: Citation `shi_2021-02-25T14:13:44Z_sparsebert' on page 
+2 undefined on input line 79.
 
 [2]
-Underfull \vbox (badness 3386) has occurred while \output is active [3]
+Underfull \vbox (badness 1163) has occurred while \output is active [3]
 Underfull \vbox (badness 10000) has occurred while \output is active [4 <./imag
 es/benchmark_comparison.pdf> <./images/ablation_study.pdf>] [5 <./images/accura
 cy_comparison.pdf> <./images/robustness_conflict.pdf>]
 
 Package natbib Warning: Citation `airas2025' on page 6 undefined on input line 
-155.
+154.
 
 No file paper.bbl.
 
@@ -444,57 +357,30 @@ nts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/typ
 e1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
 ic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/
 utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on paper.pdf (6 pages, 130996 bytes).
+Output written on paper.pdf (6 pages, 131008 bytes).
 Transcript written on paper.log.
 This is BibTeX, Version 0.99d (TeX Live 2023/Debian)
 The top-level auxiliary file: paper.aux
-White space in argument---line 5 of file paper.aux
- : \citation{abdollahzadeh\protect
- :                                 \T1\textunderscore 2021-10-27T06:23:45Z\protect \T1\textunderscore revisit,lu\protect \T1\textunderscore 2023-09-21T20:05:49Z\protect \T1\textunderscore theory}
-I'm skipping whatever remains of this command
-White space in argument---line 6 of file paper.aux
- : \citation{lu\protect
- :                      \T1\textunderscore 2023-09-21T20:05:49Z\protect \T1\textunderscore theory}
-I'm skipping whatever remains of this command
-White space in argument---line 7 of file paper.aux
- : \citation{najdenkoska\protect
- :                               \T1\textunderscore 2023-02-28T17:46:18Z\protect \T1\textunderscore meta,abdollahzadeh\protect \T1\textunderscore 2021-10-27T06:23:45Z\protect \T1\textunderscore revisit}
-I'm skipping whatever remains of this command
-White space in argument---line 11 of file paper.aux
- : \citation{abdollahzadeh\protect
- :                                 \T1\textunderscore 2021-10-27T06:23:45Z\protect \T1\textunderscore revisit}
-I'm skipping whatever remains of this command
-White space in argument---line 12 of file paper.aux
- : \citation{shu\protect
- :                       \T1\textunderscore 2023-02-02T04:27:54Z\protect \T1\textunderscore clipood,author\protect \T1\textunderscore year\protect \T1\textunderscore defense}
-I'm skipping whatever remains of this command
-White space in argument---line 13 of file paper.aux
- : \citation{zhao\protect
- :                        \T1\textunderscore 2020-06-11T22:36:01Z\protect \T1\textunderscore few}
-I'm skipping whatever remains of this command
-White space in argument---line 14 of file paper.aux
- : \citation{lian\protect
- :                        \T1\textunderscore 2022-10-17T08:14:49Z\protect \T1\textunderscore scaling}
-I'm skipping whatever remains of this command
-White space in argument---line 15 of file paper.aux
- : \citation{lu\protect
- :                      \T1\textunderscore 2023-09-21T20:05:49Z\protect \T1\textunderscore theory}
-I'm skipping whatever remains of this command
-White space in argument---line 16 of file paper.aux
- : \citation{triantafillou\protect
- :                                 \T1\textunderscore 2019-03-07T18:48:55Z\protect \T1\textunderscore meta,triantafillou\protect \T1\textunderscore 2021-05-14T18:46:06Z\protect \T1\textunderscore learning}
-I'm skipping whatever remains of this command
-White space in argument---line 17 of file paper.aux
- : \citation{mayilvahanan\protect
- :                                \T1\textunderscore 2023-10-14T11:24:28Z\protect \T1\textunderscore does}
-I'm skipping whatever remains of this command
-White space in argument---line 18 of file paper.aux
- : \citation{shi\protect
- :                       \T1\textunderscore 2021-02-25T14:13:44Z\protect \T1\textunderscore sparsebert}
-I'm skipping whatever remains of this command
 The style file: iclr2024_conference.bst
 Database file #1: references.bib
-(There were 11 error messages)
+Repeated entry---line 352 of file references.bib
+ : @article{zhao_2020-06-11T22:36:01Z_few
+ :                                       ,
+I'm skipping whatever remains of this entry
+Warning--to sort, need author or key in author_year_defense
+Warning--empty author in author_year_defense
+Warning--empty journal in author_year_defense
+Warning--empty year in author_year_defense
+Warning--empty year in author_year_defense
+Warning--empty journal in abdollahzadeh_2021-10-27T06:23:45Z_revisit
+Warning--empty journal in lian_2022-10-17T08:14:49Z_scaling
+Warning--empty journal in lu_2023-09-21T20:05:49Z_theory
+Warning--empty journal in mayilvahanan_2023-10-14T11:24:28Z_does
+Warning--empty journal in najdenkoska_2023-02-28T17:46:18Z_meta
+Warning--empty journal in shi_2021-02-25T14:13:44Z_sparsebert
+Warning--empty journal in shu_2023-02-02T04:27:54Z_clipood
+Warning--empty journal in triantafillou_2021-05-14T18:46:06Z_learning
+(There was 1 error message)
 This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
  restricted \write18 enabled.
 entering extended mode
@@ -763,166 +649,84 @@ s been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg)
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.50 ...revisit, lu\_2023-09-21T20:05:49Z\_theory}
-                                                  .
 
-Package natbib Warning: Citation `abdollahzadeh\T1\textunderscore2021-10-27T06:
-23:45Z\T1\textunderscorerevisit' on page 1 undefined on input line 50.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.50 ...revisit, lu\_2023-09-21T20:05:49Z\_theory}
-                                                  .
-
-Package natbib Warning: Citation `lu\T1\textunderscore2023-09-21T20:05:49Z\T1\t
-extunderscoretheory' on page 1 undefined on input line 50.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.55 ...ty \cite{lu\_2023-09-21T20:05:49Z\_theory}
-                                                   and developments in meta-...
+Package natbib Warning: Citation `abdollahzadeh_2021-10-27T06:23:45Z_revisit' o
+n page 1 undefined on input line 49.
 
 
-Package natbib Warning: Citation `lu\T1\textunderscore2023-09-21T20:05:49Z\T1\t
-extunderscoretheory' on page 1 undefined on input line 55.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.55 ...ollahzadeh\_2021-10-27T06:23:45Z\_revisit}
-                                                  , we introduce Dynamic Con...
+Package natbib Warning: Citation `lu_2023-09-21T20:05:49Z_theory' on page 1 und
+efined on input line 49.
 
 
-Package natbib Warning: Citation `najdenkoska\T1\textunderscore2023-02-28T17:46
-:18Z\T1\textunderscoremeta' on page 1 undefined on input line 55.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.55 ...ollahzadeh\_2021-10-27T06:23:45Z\_revisit}
-                                                  , we introduce Dynamic Con...
+Package natbib Warning: Citation `lu_2023-09-21T20:05:49Z_theory' on page 1 und
+efined on input line 54.
 
 
-Package natbib Warning: Citation `abdollahzadeh\T1\textunderscore2021-10-27T06:
-23:45Z\T1\textunderscorerevisit' on page 1 undefined on input line 55.
+Package natbib Warning: Citation `najdenkoska_2023-02-28T17:46:18Z_meta' on pag
+e 1 undefined on input line 54.
+
+
+Package natbib Warning: Citation `abdollahzadeh_2021-10-27T06:23:45Z_revisit' o
+n page 1 undefined on input line 54.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd) [1{/var/lib/texmf/fo
 nts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips
 /base/8r.enc}]
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.76 ...ollahzadeh\_2021-10-27T06:23:45Z\_revisit}
-                                                  . Other studies have incor...
+
+Package natbib Warning: Citation `abdollahzadeh_2021-10-27T06:23:45Z_revisit' o
+n page 2 undefined on input line 75.
 
 
-Package natbib Warning: Citation `abdollahzadeh\T1\textunderscore2021-10-27T06:
-23:45Z\T1\textunderscorerevisit' on page 2 undefined on input line 76.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.76 ...04:27:54Z\_clipood, author\_year\_defense}
-                                                  . In parallel, related wor...
+Package natbib Warning: Citation `shu_2023-02-02T04:27:54Z_clipood' on page 2 u
+ndefined on input line 75.
 
 
-Package natbib Warning: Citation `shu\T1\textunderscore2023-02-02T04:27:54Z\T1\
-textunderscoreclipood' on page 2 undefined on input line 76.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.76 ...04:27:54Z\_clipood, author\_year\_defense}
-                                                  . In parallel, related wor...
+Package natbib Warning: Citation `author_year_defense' on page 2 undefined on i
+nput line 75.
 
 
-Package natbib Warning: Citation `author\T1\textunderscoreyear\T1\textunderscor
-edefense' on page 2 undefined on input line 76.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.76 ...rch \cite{zhao\_2020-06-11T22:36:01Z\_few}
-                                                   and parameter-efficient f...
+Package natbib Warning: Citation `zhao_2020-06-11T22:36:01Z_few' on page 2 unde
+fined on input line 75.
 
 
-Package natbib Warning: Citation `zhao\T1\textunderscore2020-06-11T22:36:01Z\T1
-\textunderscorefew' on page 2 undefined on input line 76.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.76 ...\cite{lian\_2022-10-17T08:14:49Z\_scaling}
-                                                   has demonstrated the bene...
+Package natbib Warning: Citation `lian_2022-10-17T08:14:49Z_scaling' on page 2 
+undefined on input line 75.
 
 
-Package natbib Warning: Citation `lian\T1\textunderscore2022-10-17T08:14:49Z\T1
-\textunderscorescaling' on page 2 undefined on input line 76.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.76 ...on \cite{lu\_2023-09-21T20:05:49Z\_theory}
-                                                   has provided insights int...
+Package natbib Warning: Citation `lu_2023-09-21T20:05:49Z_theory' on page 2 und
+efined on input line 75.
 
 
-Package natbib Warning: Citation `lu\T1\textunderscore2023-09-21T20:05:49Z\T1\t
-extunderscoretheory' on page 2 undefined on input line 76.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.80 ...ntafillou\_2021-05-14T18:46:06Z\_learning}
-                                                   has demonstrated that mod...
+Package natbib Warning: Citation `triantafillou_2019-03-07T18:48:55Z_meta' on p
+age 2 undefined on input line 79.
 
 
-Package natbib Warning: Citation `triantafillou\T1\textunderscore2019-03-07T18:
-48:55Z\T1\textunderscoremeta' on page 2 undefined on input line 80.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.80 ...ntafillou\_2021-05-14T18:46:06Z\_learning}
-                                                   has demonstrated that mod...
+Package natbib Warning: Citation `triantafillou_2021-05-14T18:46:06Z_learning' 
+on page 2 undefined on input line 79.
 
 
-Package natbib Warning: Citation `triantafillou\T1\textunderscore2021-05-14T18:
-46:06Z\T1\textunderscorelearning' on page 2 undefined on input line 80.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.80 ...{mayilvahanan\_2023-10-14T11:24:28Z\_does}
-                                                  ; and second, employing a ...
+Package natbib Warning: Citation `mayilvahanan_2023-10-14T11:24:28Z_does' on pa
+ge 2 undefined on input line 79.
 
 
-Package natbib Warning: Citation `mayilvahanan\T1\textunderscore2023-10-14T11:2
-4:28Z\T1\textunderscoredoes' on page 2 undefined on input line 80.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.80 ...ite{shi\_2021-02-25T14:13:44Z\_sparsebert}
-                                                  .
-
-Package natbib Warning: Citation `shi\T1\textunderscore2021-02-25T14:13:44Z\T1\
-textunderscoresparsebert' on page 2 undefined on input line 80.
+Package natbib Warning: Citation `shi_2021-02-25T14:13:44Z_sparsebert' on page 
+2 undefined on input line 79.
 
 [2]
-Underfull \vbox (badness 3386) has occurred while \output is active [3]
+Underfull \vbox (badness 1163) has occurred while \output is active [3]
 Underfull \vbox (badness 10000) has occurred while \output is active [4 <./imag
 es/benchmark_comparison.pdf> <./images/ablation_study.pdf>] [5 <./images/accura
 cy_comparison.pdf> <./images/robustness_conflict.pdf>]
 
 Package natbib Warning: Citation `airas2025' on page 6 undefined on input line 
-155.
+154.
 
-(./paper.bbl (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd))
+(./paper.bbl
+! Misplaced alignment tab character &.
+l.21 \newblock Scaling &
+                         shifting your features: A new baseline for efficien...
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd))
 
 Package natbib Warning: There were undefined citations.
 
@@ -938,8 +742,9 @@ nts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/typ
 e1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
 ic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courie
 r/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on paper.pdf (6 pages, 141706 bytes).
+usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (6 pages, 154819 bytes).
 Transcript written on paper.log.
 This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
  restricted \write18 enabled.
@@ -1209,172 +1014,29 @@ s been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg)
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.50 ...revisit, lu\_2023-09-21T20:05:49Z\_theory}
-                                                  .
-
-Package natbib Warning: Citation `abdollahzadeh\T1\textunderscore2021-10-27T06:
-23:45Z\T1\textunderscorerevisit' on page 1 undefined on input line 50.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.50 ...revisit, lu\_2023-09-21T20:05:49Z\_theory}
-                                                  .
-
-Package natbib Warning: Citation `lu\T1\textunderscore2023-09-21T20:05:49Z\T1\t
-extunderscoretheory' on page 1 undefined on input line 50.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.55 ...ty \cite{lu\_2023-09-21T20:05:49Z\_theory}
-                                                   and developments in meta-...
-
-
-Package natbib Warning: Citation `lu\T1\textunderscore2023-09-21T20:05:49Z\T1\t
-extunderscoretheory' on page 1 undefined on input line 55.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.55 ...ollahzadeh\_2021-10-27T06:23:45Z\_revisit}
-                                                  , we introduce Dynamic Con...
-
-
-Package natbib Warning: Citation `najdenkoska\T1\textunderscore2023-02-28T17:46
-:18Z\T1\textunderscoremeta' on page 1 undefined on input line 55.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.55 ...ollahzadeh\_2021-10-27T06:23:45Z\_revisit}
-                                                  , we introduce Dynamic Con...
-
-
-Package natbib Warning: Citation `abdollahzadeh\T1\textunderscore2021-10-27T06:
-23:45Z\T1\textunderscorerevisit' on page 1 undefined on input line 55.
-
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd) [1{/var/lib/texmf/fo
 nts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips
 /base/8r.enc}]
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.76 ...ollahzadeh\_2021-10-27T06:23:45Z\_revisit}
-                                                  . Other studies have incor...
+Underfull \vbox (badness 1466) has occurred while \output is active [2]
+[3] [4 <./images/benchmark_comparison.pdf> <./images/ablation_study.pdf>]
+[5 <./images/accuracy_comparison.pdf> <./images/robustness_conflict.pdf>]
+(./paper.bbl
+! Misplaced alignment tab character &.
+l.21 \newblock Scaling &
+                         shifting your features: A new baseline for efficien...
 
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)) [6] (./paper.aux)
 
-Package natbib Warning: Citation `abdollahzadeh\T1\textunderscore2021-10-27T06:
-23:45Z\T1\textunderscorerevisit' on page 2 undefined on input line 76.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.76 ...04:27:54Z\_clipood, author\_year\_defense}
-                                                  . In parallel, related wor...
-
-
-Package natbib Warning: Citation `shu\T1\textunderscore2023-02-02T04:27:54Z\T1\
-textunderscoreclipood' on page 2 undefined on input line 76.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.76 ...04:27:54Z\_clipood, author\_year\_defense}
-                                                  . In parallel, related wor...
-
-
-Package natbib Warning: Citation `author\T1\textunderscoreyear\T1\textunderscor
-edefense' on page 2 undefined on input line 76.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.76 ...rch \cite{zhao\_2020-06-11T22:36:01Z\_few}
-                                                   and parameter-efficient f...
-
-
-Package natbib Warning: Citation `zhao\T1\textunderscore2020-06-11T22:36:01Z\T1
-\textunderscorefew' on page 2 undefined on input line 76.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.76 ...\cite{lian\_2022-10-17T08:14:49Z\_scaling}
-                                                   has demonstrated the bene...
-
-
-Package natbib Warning: Citation `lian\T1\textunderscore2022-10-17T08:14:49Z\T1
-\textunderscorescaling' on page 2 undefined on input line 76.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.76 ...on \cite{lu\_2023-09-21T20:05:49Z\_theory}
-                                                   has provided insights int...
-
-
-Package natbib Warning: Citation `lu\T1\textunderscore2023-09-21T20:05:49Z\T1\t
-extunderscoretheory' on page 2 undefined on input line 76.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.80 ...ntafillou\_2021-05-14T18:46:06Z\_learning}
-                                                   has demonstrated that mod...
-
-
-Package natbib Warning: Citation `triantafillou\T1\textunderscore2019-03-07T18:
-48:55Z\T1\textunderscoremeta' on page 2 undefined on input line 80.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.80 ...ntafillou\_2021-05-14T18:46:06Z\_learning}
-                                                   has demonstrated that mod...
-
-
-Package natbib Warning: Citation `triantafillou\T1\textunderscore2021-05-14T18:
-46:06Z\T1\textunderscorelearning' on page 2 undefined on input line 80.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.80 ...{mayilvahanan\_2023-10-14T11:24:28Z\_does}
-                                                  ; and second, employing a ...
-
-
-Package natbib Warning: Citation `mayilvahanan\T1\textunderscore2023-10-14T11:2
-4:28Z\T1\textunderscoredoes' on page 2 undefined on input line 80.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.80 ...ite{shi\_2021-02-25T14:13:44Z\_sparsebert}
-                                                  .
-
-Package natbib Warning: Citation `shi\T1\textunderscore2021-02-25T14:13:44Z\T1\
-textunderscoresparsebert' on page 2 undefined on input line 80.
-
-[2]
-Underfull \vbox (badness 3386) has occurred while \output is active [3]
-Underfull \vbox (badness 10000) has occurred while \output is active [4 <./imag
-es/benchmark_comparison.pdf> <./images/ablation_study.pdf>] [5 <./images/accura
-cy_comparison.pdf> <./images/robustness_conflict.pdf>] (./paper.bbl
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd))
-
-Package natbib Warning: There were undefined citations.
-
-[6] (./paper.aux) )
+ )
 (see the transcript file for additional information)</usr/share/texlive/texmf-d
 ist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/typ
 e1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publ
 ic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courie
 r/ucrr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></
-usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on paper.pdf (6 pages, 141805 bytes).
+usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (6 pages, 155383 bytes).
 Transcript written on paper.log.
