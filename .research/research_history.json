@@ -1,0 +1,10 @@
+{
+  "research_topic": "Graph Neural Network Long-Range Dependency Representation Enhancement Create a Hierarchical Graph Neural Network (HGNN) integrating GraphTransformer with hierarchical message passing to improve graph classification accuracy by 15% and long-range dependency capture ability by 20% on TUDataset PROTEINS/IMDB-BINARY (https://chrsmrrs.github.io/datasets/), OGB ogbg-molhiv (https://ogb.stanford.edu/), and Long Range Graph Benchmark, compared against GCN, GAT, GraphSAINT, and DiffPool baselines.",
+  "queries": [
+    "HGNN GraphTransformer",
+    "hierarchical passing",
+    "long-range dependency",
+    "graph classification",
+    "OGB molhiv"
+  ]
+}
