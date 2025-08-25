@@ -265,169 +265,69 @@ s been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg)
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.55 ...\cite{lee\_2024-05-29T04:53:31Z\_learning}
-                                                  . However, these methods g...
 
-
-Package natbib Warning: Citation `lee\T1\textunderscore2024-05-29T04:53:31Z\T1\
-textunderscorelearning' on page 1 undefined on input line 55.
+Package natbib Warning: Citation `lee_2024-05-29T04:53:31Z_learning' on page 1 
+undefined on input line 55.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd) [1{/var/lib/texmf/fo
 nts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips
 /base/8r.enc}]
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.63 ...onal, varshney\_2021-03-06T05:09:37Z\_cam}
-                                                   and selective memory arch...
+
+Package natbib Warning: Citation `titsias_2019-01-31T13:51:27Z_functional' on p
+age 2 undefined on input line 63.
 
 
-Package natbib Warning: Citation `titsias\T1\textunderscore2019-01-31T13:51:27Z
-\T1\textunderscorefunctional' on page 2 undefined on input line 63.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.63 ...onal, varshney\_2021-03-06T05:09:37Z\_cam}
-                                                   and selective memory arch...
+Package natbib Warning: Citation `varshney_2021-03-06T05:09:37Z_cam' on page 2 
+undefined on input line 63.
 
 
-Package natbib Warning: Citation `varshney\T1\textunderscore2021-03-06T05:09:37
-Z\T1\textunderscorecam' on page 2 undefined on input line 63.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.63 ...ia, heng\_2023-05-17T10:53:58Z\_selective}
-                                                  . In contrast, our framewo...
+Package natbib Warning: Citation `park_2023-10-04T09:40:46Z_memoria' on page 2 
+undefined on input line 63.
 
 
-Package natbib Warning: Citation `park\T1\textunderscore2023-10-04T09:40:46Z\T1
-\textunderscorememoria' on page 2 undefined on input line 63.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.63 ...ia, heng\_2023-05-17T10:53:58Z\_selective}
-                                                  . In contrast, our framewo...
+Package natbib Warning: Citation `heng_2023-05-17T10:53:58Z_selective' on page 
+2 undefined on input line 63.
 
 
-Package natbib Warning: Citation `heng\T1\textunderscore2023-05-17T10:53:58Z\T1
-\textunderscoreselective' on page 2 undefined on input line 63.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.67 ...\cite{lee\_2024-05-29T04:53:31Z\_learning}
-                                                  . Alternative Bayesian fra...
+Package natbib Warning: Citation `lee_2024-05-29T04:53:31Z_learning' on page 2 
+undefined on input line 67.
 
 
-Package natbib Warning: Citation `lee\T1\textunderscore2024-05-29T04:53:31Z\T1\
-textunderscorelearning' on page 2 undefined on input line 67.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.67 ...titsias\_2019-01-31T13:51:27Z\_functional}
-                                                  . Additionally, recent wor...
+Package natbib Warning: Citation `titsias_2019-01-31T13:51:27Z_functional' on p
+age 2 undefined on input line 67.
 
 
-Package natbib Warning: Citation `titsias\T1\textunderscore2019-01-31T13:51:27Z
-\T1\textunderscorefunctional' on page 2 undefined on input line 67.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.67 ...ia, heng\_2023-05-17T10:53:58Z\_selective}
-                                                  . Other research has exten...
+Package natbib Warning: Citation `park_2023-10-04T09:40:46Z_memoria' on page 2 
+undefined on input line 67.
 
 
-Package natbib Warning: Citation `park\T1\textunderscore2023-10-04T09:40:46Z\T1
-\textunderscorememoria' on page 2 undefined on input line 67.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.67 ...ia, heng\_2023-05-17T10:53:58Z\_selective}
-                                                  . Other research has exten...
+Package natbib Warning: Citation `heng_2023-05-17T10:53:58Z_selective' on page 
+2 undefined on input line 67.
 
 
-Package natbib Warning: Citation `heng\T1\textunderscore2023-05-17T10:53:58Z\T1
-\textunderscoreselective' on page 2 undefined on input line 67.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.67 ...online, lin\_2022-11-01T23:55:51Z\_beyond}
-                                                  . In contrast to these app...
+Package natbib Warning: Citation `lin_2022-10-22T00:57:04Z_online' on page 2 un
+defined on input line 67.
 
 
-Package natbib Warning: Citation `lin\T1\textunderscore2022-10-22T00:57:04Z\T1\
-textunderscoreonline' on page 2 undefined on input line 67.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.67 ...online, lin\_2022-11-01T23:55:51Z\_beyond}
-                                                  . In contrast to these app...
+Package natbib Warning: Citation `lin_2022-11-01T23:55:51Z_beyond' on page 2 un
+defined on input line 67.
 
 
-Package natbib Warning: Citation `lin\T1\textunderscore2022-11-01T23:55:51Z\T1\
-textunderscorebeyond' on page 2 undefined on input line 67.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.71 ...\cite{lee\_2024-05-29T04:53:31Z\_learning}
-                                                  . However, rigid applicati...
+Package natbib Warning: Citation `lee_2024-05-29T04:53:31Z_learning' on page 2 
+undefined on input line 71.
 
 
-Package natbib Warning: Citation `lee\T1\textunderscore2024-05-29T04:53:31Z\T1\
-textunderscorelearning' on page 2 undefined on input line 71.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.71 ...onal, varshney\_2021-03-06T05:09:37Z\_cam}
-                                                  . Overall, this exposition...
+Package natbib Warning: Citation `titsias_2019-01-31T13:51:27Z_functional' on p
+age 2 undefined on input line 71.
 
 
-Package natbib Warning: Citation `titsias\T1\textunderscore2019-01-31T13:51:27Z
-\T1\textunderscorefunctional' on page 2 undefined on input line 71.
+Package natbib Warning: Citation `varshney_2021-03-06T05:09:37Z_cam' on page 2 
+undefined on input line 71.
 
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.71 ...onal, varshney\_2021-03-06T05:09:37Z\_cam}
-                                                  . Overall, this exposition...
-
-
-Package natbib Warning: Citation `varshney\T1\textunderscore2021-03-06T05:09:37
-Z\T1\textunderscorecam' on page 2 undefined on input line 71.
-
-[2] [3]
-
-LaTeX Warning: File `images/convergence_curves.pdf' not found on input line 118
-.
-
-
-! Package pdftex.def Error: File `images/convergence_curves.pdf' not found: usi
-ng draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.118 ...linewidth]{images/convergence_curves.pdf}
-                                                  
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)
-Underfull \vbox (badness 10000) has occurred while \output is active [4]
+[2] [3] [4 </usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-a.pdf>]
 
 Package natbib Warning: Citation `airas2025' on page 5 undefined on input line 
-126.
+127.
 
 No file paper.bbl.
 
@@ -442,58 +342,26 @@ Package rerunfilecheck Warning: File `paper.out' has changed.
 (rerunfilecheck)                Rerun to get outlines right
 (rerunfilecheck)                or use package `bookmark'.
 
- )
-(see the transcript file for additional information)</usr/share/texlive/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8
-a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on paper.pdf (5 pages, 102228 bytes).
+ )</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></us
+r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf/fonts/type1/p
+ublic/lm/lmss17.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a
+.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
+Output written on paper.pdf (5 pages, 102313 bytes).
 Transcript written on paper.log.
 This is BibTeX, Version 0.99d (TeX Live 2023/Debian)
 The top-level auxiliary file: paper.aux
-White space in argument---line 5 of file paper.aux
- : \citation{lee\protect
- :                       \T1\textunderscore 2024-05-29T04:53:31Z\protect \T1\textunderscore learning}
-I'm skipping whatever remains of this command
-White space in argument---line 9 of file paper.aux
- : \citation{titsias\protect
- :                           \T1\textunderscore 2019-01-31T13:51:27Z\protect \T1\textunderscore functional,varshney\protect \T1\textunderscore 2021-03-06T05:09:37Z\protect \T1\textunderscore cam}
-I'm skipping whatever remains of this command
-White space in argument---line 10 of file paper.aux
- : \citation{park\protect
- :                        \T1\textunderscore 2023-10-04T09:40:46Z\protect \T1\textunderscore memoria,heng\protect \T1\textunderscore 2023-05-17T10:53:58Z\protect \T1\textunderscore selective}
-I'm skipping whatever remains of this command
-White space in argument---line 11 of file paper.aux
- : \citation{lee\protect
- :                       \T1\textunderscore 2024-05-29T04:53:31Z\protect \T1\textunderscore learning}
-I'm skipping whatever remains of this command
-White space in argument---line 12 of file paper.aux
- : \citation{titsias\protect
- :                           \T1\textunderscore 2019-01-31T13:51:27Z\protect \T1\textunderscore functional}
-I'm skipping whatever remains of this command
-White space in argument---line 13 of file paper.aux
- : \citation{park\protect
- :                        \T1\textunderscore 2023-10-04T09:40:46Z\protect \T1\textunderscore memoria,heng\protect \T1\textunderscore 2023-05-17T10:53:58Z\protect \T1\textunderscore selective}
-I'm skipping whatever remains of this command
-White space in argument---line 14 of file paper.aux
- : \citation{lin\protect
- :                       \T1\textunderscore 2022-10-22T00:57:04Z\protect \T1\textunderscore online,lin\protect \T1\textunderscore 2022-11-01T23:55:51Z\protect \T1\textunderscore beyond}
-I'm skipping whatever remains of this command
-White space in argument---line 15 of file paper.aux
- : \citation{lee\protect
- :                       \T1\textunderscore 2024-05-29T04:53:31Z\protect \T1\textunderscore learning}
-I'm skipping whatever remains of this command
-White space in argument---line 16 of file paper.aux
- : \citation{titsias\protect
- :                           \T1\textunderscore 2019-01-31T13:51:27Z\protect \T1\textunderscore functional,varshney\protect \T1\textunderscore 2021-03-06T05:09:37Z\protect \T1\textunderscore cam}
-I'm skipping whatever remains of this command
 The style file: iclr2024_conference.bst
 Database file #1: references.bib
-(There were 9 error messages)
+Warning--empty journal in heng_2023-05-17T10:53:58Z_selective
+Warning--empty journal in lee_2024-05-29T04:53:31Z_learning
+Warning--empty journal in lin_2022-11-01T23:55:51Z_beyond
+Warning--empty journal in lin_2022-10-22T00:57:04Z_online
+Warning--empty journal in titsias_2019-01-31T13:51:27Z_functional
+Warning--empty journal in varshney_2021-03-06T05:09:37Z_cam
+(There were 6 warnings)
 This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
  restricted \write18 enabled.
 entering extended mode
@@ -762,171 +630,71 @@ s been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg)
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.55 ...\cite{lee\_2024-05-29T04:53:31Z\_learning}
-                                                  . However, these methods g...
 
-
-Package natbib Warning: Citation `lee\T1\textunderscore2024-05-29T04:53:31Z\T1\
-textunderscorelearning' on page 1 undefined on input line 55.
+Package natbib Warning: Citation `lee_2024-05-29T04:53:31Z_learning' on page 1 
+undefined on input line 55.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd) [1{/var/lib/texmf/fo
 nts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips
 /base/8r.enc}]
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.63 ...onal, varshney\_2021-03-06T05:09:37Z\_cam}
-                                                   and selective memory arch...
+
+Package natbib Warning: Citation `titsias_2019-01-31T13:51:27Z_functional' on p
+age 2 undefined on input line 63.
 
 
-Package natbib Warning: Citation `titsias\T1\textunderscore2019-01-31T13:51:27Z
-\T1\textunderscorefunctional' on page 2 undefined on input line 63.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.63 ...onal, varshney\_2021-03-06T05:09:37Z\_cam}
-                                                   and selective memory arch...
+Package natbib Warning: Citation `varshney_2021-03-06T05:09:37Z_cam' on page 2 
+undefined on input line 63.
 
 
-Package natbib Warning: Citation `varshney\T1\textunderscore2021-03-06T05:09:37
-Z\T1\textunderscorecam' on page 2 undefined on input line 63.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.63 ...ia, heng\_2023-05-17T10:53:58Z\_selective}
-                                                  . In contrast, our framewo...
+Package natbib Warning: Citation `park_2023-10-04T09:40:46Z_memoria' on page 2 
+undefined on input line 63.
 
 
-Package natbib Warning: Citation `park\T1\textunderscore2023-10-04T09:40:46Z\T1
-\textunderscorememoria' on page 2 undefined on input line 63.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.63 ...ia, heng\_2023-05-17T10:53:58Z\_selective}
-                                                  . In contrast, our framewo...
+Package natbib Warning: Citation `heng_2023-05-17T10:53:58Z_selective' on page 
+2 undefined on input line 63.
 
 
-Package natbib Warning: Citation `heng\T1\textunderscore2023-05-17T10:53:58Z\T1
-\textunderscoreselective' on page 2 undefined on input line 63.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.67 ...\cite{lee\_2024-05-29T04:53:31Z\_learning}
-                                                  . Alternative Bayesian fra...
+Package natbib Warning: Citation `lee_2024-05-29T04:53:31Z_learning' on page 2 
+undefined on input line 67.
 
 
-Package natbib Warning: Citation `lee\T1\textunderscore2024-05-29T04:53:31Z\T1\
-textunderscorelearning' on page 2 undefined on input line 67.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.67 ...titsias\_2019-01-31T13:51:27Z\_functional}
-                                                  . Additionally, recent wor...
+Package natbib Warning: Citation `titsias_2019-01-31T13:51:27Z_functional' on p
+age 2 undefined on input line 67.
 
 
-Package natbib Warning: Citation `titsias\T1\textunderscore2019-01-31T13:51:27Z
-\T1\textunderscorefunctional' on page 2 undefined on input line 67.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.67 ...ia, heng\_2023-05-17T10:53:58Z\_selective}
-                                                  . Other research has exten...
+Package natbib Warning: Citation `park_2023-10-04T09:40:46Z_memoria' on page 2 
+undefined on input line 67.
 
 
-Package natbib Warning: Citation `park\T1\textunderscore2023-10-04T09:40:46Z\T1
-\textunderscorememoria' on page 2 undefined on input line 67.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.67 ...ia, heng\_2023-05-17T10:53:58Z\_selective}
-                                                  . Other research has exten...
+Package natbib Warning: Citation `heng_2023-05-17T10:53:58Z_selective' on page 
+2 undefined on input line 67.
 
 
-Package natbib Warning: Citation `heng\T1\textunderscore2023-05-17T10:53:58Z\T1
-\textunderscoreselective' on page 2 undefined on input line 67.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.67 ...online, lin\_2022-11-01T23:55:51Z\_beyond}
-                                                  . In contrast to these app...
+Package natbib Warning: Citation `lin_2022-10-22T00:57:04Z_online' on page 2 un
+defined on input line 67.
 
 
-Package natbib Warning: Citation `lin\T1\textunderscore2022-10-22T00:57:04Z\T1\
-textunderscoreonline' on page 2 undefined on input line 67.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.67 ...online, lin\_2022-11-01T23:55:51Z\_beyond}
-                                                  . In contrast to these app...
+Package natbib Warning: Citation `lin_2022-11-01T23:55:51Z_beyond' on page 2 un
+defined on input line 67.
 
 
-Package natbib Warning: Citation `lin\T1\textunderscore2022-11-01T23:55:51Z\T1\
-textunderscorebeyond' on page 2 undefined on input line 67.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.71 ...\cite{lee\_2024-05-29T04:53:31Z\_learning}
-                                                  . However, rigid applicati...
+Package natbib Warning: Citation `lee_2024-05-29T04:53:31Z_learning' on page 2 
+undefined on input line 71.
 
 
-Package natbib Warning: Citation `lee\T1\textunderscore2024-05-29T04:53:31Z\T1\
-textunderscorelearning' on page 2 undefined on input line 71.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.71 ...onal, varshney\_2021-03-06T05:09:37Z\_cam}
-                                                  . Overall, this exposition...
+Package natbib Warning: Citation `titsias_2019-01-31T13:51:27Z_functional' on p
+age 2 undefined on input line 71.
 
 
-Package natbib Warning: Citation `titsias\T1\textunderscore2019-01-31T13:51:27Z
-\T1\textunderscorefunctional' on page 2 undefined on input line 71.
+Package natbib Warning: Citation `varshney_2021-03-06T05:09:37Z_cam' on page 2 
+undefined on input line 71.
 
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.71 ...onal, varshney\_2021-03-06T05:09:37Z\_cam}
-                                                  . Overall, this exposition...
-
-
-Package natbib Warning: Citation `varshney\T1\textunderscore2021-03-06T05:09:37
-Z\T1\textunderscorecam' on page 2 undefined on input line 71.
-
-[2] [3]
-
-LaTeX Warning: File `images/convergence_curves.pdf' not found on input line 118
-.
-
-
-! Package pdftex.def Error: File `images/convergence_curves.pdf' not found: usi
-ng draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.118 ...linewidth]{images/convergence_curves.pdf}
-                                                  
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)
-Underfull \vbox (badness 10000) has occurred while \output is active [4]
+[2] [3] [4 </usr/share/texlive/texmf-dist/tex/latex/mwe/example-image-a.pdf>]
 
 Package natbib Warning: Citation `airas2025' on page 5 undefined on input line 
-126.
+127.
 
-(./paper.bbl)
+(./paper.bbl (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd))
 
 Package natbib Warning: There were undefined citations.
 
@@ -935,16 +703,16 @@ Package natbib Warning: There were undefined citations.
 Package natbib Warning: Citation(s) may have changed.
 (natbib)                Rerun to get citations correct.
 
-) )
-(see the transcript file for additional information)</usr/share/texlive/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8
-a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on paper.pdf (5 pages, 103803 bytes).
+) )</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texl
+ive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf/fonts/type1/
+public/lm/lmss17.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucr
+r8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/s
+hare/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (5 pages, 126861 bytes).
 Transcript written on paper.log.
 This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
  restricted \write18 enabled.
@@ -1214,178 +982,26 @@ s been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg)
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.55 ...\cite{lee\_2024-05-29T04:53:31Z\_learning}
-                                                  . However, these methods g...
-
-
-Package natbib Warning: Citation `lee\T1\textunderscore2024-05-29T04:53:31Z\T1\
-textunderscorelearning' on page 1 undefined on input line 55.
-
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd) [1{/var/lib/texmf/fo
 nts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips
-/base/8r.enc}]
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.63 ...onal, varshney\_2021-03-06T05:09:37Z\_cam}
-                                                   and selective memory arch...
-
-
-Package natbib Warning: Citation `titsias\T1\textunderscore2019-01-31T13:51:27Z
-\T1\textunderscorefunctional' on page 2 undefined on input line 63.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.63 ...onal, varshney\_2021-03-06T05:09:37Z\_cam}
-                                                   and selective memory arch...
-
-
-Package natbib Warning: Citation `varshney\T1\textunderscore2021-03-06T05:09:37
-Z\T1\textunderscorecam' on page 2 undefined on input line 63.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.63 ...ia, heng\_2023-05-17T10:53:58Z\_selective}
-                                                  . In contrast, our framewo...
-
-
-Package natbib Warning: Citation `park\T1\textunderscore2023-10-04T09:40:46Z\T1
-\textunderscorememoria' on page 2 undefined on input line 63.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.63 ...ia, heng\_2023-05-17T10:53:58Z\_selective}
-                                                  . In contrast, our framewo...
-
-
-Package natbib Warning: Citation `heng\T1\textunderscore2023-05-17T10:53:58Z\T1
-\textunderscoreselective' on page 2 undefined on input line 63.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.67 ...\cite{lee\_2024-05-29T04:53:31Z\_learning}
-                                                  . Alternative Bayesian fra...
-
-
-Package natbib Warning: Citation `lee\T1\textunderscore2024-05-29T04:53:31Z\T1\
-textunderscorelearning' on page 2 undefined on input line 67.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.67 ...titsias\_2019-01-31T13:51:27Z\_functional}
-                                                  . Additionally, recent wor...
-
-
-Package natbib Warning: Citation `titsias\T1\textunderscore2019-01-31T13:51:27Z
-\T1\textunderscorefunctional' on page 2 undefined on input line 67.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.67 ...ia, heng\_2023-05-17T10:53:58Z\_selective}
-                                                  . Other research has exten...
-
-
-Package natbib Warning: Citation `park\T1\textunderscore2023-10-04T09:40:46Z\T1
-\textunderscorememoria' on page 2 undefined on input line 67.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.67 ...ia, heng\_2023-05-17T10:53:58Z\_selective}
-                                                  . Other research has exten...
-
-
-Package natbib Warning: Citation `heng\T1\textunderscore2023-05-17T10:53:58Z\T1
-\textunderscoreselective' on page 2 undefined on input line 67.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.67 ...online, lin\_2022-11-01T23:55:51Z\_beyond}
-                                                  . In contrast to these app...
-
-
-Package natbib Warning: Citation `lin\T1\textunderscore2022-10-22T00:57:04Z\T1\
-textunderscoreonline' on page 2 undefined on input line 67.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.67 ...online, lin\_2022-11-01T23:55:51Z\_beyond}
-                                                  . In contrast to these app...
-
-
-Package natbib Warning: Citation `lin\T1\textunderscore2022-11-01T23:55:51Z\T1\
-textunderscorebeyond' on page 2 undefined on input line 67.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.71 ...\cite{lee\_2024-05-29T04:53:31Z\_learning}
-                                                  . However, rigid applicati...
-
-
-Package natbib Warning: Citation `lee\T1\textunderscore2024-05-29T04:53:31Z\T1\
-textunderscorelearning' on page 2 undefined on input line 71.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.71 ...onal, varshney\_2021-03-06T05:09:37Z\_cam}
-                                                  . Overall, this exposition...
-
-
-Package natbib Warning: Citation `titsias\T1\textunderscore2019-01-31T13:51:27Z
-\T1\textunderscorefunctional' on page 2 undefined on input line 71.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.71 ...onal, varshney\_2021-03-06T05:09:37Z\_cam}
-                                                  . Overall, this exposition...
-
-
-Package natbib Warning: Citation `varshney\T1\textunderscore2021-03-06T05:09:37
-Z\T1\textunderscorecam' on page 2 undefined on input line 71.
-
-[2] [3]
-
-LaTeX Warning: File `images/convergence_curves.pdf' not found on input line 118
-.
-
-
-! Package pdftex.def Error: File `images/convergence_curves.pdf' not found: usi
-ng draft setting.
-
-See the pdftex.def package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.118 ...linewidth]{images/convergence_curves.pdf}
-                                                  
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)
+/base/8r.enc}] [2] [3]
 Underfull \vbox (badness 10000) has occurred while \output is active [4]
-(./paper.bbl)
+(./paper.bbl (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd) [5 </usr
+/share/texlive/texmf-dist/tex/latex/mwe/example-image-a.pdf>]) [6] (./paper.aux
+)
 
-Package natbib Warning: There were undefined citations.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-[5] (./paper.aux) )
+ )
 (see the transcript file for additional information)</usr/share/texlive/texmf-d
 ist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/ty
 pe1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
 lic/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsf
-onts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8
-a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/sha
-re/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on paper.pdf (5 pages, 103858 bytes).
+onts/cm/cmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmss17.pfb></usr/sha
+re/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/te
+xmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times
+/utmri8a.pfb>
+Output written on paper.pdf (6 pages, 127908 bytes).
 Transcript written on paper.log.
