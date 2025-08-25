@@ -6,5 +6,142 @@
     "Selective Memory Preservation",
     "Backward Transfer Improvement",
     "Dynamic Parameter Selection"
+  ],
+  "research_study_list": [
+    {
+      "title": "Learning to Continually Learn with the Bayesian Principle",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "CAM-GAN: Continual Adaptation Modules for Generative Adversarial Networks",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "Functional Regularisation for  Continual Learning with Gaussian Processes",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "SAMPa: Sharpness-aware Minimization Parallelized",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "Sampling is as easy as keeping the consistency: convergence guarantee for Consistency Models",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "Sampling is as easy as learning the score: theory for diffusion models with minimal data assumptions",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "Sliced Cramer Synaptic Consolidation for Preserving Deeply Learned Representations",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "Memoria: Resolving Fateful Forgetting Problem through Human-Inspired Memory Architecture",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "Selective Amnesia: A Continual Learning Approach to Forgetting in Deep Generative Models",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "Beyond Not-Forgetting: Continual Learning with Backward Knowledge Transfer",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "Reincarnating Reinforcement Learning: Reusing Prior Computation to Accelerate Progress",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "Back Razor: Memory-Efficient Transfer Learning by Self-Sparsified Backpropagation",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "Fine-Tuning Pre-Trained Language Models Effectively by Optimizing Subnetworks Adaptively",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "Online Adaptive Policy Selection in Time-Varying Systems: No-Regret via Contractive Perturbations",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "Computing Valid p-value for Optimal Changepoint by Selective Inference using Dynamic Programming",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    }
   ]
 }
