@@ -555,5 +555,97 @@
     "devin_url": "https://app.devin.ai/sessions/704d100bf69e4f85b7f269935b2a9403"
   },
   "experiment_iteration": 1,
-  "executed_flag": true
+  "executed_flag": true,
+  "reference_research_study_list": [
+    {
+      "title": "Kernels for vector-valued functions: A review.",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "Multi-task gaussian process prediction.",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "Streaming Sparse Gaussian Process Approx- imations.",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "A Unifying Framework for Gaussian Process Pseudo-Point Approximations using Power Expectation Propagation.",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "Gaussian processes: iterative sparse approximations.",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "Sparse online Gaussian processes.",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "Scalable Inference for Gaussian Process Models with Black- Box Likelihoods.",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "Laplace propagation.",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "Towards Robust Evaluations of Continual Learning.",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "An empirical investi- gation of catastrophic forgetting in gradient-based neural networks.",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    }
+  ]
 }
