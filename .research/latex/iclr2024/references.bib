@@ -5,3 +5,400 @@
   publisher = {GitHub},
   url       = {https://github.com/airas-org/airas}
 }
+
+% ===========================================
+% REQUIRED CITATIONS
+% These papers must be cited in the manuscript
+% ===========================================
+
+@article{author_year_sliced,
+ title = {Sliced Cramer Synaptic Consolidation for Preserving Deeply Learned Representations}
+}
+
+@article{balcan_2022-04-07T17:27:18Z_accelerating,
+ abstract = {Data-driven algorithm design is a promising, learning-based approach for
+beyond worst-case analysis of algorithms with tunable parameters. An important
+open problem is the design of computationally efficient data-driven algorithms
+for combinatorial algorithm families with multiple parameters. As one fixes the
+problem instance and varies the parameters, the "dual" loss function typically
+has a piecewise-decomposable structure, i.e. is well-behaved except at certain
+sharp transition boundaries. In this work we initiate the study of techniques
+to develop efficient ERM learning algorithms for data-driven algorithm design
+by enumerating the pieces of the sum dual loss functions for a collection of
+problem instances. The running time of our approach scales with the actual
+number of pieces that appear as opposed to worst case upper bounds on the
+number of pieces. Our approach involves two novel ingredients -- an
+output-sensitive algorithm for enumerating polytopes induced by a set of
+hyperplanes using tools from computational geometry, and an execution graph
+which compactly represents all the states the algorithm could attain for all
+possible parameter values. We illustrate our techniques by giving algorithms
+for pricing problems, linkage-based clustering and dynamic-programming based
+sequence alignment.},
+ arxiv_url = {https://arxiv.org/pdf/2204.03569v3.pdf},
+ author = {Maria-Florina Balcan and Christopher Seiler and Dravyansh Sharma},
+ title = {Accelerating ERM for data-driven algorithm design using output-sensitive techniques},
+ year = {2022-04-07T17:27:18Z}
+}
+
+@article{chen_2023-12-14T17:18:44Z_split,
+ abstract = {Uncertainty estimation is crucial for machine learning models to detect
+out-of-distribution (OOD) inputs. However, the conventional discriminative deep
+learning classifiers produce uncalibrated closed-set predictions for OOD data.
+A more robust classifiers with the uncertainty estimation typically require a
+potentially unavailable OOD dataset for outlier exposure training, or a
+considerable amount of additional memory and compute to build ensemble models.
+In this work, we improve on uncertainty estimation without extra OOD data or
+additional inference costs using an alternative Split-Ensemble method.
+Specifically, we propose a novel subtask-splitting ensemble training objective,
+where a common multiclass classification task is split into several
+complementary subtasks. Then, each subtask's training data can be considered as
+OOD to the other subtasks. Diverse submodels can therefore be trained on each
+subtask with OOD-aware objectives. The subtask-splitting objective enables us
+to share low-level features across submodels to avoid parameter and
+computational overheads. In particular, we build a tree-like Split-Ensemble
+architecture by performing iterative splitting and pruning from a shared
+backbone model, where each branch serves as a submodel corresponding to a
+subtask. This leads to improved accuracy and uncertainty estimation across
+submodels under a fixed ensemble computation budget. Empirical study with
+ResNet-18 backbone shows Split-Ensemble, without additional computation cost,
+improves accuracy over a single model by 0.8%, 1.8%, and 25.5% on CIFAR-10,
+CIFAR-100, and Tiny-ImageNet, respectively. OOD detection for the same backbone
+and in-distribution datasets surpasses a single model baseline by,
+correspondingly, 2.2%, 8.1%, and 29.6% mean AUROC.},
+ arxiv_url = {https://arxiv.org/pdf/2312.09148v2.pdf},
+ author = {Anthony Chen and Huanrui Yang and Yulu Gan and Denis A Gudovskiy and Zhen Dong and Haofan Wang and Tomoyuki Okuno and Yohei Nakata and Kurt Keutzer and Shanghang Zhang},
+ title = {Split-Ensemble: Efficient OOD-aware Ensemble via Task and Model Splitting},
+ year = {2023-12-14T17:18:44Z}
+}
+
+@article{fasina_2023-06-01T17:36:13Z_neural,
+ abstract = {Although data diffusion embeddings are ubiquitous in unsupervised learning
+and have proven to be a viable technique for uncovering the underlying
+intrinsic geometry of data, diffusion embeddings are inherently limited due to
+their discrete nature. To this end, we propose neural FIM, a method for
+computing the Fisher information metric (FIM) from point cloud data - allowing
+for a continuous manifold model for the data. Neural FIM creates an extensible
+metric space from discrete point cloud data such that information from the
+metric can inform us of manifold characteristics such as volume and geodesics.
+We demonstrate Neural FIM's utility in selecting parameters for the PHATE
+visualization method as well as its ability to obtain information pertaining to
+local volume illuminating branching points and cluster centers embeddings of a
+toy dataset and two single-cell datasets of IPSC reprogramming and PBMCs
+(immune cells).},
+ arxiv_url = {https://arxiv.org/pdf/2306.06062v2.pdf},
+ author = {Oluwadamilola Fasina and Guillaume Huguet and Alexander Tong and Yanlei Zhang and Guy Wolf and Maximilian Nickel and Ian Adelstein and Smita Krishnaswamy},
+ title = {Neural FIM for learning Fisher information metrics from point cloud data},
+ year = {2023-06-01T17:36:13Z}
+}
+
+@article{gu_2023-03-26T00:35:59Z_preserving,
+ abstract = {Catastrophic forgetting has been a major challenge in continual learning,
+where the model needs to learn new tasks with limited or no access to data from
+previously seen tasks. To tackle this challenge, methods based on knowledge
+distillation in feature space have been proposed and shown to reduce
+forgetting. However, most feature distillation methods directly constrain the
+new features to match the old ones, overlooking the need for plasticity. To
+achieve a better stability-plasticity trade-off, we propose Backward Feature
+Projection (BFP), a method for continual learning that allows the new features
+to change up to a learnable linear transformation of the old features. BFP
+preserves the linear separability of the old classes while allowing the
+emergence of new feature directions to accommodate new classes. BFP can be
+integrated with existing experience replay methods and boost performance by a
+significant margin. We also demonstrate that BFP helps learn a better
+representation space, in which linear separability is well preserved during
+continual learning and linear probing achieves high classification accuracy.
+The code can be found at https://github.com/rvl-lab-utoronto/BFP},
+ arxiv_url = {https://arxiv.org/pdf/2303.14595v3.pdf},
+ author = {Qiao Gu and Dongsub Shim and Florian Shkurti},
+ github_url = {https://github.com/rvl-lab-utoronto/BFP},
+ title = {Preserving Linear Separability in Continual Learning by Backward Feature Projection},
+ year = {2023-03-26T00:35:59Z}
+}
+
+@article{kim_2022-12-03T19:09:56Z_crosssplit,
+ abstract = {We approach the problem of improving robustness of deep learning algorithms
+in the presence of label noise. Building upon existing label correction and
+co-teaching methods, we propose a novel training procedure to mitigate the
+memorization of noisy labels, called CrossSplit, which uses a pair of neural
+networks trained on two disjoint parts of the labelled dataset. CrossSplit
+combines two main ingredients: (i) Cross-split label correction. The idea is
+that, since the model trained on one part of the data cannot memorize
+example-label pairs from the other part, the training labels presented to each
+network can be smoothly adjusted by using the predictions of its peer network;
+(ii) Cross-split semi-supervised training. A network trained on one part of the
+data also uses the unlabeled inputs of the other part. Extensive experiments on
+CIFAR-10, CIFAR-100, Tiny-ImageNet and mini-WebVision datasets demonstrate that
+our method can outperform the current state-of-the-art in a wide range of noise
+ratios.},
+ arxiv_url = {https://arxiv.org/pdf/2212.01674v2.pdf},
+ author = {Jihye Kim and Aristide Baratin and Yan Zhang and Simon Lacoste-Julien},
+ title = {CrossSplit: Mitigating Label Noise Memorization through Data Splitting},
+ year = {2022-12-03T19:09:56Z}
+}
+
+@article{konishi_2023-06-26T15:35:27Z_parameter,
+ abstract = {Existing research on task incremental learning in continual learning has
+primarily focused on preventing catastrophic forgetting (CF). Although several
+techniques have achieved learning with no CF, they attain it by letting each
+task monopolize a sub-network in a shared network, which seriously limits
+knowledge transfer (KT) and causes over-consumption of the network capacity,
+i.e., as more tasks are learned, the performance deteriorates. The goal of this
+paper is threefold: (1) overcoming CF, (2) encouraging KT, and (3) tackling the
+capacity problem. A novel technique (called SPG) is proposed that soft-masks
+(partially blocks) parameter updating in training based on the importance of
+each parameter to old tasks. Each task still uses the full network, i.e., no
+monopoly of any part of the network by any task, which enables maximum KT and
+reduction in capacity usage. To our knowledge, this is the first work that
+soft-masks a model at the parameter-level for continual learning. Extensive
+experiments demonstrate the effectiveness of SPG in achieving all three
+objectives. More notably, it attains significant transfer of knowledge not only
+among similar tasks (with shared knowledge) but also among dissimilar tasks
+(with little shared knowledge) while mitigating CF.},
+ arxiv_url = {https://arxiv.org/pdf/2306.14775v1.pdf},
+ author = {Tatsuya Konishi and Mori Kurokawa and Chihiro Ono and Zixuan Ke and Gyuhak Kim and Bing Liu},
+ github_url = {https://github.com/UIC-Liu-Lab/spg},
+ title = {Parameter-Level Soft-Masking for Continual Learning},
+ year = {2023-06-26T15:35:27Z}
+}
+
+@article{lin_2022-10-22T00:57:04Z_online,
+ abstract = {We study online adaptive policy selection in systems with time-varying costs
+and dynamics. We develop the Gradient-based Adaptive Policy Selection (GAPS)
+algorithm together with a general analytical framework for online policy
+selection via online optimization. Under our proposed notion of contractive
+policy classes, we show that GAPS approximates the behavior of an ideal online
+gradient descent algorithm on the policy parameters while requiring less
+information and computation. When convexity holds, our algorithm is the first
+to achieve optimal policy regret. When convexity does not hold, we provide the
+first local regret bound for online policy selection. Our numerical experiments
+show that GAPS can adapt to changing environments more quickly than existing
+benchmarks.},
+ arxiv_url = {https://arxiv.org/pdf/2210.12320v3.pdf},
+ author = {Yiheng Lin and James A. Preiss and Emile Anand and Yingying Li and Yisong Yue and Adam Wierman},
+ title = {Online Adaptive Policy Selection in Time-Varying Systems: No-Regret via Contractive Perturbations},
+ year = {2022-10-22T00:57:04Z}
+}
+
+@article{ramasesh_2020-07-14T23:31:14Z_anatomy,
+ abstract = {A central challenge in developing versatile machine learning systems is
+catastrophic forgetting: a model trained on tasks in sequence will suffer
+significant performance drops on earlier tasks. Despite the ubiquity of
+catastrophic forgetting, there is limited understanding of the underlying
+process and its causes. In this paper, we address this important knowledge gap,
+investigating how forgetting affects representations in neural network models.
+Through representational analysis techniques, we find that deeper layers are
+disproportionately the source of forgetting. Supporting this, a study of
+methods to mitigate forgetting illustrates that they act to stabilize deeper
+layers. These insights enable the development of an analytic argument and
+empirical picture relating the degree of forgetting to representational
+similarity between tasks. Consistent with this picture, we observe maximal
+forgetting occurs for task sequences with intermediate similarity. We perform
+empirical studies on the standard split CIFAR-10 setup and also introduce a
+novel CIFAR-100 based task approximating realistic input distribution shift.},
+ arxiv_url = {https://arxiv.org/pdf/2007.07400v1.pdf},
+ author = {Vinay V. Ramasesh and Ethan Dyer and Maithra Raghu},
+ github_url = {https://github.com/google/caliban},
+ title = {Anatomy of Catastrophic Forgetting: Hidden Representations and Task Semantics},
+ year = {2020-07-14T23:31:14Z}
+}
+
+@article{santurkar_2020-08-11T17:04:47Z_breeds,
+ abstract = {We develop a methodology for assessing the robustness of models to
+subpopulation shift---specifically, their ability to generalize to novel data
+subpopulations that were not observed during training. Our approach leverages
+the class structure underlying existing datasets to control the data
+subpopulations that comprise the training and test distributions. This enables
+us to synthesize realistic distribution shifts whose sources can be precisely
+controlled and characterized, within existing large-scale datasets. Applying
+this methodology to the ImageNet dataset, we create a suite of subpopulation
+shift benchmarks of varying granularity. We then validate that the
+corresponding shifts are tractable by obtaining human baselines for them.
+Finally, we utilize these benchmarks to measure the sensitivity of standard
+model architectures as well as the effectiveness of off-the-shelf train-time
+robustness interventions. Code and data available at
+https://github.com/MadryLab/BREEDS-Benchmarks .},
+ arxiv_url = {https://arxiv.org/pdf/2008.04859v1.pdf},
+ author = {Shibani Santurkar and Dimitris Tsipras and Aleksander Madry},
+ github_url = {https://github.com/MadryLab/BREEDS-Benchmarks},
+ title = {BREEDS: Benchmarks for Subpopulation Shift},
+ year = {2020-08-11T17:04:47Z}
+}
+
+@article{soen_2021-07-09T04:46:50Z_the,
+ abstract = {In the realm of deep learning, the Fisher information matrix (FIM) gives
+novel insights and useful tools to characterize the loss landscape, perform
+second-order optimization, and build geometric learning theories. The exact FIM
+is either unavailable in closed form or too expensive to compute. In practice,
+it is almost always estimated based on empirical samples. We investigate two
+such estimators based on two equivalent representations of the FIM -- both
+unbiased and consistent. Their estimation quality is naturally gauged by their
+variance given in closed form. We analyze how the parametric structure of a
+deep neural network can affect the variance. The meaning of this variance
+measure and its upper bounds are then discussed in the context of deep
+learning.},
+ arxiv_url = {https://arxiv.org/pdf/2107.04205v3.pdf},
+ author = {Alexander Soen and Ke Sun},
+ title = {On the Variance of the Fisher Information for Deep Learning},
+ year = {2021-07-09T04:46:50Z}
+}
+
+@article{soen_2024-02-08T03:29:10Z_trade,
+ abstract = {The Fisher information matrix can be used to characterize the local geometry
+of the parameter space of neural networks. It elucidates insightful theories
+and useful tools to understand and optimize neural networks. Given its high
+computational cost, practitioners often use random estimators and evaluate only
+the diagonal entries. We examine two popular estimators whose accuracy and
+sample complexity depend on their associated variances. We derive bounds of the
+variances and instantiate them in neural networks for regression and
+classification. We navigate trade-offs for both estimators based on analytical
+and numerical studies. We find that the variance quantities depend on the
+non-linearity wrt different parameter groups and should not be neglected when
+estimating the Fisher information.},
+ arxiv_url = {https://arxiv.org/pdf/2402.05379v3.pdf},
+ author = {Alexander Soen and Ke Sun},
+ github_url = {https://github.com/rfeinman/pytorch-minimize},
+ title = {Trade-Offs of Diagonal Fisher Information Matrix Estimators},
+ year = {2024-02-08T03:29:10Z}
+}
+
+@article{sun_2022-09-25T15:17:37Z_exploring,
+ abstract = {Continual Learning (CL) sequentially learns new tasks like human beings, with
+the goal to achieve better Stability (S, remembering past tasks) and Plasticity
+(P, adapting to new tasks). Due to the fact that past training data is not
+available, it is valuable to explore the influence difference on S and P among
+training examples, which may improve the learning pattern towards better SP.
+Inspired by Influence Function (IF), we first study example influence via
+adding perturbation to example weight and computing the influence derivation.
+To avoid the storage and calculation burden of Hessian inverse in neural
+networks, we propose a simple yet effective MetaSP algorithm to simulate the
+two key steps in the computation of IF and obtain the S- and P-aware example
+influence. Moreover, we propose to fuse two kinds of example influence by
+solving a dual-objective optimization problem, and obtain a fused influence
+towards SP Pareto optimality. The fused influence can be used to control the
+update of model and optimize the storage of rehearsal. Empirical results show
+that our algorithm significantly outperforms state-of-the-art methods on both
+task- and class-incremental benchmark CL datasets.},
+ arxiv_url = {https://arxiv.org/pdf/2209.12241v1.pdf},
+ author = {Qing Sun and Fan Lyu and Fanhua Shang and Wei Feng and Liang Wan},
+ github_url = {https://github.com/SSSunQing/Example_Influence_CL},
+ title = {Exploring Example Influence in Continual Learning},
+ year = {2022-09-25T15:17:37Z}
+}
+
+@article{tang_2020-07-09T14:03:31Z_graph,
+ abstract = {Despite significant advances, continual learning models still suffer from
+catastrophic forgetting when exposed to incrementally available data from
+non-stationary distributions. Rehearsal approaches alleviate the problem by
+maintaining and replaying a small episodic memory of previous samples, often
+implemented as an array of independent memory slots. In this work, we propose
+to augment such an array with a learnable random graph that captures pairwise
+similarities between its samples, and use it not only to learn new tasks but
+also to guard against forgetting. Empirical results on several benchmark
+datasets show that our model consistently outperforms recently proposed
+baselines for task-free continual learning.},
+ arxiv_url = {https://arxiv.org/pdf/2007.04813v2.pdf},
+ author = {Binh Tang and David S. Matteson},
+ github_url = {https://github.com/mattriemer/mer},
+ title = {Graph-Based Continual Learning},
+ year = {2020-07-09T14:03:31Z}
+}
+
+@article{zhang_2022-11-03T08:32:12Z_fine,
+ abstract = {Large-scale pre-trained language models have achieved impressive results on a
+wide range of downstream tasks recently. However, fine-tuning an extremely
+large-scale pre-trained language model on limited target datasets is often
+plagued by overfitting and representation degradation. In this paper, we
+propose a Dynamic Parameter Selection (DPS) algorithm for the large-scale
+pre-trained models during fine-tuning, which adaptively selects a more
+promising subnetwork to perform staging updates based on gradients of
+back-propagation. Experiments on the GLUE benchmark show that DPS outperforms
+previous fine-tuning methods in terms of overall performance and stability, and
+consistently achieves better results with variable pre-trained language models.
+In addition, DPS brings a large magnitude of improvement in out-of-domain
+transferring experiments and low-resource scenarios, which shows that it can
+maintain stable general contextual features and reduce the representation
+collapse. We release our code at https://github.com/ZhangHaojie077/DPS},
+ arxiv_url = {https://arxiv.org/pdf/2211.01642v1.pdf},
+ author = {Haojie Zhang and Ge Li and Jia Li and Zhongjin Zhang and Yuqi Zhu and Zhi Jin},
+ github_url = {https://github.com/ZhangHaojie077/DPS},
+ title = {Fine-Tuning Pre-Trained Language Models Effectively by Optimizing Subnetworks Adaptively},
+ year = {2022-11-03T08:32:12Z}
+}
+
+% ===========================================
+% REFERENCE CANDIDATES
+% Additional reference papers for context
+% ===========================================
+
+@article{aljundi_2019-03-20T18:01:55Z_gradient,
+ abstract = {A continual learning agent learns online with a non-stationary and
+never-ending stream of data. The key to such learning process is to overcome
+the catastrophic forgetting of previously seen data, which is a well known
+problem of neural networks. To prevent forgetting, a replay buffer is usually
+employed to store the previous data for the purpose of rehearsal. Previous
+works often depend on task boundary and i.i.d. assumptions to properly select
+samples for the replay buffer. In this work, we formulate sample selection as a
+constraint reduction problem based on the constrained optimization view of
+continual learning. The goal is to select a fixed subset of constraints that
+best approximate the feasible region defined by the original constraints. We
+show that it is equivalent to maximizing the diversity of samples in the replay
+buffer with parameters gradient as the feature. We further develop a greedy
+alternative that is cheap and efficient. The advantage of the proposed method
+is demonstrated by comparing to other alternatives under the continual learning
+setting. Further comparisons are made against state of the art methods that
+rely on task boundaries which show comparable or even better results for our
+method.},
+ arxiv_url = {https://arxiv.org/pdf/1903.08671v5.pdf},
+ author = {Rahaf Aljundi and Min Lin and Baptiste Goujaud and Yoshua Bengio},
+ title = {Gradient based sample selection for online continual learning},
+ year = {2019-03-20T18:01:55Z}
+}
+
+@article{aljundi_2019-08-11T21:16:44Z_online,
+ abstract = {Continual learning, the setting where a learning agent is faced with a never
+ending stream of data, continues to be a great challenge for modern machine
+learning systems. In particular the online or "single-pass through the data"
+setting has gained attention recently as a natural setting that is difficult to
+tackle. Methods based on replay, either generative or from a stored memory,
+have been shown to be effective approaches for continual learning, matching or
+exceeding the state of the art in a number of standard benchmarks. These
+approaches typically rely on randomly selecting samples from the replay memory
+or from a generative model, which is suboptimal. In this work, we consider a
+controlled sampling of memories for replay. We retrieve the samples which are
+most interfered, i.e. whose prediction will be most negatively impacted by the
+foreseen parameters update. We show a formulation for this sampling criterion
+in both the generative replay and the experience replay setting, producing
+consistent gains in performance and greatly reduced forgetting. We release an
+implementation of our method at
+https://github.com/optimass/Maximally_Interfered_Retrieval.},
+ arxiv_url = {https://arxiv.org/pdf/1908.04742v3.pdf},
+ author = {Rahaf Aljundi and Lucas Caccia and Eugene Belilovsky and Massimo Caccia and Min Lin and Laurent Charlin and Tinne Tuytelaars},
+ journal = {NeurIPS 2019},
+ title = {Online continual learning with maximal interfered retrieval},
+ year = {2019-08-11T21:16:44Z}
+}
+
+@article{bagus_2021-08-15T15:05:02Z_investigation,
+ abstract = {Continual learning (CL) is a major challenge of machine learning (ML) and
+describes the ability to learn several tasks sequentially without catastrophic
+forgetting (CF). Recent works indicate that CL is a complex topic, even more so
+when real-world scenarios with multiple constraints are involved. Several
+solution classes have been proposed, of which so-called replay-based approaches
+seem very promising due to their simplicity and robustness. Such approaches
+store a subset of past samples in a dedicated memory for later processing:
+while this does not solve all problems, good results have been obtained. In
+this article, we empirically investigate replay-based approaches of continual
+learning and assess their potential for applications. Selected recent
+approaches as well as own proposals are compared on a common set of benchmarks,
+with a particular focus on assessing the performance of different sample
+selection strategies. We find that the impact of sample selection increases
+when a smaller number of samples is stored. Nevertheless, performance varies
+strongly between different replay approaches. Surprisingly, we find that the
+most naive rehearsal-based approaches that we propose here can outperform
+recent state-of-the-art methods.},
+ arxiv_url = {https://arxiv.org/pdf/2108.06758v1.pdf},
+ author = {Benedikt Bagus and Alexander Gepperth},
+ doi = {10.1109/IJCNN52387.2021.9533862},
+ title = {An investigation of replay-based approaches for continual learning},
+ year = {2021-08-15T15:05:02Z}
+}
