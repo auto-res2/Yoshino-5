@@ -5,3 +5,455 @@
   publisher = {GitHub},
   url       = {https://github.com/airas-org/airas}
 }
+
+% ===========================================
+% REQUIRED CITATIONS
+% These papers must be cited in the manuscript
+% ===========================================
+
+@article{abdollahzadeh_2021-10-27T06:23:45Z_revisit,
+ abstract = {Multimodal meta-learning is a recent problem that extends conventional
+few-shot meta-learning by generalizing its setup to diverse multimodal task
+distributions. This setup makes a step towards mimicking how humans make use of
+a diverse set of prior skills to learn new skills. Previous work has achieved
+encouraging performance. In particular, in spite of the diversity of the
+multimodal tasks, previous work claims that a single meta-learner trained on a
+multimodal distribution can sometimes outperform multiple specialized
+meta-learners trained on individual unimodal distributions. The improvement is
+attributed to knowledge transfer between different modes of task distributions.
+However, there is no deep investigation to verify and understand the knowledge
+transfer between multimodal tasks. Our work makes two contributions to
+multimodal meta-learning. First, we propose a method to quantify knowledge
+transfer between tasks of different modes at a micro-level. Our quantitative,
+task-level analysis is inspired by the recent transference idea from multi-task
+learning. Second, inspired by hard parameter sharing in multi-task learning and
+a new interpretation of related work, we propose a new multimodal meta-learner
+that outperforms existing work by considerable margins. While the major focus
+is on multimodal meta-learning, our work also attempts to shed light on task
+interaction in conventional meta-learning. The code for this project is
+available at https://miladabd.github.io/KML.},
+ arxiv_url = {https://arxiv.org/pdf/2110.14202v1.pdf},
+ author = {Milad Abdollahzadeh and Touba Malekzadeh and Ngai-Man Cheung},
+ title = {Revisit Multimodal Meta-Learning through the Lens of Multi-Task Learning},
+ year = {2021-10-27T06:23:45Z}
+}
+
+@article{author_year_defense,
+ title = {In defense of dual-encoders for neural ranking}
+}
+
+@article{fahes_2023-11-29T18:59:59Z_simple,
+ abstract = {Generalization to new domains not seen during training is one of the
+long-standing challenges in deploying neural networks in real-world
+applications. Existing generalization techniques either necessitate external
+images for augmentation, and/or aim at learning invariant representations by
+imposing various alignment constraints. Large-scale pretraining has recently
+shown promising generalization capabilities, along with the potential of
+binding different modalities. For instance, the advent of vision-language
+models like CLIP has opened the doorway for vision models to exploit the
+textual modality. In this paper, we introduce a simple framework for
+generalizing semantic segmentation networks by employing language as the source
+of randomization. Our recipe comprises three key ingredients: (i) the
+preservation of the intrinsic CLIP robustness through minimal fine-tuning, (ii)
+language-driven local style augmentation, and (iii) randomization by locally
+mixing the source and augmented styles during training. Extensive experiments
+report state-of-the-art results on various generalization benchmarks. Code is
+accessible at https://github.com/astra-vision/FAMix .},
+ arxiv_url = {https://arxiv.org/pdf/2311.17922v2.pdf},
+ author = {Mohammad Fahes and Tuan-Hung Vu and Andrei Bursuc and Patrick Pérez and Raoul de Charette},
+ github_url = {https://github.com/astra-vision/FAMix},
+ title = {A Simple Recipe for Language-guided Domain Generalized Segmentation},
+ year = {2023-11-29T18:59:59Z}
+}
+
+@article{lian_2022-10-17T08:14:49Z_scaling,
+ abstract = {Existing fine-tuning methods either tune all parameters of the pre-trained
+model (full fine-tuning), which is not efficient, or only tune the last linear
+layer (linear probing), which suffers a significant accuracy drop compared to
+the full fine-tuning. In this paper, we propose a new parameter-efficient
+fine-tuning method termed as SSF, representing that researchers only need to
+Scale and Shift the deep Features extracted by a pre-trained model to catch up
+with the performance of full fine-tuning. In this way, SSF also surprisingly
+outperforms other parameter-efficient fine-tuning approaches even with a
+smaller number of tunable parameters. Furthermore, different from some existing
+parameter-efficient fine-tuning methods (e.g., Adapter or VPT) that introduce
+the extra parameters and computational cost in the training and inference
+stages, SSF only adds learnable parameters during the training stage, and these
+additional parameters can be merged into the original pre-trained model weights
+via re-parameterization in the inference phase. With the proposed SSF, our
+model obtains 2.46% (90.72% vs. 88.54%) and 11.48% (73.10% vs. 65.57%)
+performance improvement on FGVC and VTAB-1k in terms of Top-1 accuracy compared
+to the full fine-tuning but only fine-tuning about 0.3M parameters. We also
+conduct amounts of experiments in various model families (CNNs, Transformers,
+and MLPs) and datasets. Results on 26 image classification datasets in total
+and 3 robustness & out-of-distribution datasets show the effectiveness of SSF.
+Code is available at https://github.com/dongzelian/SSF.},
+ arxiv_url = {https://arxiv.org/pdf/2210.08823v3.pdf},
+ author = {Dongze Lian and Daquan Zhou and Jiashi Feng and Xinchao Wang},
+ github_url = {https://github.com/dongzelian/SSF},
+ title = {Scaling & Shifting Your Features: A New Baseline for Efficient Model Tuning},
+ year = {2022-10-17T08:14:49Z}
+}
+
+@article{lu_2023-09-21T20:05:49Z_theory,
+ abstract = {Human perception of the empirical world involves recognizing the diverse
+appearances, or 'modalities', of underlying objects. Despite the longstanding
+consideration of this perspective in philosophy and cognitive science, the
+study of multimodality remains relatively under-explored within the field of
+machine learning. Nevertheless, current studies of multimodal machine learning
+are limited to empirical practices, lacking theoretical foundations beyond
+heuristic arguments. An intriguing finding from the practice of multimodal
+learning is that a model trained on multiple modalities can outperform a
+finely-tuned unimodal model, even on unimodal tasks. This paper provides a
+theoretical framework that explains this phenomenon, by studying generalization
+properties of multimodal learning algorithms. We demonstrate that multimodal
+learning allows for a superior generalization bound compared to unimodal
+learning, up to a factor of $O(\sqrt{n})$, where $n$ represents the sample
+size. Such advantage occurs when both connection and heterogeneity exist
+between the modalities.},
+ arxiv_url = {https://arxiv.org/pdf/2309.12458v2.pdf},
+ author = {Zhou Lu},
+ title = {A Theory of Multimodal Learning},
+ year = {2023-09-21T20:05:49Z}
+}
+
+@article{mayilvahanan_2023-10-14T11:24:28Z_does,
+ abstract = {Foundation models like CLIP are trained on hundreds of millions of samples
+and effortlessly generalize to new tasks and inputs. Out of the box, CLIP shows
+stellar zero-shot and few-shot capabilities on a wide range of
+out-of-distribution (OOD) benchmarks, which prior works attribute mainly to
+today's large and comprehensive training dataset (like LAION). However, it is
+questionable how meaningful terms like out-of-distribution generalization are
+for CLIP as it seems likely that web-scale datasets like LAION simply contain
+many samples that are similar to common OOD benchmarks originally designed for
+ImageNet. To test this hypothesis, we retrain CLIP on pruned LAION splits that
+replicate ImageNet's train-test similarity with respect to common OOD
+benchmarks. While we observe a performance drop on some benchmarks,
+surprisingly, CLIP's overall performance remains high. This shows that high
+train-test similarity is insufficient to explain CLIP's OOD performance, and
+other properties of the training data must drive CLIP to learn more
+generalizable representations. Additionally, by pruning data points that are
+dissimilar to the OOD benchmarks, we uncover a 100M split of LAION
+($\frac{1}{4}$th of its original size) on which CLIP can be trained to match
+its original OOD performance.},
+ arxiv_url = {https://arxiv.org/pdf/2310.09562v2.pdf},
+ author = {Prasanna Mayilvahanan and Thaddäus Wiedemer and Evgenia Rusak and Matthias Bethge and Wieland Brendel},
+ github_url = {https://github.com/brendel-group/clip-ood},
+ title = {Does CLIP’s generalization performance mainly stem from high train-test similarity?},
+ year = {2023-10-14T11:24:28Z}
+}
+
+@article{najdenkoska_2023-02-28T17:46:18Z_meta,
+ abstract = {Multimodal few-shot learning is challenging due to the large domain gap
+between vision and language modalities. Existing methods are trying to
+communicate visual concepts as prompts to frozen language models, but rely on
+hand-engineered task induction to reduce the hypothesis space. To make the
+whole process learnable, we introduce a multimodal meta-learning approach.
+Specifically, our approach decomposes the training of the model into a set of
+related multimodal few-shot tasks. We define a meta-mapper network, acting as a
+meta-learner, to efficiently bridge frozen large-scale vision and language
+models and leverage their already learned capacity. By updating the learnable
+parameters only of the meta-mapper, it learns to accrue shared meta-knowledge
+among these tasks. Thus, it can rapidly adapt to newly presented samples with
+only a few gradient updates. Importantly, it induces the task in a completely
+data-driven manner, with no need for a hand-engineered task induction. We
+evaluate our approach on recently proposed multimodal few-shot benchmarks,
+measuring how rapidly the model can bind novel visual concepts to words and
+answer visual questions by observing only a limited set of labeled examples.
+The experimental results show that our meta-learning approach outperforms the
+baseline across multiple datasets and various training settings while being
+computationally more efficient.},
+ arxiv_url = {https://arxiv.org/pdf/2302.14794v1.pdf},
+ author = {Ivona Najdenkoska and Xiantong Zhen and Marcel Worring},
+ github_url = {https://github.com/ivonajdenkoska/multimodal-meta-learn},
+ title = {Meta Learning to Bridge Vision and Language Models for Multimodal Few-Shot Learning},
+ year = {2023-02-28T17:46:18Z}
+}
+
+@article{shi_2021-02-25T14:13:44Z_sparsebert,
+ abstract = {Transformer-based models are popularly used in natural language processing
+(NLP). Its core component, self-attention, has aroused widespread interest. To
+understand the self-attention mechanism, a direct method is to visualize the
+attention map of a pre-trained model. Based on the patterns observed, a series
+of efficient Transformers with different sparse attention masks have been
+proposed. From a theoretical perspective, universal approximability of
+Transformer-based models is also recently proved. However, the above
+understanding and analysis of self-attention is based on a pre-trained model.
+To rethink the importance analysis in self-attention, we study the significance
+of different positions in attention matrix during pre-training. A surprising
+result is that diagonal elements in the attention map are the least important
+compared with other attention positions. We provide a proof showing that these
+diagonal elements can indeed be removed without deteriorating model
+performance. Furthermore, we propose a Differentiable Attention Mask (DAM)
+algorithm, which further guides the design of the SparseBERT. Extensive
+experiments verify our interesting findings and illustrate the effect of the
+proposed algorithm.},
+ arxiv_url = {https://arxiv.org/pdf/2102.12871v3.pdf},
+ author = {Han Shi and Jiahui Gao and Xiaozhe Ren and Hang Xu and Xiaodan Liang and Zhenguo Li and James T. Kwok},
+ github_url = {https://github.com/han-shi/SparseBERT},
+ title = {SparseBERT: Rethinking the Importance Analysis in Self-attention},
+ year = {2021-02-25T14:13:44Z}
+}
+
+@article{shu_2023-02-02T04:27:54Z_clipood,
+ abstract = {Out-of-distribution (OOD) generalization, where the model needs to handle
+distribution shifts from training, is a major challenge of machine learning.
+Contrastive language-image pre-training (CLIP) models have shown impressive
+zero-shot ability, but the further adaptation of CLIP on downstream tasks
+undesirably degrades OOD performances. This paper aims at generalizing CLIP to
+out-of-distribution test data on downstream tasks. We propose CLIPood, a
+fine-tuning method that can adapt CLIP models to OOD situations where both
+domain shifts and open classes may occur on the unseen test data. To exploit
+the semantic relations between classes from the text modality, CLIPood
+introduces a new training objective, margin metric softmax (MMS), with class
+adaptive margins for fine-tuning. To incorporate both pre-trained zero-shot
+model and fine-tuned task-adaptive model, CLIPood leverages a new optimization
+strategy, Beta moving average (BMA), to maintain a temporal ensemble weighted
+by Beta distribution. Experiments on diverse datasets with different OOD
+scenarios show that CLIPood consistently outperforms existing generalization
+techniques.},
+ arxiv_url = {https://arxiv.org/pdf/2302.00864v2.pdf},
+ author = {Yang Shu and Xingzhuo Guo and Jialong Wu and Ximei Wang and Jianmin Wang and Mingsheng Long},
+ github_url = {https://github.com/thuml/CLIPood},
+ title = {CLIPood: Generalizing CLIP to Out-of-Distributions},
+ year = {2023-02-02T04:27:54Z}
+}
+
+@article{triantafillou_2019-03-07T18:48:55Z_meta,
+ abstract = {Few-shot classification refers to learning a classifier for new classes given
+only a few examples. While a plethora of models have emerged to tackle it, we
+find the procedure and datasets that are used to assess their progress lacking.
+To address this limitation, we propose Meta-Dataset: a new benchmark for
+training and evaluating models that is large-scale, consists of diverse
+datasets, and presents more realistic tasks. We experiment with popular
+baselines and meta-learners on Meta-Dataset, along with a competitive method
+that we propose. We analyze performance as a function of various
+characteristics of test tasks and examine the models' ability to leverage
+diverse training sources for improving their generalization. We also propose a
+new set of baselines for quantifying the benefit of meta-learning in
+Meta-Dataset. Our extensive experimentation has uncovered important research
+challenges and we hope to inspire work in these directions.},
+ arxiv_url = {https://arxiv.org/pdf/1903.03096v4.pdf},
+ author = {Eleni Triantafillou and Tyler Zhu and Vincent Dumoulin and Pascal Lamblin and Utku Evci and Kelvin Xu and Ross Goroshin and Carles Gelada and Kevin Swersky and Pierre-Antoine Manzagol and Hugo Larochelle},
+ journal = {International Conference on Learning Representations (2020)},
+ title = {Meta-Dataset: A Dataset of Datasets for Learning to Learn from Few Examples},
+ year = {2019-03-07T18:48:55Z}
+}
+
+@article{triantafillou_2021-05-14T18:46:06Z_learning,
+ abstract = {Few-shot dataset generalization is a challenging variant of the well-studied
+few-shot classification problem where a diverse training set of several
+datasets is given, for the purpose of training an adaptable model that can then
+learn classes from new datasets using only a few examples. To this end, we
+propose to utilize the diverse training set to construct a universal template:
+a partial model that can define a wide array of dataset-specialized models, by
+plugging in appropriate components. For each new few-shot classification
+problem, our approach therefore only requires inferring a small number of
+parameters to insert into the universal template. We design a separate network
+that produces an initialization of those parameters for each given task, and we
+then fine-tune its proposed initialization via a few steps of gradient descent.
+Our approach is more parameter-efficient, scalable and adaptable compared to
+previous methods, and achieves the state-of-the-art on the challenging
+Meta-Dataset benchmark.},
+ arxiv_url = {https://arxiv.org/pdf/2105.07029v2.pdf},
+ author = {Eleni Triantafillou and Hugo Larochelle and Richard Zemel and Vincent Dumoulin},
+ github_url = {https://github.com/google-research/meta-dataset},
+ title = {Learning a Universal Template for Few-shot Dataset Generalization},
+ year = {2021-05-14T18:46:06Z}
+}
+
+@article{ullah_2023-02-16T11:07:51Z_meta,
+ abstract = {We introduce Meta-Album, an image classification meta-dataset designed to
+facilitate few-shot learning, transfer learning, meta-learning, among other
+tasks. It includes 40 open datasets, each having at least 20 classes with 40
+examples per class, with verified licences. They stem from diverse domains,
+such as ecology (fauna and flora), manufacturing (textures, vehicles), human
+actions, and optical character recognition, featuring various image scales
+(microscopic, human scales, remote sensing). All datasets are preprocessed,
+annotated, and formatted uniformly, and come in 3 versions (Micro $\subset$
+Mini $\subset$ Extended) to match users' computational resources. We showcase
+the utility of the first 30 datasets on few-shot learning problems. The other
+10 will be released shortly after. Meta-Album is already more diverse and
+larger (in number of datasets) than similar efforts, and we are committed to
+keep enlarging it via a series of competitions. As competitions terminate,
+their test data are released, thus creating a rolling benchmark, available
+through OpenML.org. Our website https://meta-album.github.io/ contains the
+source code of challenge winning methods, baseline methods, data loaders, and
+instructions for contributing either new datasets or algorithms to our
+expandable meta-dataset.},
+ arxiv_url = {https://arxiv.org/pdf/2302.08909v1.pdf},
+ author = {Ihsan Ullah and Dustin Carrión-Ojeda and Sergio Escalera and Isabelle Guyon and Mike Huisman and Felix Mohr and Jan N van Rijn and Haozhe Sun and Joaquin Vanschoren and Phan Anh Vu},
+ github_url = {https://github.com/ihsaan-ullah/meta-album},
+ journal = {36th Conference on Neural Information Processing Systems (NeurIPS
+  2022) Track on Datasets and Benchmarks., NeurIPS, Nov 2022, New Orleans,
+  United States},
+ title = {Meta-Album: Multi-domain Meta-Dataset for Few-Shot Image Classification},
+ year = {2023-02-16T11:07:51Z}
+}
+
+@article{wang_2020-02-25T15:21:10Z_minilm,
+ abstract = {Pre-trained language models (e.g., BERT (Devlin et al., 2018) and its
+variants) have achieved remarkable success in varieties of NLP tasks. However,
+these models usually consist of hundreds of millions of parameters which brings
+challenges for fine-tuning and online serving in real-life applications due to
+latency and capacity constraints. In this work, we present a simple and
+effective approach to compress large Transformer (Vaswani et al., 2017) based
+pre-trained models, termed as deep self-attention distillation. The small model
+(student) is trained by deeply mimicking the self-attention module, which plays
+a vital role in Transformer networks, of the large model (teacher).
+Specifically, we propose distilling the self-attention module of the last
+Transformer layer of the teacher, which is effective and flexible for the
+student. Furthermore, we introduce the scaled dot-product between values in the
+self-attention module as the new deep self-attention knowledge, in addition to
+the attention distributions (i.e., the scaled dot-product of queries and keys)
+that have been used in existing works. Moreover, we show that introducing a
+teacher assistant (Mirzadeh et al., 2019) also helps the distillation of large
+pre-trained Transformer models. Experimental results demonstrate that our
+monolingual model outperforms state-of-the-art baselines in different parameter
+size of student models. In particular, it retains more than 99% accuracy on
+SQuAD 2.0 and several GLUE benchmark tasks using 50% of the Transformer
+parameters and computations of the teacher model. We also obtain competitive
+results in applying deep self-attention distillation to multilingual
+pre-trained models.},
+ arxiv_url = {https://arxiv.org/pdf/2002.10957v2.pdf},
+ author = {Wenhui Wang and Furu Wei and Li Dong and Hangbo Bao and Nan Yang and Ming Zhou},
+ title = {MiniLM: Deep Self-Attention Distillation for Task-Agnostic Compression of Pre-Trained Transformers},
+ year = {2020-02-25T15:21:10Z}
+}
+
+@article{zhao_2020-06-11T22:36:01Z_few,
+ abstract = {Efficient evaluation of a network architecture drawn from a large search
+space remains a key challenge in Neural Architecture Search (NAS). Vanilla NAS
+evaluates each architecture by training from scratch, which gives the true
+performance but is extremely time-consuming. Recently, one-shot NAS
+substantially reduces the computation cost by training only one supernetwork,
+a.k.a. supernet, to approximate the performance of every architecture in the
+search space via weight-sharing. However, the performance estimation can be
+very inaccurate due to the co-adaption among operations. In this paper, we
+propose few-shot NAS that uses multiple supernetworks, called sub-supernet,
+each covering different regions of the search space to alleviate the undesired
+co-adaption. Compared to one-shot NAS, few-shot NAS improves the accuracy of
+architecture evaluation with a small increase of evaluation cost. With only up
+to 7 sub-supernets, few-shot NAS establishes new SoTAs: on ImageNet, it finds
+models that reach 80.5% top-1 accuracy at 600 MB FLOPS and 77.5% top-1 accuracy
+at 238 MFLOPS; on CIFAR10, it reaches 98.72% top-1 accuracy without using extra
+data or transfer learning. In Auto-GAN, few-shot NAS outperforms the previously
+published results by up to 20%. Extensive experiments show that few-shot NAS
+significantly improves various one-shot methods, including 4 gradient-based and
+6 search-based methods on 3 different tasks in NasBench-201 and
+NasBench1-shot-1.},
+ arxiv_url = {https://arxiv.org/pdf/2006.06863v9.pdf},
+ author = {Yiyang Zhao and Linnan Wang and Yuandong Tian and Rodrigo Fonseca and Tian Guo},
+ journal = {International Conference on Machine Learning 2021},
+ title = {Few-Shot Neural Architecture Search},
+ year = {2020-06-11T22:36:01Z}
+}
+
+@article{zhao_2020-06-11T22:36:01Z_few,
+ abstract = {Efficient evaluation of a network architecture drawn from a large search
+space remains a key challenge in Neural Architecture Search (NAS). Vanilla NAS
+evaluates each architecture by training from scratch, which gives the true
+performance but is extremely time-consuming. Recently, one-shot NAS
+substantially reduces the computation cost by training only one supernetwork,
+a.k.a. supernet, to approximate the performance of every architecture in the
+search space via weight-sharing. However, the performance estimation can be
+very inaccurate due to the co-adaption among operations. In this paper, we
+propose few-shot NAS that uses multiple supernetworks, called sub-supernet,
+each covering different regions of the search space to alleviate the undesired
+co-adaption. Compared to one-shot NAS, few-shot NAS improves the accuracy of
+architecture evaluation with a small increase of evaluation cost. With only up
+to 7 sub-supernets, few-shot NAS establishes new SoTAs: on ImageNet, it finds
+models that reach 80.5% top-1 accuracy at 600 MB FLOPS and 77.5% top-1 accuracy
+at 238 MFLOPS; on CIFAR10, it reaches 98.72% top-1 accuracy without using extra
+data or transfer learning. In Auto-GAN, few-shot NAS outperforms the previously
+published results by up to 20%. Extensive experiments show that few-shot NAS
+significantly improves various one-shot methods, including 4 gradient-based and
+6 search-based methods on 3 different tasks in NasBench-201 and
+NasBench1-shot-1.},
+ arxiv_url = {https://arxiv.org/pdf/2006.06863v9.pdf},
+ author = {Yiyang Zhao and Linnan Wang and Yuandong Tian and Rodrigo Fonseca and Tian Guo},
+ journal = {International Conference on Machine Learning 2021},
+ title = {Few-Shot Neural Architecture Search},
+ year = {2020-06-11T22:36:01Z}
+}
+
+% ===========================================
+% REFERENCE CANDIDATES
+% Additional reference papers for context
+% ===========================================
+
+@article{bahdanau_2014-09-01T16:33:02Z_neural,
+ abstract = {Neural machine translation is a recently proposed approach to machine
+translation. Unlike the traditional statistical machine translation, the neural
+machine translation aims at building a single neural network that can be
+jointly tuned to maximize the translation performance. The models proposed
+recently for neural machine translation often belong to a family of
+encoder-decoders and consists of an encoder that encodes a source sentence into
+a fixed-length vector from which a decoder generates a translation. In this
+paper, we conjecture that the use of a fixed-length vector is a bottleneck in
+improving the performance of this basic encoder-decoder architecture, and
+propose to extend this by allowing a model to automatically (soft-)search for
+parts of a source sentence that are relevant to predicting a target word,
+without having to form these parts as a hard segment explicitly. With this new
+approach, we achieve a translation performance comparable to the existing
+state-of-the-art phrase-based system on the task of English-to-French
+translation. Furthermore, qualitative analysis reveals that the
+(soft-)alignments found by the model agree well with our intuition.},
+ arxiv_url = {https://arxiv.org/pdf/1409.0473v7.pdf},
+ author = {Dzmitry Bahdanau and Kyunghyun Cho and Yoshua Bengio},
+ title = {Neural machine translation by jointly learning to align and translate.},
+ year = {2014-09-01T16:33:02Z}
+}
+
+@article{brown_2020-05-28T17:29:03Z_language,
+ abstract = {Recent work has demonstrated substantial gains on many NLP tasks and
+benchmarks by pre-training on a large corpus of text followed by fine-tuning on
+a specific task. While typically task-agnostic in architecture, this method
+still requires task-specific fine-tuning datasets of thousands or tens of
+thousands of examples. By contrast, humans can generally perform a new language
+task from only a few examples or from simple instructions - something which
+current NLP systems still largely struggle to do. Here we show that scaling up
+language models greatly improves task-agnostic, few-shot performance, sometimes
+even reaching competitiveness with prior state-of-the-art fine-tuning
+approaches. Specifically, we train GPT-3, an autoregressive language model with
+175 billion parameters, 10x more than any previous non-sparse language model,
+and test its performance in the few-shot setting. For all tasks, GPT-3 is
+applied without any gradient updates or fine-tuning, with tasks and few-shot
+demonstrations specified purely via text interaction with the model. GPT-3
+achieves strong performance on many NLP datasets, including translation,
+question-answering, and cloze tasks, as well as several tasks that require
+on-the-fly reasoning or domain adaptation, such as unscrambling words, using a
+novel word in a sentence, or performing 3-digit arithmetic. At the same time,
+we also identify some datasets where GPT-3's few-shot learning still struggles,
+as well as some datasets where GPT-3 faces methodological issues related to
+training on large web corpora. Finally, we find that GPT-3 can generate samples
+of news articles which human evaluators have difficulty distinguishing from
+articles written by humans. We discuss broader societal impacts of this finding
+and of GPT-3 in general.},
+ arxiv_url = {https://arxiv.org/pdf/2005.14165v4.pdf},
+ author = {Tom B. Brown and Benjamin Mann and Nick Ryder and Melanie Subbiah and Jared Kaplan and Prafulla Dhariwal and Arvind Neelakantan and Pranav Shyam and Girish Sastry and Amanda Askell and Sandhini Agarwal and Ariel Herbert-Voss and Gretchen Krueger and Tom Henighan and Rewon Child and Aditya Ramesh and Daniel M. Ziegler and Jeffrey Wu and Clemens Winter and Christopher Hesse and Mark Chen and Eric Sigler and Mateusz Litwin and Scott Gray and Benjamin Chess and Jack Clark and Christopher Berner and Sam McCandlish and Alec Radford and Ilya Sutskever and Dario Amodei},
+ title = {Language models are few-shot learners.},
+ year = {2020-05-28T17:29:03Z}
+}
+
+@article{eichenberg_2021-12-09T23:58:45Z_magma,
+ abstract = {Large-scale pretraining is fast becoming the norm in Vision-Language (VL)
+modeling. However, prevailing VL approaches are limited by the requirement for
+labeled data and the use of complex multi-step pretraining objectives. We
+present MAGMA - a simple method for augmenting generative language models with
+additional modalities using adapter-based finetuning. Building on Frozen, we
+train a series of VL models that autoregressively generate text from arbitrary
+combinations of visual and textual input. The pretraining is entirely
+end-to-end using a single language modeling objective, simplifying optimization
+compared to previous approaches. Importantly, the language model weights remain
+unchanged during training, allowing for transfer of encyclopedic knowledge and
+in-context learning abilities from language pretraining. MAGMA outperforms
+Frozen on open-ended generative tasks, achieving state of the art results on
+the OKVQA benchmark and competitive results on a range of other popular VL
+benchmarks, while pretraining on 0.2% of the number of samples used to train
+SimVLM.},
+ arxiv_url = {https://arxiv.org/pdf/2112.05253v2.pdf},
+ author = {Constantin Eichenberg and Sidney Black and Samuel Weinbach and Letitia Parcalabescu and Anette Frank},
+ title = {Magma–multimodal augmentation of generative models through adapter-based ﬁnetuning.},
+ year = {2021-12-09T23:58:45Z}
+}
