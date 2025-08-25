@@ -1,0 +1,12 @@
+=== pip install start Mon Aug 25 05:21:58 UTC 2025 ===
+Collecting torch (from -r requirements.txt (line 1))
+  Downloading torch-2.8.0-cp311-cp311-manylinux_2_28_x86_64.whl.metadata (30 kB)
+Collecting torchvision (from -r requirements.txt (line 2))
+  Downloading torchvision-0.23.0-cp311-cp311-manylinux_2_28_x86_64.whl.metadata (6.1 kB)
+Collecting numpy (from -r requirements.txt (line 3))
+  Downloading numpy-2.3.2-cp311-cp311-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (62 kB)
+Collecting matplotlib (from -r requirements.txt (line 4))
+  Downloading matplotlib-3.10.5-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (11 kB)
+Collecting seaborn (from -r requirements.txt (line 5))
+  Downloading seaborn-0.13.2-py3-none-any.whl.metadata (5.4 kB)
+=== experiment start Mon Aug 25 05:21:59 UTC 2025 ===
