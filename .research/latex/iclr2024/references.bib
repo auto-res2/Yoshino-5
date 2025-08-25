@@ -5,3 +5,378 @@
   publisher = {GitHub},
   url       = {https://github.com/airas-org/airas}
 }
+
+% ===========================================
+% REQUIRED CITATIONS
+% These papers must be cited in the manuscript
+% ===========================================
+
+@article{agarwal_2022-06-03T15:11:10Z_reincarnating,
+ abstract = {Learning tabula rasa, that is without any prior knowledge, is the prevalent
+workflow in reinforcement learning (RL) research. However, RL systems, when
+applied to large-scale settings, rarely operate tabula rasa. Such large-scale
+systems undergo multiple design or algorithmic changes during their development
+cycle and use ad hoc approaches for incorporating these changes without
+re-training from scratch, which would have been prohibitively expensive.
+Additionally, the inefficiency of deep RL typically excludes researchers
+without access to industrial-scale resources from tackling
+computationally-demanding problems. To address these issues, we present
+reincarnating RL as an alternative workflow or class of problem settings, where
+prior computational work (e.g., learned policies) is reused or transferred
+between design iterations of an RL agent, or from one RL agent to another. As a
+step towards enabling reincarnating RL from any agent to any other agent, we
+focus on the specific setting of efficiently transferring an existing
+sub-optimal policy to a standalone value-based RL agent. We find that existing
+approaches fail in this setting and propose a simple algorithm to address their
+limitations. Equipped with this algorithm, we demonstrate reincarnating RL's
+gains over tabula rasa RL on Atari 2600 games, a challenging locomotion task,
+and the real-world problem of navigating stratospheric balloons. Overall, this
+work argues for an alternative approach to RL research, which we believe could
+significantly improve real-world RL adoption and help democratize it further.
+Open-sourced code and trained agents at
+https://agarwl.github.io/reincarnating_rl.},
+ arxiv_url = {https://arxiv.org/pdf/2206.01626v2.pdf},
+ author = {Rishabh Agarwal and Max Schwarzer and Pablo Samuel Castro and Aaron Courville and Marc G. Bellemare},
+ title = {Reincarnating Reinforcement Learning: Reusing Prior Computation to Accelerate Progress},
+ year = {2022-06-03T15:11:10Z}
+}
+
+@article{author_year_back,
+ title = {Back Razor: Memory-Efficient Transfer Learning by Self-Sparsified Backpropagation}
+}
+
+@article{author_year_sampling,
+ title = {Sampling is as easy as keeping the consistency: convergence guarantee for Consistency Models}
+}
+
+@article{author_year_sliced,
+ title = {Sliced Cramer Synaptic Consolidation for Preserving Deeply Learned Representations}
+}
+
+@article{chen_2022-09-22T17:55:01Z_sampling,
+ abstract = {We provide theoretical convergence guarantees for score-based generative
+models (SGMs) such as denoising diffusion probabilistic models (DDPMs), which
+constitute the backbone of large-scale real-world generative models such as
+DALL$\cdot$E 2. Our main result is that, assuming accurate score estimates,
+such SGMs can efficiently sample from essentially any realistic data
+distribution. In contrast to prior works, our results (1) hold for an
+$L^2$-accurate score estimate (rather than $L^\infty$-accurate); (2) do not
+require restrictive functional inequality conditions that preclude substantial
+non-log-concavity; (3) scale polynomially in all relevant problem parameters;
+and (4) match state-of-the-art complexity guarantees for discretization of the
+Langevin diffusion, provided that the score error is sufficiently small. We
+view this as strong theoretical justification for the empirical success of
+SGMs. We also examine SGMs based on the critically damped Langevin diffusion
+(CLD). Contrary to conventional wisdom, we provide evidence that the use of the
+CLD does not reduce the complexity of SGMs.},
+ arxiv_url = {https://arxiv.org/pdf/2209.11215v3.pdf},
+ author = {Sitan Chen and Sinho Chewi and Jerry Li and Yuanzhi Li and Adil Salim and Anru R. Zhang},
+ title = {Sampling is as easy as learning the score: theory for diffusion models with minimal data assumptions},
+ year = {2022-09-22T17:55:01Z}
+}
+
+@article{duy_2020-02-21T05:07:22Z_computing,
+ abstract = {There is a vast body of literature related to methods for detecting
+changepoints (CP). However, less attention has been paid to assessing the
+statistical reliability of the detected CPs. In this paper, we introduce a
+novel method to perform statistical inference on the significance of the CPs,
+estimated by a Dynamic Programming (DP)-based optimal CP detection algorithm.
+Based on the selective inference (SI) framework, we propose an exact
+(non-asymptotic) approach to compute valid p-values for testing the
+significance of the CPs. Although it is well-known that SI has low statistical
+power because of over-conditioning, we address this disadvantage by introducing
+parametric programming techniques. Then, we propose an efficient method to
+conduct SI with the minimum amount of conditioning, leading to high statistical
+power. We conduct experiments on both synthetic and real-world datasets,
+through which we offer evidence that our proposed method is more powerful than
+existing methods, has decent performance in terms of computational efficiency,
+and provides good results in many practical applications.},
+ arxiv_url = {https://arxiv.org/pdf/2002.09132v2.pdf},
+ author = {Vo Nguyen Le Duy and Hiroki Toda and Ryota Sugiyama and Ichiro Takeuchi},
+ github_url = {https://github.com/vonguyenleduy/parametric_selective_inference_changepoint},
+ title = {Computing Valid p-value for Optimal Changepoint by Selective Inference using Dynamic Programming},
+ year = {2020-02-21T05:07:22Z}
+}
+
+@article{heng_2023-05-17T10:53:58Z_selective,
+ abstract = {The recent proliferation of large-scale text-to-image models has led to
+growing concerns that such models may be misused to generate harmful,
+misleading, and inappropriate content. Motivated by this issue, we derive a
+technique inspired by continual learning to selectively forget concepts in
+pretrained deep generative models. Our method, dubbed Selective Amnesia,
+enables controllable forgetting where a user can specify how a concept should
+be forgotten. Selective Amnesia can be applied to conditional variational
+likelihood models, which encompass a variety of popular deep generative
+frameworks, including variational autoencoders and large-scale text-to-image
+diffusion models. Experiments across different models demonstrate that our
+approach induces forgetting on a variety of concepts, from entire classes in
+standard datasets to celebrity and nudity prompts in text-to-image models. Our
+code is publicly available at https://github.com/clear-nus/selective-amnesia.},
+ arxiv_url = {https://arxiv.org/pdf/2305.10120v2.pdf},
+ author = {Alvin Heng and Harold Soh},
+ title = {Selective Amnesia: A Continual Learning Approach to Forgetting in Deep Generative Models},
+ year = {2023-05-17T10:53:58Z}
+}
+
+@article{lee_2024-05-29T04:53:31Z_learning,
+ abstract = {In the present era of deep learning, continual learning research is mainly
+focused on mitigating forgetting when training a neural network with stochastic
+gradient descent on a non-stationary stream of data. On the other hand, in the
+more classical literature of statistical machine learning, many models have
+sequential Bayesian update rules that yield the same learning outcome as the
+batch training, i.e., they are completely immune to catastrophic forgetting.
+However, they are often overly simple to model complex real-world data. In this
+work, we adopt the meta-learning paradigm to combine the strong
+representational power of neural networks and simple statistical models'
+robustness to forgetting. In our novel meta-continual learning framework,
+continual learning takes place only in statistical models via ideal sequential
+Bayesian update rules, while neural networks are meta-learned to bridge the raw
+data and the statistical models. Since the neural networks remain fixed during
+continual learning, they are protected from catastrophic forgetting. This
+approach not only achieves significantly improved performance but also exhibits
+excellent scalability. Since our approach is domain-agnostic and
+model-agnostic, it can be applied to a wide range of problems and easily
+integrated with existing model architectures.},
+ arxiv_url = {https://arxiv.org/pdf/2405.18758v1.pdf},
+ author = {Soochan Lee and Hyeonseong Jeon and Jaehyeon Son and Gunhee Kim},
+ github_url = {https://github.com/soochan-lee/SB-MCL},
+ title = {Learning to Continually Learn with the Bayesian Principle},
+ year = {2024-05-29T04:53:31Z}
+}
+
+@article{lin_2022-10-22T00:57:04Z_online,
+ abstract = {We study online adaptive policy selection in systems with time-varying costs
+and dynamics. We develop the Gradient-based Adaptive Policy Selection (GAPS)
+algorithm together with a general analytical framework for online policy
+selection via online optimization. Under our proposed notion of contractive
+policy classes, we show that GAPS approximates the behavior of an ideal online
+gradient descent algorithm on the policy parameters while requiring less
+information and computation. When convexity holds, our algorithm is the first
+to achieve optimal policy regret. When convexity does not hold, we provide the
+first local regret bound for online policy selection. Our numerical experiments
+show that GAPS can adapt to changing environments more quickly than existing
+benchmarks.},
+ arxiv_url = {https://arxiv.org/pdf/2210.12320v3.pdf},
+ author = {Yiheng Lin and James A. Preiss and Emile Anand and Yingying Li and Yisong Yue and Adam Wierman},
+ title = {Online Adaptive Policy Selection in Time-Varying Systems: No-Regret via Contractive Perturbations},
+ year = {2022-10-22T00:57:04Z}
+}
+
+@article{lin_2022-11-01T23:55:51Z_beyond,
+ abstract = {By learning a sequence of tasks continually, an agent in continual learning
+(CL) can improve the learning performance of both a new task and `old' tasks by
+leveraging the forward knowledge transfer and the backward knowledge transfer,
+respectively. However, most existing CL methods focus on addressing
+catastrophic forgetting in neural networks by minimizing the modification of
+the learnt model for old tasks. This inevitably limits the backward knowledge
+transfer from the new task to the old tasks, because judicious model updates
+could possibly improve the learning performance of the old tasks as well. To
+tackle this problem, we first theoretically analyze the conditions under which
+updating the learnt model of old tasks could be beneficial for CL and also lead
+to backward knowledge transfer, based on the gradient projection onto the input
+subspaces of old tasks. Building on the theoretical analysis, we next develop a
+ContinUal learning method with Backward knowlEdge tRansfer (CUBER), for a fixed
+capacity neural network without data replay. In particular, CUBER first
+characterizes the task correlation to identify the positively correlated old
+tasks in a layer-wise manner, and then selectively modifies the learnt model of
+the old tasks when learning the new task. Experimental studies show that CUBER
+can even achieve positive backward knowledge transfer on several existing CL
+benchmarks for the first time without data replay, where the related baselines
+still suffer from catastrophic forgetting (negative backward knowledge
+transfer). The superior performance of CUBER on the backward knowledge transfer
+also leads to higher accuracy accordingly.},
+ arxiv_url = {https://arxiv.org/pdf/2211.00789v1.pdf},
+ author = {Sen Lin and Li Yang and Deliang Fan and Junshan Zhang},
+ title = {Beyond Not-Forgetting: Continual Learning with Backward Knowledge Transfer},
+ year = {2022-11-01T23:55:51Z}
+}
+
+@article{park_2023-10-04T09:40:46Z_memoria,
+ abstract = {Making neural networks remember over the long term has been a longstanding
+issue. Although several external memory techniques have been introduced, most
+focus on retaining recent information in the short term. Regardless of its
+importance, information tends to be fatefully forgotten over time. We present
+Memoria, a memory system for artificial neural networks, drawing inspiration
+from humans and applying various neuroscientific and psychological theories.
+The experimental results prove the effectiveness of Memoria in the diverse
+tasks of sorting, language modeling, and classification, surpassing
+conventional techniques. Engram analysis reveals that Memoria exhibits the
+primacy, recency, and temporal contiguity effects which are characteristics of
+human memory.},
+ arxiv_url = {https://arxiv.org/pdf/2310.03052v3.pdf},
+ author = {Sangjun Park and JinYeong Bak},
+ journal = {Proceedings of the 41st International Conference on Machine
+  Learning, PMLR 235:39587-39615, 2024},
+ title = {Memoria: Resolving Fateful Forgetting Problem through Human-Inspired Memory Architecture},
+ year = {2023-10-04T09:40:46Z}
+}
+
+@article{titsias_2019-01-31T13:51:27Z_functional,
+ abstract = {We introduce a framework for Continual Learning (CL) based on Bayesian
+inference over the function space rather than the parameters of a deep neural
+network. This method, referred to as functional regularisation for Continual
+Learning, avoids forgetting a previous task by constructing and memorising an
+approximate posterior belief over the underlying task-specific function. To
+achieve this we rely on a Gaussian process obtained by treating the weights of
+the last layer of a neural network as random and Gaussian distributed. Then,
+the training algorithm sequentially encounters tasks and constructs posterior
+beliefs over the task-specific functions by using inducing point sparse
+Gaussian process methods. At each step a new task is first learnt and then a
+summary is constructed consisting of (i) inducing inputs -- a fixed-size subset
+of the task inputs selected such that it optimally represents the task -- and
+(ii) a posterior distribution over the function values at these inputs. This
+summary then regularises learning of future tasks, through Kullback-Leibler
+regularisation terms. Our method thus unites approaches focused on
+(pseudo-)rehearsal with those derived from a sequential Bayesian inference
+perspective in a principled way, leading to strong results on accepted
+benchmarks.},
+ arxiv_url = {https://arxiv.org/pdf/1901.11356v4.pdf},
+ author = {Michalis K. Titsias and Jonathan Schwarz and Alexander G. de G. Matthews and Razvan Pascanu and Yee Whye Teh},
+ title = {Functional Regularisation for  Continual Learning with Gaussian Processes},
+ year = {2019-01-31T13:51:27Z}
+}
+
+@article{varshney_2021-03-06T05:09:37Z_cam,
+ abstract = {We present a continual learning approach for generative adversarial networks
+(GANs), by designing and leveraging parameter-efficient feature map
+transformations. Our approach is based on learning a set of global and
+task-specific parameters. The global parameters are fixed across tasks whereas
+the task-specific parameters act as local adapters for each task, and help in
+efficiently obtaining task-specific feature maps. Moreover, we propose an
+element-wise addition of residual bias in the transformed feature space, which
+further helps stabilize GAN training in such settings. Our approach also
+leverages task similarity information based on the Fisher information matrix.
+Leveraging this knowledge from previous tasks significantly improves the model
+performance. In addition, the similarity measure also helps reduce the
+parameter growth in continual adaptation and helps to learn a compact model. In
+contrast to the recent approaches for continually-learned GANs, the proposed
+approach provides a memory-efficient way to perform effective continual data
+generation. Through extensive experiments on challenging and diverse datasets,
+we show that the feature-map-transformation approach outperforms
+state-of-the-art methods for continually-learned GANs, with substantially fewer
+parameters. The proposed method generates high-quality samples that can also
+improve the generative-replay-based continual learning for discriminative
+tasks.},
+ arxiv_url = {https://arxiv.org/pdf/2103.04032v2.pdf},
+ author = {Sakshi Varshney and Vinay Kumar Verma and Srijith P K and Lawrence Carin and Piyush Rai},
+ github_url = {https://github.com/LMescheder/GAN_stability},
+ title = {CAM-GAN: Continual Adaptation Modules for Generative Adversarial Networks},
+ year = {2021-03-06T05:09:37Z}
+}
+
+@article{xie_2024-10-14T16:21:23Z_sampa,
+ abstract = {Sharpness-aware minimization (SAM) has been shown to improve the
+generalization of neural networks. However, each SAM update requires
+\emph{sequentially} computing two gradients, effectively doubling the
+per-iteration cost compared to base optimizers like SGD. We propose a simple
+modification of SAM, termed SAMPa, which allows us to fully parallelize the two
+gradient computations. SAMPa achieves a twofold speedup of SAM under the
+assumption that communication costs between devices are negligible. Empirical
+results show that SAMPa ranks among the most efficient variants of SAM in terms
+of computational time. Additionally, our method consistently outperforms SAM
+across both vision and language tasks. Notably, SAMPa theoretically maintains
+convergence guarantees even for \emph{fixed} perturbation sizes, which is
+established through a novel Lyapunov function. We in fact arrive at SAMPa by
+treating this convergence guarantee as a hard requirement -- an approach we
+believe is promising for developing SAM-based methods in general. Our code is
+available at \url{https://github.com/LIONS-EPFL/SAMPa}.},
+ arxiv_url = {https://arxiv.org/pdf/2410.10683v1.pdf},
+ author = {Wanyun Xie and Thomas Pethick and Volkan Cevher},
+ github_url = {https://github.com/LIONS-EPFL/SAMPa},
+ title = {SAMPa: Sharpness-aware Minimization Parallelized},
+ year = {2024-10-14T16:21:23Z}
+}
+
+@article{zhang_2022-11-03T08:32:12Z_fine,
+ abstract = {Large-scale pre-trained language models have achieved impressive results on a
+wide range of downstream tasks recently. However, fine-tuning an extremely
+large-scale pre-trained language model on limited target datasets is often
+plagued by overfitting and representation degradation. In this paper, we
+propose a Dynamic Parameter Selection (DPS) algorithm for the large-scale
+pre-trained models during fine-tuning, which adaptively selects a more
+promising subnetwork to perform staging updates based on gradients of
+back-propagation. Experiments on the GLUE benchmark show that DPS outperforms
+previous fine-tuning methods in terms of overall performance and stability, and
+consistently achieves better results with variable pre-trained language models.
+In addition, DPS brings a large magnitude of improvement in out-of-domain
+transferring experiments and low-resource scenarios, which shows that it can
+maintain stable general contextual features and reduce the representation
+collapse. We release our code at https://github.com/ZhangHaojie077/DPS},
+ arxiv_url = {https://arxiv.org/pdf/2211.01642v1.pdf},
+ author = {Haojie Zhang and Ge Li and Jia Li and Zhongjin Zhang and Yuqi Zhu and Zhi Jin},
+ github_url = {https://github.com/ZhangHaojie077/DPS},
+ title = {Fine-Tuning Pre-Trained Language Models Effectively by Optimizing Subnetworks Adaptively},
+ year = {2022-11-03T08:32:12Z}
+}
+
+% ===========================================
+% REFERENCE CANDIDATES
+% Additional reference papers for context
+% ===========================================
+
+@article{author_year_laplace,
+ title = {Laplace propagation.}
+}
+
+@article{bui_2016-05-23T15:53:51Z_unifying,
+ abstract = {Gaussian processes (GPs) are flexible distributions over functions that
+enable high-level assumptions about unknown functions to be encoded in a
+parsimonious, flexible and general way. Although elegant, the application of
+GPs is limited by computational and analytical intractabilities that arise when
+data are sufficiently numerous or when employing non-Gaussian models.
+Consequently, a wealth of GP approximation schemes have been developed over the
+last 15 years to address these key limitations. Many of these schemes employ a
+small set of pseudo data points to summarise the actual data. In this paper, we
+develop a new pseudo-point approximation framework using Power Expectation
+Propagation (Power EP) that unifies a large number of these pseudo-point
+approximations. Unlike much of the previous venerable work in this area, the
+new framework is built on standard methods for approximate inference
+(variational free-energy, EP and Power EP methods) rather than employing
+approximations to the probabilistic generative model itself. In this way, all
+of approximation is performed at `inference time' rather than at `modelling
+time' resolving awkward philosophical and empirical questions that trouble
+previous approaches. Crucially, we demonstrate that the new framework includes
+new pseudo-point approximation methods that outperform current approaches on
+regression and classification tasks.},
+ arxiv_url = {https://arxiv.org/pdf/1605.07066v3.pdf},
+ author = {Thang D. Bui and Josiah Yan and Richard E. Turner},
+ title = {A Unifying Framework for Gaussian Process Pseudo-Point Approximations using Power Expectation Propagation.},
+ year = {2016-05-23T15:53:51Z}
+}
+
+@article{bui_2017-05-19T18:01:28Z_streaming,
+ abstract = {Sparse pseudo-point approximations for Gaussian process (GP) models provide a
+suite of methods that support deployment of GPs in the large data regime and
+enable analytic intractabilities to be sidestepped. However, the field lacks a
+principled method to handle streaming data in which both the posterior
+distribution over function values and the hyperparameter estimates are updated
+in an online fashion. The small number of existing approaches either use
+suboptimal hand-crafted heuristics for hyperparameter learning, or suffer from
+catastrophic forgetting or slow updating when new data arrive. This paper
+develops a new principled framework for deploying Gaussian process
+probabilistic models in the streaming setting, providing methods for learning
+hyperparameters and optimising pseudo-input locations. The proposed framework
+is assessed using synthetic and real-world datasets.},
+ arxiv_url = {https://arxiv.org/pdf/1705.07131v2.pdf},
+ author = {Thang D. Bui and Cuong V. Nguyen and Richard E. Turner},
+ title = {Streaming Sparse Gaussian Process Approx- imations.},
+ year = {2017-05-19T18:01:28Z}
+}
+
+@article{farquhar_2018-05-24T15:38:07Z_towards,
+ abstract = {Experiments used in current continual learning research do not faithfully
+assess fundamental challenges of learning continually. Instead of assessing
+performance on challenging and representative experiment designs, recent
+research has focused on increased dataset difficulty, while still using flawed
+experiment set-ups. We examine standard evaluations and show why these
+evaluations make some continual learning approaches look better than they are.
+We introduce desiderata for continual learning evaluations and explain why
+their absence creates misleading comparisons. Based on our desiderata we then
+propose new experiment designs which we demonstrate with various continual
+learning approaches and datasets. Our analysis calls for a reprioritization of
+research effort by the community.},
+ arxiv_url = {https://arxiv.org/pdf/1805.09733v3.pdf},
+ author = {Sebastian Farquhar and Yarin Gal},
+ title = {Towards Robust Evaluations of Continual Learning.},
+ year = {2018-05-24T15:38:07Z}
+}
