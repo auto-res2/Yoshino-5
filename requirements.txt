@@ -1,1 +1,5 @@
 # Please list the required python packages.
+torch>=1.9.0
+torch-geometric>=2.0.0
+matplotlib>=3.3.0
+numpy>=1.21.0
