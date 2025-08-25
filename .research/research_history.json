@@ -1,0 +1,10 @@
+{
+  "research_topic": "Ultra-Low-Bit Quantized Diffusion Model Generation Quality Preservation Implement 2-bit Quantized Diffusion with Learnable Precision Allocation (2Q-DiffPA) using information-theoretic optimization to achieve 40% FID score improvement over existing quantization methods and 75% memory usage reduction on CIFAR-10, CelebA-64, and LSUN Churches-64, compared against 8-bit quantized diffusion models, BitsFusion, and standard DDPM baselines.",
+  "queries": [
+    "2Q-DiffPA",
+    "quantized diffusion",
+    "learnable precision",
+    "FID improvement",
+    "memory reduction"
+  ]
+}
