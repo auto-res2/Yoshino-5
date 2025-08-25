@@ -5,3 +5,377 @@
   publisher = {GitHub},
   url       = {https://github.com/airas-org/airas}
 }
+
+% ===========================================
+% REQUIRED CITATIONS
+% These papers must be cited in the manuscript
+% ===========================================
+
+@article{author_year_viewing,
+ title = {Viewing Transformers Through the Lens of Long Convolutions Layers}
+}
+
+@article{barshalom_2024-02-13T13:37:13Z_subgraphormer,
+ abstract = {In the realm of Graph Neural Networks (GNNs), two exciting research
+directions have recently emerged: Subgraph GNNs and Graph Transformers. In this
+paper, we propose an architecture that integrates both approaches, dubbed
+Subgraphormer, which combines the enhanced expressive power, message-passing
+mechanisms, and aggregation schemes from Subgraph GNNs with attention and
+positional encodings, arguably the most important components in Graph
+Transformers. Our method is based on an intriguing new connection we reveal
+between Subgraph GNNs and product graphs, suggesting that Subgraph GNNs can be
+formulated as Message Passing Neural Networks (MPNNs) operating on a product of
+the graph with itself. We use this formulation to design our architecture:
+first, we devise an attention mechanism based on the connectivity of the
+product graph. Following this, we propose a novel and efficient positional
+encoding scheme for Subgraph GNNs, which we derive as a positional encoding for
+the product graph. Our experimental results demonstrate significant performance
+improvements over both Subgraph GNNs and Graph Transformers on a wide range of
+datasets.},
+ arxiv_url = {https://arxiv.org/pdf/2402.08450v2.pdf},
+ author = {Guy Bar-Shalom and Beatrice Bevilacqua and Haggai Maron},
+ github_url = {https://github.com/BarSGuy/Subgraphormer},
+ title = {Subgraphormer: Unifying Subgraph GNNs and Graph Transformers via Graph Products},
+ year = {2024-02-13T13:37:13Z}
+}
+
+@article{chen_2020-03-11T09:44:03Z_convolutional,
+ abstract = {We introduce a family of multilayer graph kernels and establish new links
+between graph convolutional neural networks and kernel methods. Our approach
+generalizes convolutional kernel networks to graph-structured data, by
+representing graphs as a sequence of kernel feature maps, where each node
+carries information about local graph substructures. On the one hand, the
+kernel point of view offers an unsupervised, expressive, and easy-to-regularize
+data representation, which is useful when limited samples are available. On the
+other hand, our model can also be trained end-to-end on large-scale data,
+leading to new types of graph convolutional neural networks. We show that our
+method achieves competitive performance on several graph classification
+benchmarks, while offering simple model interpretation. Our code is freely
+available at https://github.com/claying/GCKN.},
+ arxiv_url = {https://arxiv.org/pdf/2003.05189v2.pdf},
+ author = {Dexiong Chen and Laurent Jacob and Julien Mairal},
+ github_url = {https://github.com/claying/GCKN},
+ journal = {International Conference on Machine Learning (ICML), Jul 2020},
+ title = {Convolutional Kernel Networks for Graph-Structured Data},
+ year = {2020-03-11T09:44:03Z}
+}
+
+@article{chen_2022-06-10T07:23:51Z_nagphormer,
+ abstract = {The graph Transformer emerges as a new architecture and has shown superior
+performance on various graph mining tasks. In this work, we observe that
+existing graph Transformers treat nodes as independent tokens and construct a
+single long sequence composed of all node tokens so as to train the Transformer
+model, causing it hard to scale to large graphs due to the quadratic complexity
+on the number of nodes for the self-attention computation. To this end, we
+propose a Neighborhood Aggregation Graph Transformer (NAGphormer) that treats
+each node as a sequence containing a series of tokens constructed by our
+proposed Hop2Token module. For each node, Hop2Token aggregates the neighborhood
+features from different hops into different representations and thereby
+produces a sequence of token vectors as one input. In this way, NAGphormer
+could be trained in a mini-batch manner and thus could scale to large graphs.
+Moreover, we mathematically show that as compared to a category of advanced
+Graph Neural Networks (GNNs), the decoupled Graph Convolutional Network,
+NAGphormer could learn more informative node representations from the multi-hop
+neighborhoods. Extensive experiments on benchmark datasets from small to large
+are conducted to demonstrate that NAGphormer consistently outperforms existing
+graph Transformers and mainstream GNNs. Code is available at
+https://github.com/JHL-HUST/NAGphormer.},
+ arxiv_url = {https://arxiv.org/pdf/2206.04910v4.pdf},
+ author = {Jinsong Chen and Kaiyuan Gao and Gaichao Li and Kun He},
+ github_url = {https://github.com/JHL-HUST/NAGphormer},
+ title = {NAGphormer: A Tokenized Graph Transformer for Node Classification in Large Graphs},
+ year = {2022-06-10T07:23:51Z}
+}
+
+@article{gupta_2022-03-27T16:30:33Z_diagonal,
+ abstract = {Modeling long range dependencies in sequential data is a fundamental step
+towards attaining human-level performance in many modalities such as text,
+vision, audio and video. While attention-based models are a popular and
+effective choice in modeling short-range interactions, their performance on
+tasks requiring long range reasoning has been largely inadequate. In an
+exciting result, Gu et al. (ICLR 2022) proposed the $\textit{Structured State
+Space}$ (S4) architecture delivering large gains over state-of-the-art models
+on several long-range tasks across various modalities. The core proposition of
+S4 is the parameterization of state matrices via a diagonal plus low rank
+structure, allowing efficient computation. In this work, we show that one can
+match the performance of S4 even without the low rank correction and thus
+assuming the state matrices to be diagonal. Our $\textit{Diagonal State Space}$
+(DSS) model matches the performance of S4 on Long Range Arena tasks, speech
+classification on Speech Commands dataset, while being conceptually simpler and
+straightforward to implement.},
+ arxiv_url = {https://arxiv.org/pdf/2203.14343v3.pdf},
+ author = {Ankit Gupta and Albert Gu and Jonathan Berant},
+ github_url = {https://github.com/ag1988/dss},
+ title = {Diagonal State Spaces are as Effective as Structured State Spaces},
+ year = {2022-03-27T16:30:33Z}
+}
+
+@article{gupta_2022-03-27T16:30:33Z_diagonal,
+ abstract = {Modeling long range dependencies in sequential data is a fundamental step
+towards attaining human-level performance in many modalities such as text,
+vision, audio and video. While attention-based models are a popular and
+effective choice in modeling short-range interactions, their performance on
+tasks requiring long range reasoning has been largely inadequate. In an
+exciting result, Gu et al. (ICLR 2022) proposed the $\textit{Structured State
+Space}$ (S4) architecture delivering large gains over state-of-the-art models
+on several long-range tasks across various modalities. The core proposition of
+S4 is the parameterization of state matrices via a diagonal plus low rank
+structure, allowing efficient computation. In this work, we show that one can
+match the performance of S4 even without the low rank correction and thus
+assuming the state matrices to be diagonal. Our $\textit{Diagonal State Space}$
+(DSS) model matches the performance of S4 on Long Range Arena tasks, speech
+classification on Speech Commands dataset, while being conceptually simpler and
+straightforward to implement.},
+ arxiv_url = {https://arxiv.org/pdf/2203.14343v3.pdf},
+ author = {Ankit Gupta and Albert Gu and Jonathan Berant},
+ github_url = {https://github.com/ag1988/dss},
+ title = {Diagonal State Spaces are as Effective as Structured State Spaces},
+ year = {2022-03-27T16:30:33Z}
+}
+
+@article{hu_2020-05-02T03:09:50Z_open,
+ abstract = {We present the Open Graph Benchmark (OGB), a diverse set of challenging and
+realistic benchmark datasets to facilitate scalable, robust, and reproducible
+graph machine learning (ML) research. OGB datasets are large-scale, encompass
+multiple important graph ML tasks, and cover a diverse range of domains,
+ranging from social and information networks to biological networks, molecular
+graphs, source code ASTs, and knowledge graphs. For each dataset, we provide a
+unified evaluation protocol using meaningful application-specific data splits
+and evaluation metrics. In addition to building the datasets, we also perform
+extensive benchmark experiments for each dataset. Our experiments suggest that
+OGB datasets present significant challenges of scalability to large-scale
+graphs and out-of-distribution generalization under realistic data splits,
+indicating fruitful opportunities for future research. Finally, OGB provides an
+automated end-to-end graph ML pipeline that simplifies and standardizes the
+process of graph data loading, experimental setup, and model evaluation. OGB
+will be regularly updated and welcomes inputs from the community. OGB datasets
+as well as data loaders, evaluation scripts, baseline code, and leaderboards
+are publicly available at https://ogb.stanford.edu .},
+ arxiv_url = {https://arxiv.org/pdf/2005.00687v7.pdf},
+ author = {Weihua Hu and Matthias Fey and Marinka Zitnik and Yuxiao Dong and Hongyu Ren and Bowen Liu and Michele Catasta and Jure Leskovec},
+ github_url = {https://github.com/snap-stanford/ogb},
+ title = {Open Graph Benchmark: Datasets for Machine Learning on Graphs},
+ year = {2020-05-02T03:09:50Z}
+}
+
+@article{lin_2023-05-30T11:49:39Z_hyperbolic,
+ abstract = {Finding meaningful representations and distances of hierarchical data is
+important in many fields. This paper presents a new method for hierarchical
+data embedding and distance. Our method relies on combining diffusion geometry,
+a central approach to manifold learning, and hyperbolic geometry. Specifically,
+using diffusion geometry, we build multi-scale densities on the data, aimed to
+reveal their hierarchical structure, and then embed them into a product of
+hyperbolic spaces. We show theoretically that our embedding and distance
+recover the underlying hierarchical structure. In addition, we demonstrate the
+efficacy of the proposed method and its advantages compared to existing methods
+on graph embedding benchmarks and hierarchical datasets.},
+ arxiv_url = {https://arxiv.org/pdf/2305.18962v1.pdf},
+ author = {Ya-Wei Eileen Lin and Ronald R. Coifman and Gal Mishne and Ronen Talmon},
+ github_url = {https://github.com/HazyResearch/hyperbolics},
+ title = {Hyperbolic Diffusion Embedding and Distance for Hierarchical Representation Learning},
+ year = {2023-05-30T11:49:39Z}
+}
+
+@article{maehara_2021-11-05T08:32:46Z_learning,
+ abstract = {Theoretical analyses for graph learning methods often assume a complete
+observation of the input graph. Such an assumption might not be useful for
+handling any-size graphs due to the scalability issues in practice. In this
+work, we develop a theoretical framework for graph classification problems in
+the partial observation setting (i.e., subgraph samplings). Equipped with
+insights from graph limit theory, we propose a new graph classification model
+that works on a randomly sampled subgraph and a novel topology to characterize
+the representability of the model. Our theoretical framework contributes a
+theoretical validation of mini-batch learning on graphs and leads to new
+learning-theoretic results on generalization bounds as well as
+size-generalizability without assumptions on the input.},
+ arxiv_url = {https://arxiv.org/pdf/2111.03317v1.pdf},
+ author = {Takanori Maehara and Hoang NT},
+ title = {Learning on Random Balls is Sufficient for Estimating (Some) Graph Parameters},
+ year = {2021-11-05T08:32:46Z}
+}
+
+@article{nt_2020-05-03T23:56:20Z_graph,
+ abstract = {In this paper, we study the graph classification problem from the graph
+homomorphism perspective. We consider the homomorphisms from $F$ to $G$, where
+$G$ is a graph of interest (e.g. molecules or social networks) and $F$ belongs
+to some family of graphs (e.g. paths or non-isomorphic trees). We show that
+graph homomorphism numbers provide a natural invariant (isomorphism invariant
+and $\mathcal{F}$-invariant) embedding maps which can be used for graph
+classification. Viewing the expressive power of a graph classifier by the
+$\mathcal{F}$-indistinguishable concept, we prove the universality property of
+graph homomorphism vectors in approximating $\mathcal{F}$-invariant functions.
+In practice, by choosing $\mathcal{F}$ whose elements have bounded tree-width,
+we show that the homomorphism method is efficient compared with other methods.},
+ arxiv_url = {https://arxiv.org/pdf/2005.01214v2.pdf},
+ author = {Hoang NT and Takanori Maehara},
+ journal = {PMLR 119, 2020},
+ title = {Graph Homomorphism Convolution},
+ year = {2020-05-03T23:56:20Z}
+}
+
+@article{peralez_2024-02-05T12:33:05Z_solving,
+ abstract = {A recent theory shows that a multi-player decentralized partially observable
+Markov decision process can be transformed into an equivalent single-player
+game, enabling the application of \citeauthor{bellman}'s principle of
+optimality to solve the single-player game by breaking it down into
+single-stage subgames. However, this approach entangles the decision variables
+of all players at each single-stage subgame, resulting in backups with a
+double-exponential complexity. This paper demonstrates how to disentangle these
+decision variables while maintaining optimality under hierarchical information
+sharing, a prominent management style in our society. To achieve this, we apply
+the principle of optimality to solve any single-stage subgame by breaking it
+down further into smaller subgames, enabling us to make single-player decisions
+at a time. Our approach reveals that extensive-form games always exist with
+solutions to a single-stage subgame, significantly reducing time complexity.
+Our experimental results show that the algorithms leveraging these findings can
+scale up to much larger multi-player games without compromising optimality.},
+ arxiv_url = {https://arxiv.org/pdf/2402.02954v3.pdf},
+ author = {Johan Peralez and Aurélien Delage and Olivier Buffet and Jilles S. Dibangoye},
+ title = {Solving Hierarchical Information-Sharing Dec-POMDPs: An Extensive-Form Game Approach},
+ year = {2024-02-05T12:33:05Z}
+}
+
+@article{tores_2024-01-24T08:35:29Z_visual,
+ abstract = {In film gender studies, the concept of 'male gaze' refers to the way the
+characters are portrayed on-screen as objects of desire rather than subjects.
+In this article, we introduce a novel video-interpretation task, to detect
+character objectification in films. The purpose is to reveal and quantify the
+usage of complex temporal patterns operated in cinema to produce the cognitive
+perception of objectification. We introduce the ObyGaze12 dataset, made of 1914
+movie clips densely annotated by experts for objectification concepts
+identified in film studies and psychology. We evaluate recent vision models,
+show the feasibility of the task and where the challenges remain with concept
+bottleneck models. Our new dataset and code are made available to the
+community.},
+ arxiv_url = {https://arxiv.org/pdf/2401.13296v1.pdf},
+ author = {Julie Tores and Lucile Sassatelli and Hui-Yin Wu and Clement Bergman and Lea Andolfi and Victor Ecrement and Frederic Precioso and Thierry Devars and Magali Guaresi and Virginie Julliard and Sarah Lecossais},
+ title = {Visual Objectification in Films: Towards a New AI Task for Video Interpretation},
+ year = {2024-01-24T08:35:29Z}
+}
+
+@article{wu_2022-01-21T18:16:21Z_representing,
+ abstract = {Graph neural networks are powerful architectures for structured datasets.
+However, current methods struggle to represent long-range dependencies. Scaling
+the depth or width of GNNs is insufficient to broaden receptive fields as
+larger GNNs encounter optimization instabilities such as vanishing gradients
+and representation oversmoothing, while pooling-based approaches have yet to
+become as universally useful as in computer vision. In this work, we propose
+the use of Transformer-based self-attention to learn long-range pairwise
+relationships, with a novel "readout" mechanism to obtain a global graph
+embedding. Inspired by recent computer vision results that find
+position-invariant attention performant in learning long-range relationships,
+our method, which we call GraphTrans, applies a permutation-invariant
+Transformer module after a standard GNN module. This simple architecture leads
+to state-of-the-art results on several graph classification tasks,
+outperforming methods that explicitly encode graph structure. Our results
+suggest that purely-learning-based approaches without graph structure may be
+suitable for learning high-level, long-range relationships on graphs. Code for
+GraphTrans is available at https://github.com/ucbrise/graphtrans.},
+ arxiv_url = {https://arxiv.org/pdf/2201.08821v1.pdf},
+ author = {Zhanghao Wu and Paras Jain and Matthew A. Wright and Azalia Mirhoseini and Joseph E. Gonzalez and Ion Stoica},
+ github_url = {https://github.com/ucbrise/graphtrans},
+ title = {Representing Long-Range Context for Graph Neural Networks with Global Attention},
+ year = {2022-01-21T18:16:21Z}
+}
+
+@article{yu_2023-05-24T14:52:56Z_shadow,
+ abstract = {Hyperbolic space has proven to be well-suited for capturing hierarchical
+relations in data, such as trees and directed acyclic graphs. Prior work
+introduced the concept of entailment cones, which uses partial orders defined
+by nested cones in the Poincar\'e ball to model hierarchies. Here, we introduce
+the ``shadow cones" framework, a physics-inspired entailment cone construction.
+Specifically, we model partial orders as subset relations between shadows
+formed by a light source and opaque objects in hyperbolic space. The shadow
+cones framework generalizes entailment cones to a broad class of formulations
+and hyperbolic space models beyond the Poincar\'e ball. This results in clear
+advantages over existing constructions: for example, shadow cones possess
+better optimization properties over constructions limited to the Poincar\'e
+ball. Our experiments on datasets of various sizes and hierarchical structures
+show that shadow cones consistently and significantly outperform existing
+entailment cone constructions. These results indicate that shadow cones are an
+effective way to model partial orders in hyperbolic space, offering physically
+intuitive and novel insights about the nature of such structures.},
+ arxiv_url = {https://arxiv.org/pdf/2305.15215v3.pdf},
+ author = {Tao Yu and Toni J. B. Liu and Albert Tseng and Christopher De Sa},
+ github_url = {https://github.com/ydtydr/ShadowCones},
+ title = {Shadow Cones: A Generalized Framework for Partial Order Embeddings},
+ year = {2023-05-24T14:52:56Z}
+}
+
+@article{zhu_2023-02-08T13:30:28Z_sample,
+ abstract = {Many crucial scientific problems involve designing novel molecules with
+desired properties, which can be formulated as a black-box optimization problem
+over the discrete chemical space. In practice, multiple conflicting objectives
+and costly evaluations (e.g., wet-lab experiments) make the diversity of
+candidates paramount. Computational methods have achieved initial success but
+still struggle with considering diversity in both objective and search space.
+To fill this gap, we propose a multi-objective Bayesian optimization (MOBO)
+algorithm leveraging the hypernetwork-based GFlowNets (HN-GFN) as an
+acquisition function optimizer, with the purpose of sampling a diverse batch of
+candidate molecular graphs from an approximate Pareto front. Using a single
+preference-conditioned hypernetwork, HN-GFN learns to explore various
+trade-offs between objectives. We further propose a hindsight-like off-policy
+strategy to share high-performing molecules among different preferences in
+order to speed up learning for HN-GFN. We empirically illustrate that HN-GFN
+has adequate capacity to generalize over preferences. Moreover, experiments in
+various real-world MOBO settings demonstrate that our framework predominantly
+outperforms existing methods in terms of candidate quality and sample
+efficiency. The code is available at https://github.com/violet-sto/HN-GFN.},
+ arxiv_url = {https://arxiv.org/pdf/2302.04040v2.pdf},
+ author = {Yiheng Zhu and Jialu Wu and Chaowen Hu and Jiahuan Yan and Chang-Yu Hsieh and Tingjun Hou and Jian Wu},
+ github_url = {https://github.com/violet-sto/HN-GFN},
+ title = {Sample-efficient Multi-objective Molecular Optimization with GFlowNets},
+ year = {2023-02-08T13:30:28Z}
+}
+
+% ===========================================
+% REFERENCE CANDIDATES
+% Additional reference papers for context
+% ===========================================
+
+@article{carion_2020-05-26T17:06:38Z_end,
+ abstract = {We present a new method that views object detection as a direct set
+prediction problem. Our approach streamlines the detection pipeline,
+effectively removing the need for many hand-designed components like a
+non-maximum suppression procedure or anchor generation that explicitly encode
+our prior knowledge about the task. The main ingredients of the new framework,
+called DEtection TRansformer or DETR, are a set-based global loss that forces
+unique predictions via bipartite matching, and a transformer encoder-decoder
+architecture. Given a fixed small set of learned object queries, DETR reasons
+about the relations of the objects and the global image context to directly
+output the final set of predictions in parallel. The new model is conceptually
+simple and does not require a specialized library, unlike many other modern
+detectors. DETR demonstrates accuracy and run-time performance on par with the
+well-established and highly-optimized Faster RCNN baseline on the challenging
+COCO object detection dataset. Moreover, DETR can be easily generalized to
+produce panoptic segmentation in a unified manner. We show that it
+significantly outperforms competitive baselines. Training code and pretrained
+models are available at https://github.com/facebookresearch/detr.},
+ arxiv_url = {https://arxiv.org/pdf/2005.12872v3.pdf},
+ author = {Nicolas Carion and Francisco Massa and Gabriel Synnaeve and Nicolas Usunier and Alexander Kirillov and Sergey Zagoruyko},
+ title = {End-to-End Object Detection with Transformers},
+ year = {2020-05-26T17:06:38Z}
+}
+
+@article{chen_2019-09-07T08:14:41Z_measuring,
+ abstract = {Graph Neural Networks (GNNs) have achieved promising performance on a wide
+range of graph-based tasks. Despite their success, one severe limitation of
+GNNs is the over-smoothing issue (indistinguishable representations of nodes in
+different classes). In this work, we present a systematic and quantitative
+study on the over-smoothing issue of GNNs. First, we introduce two quantitative
+metrics, MAD and MADGap, to measure the smoothness and over-smoothness of the
+graph nodes representations, respectively. Then, we verify that smoothing is
+the nature of GNNs and the critical factor leading to over-smoothness is the
+low information-to-noise ratio of the message received by the nodes, which is
+partially determined by the graph topology. Finally, we propose two methods to
+alleviate the over-smoothing issue from the topological view: (1) MADReg which
+adds a MADGap-based regularizer to the training objective;(2) AdaGraph which
+optimizes the graph topology based on the model predictions. Extensive
+experiments on 7 widely-used graph datasets with 10 typical GNN models show
+that the two proposed methods are effective for relieving the over-smoothing
+issue, thus improving the performance of various GNN models.},
+ arxiv_url = {https://arxiv.org/pdf/1909.03211v2.pdf},
+ author = {Deli Chen and Yankai Lin and Wei Li and Peng Li and Jie Zhou and Xu Sun},
+ title = {Measuring and relieving the over-smoothing problem for graph neural networks from the topological view},
+ year = {2019-09-07T08:14:41Z}
+}
