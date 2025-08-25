@@ -1,0 +1,10 @@
+{
+  "research_topic": "Multimodal Few-Shot Learning Generalization Performance Optimization Implement Cross-Modal Meta-Learning framework combining EfficientNet and DistilBERT with cross-modal attention to achieve 25% improvement in few-shot classification accuracy (1-shot, 5-shot) on Meta-Dataset (https://github.com/google-research/meta-dataset), miniImageNet, and CIFAR-FS, targeting 70%+ 5-shot accuracy and 60%+ cross-domain generalization against MAML, Prototypical Networks, Relation Networks, and CLIP zero-shot baselines.",
+  "queries": [
+    "multimodal meta-learning",
+    "few-shot EfficientNet",
+    "DistilBERT attention",
+    "meta-dataset classification",
+    "generalization MAML CLIP"
+  ]
+}
