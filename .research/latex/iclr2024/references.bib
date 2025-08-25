@@ -5,3 +5,393 @@
   publisher = {GitHub},
   url       = {https://github.com/airas-org/airas}
 }
+
+% ===========================================
+% REQUIRED CITATIONS
+% These papers must be cited in the manuscript
+% ===========================================
+
+@article{author_year_model,
+ title = {MODeL: Memory Optimizations for Deep Learning}
+}
+
+@article{author_year_not,
+ title = {Not All Bits have Equal Value: Heterogeneous Precisions via Trainable Noise}
+}
+
+@article{he_2023-05-18T02:28:42Z_ptqd,
+ abstract = {Diffusion models have recently dominated image synthesis tasks. However, the
+iterative denoising process is expensive in computations at inference time,
+making diffusion models less practical for low-latency and scalable real-world
+applications. Post-training quantization (PTQ) of diffusion models can
+significantly reduce the model size and accelerate the sampling process without
+re-training. Nonetheless, applying existing PTQ methods directly to low-bit
+diffusion models can significantly impair the quality of generated samples.
+Specifically, for each denoising step, quantization noise leads to deviations
+in the estimated mean and mismatches with the predetermined variance schedule.
+As the sampling process proceeds, the quantization noise may accumulate,
+resulting in a low signal-to-noise ratio (SNR) during the later denoising
+steps. To address these challenges, we propose a unified formulation for the
+quantization noise and diffusion perturbed noise in the quantized denoising
+process. Specifically, we first disentangle the quantization noise into its
+correlated and residual uncorrelated parts regarding its full-precision
+counterpart. The correlated part can be easily corrected by estimating the
+correlation coefficient. For the uncorrelated part, we subtract the bias from
+the quantized results to correct the mean deviation and calibrate the denoising
+variance schedule to absorb the excess variance resulting from quantization.
+Moreover, we introduce a mixed-precision scheme for selecting the optimal
+bitwidth for each denoising step. Extensive experiments demonstrate that our
+method outperforms previous post-training quantized diffusion models, with only
+a 0.06 increase in FID score compared to full-precision LDM-4 on ImageNet
+256x256, while saving 19.9x bit operations. Code is available at
+https://github.com/ziplab/PTQD.},
+ arxiv_url = {https://arxiv.org/pdf/2305.10657v4.pdf},
+ author = {Yefei He and Luping Liu and Jing Liu and Weijia Wu and Hong Zhou and Bohan Zhuang},
+ github_url = {https://github.com/ziplab/PTQD},
+ title = {PTQD: Accurate Post-Training Quantization for Diffusion Models},
+ year = {2023-05-18T02:28:42Z}
+}
+
+@article{heng_2024-05-20T08:54:03Z_out,
+ abstract = {Out-of-distribution (OOD) detection is a critical task in machine learning
+that seeks to identify abnormal samples. Traditionally, unsupervised methods
+utilize a deep generative model for OOD detection. However, such approaches
+require a new model to be trained for each inlier dataset. This paper explores
+whether a single model can perform OOD detection across diverse tasks. To that
+end, we introduce Diffusion Paths (DiffPath), which uses a single diffusion
+model originally trained to perform unconditional generation for OOD detection.
+We introduce a novel technique of measuring the rate-of-change and curvature of
+the diffusion paths connecting samples to the standard normal. Extensive
+experiments show that with a single model, DiffPath is competitive with prior
+work using individual models on a variety of OOD tasks involving different
+distributions. Our code is publicly available at
+https://github.com/clear-nus/diffpath.},
+ arxiv_url = {https://arxiv.org/pdf/2405.11881v3.pdf},
+ author = {Alvin Heng and Alexandre H. Thiery and Harold Soh},
+ github_url = {https://github.com/clear-nus/diffpath},
+ title = {Out-of-Distribution Detection with a Single Unconditional Diffusion Model},
+ year = {2024-05-20T08:54:03Z}
+}
+
+@article{hirono_2024-03-17T16:24:29Z_understanding,
+ abstract = {Score-based diffusion models have proven effective in image generation and
+have gained widespread usage; however, the underlying factors contributing to
+the performance disparity between stochastic and deterministic (i.e., the
+probability flow ODEs) sampling schemes remain unclear. We introduce a novel
+formulation of diffusion models using Feynman's path integral, which is a
+formulation originally developed for quantum physics. We find this formulation
+providing comprehensive descriptions of score-based generative models, and
+demonstrate the derivation of backward stochastic differential equations and
+loss functions.The formulation accommodates an interpolating parameter
+connecting stochastic and deterministic sampling schemes, and we identify this
+parameter as a counterpart of Planck's constant in quantum physics. This
+analogy enables us to apply the Wentzel-Kramers-Brillouin (WKB) expansion, a
+well-established technique in quantum physics, for evaluating the negative
+log-likelihood to assess the performance disparity between stochastic and
+deterministic sampling schemes.},
+ arxiv_url = {https://arxiv.org/pdf/2403.11262v1.pdf},
+ author = {Yuji Hirono and Akinori Tanaka and Kenji Fukushima},
+ github_url = {https://github.com/google/jax},
+ title = {Understanding Diffusion Models by Feynman's Path Integral},
+ year = {2024-03-17T16:24:29Z}
+}
+
+@article{indelman_2020-07-11T08:59:11Z_learning,
+ abstract = {Direct loss minimization is a popular approach for learning predictors over
+structured label spaces. This approach is computationally appealing as it
+replaces integration with optimization and allows to propagate gradients in a
+deep net using loss-perturbed prediction. Recently, this technique was extended
+to generative models, while introducing a randomized predictor that samples a
+structure from a randomly perturbed score function. In this work, we learn the
+variance of these randomized structured predictors and show that it balances
+better between the learned score function and the randomized noise in
+structured prediction. We demonstrate empirically the effectiveness of learning
+the balance between the signal and the random noise in structured discrete
+spaces.},
+ arxiv_url = {https://arxiv.org/pdf/2007.05724v2.pdf},
+ author = {Hedda Cohen Indelman and Tamir Hazan},
+ title = {Learning Randomly Perturbed Structured Predictors for Direct Loss Minimization},
+ year = {2020-07-11T08:59:11Z}
+}
+
+@article{karras_2023-12-05T11:55:47Z_analyzing,
+ abstract = {Diffusion models currently dominate the field of data-driven image synthesis
+with their unparalleled scaling to large datasets. In this paper, we identify
+and rectify several causes for uneven and ineffective training in the popular
+ADM diffusion model architecture, without altering its high-level structure.
+Observing uncontrolled magnitude changes and imbalances in both the network
+activations and weights over the course of training, we redesign the network
+layers to preserve activation, weight, and update magnitudes on expectation. We
+find that systematic application of this philosophy eliminates the observed
+drifts and imbalances, resulting in considerably better networks at equal
+computational complexity. Our modifications improve the previous record FID of
+2.41 in ImageNet-512 synthesis to 1.81, achieved using fast deterministic
+sampling.
+  As an independent contribution, we present a method for setting the
+exponential moving average (EMA) parameters post-hoc, i.e., after completing
+the training run. This allows precise tuning of EMA length without the cost of
+performing several training runs, and reveals its surprising interactions with
+network architecture, training time, and guidance.},
+ arxiv_url = {https://arxiv.org/pdf/2312.02696v2.pdf},
+ author = {Tero Karras and Miika Aittala and Jaakko Lehtinen and Janne Hellsten and Timo Aila and Samuli Laine},
+ github_url = {https://github.com/NVlabs/edm},
+ title = {Analyzing and Improving the Training Dynamics of Diffusion Models},
+ year = {2023-12-05T11:55:47Z}
+}
+
+@article{karras_2023-12-05T11:55:47Z_analyzing,
+ abstract = {Diffusion models currently dominate the field of data-driven image synthesis
+with their unparalleled scaling to large datasets. In this paper, we identify
+and rectify several causes for uneven and ineffective training in the popular
+ADM diffusion model architecture, without altering its high-level structure.
+Observing uncontrolled magnitude changes and imbalances in both the network
+activations and weights over the course of training, we redesign the network
+layers to preserve activation, weight, and update magnitudes on expectation. We
+find that systematic application of this philosophy eliminates the observed
+drifts and imbalances, resulting in considerably better networks at equal
+computational complexity. Our modifications improve the previous record FID of
+2.41 in ImageNet-512 synthesis to 1.81, achieved using fast deterministic
+sampling.
+  As an independent contribution, we present a method for setting the
+exponential moving average (EMA) parameters post-hoc, i.e., after completing
+the training run. This allows precise tuning of EMA length without the cost of
+performing several training runs, and reveals its surprising interactions with
+network architecture, training time, and guidance.},
+ arxiv_url = {https://arxiv.org/pdf/2312.02696v2.pdf},
+ author = {Tero Karras and Miika Aittala and Jaakko Lehtinen and Janne Hellsten and Timo Aila and Samuli Laine},
+ github_url = {https://github.com/NVlabs/edm},
+ title = {Analyzing and Improving the Training Dynamics of Diffusion Models},
+ year = {2023-12-05T11:55:47Z}
+}
+
+@article{karras_2024-06-04T17:25:59Z_guiding,
+ abstract = {The primary axes of interest in image-generating diffusion models are image
+quality, the amount of variation in the results, and how well the results align
+with a given condition, e.g., a class label or a text prompt. The popular
+classifier-free guidance approach uses an unconditional model to guide a
+conditional model, leading to simultaneously better prompt alignment and
+higher-quality images at the cost of reduced variation. These effects seem
+inherently entangled, and thus hard to control. We make the surprising
+observation that it is possible to obtain disentangled control over image
+quality without compromising the amount of variation by guiding generation
+using a smaller, less-trained version of the model itself rather than an
+unconditional model. This leads to significant improvements in ImageNet
+generation, setting record FIDs of 1.01 for 64x64 and 1.25 for 512x512, using
+publicly available networks. Furthermore, the method is also applicable to
+unconditional diffusion models, drastically improving their quality.},
+ arxiv_url = {https://arxiv.org/pdf/2406.02507v3.pdf},
+ author = {Tero Karras and Miika Aittala and Tuomas Kynkäänniemi and Jaakko Lehtinen and Timo Aila and Samuli Laine},
+ github_url = {https://github.com/NVlabs/edm2},
+ title = {Guiding a Diffusion Model with a Bad Version of Itself},
+ year = {2024-06-04T17:25:59Z}
+}
+
+@article{nam_2024-11-22T11:18:20Z_uno,
+ abstract = {While ensembling deep neural networks has shown promise in improving
+generalization performance, scaling current ensemble methods for large models
+remains challenging. Given that recent progress in deep learning is largely
+driven by the scale, exemplified by the widespread adoption of large-scale
+neural network architectures, scalability emerges an increasingly critical
+issue for machine learning algorithms in the era of large-scale models. In this
+work, we first showcase the potential of low precision ensembling, where
+ensemble members are derived from a single model within low precision number
+systems in a training-free manner. Our empirical analysis demonstrates the
+effectiveness of our proposed low precision ensembling method compared to
+existing ensemble approaches.},
+ arxiv_url = {https://arxiv.org/pdf/2411.14860v1.pdf},
+ author = {Giung Nam and Juho Lee},
+ title = {Ex Uno Pluria: Insights on Ensembling in Low Precision Number Systems},
+ year = {2024-11-22T11:18:20Z}
+}
+
+@article{novikov_2022-02-01T14:51:38Z_few,
+ abstract = {Memory footprint is one of the main limiting factors for large neural network
+training. In backpropagation, one needs to store the input to each operation in
+the computational graph. Every modern neural network model has quite a few
+pointwise nonlinearities in its architecture, and such operation induces
+additional memory costs which -- as we show -- can be significantly reduced by
+quantization of the gradients. We propose a systematic approach to compute
+optimal quantization of the retained gradients of the pointwise nonlinear
+functions with only a few bits per each element. We show that such
+approximation can be achieved by computing optimal piecewise-constant
+approximation of the derivative of the activation function, which can be done
+by dynamic programming. The drop-in replacements are implemented for all
+popular nonlinearities and can be used in any existing pipeline. We confirm the
+memory reduction and the same convergence on several open benchmarks.},
+ arxiv_url = {https://arxiv.org/pdf/2202.00441v2.pdf},
+ author = {Georgii Novikov and Daniel Bershatsky and Julia Gusak and Alex Shonenkov and Denis Dimitrov and Ivan Oseledets},
+ title = {Few-bit Backward: Quantized Gradients of Activation Functions for Memory Footprint Reduction},
+ year = {2022-02-01T14:51:38Z}
+}
+
+@article{qi_2024-03-11T17:35:23Z_deadiff,
+ abstract = {The diffusion-based text-to-image model harbors immense potential in
+transferring reference style. However, current encoder-based approaches
+significantly impair the text controllability of text-to-image models while
+transferring styles. In this paper, we introduce DEADiff to address this issue
+using the following two strategies: 1) a mechanism to decouple the style and
+semantics of reference images. The decoupled feature representations are first
+extracted by Q-Formers which are instructed by different text descriptions.
+Then they are injected into mutually exclusive subsets of cross-attention
+layers for better disentanglement. 2) A non-reconstructive learning method. The
+Q-Formers are trained using paired images rather than the identical target, in
+which the reference image and the ground-truth image are with the same style or
+semantics. We show that DEADiff attains the best visual stylization results and
+optimal balance between the text controllability inherent in the text-to-image
+model and style similarity to the reference image, as demonstrated both
+quantitatively and qualitatively. Our project page is
+https://tianhao-qi.github.io/DEADiff/.},
+ arxiv_url = {https://arxiv.org/pdf/2403.06951v2.pdf},
+ author = {Tianhao Qi and Shancheng Fang and Yanze Wu and Hongtao Xie and Jiawei Liu and Lang Chen and Qian He and Yongdong Zhang},
+ github_url = {https://github.com/lllyasviel/ControlNet-v1-1-nightly},
+ title = {DEADiff: An Efficient Stylization Diffusion Model with Disentangled Representations},
+ year = {2024-03-11T17:35:23Z}
+}
+
+@article{so_2023-06-04T09:49:43Z_temporal,
+ abstract = {The diffusion model has gained popularity in vision applications due to its
+remarkable generative performance and versatility. However, high storage and
+computation demands, resulting from the model size and iterative generation,
+hinder its use on mobile devices. Existing quantization techniques struggle to
+maintain performance even in 8-bit precision due to the diffusion model's
+unique property of temporal variation in activation. We introduce a novel
+quantization method that dynamically adjusts the quantization interval based on
+time step information, significantly improving output quality. Unlike
+conventional dynamic quantization techniques, our approach has no computational
+overhead during inference and is compatible with both post-training
+quantization (PTQ) and quantization-aware training (QAT). Our extensive
+experiments demonstrate substantial improvements in output quality with the
+quantized diffusion model across various datasets.},
+ arxiv_url = {https://arxiv.org/pdf/2306.02316v2.pdf},
+ author = {Junhyuk So and Jungwon Lee and Daehyun Ahn and Hyungjun Kim and Eunhyeok Park},
+ title = {Temporal Dynamic Quantization for Diffusion Models},
+ year = {2023-06-04T09:49:43Z}
+}
+
+@article{yang_2024-06-24T03:09:15Z_reducing,
+ abstract = {Fine-tuning pretrained large models to downstream tasks is an important
+problem, which however suffers from huge memory overhead due to large-scale
+parameters. This work strives to reduce memory overhead in fine-tuning from
+perspectives of activation function and layer normalization. To this end, we
+propose the Approximate Backpropagation (Approx-BP) theory, which provides the
+theoretical feasibility of decoupling the forward and backward passes. We apply
+our Approx-BP theory to backpropagation training and derive memory-efficient
+alternatives of GELU and SiLU activation functions, which use derivative
+functions of ReLUs in the backward pass while keeping their forward pass
+unchanged. In addition, we introduce a Memory-Sharing Backpropagation strategy,
+which enables the activation memory to be shared by two adjacent layers,
+thereby removing activation memory usage redundancy. Our method neither induces
+extra computation nor reduces training efficiency. We conduct extensive
+experiments with pretrained vision and language models, and the results
+demonstrate that our proposal can reduce up to $\sim$$30\%$ of the peak memory
+usage. Our code is released at https://github.com/yyyyychen/LowMemoryBP.},
+ arxiv_url = {https://arxiv.org/pdf/2406.16282v1.pdf},
+ author = {Yuchen Yang and Yingdong Shi and Cheems Wang and Xiantong Zhen and Yuxuan Shi and Jun Xu},
+ title = {Reducing Fine-Tuning Memory Overhead by Approximate and Memory-Sharing Backpropagation},
+ year = {2024-06-24T03:09:15Z}
+}
+
+@article{zhang_2024-01-28T13:00:38Z_continuous,
+ abstract = {Image outpainting aims to generate the content of an input sub-image beyond
+its original boundaries. It is an important task in content generation yet
+remains an open problem for generative models. This paper pushes the technical
+frontier of image outpainting in two directions that have not been resolved in
+literature: 1) outpainting with arbitrary and continuous multiples (without
+restriction), and 2) outpainting in a single step (even for large expansion
+multiples). Moreover, we develop a method that does not depend on a pre-trained
+backbone network, which is in contrast commonly required by the previous SOTA
+outpainting methods. The arbitrary multiple outpainting is achieved by
+utilizing randomly cropped views from the same image during training to capture
+arbitrary relative positional information. Specifically, by feeding one view
+and positional embeddings as queries, we can reconstruct another view. At
+inference, we generate images with arbitrary expansion multiples by inputting
+an anchor image and its corresponding positional embeddings. The one-step
+outpainting ability here is particularly noteworthy in contrast to previous
+methods that need to be performed for $N$ times to obtain a final multiple
+which is $N$ times of its basic and fixed multiple. We evaluate the proposed
+approach (called PQDiff as we adopt a diffusion-based generator as our
+embodiment, under our proposed \textbf{P}ositional \textbf{Q}uery scheme) on
+public benchmarks, demonstrating its superior performance over state-of-the-art
+approaches. Specifically, PQDiff achieves state-of-the-art FID scores on the
+Scenery (\textbf{21.512}), Building Facades (\textbf{25.310}), and WikiArts
+(\textbf{36.212}) datasets. Furthermore, under the 2.25x, 5x and 11.7x
+outpainting settings, PQDiff only takes \textbf{40.6\%}, \textbf{20.3\%} and
+\textbf{10.2\%} of the time of the benchmark state-of-the-art (SOTA) method.},
+ arxiv_url = {https://arxiv.org/pdf/2401.15652v1.pdf},
+ author = {Shaofeng Zhang and Jinfa Huang and Qiang Zhou and Zhibin Wang and Fan Wang and Jiebo Luo and Junchi Yan},
+ github_url = {https://github.com/Sherrylone/PQDiff},
+ title = {Continuous-Multiple Image Outpainting in One-Step via Positional Query and A Diffusion-based Approach},
+ year = {2024-01-28T13:00:38Z}
+}
+
+% ===========================================
+% REFERENCE CANDIDATES
+% Additional reference papers for context
+% ===========================================
+
+@article{choi_2018-10-02T17:32:07Z_waic,
+ abstract = {Machine learning models encounter Out-of-Distribution (OoD) errors when the
+data seen at test time are generated from a different stochastic generator than
+the one used to generate the training data. One proposal to scale OoD detection
+to high-dimensional data is to learn a tractable likelihood approximation of
+the training distribution, and use it to reject unlikely inputs. However,
+likelihood models on natural data are themselves susceptible to OoD errors, and
+even assign large likelihoods to samples from other datasets. To mitigate this
+problem, we propose Generative Ensembles, which robustify density-based OoD
+detection by way of estimating epistemic uncertainty of the likelihood model.
+We present a puzzling observation in need of an explanation -- although
+likelihood measures cannot account for the typical set of a distribution, and
+therefore should not be suitable on their own for OoD detection, WAIC performs
+surprisingly well in practice.},
+ arxiv_url = {https://arxiv.org/pdf/1810.01392v4.pdf},
+ author = {Hyunsun Choi and Eric Jang and Alexander A. Alemi},
+ title = {Waic, but why? generative ensembles for robust anomaly detection},
+ year = {2018-10-02T17:32:07Z}
+}
+
+@article{graham_2022-11-14T20:35:11Z_denoising,
+ abstract = {Out-of-distribution detection is crucial to the safe deployment of machine
+learning systems. Currently, unsupervised out-of-distribution detection is
+dominated by generative-based approaches that make use of estimates of the
+likelihood or other measurements from a generative model. Reconstruction-based
+methods offer an alternative approach, in which a measure of reconstruction
+error is used to determine if a sample is out-of-distribution. However,
+reconstruction-based approaches are less favoured, as they require careful
+tuning of the model's information bottleneck - such as the size of the latent
+dimension - to produce good results. In this work, we exploit the view of
+denoising diffusion probabilistic models (DDPM) as denoising autoencoders where
+the bottleneck is controlled externally, by means of the amount of noise
+applied. We propose to use DDPMs to reconstruct an input that has been noised
+to a range of noise levels, and use the resulting multi-dimensional
+reconstruction error to classify out-of-distribution inputs. We validate our
+approach both on standard computer-vision datasets and on higher dimension
+medical datasets. Our approach outperforms not only reconstruction-based
+methods, but also state-of-the-art generative-based approaches. Code is
+available at https://github.com/marksgraham/ddpm-ood.},
+ arxiv_url = {https://arxiv.org/pdf/2211.07740v4.pdf},
+ author = {Mark S. Graham and Walter H. L. Pinaya and Petru-Daniel Tudosiu and Parashkev Nachev and Sebastien Ourselin and M. Jorge Cardoso},
+ title = {Denoising diffusion models for out-of-distribution detection},
+ year = {2022-11-14T20:35:11Z}
+}
+
+@article{morningstar_2020-06-16T16:06:25Z_density,
+ abstract = {Perhaps surprisingly, recent studies have shown probabilistic model
+likelihoods have poor specificity for out-of-distribution (OOD) detection and
+often assign higher likelihoods to OOD data than in-distribution data. To
+ameliorate this issue we propose DoSE, the density of states estimator. Drawing
+on the statistical physics notion of ``density of states,'' the DoSE decision
+rule avoids direct comparison of model probabilities, and instead utilizes the
+``probability of the model probability,'' or indeed the frequency of any
+reasonable statistic. The frequency is calculated using nonparametric density
+estimators (e.g., KDE and one-class SVM) which measure the typicality of
+various model statistics given the training data and from which we can flag
+test points with low typicality as anomalous. Unlike many other methods, DoSE
+requires neither labeled data nor OOD examples. DoSE is modular and can be
+trivially applied to any existing, trained model. We demonstrate DoSE's
+state-of-the-art performance against other unsupervised OOD detectors on
+previously established ``hard'' benchmarks.},
+ arxiv_url = {https://arxiv.org/pdf/2006.09273v2.pdf},
+ author = {Warren R. Morningstar and Cusuh Ham and Andrew G. Gallagher and Balaji Lakshminarayanan and Alexander A. Alemi and Joshua V. Dillon},
+ title = {Density of states estimation for out of distribution detection},
+ year = {2020-06-16T16:06:25Z}
+}
