@@ -19,6 +19,8 @@ Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd))
+(/usr/share/texlive/texmf-dist/tex/latex/underscore/underscore.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/firstaid/underscore-ltx.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 (/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
@@ -45,38 +47,37 @@ Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 (/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
-(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/units/nicefrac.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty))
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype-pdftex.def)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.cfg))
-(/usr/share/texlive/texmf-dist/tex/latex/titlesec/titletoc.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
-(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
-(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty)))
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)))
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/units/nicefrac.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty))
 (/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
-(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/cleveref/cleveref.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/tabularx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/algorithms/algorithm.sty
 (/usr/share/texlive/texmf-dist/tex/latex/float/float.sty))
 (/usr/share/texlive/texmf-dist/tex/latex/algorithmicx/algorithmicx.sty
 Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
 ) (/usr/share/texlive/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty
 Document Style - pseudocode environments for use with the `algorithmicx' style
-) (/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)))
+(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex)
@@ -182,424 +183,21 @@ zlibrarytopaths.code.tex)))
 .tex))
 (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/libs/pgfplotslibrary.code.t
 ex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldp
-gfsupp_loader.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.code.tex
-)
-Package pgfplots: loading complementary utilities for your pgf version...
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldp
-gfsupp_pgfutil-common-lists.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotslists
-tructure.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotslists
-tructureext.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsarray
-.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsmatri
-x.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstableshare
-d.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsdeque
-.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.code.te
-x
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.data.co
-de.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.verb.code
-.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplots.sur
-fshading.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots.surf
-shading.pgfsys-pdftex.def)))
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotscolormap.code.
-tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotscolor.code.tex
-))
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotsstackedplots.code.t
-ex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotsplothandlers.code.t
-ex
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplothandler.cod
-e.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplotimage.code.
-tex)))
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.scaling.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotscoordprocessing.cod
-e.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.errorbars.code.tex
-) (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.markers.code.tex
-) (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotsticks.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.paths.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibrarydecorations.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.cod
-e.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibrarydecorations.pathmorphing.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrary
-decorations.pathmorphing.code.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibrarydecorations.pathreplacing.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrary
-decorations.pathreplacing.code.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/libs/tikzlibrarypgfplots.co
-ntourlua.code.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibraryplotmarks.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmarks.co
-de.tex))) (/usr/share/texlive/texmf-dist/tex/latex/tools/tabularx.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
-No file paper.aux.
-(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
-(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
-(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg)
-Package pgfplots notification 'compat/show suggested version=true': document ha
-s been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
-
-(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
-(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg)
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
-(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg)
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omlptm.fd)
-! Missing \endcsname inserted.
+! I can't find file `pgfplotsoldpgfsupp'.
 <to be read again> 
-                   \protect 
-l.55 ...\cite{chen\_2024-02-14T04:50:18Z\_premise}
-                                                  . 2.~Language coverage\t M...
-
-
-Package natbib Warning: Citation `chen\T1\textunderscore2024-02-14T04:50:18Z\T1
-\textunderscorepremise' on page 1 undefined on input line 55.
-
-! Missing \endcsname inserted.
+                   \unhbox 
+l.34 \input pgfplotsoldpgfsupp_
+                               loader.code.tex
+(Press Enter to retry, or Control-D to exit)
+Please type another input file name
+! Emergency stop.
 <to be read again> 
-                   \protect 
-l.55 ...\cite{shi\_2022-10-06T17:03:34Z\_language}
-                                                  . 3.~Edge deployment\t Sch...
-
-
-Package natbib Warning: Citation `shi\T1\textunderscore2022-10-06T17:03:34Z\T1\
-textunderscorelanguage' on page 1 undefined on input line 55.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.55 ...hmadian\_2023-05-30T17:58:49Z\_intriguing}
-                                                  . PIVOT-++ addressed robus...
-
-
-Package natbib Warning: Citation `dettmers\T1\textunderscore2023-05-23T17:50:33
-Z\T1\textunderscoreqlora' on page 1 undefined on input line 55.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.55 ...hmadian\_2023-05-30T17:58:49Z\_intriguing}
-                                                  . PIVOT-++ addressed robus...
-
-
-Package natbib Warning: Citation `ahmadian\T1\textunderscore2023-05-30T17:58:49
-Z\T1\textunderscoreintriguing' on page 1 undefined on input line 55.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.57 ...oRA \cite{liu\_2024-02-14T17:59:34Z\_dora}
-                                                  . In addition, the solutio...
-
-
-Package natbib Warning: Citation `liu\T1\textunderscore2024-02-14T17:59:34Z\T1\
-textunderscoredora' on page 1 undefined on input line 57.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.57 ...te{yun\_2020-06-08T18:30:12Z\_connections}
-                                                   and leverage recent INT4 ...
-
-
-Package natbib Warning: Citation `yun\T1\textunderscore2020-06-08T18:30:12Z\T1\
-textunderscoreconnections' on page 1 undefined on input line 57.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.57 ... \cite{xi\_2023-06-21T02:45:01Z\_training}
-                                                  .
-
-Package natbib Warning: Citation `xi\T1\textunderscore2023-06-21T02:45:01Z\T1\t
-extunderscoretraining' on page 1 undefined on input line 57.
-
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-
-dist/fonts/enc/dvips/base/8r.enc}]
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.69 ...nts \cite{gou\_2023-09-29T17:59:38Z\_tora}
-                                                  .
-
-Package natbib Warning: Citation `gou\T1\textunderscore2023-09-29T17:59:38Z\T1\
-textunderscoretora' on page 2 undefined on input line 69.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.73 ...ite{dettmers\_2023-05-23T17:50:33Z\_qlora}
-                                                  . DoRA decomposes weights ...
-
-
-Package natbib Warning: Citation `dettmers\T1\textunderscore2023-05-23T17:50:33
-Z\T1\textunderscoreqlora' on page 2 undefined on input line 73.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.73 ...int \cite{liu\_2024-02-14T17:59:34Z\_dora}
-                                                  . PIVOT-XR builds both AOR...
-
-
-Package natbib Warning: Citation `liu\T1\textunderscore2024-02-14T17:59:34Z\T1\
-textunderscoredora' on page 2 undefined on input line 73.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.75 ...\cite{chen\_2024-02-14T04:50:18Z\_premise}
-                                                  . Prior PEFT work nullifie...
-
-
-Package natbib Warning: Citation `chen\T1\textunderscore2024-02-14T04:50:18Z\T1
-\textunderscorepremise' on page 2 undefined on input line 75.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.75 ...ivity \cite{li\_2020-03-22T07:58:44Z\_sac}
-                                                  .
-
-Package natbib Warning: Citation `li\T1\textunderscore2020-03-22T07:58:44Z\T1\t
-extunderscoresac' on page 2 undefined on input line 75.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.77 ...\cite{shi\_2022-10-06T17:03:34Z\_language}
-                                                  . Traditional aligners suc...
-
-
-Package natbib Warning: Citation `shi\T1\textunderscore2022-10-06T17:03:34Z\T1\
-textunderscorelanguage' on page 2 undefined on input line 77.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.79 ...raphs \cite{li\_2020-03-22T07:58:44Z\_sac}
-                                                  ; provably, $\mathcal{O}(n...
-
-
-Package natbib Warning: Citation `li\T1\textunderscore2020-03-22T07:58:44Z\T1\t
-extunderscoresac' on page 2 undefined on input line 79.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.79 ...te{yun\_2020-06-08T18:30:12Z\_connections}
-                                                  . Dynamic-sparse FlashAtte...
-
-
-Package natbib Warning: Citation `yun\T1\textunderscore2020-06-08T18:30:12Z\T1\
-textunderscoreconnections' on page 2 undefined on input line 79.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.81 ... \cite{xi\_2023-06-21T02:45:01Z\_training}
-                                                  , and quantisation cliffs ...
-
-
-Package natbib Warning: Citation `xi\T1\textunderscore2023-06-21T02:45:01Z\T1\t
-extunderscoretraining' on page 2 undefined on input line 81.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.81 ...hmadian\_2023-05-30T17:58:49Z\_intriguing}
-                                                  . Our recipe adopts these ...
-
-
-Package natbib Warning: Citation `ahmadian\T1\textunderscore2023-05-30T17:58:49
-Z\T1\textunderscoreintriguing' on page 2 undefined on input line 81.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.89 ...u}$ \cite{liu\_2024-02-14T17:59:34Z\_dora}
-                                                  .
-
-Package natbib Warning: Citation `liu\T1\textunderscore2024-02-14T17:59:34Z\T1\
-textunderscoredora' on page 2 undefined on input line 89.
-
-[2] (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)
-
-! LaTeX Error: Command \textleftrightarrow unavailable in encoding T1.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.124 ...el Q\&A pairs (English\textleftrightarrow
-                                                   six MGSM languages). Vali...
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.124 ...ite{zhang\_2024-05-01T05:52:05Z\_careful}
-                                                  , MGSM-6, noisy-retrieval ...
-
-
-Package natbib Warning: Citation `zhang\T1\textunderscore2024-05-01T05:52:05Z\T
-1\textunderscorecareful' on page 3 undefined on input line 124.
-
-! You can't use a prefix with `\aftergroup'.
-<to be read again> 
-                   \aftergroup 
-l.126 \textbf{Model variants}\t \emph
-                                     {Base-FT}: frozen 4-bit Llama-3-8B with...
-
-[3]
-Underfull \vbox (badness 10000) has occurred while \output is active [4]
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.187 ...RA \cite{gou\_2023-09-29T17:59:38Z\_tora}
-                                                  , and (iv) testing entropy...
-
-
-Package natbib Warning: Citation `gou\T1\textunderscore2023-09-29T17:59:38Z\T1\
-textunderscoretora' on page 5 undefined on input line 187.
-
-[5 <./images/accuracy_comparison.pdf> <./images/aor_analysis.pdf> <./images/per
-formance_metrics.pdf>]
-
-Package natbib Warning: Citation `airas2025' on page 6 undefined on input line 
-189.
-
-No file paper.bbl.
-
-Package natbib Warning: There were undefined citations.
-
-[6] (./paper.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `paper.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
- )
-(see the transcript file for additional information)</usr/share/texlive/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.p
-fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/
-utmri8a.pfb>
-Output written on paper.pdf (6 pages, 197074 bytes).
+                   \unhbox 
+l.34 \input pgfplotsoldpgfsupp_
+                               loader.code.tex
+!  ==> Fatal error occurred, no output PDF file produced!
 Transcript written on paper.log.
-This is BibTeX, Version 0.99d (TeX Live 2023/Debian)
-The top-level auxiliary file: paper.aux
-White space in argument---line 5 of file paper.aux
- : \citation{chen\protect
- :                        \T1\textunderscore 2024-02-14T04:50:18Z\protect \T1\textunderscore premise}
-I'm skipping whatever remains of this command
-White space in argument---line 6 of file paper.aux
- : \citation{shi\protect
- :                       \T1\textunderscore 2022-10-06T17:03:34Z\protect \T1\textunderscore language}
-I'm skipping whatever remains of this command
-White space in argument---line 7 of file paper.aux
- : \citation{dettmers\protect
- :                            \T1\textunderscore 2023-05-23T17:50:33Z\protect \T1\textunderscore qlora,ahmadian\protect \T1\textunderscore 2023-05-30T17:58:49Z\protect \T1\textunderscore intriguing}
-I'm skipping whatever remains of this command
-White space in argument---line 8 of file paper.aux
- : \citation{liu\protect
- :                       \T1\textunderscore 2024-02-14T17:59:34Z\protect \T1\textunderscore dora}
-I'm skipping whatever remains of this command
-White space in argument---line 9 of file paper.aux
- : \citation{yun\protect
- :                       \T1\textunderscore 2020-06-08T18:30:12Z\protect \T1\textunderscore connections}
-I'm skipping whatever remains of this command
-White space in argument---line 10 of file paper.aux
- : \citation{xi\protect
- :                      \T1\textunderscore 2023-06-21T02:45:01Z\protect \T1\textunderscore training}
-I'm skipping whatever remains of this command
-White space in argument---line 14 of file paper.aux
- : \citation{gou\protect
- :                       \T1\textunderscore 2023-09-29T17:59:38Z\protect \T1\textunderscore tora}
-I'm skipping whatever remains of this command
-White space in argument---line 15 of file paper.aux
- : \citation{dettmers\protect
- :                            \T1\textunderscore 2023-05-23T17:50:33Z\protect \T1\textunderscore qlora}
-I'm skipping whatever remains of this command
-White space in argument---line 16 of file paper.aux
- : \citation{liu\protect
- :                       \T1\textunderscore 2024-02-14T17:59:34Z\protect \T1\textunderscore dora}
-I'm skipping whatever remains of this command
-White space in argument---line 17 of file paper.aux
- : \citation{chen\protect
- :                        \T1\textunderscore 2024-02-14T04:50:18Z\protect \T1\textunderscore premise}
-I'm skipping whatever remains of this command
-White space in argument---line 18 of file paper.aux
- : \citation{li\protect
- :                      \T1\textunderscore 2020-03-22T07:58:44Z\protect \T1\textunderscore sac}
-I'm skipping whatever remains of this command
-White space in argument---line 19 of file paper.aux
- : \citation{shi\protect
- :                       \T1\textunderscore 2022-10-06T17:03:34Z\protect \T1\textunderscore language}
-I'm skipping whatever remains of this command
-White space in argument---line 20 of file paper.aux
- : \citation{li\protect
- :                      \T1\textunderscore 2020-03-22T07:58:44Z\protect \T1\textunderscore sac}
-I'm skipping whatever remains of this command
-White space in argument---line 21 of file paper.aux
- : \citation{yun\protect
- :                       \T1\textunderscore 2020-06-08T18:30:12Z\protect \T1\textunderscore connections}
-I'm skipping whatever remains of this command
-White space in argument---line 22 of file paper.aux
- : \citation{xi\protect
- :                      \T1\textunderscore 2023-06-21T02:45:01Z\protect \T1\textunderscore training}
-I'm skipping whatever remains of this command
-White space in argument---line 23 of file paper.aux
- : \citation{ahmadian\protect
- :                            \T1\textunderscore 2023-05-30T17:58:49Z\protect \T1\textunderscore intriguing}
-I'm skipping whatever remains of this command
-White space in argument---line 24 of file paper.aux
- : \citation{liu\protect
- :                       \T1\textunderscore 2024-02-14T17:59:34Z\protect \T1\textunderscore dora}
-I'm skipping whatever remains of this command
-White space in argument---line 31 of file paper.aux
- : \citation{zhang\protect
- :                         \T1\textunderscore 2024-05-01T05:52:05Z\protect \T1\textunderscore careful}
-I'm skipping whatever remains of this command
-White space in argument---line 47 of file paper.aux
- : \citation{gou\protect
- :                       \T1\textunderscore 2023-09-29T17:59:38Z\protect \T1\textunderscore tora}
-I'm skipping whatever remains of this command
-The style file: iclr2024_conference.bst
-Database file #1: references.bib
-(There were 19 error messages)
+I couldn't open file name `paper.aux'
 This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
  restricted \write18 enabled.
 entering extended mode
@@ -621,6 +219,8 @@ Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd))
+(/usr/share/texlive/texmf-dist/tex/latex/underscore/underscore.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/firstaid/underscore-ltx.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 (/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
@@ -647,38 +247,37 @@ Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 (/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
-(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/units/nicefrac.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty))
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype-pdftex.def)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.cfg))
-(/usr/share/texlive/texmf-dist/tex/latex/titlesec/titletoc.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
-(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
-(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty)))
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)))
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/units/nicefrac.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty))
 (/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
-(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/cleveref/cleveref.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/tabularx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/algorithms/algorithm.sty
 (/usr/share/texlive/texmf-dist/tex/latex/float/float.sty))
 (/usr/share/texlive/texmf-dist/tex/latex/algorithmicx/algorithmicx.sty
 Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
 ) (/usr/share/texlive/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty
 Document Style - pseudocode environments for use with the `algorithmicx' style
-) (/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)))
+(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex)
@@ -784,339 +383,19 @@ zlibrarytopaths.code.tex)))
 .tex))
 (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/libs/pgfplotslibrary.code.t
 ex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldp
-gfsupp_loader.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.code.tex
-)
-Package pgfplots: loading complementary utilities for your pgf version...
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldp
-gfsupp_pgfutil-common-lists.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotslists
-tructure.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotslists
-tructureext.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsarray
-.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsmatri
-x.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstableshare
-d.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsdeque
-.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.code.te
-x
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.data.co
-de.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.verb.code
-.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplots.sur
-fshading.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots.surf
-shading.pgfsys-pdftex.def)))
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotscolormap.code.
-tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotscolor.code.tex
-))
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotsstackedplots.code.t
-ex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotsplothandlers.code.t
-ex
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplothandler.cod
-e.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplotimage.code.
-tex)))
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.scaling.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotscoordprocessing.cod
-e.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.errorbars.code.tex
-) (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.markers.code.tex
-) (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotsticks.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.paths.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibrarydecorations.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.cod
-e.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibrarydecorations.pathmorphing.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrary
-decorations.pathmorphing.code.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibrarydecorations.pathreplacing.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrary
-decorations.pathreplacing.code.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/libs/tikzlibrarypgfplots.co
-ntourlua.code.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibraryplotmarks.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmarks.co
-de.tex))) (/usr/share/texlive/texmf-dist/tex/latex/tools/tabularx.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
-(./paper.aux)
-(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
-(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
-(./paper.out) (./paper.out)
-(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg)
-Package pgfplots notification 'compat/show suggested version=true': document ha
-s been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
-
-(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
-(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg)
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
-(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg)
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omlptm.fd)
-! Missing \endcsname inserted.
+! I can't find file `pgfplotsoldpgfsupp'.
 <to be read again> 
-                   \protect 
-l.55 ...\cite{chen\_2024-02-14T04:50:18Z\_premise}
-                                                  . 2.~Language coverage\t M...
-
-
-Package natbib Warning: Citation `chen\T1\textunderscore2024-02-14T04:50:18Z\T1
-\textunderscorepremise' on page 1 undefined on input line 55.
-
-! Missing \endcsname inserted.
+                   \unhbox 
+l.34 \input pgfplotsoldpgfsupp_
+                               loader.code.tex
+(Press Enter to retry, or Control-D to exit)
+Please type another input file name
+! Emergency stop.
 <to be read again> 
-                   \protect 
-l.55 ...\cite{shi\_2022-10-06T17:03:34Z\_language}
-                                                  . 3.~Edge deployment\t Sch...
-
-
-Package natbib Warning: Citation `shi\T1\textunderscore2022-10-06T17:03:34Z\T1\
-textunderscorelanguage' on page 1 undefined on input line 55.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.55 ...hmadian\_2023-05-30T17:58:49Z\_intriguing}
-                                                  . PIVOT-++ addressed robus...
-
-
-Package natbib Warning: Citation `dettmers\T1\textunderscore2023-05-23T17:50:33
-Z\T1\textunderscoreqlora' on page 1 undefined on input line 55.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.55 ...hmadian\_2023-05-30T17:58:49Z\_intriguing}
-                                                  . PIVOT-++ addressed robus...
-
-
-Package natbib Warning: Citation `ahmadian\T1\textunderscore2023-05-30T17:58:49
-Z\T1\textunderscoreintriguing' on page 1 undefined on input line 55.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.57 ...oRA \cite{liu\_2024-02-14T17:59:34Z\_dora}
-                                                  . In addition, the solutio...
-
-
-Package natbib Warning: Citation `liu\T1\textunderscore2024-02-14T17:59:34Z\T1\
-textunderscoredora' on page 1 undefined on input line 57.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.57 ...te{yun\_2020-06-08T18:30:12Z\_connections}
-                                                   and leverage recent INT4 ...
-
-
-Package natbib Warning: Citation `yun\T1\textunderscore2020-06-08T18:30:12Z\T1\
-textunderscoreconnections' on page 1 undefined on input line 57.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.57 ... \cite{xi\_2023-06-21T02:45:01Z\_training}
-                                                  .
-
-Package natbib Warning: Citation `xi\T1\textunderscore2023-06-21T02:45:01Z\T1\t
-extunderscoretraining' on page 1 undefined on input line 57.
-
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-
-dist/fonts/enc/dvips/base/8r.enc}]
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.69 ...nts \cite{gou\_2023-09-29T17:59:38Z\_tora}
-                                                  .
-
-Package natbib Warning: Citation `gou\T1\textunderscore2023-09-29T17:59:38Z\T1\
-textunderscoretora' on page 2 undefined on input line 69.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.73 ...ite{dettmers\_2023-05-23T17:50:33Z\_qlora}
-                                                  . DoRA decomposes weights ...
-
-
-Package natbib Warning: Citation `dettmers\T1\textunderscore2023-05-23T17:50:33
-Z\T1\textunderscoreqlora' on page 2 undefined on input line 73.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.73 ...int \cite{liu\_2024-02-14T17:59:34Z\_dora}
-                                                  . PIVOT-XR builds both AOR...
-
-
-Package natbib Warning: Citation `liu\T1\textunderscore2024-02-14T17:59:34Z\T1\
-textunderscoredora' on page 2 undefined on input line 73.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.75 ...\cite{chen\_2024-02-14T04:50:18Z\_premise}
-                                                  . Prior PEFT work nullifie...
-
-
-Package natbib Warning: Citation `chen\T1\textunderscore2024-02-14T04:50:18Z\T1
-\textunderscorepremise' on page 2 undefined on input line 75.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.75 ...ivity \cite{li\_2020-03-22T07:58:44Z\_sac}
-                                                  .
-
-Package natbib Warning: Citation `li\T1\textunderscore2020-03-22T07:58:44Z\T1\t
-extunderscoresac' on page 2 undefined on input line 75.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.77 ...\cite{shi\_2022-10-06T17:03:34Z\_language}
-                                                  . Traditional aligners suc...
-
-
-Package natbib Warning: Citation `shi\T1\textunderscore2022-10-06T17:03:34Z\T1\
-textunderscorelanguage' on page 2 undefined on input line 77.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.79 ...raphs \cite{li\_2020-03-22T07:58:44Z\_sac}
-                                                  ; provably, $\mathcal{O}(n...
-
-
-Package natbib Warning: Citation `li\T1\textunderscore2020-03-22T07:58:44Z\T1\t
-extunderscoresac' on page 2 undefined on input line 79.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.79 ...te{yun\_2020-06-08T18:30:12Z\_connections}
-                                                  . Dynamic-sparse FlashAtte...
-
-
-Package natbib Warning: Citation `yun\T1\textunderscore2020-06-08T18:30:12Z\T1\
-textunderscoreconnections' on page 2 undefined on input line 79.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.81 ... \cite{xi\_2023-06-21T02:45:01Z\_training}
-                                                  , and quantisation cliffs ...
-
-
-Package natbib Warning: Citation `xi\T1\textunderscore2023-06-21T02:45:01Z\T1\t
-extunderscoretraining' on page 2 undefined on input line 81.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.81 ...hmadian\_2023-05-30T17:58:49Z\_intriguing}
-                                                  . Our recipe adopts these ...
-
-
-Package natbib Warning: Citation `ahmadian\T1\textunderscore2023-05-30T17:58:49
-Z\T1\textunderscoreintriguing' on page 2 undefined on input line 81.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.89 ...u}$ \cite{liu\_2024-02-14T17:59:34Z\_dora}
-                                                  .
-
-Package natbib Warning: Citation `liu\T1\textunderscore2024-02-14T17:59:34Z\T1\
-textunderscoredora' on page 2 undefined on input line 89.
-
-[2] (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)
-
-! LaTeX Error: Command \textleftrightarrow unavailable in encoding T1.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.124 ...el Q\&A pairs (English\textleftrightarrow
-                                                   six MGSM languages). Vali...
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.124 ...ite{zhang\_2024-05-01T05:52:05Z\_careful}
-                                                  , MGSM-6, noisy-retrieval ...
-
-
-Package natbib Warning: Citation `zhang\T1\textunderscore2024-05-01T05:52:05Z\T
-1\textunderscorecareful' on page 3 undefined on input line 124.
-
-! You can't use a prefix with `\aftergroup'.
-<to be read again> 
-                   \aftergroup 
-l.126 \textbf{Model variants}\t \emph
-                                     {Base-FT}: frozen 4-bit Llama-3-8B with...
-
-[3]
-Underfull \vbox (badness 10000) has occurred while \output is active [4]
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.187 ...RA \cite{gou\_2023-09-29T17:59:38Z\_tora}
-                                                  , and (iv) testing entropy...
-
-
-Package natbib Warning: Citation `gou\T1\textunderscore2023-09-29T17:59:38Z\T1\
-textunderscoretora' on page 5 undefined on input line 187.
-
-[5 <./images/accuracy_comparison.pdf> <./images/aor_analysis.pdf> <./images/per
-formance_metrics.pdf>]
-
-Package natbib Warning: Citation `airas2025' on page 6 undefined on input line 
-189.
-
-(./paper.bbl)
-
-Package natbib Warning: There were undefined citations.
-
-[6] (./paper.aux
-
-Package natbib Warning: Citation(s) may have changed.
-(natbib)                Rerun to get citations correct.
-
-) )
-(see the transcript file for additional information)</usr/share/texlive/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.p
-fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/
-utmri8a.pfb>
-Output written on paper.pdf (6 pages, 200116 bytes).
+                   \unhbox 
+l.34 \input pgfplotsoldpgfsupp_
+                               loader.code.tex
+!  ==> Fatal error occurred, no output PDF file produced!
 Transcript written on paper.log.
 This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
  restricted \write18 enabled.
@@ -1139,6 +418,8 @@ Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd))
+(/usr/share/texlive/texmf-dist/tex/latex/underscore/underscore.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/firstaid/underscore-ltx.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 (/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty)
@@ -1165,38 +446,37 @@ Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 (/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
-(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/units/nicefrac.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty))
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype-pdftex.def)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.cfg))
-(/usr/share/texlive/texmf-dist/tex/latex/titlesec/titletoc.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
-(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
-(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty)))
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)))
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 For additional information on amsmath, use the `?' option.
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/units/nicefrac.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty))
 (/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty
-(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/cleveref/cleveref.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/array.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/tools/tabularx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/colortbl/colortbl.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/algorithms/algorithm.sty
 (/usr/share/texlive/texmf-dist/tex/latex/float/float.sty))
 (/usr/share/texlive/texmf-dist/tex/latex/algorithmicx/algorithmicx.sty
 Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
 ) (/usr/share/texlive/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty
 Document Style - pseudocode environments for use with the `algorithmicx' style
-) (/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)))
+(/usr/share/texlive/texmf-dist/tex/latex/caption/subcaption.sty
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption.sty
+(/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/utilities/pgfrcs.sty
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex)
@@ -1302,327 +582,17 @@ zlibrarytopaths.code.tex)))
 .tex))
 (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/libs/pgfplotslibrary.code.t
 ex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldp
-gfsupp_loader.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryfpu.code.tex
-)
-Package pgfplots: loading complementary utilities for your pgf version...
-
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/oldpgfcompatib/pgfplotsoldp
-gfsupp_pgfutil-common-lists.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotslists
-tructure.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotslists
-tructureext.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsarray
-.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsmatri
-x.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/numtable/pgfplotstableshare
-d.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/liststructure/pgfplotsdeque
-.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.code.te
-x
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotsbinary.data.co
-de.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotsutil.verb.code
-.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/libs/pgflibrarypgfplots.sur
-fshading.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/sys/pgflibrarypgfplots.surf
-shading.pgfsys-pdftex.def)))
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotscolormap.code.
-tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/util/pgfplotscolor.code.tex
-))
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotsstackedplots.code.t
-ex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotsplothandlers.code.t
-ex
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplothandler.cod
-e.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotsmeshplotimage.code.
-tex)))
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.scaling.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotscoordprocessing.cod
-e.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.errorbars.code.tex
-) (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.markers.code.tex
-) (/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotsticks.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.paths.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibrarydecorations.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/modules/pgfmoduledecorations.cod
-e.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibrarydecorations.pathmorphing.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrary
-decorations.pathmorphing.code.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibrarydecorations.pathreplacing.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrary
-decorations.pathreplacing.code.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/libs/tikzlibrarypgfplots.co
-ntourlua.code.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
-zlibraryplotmarks.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/libraries/pgflibraryplotmarks.co
-de.tex))) (/usr/share/texlive/texmf-dist/tex/latex/tools/tabularx.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
-(./paper.aux)
-(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
-(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
-(./paper.out) (./paper.out)
-(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg)
-Package pgfplots notification 'compat/show suggested version=true': document ha
-s been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
-
-(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
-(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg)
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
-(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg)
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/omlptm.fd)
-! Missing \endcsname inserted.
+! I can't find file `pgfplotsoldpgfsupp'.
 <to be read again> 
-                   \protect 
-l.55 ...\cite{chen\_2024-02-14T04:50:18Z\_premise}
-                                                  . 2.~Language coverage\t M...
-
-
-Package natbib Warning: Citation `chen\T1\textunderscore2024-02-14T04:50:18Z\T1
-\textunderscorepremise' on page 1 undefined on input line 55.
-
-! Missing \endcsname inserted.
+                   \unhbox 
+l.34 \input pgfplotsoldpgfsupp_
+                               loader.code.tex
+(Press Enter to retry, or Control-D to exit)
+Please type another input file name
+! Emergency stop.
 <to be read again> 
-                   \protect 
-l.55 ...\cite{shi\_2022-10-06T17:03:34Z\_language}
-                                                  . 3.~Edge deployment\t Sch...
-
-
-Package natbib Warning: Citation `shi\T1\textunderscore2022-10-06T17:03:34Z\T1\
-textunderscorelanguage' on page 1 undefined on input line 55.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.55 ...hmadian\_2023-05-30T17:58:49Z\_intriguing}
-                                                  . PIVOT-++ addressed robus...
-
-
-Package natbib Warning: Citation `dettmers\T1\textunderscore2023-05-23T17:50:33
-Z\T1\textunderscoreqlora' on page 1 undefined on input line 55.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.55 ...hmadian\_2023-05-30T17:58:49Z\_intriguing}
-                                                  . PIVOT-++ addressed robus...
-
-
-Package natbib Warning: Citation `ahmadian\T1\textunderscore2023-05-30T17:58:49
-Z\T1\textunderscoreintriguing' on page 1 undefined on input line 55.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.57 ...oRA \cite{liu\_2024-02-14T17:59:34Z\_dora}
-                                                  . In addition, the solutio...
-
-
-Package natbib Warning: Citation `liu\T1\textunderscore2024-02-14T17:59:34Z\T1\
-textunderscoredora' on page 1 undefined on input line 57.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.57 ...te{yun\_2020-06-08T18:30:12Z\_connections}
-                                                   and leverage recent INT4 ...
-
-
-Package natbib Warning: Citation `yun\T1\textunderscore2020-06-08T18:30:12Z\T1\
-textunderscoreconnections' on page 1 undefined on input line 57.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.57 ... \cite{xi\_2023-06-21T02:45:01Z\_training}
-                                                  .
-
-Package natbib Warning: Citation `xi\T1\textunderscore2023-06-21T02:45:01Z\T1\t
-extunderscoretraining' on page 1 undefined on input line 57.
-
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-
-dist/fonts/enc/dvips/base/8r.enc}]
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.69 ...nts \cite{gou\_2023-09-29T17:59:38Z\_tora}
-                                                  .
-
-Package natbib Warning: Citation `gou\T1\textunderscore2023-09-29T17:59:38Z\T1\
-textunderscoretora' on page 2 undefined on input line 69.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.73 ...ite{dettmers\_2023-05-23T17:50:33Z\_qlora}
-                                                  . DoRA decomposes weights ...
-
-
-Package natbib Warning: Citation `dettmers\T1\textunderscore2023-05-23T17:50:33
-Z\T1\textunderscoreqlora' on page 2 undefined on input line 73.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.73 ...int \cite{liu\_2024-02-14T17:59:34Z\_dora}
-                                                  . PIVOT-XR builds both AOR...
-
-
-Package natbib Warning: Citation `liu\T1\textunderscore2024-02-14T17:59:34Z\T1\
-textunderscoredora' on page 2 undefined on input line 73.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.75 ...\cite{chen\_2024-02-14T04:50:18Z\_premise}
-                                                  . Prior PEFT work nullifie...
-
-
-Package natbib Warning: Citation `chen\T1\textunderscore2024-02-14T04:50:18Z\T1
-\textunderscorepremise' on page 2 undefined on input line 75.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.75 ...ivity \cite{li\_2020-03-22T07:58:44Z\_sac}
-                                                  .
-
-Package natbib Warning: Citation `li\T1\textunderscore2020-03-22T07:58:44Z\T1\t
-extunderscoresac' on page 2 undefined on input line 75.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.77 ...\cite{shi\_2022-10-06T17:03:34Z\_language}
-                                                  . Traditional aligners suc...
-
-
-Package natbib Warning: Citation `shi\T1\textunderscore2022-10-06T17:03:34Z\T1\
-textunderscorelanguage' on page 2 undefined on input line 77.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.79 ...raphs \cite{li\_2020-03-22T07:58:44Z\_sac}
-                                                  ; provably, $\mathcal{O}(n...
-
-
-Package natbib Warning: Citation `li\T1\textunderscore2020-03-22T07:58:44Z\T1\t
-extunderscoresac' on page 2 undefined on input line 79.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.79 ...te{yun\_2020-06-08T18:30:12Z\_connections}
-                                                  . Dynamic-sparse FlashAtte...
-
-
-Package natbib Warning: Citation `yun\T1\textunderscore2020-06-08T18:30:12Z\T1\
-textunderscoreconnections' on page 2 undefined on input line 79.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.81 ... \cite{xi\_2023-06-21T02:45:01Z\_training}
-                                                  , and quantisation cliffs ...
-
-
-Package natbib Warning: Citation `xi\T1\textunderscore2023-06-21T02:45:01Z\T1\t
-extunderscoretraining' on page 2 undefined on input line 81.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.81 ...hmadian\_2023-05-30T17:58:49Z\_intriguing}
-                                                  . Our recipe adopts these ...
-
-
-Package natbib Warning: Citation `ahmadian\T1\textunderscore2023-05-30T17:58:49
-Z\T1\textunderscoreintriguing' on page 2 undefined on input line 81.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.89 ...u}$ \cite{liu\_2024-02-14T17:59:34Z\_dora}
-                                                  .
-
-Package natbib Warning: Citation `liu\T1\textunderscore2024-02-14T17:59:34Z\T1\
-textunderscoredora' on page 2 undefined on input line 89.
-
-[2] (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)
-
-! LaTeX Error: Command \textleftrightarrow unavailable in encoding T1.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.124 ...el Q\&A pairs (English\textleftrightarrow
-                                                   six MGSM languages). Vali...
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.124 ...ite{zhang\_2024-05-01T05:52:05Z\_careful}
-                                                  , MGSM-6, noisy-retrieval ...
-
-
-Package natbib Warning: Citation `zhang\T1\textunderscore2024-05-01T05:52:05Z\T
-1\textunderscorecareful' on page 3 undefined on input line 124.
-
-! You can't use a prefix with `\aftergroup'.
-<to be read again> 
-                   \aftergroup 
-l.126 \textbf{Model variants}\t \emph
-                                     {Base-FT}: frozen 4-bit Llama-3-8B with...
-
-[3]
-Underfull \vbox (badness 10000) has occurred while \output is active [4]
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.187 ...RA \cite{gou\_2023-09-29T17:59:38Z\_tora}
-                                                  , and (iv) testing entropy...
-
-
-Package natbib Warning: Citation `gou\T1\textunderscore2023-09-29T17:59:38Z\T1\
-textunderscoretora' on page 5 undefined on input line 187.
-
-[5 <./images/accuracy_comparison.pdf> <./images/aor_analysis.pdf> <./images/per
-formance_metrics.pdf>] (./paper.bbl)
-
-Package natbib Warning: There were undefined citations.
-
-[6] (./paper.aux) )
-(see the transcript file for additional information)</usr/share/texlive/texmf-d
-ist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fo
-nts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/ty
-pe1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.p
-fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></u
-sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/shar
-e/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/tex
-mf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/t
-ype1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/
-utmri8a.pfb>
-Output written on paper.pdf (6 pages, 200158 bytes).
+                   \unhbox 
+l.34 \input pgfplotsoldpgfsupp_
+                               loader.code.tex
+!  ==> Fatal error occurred, no output PDF file produced!
 Transcript written on paper.log.
