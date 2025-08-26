@@ -42,8 +42,7 @@
 \usepackage{subcaption}
 \usepackage{float}
 \usepackage{tikz}
-\usepackage{pgfplots}
-\pgfplotsset{compat=newest}
+% NOTE: pgfplots removed to avoid missing file error
 
 % --------------------------------------------------
 % Misc
@@ -61,7 +60,7 @@
 \renewcommand{\t}{\hspace{0.5em}}
 
 % Arrow that works in text mode
-\newcommand{\lrarr}{\,$\leftrightarrow$\,}
+\newcommand{\lrarr}{\,$\\leftrightarrow$\,}
 
 % Maths operators
 \DeclareMathOperator*{\argmin}{arg\,min}
