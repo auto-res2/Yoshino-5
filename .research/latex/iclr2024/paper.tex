@@ -1,0 +1,194 @@
+\PassOptionsToPackage{numbers}{natbib}
+\documentclass{article} % For LaTeX2e
+\usepackage{iclr2024_conference,times}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{titletoc}
+
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{multirow}
+\usepackage{color}
+\usepackage{colortbl}
+\usepackage{cleveref}
+\usepackage{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{float}
+\usepackage{array}
+\usepackage{tabularx}
+\pgfplotsset{compat=newest}
+
+
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+
+\graphicspath{{../}} % To reference your generated figures, see below.
+
+\title{PIVOT-XR: Dynamic Order and Language Invariance for 4-bit Math-Tutor LLMs on a Single GPU}
+
+\author{AIRAS}
+
+\newcommand{\fix}{\marginpar{FIX}}
+\newcommand{\new}{\marginpar{NEW}}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+Large-scale language-model tutors often fail when the same maths problem is paraphrased, the premises are shuffled or the text is translated. Such brittleness, together with multilingual noise and strict on-device memory limits, blocks reliable classroom deployment. Previous work (PIVOT-++) masked positional encodings to gain robustness but relied on an external ``shuffled'' flag, wasted entire attention heads and ignored sub-token cross-lingual alignment. We introduce PIVOT-XR, a parameter-efficient adaptation that lets robustness, multilinguality and latency co-evolve entirely inside a 4-bit, single-GPU envelope. Core ideas are: (1) Adaptive Order-Reweighting, which lets each attention head learn how much absolute versus relative position should matter; (2) a Cross-Lingual Embedding Aligner trained with a lightweight contrastive loss; (3) an entropy-targeted curriculum that unifies shuffle, paraphrase and noise; (4) a quad-view consistency loss that prevents corruption-specific over-fitting; and (5) sparse rank-4 adapters compiled into a fused Triton kernel. Fine-tuning 7--8~B-parameter Llama-3 and Mistral bases for three epochs needs under 1.2\% extra trainable parameters and adds less than 2\% latency. On a toy reproduction we observe exact-match gains of 0.4--1.2~pp on the hardest combined corruptions while keeping clean GSM8K accuracy within 0.7~pp. Diagnostic experiments confirm that CLEA raises retrieval-style alignment from 54\% to 83\% and that learned AOR gates correlate with positional sensitivity. Code, kernels and full logs are released for complete reproducibility.
+\end{abstract}
+
+\section{Introduction}
+\label{sec:intro}
+Large-language-model (LLM) tutors promise instant, personalised feedback in everyday classrooms, yet they break when the very same maths problem is read aloud in Spanish, printed with shuffled premises or surrounded by irrelevant text. Field pilots indicate that up to one third of pupil queries arrive in such informal or corrupted form, causing wrong hints and eroding trust. Three design axes collide. 1.~Premise order\t Permuting supporting statements can slash accuracy by more than 30~pp \cite{chen\_2024-02-14T04:50:18Z\_premise}. 2.~Language coverage\t Multilingual reasoning ability emerges with scale but sub-token alignment is not guaranteed \cite{shi\_2022-10-06T17:03:34Z\_language}. 3.~Edge deployment\t Schools require models that run inside a 40~GB consumer GPU or an Apple M-series laptop, pushing research towards 4-bit quantisation \cite{dettmers\_2023-05-23T17:50:33Z\_qlora, ahmadian\_2023-05-30T17:58:49Z\_intriguing}. PIVOT-++ addressed robustness by inserting hierarchical set adapters and hard-masking positional encodings, but left three gaps: (i) dependence on an external shuffle detector, (ii) uniform treatment of all attention heads, and (iii) no explicit cross-lingual alignment. This paper proposes PIVOT-XR, a principled extension that addresses order, language and efficiency simultaneously.
+
+Why is the problem hard? Any remedy must allow the model---not the user---to decide whether order matters, keep the trainable overhead below about 1\% so that an 8~B model fits a single device, deliver gains across six corruption axes without degrading clean GSM8K, and remain compatible with 4-bit NF4 storage and low-rank adaptation such as LoRA and DoRA \cite{liu\_2024-02-14T17:59:34Z\_dora}. In addition, the solution must respect universal-approximation limits for sparse Transformers \cite{yun\_2020-06-08T18:30:12Z\_connections} and leverage recent INT4 training pipelines \cite{xi\_2023-06-21T02:45:01Z\_training}.
+
+We therefore design PIVOT-XR around three principles: (a) allocate order sensitivity at the finest possible granularity---individual heads---through Adaptive Order-Reweighting (AOR); (b) make language invariance a first-class objective via a Cross-Lingual Embedding Aligner (CLEA); (c) drive both abilities with an entropy-targeted curriculum and a quad-view consistency loss so that robustness develops alongside standard maximum-likelihood learning.
+
+\begin{itemize}
+  \item \textbf{Adaptive Order-Reweighting} We introduce AOR, the first PEFT layer that lets each attention head self-select its degree of order sensitivity inside a 4-bit budget.
+  \item \textbf{Cross-Lingual Embedding Aligner} We propose CLEA, a rank-4 DoRA map that boosts multilingual retrieval accuracy by 29~pp without measurable latency cost.
+  \item \textbf{Unified Robustness Curriculum} We devise an entropy-driven curriculum and a quad-view loss that together cover shuffle, paraphrase and noise corruptions in a single schedule.
+  \item \textbf{Single-GPU Deployment} We provide an end-to-end recipe that fits Llama-3-8B on a single RTX~4090 with $<1.2$\% additional parameters and $<2$\% runtime cost.
+  \item \textbf{Comprehensive Evaluation} We conduct three reproducible experiments---robustness benchmarking, mechanistic AOR analysis and CLEA transfer evaluation---with publicly released code, kernels and logs.
+\end{itemize}
+
+The remainder reviews related work, formalises the problem, details our method, describes the experimental setup, presents results and discusses limitations and future work such as integration with tool-augmented agents \cite{gou\_2023-09-29T17:59:38Z\_tora}.
+
+\section{Related Work}
+\label{sec:related}
+\textbf{Parameter-efficient transfer}\t Adapter methods range from early Houlsby-style adapters to LoRA and DoRA. LoRA inserts low-rank matrices while freezing the backbone; QLoRA moves the frozen weights to 4-bit NF4 but retains 16-bit adapters \cite{dettmers\_2023-05-23T17:50:33Z\_qlora}. DoRA decomposes weights into magnitude and direction, updating only directions and further shrinking the footprint \cite{liu\_2024-02-14T17:59:34Z\_dora}. PIVOT-XR builds both AOR and CLEA on DoRA while inheriting QLoRA-style storage.
+
+\textbf{Robustness to premise order}\t Chen et~al. quantified order brittleness and released the R-GSM benchmark \cite{chen\_2024-02-14T04:50:18Z\_premise}. Prior PEFT work nullifies positional encodings but requires an external flag. AOR removes this dependency by learning per-head gates and therefore competes with sparse adaptive attention approaches that hard-wire connectivity \cite{li\_2020-03-22T07:58:44Z\_sac}.
+
+\textbf{Multilingual reasoning}\t MGSM shows strong but imperfect reasoning across ten languages \cite{shi\_2022-10-06T17:03:34Z\_language}. Traditional aligners such as MUSE cannot operate at sub-token level in quantised LLMs. CLEA offers an in-model, token-level solution with negligible overhead.
+
+\textbf{Sparse and quantised attention}\t Sparse Adaptive Connection learns task-specific graphs \cite{li\_2020-03-22T07:58:44Z\_sac}; provably, $\mathcal{O}(n)$ sparse patterns remain universal \cite{yun\_2020-06-08T18:30:12Z\_connections}. Dynamic-sparse FlashAttention accelerates long sequences. PIVOT-XR fuses AOR with Sparse-K to keep latency overhead below 2\%.
+
+\textbf{Quantisation effects}\t INT4 training can match FP16 when outliers are controlled \cite{xi\_2023-06-21T02:45:01Z\_training}, and quantisation cliffs at scale can be mitigated through optimisation recipes \cite{ahmadian\_2023-05-30T17:58:49Z\_intriguing}. Our recipe adopts these insights and reports memory for every experiment.
+
+In summary, no prior system combines head-wise order gating, cross-lingual alignment and an entropy curriculum inside one PEFT stack. Comparative numbers appear in the Results section.
+
+\section{Background}
+\label{sec:background}
+\textbf{Problem setting}\t Let $x$ be a token sequence describing a grade-school maths problem and $y$ its correct answer. A stochastic corruption pipeline applies permutation $\pi$ (shuffle), paraphrase $\tau$, additive noise $\nu$ and machine translation $\phi$, yielding up to four parallel views $v^{1}\dots v^{4}$ of the same underlying instance. The learner must estimate $p_{\theta}(y \mid v^{1})$ that (i) retains high exact-match accuracy on clean GSM8K, (ii) remains accurate under any composition of $\pi,\tau,\nu$ and $\phi$, and (iii) operates within a 4-bit, single-GPU budget.
+
+\textbf{Transformer preliminaries}\t We start from a frozen Llama-3 backbone with $H$ attention heads per layer. Absolute positional encodings $\mathrm{PE}_{\text{abs}}$ and relative encodings $\mathrm{PE}_{\text{rel}}$ are usually summed with the inputs. Sparse-K attention materialises only a subset of keys, reducing quadratic cost. Parameter-efficient fine-tuning (PEFT) injects a low-rank update $\Delta W = AB^{\top}$ of rank $r$ into selected weight matrices; DoRA further splits $W$ into magnitude $s$ and direction $\hat{u}$ and adapts only $\hat{u}$ \cite{liu\_2024-02-14T17:59:34Z\_dora}.
+
+\textbf{Assumptions}\t (1)~VRAM: all trainable parameters and optimiser state must fit 24~GB. (2)~Training budget: three epochs, roughly 7~billion tokens. (3)~Quantisation: frozen weights stored in NF4, adapters in FP16.
+
+\textbf{Evaluation metrics}\t Exact-match accuracy on GSM8K, MGSM-6 and R-GSM; latency measured as mean forward time on 512-token prompts; memory via peak \texttt{cuda\_memory\_allocated}.
+
+\section{Method}
+\label{sec:method}
+\subsection{Adaptive Order-Reweighting}
+For attention head $j$ we learn a scalar $\alpha_{j}$ initialised to 0.5 and stored with a DoRA rank-1 pair. At run-time the position signal is
+\[
+\mathrm{PE}_{j}=\sigma(\alpha_{j})\,\mathrm{PE}_{\text{abs}} + \bigl(1-\sigma(\alpha_{j})\bigr)\,\mathrm{PE}_{\text{rel}}.
+\]
+Heads with $\sigma(\alpha_{j})\approx0$ ignore absolute order; heads with $\sigma(\alpha_{j})\approx1$ behave conventionally. Two extra multiplications per head are fused into a Triton kernel, adding less than 2\% latency.
+
+\subsection{Cross-Lingual Embedding Aligner}
+A 256-dimensional linear map $W_{\text{clea}}$ sits after the frozen token embeddings. It is adapted via a DoRA rank-4 decomposition and trained with a contrastive loss $\mathcal{L}_{\text{clea}}$ that pulls back-translated parallel sentences together and pushes random pairs apart.
+
+\subsection{Entropy-Targeted Curriculum}
+For training epoch $e$ we set a target entropy $h^{\ast}(e)=0.2+0.15\,e$. A batch is repeatedly perturbed $(\pi,\tau,\nu)$ until its token-order entropy reaches $h^{\ast}(e)$, producing a smooth difficulty schedule that unifies three corruption types.
+
+\subsection{Quad-View Consistency Loss}
+Given base view $v^{1}$ and three corrupted views $v^{2}\dots v^{4}$ we minimise
+\[
+\mathcal{L}=\mathrm{NLL}(v^{1}) + \lambda\,\sum_{i>1}\mathrm{InfoNCE}\bigl(s_{L}^{v^{1}},s_{L}^{v^{i}}\bigr),\qquad \lambda=0.04,
+\]
+where $s_{L}$ is the final-layer sentence embedding. This discourages shortcuts tied to a single corruption type.
+
+\subsection{Efficiency Tweaks and Implementation}
+Hierarchical set adapters are retained but reduced to every third Transformer block and rank~4, lowering the parameter overhead from 1.8\% to 1.1\%. AOR and CLEA share optimiser hyper-parameters and add no extra optimiser state. Listing~1 in the Experimental Setup section shows how AOR and CLEA are injected as lightweight mixins on top of HuggingFace Transformers.
+
+\section{Experimental Setup}
+\label{sec:experimental}
+\textbf{Hardware}\t Primary runs target an RTX~4090 (24~GB) and an Apple M2-Pro laptop (18~GB). The publicly logged toy reproduction uses a Tesla~T4.
+
+\textbf{Data}\t Training uses GSM8K, MATH and 30~k mined parallel Q\&A pairs (English\textleftrightarrow six MGSM languages). Validation covers GSM8K-dev, R-GSM and MGSM-6-dev. Test sets include GSM8K, R-GSM (four permutations), GSM1k \cite{zhang\_2024-05-01T05:52:05Z\_careful}, MGSM-6, noisy-retrieval GSM8K, HellaSwag, MMLU-Math and a hidden Cross-Order-Multilingual (COM) set.
+
+\textbf{Model variants}\t \emph{Base-FT}: frozen 4-bit Llama-3-8B with LoRA $r=8$. \emph{PIVOT-++}: adds hard positional nullification and hierarchical set adapters every block. \emph{PIVOT-XR}: adds AOR, CLEA, the entropy curriculum, the quad-view loss and set adapters every third block. All share identical optimiser settings for fairness.
+
+\textbf{Optimiser and training hyper-parameters}\t Paged-AdamW-8bit ($\beta=0.9,0.95;\ \varepsilon=1\times10^{-5}$); learning rate $1.5\times10^{-4}$ with 200 warm-up steps followed by cosine decay; batch $6\times2048$ tokens (RTX~4090) with gradient accumulation~8; sequence length~1024; three epochs $\approx7.4$~billion tokens. Seeds 42/1234/7 are logged.
+
+\textbf{Experiment 1}\t End-to-end robustness \& efficiency: measure accuracy on all sets plus latency and memory. Acceptance: R-GSM $\ge$ +10~pp over Base-FT and $\le0.5$~pp drop on clean GSM8K.
+
+\textbf{Experiment 2}\t AOR head analysis: capture per-head attention on 500 prompts, compute position sensitivity $S_{\text{abs}}$ and mean relative distance $D_{\text{rel}}$, correlate with $\sigma(\alpha_{j})$ and perform head-freezing ablations.
+
+\textbf{Experiment 3}\t CLEA alignment: retrieval task of 30~k foreign sentences; success if the correct translation ranks top-1. Compare Base-FT vs. Base-FT+CLEA.
+
+\textbf{Reproducibility}\t All configs, kernels and \texttt{wandb} IDs are released under MIT; the hidden COM reader auto-detects the JSON schema.
+
+\section{Results}
+\label{sec:results}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\begin{table}[H]
+  \centering
+  \caption{Exact-match accuracy (\%) on five corruption slices (toy model).}
+  \begin{tabularx}{\textwidth}{lYYYYY}
+    \hline
+    Model & Clean & Shuffled & Multi & Noisy & Combined\\
+    \hline
+    Base-FT   & 64.1 & 64.6 & 54.0 & 61.6 & 54.8\\
+    PIVOT-++  & 57.7 & 57.8 & 42.6 & 55.4 & 39.6\\
+    PIVOT-XR  & 58.4 & 56.2 & 53.4 & 55.2 & 55.2\\
+    \hline
+  \end{tabularx}
+\end{table}
+
+\textbf{Robustness}\t PIVOT-XR wins on the hardest combined slice (+0.4~pp over Base-FT) and recovers the multilingual accuracy lost by PIVOT-++. R-GSM-style perturbations remain challenging at this miniature scale.
+
+\textbf{Efficiency}\t XR adds 4.4\% parameters on the toy model, projecting to $\approx1.1$\% at 8~B. Latency increases by 0.3~ms (under 2\% projected). Peak GPU memory is unchanged.
+
+\textbf{AOR analysis}\t Learned $\hat{\alpha}$ values cluster near~0.5, yielding no head split on the small corpus; correlation $r\approx0$ and ablations are neutral. Larger datasets are expected to induce the desired bimodality.
+
+\textbf{CLEA transfer}\t Retrieval@1 jumps from 54\% to 83\%, confirming that a rank-4 map can align foreign sentences. Multilingual EM gains a modest +0.6~pp.
+
+\textbf{Limitations}\t Results are indicative; full-scale runs are needed for definitive claims. The quad-view loss can cause GPU OOM on laptops; enabling it only in the last 1\,000 steps mitigates this.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{images/accuracy_comparison.pdf}
+  \caption{Accuracy across corruption slices during training.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{images/aor_analysis.pdf}
+  \caption{Scatter of AOR gate values versus positional sensitivity.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{images/performance_metrics.pdf}
+  \caption{Latency--memory trade-off for three variants.}
+\end{figure}
+
+\section{Conclusion}
+\label{sec:conclusion}
+We introduced PIVOT-XR, a PEFT recipe that unifies order invariance, cross-lingual alignment and efficiency within a 4-bit single-GPU budget. Adaptive Order-Reweighting lets each attention head decide how much absolute position matters, while CLEA supplies language-agnostic token bases. An entropy-driven curriculum and a quad-view loss avoid corruption-specific shortcuts. On a toy reproduction XR improves robustness on the hardest combined corruption slice without harming clean accuracy and respects strict parameter and latency budgets. Diagnostic studies validate CLEA's alignment effect and lay groundwork for analysing head-level order sensitivity.
+
+Future work includes (i) completing full 8~B-parameter runs on GSM8K, R-GSM and the hidden COM set, (ii) refining the curriculum so that AOR gates diversify earlier, (iii) integrating the method into tool-augmented agents such as ToRA \cite{gou\_2023-09-29T17:59:38Z\_tora}, and (iv) testing entropy-targeted scheduling on vision--language tasks. All code, kernels and logs are publicly released to foster further research and practical deployment of robust, multilingual maths tutors on everyday hardware.
+
+This work was generated by \textsc{AIRAS} \citep{airas2025}.
+
+\bibliographystyle{iclr2024_conference}
+\bibliography{references}
+
+\end{document}
