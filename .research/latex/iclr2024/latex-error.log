@@ -175,29 +175,160 @@ tex)
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibrarytopaths.code.tex)))
-(/usr/share/texlive/texmf-dist/tex/latex/pgfplots/pgfplots.sty
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotscore.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/sys/pgfplotssysgeneric.code
-.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/libs/pgfplotslibrary.code.t
-ex)
-! I can't find file `pgfplotsoldpgfsupp'.
-<to be read again> 
-                   \unhbox 
-l.34 \input pgfplotsoldpgfsupp_
-                               loader.code.tex
-(Press Enter to retry, or Control-D to exit)
-Please type another input file name
-! Emergency stop.
-<to be read again> 
-                   \unhbox 
-l.34 \input pgfplotsoldpgfsupp_
-                               loader.code.tex
-!  ==> Fatal error occurred, no output PDF file produced!
+(/usr/share/texlive/texmf-dist/tex/latex/cleveref/cleveref.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/titlesec/titletoc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+No file paper.aux.
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg)
+
+Package natbib Warning: Citation `chen_2024-02-14T04:50:18Z_premise' on page 1 
+undefined on input line 88.
+
+
+Package natbib Warning: Citation `shi_2022-10-06T17:03:34Z_language' on page 1 
+undefined on input line 88.
+
+
+Package natbib Warning: Citation `dettmers_2023-05-23T17:50:33Z_qlora' on page 
+1 undefined on input line 88.
+
+
+Package natbib Warning: Citation `ahmadian_2023-05-30T17:58:49Z_intriguing' on 
+page 1 undefined on input line 88.
+
+
+Package natbib Warning: Citation `liu_2024-02-14T17:59:34Z_dora' on page 1 unde
+fined on input line 90.
+
+
+Package natbib Warning: Citation `yun_2020-06-08T18:30:12Z_connections' on page
+ 1 undefined on input line 90.
+
+
+Package natbib Warning: Citation `xi_2023-06-21T02:45:01Z_training' on page 1 u
+ndefined on input line 90.
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-
+dist/fonts/enc/dvips/base/8r.enc}]
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
+
+Package natbib Warning: Citation `gou_2023-09-29T17:59:38Z_tora' on page 2 unde
+fined on input line 102.
+
+
+Package natbib Warning: Citation `dettmers_2023-05-23T17:50:33Z_qlora' on page 
+2 undefined on input line 106.
+
+
+Package natbib Warning: Citation `liu_2024-02-14T17:59:34Z_dora' on page 2 unde
+fined on input line 106.
+
+
+Package natbib Warning: Citation `chen_2024-02-14T04:50:18Z_premise' on page 2 
+undefined on input line 108.
+
+
+Package natbib Warning: Citation `li_2020-03-22T07:58:44Z_sac' on page 2 undefi
+ned on input line 108.
+
+
+Package natbib Warning: Citation `shi_2022-10-06T17:03:34Z_language' on page 2 
+undefined on input line 110.
+
+
+Package natbib Warning: Citation `li_2020-03-22T07:58:44Z_sac' on page 2 undefi
+ned on input line 112.
+
+
+Package natbib Warning: Citation `yun_2020-06-08T18:30:12Z_connections' on page
+ 2 undefined on input line 112.
+
+
+Package natbib Warning: Citation `xi_2023-06-21T02:45:01Z_training' on page 2 u
+ndefined on input line 114.
+
+
+Package natbib Warning: Citation `ahmadian_2023-05-30T17:58:49Z_intriguing' on 
+page 2 undefined on input line 114.
+
+
+Package natbib Warning: Citation `liu_2024-02-14T17:59:34Z_dora' on page 2 unde
+fined on input line 122.
+
+[2] (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)
+
+Package natbib Warning: Citation `zhang_2024-05-01T05:52:05Z_careful' on page 3
+ undefined on input line 157.
+
+[3]
+Underfull \vbox (badness 10000) has occurred while \output is active [4]
+
+Package natbib Warning: Citation `gou_2023-09-29T17:59:38Z_tora' on page 5 unde
+fined on input line 220.
+
+[5 <./images/accuracy_comparison.pdf> <./images/aor_analysis.pdf> <./images/per
+formance_metrics.pdf>]
+
+Package natbib Warning: Citation `airas2025' on page 6 undefined on input line 
+222.
+
+No file paper.bbl.
+
+Package natbib Warning: There were undefined citations.
+
+[6] (./paper.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `paper.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )
+(see the transcript file for additional information)</usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/
+utmri8a.pfb>
+Output written on paper.pdf (6 pages, 201234 bytes).
 Transcript written on paper.log.
-I couldn't open file name `paper.aux'
+This is BibTeX, Version 0.99d (TeX Live 2023/Debian)
+The top-level auxiliary file: paper.aux
+The style file: iclr2024_conference.bst
+Database file #1: references.bib
+Repeated entry---line 133 of file references.bib
+ : @article{liu_2024-02-14T17:59:34Z_dora
+ :                                       ,
+I'm skipping whatever remains of this entry
+Warning--empty journal in ahmadian_2023-05-30T17:58:49Z_intriguing
+Warning--empty journal in chen_2024-02-14T04:50:18Z_premise
+Warning--empty journal in dettmers_2023-05-23T17:50:33Z_qlora
+Warning--empty journal in gou_2023-09-29T17:59:38Z_tora
+Warning--empty journal in li_2020-03-22T07:58:44Z_sac
+Warning--empty journal in liu_2024-02-14T17:59:34Z_dora
+Warning--empty journal in shi_2022-10-06T17:03:34Z_language
+Warning--empty journal in xi_2023-06-21T02:45:01Z_training
+Warning--empty journal in yun_2020-06-08T18:30:12Z_connections
+Warning--empty journal in zhang_2024-05-01T05:52:05Z_careful
+(There was 1 error message)
 This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
  restricted \write18 enabled.
 entering extended mode
@@ -375,27 +506,137 @@ tex)
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibrarytopaths.code.tex)))
-(/usr/share/texlive/texmf-dist/tex/latex/pgfplots/pgfplots.sty
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotscore.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/sys/pgfplotssysgeneric.code
-.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/libs/pgfplotslibrary.code.t
-ex)
-! I can't find file `pgfplotsoldpgfsupp'.
-<to be read again> 
-                   \unhbox 
-l.34 \input pgfplotsoldpgfsupp_
-                               loader.code.tex
-(Press Enter to retry, or Control-D to exit)
-Please type another input file name
-! Emergency stop.
-<to be read again> 
-                   \unhbox 
-l.34 \input pgfplotsoldpgfsupp_
-                               loader.code.tex
-!  ==> Fatal error occurred, no output PDF file produced!
+(/usr/share/texlive/texmf-dist/tex/latex/cleveref/cleveref.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/titlesec/titletoc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(./paper.aux)
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+(./paper.out) (./paper.out)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg)
+
+Package natbib Warning: Citation `chen_2024-02-14T04:50:18Z_premise' on page 1 
+undefined on input line 88.
+
+
+Package natbib Warning: Citation `shi_2022-10-06T17:03:34Z_language' on page 1 
+undefined on input line 88.
+
+
+Package natbib Warning: Citation `dettmers_2023-05-23T17:50:33Z_qlora' on page 
+1 undefined on input line 88.
+
+
+Package natbib Warning: Citation `ahmadian_2023-05-30T17:58:49Z_intriguing' on 
+page 1 undefined on input line 88.
+
+
+Package natbib Warning: Citation `liu_2024-02-14T17:59:34Z_dora' on page 1 unde
+fined on input line 90.
+
+
+Package natbib Warning: Citation `yun_2020-06-08T18:30:12Z_connections' on page
+ 1 undefined on input line 90.
+
+
+Package natbib Warning: Citation `xi_2023-06-21T02:45:01Z_training' on page 1 u
+ndefined on input line 90.
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-
+dist/fonts/enc/dvips/base/8r.enc}]
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
+
+Package natbib Warning: Citation `gou_2023-09-29T17:59:38Z_tora' on page 2 unde
+fined on input line 102.
+
+
+Package natbib Warning: Citation `dettmers_2023-05-23T17:50:33Z_qlora' on page 
+2 undefined on input line 106.
+
+
+Package natbib Warning: Citation `liu_2024-02-14T17:59:34Z_dora' on page 2 unde
+fined on input line 106.
+
+
+Package natbib Warning: Citation `chen_2024-02-14T04:50:18Z_premise' on page 2 
+undefined on input line 108.
+
+
+Package natbib Warning: Citation `li_2020-03-22T07:58:44Z_sac' on page 2 undefi
+ned on input line 108.
+
+
+Package natbib Warning: Citation `shi_2022-10-06T17:03:34Z_language' on page 2 
+undefined on input line 110.
+
+
+Package natbib Warning: Citation `li_2020-03-22T07:58:44Z_sac' on page 2 undefi
+ned on input line 112.
+
+
+Package natbib Warning: Citation `yun_2020-06-08T18:30:12Z_connections' on page
+ 2 undefined on input line 112.
+
+
+Package natbib Warning: Citation `xi_2023-06-21T02:45:01Z_training' on page 2 u
+ndefined on input line 114.
+
+
+Package natbib Warning: Citation `ahmadian_2023-05-30T17:58:49Z_intriguing' on 
+page 2 undefined on input line 114.
+
+
+Package natbib Warning: Citation `liu_2024-02-14T17:59:34Z_dora' on page 2 unde
+fined on input line 122.
+
+[2] (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)
+
+Package natbib Warning: Citation `zhang_2024-05-01T05:52:05Z_careful' on page 3
+ undefined on input line 157.
+
+[3]
+Underfull \vbox (badness 10000) has occurred while \output is active [4]
+
+Package natbib Warning: Citation `gou_2023-09-29T17:59:38Z_tora' on page 5 unde
+fined on input line 220.
+
+[5 <./images/accuracy_comparison.pdf> <./images/aor_analysis.pdf> <./images/per
+formance_metrics.pdf>]
+
+Package natbib Warning: Citation `airas2025' on page 6 undefined on input line 
+222.
+
+(./paper.bbl)
+
+Package natbib Warning: There were undefined citations.
+
+[6] (./paper.aux
+
+Package natbib Warning: Citation(s) may have changed.
+(natbib)                Rerun to get citations correct.
+
+) )
+(see the transcript file for additional information)</usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/
+utmri8a.pfb>
+Output written on paper.pdf (6 pages, 206920 bytes).
 Transcript written on paper.log.
 This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
  restricted \write18 enabled.
@@ -574,25 +815,43 @@ tex)
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tik
 zlibrarytopaths.code.tex)))
-(/usr/share/texlive/texmf-dist/tex/latex/pgfplots/pgfplots.sty
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.revision.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplots.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/pgfplotscore.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/sys/pgfplotssysgeneric.code
-.tex))
-(/usr/share/texlive/texmf-dist/tex/generic/pgfplots/libs/pgfplotslibrary.code.t
-ex)
-! I can't find file `pgfplotsoldpgfsupp'.
-<to be read again> 
-                   \unhbox 
-l.34 \input pgfplotsoldpgfsupp_
-                               loader.code.tex
-(Press Enter to retry, or Control-D to exit)
-Please type another input file name
-! Emergency stop.
-<to be read again> 
-                   \unhbox 
-l.34 \input pgfplotsoldpgfsupp_
-                               loader.code.tex
-!  ==> Fatal error occurred, no output PDF file produced!
+(/usr/share/texlive/texmf-dist/tex/latex/cleveref/cleveref.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/titlesec/titletoc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(./paper.aux)
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+(./paper.out) (./paper.out)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg) [1{/var/lib/texm
+f/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/d
+vips/base/8r.enc}] (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
+[2] (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd) [3]
+Underfull \vbox (badness 10000) has occurred while \output is active [4]
+[5 <./images/accuracy_comparison.pdf> <./images/aor_analysis.pdf> <./images/per
+formance_metrics.pdf>] (./paper.bbl) [6] (./paper.aux)
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+ )
+(see the transcript file for additional information)</usr/share/texlive/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fo
+nts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/share/texlive/tex
+mf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/
+utmri8a.pfb>
+Output written on paper.pdf (6 pages, 208907 bytes).
 Transcript written on paper.log.
