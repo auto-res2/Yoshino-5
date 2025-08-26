@@ -1,0 +1,84 @@
+{
+  "training_losses": {
+    "Base-FT": [
+      1.956213653087616,
+      1.3618530686944723,
+      1.0368805639445782
+    ],
+    "PIVOT-++": [
+      1.877818737179041,
+      1.323847882449627,
+      1.0015045013278723
+    ],
+    "PIVOT-XR": [
+      1.9818761721253395,
+      1.5625709854066372,
+      1.3966135531663895
+    ]
+  },
+  "training_times": {
+    "Base-FT": 0.9746549129486084,
+    "PIVOT-++": 1.0265653133392334,
+    "PIVOT-XR": 1.0782809257507324
+  },
+  "accuracies": {
+    "Base-FT": {
+      "clean": 0.641,
+      "shuffled": 0.646,
+      "multilingual": 0.54,
+      "noisy": 0.616,
+      "combined": 0.548
+    },
+    "PIVOT-++": {
+      "clean": 0.577,
+      "shuffled": 0.578,
+      "multilingual": 0.426,
+      "noisy": 0.554,
+      "combined": 0.396
+    },
+    "PIVOT-XR": {
+      "clean": 0.584,
+      "shuffled": 0.562,
+      "multilingual": 0.534,
+      "noisy": 0.552,
+      "combined": 0.552
+    }
+  },
+  "performance_metrics": {
+    "Base-FT": {
+      "latency_mean": 0.7242059707641602,
+      "latency_std": 0.036674658709216844,
+      "num_parameters": 104870
+    },
+    "PIVOT-++": {
+      "latency_mean": 0.8566617965698242,
+      "latency_std": 0.0933932076066511,
+      "num_parameters": 109478
+    },
+    "PIVOT-XR": {
+      "latency_mean": 1.0510492324829102,
+      "latency_std": 0.08183695538901237,
+      "num_parameters": 109482
+    }
+  },
+  "aor_analysis": {
+    "alphas": [
+      [
+        0.49813467264175415,
+        0.49813467264175415
+      ],
+      [
+        0.49800869822502136,
+        0.49800869822502136
+      ]
+    ],
+    "position_sensitivities": [
+      0.1,
+      0.1
+    ],
+    "relative_distances": [
+      16.0,
+      16.0
+    ]
+  }
+}
