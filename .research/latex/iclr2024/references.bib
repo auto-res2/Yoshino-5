@@ -5,3 +5,378 @@
   publisher = {GitHub},
   url       = {https://github.com/airas-org/airas}
 }
+
+% ===========================================
+% REQUIRED CITATIONS
+% These papers must be cited in the manuscript
+% ===========================================
+
+@article{ahmadian_2023-05-30T17:58:49Z_intriguing,
+ abstract = {Emergent properties have been widely adopted as a term to describe behavior
+not present in smaller models but observed in larger models. Recent work
+suggests that the trade-off incurred by quantization is also an emergent
+property, with sharp drops in performance in models over 6B parameters. In this
+work, we ask "are quantization cliffs in performance solely a factor of scale?"
+Against a backdrop of increased research focus on why certain emergent
+properties surface at scale, this work provides a useful counter-example. We
+posit that it is possible to optimize for a quantization friendly training
+recipe that suppresses large activation magnitude outliers. Here, we find that
+outlier dimensions are not an inherent product of scale, but rather sensitive
+to the optimization conditions present during pre-training. This both opens up
+directions for more efficient quantization, and poses the question of whether
+other emergent properties are inherent or can be altered and conditioned by
+optimization and architecture design choices. We successfully quantize models
+ranging in size from 410M to 52B with minimal degradation in performance.},
+ arxiv_url = {https://arxiv.org/pdf/2305.19268v1.pdf},
+ author = {Arash Ahmadian and Saurabh Dash and Hongyu Chen and Bharat Venkitesh and Stephen Gou and Phil Blunsom and Ahmet Üstün and Sara Hooker},
+ title = {Intriguing Properties of Quantization at Scale},
+ year = {2023-05-30T17:58:49Z}
+}
+
+@article{author_year_fast,
+ title = {Fast Attention Over Long Sequences With Dynamic Sparse Flash Attention}
+}
+
+@article{chen_2024-02-14T04:50:18Z_premise,
+ abstract = {Large language models (LLMs) have accomplished remarkable reasoning
+performance in various domains. However, in the domain of reasoning tasks, we
+discover a frailty: LLMs are surprisingly brittle to the ordering of the
+premises, despite the fact that such ordering does not alter the underlying
+task. In particular, we observe that LLMs achieve the best performance when the
+premise order aligns with the context required in intermediate reasoning steps.
+For example, in deductive reasoning tasks, presenting the premises in the same
+order as the ground truth proof in the prompt (as opposed to random ordering)
+drastically increases the model's accuracy. We first examine the effect of
+premise ordering on deductive reasoning on a variety of LLMs, and our
+evaluation shows that permuting the premise order can cause a performance drop
+of over 30%. In addition, we release the benchmark R-GSM, based on GSM8K, to
+examine the ordering effect for mathematical problem-solving, and we again
+observe a significant drop in accuracy, relative to the original GSM8K
+benchmark.},
+ arxiv_url = {https://arxiv.org/pdf/2402.08939v3.pdf},
+ author = {Xinyun Chen and Ryan A. Chi and Xuezhi Wang and Denny Zhou},
+ title = {Premise Order Matters in Reasoning with Large Language Models},
+ year = {2024-02-14T04:50:18Z}
+}
+
+@article{gou_2023-09-29T17:59:38Z_tora,
+ abstract = {Large language models have made significant progress in various language
+tasks, yet they still struggle with complex mathematics. In this paper, we
+propose ToRA a series of Tool-integrated Reasoning Agents designed to solve
+challenging mathematical problems by seamlessly integrating natural language
+reasoning with the utilization of external tools (e.g., computation libraries
+and symbolic solvers), thereby amalgamating the analytical prowess of language
+and the computational efficiency of tools. To train ToRA, we curate interactive
+tool-use trajectories on mathematical datasets, apply imitation learning on the
+annotations, and propose output space shaping to further refine models'
+reasoning behavior. As a result, ToRA models significantly outperform
+open-source models on 10 mathematical reasoning datasets across all scales with
+13%-19% absolute improvements on average. Notably, ToRA-7B reaches 44.6% on the
+competition-level dataset MATH, surpassing the best open-source model
+WizardMath-70B by 22% absolute. ToRA-Code-34B is also the first open-source
+model that achieves an accuracy exceeding 50% on MATH, which significantly
+outperforms GPT-4's CoT result, and is competitive with GPT-4 solving problems
+with programs. Additionally, we conduct a comprehensive analysis of the
+benefits and remaining challenges of tool interaction for mathematical
+reasoning, providing valuable insights for future research.},
+ arxiv_url = {https://arxiv.org/pdf/2309.17452v4.pdf},
+ author = {Zhibin Gou and Zhihong Shao and Yeyun Gong and Yelong Shen and Yujiu Yang and Minlie Huang and Nan Duan and Weizhu Chen},
+ github_url = {https://github.com/microsoft/ToRA},
+ title = {ToRA: A Tool-Integrated Reasoning Agent for Mathematical Problem Solving},
+ year = {2023-09-29T17:59:38Z}
+}
+
+@article{li_2020-03-22T07:58:44Z_sac,
+ abstract = {While the self-attention mechanism has been widely used in a wide variety of
+tasks, it has the unfortunate property of a quadratic cost with respect to the
+input length, which makes it difficult to deal with long inputs. In this paper,
+we present a method for accelerating and structuring self-attentions: Sparse
+Adaptive Connection (SAC). In SAC, we regard the input sequence as a graph and
+attention operations are performed between linked nodes. In contrast with
+previous self-attention models with pre-defined structures (edges), the model
+learns to construct attention edges to improve task-specific performances. In
+this way, the model is able to select the most salient nodes and reduce the
+quadratic complexity regardless of the sequence length. Based on SAC, we show
+that previous variants of self-attention models are its special cases. Through
+extensive experiments on neural machine translation, language modeling, graph
+representation learning and image classification, we demonstrate SAC is
+competitive with state-of-the-art models while significantly reducing memory
+cost.},
+ arxiv_url = {https://arxiv.org/pdf/2003.09833v3.pdf},
+ author = {Xiaoya Li and Yuxian Meng and Mingxin Zhou and Qinghong Han and Fei Wu and Jiwei Li},
+ title = {SAC: Accelerating and Structuring Self-Attention via Sparse Adaptive Connection},
+ year = {2020-03-22T07:58:44Z}
+}
+
+@article{liu_2024-02-14T17:59:34Z_dora,
+ abstract = {Among the widely used parameter-efficient fine-tuning (PEFT) methods, LoRA
+and its variants have gained considerable popularity because of avoiding
+additional inference costs. However, there still often exists an accuracy gap
+between these methods and full fine-tuning (FT). In this work, we first
+introduce a novel weight decomposition analysis to investigate the inherent
+differences between FT and LoRA. Aiming to resemble the learning capacity of FT
+from the findings, we propose Weight-Decomposed Low-Rank Adaptation (DoRA).
+DoRA decomposes the pre-trained weight into two components, magnitude and
+direction, for fine-tuning, specifically employing LoRA for directional updates
+to efficiently minimize the number of trainable parameters. By employing \ours,
+we enhance both the learning capacity and training stability of LoRA while
+avoiding any additional inference overhead. \ours~consistently outperforms LoRA
+on fine-tuning LLaMA, LLaVA, and VL-BART on various downstream tasks, such as
+commonsense reasoning, visual instruction tuning, and image/video-text
+understanding. Code is available at https://github.com/NVlabs/DoRA.},
+ arxiv_url = {https://arxiv.org/pdf/2402.09353v6.pdf},
+ author = {Shih-Yang Liu and Chien-Yi Wang and Hongxu Yin and Pavlo Molchanov and Yu-Chiang Frank Wang and Kwang-Ting Cheng and Min-Hung Chen},
+ title = {DoRA: Weight-Decomposed Low-Rank Adaptation},
+ year = {2024-02-14T17:59:34Z}
+}
+
+@article{liu_2024-02-14T17:59:34Z_dora,
+ abstract = {Among the widely used parameter-efficient fine-tuning (PEFT) methods, LoRA
+and its variants have gained considerable popularity because of avoiding
+additional inference costs. However, there still often exists an accuracy gap
+between these methods and full fine-tuning (FT). In this work, we first
+introduce a novel weight decomposition analysis to investigate the inherent
+differences between FT and LoRA. Aiming to resemble the learning capacity of FT
+from the findings, we propose Weight-Decomposed Low-Rank Adaptation (DoRA).
+DoRA decomposes the pre-trained weight into two components, magnitude and
+direction, for fine-tuning, specifically employing LoRA for directional updates
+to efficiently minimize the number of trainable parameters. By employing \ours,
+we enhance both the learning capacity and training stability of LoRA while
+avoiding any additional inference overhead. \ours~consistently outperforms LoRA
+on fine-tuning LLaMA, LLaVA, and VL-BART on various downstream tasks, such as
+commonsense reasoning, visual instruction tuning, and image/video-text
+understanding. Code is available at https://github.com/NVlabs/DoRA.},
+ arxiv_url = {https://arxiv.org/pdf/2402.09353v6.pdf},
+ author = {Shih-Yang Liu and Chien-Yi Wang and Hongxu Yin and Pavlo Molchanov and Yu-Chiang Frank Wang and Kwang-Ting Cheng and Min-Hung Chen},
+ title = {DoRA: Weight-Decomposed Low-Rank Adaptation},
+ year = {2024-02-14T17:59:34Z}
+}
+
+@article{mercea_2024-02-05T10:55:47Z_time,
+ abstract = {As foundation models become more popular, there is a growing need to
+efficiently finetune them for downstream tasks. Although numerous adaptation
+methods have been proposed, they are designed to be efficient only in terms of
+how many parameters are trained. They, however, typically still require
+backpropagating gradients throughout the model, meaning that their
+training-time and -memory cost does not reduce as significantly. We propose an
+adaptation method which does not backpropagate gradients through the backbone.
+We achieve this by designing a lightweight network in parallel that operates on
+features from the frozen, pretrained backbone. As a result, our method is
+efficient not only in terms of parameters, but also in training-time and memory
+usage. Our approach achieves state-of-the-art accuracy-parameter trade-offs on
+the popular VTAB benchmark, and we further show how we outperform prior works
+with respect to training-time and -memory usage too. We further demonstrate the
+training efficiency and scalability of our method by adapting a vision
+transformer backbone of 4 billion parameters for the computationally demanding
+task of video classification, without any intricate model parallelism. Here, we
+outperform a prior adaptor-based method which could only scale to a 1 billion
+parameter backbone, or fully-finetuning a smaller backbone, with the same GPU
+and less training time.},
+ arxiv_url = {https://arxiv.org/pdf/2402.02887v1.pdf},
+ author = {Otniel-Bogdan Mercea and Alexey Gritsenko and Cordelia Schmid and Anurag Arnab},
+ title = {Time- Memory- and Parameter-Efficient Visual Adaptation},
+ year = {2024-02-05T10:55:47Z}
+}
+
+@article{michaud_2023-03-23T17:58:43Z_the,
+ abstract = {We propose the Quantization Model of neural scaling laws, explaining both the
+observed power law dropoff of loss with model and data size, and also the
+sudden emergence of new capabilities with scale. We derive this model from what
+we call the Quantization Hypothesis, where network knowledge and skills are
+"quantized" into discrete chunks ($\textbf{quanta}$). We show that when quanta
+are learned in order of decreasing use frequency, then a power law in use
+frequencies explains observed power law scaling of loss. We validate this
+prediction on toy datasets, then study how scaling curves decompose for large
+language models. Using language model gradients, we automatically decompose
+model behavior into a diverse set of skills (quanta). We tentatively find that
+the frequency at which these quanta are used in the training distribution
+roughly follows a power law corresponding with the empirical scaling exponent
+for language models, a prediction of our theory.},
+ arxiv_url = {https://arxiv.org/pdf/2303.13506v3.pdf},
+ author = {Eric J. Michaud and Ziming Liu and Uzay Girit and Max Tegmark},
+ github_url = {https://github.com/ejmichaud/quantization-model},
+ title = {The Quantization Model of Neural Scaling},
+ year = {2023-03-23T17:58:43Z}
+}
+
+@article{navon_2023-01-30T10:50:33Z_equivariant,
+ abstract = {Designing machine learning architectures for processing neural networks in
+their raw weight matrix form is a newly introduced research direction.
+Unfortunately, the unique symmetry structure of deep weight spaces makes this
+design very challenging. If successful, such architectures would be capable of
+performing a wide range of intriguing tasks, from adapting a pre-trained
+network to a new domain to editing objects represented as functions (INRs or
+NeRFs). As a first step towards this goal, we present here a novel network
+architecture for learning in deep weight spaces. It takes as input a
+concatenation of weights and biases of a pre-trained MLP and processes it using
+a composition of layers that are equivariant to the natural permutation
+symmetry of the MLP's weights: Changing the order of neurons in intermediate
+layers of the MLP does not affect the function it represents. We provide a full
+characterization of all affine equivariant and invariant layers for these
+symmetries and show how these layers can be implemented using three basic
+operations: pooling, broadcasting, and fully connected layers applied to the
+input in an appropriate manner. We demonstrate the effectiveness of our
+architecture and its advantages over natural baselines in a variety of learning
+tasks.},
+ arxiv_url = {https://arxiv.org/pdf/2301.12780v2.pdf},
+ author = {Aviv Navon and Aviv Shamsian and Idan Achituve and Ethan Fetaya and Gal Chechik and Haggai Maron},
+ github_url = {https://github.com/AvivNavon/DWSNets},
+ title = {Equivariant Architectures for Learning in Deep Weight Spaces},
+ year = {2023-01-30T10:50:33Z}
+}
+
+@article{navon_2023-01-30T10:50:33Z_equivariant,
+ abstract = {Designing machine learning architectures for processing neural networks in
+their raw weight matrix form is a newly introduced research direction.
+Unfortunately, the unique symmetry structure of deep weight spaces makes this
+design very challenging. If successful, such architectures would be capable of
+performing a wide range of intriguing tasks, from adapting a pre-trained
+network to a new domain to editing objects represented as functions (INRs or
+NeRFs). As a first step towards this goal, we present here a novel network
+architecture for learning in deep weight spaces. It takes as input a
+concatenation of weights and biases of a pre-trained MLP and processes it using
+a composition of layers that are equivariant to the natural permutation
+symmetry of the MLP's weights: Changing the order of neurons in intermediate
+layers of the MLP does not affect the function it represents. We provide a full
+characterization of all affine equivariant and invariant layers for these
+symmetries and show how these layers can be implemented using three basic
+operations: pooling, broadcasting, and fully connected layers applied to the
+input in an appropriate manner. We demonstrate the effectiveness of our
+architecture and its advantages over natural baselines in a variety of learning
+tasks.},
+ arxiv_url = {https://arxiv.org/pdf/2301.12780v2.pdf},
+ author = {Aviv Navon and Aviv Shamsian and Idan Achituve and Ethan Fetaya and Gal Chechik and Haggai Maron},
+ github_url = {https://github.com/AvivNavon/DWSNets},
+ title = {Equivariant Architectures for Learning in Deep Weight Spaces},
+ year = {2023-01-30T10:50:33Z}
+}
+
+@article{shi_2022-10-06T17:03:34Z_language,
+ abstract = {We evaluate the reasoning abilities of large language models in multilingual
+settings. We introduce the Multilingual Grade School Math (MGSM) benchmark, by
+manually translating 250 grade-school math problems from the GSM8K dataset
+(Cobbe et al., 2021) into ten typologically diverse languages. We find that the
+ability to solve MGSM problems via chain-of-thought prompting emerges with
+increasing model scale, and that models have strikingly strong multilingual
+reasoning abilities, even in underrepresented languages such as Bengali and
+Swahili. Finally, we show that the multilingual reasoning abilities of language
+models extend to other tasks such as commonsense reasoning and word-in-context
+semantic judgment. The MGSM benchmark is publicly available at
+https://github.com/google-research/url-nlp.},
+ arxiv_url = {https://arxiv.org/pdf/2210.03057v1.pdf},
+ author = {Freda Shi and Mirac Suzgun and Markus Freitag and Xuezhi Wang and Suraj Srivats and Soroush Vosoughi and Hyung Won Chung and Yi Tay and Sebastian Ruder and Denny Zhou and Dipanjan Das and Jason Wei},
+ github_url = {https://github.com/google-research/url-nlp},
+ title = {Language models are multilingual chain-of-thought reasoners},
+ year = {2022-10-06T17:03:34Z}
+}
+
+@article{xi_2023-06-21T02:45:01Z_training,
+ abstract = {Quantizing the activation, weight, and gradient to 4-bit is promising to
+accelerate neural network training. However, existing 4-bit training methods
+require custom numerical formats which are not supported by contemporary
+hardware. In this work, we propose a training method for transformers with all
+matrix multiplications implemented with the INT4 arithmetic. Training with an
+ultra-low INT4 precision is challenging. To achieve this, we carefully analyze
+the specific structures of activation and gradients in transformers to propose
+dedicated quantizers for them. For forward propagation, we identify the
+challenge of outliers and propose a Hadamard quantizer to suppress the
+outliers. For backpropagation, we leverage the structural sparsity of gradients
+by proposing bit splitting and leverage score sampling techniques to quantize
+gradients accurately. Our algorithm achieves competitive accuracy on a wide
+range of tasks including natural language understanding, machine translation,
+and image classification. Unlike previous 4-bit training methods, our algorithm
+can be implemented on the current generation of GPUs. Our prototypical linear
+operator implementation is up to 2.2 times faster than the FP16 counterparts
+and speeds up the training by up to 35.1%.},
+ arxiv_url = {https://arxiv.org/pdf/2306.11987v2.pdf},
+ author = {Haocheng Xi and Changhao Li and Jianfei Chen and Jun Zhu},
+ github_url = {https://github.com/xijiu9/Train_Transformers_with_INT4},
+ title = {Training Transformers with 4-bit Integers},
+ year = {2023-06-21T02:45:01Z}
+}
+
+@article{yun_2020-06-08T18:30:12Z_connections,
+ abstract = {Recently, Transformer networks have redefined the state of the art in many
+NLP tasks. However, these models suffer from quadratic computational cost in
+the input sequence length $n$ to compute pairwise attention in each layer. This
+has prompted recent research into sparse Transformers that sparsify the
+connections in the attention layers. While empirically promising for long
+sequences, fundamental questions remain unanswered: Can sparse Transformers
+approximate any arbitrary sequence-to-sequence function, similar to their dense
+counterparts? How does the sparsity pattern and the sparsity level affect their
+performance? In this paper, we address these questions and provide a unifying
+framework that captures existing sparse attention models. We propose sufficient
+conditions under which we prove that a sparse attention model can universally
+approximate any sequence-to-sequence function. Surprisingly, our results show
+that sparse Transformers with only $O(n)$ connections per attention layer can
+approximate the same function class as the dense model with $n^2$ connections.
+Lastly, we present experiments comparing different patterns/levels of sparsity
+on standard NLP tasks.},
+ arxiv_url = {https://arxiv.org/pdf/2006.04862v2.pdf},
+ author = {Chulhee Yun and Yin-Wen Chang and Srinadh Bhojanapalli and Ankit Singh Rawat and Sashank J. Reddi and Sanjiv Kumar},
+ title = {O(n) Connections are Expressive Enough: Universal Approximability of Sparse Transformers},
+ year = {2020-06-08T18:30:12Z}
+}
+
+@article{zhang_2024-05-01T05:52:05Z_careful,
+ abstract = {Large language models (LLMs) have achieved impressive success on many
+benchmarks for mathematical reasoning. However, there is growing concern that
+some of this performance actually reflects dataset contamination, where data
+closely resembling benchmark questions leaks into the training data, instead of
+true reasoning ability. To investigate this claim rigorously, we commission
+Grade School Math 1000 (GSM1k). GSM1k is designed to mirror the style and
+complexity of the established GSM8k benchmark, the gold standard for measuring
+elementary mathematical reasoning. We ensure that the two benchmarks are
+comparable across important metrics such as human solve rates, number of steps
+in solution, answer magnitude, and more. When evaluating leading open- and
+closed-source LLMs on GSM1k, we observe accuracy drops of up to 8%, with
+several families of models showing evidence of systematic overfitting across
+almost all model sizes. Further analysis suggests a positive relationship
+(Spearman's r^2 = 0.36) between a model's probability of generating an example
+from GSM8k and its performance gap between GSM8k and GSM1k, suggesting that
+some models may have partially memorized GSM8k. Nevertheless, many models,
+especially those on the frontier, show minimal signs of overfitting, and all
+models broadly demonstrate generalization to novel math problems guaranteed to
+not be in their training data.},
+ arxiv_url = {https://arxiv.org/pdf/2405.00332v4.pdf},
+ author = {Hugh Zhang and Jeff Da and Dean Lee and Vaughn Robinson and Catherine Wu and Will Song and Tiffany Zhao and Pranav Raja and Charlotte Zhuang and Dylan Slack and Qin Lyu and Sean Hendryx and Russell Kaplan and Michele Lunati and Summer Yue},
+ title = {A Careful Examination of Large Language Model Performance on Grade School Arithmetic},
+ year = {2024-05-01T05:52:05Z}
+}
+
+% ===========================================
+% REFERENCE CANDIDATES
+% Additional reference papers for context
+% ===========================================
+
+@article{dettmers_2023-05-23T17:50:33Z_qlora,
+ abstract = {We present QLoRA, an efficient finetuning approach that reduces memory usage
+enough to finetune a 65B parameter model on a single 48GB GPU while preserving
+full 16-bit finetuning task performance. QLoRA backpropagates gradients through
+a frozen, 4-bit quantized pretrained language model into Low Rank
+Adapters~(LoRA). Our best model family, which we name Guanaco, outperforms all
+previous openly released models on the Vicuna benchmark, reaching 99.3% of the
+performance level of ChatGPT while only requiring 24 hours of finetuning on a
+single GPU. QLoRA introduces a number of innovations to save memory without
+sacrificing performance: (a) 4-bit NormalFloat (NF4), a new data type that is
+information theoretically optimal for normally distributed weights (b) double
+quantization to reduce the average memory footprint by quantizing the
+quantization constants, and (c) paged optimziers to manage memory spikes. We
+use QLoRA to finetune more than 1,000 models, providing a detailed analysis of
+instruction following and chatbot performance across 8 instruction datasets,
+multiple model types (LLaMA, T5), and model scales that would be infeasible to
+run with regular finetuning (e.g. 33B and 65B parameter models). Our results
+show that QLoRA finetuning on a small high-quality dataset leads to
+state-of-the-art results, even when using smaller models than the previous
+SoTA. We provide a detailed analysis of chatbot performance based on both human
+and GPT-4 evaluations showing that GPT-4 evaluations are a cheap and reasonable
+alternative to human evaluation. Furthermore, we find that current chatbot
+benchmarks are not trustworthy to accurately evaluate the performance levels of
+chatbots. A lemon-picked analysis demonstrates where Guanaco fails compared to
+ChatGPT. We release all of our models and code, including CUDA kernels for
+4-bit training.},
+ arxiv_url = {https://arxiv.org/pdf/2305.14314v1.pdf},
+ author = {Tim Dettmers and Artidoro Pagnoni and Ari Holtzman and Luke Zettlemoyer},
+ title = {Qlora: Efficient finetuning of quantized llms},
+ year = {2023-05-23T17:50:33Z}
+}
