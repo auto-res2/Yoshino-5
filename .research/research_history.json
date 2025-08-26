@@ -1,0 +1,10 @@
+{
+  "research_topic": "DoRA + SparseK Attention for Mathematical Reasoning Enhancement : Develop Weight-Decomposed Low-Rank Adaptation (DoRA) combined with SparseK Attention to improve mathematical reasoning accuracy (exact match) on GSM8K (8,500 grade school math problems), MATH Dataset (12,500 competition problems), and supplementary evaluations on HellaSwag and MMLU math sections, compared to standard LoRA baselines using 7B parameter models (LLaMA-7B, Mistral-7B) with 4-bit NF4 quantization and mixed precision training, addressing the critical 2025 trend of efficient large reasoning models by decomposing weights into magnitude and direction components for enhanced multi-step reasoning while achieving linear complexity attention.",
+  "queries": [
+    "DoRA LLM",
+    "weight decomposed adaptation",
+    "SparseK attention",
+    "NF4 quantization",
+    "GSM8K math reasoning"
+  ]
+}
