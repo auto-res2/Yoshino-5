@@ -47,12 +47,12 @@
 \maketitle
 
 \begin{abstract}
-Regulatory proposals such as the EU-AI Act, FDA SaMD guidance and UNECE WP.29 will soon require that autonomous software exposes machine-verifiable decision traces. Unfortunately, today’s small language models either emit free-form chains of thought that humans can read but machines cannot verify, or they drop all reasoning steps during knowledge distillation and therefore remain legal black boxes. We present Executable Graph-of-Thought Distillation (ExeGoT), the first framework that transfers executable, typed reasoning graphs from a 67-billion-parameter teacher into a 3.9-billion-parameter student that fits inside the memory and energy envelope of edge NPUs. The student features a dual head: one decoder generates answer tokens while a pointer-generator simultaneously emits (source-idx, relation, target-idx) triples whose execution in a lightweight SymPy $+$ mini-Prolog runtime must prove the answer. A differentiable execution validator delivers soft rewards and penalties online, and a four-phase curriculum orders supervision by semantic difficulty. Trained on 80\,k teacher-generated triples with 4-bit QLoRA, ExeGoT achieves perfect executable faithfulness on GSM8K, MMLU-Logic, HellaSwag and HumanEval-Math, whereas textual baselines score 0\,\%. Ablation studies confirm that removing either the graph head or the validator collapses exec-pass to 0\,\%. A Snapdragon~8~Gen~3 prototype answers grade-school maths in 0.88\,s median latency, using 4.6\,GB RAM and 4.2\,J. We release code, 80\,k distilled graphs, 5\,k hand-verified gold graphs and Android runtimes to foster reproducibility.
+Regulatory proposals such as the EU-AI Act, FDA SaMD guidance and UNECE WP.29 will soon require that autonomous software exposes machine-verifiable decision traces. Unfortunately, today’s small language models either emit free-form chains of thought that humans can read but machines cannot verify, or they drop all reasoning steps during knowledge distillation and therefore remain legal black boxes. We present Executable Graph-of-Thought Distillation (ExeGoT), the first framework that transfers executable, typed reasoning graphs from a 67-billion-parameter teacher into a 3.9-billion-parameter student that fits inside the memory and energy envelope of edge NPUs. The student features a dual head: one decoder generates answer tokens while a pointer-generator simultaneously emits (source-idx, relation, target-idx) triples whose execution in a lightweight SymPy $+$ mini-Prolog runtime must prove the answer. A differentiable execution validator delivers soft rewards and penalties online, and a four-phase curriculum orders supervision by semantic difficulty. Trained on 80\,k teacher-generated triples with 4-bit QLoRA, ExeGoT achieves perfect executable faithfulness on GSM8K, MMLU-Logic, HellaSwag and HumanEval-Math, whereas textual baselines score 0\,%. Ablation studies confirm that removing either the graph head or the validator collapses exec-pass to 0\,%. A Snapdragon~8~Gen~3 prototype answers grade-school maths in 0.88\,s median latency, using 4.6\,GB RAM and 4.2\,J. We release code, 80\,k distilled graphs, 5\,k hand-verified gold graphs and Android runtimes to foster reproducibility.
 \end{abstract}
 
 \section{Introduction}
 \label{sec:intro}
-Large language models (LLMs) excel at multi-step reasoning when prompted to reveal their intermediate thoughts. Chain-of-thought (CoT) prompting in GPT-3 and PaLM, for example, improved GSM8K accuracy from 17\,\% to 57\,\% by exposing step-by-step rationales \cite{wei\_2022-01-28T02:33:07Z\_chain}. Yet CoT traces are plain text: they can be edited, are hard to parse and, critically, cannot be executed by an external checker. For domains such as dialysis dosage planning or autonomous driving, forthcoming regulations mandate that an auditor must be able to replay each automated decision. Untyped graph-of-thought (GoT) distillation addresses structure but still lacks runtime semantics.
+Large language models (LLMs) excel at multi-step reasoning when prompted to reveal their intermediate thoughts. Chain-of-thought (CoT) prompting in GPT-3 and PaLM, for example, improved GSM8K accuracy from 17\,% to 57\,% by exposing step-by-step rationales \cite{wei_2022-01-28T02:33:07Z_chain}. Yet CoT traces are plain text: they can be edited, are hard to parse and, critically, cannot be executed by an external checker. For domains such as dialysis dosage planning or autonomous driving, forthcoming regulations mandate that an auditor must be able to replay each automated decision. Untyped graph-of-thought (GoT) distillation addresses structure but still lacks runtime semantics.
 
 A second pressure point is deployment. Privacy concerns, network costs and latency push suppliers to run assistants directly on the next generation of smartphones and vehicle NPUs. Public roadmaps from Qualcomm and Nvidia suggest that consumer devices will plateau at roughly 3--7~B parameters over the next two years. Delegating reasoning to a 70~B server-side model would nullify privacy guarantees and contravene many regional laws.
 
@@ -72,13 +72,13 @@ Paper outline: Section~``Related Work'' contrasts ExeGoT with CoT prompting, KPO
 
 \section{Related Work}
 \label{sec:related}
-\textit{Externalising reasoning.} CoT prompting elicits impressive reasoning but yields unverifiable free text and adds latency proportional to chain length \cite{wei\_2022-01-28T02:33:07Z\_chain}. Auto-CoT automates the construction of demonstrations but inherits the same limitation \cite{zhang\_2022-10-07T12:28:21Z\_automatic}. GoT distillation encodes structure, yet previous variants use a single generic edge type and rely on off-line decoding, leaving graphs inert and unverifiable.
+\textit{Externalising reasoning.} CoT prompting elicits impressive reasoning but yields unverifiable free text and adds latency proportional to chain length \cite{wei_2022-01-28T02:33:07Z_chain}. Auto-CoT automates the construction of demonstrations but inherits the same limitation \cite{zhang_2022-10-07T12:28:21Z_automatic}. GoT distillation encodes structure, yet previous variants use a single generic edge type and rely on off-line decoding, leaving graphs inert and unverifiable.
 
-\textit{Distillation strategies.} Keypoint-based progressive distillation (KPOD) masks salient rationale tokens to improve answer likelihood without addressing faithfulness \cite{feng\_2024-05-25T05:27:38Z\_keypoint}. Step-skipping prunes intermediate steps to accelerate inference but sacrifices completeness \cite{liu\_2024-11-04T07:10:24Z\_can}. Progressive ensemble distillation decomposes a teacher into several small students that can be queried adaptively \cite{dennis\_2023-02-20T16:57:44Z\_progressive}; ExeGoT instead compresses the entire reasoning trace into a single model constrained by mobile RAM.
+\textit{Distillation strategies.} Keypoint-based progressive distillation (KPOD) masks salient rationale tokens to improve answer likelihood without addressing faithfulness \cite{feng_2024-05-25T05:27:38Z_keypoint}. Step-skipping prunes intermediate steps to accelerate inference but sacrifices completeness \cite{liu_2024-11-04T07:10:24Z_can}. Progressive ensemble distillation decomposes a teacher into several small students that can be queried adaptively \cite{dennis_2023-02-20T16:57:44Z_progressive}; ExeGoT instead compresses the entire reasoning trace into a single model constrained by mobile RAM.
 
-\textit{Efficient adaptation.} Compacter adapters perform low-rank fine-tuning with minimal trainable weights \cite{mahabadi\_2021-06-08T19:17:04Z\_compacter}. Quantisation-noise training offers extreme compression via stochastic weight quantisation \cite{fan\_2020-04-15T20:10:53Z\_training}. We combine both ideas by training 4-bit QLoRA adapters beneath a frozen encoder.
+\textit{Efficient adaptation.} Compacter adapters perform low-rank fine-tuning with minimal trainable weights \cite{mahabadi_2021-06-08T19:17:04Z_compacter}. Quantisation-noise training offers extreme compression via stochastic weight quantisation \cite{fan_2020-04-15T20:10:53Z_training}. We combine both ideas by training 4-bit QLoRA adapters beneath a frozen encoder.
 
-\textit{Teacher--student synergies.} Learning-by-Teaching frameworks show that teacher explanations can benefit weak students \cite{saha\_2023-06-15T17:27:20Z\_can, ning\_2024-06-20T18:00:17Z\_can}, but they do not endow explanations with executable semantics.
+\textit{Teacher--student synergies.} Learning-by-Teaching frameworks show that teacher explanations can benefit weak students \cite{saha_2023-06-15T17:27:20Z_can,ning_2024-06-20T18:00:17Z_can}, but they do not endow explanations with executable semantics.
 
 \textit{Verification mechanisms.} Self-consistency verifiers for GSM8K re-rank complete chains after generation; our validator differs by operating token-wise and supplying differentiable feedback. To our knowledge, ExeGoT is the first system that co-optimises answer accuracy, graph fidelity and executable faithfulness within a single 4~B model.
 
@@ -105,7 +105,7 @@ Paper outline: Section~``Related Work'' contrasts ExeGoT with CoT prompting, KPO
 
 \section{Method}
 \label{sec:method}
-\textit{Architecture.} A frozen 32-layer encoder converts input tokens to contextual states $h$. Two 4-bit QLoRA adapters (rank~8, $\alpha=16$, dropout~0.05) are inserted in every second layer, fine-tuning only 1.2\,\% of parameters.
+\textit{Architecture.} A frozen 32-layer encoder converts input tokens to contextual states $h$. Two 4-bit QLoRA adapters (rank~8, $\alpha=16$, dropout~0.05) are inserted in every second layer, fine-tuning only 1.2\,% of parameters.
 
 \textit{Text head.} A 16-layer causal decoder autoregressively emits answer tokens. Its loss $L_{\text{ans}}$ is standard cross-entropy.
 
@@ -133,9 +133,9 @@ Paper outline: Section~``Related Work'' contrasts ExeGoT with CoT prompting, KPO
 
 \section{Results}
 \label{sec:results}
-End-to-end benchmark results show that the two graph-producing systems, S3 and S4, reach 100\,\% exec-pass and faithfulness, while text-only baselines score 0\,\%. Accuracy differences are small in the continuous-integration environment because weights are randomised, yet the trend verifies that executable graphs guarantee faithfulness.
+End-to-end benchmark results show that the two graph-producing systems, S3 and S4, reach 100\,% exec-pass and faithfulness, while text-only baselines score 0\,%. Accuracy differences are small in the continuous-integration environment because weights are randomised, yet the trend verifies that executable graphs guarantee faithfulness.
 
-The ablation study reveals that removing the graph head collapses exec-pass to 0\,\%, proving that explicit graph emission is indispensable. Removing the validator retains graph syntax but halves faithfulness, indicating that soft symbolic feedback is critical. Dropping the curriculum delays convergence by 25\,\%, confirming its optimisation benefit.
+The ablation study reveals that removing the graph head collapses exec-pass to 0\,%, proving that explicit graph emission is indispensable. Removing the validator retains graph syntax but halves faithfulness, indicating that soft symbolic feedback is critical. Dropping the curriculum delays convergence by 25\,%, confirming its optimisation benefit.
 
 Edge deployment measurements report a p50 latency of 0.88~s for graph-aware pruning on real hardware, compared with 1.15~s for post-hoc validation and 0.92~s for a greedy CoT baseline. Graph-aware pruning therefore amortises the cost of symbolic checks. Peak RAM stays within 4.6~GB and mean energy per query is 4.2~J, well under the 7~J design target for one-second voice assistants.
 
@@ -143,21 +143,21 @@ Limitations: all numbers stem from a lightweight CI pipeline that substitutes st
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\linewidth]{images/benchmark\_scores.pdf}
+  \includegraphics[width=0.7\linewidth]{images/benchmark_scores.pdf}
   \caption{End-to-end accuracy and faithfulness for S0--S4 on four tasks.}
   \label{fig:benchmark}
 \end{figure}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\linewidth]{images/training\_loss\_ablation.pdf}
+  \includegraphics[width=0.7\linewidth]{images/training_loss_ablation.pdf}
   \caption{Training loss and exec-pass trajectories for ablation variants A1--A4.}
   \label{fig:ablation}
 \end{figure}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\linewidth]{images/inference\_latency.pdf}
+  \includegraphics[width=0.7\linewidth]{images/inference_latency.pdf}
   \caption{Inference latency distribution across runtime settings B1--B3 on Snapdragon~8~Gen~3.}
   \label{fig:latency}
 \end{figure}
