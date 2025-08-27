@@ -5,3 +5,460 @@
   publisher = {GitHub},
   url       = {https://github.com/airas-org/airas}
 }
+
+% ===========================================
+% REQUIRED CITATIONS
+% These papers must be cited in the manuscript
+% ===========================================
+
+@article{author_year_towards,
+ title = {Towards Video Text Visual Question Answering: Benchmark and Baseline}
+}
+
+@article{author_year_towards,
+ title = {Towards Video Text Visual Question Answering: Benchmark and Baseline}
+}
+
+@article{blattmann_2023-04-18T08:30:32Z_align,
+ abstract = {Latent Diffusion Models (LDMs) enable high-quality image synthesis while
+avoiding excessive compute demands by training a diffusion model in a
+compressed lower-dimensional latent space. Here, we apply the LDM paradigm to
+high-resolution video generation, a particularly resource-intensive task. We
+first pre-train an LDM on images only; then, we turn the image generator into a
+video generator by introducing a temporal dimension to the latent space
+diffusion model and fine-tuning on encoded image sequences, i.e., videos.
+Similarly, we temporally align diffusion model upsamplers, turning them into
+temporally consistent video super resolution models. We focus on two relevant
+real-world applications: Simulation of in-the-wild driving data and creative
+content creation with text-to-video modeling. In particular, we validate our
+Video LDM on real driving videos of resolution 512 x 1024, achieving
+state-of-the-art performance. Furthermore, our approach can easily leverage
+off-the-shelf pre-trained image LDMs, as we only need to train a temporal
+alignment model in that case. Doing so, we turn the publicly available,
+state-of-the-art text-to-image LDM Stable Diffusion into an efficient and
+expressive text-to-video model with resolution up to 1280 x 2048. We show that
+the temporal layers trained in this way generalize to different fine-tuned
+text-to-image LDMs. Utilizing this property, we show the first results for
+personalized text-to-video generation, opening exciting directions for future
+content creation. Project page:
+https://research.nvidia.com/labs/toronto-ai/VideoLDM/},
+ arxiv_url = {https://arxiv.org/pdf/2304.08818v2.pdf},
+ author = {Andreas Blattmann and Robin Rombach and Huan Ling and Tim Dockhorn and Seung Wook Kim and Sanja Fidler and Karsten Kreis},
+ github_url = {https://github.com/NVlabs/long-video-gan},
+ title = {Align Your Latents: High-Resolution Video Synthesis With Latent Diffusion Models},
+ year = {2023-04-18T08:30:32Z}
+}
+
+@article{dong_2024-10-30T12:08:30Z_efficient,
+ abstract = {A common strategy for Parameter-Efficient Fine-Tuning (PEFT) of pre-trained
+Vision Transformers (ViTs) involves adapting the model to downstream tasks by
+learning a low-rank adaptation matrix. This matrix is decomposed into a product
+of down-projection and up-projection matrices, with the bottleneck
+dimensionality being crucial for reducing the number of learnable parameters,
+as exemplified by prevalent methods like LoRA and Adapter. However, these
+low-rank strategies typically employ a fixed bottleneck dimensionality, which
+limits their flexibility in handling layer-wise variations. To address this
+limitation, we propose a novel PEFT approach inspired by Singular Value
+Decomposition (SVD) for representing the adaptation matrix. SVD decomposes a
+matrix into the product of a left unitary matrix, a diagonal matrix of scaling
+values, and a right unitary matrix. We utilize Householder transformations to
+construct orthogonal matrices that efficiently mimic the unitary matrices,
+requiring only a vector. The diagonal values are learned in a layer-wise
+manner, allowing them to flexibly capture the unique properties of each layer.
+This approach enables the generation of adaptation matrices with varying ranks
+across different layers, providing greater flexibility in adapting pre-trained
+models. Experiments on standard downstream vision tasks demonstrate that our
+method achieves promising fine-tuning performance.},
+ arxiv_url = {https://arxiv.org/pdf/2410.22952v1.pdf},
+ author = {Wei Dong and Yuan Sun and Yiting Yang and Xing Zhang and Zhijun Lin and Qingsen Yan and Haokui Zhang and Peng Wang and Yang Yang and Hengtao Shen},
+ title = {Efficient Adaptation of Pre-trained Vision Transformer via Householder Transformation},
+ year = {2024-10-30T12:08:30Z}
+}
+
+@article{guo_2023-07-10T17:34:16Z_animatediff,
+ abstract = {With the advance of text-to-image (T2I) diffusion models (e.g., Stable
+Diffusion) and corresponding personalization techniques such as DreamBooth and
+LoRA, everyone can manifest their imagination into high-quality images at an
+affordable cost. However, adding motion dynamics to existing high-quality
+personalized T2Is and enabling them to generate animations remains an open
+challenge. In this paper, we present AnimateDiff, a practical framework for
+animating personalized T2I models without requiring model-specific tuning. At
+the core of our framework is a plug-and-play motion module that can be trained
+once and seamlessly integrated into any personalized T2Is originating from the
+same base T2I. Through our proposed training strategy, the motion module
+effectively learns transferable motion priors from real-world videos. Once
+trained, the motion module can be inserted into a personalized T2I model to
+form a personalized animation generator. We further propose MotionLoRA, a
+lightweight fine-tuning technique for AnimateDiff that enables a pre-trained
+motion module to adapt to new motion patterns, such as different shot types, at
+a low training and data collection cost. We evaluate AnimateDiff and MotionLoRA
+on several public representative personalized T2I models collected from the
+community. The results demonstrate that our approaches help these models
+generate temporally smooth animation clips while preserving the visual quality
+and motion diversity. Codes and pre-trained weights are available at
+https://github.com/guoyww/AnimateDiff.},
+ arxiv_url = {https://arxiv.org/pdf/2307.04725v2.pdf},
+ author = {Yuwei Guo and Ceyuan Yang and Anyi Rao and Zhengyang Liang and Yaohui Wang and Yu Qiao and Maneesh Agrawala and Dahua Lin and Bo Dai},
+ github_url = {https://github.com/guoyww/AnimateDiff},
+ title = {AnimateDiff: Animate Your Personalized Text-to-Image Diffusion Models without Specific Tuning},
+ year = {2023-07-10T17:34:16Z}
+}
+
+@article{liu_2024-02-14T17:59:34Z_dora,
+ abstract = {Among the widely used parameter-efficient fine-tuning (PEFT) methods, LoRA
+and its variants have gained considerable popularity because of avoiding
+additional inference costs. However, there still often exists an accuracy gap
+between these methods and full fine-tuning (FT). In this work, we first
+introduce a novel weight decomposition analysis to investigate the inherent
+differences between FT and LoRA. Aiming to resemble the learning capacity of FT
+from the findings, we propose Weight-Decomposed Low-Rank Adaptation (DoRA).
+DoRA decomposes the pre-trained weight into two components, magnitude and
+direction, for fine-tuning, specifically employing LoRA for directional updates
+to efficiently minimize the number of trainable parameters. By employing \ours,
+we enhance both the learning capacity and training stability of LoRA while
+avoiding any additional inference overhead. \ours~consistently outperforms LoRA
+on fine-tuning LLaMA, LLaVA, and VL-BART on various downstream tasks, such as
+commonsense reasoning, visual instruction tuning, and image/video-text
+understanding. Code is available at https://github.com/NVlabs/DoRA.},
+ arxiv_url = {https://arxiv.org/pdf/2402.09353v6.pdf},
+ author = {Shih-Yang Liu and Chien-Yi Wang and Hongxu Yin and Pavlo Molchanov and Yu-Chiang Frank Wang and Kwang-Ting Cheng and Min-Hung Chen},
+ title = {DoRA: Weight-Decomposed Low-Rank Adaptation},
+ year = {2024-02-14T17:59:34Z}
+}
+
+@article{liu_2024-02-14T17:59:34Z_dora,
+ abstract = {Among the widely used parameter-efficient fine-tuning (PEFT) methods, LoRA
+and its variants have gained considerable popularity because of avoiding
+additional inference costs. However, there still often exists an accuracy gap
+between these methods and full fine-tuning (FT). In this work, we first
+introduce a novel weight decomposition analysis to investigate the inherent
+differences between FT and LoRA. Aiming to resemble the learning capacity of FT
+from the findings, we propose Weight-Decomposed Low-Rank Adaptation (DoRA).
+DoRA decomposes the pre-trained weight into two components, magnitude and
+direction, for fine-tuning, specifically employing LoRA for directional updates
+to efficiently minimize the number of trainable parameters. By employing \ours,
+we enhance both the learning capacity and training stability of LoRA while
+avoiding any additional inference overhead. \ours~consistently outperforms LoRA
+on fine-tuning LLaMA, LLaVA, and VL-BART on various downstream tasks, such as
+commonsense reasoning, visual instruction tuning, and image/video-text
+understanding. Code is available at https://github.com/NVlabs/DoRA.},
+ arxiv_url = {https://arxiv.org/pdf/2402.09353v6.pdf},
+ author = {Shih-Yang Liu and Chien-Yi Wang and Hongxu Yin and Pavlo Molchanov and Yu-Chiang Frank Wang and Kwang-Ting Cheng and Min-Hung Chen},
+ title = {DoRA: Weight-Decomposed Low-Rank Adaptation},
+ year = {2024-02-14T17:59:34Z}
+}
+
+@article{lu_2022-09-23T03:35:59Z_lgdn,
+ abstract = {Video-language modeling has attracted much attention with the rapid growth of
+web videos. Most existing methods assume that the video frames and text
+description are semantically correlated, and focus on video-language modeling
+at video level. However, this hypothesis often fails for two reasons: (1) With
+the rich semantics of video contents, it is difficult to cover all frames with
+a single video-level description; (2) A raw video typically has
+noisy/meaningless information (e.g., scenery shot, transition or teaser).
+Although a number of recent works deploy attention mechanism to alleviate this
+problem, the irrelevant/noisy information still makes it very difficult to
+address. To overcome such challenge, we thus propose an efficient and effective
+model, termed Language-Guided Denoising Network (LGDN), for video-language
+modeling. Different from most existing methods that utilize all extracted video
+frames, LGDN dynamically filters out the misaligned or redundant frames under
+the language supervision and obtains only 2--4 salient frames per video for
+cross-modal token-level alignment. Extensive experiments on five public
+datasets show that our LGDN outperforms the state-of-the-arts by large margins.
+We also provide detailed ablation study to reveal the critical importance of
+solving the noise issue, in hope of inspiring future video-language work.},
+ arxiv_url = {https://arxiv.org/pdf/2209.11388v3.pdf},
+ author = {Haoyu Lu and Mingyu Ding and Nanyi Fei and Yuqi Huo and Zhiwu Lu},
+ title = {LGDN: Language-Guided Denoising Network for Video-Language Modeling},
+ year = {2022-09-23T03:35:59Z}
+}
+
+@article{nasery_2021-08-15T11:20:10Z_training,
+ abstract = {In several real world applications, machine learning models are deployed to
+make predictions on data whose distribution changes gradually along time,
+leading to a drift between the train and test distributions. Such models are
+often re-trained on new data periodically, and they hence need to generalize to
+data not too far into the future. In this context, there is much prior work on
+enhancing temporal generalization, e.g. continuous transportation of past data,
+kernel smoothed time-sensitive parameters and more recently, adversarial
+learning of time-invariant features. However, these methods share several
+limitations, e.g, poor scalability, training instability, and dependence on
+unlabeled data from the future. Responding to the above limitations, we propose
+a simple method that starts with a model with time-sensitive parameters but
+regularizes its temporal complexity using a Gradient Interpolation (GI) loss.
+GI allows the decision boundary to change along time and can still prevent
+overfitting to the limited training time snapshots by allowing task-specific
+control over changes along time. We compare our method to existing baselines on
+multiple real-world datasets, which show that GI outperforms more complicated
+generative and adversarial approaches on the one hand, and simpler gradient
+regularization methods on the other.},
+ arxiv_url = {https://arxiv.org/pdf/2108.06721v2.pdf},
+ author = {Anshul Nasery and Soumyadeep Thakur and Vihari Piratla and Abir De and Sunita Sarawagi},
+ github_url = {https://github.com/anshuln/Training-for-the-Future},
+ title = {Training for the Future: A Simple Gradient Interpolation Loss to Generalize Along Time},
+ year = {2021-08-15T11:20:10Z}
+}
+
+@article{wang_2022-05-22T05:18:27Z_language,
+ abstract = {The goal of this work is to build flexible video-language models that can
+generalize to various video-to-text tasks from few examples, such as
+domain-specific captioning, question answering, and future event prediction.
+Existing few-shot video-language learners focus exclusively on the encoder,
+resulting in the absence of a video-to-text decoder to handle generative tasks.
+Video captioners have been pretrained on large-scale video-language datasets,
+but they rely heavily on finetuning and lack the ability to generate text for
+unseen tasks in a few-shot setting. We propose VidIL, a few-shot Video-language
+Learner via Image and Language models, which demonstrates strong performance on
+few-shot video-to-text tasks without the necessity of pretraining or finetuning
+on any video datasets. We use the image-language models to translate the video
+content into frame captions, object, attribute, and event phrases, and compose
+them into a temporal structure template. We then instruct a language model,
+with a prompt containing a few in-context examples, to generate a target output
+from the composed content. The flexibility of prompting allows the model to
+capture any form of text input, such as automatic speech recognition (ASR)
+transcripts. Our experiments demonstrate the power of language models in
+understanding videos on a wide variety of video-language tasks, including video
+captioning, video question answering, video caption retrieval, and video future
+event prediction. Especially, on video future event prediction, our few-shot
+model significantly outperforms state-of-the-art supervised models trained on
+large-scale video datasets. Code and resources are publicly available for
+research purposes at https://github.com/MikeWangWZHL/VidIL .},
+ arxiv_url = {https://arxiv.org/pdf/2205.10747v4.pdf},
+ author = {Zhenhailong Wang and Manling Li and Ruochen Xu and Luowei Zhou and Jie Lei and Xudong Lin and Shuohang Wang and Ziyi Yang and Chenguang Zhu and Derek Hoiem and Shih-Fu Chang and Mohit Bansal and Heng Ji},
+ github_url = {https://github.com/salesforce/BLIP},
+ title = {Language Models with Image Descriptors are Strong Few-Shot Video-Language Learners},
+ year = {2022-05-22T05:18:27Z}
+}
+
+@article{xing_2023-08-18T17:58:44Z_simda,
+ abstract = {The recent wave of AI-generated content has witnessed the great development
+and success of Text-to-Image (T2I) technologies. By contrast, Text-to-Video
+(T2V) still falls short of expectations though attracting increasing interests.
+Existing works either train from scratch or adapt large T2I model to videos,
+both of which are computation and resource expensive. In this work, we propose
+a Simple Diffusion Adapter (SimDA) that fine-tunes only 24M out of 1.1B
+parameters of a strong T2I model, adapting it to video generation in a
+parameter-efficient way. In particular, we turn the T2I model for T2V by
+designing light-weight spatial and temporal adapters for transfer learning.
+Besides, we change the original spatial attention to the proposed Latent-Shift
+Attention (LSA) for temporal consistency. With similar model architecture, we
+further train a video super-resolution model to generate high-definition
+(1024x1024) videos. In addition to T2V generation in the wild, SimDA could also
+be utilized in one-shot video editing with only 2 minutes tuning. Doing so, our
+method could minimize the training effort with extremely few tunable parameters
+for model adaptation.},
+ arxiv_url = {https://arxiv.org/pdf/2308.09710v1.pdf},
+ author = {Zhen Xing and Qi Dai and Han Hu and Zuxuan Wu and Yu-Gang Jiang},
+ title = {SimDA: Simple Diffusion Adapter for Efficient Video Generation},
+ year = {2023-08-18T17:58:44Z}
+}
+
+@article{yang_2022-06-16T13:18:20Z_zero,
+ abstract = {Video question answering (VideoQA) is a complex task that requires diverse
+multi-modal data for training. Manual annotation of question and answers for
+videos, however, is tedious and prohibits scalability. To tackle this problem,
+recent methods consider zero-shot settings with no manual annotation of visual
+question-answer. In particular, a promising approach adapts frozen
+autoregressive language models pretrained on Web-scale text-only data to
+multi-modal inputs. In contrast, we here build on frozen bidirectional language
+models (BiLM) and show that such an approach provides a stronger and cheaper
+alternative for zero-shot VideoQA. In particular, (i) we combine visual inputs
+with the frozen BiLM using light trainable modules, (ii) we train such modules
+using Web-scraped multi-modal data, and finally (iii) we perform zero-shot
+VideoQA inference through masked language modeling, where the masked text is
+the answer to a given question. Our proposed approach, FrozenBiLM, outperforms
+the state of the art in zero-shot VideoQA by a significant margin on a variety
+of datasets, including LSMDC-FiB, iVQA, MSRVTT-QA, MSVD-QA, ActivityNet-QA,
+TGIF-FrameQA, How2QA and TVQA. It also demonstrates competitive performance in
+the few-shot and fully-supervised setting. Our code and models are publicly
+available at https://github.com/antoyang/FrozenBiLM.},
+ arxiv_url = {https://arxiv.org/pdf/2206.08155v2.pdf},
+ author = {Antoine Yang and Antoine Miech and Josef Sivic and Ivan Laptev and Cordelia Schmid},
+ title = {Zero-Shot Video Question Answering via Frozen Bidirectional Language Models},
+ year = {2022-06-16T13:18:20Z}
+}
+
+@article{zeng_2023-10-26T16:08:33Z_the,
+ abstract = {Low-Rank Adaptation (LoRA), a parameter-efficient fine-tuning method that
+leverages low-rank adaptation of weight matrices, has emerged as a prevalent
+technique for fine-tuning pre-trained models such as large language models and
+diffusion models. Despite its huge success in practice, the theoretical
+underpinnings of LoRA have largely remained unexplored. This paper takes the
+first step to bridge this gap by theoretically analyzing the expressive power
+of LoRA. We prove that, for fully connected neural networks, LoRA can adapt any
+model $f$ to accurately represent any smaller target model $\overline{f}$ if
+LoRA-rank $\geq(\text{width of }f) \times \frac{\text{depth of
+}\overline{f}}{\text{depth of }f}$. We also quantify the approximation error
+when LoRA-rank is lower than the threshold. For Transformer networks, we show
+any model can be adapted to a target model of the same size with
+rank-$(\frac{\text{embedding size}}{2})$ LoRA adapters.},
+ arxiv_url = {https://arxiv.org/pdf/2310.17513v3.pdf},
+ author = {Yuchen Zeng and Kangwook Lee},
+ title = {The Expressive Power of Low-Rank Adaptation},
+ year = {2023-10-26T16:08:33Z}
+}
+
+@article{zhao_2024-01-11T18:59:53Z_distilling,
+ abstract = {The recent advance in vision-language models is largely attributed to the
+abundance of image-text data. We aim to replicate this success for
+video-language models, but there simply is not enough human-curated video-text
+data available. We thus resort to fine-tuning a video-language model from a
+strong image-language baseline with synthesized instructional data. The
+resulting video model by video-instruction-tuning (VIIT) is then used to
+auto-label millions of videos to generate high-quality captions. We show the
+adapted video-language model performs well on a wide range of video-language
+benchmarks. For instance, it surpasses the best prior result on open-ended
+NExT-QA by 2.8%. Besides, our model generates detailed descriptions for
+previously unseen videos, which provide better textual supervision than
+existing methods. Experiments show that a video-language dual-encoder model
+contrastively trained on these auto-generated captions is 3.8% better than the
+strongest baseline that also leverages vision-language models. Our best model
+outperforms state-of-the-art methods on MSR-VTT zero-shot text-to-video
+retrieval by 6%. As a side product, we generate the largest video caption
+dataset to date.},
+ arxiv_url = {https://arxiv.org/pdf/2401.06129v2.pdf},
+ author = {Yue Zhao and Long Zhao and Xingyi Zhou and Jialin Wu and Chun-Te Chu and Hui Miao and Florian Schroff and Hartwig Adam and Ting Liu and Boqing Gong and Philipp Krähenbühl and Liangzhe Yuan},
+ title = {Distilling Vision-Language Models on Millions of Videos},
+ year = {2024-01-11T18:59:53Z}
+}
+
+@article{zhu_2021-06-08T16:16:32Z_low,
+ abstract = {The latent space of a Generative Adversarial Network (GAN) has been shown to
+encode rich semantics within some subspaces. To identify these subspaces,
+researchers typically analyze the statistical information from a collection of
+synthesized data, and the identified subspaces tend to control image attributes
+globally (i.e., manipulating an attribute causes the change of an entire
+image). By contrast, this work introduces low-rank subspaces that enable more
+precise control of GAN generation. Concretely, given an arbitrary image and a
+region of interest (e.g., eyes of face images), we manage to relate the latent
+space to the image region with the Jacobian matrix and then use low-rank
+factorization to discover steerable latent subspaces. There are three
+distinguishable strengths of our approach that can be aptly called LowRankGAN.
+First, compared to analytic algorithms in prior work, our low-rank
+factorization of Jacobians is able to find the low-dimensional representation
+of attribute manifold, making image editing more precise and controllable.
+Second, low-rank factorization naturally yields a null space of attributes such
+that moving the latent code within it only affects the outer region of
+interest. Therefore, local image editing can be simply achieved by projecting
+an attribute vector into the null space without relying on a spatial mask as
+existing methods do. Third, our method can robustly work with a local region
+from one image for analysis yet well generalize to other images, making it much
+easy to use in practice. Extensive experiments on state-of-the-art GAN models
+(including StyleGAN2 and BigGAN) trained on various datasets demonstrate the
+effectiveness of our LowRankGAN.},
+ arxiv_url = {https://arxiv.org/pdf/2106.04488v2.pdf},
+ author = {Jiapeng Zhu and Ruili Feng and Yujun Shen and Deli Zhao and Zhengjun Zha and Jingren Zhou and Qifeng Chen},
+ github_url = {https://github.com/zhujiapeng/LowRankGAN},
+ title = {Low-Rank Subspaces in GANs},
+ year = {2021-06-08T16:16:32Z}
+}
+
+% ===========================================
+% REFERENCE CANDIDATES
+% Additional reference papers for context
+% ===========================================
+
+@article{bain_2021-04-01T17:48:27Z_frozen,
+ abstract = {Our objective in this work is video-text retrieval - in particular a joint
+embedding that enables efficient text-to-video retrieval. The challenges in
+this area include the design of the visual architecture and the nature of the
+training data, in that the available large scale video-text training datasets,
+such as HowTo100M, are noisy and hence competitive performance is achieved only
+at scale through large amounts of compute. We address both these challenges in
+this paper. We propose an end-to-end trainable model that is designed to take
+advantage of both large-scale image and video captioning datasets. Our model is
+an adaptation and extension of the recent ViT and Timesformer architectures,
+and consists of attention in both space and time. The model is flexible and can
+be trained on both image and video text datasets, either independently or in
+conjunction. It is trained with a curriculum learning schedule that begins by
+treating images as 'frozen' snapshots of video, and then gradually learns to
+attend to increasing temporal context when trained on video datasets. We also
+provide a new video-text pretraining dataset WebVid-2M, comprised of over two
+million videos with weak captions scraped from the internet. Despite training
+on datasets that are an order of magnitude smaller, we show that this approach
+yields state-of-the-art results on standard downstream video-retrieval
+benchmarks including MSR-VTT, MSVD, DiDeMo and LSMDC.},
+ arxiv_url = {https://arxiv.org/pdf/2104.00650v2.pdf},
+ author = {Max Bain and Arsha Nagrani and Gül Varol and Andrew Zisserman},
+ title = {Frozen in time: A joint video and image encoder for end-to-end retrieval.},
+ year = {2021-04-01T17:48:27Z}
+}
+
+@article{balaji_2022-11-02T17:43:04Z_ediff,
+ abstract = {Large-scale diffusion-based generative models have led to breakthroughs in
+text-conditioned high-resolution image synthesis. Starting from random noise,
+such text-to-image diffusion models gradually synthesize images in an iterative
+fashion while conditioning on text prompts. We find that their synthesis
+behavior qualitatively changes throughout this process: Early in sampling,
+generation strongly relies on the text prompt to generate text-aligned content,
+while later, the text conditioning is almost entirely ignored. This suggests
+that sharing model parameters throughout the entire generation process may not
+be ideal. Therefore, in contrast to existing works, we propose to train an
+ensemble of text-to-image diffusion models specialized for different synthesis
+stages. To maintain training efficiency, we initially train a single model,
+which is then split into specialized models that are trained for the specific
+stages of the iterative generation process. Our ensemble of diffusion models,
+called eDiff-I, results in improved text alignment while maintaining the same
+inference computation cost and preserving high visual quality, outperforming
+previous large-scale text-to-image diffusion models on the standard benchmark.
+In addition, we train our model to exploit a variety of embeddings for
+conditioning, including the T5 text, CLIP text, and CLIP image embeddings. We
+show that these different embeddings lead to different behaviors. Notably, the
+CLIP image embedding allows an intuitive way of transferring the style of a
+reference image to the target text-to-image output. Lastly, we show a technique
+that enables eDiff-I's "paint-with-words" capability. A user can select the
+word in the input text and paint it in a canvas to control the output, which is
+very handy for crafting the desired image in mind. The project page is
+available at https://deepimagination.cc/eDiff-I/},
+ arxiv_url = {https://arxiv.org/pdf/2211.01324v5.pdf},
+ author = {Yogesh Balaji and Seungjun Nah and Xun Huang and Arash Vahdat and Jiaming Song and Qinsheng Zhang and Karsten Kreis and Miika Aittala and Timo Aila and Samuli Laine and Bryan Catanzaro and Tero Karras and Ming-Yu Liu},
+ title = {ediff-i: Text-to-image diffusion models with ensemble of expert denoisers.},
+ year = {2022-11-02T17:43:04Z}
+}
+
+@article{bao_2022-01-17T16:28:12Z_analytic,
+ abstract = {Diffusion probabilistic models (DPMs) represent a class of powerful
+generative models. Despite their success, the inference of DPMs is expensive
+since it generally needs to iterate over thousands of timesteps. A key problem
+in the inference is to estimate the variance in each timestep of the reverse
+process. In this work, we present a surprising result that both the optimal
+reverse variance and the corresponding optimal KL divergence of a DPM have
+analytic forms w.r.t. its score function. Building upon it, we propose
+Analytic-DPM, a training-free inference framework that estimates the analytic
+forms of the variance and KL divergence using the Monte Carlo method and a
+pretrained score-based model. Further, to correct the potential bias caused by
+the score-based model, we derive both lower and upper bounds of the optimal
+variance and clip the estimate for a better result. Empirically, our
+analytic-DPM improves the log-likelihood of various DPMs, produces high-quality
+samples, and meanwhile enjoys a 20x to 80x speed up.},
+ arxiv_url = {https://arxiv.org/pdf/2201.06503v3.pdf},
+ author = {Fan Bao and Chongxuan Li and Jun Zhu and Bo Zhang},
+ title = {Analytic-dpm: an analytic estimate of the optimal reverse variance in diffusion probabilistic models.},
+ year = {2022-01-17T16:28:12Z}
+}
+
+@article{blattmann_2021-07-06T17:57:55Z_ipoke,
+ abstract = {How would a static scene react to a local poke? What are the effects on other
+parts of an object if you could locally push it? There will be distinctive
+movement, despite evident variations caused by the stochastic nature of our
+world. These outcomes are governed by the characteristic kinematics of objects
+that dictate their overall motion caused by a local interaction. Conversely,
+the movement of an object provides crucial information about its underlying
+distinctive kinematics and the interdependencies between its parts. This
+two-way relation motivates learning a bijective mapping between object
+kinematics and plausible future image sequences. Therefore, we propose iPOKE --
+invertible Prediction of Object Kinematics -- that, conditioned on an initial
+frame and a local poke, allows to sample object kinematics and establishes a
+one-to-one correspondence to the corresponding plausible videos, thereby
+providing a controlled stochastic video synthesis. In contrast to previous
+works, we do not generate arbitrary realistic videos, but provide efficient
+control of movements, while still capturing the stochastic nature of our
+environment and the diversity of plausible outcomes it entails. Moreover, our
+approach can transfer kinematics onto novel object instances and is not
+confined to particular object classes. Our project page is available at
+https://bit.ly/3dJN4Lf.},
+ arxiv_url = {https://arxiv.org/pdf/2107.02790v2.pdf},
+ author = {Andreas Blattmann and Timo Milbich and Michael Dorkenwald and Björn Ommer},
+ title = {ipoke: Poking a still image for controlled stochastic video synthesis.},
+ year = {2021-07-06T17:57:55Z}
+}
