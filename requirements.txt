@@ -1,1 +1,12 @@
-# Please list the required python packages.
+torch>=2.3.0
+transformers>=4.42.0
+datasets
+evaluate
+tqdm
+numpy
+pandas
+matplotlib
+seaborn
+bitsandbytes
+triton>=3.0.0
+pynvml
