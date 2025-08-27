@@ -5,3 +5,336 @@
   publisher = {GitHub},
   url       = {https://github.com/airas-org/airas}
 }
+
+% ===========================================
+% REQUIRED CITATIONS
+% These papers must be cited in the manuscript
+% ===========================================
+
+@article{anagnostidis_2023-11-06T16:20:28Z_navigating,
+ abstract = {In recent years, the state-of-the-art in deep learning has been dominated by
+very large models that have been pre-trained on vast amounts of data. The
+paradigm is very simple: investing more computational resources (optimally)
+leads to better performance, and even predictably so; neural scaling laws have
+been derived that accurately forecast the performance of a network for a
+desired level of compute. This leads to the notion of a `compute-optimal'
+model, i.e. a model that allocates a given level of compute during training
+optimally to maximize performance. In this work, we extend the concept of
+optimality by allowing for an `adaptive' model, i.e. a model that can change
+its shape during training. By doing so, we can design adaptive models that
+optimally traverse between the underlying scaling laws and outpace their
+`static' counterparts, leading to a significant reduction in the required
+compute to reach a given target performance. We show that our approach
+generalizes across modalities and different shape parameters.},
+ arxiv_url = {https://arxiv.org/pdf/2311.03233v3.pdf},
+ author = {Sotiris Anagnostidis and Gregor Bachmann and Imanol Schlag and Thomas Hofmann},
+ title = {Navigating Scaling Laws: Compute Optimality in Adaptive Model Training},
+ year = {2023-11-06T16:20:28Z}
+}
+
+@article{author_year_decoding,
+ title = {Decoding As Dynamic Programming For Recurrent Autoregressive Models}
+}
+
+@article{bowling_2022-12-20T16:55:33Z_settling,
+ abstract = {The reward hypothesis posits that, "all of what we mean by goals and purposes
+can be well thought of as maximization of the expected value of the cumulative
+sum of a received scalar signal (reward)." We aim to fully settle this
+hypothesis. This will not conclude with a simple affirmation or refutation, but
+rather specify completely the implicit requirements on goals and purposes under
+which the hypothesis holds.},
+ arxiv_url = {https://arxiv.org/pdf/2212.10420v2.pdf},
+ author = {Michael Bowling and John D. Martin and David Abel and Will Dabney},
+ title = {Settling the Reward Hypothesis},
+ year = {2022-12-20T16:55:33Z}
+}
+
+@article{bowling_2022-12-20T16:55:33Z_settling,
+ abstract = {The reward hypothesis posits that, "all of what we mean by goals and purposes
+can be well thought of as maximization of the expected value of the cumulative
+sum of a received scalar signal (reward)." We aim to fully settle this
+hypothesis. This will not conclude with a simple affirmation or refutation, but
+rather specify completely the implicit requirements on goals and purposes under
+which the hypothesis holds.},
+ arxiv_url = {https://arxiv.org/pdf/2212.10420v2.pdf},
+ author = {Michael Bowling and John D. Martin and David Abel and Will Dabney},
+ title = {Settling the Reward Hypothesis},
+ year = {2022-12-20T16:55:33Z}
+}
+
+@article{chowdhury_2023-05-31T16:20:04Z_beam,
+ abstract = {We propose Beam Tree Recursive Cell (BT-Cell) - a backpropagation-friendly
+framework to extend Recursive Neural Networks (RvNNs) with beam search for
+latent structure induction. We further extend this framework by proposing a
+relaxation of the hard top-k operators in beam search for better propagation of
+gradient signals. We evaluate our proposed models in different
+out-of-distribution splits in both synthetic and realistic data. Our
+experiments show that BTCell achieves near-perfect performance on several
+challenging structure-sensitive synthetic tasks like ListOps and logical
+inference while maintaining comparable performance in realistic data against
+other RvNN-based models. Additionally, we identify a previously unknown failure
+case for neural models in generalization to unseen number of arguments in
+ListOps. The code is available at:
+https://github.com/JRC1995/BeamTreeRecursiveCells.},
+ arxiv_url = {https://arxiv.org/pdf/2305.19999v3.pdf},
+ author = {Jishnu Ray Chowdhury and Cornelia Caragea},
+ github_url = {https://github.com/JRC1995/BeamTreeRecursiveCells},
+ title = {Beam Tree Recursive Cells},
+ year = {2023-05-31T16:20:04Z}
+}
+
+@article{creswell_2022-05-19T17:25:28Z_selection,
+ abstract = {Large language models (LLMs) have been shown to be capable of impressive
+few-shot generalisation to new tasks. However, they still tend to perform
+poorly on multi-step logical reasoning problems. Here we carry out a
+comprehensive evaluation of LLMs on 50 tasks that probe different aspects of
+logical reasoning. We show that language models tend to perform fairly well at
+single step inference or entailment tasks, but struggle to chain together
+multiple reasoning steps to solve more complex problems. In light of this, we
+propose a Selection-Inference (SI) framework that exploits pre-trained LLMs as
+general processing modules, and alternates between selection and inference to
+generate a series of interpretable, casual reasoning steps leading to the final
+answer. We show that a 7B parameter LLM used within the SI framework in a
+5-shot generalisation setting, with no fine-tuning, yields a performance
+improvement of over 100% compared to an equivalent vanilla baseline on a suite
+of 10 logical reasoning tasks. The same model in the same setting even
+outperforms a significantly larger 280B parameter baseline on the same suite of
+tasks. Moreover, answers produced by the SI framework are accompanied by a
+causal natural-language-based reasoning trace, which has important implications
+for the safety and trustworthiness of the system.},
+ arxiv_url = {https://arxiv.org/pdf/2205.09712v1.pdf},
+ author = {Antonia Creswell and Murray Shanahan and Irina Higgins},
+ title = {Selection-Inference: Exploiting Large Language Models for Interpretable Logical Reasoning},
+ year = {2022-05-19T17:25:28Z}
+}
+
+@article{creswell_2022-05-19T17:25:28Z_selection,
+ abstract = {Large language models (LLMs) have been shown to be capable of impressive
+few-shot generalisation to new tasks. However, they still tend to perform
+poorly on multi-step logical reasoning problems. Here we carry out a
+comprehensive evaluation of LLMs on 50 tasks that probe different aspects of
+logical reasoning. We show that language models tend to perform fairly well at
+single step inference or entailment tasks, but struggle to chain together
+multiple reasoning steps to solve more complex problems. In light of this, we
+propose a Selection-Inference (SI) framework that exploits pre-trained LLMs as
+general processing modules, and alternates between selection and inference to
+generate a series of interpretable, casual reasoning steps leading to the final
+answer. We show that a 7B parameter LLM used within the SI framework in a
+5-shot generalisation setting, with no fine-tuning, yields a performance
+improvement of over 100% compared to an equivalent vanilla baseline on a suite
+of 10 logical reasoning tasks. The same model in the same setting even
+outperforms a significantly larger 280B parameter baseline on the same suite of
+tasks. Moreover, answers produced by the SI framework are accompanied by a
+causal natural-language-based reasoning trace, which has important implications
+for the safety and trustworthiness of the system.},
+ arxiv_url = {https://arxiv.org/pdf/2205.09712v1.pdf},
+ author = {Antonia Creswell and Murray Shanahan and Irina Higgins},
+ title = {Selection-Inference: Exploiting Large Language Models for Interpretable Logical Reasoning},
+ year = {2022-05-19T17:25:28Z}
+}
+
+@article{ding_2024-09-27T03:49:56Z_bench,
+ abstract = {While generalization over tasks from easy to hard is crucial to profile
+language models (LLMs), the datasets with fine-grained difficulty annotations
+for each problem across a broad range of complexity are still blank. Aiming to
+address this limitation, we present Easy2Hard-Bench, a consistently formatted
+collection of 6 benchmark datasets spanning various domains, such as
+mathematics and programming problems, chess puzzles, and reasoning questions.
+Each problem within these datasets is annotated with numerical difficulty
+scores. To systematically estimate problem difficulties, we collect abundant
+performance data on attempts to each problem by humans in the real world or
+LLMs on the prominent leaderboard. Leveraging the rich performance data, we
+apply well-established difficulty ranking systems, such as Item Response Theory
+(IRT) and Glicko-2 models, to uniformly assign numerical difficulty scores to
+problems. Moreover, datasets in Easy2Hard-Bench distinguish themselves from
+previous collections by a higher proportion of challenging problems. Through
+extensive experiments with six state-of-the-art LLMs, we provide a
+comprehensive analysis of their performance and generalization capabilities
+across varying levels of difficulty, with the aim of inspiring future research
+in LLM generalization. The datasets are available at
+https://huggingface.co/datasets/furonghuang-lab/Easy2Hard-Bench.},
+ arxiv_url = {https://arxiv.org/pdf/2409.18433v2.pdf},
+ author = {Mucong Ding and Chenghao Deng and Jocelyn Choo and Zichu Wu and Aakriti Agrawal and Avi Schwarzschild and Tianyi Zhou and Tom Goldstein and John Langford and Anima Anandkumar and Furong Huang},
+ github_url = {https://github.com/allenai/winogrande},
+ title = {Easy2Hard-Bench: Standardized Difficulty Labels for Profiling LLM Performance and Generalization},
+ year = {2024-09-27T03:49:56Z}
+}
+
+@article{hardt_2023-05-29T08:03:28Z_test,
+ abstract = {Many recent efforts augment language models with retrieval, by adding
+retrieved data to the input context. For this approach to succeed, the
+retrieved data must be added at both training and test time. Moreover, as input
+length grows linearly with the size of retrieved data, cost in computation and
+memory grows quadratically for modern Transformers. To avoid these
+complications, we simply fine-tune the model on retrieved data at test time,
+using its standard training setup. We build a large-scale distributed index
+based on text embeddings of the Pile dataset. For each test input, our system
+retrieves its neighbors and fine-tunes the model on their text. Surprisingly,
+retrieving and training on as few as 20 neighbors, each for only one gradient
+iteration, drastically improves performance across more than 20 language
+modeling tasks in the Pile. For example, test-time training with nearest
+neighbors significantly narrows the performance gap between a small GPT-2 and a
+GPT-Neo model more than 10 times larger. Sufficient index quality and size,
+however, are necessary. Our work establishes a first baseline of test-time
+training for language modeling.},
+ arxiv_url = {https://arxiv.org/pdf/2305.18466v3.pdf},
+ author = {Moritz Hardt and Yu Sun},
+ github_url = {https://github.com/socialfoundations/tttlm},
+ title = {Test-Time Training on Nearest Neighbors for Large Language Models},
+ year = {2023-05-29T08:03:28Z}
+}
+
+@article{li_2024-04-03T17:34:28Z_the,
+ abstract = {Scaling up model and data size has been quite successful for the evolution of
+LLMs. However, the scaling law for the diffusion based text-to-image (T2I)
+models is not fully explored. It is also unclear how to efficiently scale the
+model for better performance at reduced cost. The different training settings
+and expensive training cost make a fair model comparison extremely difficult.
+In this work, we empirically study the scaling properties of diffusion based
+T2I models by performing extensive and rigours ablations on scaling both
+denoising backbones and training set, including training scaled UNet and
+Transformer variants ranging from 0.4B to 4B parameters on datasets upto 600M
+images. For model scaling, we find the location and amount of cross attention
+distinguishes the performance of existing UNet designs. And increasing the
+transformer blocks is more parameter-efficient for improving text-image
+alignment than increasing channel numbers. We then identify an efficient UNet
+variant, which is 45% smaller and 28% faster than SDXL's UNet. On the data
+scaling side, we show the quality and diversity of the training set matters
+more than simply dataset size. Increasing caption density and diversity
+improves text-image alignment performance and the learning efficiency. Finally,
+we provide scaling functions to predict the text-image alignment performance as
+functions of the scale of model size, compute and dataset size.},
+ arxiv_url = {https://arxiv.org/pdf/2404.02883v1.pdf},
+ author = {Hao Li and Yang Zou and Ying Wang and Orchid Majumder and Yusheng Xie and R. Manmatha and Ashwin Swaminathan and Zhuowen Tu and Stefano Ermon and Stefano Soatto},
+ github_url = {https://github.com/deep-floyd/IF},
+ title = {On the Scalability of Diffusion-based Text-to-Image Generation},
+ year = {2024-04-03T17:34:28Z}
+}
+
+@article{li_2024-10-18T17:58:21Z_naturalbench,
+ abstract = {Vision-language models (VLMs) have made significant progress in recent
+visual-question-answering (VQA) benchmarks that evaluate complex
+visio-linguistic reasoning. However, are these models truly effective? In this
+work, we show that VLMs still struggle with natural images and questions that
+humans can easily answer, which we term natural adversarial samples. We also
+find it surprisingly easy to generate these VQA samples from natural image-text
+corpora using off-the-shelf models like CLIP and ChatGPT. We propose a
+semi-automated approach to collect a new benchmark, NaturalBench, for reliably
+evaluating VLMs with 10,000 human-verified VQA samples. Crucially, we adopt a
+$\textbf{vision-centric}$ design by pairing each question with two images that
+yield different answers, preventing blind solutions from answering without
+using the images. This makes NaturalBench more challenging than previous
+benchmarks that can be solved with commonsense priors. We evaluate 53
+state-of-the-art VLMs on NaturalBench, showing that models like
+LLaVA-OneVision, Cambrian-1, Llama3.2-Vision, Molmo, Qwen2-VL, and even GPT-4o
+lag 50%-70% behind human performance (over 90%). We analyze why NaturalBench is
+hard from two angles: (1) Compositionality: Solving NaturalBench requires
+diverse visio-linguistic skills, including understanding attribute bindings,
+object relationships, and advanced reasoning like logic and counting. To this
+end, unlike prior work that uses a single tag per sample, we tag each
+NaturalBench sample with 1 to 8 skill tags for fine-grained evaluation. (2)
+Biases: NaturalBench exposes severe biases in VLMs, as models often choose the
+same answer regardless of the image. Lastly, we apply our benchmark curation
+method to diverse data sources, including long captions (over 100 words) and
+non-English languages like Chinese and Hindi, highlighting its potential for
+dynamic evaluations of VLMs.},
+ arxiv_url = {https://arxiv.org/pdf/2410.14669v4.pdf},
+ author = {Baiqi Li and Zhiqiu Lin and Wenxuan Peng and Jean de Dieu Nyandwi and Daniel Jiang and Zixian Ma and Simran Khanuja and Ranjay Krishna and Graham Neubig and Deva Ramanan},
+ title = {NaturalBench: Evaluating Vision-Language Models on Natural Adversarial Samples},
+ year = {2024-10-18T17:58:21Z}
+}
+
+@article{lightman_2023-05-31T17:24:00Z_let,
+ abstract = {In recent years, large language models have greatly improved in their ability
+to perform complex multi-step reasoning. However, even state-of-the-art models
+still regularly produce logical mistakes. To train more reliable models, we can
+turn either to outcome supervision, which provides feedback for a final result,
+or process supervision, which provides feedback for each intermediate reasoning
+step. Given the importance of training reliable models, and given the high cost
+of human feedback, it is important to carefully compare the both methods.
+Recent work has already begun this comparison, but many questions still remain.
+We conduct our own investigation, finding that process supervision
+significantly outperforms outcome supervision for training models to solve
+problems from the challenging MATH dataset. Our process-supervised model solves
+78% of problems from a representative subset of the MATH test set.
+Additionally, we show that active learning significantly improves the efficacy
+of process supervision. To support related research, we also release PRM800K,
+the complete dataset of 800,000 step-level human feedback labels used to train
+our best reward model.},
+ arxiv_url = {https://arxiv.org/pdf/2305.20050v1.pdf},
+ author = {Hunter Lightman and Vineet Kosaraju and Yura Burda and Harri Edwards and Bowen Baker and Teddy Lee and Jan Leike and John Schulman and Ilya Sutskever and Karl Cobbe},
+ github_url = {https://github.com/openai/prm800k},
+ title = {Let's Verify Step by Step},
+ year = {2023-05-31T17:24:00Z}
+}
+
+@article{taesiri_2023-12-08T18:14:21Z_glitchbench,
+ abstract = {Large multimodal models (LMMs) have evolved from large language models (LLMs)
+to integrate multiple input modalities, such as visual inputs. This integration
+augments the capacity of LLMs for tasks requiring visual comprehension and
+reasoning. However, the extent and limitations of their enhanced abilities are
+not fully understood, especially when it comes to real-world tasks. To address
+this gap, we introduce GlitchBench, a novel benchmark derived from video game
+quality assurance tasks, to test and evaluate the reasoning capabilities of
+LMMs. Our benchmark is curated from a variety of unusual and glitched scenarios
+from video games and aims to challenge both the visual and linguistic reasoning
+powers of LMMs in detecting and interpreting out-of-the-ordinary events. We
+evaluate multiple state-of-the-art LMMs, and we show that GlitchBench presents
+a new challenge for these models. Code and data are available at:
+https://glitchbench.github.io/},
+ arxiv_url = {https://arxiv.org/pdf/2312.05291v2.pdf},
+ author = {Mohammad Reza Taesiri and Tianjun Feng and Anh Nguyen and Cor-Paul Bezemer},
+ title = {GlitchBench: Can Large Multimodal Models Detect Video Game Glitches?},
+ year = {2023-12-08T18:14:21Z}
+}
+
+@article{yue_2023-10-04T18:21:17Z_large,
+ abstract = {Large language models (LLMs) such as GPT-4 have exhibited remarkable
+performance in a variety of tasks, but this strong performance often comes with
+the high expense of using paid API services. In this paper, we are motivated to
+study building an LLM cascade to save the cost of using LLMs, particularly for
+performing reasoning (e.g., mathematical, causal) tasks. Our cascade pipeline
+follows the intuition that simpler questions can be addressed by a weaker but
+more affordable LLM, whereas only the challenging questions necessitate the
+stronger and more expensive LLM. To realize this decision-making, we consider
+the "answer consistency" of the weaker LLM as a signal of the question
+difficulty and propose several methods for the answer sampling and consistency
+checking, including one leveraging a mixture of two thought representations
+(i.e., Chain-of-Thought and Program-of-Thought). Through experiments on six
+reasoning benchmark datasets, with GPT-3.5-turbo and GPT-4 being the weaker and
+stronger LLMs, respectively, we demonstrate that our proposed LLM cascades can
+achieve performance comparable to using solely the stronger LLM but require
+only 40% of its cost.},
+ arxiv_url = {https://arxiv.org/pdf/2310.03094v3.pdf},
+ author = {Murong Yue and Jie Zhao and Min Zhang and Liang Du and Ziyu Yao},
+ github_url = {https://github.com/MurongYue/LLM_MoT_cascade},
+ title = {Large Language Model Cascades with Mixture of Thought Representations for Cost-Efficient Reasoning},
+ year = {2023-10-04T18:21:17Z}
+}
+
+@article{zhuo_2020-06-27T17:20:04Z_learning,
+ abstract = {Retrieving relevant targets from an extremely large target set under
+computational limits is a common challenge for information retrieval and
+recommendation systems. Tree models, which formulate targets as leaves of a
+tree with trainable node-wise scorers, have attracted a lot of interests in
+tackling this challenge due to their logarithmic computational complexity in
+both training and testing. Tree-based deep models (TDMs) and probabilistic
+label trees (PLTs) are two representative kinds of them. Though achieving many
+practical successes, existing tree models suffer from the training-testing
+discrepancy, where the retrieval performance deterioration caused by beam
+search in testing is not considered in training. This leads to an intrinsic gap
+between the most relevant targets and those retrieved by beam search with even
+the optimally trained node-wise scorers. We take a first step towards
+understanding and analyzing this problem theoretically, and develop the concept
+of Bayes optimality under beam search and calibration under beam search as
+general analyzing tools for this purpose. Moreover, to eliminate the
+discrepancy, we propose a novel algorithm for learning optimal tree models
+under beam search. Experiments on both synthetic and real data verify the
+rationality of our theoretical analysis and demonstrate the superiority of our
+algorithm compared to state-of-the-art methods.},
+ arxiv_url = {https://arxiv.org/pdf/2006.15408v1.pdf},
+ author = {Jingwei Zhuo and Ziru Xu and Wei Dai and Han Zhu and Han Li and Jian Xu and Kun Gai},
+ github_url = {https://github.com/alibaba/x-deeplearning},
+ title = {Learning Optimal Tree Models under Beam Search},
+ year = {2020-06-27T17:20:04Z}
+}
