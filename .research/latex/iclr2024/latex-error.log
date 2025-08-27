@@ -271,79 +271,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 48--48
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd) [1{/var/lib/texmf/fo
 nts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips
 /base/8r.enc}]
-! Missing $ inserted.
-<inserted text> 
-                $
-l.75 ...trate 22~\% energy savings and a 2\,\times
-                                                   throughput gain over FP16...
-
-
-! LaTeX Error: Command \item invalid in math mode.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.76   \item
-            \textbf{Comprehensive analysis} Ablations and micro-benchmarks i...
-
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.76   \item\textbf
-                   {Comprehensive analysis} Ablations and micro-benchmarks i...
-
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.76   \item\textbf
-                   {Comprehensive analysis} Ablations and micro-benchmarks i...
-
-
-! LaTeX Error: Command \end{itemize} invalid in math mode.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.77 \end{itemize}
-                  
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.77 \end{itemize}
-                  
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.77 \end{itemize}
-                  
-! Missing $ inserted.
-<inserted text> 
-                $
-l.77 \end{itemize}
-                  
-
-Overfull \hbox (97.35521pt too wide) in paragraph at lines 75--78
-\T1/ptm/m/n/10 (-20) and a 2$\OMS/cmsy/m/n/10 ^^B\OML/cmm/m/it/10 throughputgai
-noverFP\OT1/cmr/m/n/10 16\OML/cmm/m/it/10 CHARonfourpublicbenchmarks:[]Ablation
-sandmicro \OMS/cmsy/m/n/10 ^^@
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
@@ -404,6 +331,7 @@ l.96 ...ostidis\_2023-11-06T16:20:28Z\_navigating}
 Package natbib Warning: Citation `anagnostidis\T1\textunderscore2023-11-06T16:2
 0:28Z\T1\textunderscorenavigating' on page 2 undefined on input line 96.
 
+[2]
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
@@ -412,37 +340,9 @@ l.99 ...r \cite{ding\_2024-09-27T03:49:56Z\_bench}
 
 
 Package natbib Warning: Citation `ding\T1\textunderscore2024-09-27T03:49:56Z\T1
-\textunderscorebench' on page 2 undefined on input line 99.
+\textunderscorebench' on page 3 undefined on input line 99.
 
-[2] [3]
-! Missing $ inserted.
-<inserted text> 
-                $
-l.157 ...ant-factor reduction of roughly 3\,\times
-                                                   compared with uniform FP1...
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.158 
-      
-
-Underfull \hbox (badness 2088) in paragraph at lines 157--158
-\T1/ptm/m/n/10 (+20) Per to-ken, P4 ex-e-cutes for all $\OML/cmm/m/it/10 B$ \T1
-/ptm/m/n/10 (+20) hy-pothe-ses, P8 for $\OML/cmm/m/it/10 k \OMS/cmsy/m/n/10 ^^T
- \OML/cmm/m/it/10 B$\T1/ptm/m/n/10 (+20) , and P16 for $\OML/cmm/m/it/10 m \OMS
-/cmsy/m/n/10 ^^\
-
-Underfull \hbox (badness 4927) in paragraph at lines 157--158
-\OML/cmm/m/it/10 k$\T1/ptm/m/n/10 (+20) . FLOP cost thus scales $\OMS/cmsy/m/n/
-10 O\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 B\OT1/cmr/m/n/10 )$ \T1/ptm/m/n/10 (+20) 
-but with a constant-factor re-duc-tion of roughly
-
-Underfull \hbox (badness 10000) in paragraph at lines 157--158
-\T1/ptm/m/n/10 (+20) 3$\OMS/cmsy/m/n/10 ^^B\OML/cmm/m/it/10 comparedwithuniform
-FP\OT1/cmr/m/n/10 16\OML/cmm/m/it/10 :MemorytrafficislimitedtoasingleKVcopyplus
-de \OMS/cmsy/m/n/10 ^^@
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)
+[3] (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd) [4]
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
@@ -451,9 +351,12 @@ l.171 ... \cite{ding\_2024-09-27T03:49:56Z\_bench}
 
 
 Package natbib Warning: Citation `ding\T1\textunderscore2024-09-27T03:49:56Z\T1
-\textunderscorebench' on page 4 undefined on input line 171.
+\textunderscorebench' on page 5 undefined on input line 171.
 
-[4] [5 <./images/quality_latency_pareto.pdf>]
+
+Underfull \vbox (badness 10000) has occurred while \output is active [5]
+Underfull \vbox (badness 5374) has occurred while \output is active [6 <./image
+s/quality_latency_pareto.pdf> <./images/ablation_results.pdf>]
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
@@ -462,7 +365,7 @@ l.218 ...g \cite{yue\_2023-10-04T18:21:17Z\_large}
 
 
 Package natbib Warning: Citation `yue\T1\textunderscore2023-10-04T18:21:17Z\T1\
-textunderscorelarge' on page 6 undefined on input line 218.
+textunderscorelarge' on page 7 undefined on input line 218.
 
 ! Missing \endcsname inserted.
 <to be read again> 
@@ -471,9 +374,8 @@ l.218 ...cite{lightman\_2023-05-31T17:24:00Z\_let}
                                                   .
 
 Package natbib Warning: Citation `lightman\T1\textunderscore2023-05-31T17:24:00
-Z\T1\textunderscorelet' on page 6 undefined on input line 218.
+Z\T1\textunderscorelet' on page 7 undefined on input line 218.
 
-[6 <./images/ablation_results.pdf> <./images/micro_benchmarks.pdf>]
 
 Package natbib Warning: Citation `airas2025' on page 7 undefined on input line 
 220.
@@ -482,7 +384,7 @@ No file paper.bbl.
 
 Package natbib Warning: There were undefined citations.
 
-[7] (./paper.aux)
+[7 <./images/micro_benchmarks.pdf>] (./paper.aux)
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
@@ -502,7 +404,7 @@ fonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/sh
 are/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on paper.pdf (7 pages, 190395 bytes).
+Output written on paper.pdf (7 pages, 185478 bytes).
 Transcript written on paper.log.
 This is BibTeX, Version 0.99d (TeX Live 2023/Debian)
 The top-level auxiliary file: paper.aux
@@ -530,19 +432,19 @@ White space in argument---line 13 of file paper.aux
  : \citation{anagnostidis\protect
  :                                \T1\textunderscore 2023-11-06T16:20:28Z\protect \T1\textunderscore navigating}
 I'm skipping whatever remains of this command
-White space in argument---line 14 of file paper.aux
+White space in argument---line 22 of file paper.aux
  : \citation{ding\protect
  :                        \T1\textunderscore 2024-09-27T03:49:56Z\protect \T1\textunderscore bench}
 I'm skipping whatever remains of this command
-White space in argument---line 37 of file paper.aux
+White space in argument---line 47 of file paper.aux
  : \citation{ding\protect
  :                        \T1\textunderscore 2024-09-27T03:49:56Z\protect \T1\textunderscore bench}
 I'm skipping whatever remains of this command
-White space in argument---line 59 of file paper.aux
+White space in argument---line 60 of file paper.aux
  : \citation{yue\protect
  :                       \T1\textunderscore 2023-10-04T18:21:17Z\protect \T1\textunderscore large}
 I'm skipping whatever remains of this command
-White space in argument---line 60 of file paper.aux
+White space in argument---line 61 of file paper.aux
  : \citation{lightman\protect
  :                            \T1\textunderscore 2023-05-31T17:24:00Z\protect \T1\textunderscore let}
 I'm skipping whatever remains of this command
@@ -823,79 +725,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 48--48
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd) [1{/var/lib/texmf/fo
 nts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips
 /base/8r.enc}]
-! Missing $ inserted.
-<inserted text> 
-                $
-l.75 ...trate 22~\% energy savings and a 2\,\times
-                                                   throughput gain over FP16...
-
-
-! LaTeX Error: Command \item invalid in math mode.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.76   \item
-            \textbf{Comprehensive analysis} Ablations and micro-benchmarks i...
-
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.76   \item\textbf
-                   {Comprehensive analysis} Ablations and micro-benchmarks i...
-
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.76   \item\textbf
-                   {Comprehensive analysis} Ablations and micro-benchmarks i...
-
-
-! LaTeX Error: Command \end{itemize} invalid in math mode.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.77 \end{itemize}
-                  
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.77 \end{itemize}
-                  
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.77 \end{itemize}
-                  
-! Missing $ inserted.
-<inserted text> 
-                $
-l.77 \end{itemize}
-                  
-
-Overfull \hbox (97.35521pt too wide) in paragraph at lines 75--78
-\T1/ptm/m/n/10 (-20) and a 2$\OMS/cmsy/m/n/10 ^^B\OML/cmm/m/it/10 throughputgai
-noverFP\OT1/cmr/m/n/10 16\OML/cmm/m/it/10 CHARonfourpublicbenchmarks:[]Ablation
-sandmicro \OMS/cmsy/m/n/10 ^^@
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
@@ -956,6 +785,7 @@ l.96 ...ostidis\_2023-11-06T16:20:28Z\_navigating}
 Package natbib Warning: Citation `anagnostidis\T1\textunderscore2023-11-06T16:2
 0:28Z\T1\textunderscorenavigating' on page 2 undefined on input line 96.
 
+[2]
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
@@ -964,37 +794,9 @@ l.99 ...r \cite{ding\_2024-09-27T03:49:56Z\_bench}
 
 
 Package natbib Warning: Citation `ding\T1\textunderscore2024-09-27T03:49:56Z\T1
-\textunderscorebench' on page 2 undefined on input line 99.
+\textunderscorebench' on page 3 undefined on input line 99.
 
-[2] [3]
-! Missing $ inserted.
-<inserted text> 
-                $
-l.157 ...ant-factor reduction of roughly 3\,\times
-                                                   compared with uniform FP1...
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.158 
-      
-
-Underfull \hbox (badness 2088) in paragraph at lines 157--158
-\T1/ptm/m/n/10 (+20) Per to-ken, P4 ex-e-cutes for all $\OML/cmm/m/it/10 B$ \T1
-/ptm/m/n/10 (+20) hy-pothe-ses, P8 for $\OML/cmm/m/it/10 k \OMS/cmsy/m/n/10 ^^T
- \OML/cmm/m/it/10 B$\T1/ptm/m/n/10 (+20) , and P16 for $\OML/cmm/m/it/10 m \OMS
-/cmsy/m/n/10 ^^\
-
-Underfull \hbox (badness 4927) in paragraph at lines 157--158
-\OML/cmm/m/it/10 k$\T1/ptm/m/n/10 (+20) . FLOP cost thus scales $\OMS/cmsy/m/n/
-10 O\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 B\OT1/cmr/m/n/10 )$ \T1/ptm/m/n/10 (+20) 
-but with a constant-factor re-duc-tion of roughly
-
-Underfull \hbox (badness 10000) in paragraph at lines 157--158
-\T1/ptm/m/n/10 (+20) 3$\OMS/cmsy/m/n/10 ^^B\OML/cmm/m/it/10 comparedwithuniform
-FP\OT1/cmr/m/n/10 16\OML/cmm/m/it/10 :MemorytrafficislimitedtoasingleKVcopyplus
-de \OMS/cmsy/m/n/10 ^^@
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)
+[3] (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd) [4]
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
@@ -1003,9 +805,12 @@ l.171 ... \cite{ding\_2024-09-27T03:49:56Z\_bench}
 
 
 Package natbib Warning: Citation `ding\T1\textunderscore2024-09-27T03:49:56Z\T1
-\textunderscorebench' on page 4 undefined on input line 171.
+\textunderscorebench' on page 5 undefined on input line 171.
 
-[4] [5 <./images/quality_latency_pareto.pdf>]
+
+Underfull \vbox (badness 10000) has occurred while \output is active [5]
+Underfull \vbox (badness 5374) has occurred while \output is active [6 <./image
+s/quality_latency_pareto.pdf> <./images/ablation_results.pdf>]
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
@@ -1014,7 +819,7 @@ l.218 ...g \cite{yue\_2023-10-04T18:21:17Z\_large}
 
 
 Package natbib Warning: Citation `yue\T1\textunderscore2023-10-04T18:21:17Z\T1\
-textunderscorelarge' on page 6 undefined on input line 218.
+textunderscorelarge' on page 7 undefined on input line 218.
 
 ! Missing \endcsname inserted.
 <to be read again> 
@@ -1023,9 +828,8 @@ l.218 ...cite{lightman\_2023-05-31T17:24:00Z\_let}
                                                   .
 
 Package natbib Warning: Citation `lightman\T1\textunderscore2023-05-31T17:24:00
-Z\T1\textunderscorelet' on page 6 undefined on input line 218.
+Z\T1\textunderscorelet' on page 7 undefined on input line 218.
 
-[6 <./images/ablation_results.pdf> <./images/micro_benchmarks.pdf>]
 
 Package natbib Warning: Citation `airas2025' on page 7 undefined on input line 
 220.
@@ -1034,7 +838,7 @@ Package natbib Warning: Citation `airas2025' on page 7 undefined on input line
 
 Package natbib Warning: There were undefined citations.
 
-[7] (./paper.aux
+[7 <./images/micro_benchmarks.pdf>] (./paper.aux
 
 Package natbib Warning: Citation(s) may have changed.
 (natbib)                Rerun to get citations correct.
@@ -1050,7 +854,7 @@ fonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/sh
 are/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on paper.pdf (7 pages, 193651 bytes).
+Output written on paper.pdf (7 pages, 188687 bytes).
 Transcript written on paper.log.
 This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
  restricted \write18 enabled.
@@ -1326,79 +1130,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 48--48
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd) [1{/var/lib/texmf/fo
 nts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips
 /base/8r.enc}]
-! Missing $ inserted.
-<inserted text> 
-                $
-l.75 ...trate 22~\% energy savings and a 2\,\times
-                                                   throughput gain over FP16...
-
-
-! LaTeX Error: Command \item invalid in math mode.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.76   \item
-            \textbf{Comprehensive analysis} Ablations and micro-benchmarks i...
-
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.76   \item\textbf
-                   {Comprehensive analysis} Ablations and micro-benchmarks i...
-
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.76   \item\textbf
-                   {Comprehensive analysis} Ablations and micro-benchmarks i...
-
-
-! LaTeX Error: Command \end{itemize} invalid in math mode.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.77 \end{itemize}
-                  
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.77 \end{itemize}
-                  
-
-! LaTeX Error: Something's wrong--perhaps a missing \item.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.77 \end{itemize}
-                  
-! Missing $ inserted.
-<inserted text> 
-                $
-l.77 \end{itemize}
-                  
-
-Overfull \hbox (97.35521pt too wide) in paragraph at lines 75--78
-\T1/ptm/m/n/10 (-20) and a 2$\OMS/cmsy/m/n/10 ^^B\OML/cmm/m/it/10 throughputgai
-noverFP\OT1/cmr/m/n/10 16\OML/cmm/m/it/10 CHARonfourpublicbenchmarks:[]Ablation
-sandmicro \OMS/cmsy/m/n/10 ^^@
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
@@ -1459,6 +1190,7 @@ l.96 ...ostidis\_2023-11-06T16:20:28Z\_navigating}
 Package natbib Warning: Citation `anagnostidis\T1\textunderscore2023-11-06T16:2
 0:28Z\T1\textunderscorenavigating' on page 2 undefined on input line 96.
 
+[2]
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
@@ -1467,37 +1199,9 @@ l.99 ...r \cite{ding\_2024-09-27T03:49:56Z\_bench}
 
 
 Package natbib Warning: Citation `ding\T1\textunderscore2024-09-27T03:49:56Z\T1
-\textunderscorebench' on page 2 undefined on input line 99.
+\textunderscorebench' on page 3 undefined on input line 99.
 
-[2] [3]
-! Missing $ inserted.
-<inserted text> 
-                $
-l.157 ...ant-factor reduction of roughly 3\,\times
-                                                   compared with uniform FP1...
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.158 
-      
-
-Underfull \hbox (badness 2088) in paragraph at lines 157--158
-\T1/ptm/m/n/10 (+20) Per to-ken, P4 ex-e-cutes for all $\OML/cmm/m/it/10 B$ \T1
-/ptm/m/n/10 (+20) hy-pothe-ses, P8 for $\OML/cmm/m/it/10 k \OMS/cmsy/m/n/10 ^^T
- \OML/cmm/m/it/10 B$\T1/ptm/m/n/10 (+20) , and P16 for $\OML/cmm/m/it/10 m \OMS
-/cmsy/m/n/10 ^^\
-
-Underfull \hbox (badness 4927) in paragraph at lines 157--158
-\OML/cmm/m/it/10 k$\T1/ptm/m/n/10 (+20) . FLOP cost thus scales $\OMS/cmsy/m/n/
-10 O\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 B\OT1/cmr/m/n/10 )$ \T1/ptm/m/n/10 (+20) 
-but with a constant-factor re-duc-tion of roughly
-
-Underfull \hbox (badness 10000) in paragraph at lines 157--158
-\T1/ptm/m/n/10 (+20) 3$\OMS/cmsy/m/n/10 ^^B\OML/cmm/m/it/10 comparedwithuniform
-FP\OT1/cmr/m/n/10 16\OML/cmm/m/it/10 :MemorytrafficislimitedtoasingleKVcopyplus
-de \OMS/cmsy/m/n/10 ^^@
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)
+[3] (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd) [4]
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
@@ -1506,9 +1210,12 @@ l.171 ... \cite{ding\_2024-09-27T03:49:56Z\_bench}
 
 
 Package natbib Warning: Citation `ding\T1\textunderscore2024-09-27T03:49:56Z\T1
-\textunderscorebench' on page 4 undefined on input line 171.
+\textunderscorebench' on page 5 undefined on input line 171.
 
-[4] [5 <./images/quality_latency_pareto.pdf>]
+
+Underfull \vbox (badness 10000) has occurred while \output is active [5]
+Underfull \vbox (badness 5374) has occurred while \output is active [6 <./image
+s/quality_latency_pareto.pdf> <./images/ablation_results.pdf>]
 ! Missing \endcsname inserted.
 <to be read again> 
                    \protect 
@@ -1517,7 +1224,7 @@ l.218 ...g \cite{yue\_2023-10-04T18:21:17Z\_large}
 
 
 Package natbib Warning: Citation `yue\T1\textunderscore2023-10-04T18:21:17Z\T1\
-textunderscorelarge' on page 6 undefined on input line 218.
+textunderscorelarge' on page 7 undefined on input line 218.
 
 ! Missing \endcsname inserted.
 <to be read again> 
@@ -1526,14 +1233,13 @@ l.218 ...cite{lightman\_2023-05-31T17:24:00Z\_let}
                                                   .
 
 Package natbib Warning: Citation `lightman\T1\textunderscore2023-05-31T17:24:00
-Z\T1\textunderscorelet' on page 6 undefined on input line 218.
+Z\T1\textunderscorelet' on page 7 undefined on input line 218.
 
-[6 <./images/ablation_results.pdf> <./images/micro_benchmarks.pdf>]
 (./paper.bbl)
 
 Package natbib Warning: There were undefined citations.
 
-[7] (./paper.aux) )
+[7 <./images/micro_benchmarks.pdf>] (./paper.aux) )
 (see the transcript file for additional information)</usr/share/texlive/texmf-d
 ist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/ty
@@ -1544,5 +1250,5 @@ fonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
 .pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/sh
 are/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/tex
 mf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on paper.pdf (7 pages, 193736 bytes).
+Output written on paper.pdf (7 pages, 188759 bytes).
 Transcript written on paper.log.
