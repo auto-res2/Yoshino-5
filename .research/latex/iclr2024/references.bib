@@ -5,3 +5,443 @@
   publisher = {GitHub},
   url       = {https://github.com/airas-org/airas}
 }
+
+% ===========================================
+% REQUIRED CITATIONS
+% These papers must be cited in the manuscript
+% ===========================================
+
+@article{ahmadian_2023-05-30T17:58:49Z_intriguing,
+ abstract = {Emergent properties have been widely adopted as a term to describe behavior
+not present in smaller models but observed in larger models. Recent work
+suggests that the trade-off incurred by quantization is also an emergent
+property, with sharp drops in performance in models over 6B parameters. In this
+work, we ask "are quantization cliffs in performance solely a factor of scale?"
+Against a backdrop of increased research focus on why certain emergent
+properties surface at scale, this work provides a useful counter-example. We
+posit that it is possible to optimize for a quantization friendly training
+recipe that suppresses large activation magnitude outliers. Here, we find that
+outlier dimensions are not an inherent product of scale, but rather sensitive
+to the optimization conditions present during pre-training. This both opens up
+directions for more efficient quantization, and poses the question of whether
+other emergent properties are inherent or can be altered and conditioned by
+optimization and architecture design choices. We successfully quantize models
+ranging in size from 410M to 52B with minimal degradation in performance.},
+ arxiv_url = {https://arxiv.org/pdf/2305.19268v1.pdf},
+ author = {Arash Ahmadian and Saurabh Dash and Hongyu Chen and Bharat Venkitesh and Stephen Gou and Phil Blunsom and Ahmet Üstün and Sara Hooker},
+ title = {Intriguing Properties of Quantization at Scale},
+ year = {2023-05-30T17:58:49Z}
+}
+
+@article{author_year_outlier,
+ title = {Outlier-aware Slicing for Post-Training Quantization in Vision Transformer}
+}
+
+@article{baalen_2020-05-14T16:00:34Z_bayesian,
+ abstract = {We introduce Bayesian Bits, a practical method for joint mixed precision
+quantization and pruning through gradient based optimization. Bayesian Bits
+employs a novel decomposition of the quantization operation, which sequentially
+considers doubling the bit width. At each new bit width, the residual error
+between the full precision value and the previously rounded value is quantized.
+We then decide whether or not to add this quantized residual error for a higher
+effective bit width and lower quantization noise. By starting with a
+power-of-two bit width, this decomposition will always produce
+hardware-friendly configurations, and through an additional 0-bit option,
+serves as a unified view of pruning and quantization. Bayesian Bits then
+introduces learnable stochastic gates, which collectively control the bit width
+of the given tensor. As a result, we can obtain low bit solutions by performing
+approximate inference over the gates, with prior distributions that encourage
+most of them to be switched off. We experimentally validate our proposed method
+on several benchmark datasets and show that we can learn pruned, mixed
+precision networks that provide a better trade-off between accuracy and
+efficiency than their static bit width equivalents.},
+ arxiv_url = {https://arxiv.org/pdf/2005.07093v3.pdf},
+ author = {Mart van Baalen and Christos Louizos and Markus Nagel and Rana Ali Amjad and Ying Wang and Tijmen Blankevoort and Max Welling},
+ title = {Bayesian Bits: Unifying Quantization and Pruning},
+ year = {2020-05-14T16:00:34Z}
+}
+
+@article{chee_2023-07-25T07:44:06Z_quip,
+ abstract = {This work studies post-training parameter quantization in large language
+models (LLMs). We introduce quantization with incoherence processing (QuIP), a
+new method based on the insight that quantization benefits from
+$\textit{incoherent}$ weight and Hessian matrices, i.e., from the weights being
+even in magnitude and the directions in which it is important to round them
+accurately being unaligned with the coordinate axes. QuIP consists of two
+steps: (1) an adaptive rounding procedure minimizing a quadratic proxy
+objective; (2) efficient pre- and post-processing that ensures weight and
+Hessian incoherence via multiplication by random orthogonal matrices. We
+complement QuIP with the first theoretical analysis for an LLM-scale
+quantization algorithm, and show that our theory also applies to an existing
+method, OPTQ. Empirically, we find that our incoherence preprocessing improves
+several existing quantization algorithms and yields the first LLM quantization
+methods that produce viable results using only two bits per weight. Our code
+can be found at https://github.com/Cornell-RelaxML/QuIP.},
+ arxiv_url = {https://arxiv.org/pdf/2307.13304v2.pdf},
+ author = {Jerry Chee and Yaohui Cai and Volodymyr Kuleshov and Christopher De Sa},
+ title = {QuIP: 2-Bit Quantization of Large Language Models With Guarantees},
+ year = {2023-07-25T07:44:06Z}
+}
+
+@article{dettmers_2022-08-15T17:08:50Z_bit,
+ abstract = {Large language models have been widely adopted but require significant GPU
+memory for inference. We develop a procedure for Int8 matrix multiplication for
+feed-forward and attention projection layers in transformers, which cut the
+memory needed for inference by half while retaining full precision performance.
+With our method, a 175B parameter 16/32-bit checkpoint can be loaded, converted
+to Int8, and used immediately without performance degradation. This is made
+possible by understanding and working around properties of highly systematic
+emergent features in transformer language models that dominate attention and
+transformer predictive performance. To cope with these features, we develop a
+two-part quantization procedure, LLM.int8(). We first use vector-wise
+quantization with separate normalization constants for each inner product in
+the matrix multiplication, to quantize most of the features. However, for the
+emergent outliers, we also include a new mixed-precision decomposition scheme,
+which isolates the outlier feature dimensions into a 16-bit matrix
+multiplication while still more than 99.9% of values are multiplied in 8-bit.
+Using LLM.int8(), we show empirically it is possible to perform inference in
+LLMs with up to 175B parameters without any performance degradation. This
+result makes such models much more accessible, for example making it possible
+to use OPT-175B/BLOOM on a single server with consumer GPUs. We open-source our
+software.},
+ arxiv_url = {https://arxiv.org/pdf/2208.07339v2.pdf},
+ author = {Tim Dettmers and Mike Lewis and Younes Belkada and Luke Zettlemoyer},
+ github_url = {https://github.com/TimDettmers/bitsandbytes},
+ title = {GPT3.int8(): 8-bit Matrix Multiplication for Transformers at Scale},
+ year = {2022-08-15T17:08:50Z}
+}
+
+@article{dettmers_2022-12-19T18:48:33Z_the,
+ abstract = {Quantization methods reduce the number of bits required to represent each
+parameter in a model, trading accuracy for smaller memory footprints and
+inference latencies. However, the final model size depends on both the number
+of parameters of the original model and the rate of compression. For example, a
+30B 8-bit model and a 60B 4-bit model have the same number of bits but may have
+very different zero-shot accuracies. In this work, we study this trade-off by
+developing inference scaling laws of zero-shot performance in Large Language
+Models (LLMs) to determine the bit-precision and model size that maximizes
+zero-shot performance. We run more than 35,000 experiments with 16-bit inputs
+and k-bit parameters to examine which zero-shot quantization methods improve
+scaling for 3 to 8-bit precision at scales of 19M to 176B parameters across the
+LLM families BLOOM, OPT, NeoX/Pythia, and GPT-2. We find that it is challenging
+to improve the bit-level scaling trade-off, with the only improvements being
+the use of a small block size -- splitting the parameters into small
+independently quantized blocks -- and the quantization data type being used
+(e.g., Int vs Float). Overall, our findings show that {4-bit} precision is
+almost universally optimal for total model bits and zero-shot accuracy.},
+ arxiv_url = {https://arxiv.org/pdf/2212.09720v2.pdf},
+ author = {Tim Dettmers and Luke Zettlemoyer},
+ title = {The case for 4-bit precision: k-bit Inference Scaling Laws},
+ year = {2022-12-19T18:48:33Z}
+}
+
+@article{elbayad_2019-10-22T16:15:58Z_depth,
+ abstract = {State of the art sequence-to-sequence models for large scale tasks perform a
+fixed number of computations for each input sequence regardless of whether it
+is easy or hard to process. In this paper, we train Transformer models which
+can make output predictions at different stages of the network and we
+investigate different ways to predict how much computation is required for a
+particular sequence. Unlike dynamic computation in Universal Transformers,
+which applies the same set of layers iteratively, we apply different layers at
+every step to adjust both the amount of computation as well as the model
+capacity. On IWSLT German-English translation our approach matches the accuracy
+of a well tuned baseline Transformer while using less than a quarter of the
+decoder layers.},
+ arxiv_url = {https://arxiv.org/pdf/1910.10073v4.pdf},
+ author = {Maha Elbayad and Jiatao Gu and Edouard Grave and Michael Auli},
+ title = {Depth-Adaptive Transformer},
+ year = {2019-10-22T16:15:58Z}
+}
+
+@article{heo_2023-09-27T09:48:31Z_rethinking,
+ abstract = {Large Language Models (LLMs) have recently demonstrated remarkable success
+across various tasks. However, efficiently serving LLMs has been a challenge
+due to the large memory bottleneck, specifically in small batch inference
+settings (e.g. mobile devices). Weight-only quantization can be a promising
+approach, but sub-4 bit quantization remains a challenge due to large-magnitude
+activation outliers. To mitigate the undesirable outlier effect, we first
+propose per-IC quantization, a simple yet effective method that creates
+quantization groups within each input channel (IC) rather than the conventional
+per-output-channel (per-OC). Our method is motivated by the observation that
+activation outliers affect the input dimension of the weight matrix, so
+similarly grouping the weights in the IC direction can isolate outliers within
+a group. We also find that activation outliers do not dictate quantization
+difficulty, and inherent weight sensitivities also exist. With per-IC
+quantization as a new outlier-friendly scheme, we propose Adaptive Dimensions
+(AdaDim), a versatile quantization framework that can adapt to various weight
+sensitivity patterns. We demonstrate the effectiveness of AdaDim by augmenting
+prior methods such as Round-To-Nearest and GPTQ, showing significant
+improvements across various language modeling benchmarks for both base (up to
++4.7% on MMLU) and instruction-tuned (up to +10% on HumanEval) LLMs. Code is
+available at https://github.com/johnheo/adadim-llm},
+ arxiv_url = {https://arxiv.org/pdf/2309.15531v4.pdf},
+ author = {Jung Hwan Heo and Jeonghoon Kim and Beomseok Kwon and Byeongwook Kim and Se Jung Kwon and Dongsoo Lee},
+ github_url = {https://github.com/johnheo/adadim-llm},
+ title = {Rethinking Channel Dimensions to Isolate Outliers for Low-bit Weight Quantization of Large Language Models},
+ year = {2023-09-27T09:48:31Z}
+}
+
+@article{liu_2023-10-12T05:25:49Z_qllm,
+ abstract = {Large Language Models (LLMs) excel in NLP, but their demands hinder their
+widespread deployment. While Quantization-Aware Training (QAT) offers a
+solution, its extensive training costs make Post-Training Quantization (PTQ) a
+more practical approach for LLMs. In existing studies, activation outliers in
+particular channels are identified as the bottleneck to PTQ accuracy. They
+propose to transform the magnitudes from activations to weights, which however
+offers limited alleviation or suffers from unstable gradients, resulting in a
+severe performance drop at low-bitwidth. In this paper, we propose QLLM, an
+accurate and efficient low-bitwidth PTQ method designed for LLMs. QLLM
+introduces an adaptive channel reassembly technique that reallocates the
+magnitude of outliers to other channels, thereby mitigating their impact on the
+quantization range. This is achieved by channel disassembly and channel
+assembly, which first breaks down the outlier channels into several
+sub-channels to ensure a more balanced distribution of activation magnitudes.
+Then similar channels are merged to maintain the original channel number for
+efficiency. Additionally, an adaptive strategy is designed to autonomously
+determine the optimal number of sub-channels for channel disassembly. To
+further compensate for the performance loss caused by quantization, we propose
+an efficient tuning method that only learns a small number of low-rank weights
+while freezing the pre-trained quantized model. After training, these low-rank
+parameters can be fused into the frozen weights without affecting inference.
+Extensive experiments on LLaMA-1 and LLaMA-2 show that QLLM can obtain accurate
+quantized models efficiently. For example, QLLM quantizes the 4-bit LLaMA-2-70B
+within 10 hours on a single A100-80G GPU, outperforming the previous
+state-of-the-art method by 7.89% on the average accuracy across five zero-shot
+tasks.},
+ arxiv_url = {https://arxiv.org/pdf/2310.08041v3.pdf},
+ author = {Jing Liu and Ruihao Gong and Xiuying Wei and Zhiwei Dong and Jianfei Cai and Bohan Zhuang},
+ github_url = {https://github.com/PanQiWei/AutoGPTQ},
+ title = {QLLM: Accurate and Efficient Low-Bitwidth Quantization for Large Language Models},
+ year = {2023-10-12T05:25:49Z}
+}
+
+@article{michaud_2023-03-23T17:58:43Z_the,
+ abstract = {We propose the Quantization Model of neural scaling laws, explaining both the
+observed power law dropoff of loss with model and data size, and also the
+sudden emergence of new capabilities with scale. We derive this model from what
+we call the Quantization Hypothesis, where network knowledge and skills are
+"quantized" into discrete chunks ($\textbf{quanta}$). We show that when quanta
+are learned in order of decreasing use frequency, then a power law in use
+frequencies explains observed power law scaling of loss. We validate this
+prediction on toy datasets, then study how scaling curves decompose for large
+language models. Using language model gradients, we automatically decompose
+model behavior into a diverse set of skills (quanta). We tentatively find that
+the frequency at which these quanta are used in the training distribution
+roughly follows a power law corresponding with the empirical scaling exponent
+for language models, a prediction of our theory.},
+ arxiv_url = {https://arxiv.org/pdf/2303.13506v3.pdf},
+ author = {Eric J. Michaud and Ziming Liu and Uzay Girit and Max Tegmark},
+ github_url = {https://github.com/ejmichaud/quantization-model},
+ title = {The Quantization Model of Neural Scaling},
+ year = {2023-03-23T17:58:43Z}
+}
+
+@article{park_2024-02-16T09:06:06Z_any,
+ abstract = {Recently, considerable efforts have been directed towards compressing Large
+Language Models (LLMs), which showcase groundbreaking capabilities across
+diverse applications but entail significant deployment costs due to their large
+sizes. Meanwhile, much less attention has been given to mitigating the costs
+associated with deploying multiple LLMs of varying sizes despite its practical
+significance. Thus, this paper introduces \emph{any-precision LLM}, extending
+the concept of any-precision DNN to LLMs. Addressing challenges in
+any-precision LLM, we propose a lightweight method for any-precision
+quantization of LLMs, leveraging a post-training quantization framework, and
+develop a specialized software engine for its efficient serving. As a result,
+our solution significantly reduces the high costs of deploying multiple,
+different-sized LLMs by overlaying LLMs quantized to varying bit-widths, such
+as 3, 4, ..., $n$ bits, into a memory footprint comparable to a single $n$-bit
+LLM. All the supported LLMs with varying bit-widths demonstrate
+state-of-the-art model quality and inference throughput, proving itself to be a
+compelling option for deployment of multiple, different-sized LLMs. Our code is
+open-sourced and available online.},
+ arxiv_url = {https://arxiv.org/pdf/2402.10517v4.pdf},
+ author = {Yeonhong Park and Jake Hyun and SangLyul Cho and Bonggeun Sim and Jae W. Lee},
+ title = {Any-Precision LLM: Low-Cost Deployment of Multiple, Different-Sized LLMs},
+ year = {2024-02-16T09:06:06Z}
+}
+
+@article{wang_2023-05-27T02:08:51Z_zero,
+ abstract = {Deployment of Transformer models on edge devices is becoming increasingly
+challenging due to the exponentially growing inference cost that scales
+quadratically with the number of tokens in the input sequence. Token pruning is
+an emerging solution to address this challenge due to its ease of deployment on
+various Transformer backbones. However, most token pruning methods require
+computationally expensive fine-tuning, which is undesirable in many edge
+deployment cases. In this work, we propose Zero-TPrune, the first zero-shot
+method that considers both the importance and similarity of tokens in
+performing token pruning. It leverages the attention graph of pre-trained
+Transformer models to produce an importance distribution for tokens via our
+proposed Weighted Page Rank (WPR) algorithm. This distribution further guides
+token partitioning for efficient similarity-based pruning. Due to the
+elimination of the fine-tuning overhead, Zero-TPrune can prune large models at
+negligible computational cost, switch between different pruning configurations
+at no computational cost, and perform hyperparameter tuning efficiently. We
+evaluate the performance of Zero-TPrune on vision tasks by applying it to
+various vision Transformer backbones and testing them on ImageNet. Without any
+fine-tuning, Zero-TPrune reduces the FLOPs cost of DeiT-S by 34.7% and improves
+its throughput by 45.3% with only 0.4% accuracy loss. Compared with
+state-of-the-art pruning methods that require fine-tuning, Zero-TPrune not only
+eliminates the need for fine-tuning after pruning but also does so with only
+0.1% accuracy loss. Compared with state-of-the-art fine-tuning-free pruning
+methods, Zero-TPrune reduces accuracy loss by up to 49% with similar FLOPs
+budgets. Project webpage: https://jha-lab.github.io/zerotprune.},
+ arxiv_url = {https://arxiv.org/pdf/2305.17328v3.pdf},
+ author = {Hongjie Wang and Bhishma Dedhia and Niraj K. Jha},
+ title = {Zero-TPrune: Zero-Shot Token Pruning through Leveraging of the Attention Graph in Pre-Trained Transformers},
+ year = {2023-05-27T02:08:51Z}
+}
+
+@article{xi_2023-06-21T02:45:01Z_training,
+ abstract = {Quantizing the activation, weight, and gradient to 4-bit is promising to
+accelerate neural network training. However, existing 4-bit training methods
+require custom numerical formats which are not supported by contemporary
+hardware. In this work, we propose a training method for transformers with all
+matrix multiplications implemented with the INT4 arithmetic. Training with an
+ultra-low INT4 precision is challenging. To achieve this, we carefully analyze
+the specific structures of activation and gradients in transformers to propose
+dedicated quantizers for them. For forward propagation, we identify the
+challenge of outliers and propose a Hadamard quantizer to suppress the
+outliers. For backpropagation, we leverage the structural sparsity of gradients
+by proposing bit splitting and leverage score sampling techniques to quantize
+gradients accurately. Our algorithm achieves competitive accuracy on a wide
+range of tasks including natural language understanding, machine translation,
+and image classification. Unlike previous 4-bit training methods, our algorithm
+can be implemented on the current generation of GPUs. Our prototypical linear
+operator implementation is up to 2.2 times faster than the FP16 counterparts
+and speeds up the training by up to 35.1%.},
+ arxiv_url = {https://arxiv.org/pdf/2306.11987v2.pdf},
+ author = {Haocheng Xi and Changhao Li and Jianfei Chen and Jun Zhu},
+ github_url = {https://github.com/xijiu9/Train_Transformers_with_INT4},
+ title = {Training Transformers with 4-bit Integers},
+ year = {2023-06-21T02:45:01Z}
+}
+
+@article{zeng_2022-07-21T03:36:30Z_multi,
+ abstract = {Transformers have emerged as a preferred model for many tasks in natural
+langugage processing and vision. Recent efforts on training and deploying
+Transformers more efficiently have identified many strategies to approximate
+the self-attention matrix, a key module in a Transformer architecture.
+Effective ideas include various prespecified sparsity patterns, low-rank basis
+expansions and combinations thereof. In this paper, we revisit classical
+Multiresolution Analysis (MRA) concepts such as Wavelets, whose potential value
+in this setting remains underexplored thus far. We show that simple
+approximations based on empirical feedback and design choices informed by
+modern hardware and implementation challenges, eventually yield a MRA-based
+approach for self-attention with an excellent performance profile across most
+criteria of interest. We undertake an extensive set of experiments and
+demonstrate that this multi-resolution scheme outperforms most efficient
+self-attention proposals and is favorable for both short and long sequences.
+Code is available at \url{https://github.com/mlpen/mra-attention}.},
+ arxiv_url = {https://arxiv.org/pdf/2207.10284v1.pdf},
+ author = {Zhanpeng Zeng and Sourav Pal and Jeffery Kline and Glenn M Fung and Vikas Singh},
+ title = {Multi Resolution Analysis (MRA) for Approximate Self-Attention},
+ year = {2022-07-21T03:36:30Z}
+}
+
+@article{zeng_2022-07-21T03:36:30Z_multi,
+ abstract = {Transformers have emerged as a preferred model for many tasks in natural
+langugage processing and vision. Recent efforts on training and deploying
+Transformers more efficiently have identified many strategies to approximate
+the self-attention matrix, a key module in a Transformer architecture.
+Effective ideas include various prespecified sparsity patterns, low-rank basis
+expansions and combinations thereof. In this paper, we revisit classical
+Multiresolution Analysis (MRA) concepts such as Wavelets, whose potential value
+in this setting remains underexplored thus far. We show that simple
+approximations based on empirical feedback and design choices informed by
+modern hardware and implementation challenges, eventually yield a MRA-based
+approach for self-attention with an excellent performance profile across most
+criteria of interest. We undertake an extensive set of experiments and
+demonstrate that this multi-resolution scheme outperforms most efficient
+self-attention proposals and is favorable for both short and long sequences.
+Code is available at \url{https://github.com/mlpen/mra-attention}.},
+ arxiv_url = {https://arxiv.org/pdf/2207.10284v1.pdf},
+ author = {Zhanpeng Zeng and Sourav Pal and Jeffery Kline and Glenn M Fung and Vikas Singh},
+ title = {Multi Resolution Analysis (MRA) for Approximate Self-Attention},
+ year = {2022-07-21T03:36:30Z}
+}
+
+% ===========================================
+% REFERENCE CANDIDATES
+% Additional reference papers for context
+% ===========================================
+
+@article{author_year_findings,
+ title = {Findings of the 2014 workshop on statistical machine translation.}
+}
+
+@article{bai_2020-12-31T16:34:54Z_binarybert,
+ abstract = {The rapid development of large pre-trained language models has greatly
+increased the demand for model compression techniques, among which quantization
+is a popular solution. In this paper, we propose BinaryBERT, which pushes BERT
+quantization to the limit by weight binarization. We find that a binary BERT is
+hard to be trained directly than a ternary counterpart due to its complex and
+irregular loss landscape. Therefore, we propose ternary weight splitting, which
+initializes BinaryBERT by equivalently splitting from a half-sized ternary
+network. The binary model thus inherits the good performance of the ternary
+one, and can be further enhanced by fine-tuning the new architecture after
+splitting. Empirical results show that our BinaryBERT has only a slight
+performance drop compared with the full-precision model while being 24x
+smaller, achieving the state-of-the-art compression results on the GLUE and
+SQuAD benchmarks.},
+ arxiv_url = {https://arxiv.org/pdf/2012.15701v2.pdf},
+ author = {Haoli Bai and Wei Zhang and Lu Hou and Lifeng Shang and Jing Jin and Xin Jiang and Qun Liu and Michael Lyu and Irwin King},
+ title = {Binarybert: Pushing the limit of bert quantization.},
+ year = {2020-12-31T16:34:54Z}
+}
+
+@article{banner_2018-05-25T15:20:37Z_scalable,
+ abstract = {Quantized Neural Networks (QNNs) are often used to improve network efficiency
+during the inference phase, i.e. after the network has been trained. Extensive
+research in the field suggests many different quantization schemes. Still, the
+number of bits required, as well as the best quantization scheme, are yet
+unknown. Our theoretical analysis suggests that most of the training process is
+robust to substantial precision reduction, and points to only a few specific
+operations that require higher precision. Armed with this knowledge, we
+quantize the model parameters, activations and layer gradients to 8-bit,
+leaving at a higher precision only the final step in the computation of the
+weight gradients. Additionally, as QNNs require batch-normalization to be
+trained at high precision, we introduce Range Batch-Normalization (BN) which
+has significantly higher tolerance to quantization noise and improved
+computational complexity. Our simulations show that Range BN is equivalent to
+the traditional batch norm if a precise scale adjustment, which can be
+approximated analytically, is applied. To the best of the authors' knowledge,
+this work is the first to quantize the weights, activations, as well as a
+substantial volume of the gradients stream, in all layers (including batch
+normalization) to 8-bit while showing state-of-the-art results over the
+ImageNet-1K dataset.},
+ arxiv_url = {https://arxiv.org/pdf/1805.11046v3.pdf},
+ author = {Ron Banner and Itay Hubara and Elad Hoffer and Daniel Soudry},
+ title = {Scalable methods for 8-bit training of neural networks.},
+ year = {2018-05-25T15:20:37Z}
+}
+
+@article{bengio_2013-08-15T15:19:34Z_estimating,
+ abstract = {Stochastic neurons and hard non-linearities can be useful for a number of
+reasons in deep learning models, but in many cases they pose a challenging
+problem: how to estimate the gradient of a loss function with respect to the
+input of such stochastic or non-smooth neurons? I.e., can we "back-propagate"
+through these stochastic neurons? We examine this question, existing
+approaches, and compare four families of solutions, applicable in different
+settings. One of them is the minimum variance unbiased gradient estimator for
+stochatic binary neurons (a special case of the REINFORCE algorithm). A second
+approach, introduced here, decomposes the operation of a binary stochastic
+neuron into a stochastic binary part and a smooth differentiable part, which
+approximates the expected effect of the pure stochatic binary neuron to first
+order. A third approach involves the injection of additive or multiplicative
+noise in a computational graph that is otherwise differentiable. A fourth
+approach heuristically copies the gradient with respect to the stochastic
+output directly as an estimator of the gradient with respect to the sigmoid
+argument (we call this the straight-through estimator). To explore a context
+where these estimators are useful, we consider a small-scale version of {\em
+conditional computation}, where sparse stochastic units form a distributed
+representation of gaters that can turn off in combinatorially many ways large
+chunks of the computation performed in the rest of the neural network. In this
+case, it is important that the gating units produce an actual 0 most of the
+time. The resulting sparsity can be potentially be exploited to greatly reduce
+the computational cost of large deep networks for which conditional computation
+would be useful.},
+ arxiv_url = {https://arxiv.org/pdf/1308.3432v1.pdf},
+ author = {Yoshua Bengio and Nicholas Léonard and Aaron Courville},
+ title = {Estimating or propagating gradients through stochastic neurons for conditional computation.},
+ year = {2013-08-15T15:19:34Z}
+}
