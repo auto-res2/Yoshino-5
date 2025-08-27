@@ -6,5 +6,142 @@
     "compact language model reasoning",
     "GSM8K student model",
     "progressive reasoning distillation"
+  ],
+  "research_study_list": [
+    {
+      "title": "Keypoint-based Progressive Chain-of-Thought Distillation for LLMs",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "Automatic Chain of Thought Prompting in Large Language Models",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "Cream of the Crop: Distilling Prioritized Paths For One-Shot Neural Architecture Search",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "Keypoint-based Progressive Chain-of-Thought Distillation for LLMs",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "Can Language Models Learn to Skip Steps?",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "Leveraging the Inductive Bias of Large Language Models for Abstract Textual Reasoning",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "Shapeshifter: a Parameter-efficient Transformer using Factorized Reshaped Matrices",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "Leap-Of-Thought: Teaching Pre-Trained Models to Systematically Reason Over Implicit Knowledge",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "A Careful Examination of Large Language Model Performance on Grade School Arithmetic",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "Language models are multilingual chain-of-thought reasoners",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "Language Models as Science Tutors",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "Keypoint-based Progressive Chain-of-Thought Distillation for LLMs",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "Data Distillation Can Be Like Vodka: Distilling More Times For Better Quality",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    },
+    {
+      "title": "Progressive Ensemble Distillation: Building Ensembles for Efficient Inference",
+      "abstract": null,
+      "full_text": null,
+      "image_data": null,
+      "references": null,
+      "meta_data": null,
+      "llm_extracted_info": null
+    }
   ]
 }
