@@ -654,5 +654,11 @@
     },
     "experimental_results": null,
     "experimental_analysis": null
-  }
+  },
+  "push_completion": true,
+  "devin_info": {
+    "session_id": "devin-9075d6749dc7489db9ca23e6b8fc4477",
+    "devin_url": "https://app.devin.ai/sessions/9075d6749dc7489db9ca23e6b8fc4477"
+  },
+  "experiment_iteration": 1
 }
