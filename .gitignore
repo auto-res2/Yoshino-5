@@ -174,3 +174,4 @@ cython_debug/
 .pypirc
 !.gitkeep
 !.research/latex/latex-error.log
+data/synthetic_test.jsonl

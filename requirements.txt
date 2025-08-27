@@ -1,1 +1,9 @@
-# Please list the required python packages.
+torch>=2.2
+transformers>=4.40
+datasets>=2.19
+safetensors
+matplotlib>=3.8
+seaborn>=0.13
+scikit-learn
+tqdm
+numpy
