@@ -1,1 +1,7 @@
-airas-template
+# HAPIQ: Hierarchical Adaptive-Precision Inference for Large Language Models
+> ⚠️ **NOTE:** This research is an automatic research using AIRAS.
+## Abstract
+We present HAPIQ, an open-source inference framework that cuts memory, latency, and energy for large-language-model (LLM) serving by assigning arithmetic precision on a per-token basis and by extending the same mechanism to the key–value (KV) cache. Prior adaptive-precision work limits decisions to the weight tensors or to one choice per layer, leaving up to half of the achievable savings unused. HAPIQ closes this gap through three innovations: (i) a quad-path bit-plane layout that stores both weights and KV tensors as an INT3 base plus optional single-bit residual planes, enabling constant-time upgrades or downgrades to INT4, INT8, FP8, or FP16; (ii) HSE-3, a 160 k-parameter hierarchical saliency engine that fuses self-attention logits, discourse-burst cues, and retrieval scores to emit 2-bit precision codes in under 2 µs; and (iii) the first public Triton kernel that executes INT3, INT4/8, FP8, and FP16 matrix multiplies concurrently. Evaluations on Llama-3-8B/70B, Mistral-7B, and Phi-3-Mini over MMLU, GSM8K, HellaSwag, LongFormQA-32 k, and streaming chat show that HAPIQ delivers 35–45 % higher throughput than uniform INT8, shrinks the KV cache by 2.2 ×, and lowers energy per token by 11 %, all with <0.25 % accuracy loss. Against HALO-Q v2 the speed-up remains 18–25 % on contexts ≥8 k. All code, Triton kernels, and Docker recipes are released under Apache-2.
+
+- [Research history](https://github.com/auto-res2/Yoshino-5/blob/11-Dynamic4bit/.research/research_history.json)
+- [Devin execution log](https://app.devin.ai/sessions/a5e062bda02545fa9fbcae5ad666e2dd)
