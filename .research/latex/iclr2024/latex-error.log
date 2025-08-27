@@ -265,167 +265,73 @@ s been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg)
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.57 ...tion \cite{lu\_2022-09-23T03:35:59Z\_lgdn}
-                                                  , magnitude--direction wei...
+
+Package natbib Warning: Citation `lu_2022-09-23T03:35:59Z_lgdn' on page 1 undef
+ined on input line 57.
 
 
-Package natbib Warning: Citation `lu\T1\textunderscore2022-09-23T03:35:59Z\T1\t
-extunderscorelgdn' on page 1 undefined on input line 57.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.57 ...ion \cite{liu\_2024-02-14T17:59:34Z\_dora}
-                                                   and layer-wise variable r...
+Package natbib Warning: Citation `liu_2024-02-14T17:59:34Z_dora' on page 1 unde
+fined on input line 57.
 
 
-Package natbib Warning: Citation `liu\T1\textunderscore2024-02-14T17:59:34Z\T1\
-textunderscoredora' on page 1 undefined on input line 57.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.57 ...ite{dong\_2024-10-30T12:08:30Z\_efficient}
-                                                  . Yet no existing method j...
-
-
-Package natbib Warning: Citation `dong\T1\textunderscore2024-10-30T12:08:30Z\T1
-\textunderscoreefficient' on page 1 undefined on input line 57.
+Package natbib Warning: Citation `dong_2024-10-30T12:08:30Z_efficient' on page 
+1 undefined on input line 57.
 
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-
 dist/fonts/enc/dvips/base/8r.enc}]
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.61 ...ite{dong\_2024-10-30T12:08:30Z\_efficient}
-                                                  ; DoRA sign splitting pres...
+
+Package natbib Warning: Citation `dong_2024-10-30T12:08:30Z_efficient' on page 
+2 undefined on input line 61.
 
 
-Package natbib Warning: Citation `dong\T1\textunderscore2024-10-30T12:08:30Z\T1
-\textunderscoreefficient' on page 2 undefined on input line 61.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.61 ...ing \cite{liu\_2024-02-14T17:59:34Z\_dora}
-                                                  .
-
-Package natbib Warning: Citation `liu\T1\textunderscore2024-02-14T17:59:34Z\T1\
-textunderscoredora' on page 2 undefined on input line 61.
+Package natbib Warning: Citation `liu_2024-02-14T17:59:34Z_dora' on page 2 unde
+fined on input line 61.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.76 ...ion \cite{liu\_2024-02-14T17:59:34Z\_dora}
-                                                  , theoretical rank guarant...
+
+Package natbib Warning: Citation `liu_2024-02-14T17:59:34Z_dora' on page 2 unde
+fined on input line 76.
 
 
-Package natbib Warning: Citation `liu\T1\textunderscore2024-02-14T17:59:34Z\T1\
-textunderscoredora' on page 2 undefined on input line 76.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.76 ...ees \cite{zeng\_2023-10-26T16:08:33Z\_the}
-                                                   and layer-wise variable r...
+Package natbib Warning: Citation `zeng_2023-10-26T16:08:33Z_the' on page 2 unde
+fined on input line 76.
 
 
-Package natbib Warning: Citation `zeng\T1\textunderscore2023-10-26T16:08:33Z\T1
-\textunderscorethe' on page 2 undefined on input line 76.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.76 ...ite{dong\_2024-10-30T12:08:30Z\_efficient}
-                                                  . All of them freeze the r...
+Package natbib Warning: Citation `dong_2024-10-30T12:08:30Z_efficient' on page 
+2 undefined on input line 76.
 
 
-Package natbib Warning: Citation `dong\T1\textunderscore2024-10-30T12:08:30Z\T1
-\textunderscoreefficient' on page 2 undefined on input line 76.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.78 ...ores \cite{lu\_2022-09-23T03:35:59Z\_lgdn}
-                                                  . Budget-adaptive inferenc...
+Package natbib Warning: Citation `lu_2022-09-23T03:35:59Z_lgdn' on page 2 undef
+ined on input line 78.
 
 
-Package natbib Warning: Citation `lu\T1\textunderscore2022-09-23T03:35:59Z\T1\t
-extunderscorelgdn' on page 2 undefined on input line 78.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.78 ...\cite{bao\_2022-01-17T16:28:12Z\_analytic}
-                                                   but not for transformer a...
+Package natbib Warning: Citation `bao_2022-01-17T16:28:12Z_analytic' on page 2 
+undefined on input line 78.
 
 
-Package natbib Warning: Citation `bao\T1\textunderscore2022-01-17T16:28:12Z\T1\
-textunderscoreanalytic' on page 2 undefined on input line 78.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.80 ...LM \cite{yang\_2022-06-16T13:18:20Z\_zero}
-                                                   and VidIL \cite{wang\_202...
+Package natbib Warning: Citation `yang_2022-06-16T13:18:20Z_zero' on page 2 und
+efined on input line 80.
 
 
-Package natbib Warning: Citation `yang\T1\textunderscore2022-06-16T13:18:20Z\T1
-\textunderscorezero' on page 2 undefined on input line 80.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.80 ...cite{wang\_2022-05-22T05:18:27Z\_language}
-                                                   highlight the power of co...
+Package natbib Warning: Citation `wang_2022-05-22T05:18:27Z_language' on page 2
+ undefined on input line 80.
 
 
-Package natbib Warning: Citation `wang\T1\textunderscore2022-05-22T05:18:27Z\T1
-\textunderscorelanguage' on page 2 undefined on input line 80.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.82 ...te{guo\_2023-07-10T17:34:16Z\_animatediff}
-                                                   and SimDA \cite{xing\_202...
+Package natbib Warning: Citation `guo_2023-07-10T17:34:16Z_animatediff' on page
+ 2 undefined on input line 82.
 
 
-Package natbib Warning: Citation `guo\T1\textunderscore2023-07-10T17:34:16Z\T1\
-textunderscoreanimatediff' on page 2 undefined on input line 82.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.82 ...A \cite{xing\_2023-08-18T17:58:44Z\_simda}
-                                                   transplant spatial adapte...
-
-
-Package natbib Warning: Citation `xing\T1\textunderscore2023-08-18T17:58:44Z\T1
-\textunderscoresimda' on page 2 undefined on input line 82.
+Package natbib Warning: Citation `xing_2023-08-18T17:58:44Z_simda' on page 2 un
+defined on input line 82.
 
 [2]
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.90 ...ost \cite{liu\_2024-02-14T17:59:34Z\_dora}
-                                                  .
 
-Package natbib Warning: Citation `liu\T1\textunderscore2024-02-14T17:59:34Z\T1\
-textunderscoredora' on page 3 undefined on input line 90.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.92 ...ite{dong\_2024-10-30T12:08:30Z\_efficient}
-                                                  . HyperST-LoRA lets the hy...
+Package natbib Warning: Citation `liu_2024-02-14T17:59:34Z_dora' on page 3 unde
+fined on input line 90.
 
 
-Package natbib Warning: Citation `dong\T1\textunderscore2024-10-30T12:08:30Z\T1
-\textunderscoreefficient' on page 3 undefined on input line 92.
+Package natbib Warning: Citation `dong_2024-10-30T12:08:30Z_efficient' on page 
+3 undefined on input line 92.
 
 [3] (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd)
 
@@ -469,73 +375,22 @@ Output written on paper.pdf (6 pages, 158972 bytes).
 Transcript written on paper.log.
 This is BibTeX, Version 0.99d (TeX Live 2023/Debian)
 The top-level auxiliary file: paper.aux
-White space in argument---line 5 of file paper.aux
- : \citation{lu\protect
- :                      \T1\textunderscore 2022-09-23T03:35:59Z\protect \T1\textunderscore lgdn}
-I'm skipping whatever remains of this command
-White space in argument---line 6 of file paper.aux
- : \citation{liu\protect
- :                       \T1\textunderscore 2024-02-14T17:59:34Z\protect \T1\textunderscore dora}
-I'm skipping whatever remains of this command
-White space in argument---line 7 of file paper.aux
- : \citation{dong\protect
- :                        \T1\textunderscore 2024-10-30T12:08:30Z\protect \T1\textunderscore efficient}
-I'm skipping whatever remains of this command
-White space in argument---line 11 of file paper.aux
- : \citation{dong\protect
- :                        \T1\textunderscore 2024-10-30T12:08:30Z\protect \T1\textunderscore efficient}
-I'm skipping whatever remains of this command
-White space in argument---line 12 of file paper.aux
- : \citation{liu\protect
- :                       \T1\textunderscore 2024-02-14T17:59:34Z\protect \T1\textunderscore dora}
-I'm skipping whatever remains of this command
-White space in argument---line 13 of file paper.aux
- : \citation{liu\protect
- :                       \T1\textunderscore 2024-02-14T17:59:34Z\protect \T1\textunderscore dora}
-I'm skipping whatever remains of this command
-White space in argument---line 14 of file paper.aux
- : \citation{zeng\protect
- :                        \T1\textunderscore 2023-10-26T16:08:33Z\protect \T1\textunderscore the}
-I'm skipping whatever remains of this command
-White space in argument---line 15 of file paper.aux
- : \citation{dong\protect
- :                        \T1\textunderscore 2024-10-30T12:08:30Z\protect \T1\textunderscore efficient}
-I'm skipping whatever remains of this command
-White space in argument---line 16 of file paper.aux
- : \citation{lu\protect
- :                      \T1\textunderscore 2022-09-23T03:35:59Z\protect \T1\textunderscore lgdn}
-I'm skipping whatever remains of this command
-White space in argument---line 17 of file paper.aux
- : \citation{bao\protect
- :                       \T1\textunderscore 2022-01-17T16:28:12Z\protect \T1\textunderscore analytic}
-I'm skipping whatever remains of this command
-White space in argument---line 18 of file paper.aux
- : \citation{yang\protect
- :                        \T1\textunderscore 2022-06-16T13:18:20Z\protect \T1\textunderscore zero}
-I'm skipping whatever remains of this command
-White space in argument---line 19 of file paper.aux
- : \citation{wang\protect
- :                        \T1\textunderscore 2022-05-22T05:18:27Z\protect \T1\textunderscore language}
-I'm skipping whatever remains of this command
-White space in argument---line 20 of file paper.aux
- : \citation{guo\protect
- :                       \T1\textunderscore 2023-07-10T17:34:16Z\protect \T1\textunderscore animatediff}
-I'm skipping whatever remains of this command
-White space in argument---line 21 of file paper.aux
- : \citation{xing\protect
- :                        \T1\textunderscore 2023-08-18T17:58:44Z\protect \T1\textunderscore simda}
-I'm skipping whatever remains of this command
-White space in argument---line 28 of file paper.aux
- : \citation{liu\protect
- :                       \T1\textunderscore 2024-02-14T17:59:34Z\protect \T1\textunderscore dora}
-I'm skipping whatever remains of this command
-White space in argument---line 29 of file paper.aux
- : \citation{dong\protect
- :                        \T1\textunderscore 2024-10-30T12:08:30Z\protect \T1\textunderscore efficient}
-I'm skipping whatever remains of this command
 The style file: iclr2024_conference.bst
 Database file #1: references.bib
-(There were 16 error messages)
+Repeated entry---line 129 of file references.bib
+ : @article{liu_2024-02-14T17:59:34Z_dora
+ :                                       ,
+I'm skipping whatever remains of this entry
+Warning--empty journal in bao_2022-01-17T16:28:12Z_analytic
+Warning--empty journal in dong_2024-10-30T12:08:30Z_efficient
+Warning--empty journal in guo_2023-07-10T17:34:16Z_animatediff
+Warning--empty journal in liu_2024-02-14T17:59:34Z_dora
+Warning--empty journal in lu_2022-09-23T03:35:59Z_lgdn
+Warning--empty journal in wang_2022-05-22T05:18:27Z_language
+Warning--empty journal in xing_2023-08-18T17:58:44Z_simda
+Warning--empty journal in yang_2022-06-16T13:18:20Z_zero
+Warning--empty journal in zeng_2023-10-26T16:08:33Z_the
+(There was 1 error message)
 This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
  restricted \write18 enabled.
 entering extended mode
@@ -804,167 +659,73 @@ s been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg)
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.57 ...tion \cite{lu\_2022-09-23T03:35:59Z\_lgdn}
-                                                  , magnitude--direction wei...
+
+Package natbib Warning: Citation `lu_2022-09-23T03:35:59Z_lgdn' on page 1 undef
+ined on input line 57.
 
 
-Package natbib Warning: Citation `lu\T1\textunderscore2022-09-23T03:35:59Z\T1\t
-extunderscorelgdn' on page 1 undefined on input line 57.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.57 ...ion \cite{liu\_2024-02-14T17:59:34Z\_dora}
-                                                   and layer-wise variable r...
+Package natbib Warning: Citation `liu_2024-02-14T17:59:34Z_dora' on page 1 unde
+fined on input line 57.
 
 
-Package natbib Warning: Citation `liu\T1\textunderscore2024-02-14T17:59:34Z\T1\
-textunderscoredora' on page 1 undefined on input line 57.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.57 ...ite{dong\_2024-10-30T12:08:30Z\_efficient}
-                                                  . Yet no existing method j...
-
-
-Package natbib Warning: Citation `dong\T1\textunderscore2024-10-30T12:08:30Z\T1
-\textunderscoreefficient' on page 1 undefined on input line 57.
+Package natbib Warning: Citation `dong_2024-10-30T12:08:30Z_efficient' on page 
+1 undefined on input line 57.
 
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-
 dist/fonts/enc/dvips/base/8r.enc}]
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.61 ...ite{dong\_2024-10-30T12:08:30Z\_efficient}
-                                                  ; DoRA sign splitting pres...
+
+Package natbib Warning: Citation `dong_2024-10-30T12:08:30Z_efficient' on page 
+2 undefined on input line 61.
 
 
-Package natbib Warning: Citation `dong\T1\textunderscore2024-10-30T12:08:30Z\T1
-\textunderscoreefficient' on page 2 undefined on input line 61.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.61 ...ing \cite{liu\_2024-02-14T17:59:34Z\_dora}
-                                                  .
-
-Package natbib Warning: Citation `liu\T1\textunderscore2024-02-14T17:59:34Z\T1\
-textunderscoredora' on page 2 undefined on input line 61.
+Package natbib Warning: Citation `liu_2024-02-14T17:59:34Z_dora' on page 2 unde
+fined on input line 61.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.76 ...ion \cite{liu\_2024-02-14T17:59:34Z\_dora}
-                                                  , theoretical rank guarant...
+
+Package natbib Warning: Citation `liu_2024-02-14T17:59:34Z_dora' on page 2 unde
+fined on input line 76.
 
 
-Package natbib Warning: Citation `liu\T1\textunderscore2024-02-14T17:59:34Z\T1\
-textunderscoredora' on page 2 undefined on input line 76.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.76 ...ees \cite{zeng\_2023-10-26T16:08:33Z\_the}
-                                                   and layer-wise variable r...
+Package natbib Warning: Citation `zeng_2023-10-26T16:08:33Z_the' on page 2 unde
+fined on input line 76.
 
 
-Package natbib Warning: Citation `zeng\T1\textunderscore2023-10-26T16:08:33Z\T1
-\textunderscorethe' on page 2 undefined on input line 76.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.76 ...ite{dong\_2024-10-30T12:08:30Z\_efficient}
-                                                  . All of them freeze the r...
+Package natbib Warning: Citation `dong_2024-10-30T12:08:30Z_efficient' on page 
+2 undefined on input line 76.
 
 
-Package natbib Warning: Citation `dong\T1\textunderscore2024-10-30T12:08:30Z\T1
-\textunderscoreefficient' on page 2 undefined on input line 76.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.78 ...ores \cite{lu\_2022-09-23T03:35:59Z\_lgdn}
-                                                  . Budget-adaptive inferenc...
+Package natbib Warning: Citation `lu_2022-09-23T03:35:59Z_lgdn' on page 2 undef
+ined on input line 78.
 
 
-Package natbib Warning: Citation `lu\T1\textunderscore2022-09-23T03:35:59Z\T1\t
-extunderscorelgdn' on page 2 undefined on input line 78.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.78 ...\cite{bao\_2022-01-17T16:28:12Z\_analytic}
-                                                   but not for transformer a...
+Package natbib Warning: Citation `bao_2022-01-17T16:28:12Z_analytic' on page 2 
+undefined on input line 78.
 
 
-Package natbib Warning: Citation `bao\T1\textunderscore2022-01-17T16:28:12Z\T1\
-textunderscoreanalytic' on page 2 undefined on input line 78.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.80 ...LM \cite{yang\_2022-06-16T13:18:20Z\_zero}
-                                                   and VidIL \cite{wang\_202...
+Package natbib Warning: Citation `yang_2022-06-16T13:18:20Z_zero' on page 2 und
+efined on input line 80.
 
 
-Package natbib Warning: Citation `yang\T1\textunderscore2022-06-16T13:18:20Z\T1
-\textunderscorezero' on page 2 undefined on input line 80.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.80 ...cite{wang\_2022-05-22T05:18:27Z\_language}
-                                                   highlight the power of co...
+Package natbib Warning: Citation `wang_2022-05-22T05:18:27Z_language' on page 2
+ undefined on input line 80.
 
 
-Package natbib Warning: Citation `wang\T1\textunderscore2022-05-22T05:18:27Z\T1
-\textunderscorelanguage' on page 2 undefined on input line 80.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.82 ...te{guo\_2023-07-10T17:34:16Z\_animatediff}
-                                                   and SimDA \cite{xing\_202...
+Package natbib Warning: Citation `guo_2023-07-10T17:34:16Z_animatediff' on page
+ 2 undefined on input line 82.
 
 
-Package natbib Warning: Citation `guo\T1\textunderscore2023-07-10T17:34:16Z\T1\
-textunderscoreanimatediff' on page 2 undefined on input line 82.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.82 ...A \cite{xing\_2023-08-18T17:58:44Z\_simda}
-                                                   transplant spatial adapte...
-
-
-Package natbib Warning: Citation `xing\T1\textunderscore2023-08-18T17:58:44Z\T1
-\textunderscoresimda' on page 2 undefined on input line 82.
+Package natbib Warning: Citation `xing_2023-08-18T17:58:44Z_simda' on page 2 un
+defined on input line 82.
 
 [2]
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.90 ...ost \cite{liu\_2024-02-14T17:59:34Z\_dora}
-                                                  .
 
-Package natbib Warning: Citation `liu\T1\textunderscore2024-02-14T17:59:34Z\T1\
-textunderscoredora' on page 3 undefined on input line 90.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.92 ...ite{dong\_2024-10-30T12:08:30Z\_efficient}
-                                                  . HyperST-LoRA lets the hy...
+Package natbib Warning: Citation `liu_2024-02-14T17:59:34Z_dora' on page 3 unde
+fined on input line 90.
 
 
-Package natbib Warning: Citation `dong\T1\textunderscore2024-10-30T12:08:30Z\T1
-\textunderscoreefficient' on page 3 undefined on input line 92.
+Package natbib Warning: Citation `dong_2024-10-30T12:08:30Z_efficient' on page 
+3 undefined on input line 92.
 
 [3] (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd) [4]
 Underfull \vbox (badness 10000) has occurred while \output is active [5 <./imag
@@ -973,11 +734,11 @@ es/accuracy_ablation.pdf>]
 Package natbib Warning: Citation `airas2025' on page 6 undefined on input line 
 204.
 
-(./paper.bbl)
+(./paper.bbl [6 <./images/accuracy_budget_curve.pdf>])
 
 Package natbib Warning: There were undefined citations.
 
-[6 <./images/accuracy_budget_curve.pdf>] (./paper.aux
+[7] (./paper.aux
 
 Package natbib Warning: Citation(s) may have changed.
 (natbib)                Rerun to get citations correct.
@@ -993,7 +754,7 @@ nts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
 sbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></u
 sr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texliv
 e/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on paper.pdf (6 pages, 161435 bytes).
+Output written on paper.pdf (7 pages, 163932 bytes).
 Transcript written on paper.log.
 This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
  restricted \write18 enabled.
@@ -1263,175 +1024,18 @@ s been generated with the most recent feature set (\pgfplotsset{compat=1.18}).
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg)
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.57 ...tion \cite{lu\_2022-09-23T03:35:59Z\_lgdn}
-                                                  , magnitude--direction wei...
-
-
-Package natbib Warning: Citation `lu\T1\textunderscore2022-09-23T03:35:59Z\T1\t
-extunderscorelgdn' on page 1 undefined on input line 57.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.57 ...ion \cite{liu\_2024-02-14T17:59:34Z\_dora}
-                                                   and layer-wise variable r...
-
-
-Package natbib Warning: Citation `liu\T1\textunderscore2024-02-14T17:59:34Z\T1\
-textunderscoredora' on page 1 undefined on input line 57.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.57 ...ite{dong\_2024-10-30T12:08:30Z\_efficient}
-                                                  . Yet no existing method j...
-
-
-Package natbib Warning: Citation `dong\T1\textunderscore2024-10-30T12:08:30Z\T1
-\textunderscoreefficient' on page 1 undefined on input line 57.
-
-[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-
-dist/fonts/enc/dvips/base/8r.enc}]
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.61 ...ite{dong\_2024-10-30T12:08:30Z\_efficient}
-                                                  ; DoRA sign splitting pres...
-
-
-Package natbib Warning: Citation `dong\T1\textunderscore2024-10-30T12:08:30Z\T1
-\textunderscoreefficient' on page 2 undefined on input line 61.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.61 ...ing \cite{liu\_2024-02-14T17:59:34Z\_dora}
-                                                  .
-
-Package natbib Warning: Citation `liu\T1\textunderscore2024-02-14T17:59:34Z\T1\
-textunderscoredora' on page 2 undefined on input line 61.
-
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.76 ...ion \cite{liu\_2024-02-14T17:59:34Z\_dora}
-                                                  , theoretical rank guarant...
-
-
-Package natbib Warning: Citation `liu\T1\textunderscore2024-02-14T17:59:34Z\T1\
-textunderscoredora' on page 2 undefined on input line 76.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.76 ...ees \cite{zeng\_2023-10-26T16:08:33Z\_the}
-                                                   and layer-wise variable r...
-
-
-Package natbib Warning: Citation `zeng\T1\textunderscore2023-10-26T16:08:33Z\T1
-\textunderscorethe' on page 2 undefined on input line 76.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.76 ...ite{dong\_2024-10-30T12:08:30Z\_efficient}
-                                                  . All of them freeze the r...
-
-
-Package natbib Warning: Citation `dong\T1\textunderscore2024-10-30T12:08:30Z\T1
-\textunderscoreefficient' on page 2 undefined on input line 76.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.78 ...ores \cite{lu\_2022-09-23T03:35:59Z\_lgdn}
-                                                  . Budget-adaptive inferenc...
-
-
-Package natbib Warning: Citation `lu\T1\textunderscore2022-09-23T03:35:59Z\T1\t
-extunderscorelgdn' on page 2 undefined on input line 78.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.78 ...\cite{bao\_2022-01-17T16:28:12Z\_analytic}
-                                                   but not for transformer a...
-
-
-Package natbib Warning: Citation `bao\T1\textunderscore2022-01-17T16:28:12Z\T1\
-textunderscoreanalytic' on page 2 undefined on input line 78.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.80 ...LM \cite{yang\_2022-06-16T13:18:20Z\_zero}
-                                                   and VidIL \cite{wang\_202...
-
-
-Package natbib Warning: Citation `yang\T1\textunderscore2022-06-16T13:18:20Z\T1
-\textunderscorezero' on page 2 undefined on input line 80.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.80 ...cite{wang\_2022-05-22T05:18:27Z\_language}
-                                                   highlight the power of co...
-
-
-Package natbib Warning: Citation `wang\T1\textunderscore2022-05-22T05:18:27Z\T1
-\textunderscorelanguage' on page 2 undefined on input line 80.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.82 ...te{guo\_2023-07-10T17:34:16Z\_animatediff}
-                                                   and SimDA \cite{xing\_202...
-
-
-Package natbib Warning: Citation `guo\T1\textunderscore2023-07-10T17:34:16Z\T1\
-textunderscoreanimatediff' on page 2 undefined on input line 82.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.82 ...A \cite{xing\_2023-08-18T17:58:44Z\_simda}
-                                                   transplant spatial adapte...
-
-
-Package natbib Warning: Citation `xing\T1\textunderscore2023-08-18T17:58:44Z\T1
-\textunderscoresimda' on page 2 undefined on input line 82.
-
-[2]
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.90 ...ost \cite{liu\_2024-02-14T17:59:34Z\_dora}
-                                                  .
-
-Package natbib Warning: Citation `liu\T1\textunderscore2024-02-14T17:59:34Z\T1\
-textunderscoredora' on page 3 undefined on input line 90.
-
-! Missing \endcsname inserted.
-<to be read again> 
-                   \protect 
-l.92 ...ite{dong\_2024-10-30T12:08:30Z\_efficient}
-                                                  . HyperST-LoRA lets the hy...
-
-
-Package natbib Warning: Citation `dong\T1\textunderscore2024-10-30T12:08:30Z\T1
-\textunderscoreefficient' on page 3 undefined on input line 92.
-
-[3] (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd) [4]
+Underfull \vbox (badness 1831) has occurred while \output is active [1{/var/lib
+/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/
+enc/dvips/base/8r.enc}]
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd) [2] [3]
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1pcr.fd) [4]
 Underfull \vbox (badness 10000) has occurred while \output is active [5 <./imag
-es/accuracy_ablation.pdf>] (./paper.bbl)
+es/accuracy_ablation.pdf>] (./paper.bbl [6 <./images/accuracy_budget_curve.pdf>
+]) [7] (./paper.aux)
 
-Package natbib Warning: There were undefined citations.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
-[6 <./images/accuracy_budget_curve.pdf>] (./paper.aux) )
+ )
 (see the transcript file for additional information)</usr/share/texlive/texmf-d
 ist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fo
 nts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/typ
@@ -1442,5 +1046,5 @@ nts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
 sbm10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></u
 sr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texliv
 e/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on paper.pdf (6 pages, 161469 bytes).
+Output written on paper.pdf (7 pages, 165477 bytes).
 Transcript written on paper.log.
