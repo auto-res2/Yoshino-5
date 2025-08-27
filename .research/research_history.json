@@ -1,0 +1,10 @@
+{
+  "research_topic": "Chain-of-Thought Distillation for Compact LLM Enhancement : Implement Chain-of-Thought Distillation from Large Reasoning Models to improve student model (3-7B parameters) reasoning accuracy and reduce teacher-student performance gap on GSM8K mathematical reasoning, MMLU broad knowledge evaluation, HellaSwag commonsense reasoning, and reasoning process similarity metrics, compared to direct distillation baselines using pre-generated reasoning process pairs (10K-50K examples) from large reasoning models via API, sequence-to-sequence learning of reasoning paths, and progressive reasoning step distillation, addressing the critical 2025 trend of democratizing advanced reasoning capabilities by transferring the internal 'thinking process' structure from large reasoning models (o1, DeepSeek-R1) to resource-efficient smaller models rather than simple output imitation.",
+  "queries": [
+    "chain-of-thought distillation",
+    "reasoning path distillation",
+    "compact language models",
+    "teacher student reasoning transfer",
+    "progressive step distillation"
+  ]
+}
