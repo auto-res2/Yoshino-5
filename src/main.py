@@ -162,7 +162,6 @@ def experiment3(cfg: dict):
     spearmans = []
     auc_likes = []
     for txt in samples:
-        from train import HiQuAPredictor  # to hint types for the linter only
         delta = oracle_delta_kl(model, predictor, tokenizer, txt, layer_idx=0)
         scores = predictor_scores(model, predictor, tokenizer, txt)
         y_true = []
