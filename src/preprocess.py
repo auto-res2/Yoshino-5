@@ -19,7 +19,7 @@ def set_seed(seed: int = 42):
 
 def get_image_dir() -> str:
     # All figures must be saved here
-    return os.path.join('.research', 'iteration4', 'images')
+    return os.path.join('.research', 'iteration5', 'images')
 
 
 # ------------------------------ Data prep ------------------------------

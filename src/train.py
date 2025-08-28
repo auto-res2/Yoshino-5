@@ -244,6 +244,9 @@ class HiQuAPredictor(nn.Module):
         self.tau = nn.Parameter(torch.tensor(0.0))
     def forward(self, last_hidden: torch.Tensor) -> torch.Tensor:
         x = last_hidden[:, -self.k_ctx:, :]
+        # Ensure dtype compatibility with predictor parameters
+        if x.dtype != self.proj.weight.dtype:
+            x = x.to(self.proj.weight.dtype)
         x = self.proj(x)
         x = self.encoder(x).mean(dim=1)
         return self.scorer(x)
@@ -273,7 +276,6 @@ def scores_to_gates(scores: torch.Tensor, predictor: HiQuAPredictor) -> Tuple[Di
 
 # ------------------------------ Warm-up and stepwise decoding ------------------------------
 
-@torch.no_grad()
 def warmup_train_predictor(model, predictor, data_loader, steps: int = 200, lr: float = 5e-4, device: str = 'cuda') -> List[float]:
     opt = torch.optim.AdamW(predictor.parameters(), lr=lr)
     predictor.train()
