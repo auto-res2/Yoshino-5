@@ -546,6 +546,68 @@
       }
     }
   ],
+  "reference_research_study_list": [
+    {
+      "title": "End-to-end optimized image compression"
+    },
+    {
+      "title": "Variational image compression with a scale hyperprior"
+    },
+    {
+      "title": "Estimating or propagating gradients through stochastic neurons for conditional computation"
+    },
+    {
+      "title": "Rethinking lossy compression: The rate-distortion-perception tradeoff"
+    },
+    {
+      "title": "Variational lossy autoencoder"
+    },
+    {
+      "title": "Learned image compression with discretized gaussian mixture likelihoods and attention modules"
+    },
+    {
+      "title": "Variable rate deep image compression with a conditional autoencoder"
+    },
+    {
+      "title": "Diagnosing and enhancing vae models"
+    },
+    {
+      "title": "Imagenet: A large-scale hierarchical image database"
+    },
+    {
+      "title": "Compressing images by encoding their latent representations with relative entropy coding"
+    },
+    {
+      "title": "From variational to deterministic autoencoders"
+    },
+    {
+      "title": "Theoretical foundations of transform coding"
+    },
+    {
+      "title": "Quantization"
+    },
+    {
+      "title": "3-d context entropy model for improved practical image compression"
+    },
+    {
+      "title": "Minimal random code learning: Getting bits back from compressed model parameters"
+    },
+    {
+      "title": "Reducing the dimensionality of data with neural networks"
+    },
+    {
+      "title": "Flow++: Improving flow-based generative models with variational dequantization and architecture design"
+    },
+    {
+      "title": "Integer discrete flows and lossless compression"
+    },
+    {
+      "title": "Categorical reparameterization with gumbel-softmax"
+    },
+    {
+      "title": "Auto-encoding variational bayes"
+    }
+  ],
   "new_method": {
     "method": "Open Problems: Token-level dynamic quantization for LLMs is still missing a practical solution that (1) keeps the whole model in 4-bit NF4 format to fit consumer-GPUs, (2) selectively upsamples only the truly critical weights/activations to 8/16-bit during a few decoding steps, and (3) adds <2 % wall-clock overhead. Prior work either fixes precision statically (GPTQ, AWQ), relies on calibration-time sensitivity (CherryQ, QLLM), or switches entire layers (CALM, Adaptively Sparse Attention) ‑ none can reason about token-specific difficulty on-the-fly while staying memory-flat. The key challenge is devising an ultra-lightweight importance predictor and a hardware path to promote “hot” sub-tensors without memcpy or CUDA stream stalls.\nMethods: We propose HiQuA (Hierarchical Quantization Adapter). Core ideas:\n1. Dual-space storage: All weights are stored once in NF4 (bitsandbytes) plus a learned 8-bit residual codebook (256 values per 64-weight group, ≤6 % extra VRAM). The 8-bit residual reconstructs full-precision when added.\n2. Streaming Recomposer: At run-time a tiny transformer (2 layers, 128 d) reads the last k hidden states and logits to output a binary gate g∈{0,1}^{L,B} over attention heads and FF chunks for the next token. Gate decides whether to add back the 8-bit residual for that sub-tensor this step.\n3. Fused kernel: a custom CUDA kernel takes NF4 tensor, residual codebook, and gate mask; it performs matmul in 4-bit and selectively injects dequantized 8-bit rows using masked DP4A instructions, avoiding host sync.\n4. Self-supervised on-line training: During a short warming phase (≈2000 tokens) we minimize KL(logits_full16, logits_pred) by updating predictor weights; gradients flow only through the predictor, not the LLM.\n5. Budget controller: A reinforcement-learning bandit keeps the average 8-bit ratio under a user-given latency budget by tuning the gate threshold.\nExperimental Setup: Models: Llama-2-7B and 13B, Mistral-7B, Gemma-7B.\nDatasets & tasks: MMLU full (57), HellaSwag, GSM8K (8-shot), and OpenBookQA (to stress reasoning). Use 5 % of validation as on-line warm-up.\nBaselines: NF4 static (bitsandbytes), GPTQ-4bit, CherryQ-3bit (mixed), CALM (early-exit), and a full FP16 model.\nMetrics: (a) tokens/s and peak VRAM, (b) exact match / accuracy on tasks, (c) average 8-bit promotion ratio, (d) kernel overhead (% of total).\nAblations: remove residual codebook, disable bandit, vary budget (5–20 %). Robustness: test on adversarial prompts (AdvBench) and long-context (32k) to measure degradation.\nResult: Expected: HiQuA matches FP16 accuracy within −0.5 on MMLU and GSM8K while using <6 % more memory than pure NF4 and achieves 1.6–2.0× speed-up over GPTQ-4b at batch-size = 1. Only 12–15 % of heads/chunks are promoted on average. Kernel overhead ≤1.5 ms per token, total latency improvement 25–35 % versus bitsandbytes NF4. Ablations show residual codebook recovers 70 % of accuracy gap; bandit keeps promotion ratio stable under tight budgets.\nConclusion: HiQuA demonstrates that hierarchical residual storage plus a learned token-level importance predictor enables context-adaptive precision without sacrificing the VRAM advantage of 4-bit models. It bridges the gap between static PTQ methods and early-exit approaches, offering a new axis (precision) for dynamic inference control. Beyond LLMs, the idea generalises to vision transformers and diffusion U-Nets where residual codebooks and gated promotion can be inserted with minimal code changes. Future work: co-design with INT4 training, extending predictor to multimodal cues, and ASIC implementation of the fused selective-residual kernel.",
     "experimental_design": {
