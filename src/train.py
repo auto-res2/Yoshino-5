@@ -56,10 +56,14 @@ def quantize_int8_groupwise_dense(x: torch.Tensor, group_size: int = 64) -> Tupl
     else:
         xpad = x
     xview = xpad.view(-1, num_groups, group_size)
-    scale = xview.abs().amax(dim=-1, keepdim=True) / 127.0 + 1e-8
-    q = torch.round(xview / scale).clamp_(-127, 127).to(torch.int8)
+    # Per-group max-abs scale
+    scale = xview.abs().amax(dim=-1, keepdim=True) / 127.0 + 1e-8  # [*, num_groups, 1]
+    q = torch.round(xview / scale).clamp_(-127, 127).to(torch.int8)  # [*, num_groups, group_size]
+    # Expand scale across the group dimension so it matches q/xview elementwise
+    scale_expanded = scale.expand(-1, -1, group_size)  # [*, num_groups, group_size]
+
     q = q.view(*orig[:-1], num_groups * group_size)
-    scale_map = scale.view(*orig[:-1], num_groups * group_size)
+    scale_map = scale_expanded.view(*orig[:-1], num_groups * group_size)
     if pads > 0:
         q = q[..., :L]
         scale_map = scale_map[..., :L]
