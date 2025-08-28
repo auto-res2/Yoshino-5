@@ -1,0 +1,48 @@
+# Minimal, T4-friendly config for quick functional test of HiQuA emulator
+model_name: hf-internal-testing/tiny-random-LlamaForCausalLM
+seed: 42
+device: cuda  # will fallback to cpu if CUDA is unavailable
+
+# HiQuA structural params
+chunks: 8
+group_size: 64
+
+# Warm-up predictor training
+warmup_steps: 10
+warmup_lr: 0.0005
+warmup_max_len: 96
+warmup_batch_size: 1
+warmup_texts:
+  - The capital of France is
+  - Solve: 17 + 29 =
+  - Explain why the sky is blue.
+  - Translate: Hello -> Spanish:
+  - In biology, mitochondria are
+  - Newton's second law states that
+  - Python: Write a function to reverse a list.
+  - Q: What is the capital of Italy? A:
+
+# Decoding benchmark
+decode_tokens: 16
+target_ratio: 0.15
+prompts:
+  - Q: What is the derivative of x^2? A:
+  - Question: Who wrote 1984? Answer:
+  - Compute: 159 + 284 =
+  - Translate: Bonjour -> English:
+
+# Ablations
+budgets: [0.05, 0.10, 0.15, 0.20]
+ablation_prompt: Q: Simplify 24/6 + 7. A:
+
+# Predictor quality and overhead
+predictor_samples:
+  - Q: What is the capital of Germany? A:
+  - Compute: 51 * 7 =
+  - Explain photosynthesis briefly.
+  - Translate: Bonjour ->
+
+overhead_prompt: 'A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A A '
+
+# Which experiments to run
+runs: [exp1, exp2, exp3]
