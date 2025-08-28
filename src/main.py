@@ -5,6 +5,7 @@ from typing import List
 
 import numpy as np
 import torch
+import time
 
 # Support running as a script or as a package
 try:
@@ -20,6 +21,7 @@ try:
         predictor_scores,
         plot_predictor_correlation,
         plot_overhead_bar,
+        spearman_corr,
     )
 except ImportError:  # pragma: no cover - fallback when executed as script
     from preprocess import set_seed, default_warmup_texts, build_warmup_loader, load_model_and_tokenizer, get_image_dir
@@ -34,6 +36,7 @@ except ImportError:  # pragma: no cover - fallback when executed as script
         predictor_scores,
         plot_predictor_correlation,
         plot_overhead_bar,
+        spearman_corr,
     )
 
 try:
