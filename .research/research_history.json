@@ -6,5 +6,82 @@
     "context adaptive precision LLM",
     "4-bit inference optimization",
     "BitsAndBytes LLM quantization"
+  ],
+  "research_study_list": [
+    {
+      "title": "Differentiable Dynamic Quantization with Mixed Precision and Adaptive Resolution"
+    },
+    {
+      "title": "Temporal Dynamic Quantization for Diffusion Models"
+    },
+    {
+      "title": "Soft then Hard: Rethinking the Quantization in Neural Image Compression"
+    },
+    {
+      "title": "Post-Training Sparsity-Aware Quantization"
+    },
+    {
+      "title": "Toward Accurate Post-Training Quantization for Image Super Resolution"
+    },
+    {
+      "title": "QuIP: 2-Bit Quantization of Large Language Models With Guarantees"
+    },
+    {
+      "title": "Outlier-aware Slicing for Post-Training Quantization in Vision Transformer"
+    },
+    {
+      "title": "Zero-TPrune: Zero-Shot Token Pruning through Leveraging of the Attention Graph in Pre-Trained Transformers"
+    },
+    {
+      "title": "Cherry on Top: Parameter Heterogeneity and Quantization in Large Language Models"
+    },
+    {
+      "title": "Outlier Suppression: Pushing the Limit of Low-bit Transformer Language Models"
+    },
+    {
+      "title": "Dynamic Context Pruning for Efficient and Interpretable Autoregressive Transformers"
+    },
+    {
+      "title": "Confident Adaptive Language Modeling"
+    },
+    {
+      "title": "Any-Precision LLM: Low-Cost Deployment of Multiple, Different-Sized LLMs"
+    },
+    {
+      "title": "Any-Precision LLM: Low-Cost Deployment of Multiple, Different-Sized LLMs"
+    },
+    {
+      "title": "Deja Vu: Contextual Sparsity for Efficient LLMs at Inference Time"
+    },
+    {
+      "title": "Training Transformers with 4-bit Integers"
+    },
+    {
+      "title": "Ultra-Low Precision 4-bit Training of Deep Neural Networks"
+    },
+    {
+      "title": "Ultra-Low Precision 4-bit Training of Deep Neural Networks"
+    },
+    {
+      "title": "Understanding Int4 Quantization for Language Models: Latency Speedup,  Composability,  and Failure Cases"
+    },
+    {
+      "title": "Memory Efficient Optimizers with 4-bit States"
+    },
+    {
+      "title": "QBB: Quantization with Binary Bases for LLMs"
+    },
+    {
+      "title": "The case for 4-bit precision: k-bit Inference Scaling Laws"
+    },
+    {
+      "title": "QLLM: Accurate and Efficient Low-Bitwidth Quantization for Large Language Models"
+    },
+    {
+      "title": "SqueezeLLM: Dense-and-Sparse Quantization"
+    },
+    {
+      "title": "Extreme Compression of Large Language Models via Additive Quantization"
+    }
   ]
 }
