@@ -6,19 +6,35 @@ from typing import List
 import numpy as np
 import torch
 
-from .preprocess import set_seed, default_warmup_texts, build_warmup_loader, load_model_and_tokenizer, get_image_dir
-from .train import patch_model_with_hiqua, HiQuAPredictor, warmup_train_predictor
-from .evaluate import (
-    decode_benchmark,
-    run_once_decode,
-    plot_training_loss,
-    plot_tokens_per_second,
-    plot_budget_sweep,
-    oracle_delta_kl,
-    predictor_scores,
-    plot_predictor_correlation,
-    plot_overhead_bar,
-)
+# Support running as a script or as a package
+try:
+    from .preprocess import set_seed, default_warmup_texts, build_warmup_loader, load_model_and_tokenizer, get_image_dir
+    from .train import patch_model_with_hiqua, HiQuAPredictor, warmup_train_predictor
+    from .evaluate import (
+        decode_benchmark,
+        run_once_decode,
+        plot_training_loss,
+        plot_tokens_per_second,
+        plot_budget_sweep,
+        oracle_delta_kl,
+        predictor_scores,
+        plot_predictor_correlation,
+        plot_overhead_bar,
+    )
+except ImportError:  # pragma: no cover - fallback when executed as script
+    from preprocess import set_seed, default_warmup_texts, build_warmup_loader, load_model_and_tokenizer, get_image_dir
+    from train import patch_model_with_hiqua, HiQuAPredictor, warmup_train_predictor
+    from evaluate import (
+        decode_benchmark,
+        run_once_decode,
+        plot_training_loss,
+        plot_tokens_per_second,
+        plot_budget_sweep,
+        oracle_delta_kl,
+        predictor_scores,
+        plot_predictor_correlation,
+        plot_overhead_bar,
+    )
 
 try:
     import yaml
@@ -93,7 +109,7 @@ def experiment2(cfg: dict):
         tps_list.append(tok_s); ratio_list.append(ratio)
 
     # No residual
-    from .train import set_residual_enabled
+    from train import set_residual_enabled
     set_residual_enabled(model, False)
     tok_s_nores, ratio_nores = run_once_decode(model, predictor, tokenizer, prompt, max_new_tokens=int(cfg.get('decode_tokens', 96)), target_ratio=float(cfg.get('target_ratio', 0.15)), use_bandit=True)
     set_residual_enabled(model, True)
@@ -143,7 +159,7 @@ def experiment3(cfg: dict):
     spearmans = []
     auc_likes = []
     for txt in samples:
-        from .train import HiQuAPredictor  # to hint types for the linter only
+        from train import HiQuAPredictor  # to hint types for the linter only
         delta = oracle_delta_kl(model, predictor, tokenizer, txt, layer_idx=0)
         scores = predictor_scores(model, predictor, tokenizer, txt)
         y_true = []
@@ -216,7 +232,7 @@ def experiment3(cfg: dict):
 
 def main():
     parser = argparse.ArgumentParser(description='HiQuA Emulator Experiments')
-    parser.add_argument('--config', type=str, default='config/hiqua_tiny.yaml', help='Path to YAML config')
+    parser.add_argument('--config', type=str, default='config/config.yaml', help='Path to YAML config')
     args = parser.parse_args()
 
     cfg = load_config(args.config)

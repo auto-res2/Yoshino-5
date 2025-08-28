@@ -16,14 +16,25 @@ try:
 except Exception:
     _scipy_spearmanr = None
 
-from .train import (
-    warmup_train_predictor,
-    step_forward,
-    BudgetBandit,
-    set_residual_enabled,
-    hiqua_gating,
-)
-from .preprocess import get_image_dir
+# Support running as a script or a package
+try:
+    from .train import (
+        warmup_train_predictor,
+        step_forward,
+        BudgetBandit,
+        set_residual_enabled,
+        hiqua_gating,
+    )
+    from .preprocess import get_image_dir
+except ImportError:  # pragma: no cover - fallback for script execution
+    from train import (
+        warmup_train_predictor,
+        step_forward,
+        BudgetBandit,
+        set_residual_enabled,
+        hiqua_gating,
+    )
+    from preprocess import get_image_dir
 
 
 # ------------------------------ Helpers ------------------------------
