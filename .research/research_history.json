@@ -505,6 +505,68 @@
       }
     }
   ],
+  "reference_research_study_list": [
+    {
+      "title": "Soft then Hard: Rethinking the Quantization in Neural Image Compression"
+    },
+    {
+      "title": "End-to-end optimized image compression"
+    },
+    {
+      "title": "Variational image compression with a scale hyperprior"
+    },
+    {
+      "title": "Estimating or propagating gradients through stochastic neurons for conditional computation"
+    },
+    {
+      "title": "Rethinking lossy compression: The rate-distortion-perception tradeoff"
+    },
+    {
+      "title": "Variational lossy autoencoder"
+    },
+    {
+      "title": "Learned image compression with discretized gaussian mixture likelihoods and attention modules"
+    },
+    {
+      "title": "Variable rate deep image compression with a conditional autoencoder"
+    },
+    {
+      "title": "Diagnosing and enhancing vae models"
+    },
+    {
+      "title": "Imagenet: A large-scale hierarchical image database"
+    },
+    {
+      "title": "Compressing images by encoding their latent representations with relative entropy coding"
+    },
+    {
+      "title": "From variational to deterministic autoencoders"
+    },
+    {
+      "title": "Theoretical foundations of transform coding"
+    },
+    {
+      "title": "Quantization"
+    },
+    {
+      "title": "3-d context entropy model for improved practical image compression"
+    },
+    {
+      "title": "Minimal random code learning: Getting bits back from compressed model parameters"
+    },
+    {
+      "title": "Reducing the dimensionality of data with neural networks"
+    },
+    {
+      "title": "Flow++: Improving flow-based generative models with variational dequantization and architecture design"
+    },
+    {
+      "title": "Integer discrete flows and lossless compression"
+    },
+    {
+      "title": "Categorical reparameterization with gumbel-softmax"
+    }
+  ],
   "new_method": {
     "method": "Open Problems: Token–level mixed-precision for LLM inference is still an open problem.  Current 4-bit methods (e.g. NF4, GPTQ, AWQ) choose a single precision per weight‐group and often quantise activations to 8-bit uniformly.  This static choice wastes bandwidth on ‘easy’ tokens (e.g. punctuation, high-frequency function words) yet cannot protect the small set of ‘hard’ tokens that trigger chain-of-thought style reasoning or require long-range factual recall.  Attempts at dynamic schemes either work at layer level (DDQ) or rely on temporal information (TDQ) and do not address (1) per-token importance forecasting, (2) interaction with the KV-cache that lives throughout the whole context, and (3) hardware overhead when switching precision inside the kernel.  Solving this would simultaneously cut memory (smaller KV cache) and boost throughput while preserving accuracy on reasoning-heavy benchmarks.\nMethods: We propose HAT-Q (Hierarchical Attention-aware Token Quantisation).  Key ideas:\n1. Importance Predictor  –  a light, frozen linear probe that runs on the  hidden state h_t just produced by the model (no extra attention).  It outputs a 2-bit score s_t ∈ {0,1,2,3} denoting required precision budget for token t.\n2. Hierarchical Precision Palette  –  weights are pre-quantised once into two palettes: P4 (NF4, 4-bit) and P8 (INT8).  Activations/KV elements are stored in 4-bit blocks by default; when s_t>1 the block is transiently up-cast to 8-bit by table look-up using the P8 palette already resident in L2.\n3. Cache-Relayout  –  KV cache is written with the precision dictated by s_t but read with the max(s_{t_query}, s_{t_key}).  A cheap bit-packed header (2 bits per 16-token block) encodes the stored precision so that no branching is required in CUDA kernel.\n4. Budgeted Error Fine-Tuning  –  post-training, we run a 512-sample calibration set and optimise the predictor thresholds with STE to satisfy a global accuracy loss budget (<0.3 on MMLU) while minimising expected 8-bit usage.\n5. Kernel Support  –  extend bitsandbytes GEMM to accept a per-row 1-bit mask selecting 4-bit/8-bit tiles; tiles are processed in fixed order so warp divergence is avoided.\nNovelty vs prior work: (a) first token-granular mixed precision for both activations and KV, (b) no run-time quant/dequant; only palette switch; (c) predictor is calibration-trained, so no re-training of the whole LLM; (d) compatible with existing NF4 weight loaders.\nExperimental Setup: Models: Llama-2-7B, Llama-2-13B and Mistral-7B.\nDatasets / Tasks:\n• Knowledge & reasoning – MMLU (57 subs), HellaSwag, GSM8K (8-shot), ARC-c/e.\n• Long-context – Longeval (16k), NarrativeQA-Long (32k subset).\nMetrics:\n• Accuracy / exact-match per task.\n• Average precision budget = E[s_t] (lower is better).\n• Throughput (tokens/s) and latency P50/P99 on A100-80G, CUDA 12.2.\n• Peak and sustained GPU memory incl. KV cache.\nBaselines: FP16, Static NF4 (bitsandbytes), SmoothQuant 8-bit, AWQ 4-bit, Bayesian Bits mixed-precision, and a naïve ‘critical-token 8-bit’ heuristic (entropy>threshold).\nAblations: (1) remove cache-relayout, (2) predictor replaced by random mask of same budget, (3) palette switch only on value-vectors.\nRobustness: evaluate under prompt noise (token dropout 10 %), and adversarial punctuation injection.\nResult: We expect HAT-Q to:\n• Match or exceed static NF4 accuracy: <0.2 average drop on MMLU, <0.1 on HellaSwag; GSM8K exact-match within 0.3 %.  Significant gains over static 4-bit on long-context (+2-3 % EM on 32k NarrativeQA).\n• Reduce average activation/KV precision to 4.6 bits (≈25 % of tokens stored in 8-bit) giving 28 % KV-cache memory saving vs uniform 8-bit and 12 % vs uniform 4-bit due to header compression.\n• End-to-end throughput +18 % over static NF4 on 7B and +22 % on 13B; latency P99 improved by ~15 %.\n• Ablations confirm importance predictor explains >80 % of accuracy retention; random mask fails.\n• Robustness tests show <0.5 % additional degradation compared with FP16.\nConclusion: HAT-Q demonstrates that fine-grained, token-aware precision control is feasible without sacrificing hardware efficiency.  By marrying a learned importance predictor with a two-palette quantiser and cache-aware kernels, we simultaneously lower memory footprint and raise throughput while keeping reasoning accuracy intact.  The approach is orthogonal to weight-only compressors (GPTQ, AQLM) and can be combined with them for further gains.  Future work can explore (i) multi-palette extensions to include 2-bit proxies for very long contexts, (ii) training-time regularisers that directly optimise predictor scores, and (iii) ASIC designs where palette look-ups are fused into SRAM access, pushing token-adaptive inference towards real-time edge LLM deployment.",
     "experimental_design": {
