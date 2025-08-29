@@ -6,5 +6,82 @@
     "context adaptive precision",
     "4-bit inference efficiency",
     "BitsAndBytes low precision"
+  ],
+  "research_study_list": [
+    {
+      "title": "Differentiable Dynamic Quantization with Mixed Precision and Adaptive Resolution"
+    },
+    {
+      "title": "Temporal Dynamic Quantization for Diffusion Models"
+    },
+    {
+      "title": "Soft then Hard: Rethinking the Quantization in Neural Image Compression"
+    },
+    {
+      "title": "Intriguing Properties of Quantization at Scale"
+    },
+    {
+      "title": "Post-Training Sparsity-Aware Quantization"
+    },
+    {
+      "title": "QLLM: Accurate and Efficient Low-Bitwidth Quantization for Large Language Models"
+    },
+    {
+      "title": "Extreme Compression of Large Language Models via Additive Quantization"
+    },
+    {
+      "title": "Evaluating Quantized Large Language Models"
+    },
+    {
+      "title": "LoftQ: LoRA-Fine-Tuning-aware Quantization for Large Language Models"
+    },
+    {
+      "title": "LoftQ: LoRA-Fine-Tuning-aware Quantization for Large Language Models"
+    },
+    {
+      "title": "Not All Bits have Equal Value: Heterogeneous Precisions via Trainable Noise"
+    },
+    {
+      "title": "Collage: Light-Weight Low-Precision Strategy for LLM Training"
+    },
+    {
+      "title": "Be Like Water: Adaptive Floating Point for Machine Learning"
+    },
+    {
+      "title": "Be Like Water: Adaptive Floating Point for Machine Learning"
+    },
+    {
+      "title": "CPT: Efficient Deep Neural Network Training via Cyclic Precision"
+    },
+    {
+      "title": "Training Transformers with 4-bit Integers"
+    },
+    {
+      "title": "Ultra-Low Precision 4-bit Training of Deep Neural Networks"
+    },
+    {
+      "title": "Ultra-Low Precision 4-bit Training of Deep Neural Networks"
+    },
+    {
+      "title": "Understanding Int4 Quantization for Language Models: Latency Speedup,  Composability,  and Failure Cases"
+    },
+    {
+      "title": "The case for 4-bit precision: k-bit Inference Scaling Laws"
+    },
+    {
+      "title": "Bayesian Bits: Unifying Quantization and Pruning"
+    },
+    {
+      "title": "Shifted and Squeezed 8-bit Floating Point format for Low-Precision Training of Deep Neural Networks"
+    },
+    {
+      "title": "Not All Bits have Equal Value: Heterogeneous Precisions via Trainable Noise"
+    },
+    {
+      "title": "QBB: Quantization with Binary Bases for LLMs"
+    },
+    {
+      "title": "Low-Precision Stochastic Gradient Langevin Dynamics"
+    }
   ]
 }
