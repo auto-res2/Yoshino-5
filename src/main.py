@@ -6,9 +6,15 @@ import numpy as np
 import torch
 import yaml
 
-from .preprocess import run as preprocess_run
-from .train import build_models
-from .evaluate import run_all
+# Support running as a script (no package) and as a module
+try:
+    from .preprocess import run as preprocess_run
+    from .train import build_models
+    from .evaluate import run_all
+except ImportError:
+    from preprocess import run as preprocess_run
+    from train import build_models
+    from evaluate import run_all
 
 
 def load_config(cfg_path: Path) -> dict:
@@ -35,7 +41,8 @@ def main():
     data_dir = Path(cfg.get("data_dir", "data"))
     models_dir = Path(cfg.get("models_dir", "models"))
     output_dir = Path(cfg.get("output_dir", ".research/iteration1"))
-    images_dir = Path(cfg.get("images_dir", ".research/iteration1/images"))
+    # Force all images to be saved in the required directory
+    images_dir = Path(".research/iteration2/images")
 
     # Preprocess (toy dataset)
     preprocess_run(data_dir, n_train=int(cfg.get("n_train", 200)))

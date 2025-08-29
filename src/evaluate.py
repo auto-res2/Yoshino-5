@@ -9,18 +9,32 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-from .train import (
-    ToyTokenizer,
-    ToyGenerator,
-    SharedAdapterPRM,
-    MoEPRM,
-    TinyPRMCascade,
-    run_greedy,
-    run_self_consistency,
-    parse_addition_from_prompt,
-    normalize_answer,
-    extract_final_answer,
-)
+try:
+    from .train import (
+        ToyTokenizer,
+        ToyGenerator,
+        SharedAdapterPRM,
+        MoEPRM,
+        TinyPRMCascade,
+        run_greedy,
+        run_self_consistency,
+        parse_addition_from_prompt,
+        normalize_answer,
+        extract_final_answer,
+    )
+except ImportError:  # Fallback when running as a script without package context
+    from train import (
+        ToyTokenizer,
+        ToyGenerator,
+        SharedAdapterPRM,
+        MoEPRM,
+        TinyPRMCascade,
+        run_greedy,
+        run_self_consistency,
+        parse_addition_from_prompt,
+        normalize_answer,
+        extract_final_answer,
+    )
 
 
 def _ensure_dirs(images_dir: Path):
@@ -46,7 +60,7 @@ def ece_score(probs: List[float], labels: List[int], n_bins: int = 15) -> float:
             bin_conf = probs[mask].mean()
             bin_acc = labels[mask].mean()
             ece += (mask.sum() / len(probs)) * abs(bin_acc - bin_conf)
-    return float(ece)
+    return float(ece))
 
 
 def _savefig(fname: Path):

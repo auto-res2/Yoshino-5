@@ -5,7 +5,7 @@ seed: 42
 data_dir: data
 models_dir: models
 output_dir: .research/iteration1
-images_dir: .research/iteration1/images
+images_dir: .research/iteration2/images
 
 # Experiment sizes (kept small for quick verification on T4/CPU)
 n_train: 200
