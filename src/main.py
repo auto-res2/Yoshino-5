@@ -42,7 +42,7 @@ def main():
     models_dir = Path(cfg.get("models_dir", "models"))
     output_dir = Path(cfg.get("output_dir", ".research/iteration1"))
     # Force all images to be saved in the required directory
-    images_dir = Path(".research/iteration2/images")
+    images_dir = Path(".research/iteration3/images")
 
     # Preprocess (toy dataset)
     preprocess_run(data_dir, n_train=int(cfg.get("n_train", 200)))

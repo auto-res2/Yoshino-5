@@ -8,6 +8,7 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import seaborn as sns
+import torch
 
 try:
     from .train import (
@@ -60,7 +61,7 @@ def ece_score(probs: List[float], labels: List[int], n_bins: int = 15) -> float:
             bin_conf = probs[mask].mean()
             bin_acc = labels[mask].mean()
             ece += (mask.sum() / len(probs)) * abs(bin_acc - bin_conf)
-    return float(ece))
+    return float(ece)
 
 
 def _savefig(fname: Path):
@@ -102,8 +103,9 @@ def plot_pareto(images_dir: Path, legend_labels: List[str], accuracies: List[flo
 def plot_prm_usage(images_dir: Path, prm_calls: List[int], moe_calls: List[int], fname: str):
     _ensure_dirs(images_dir)
     plt.figure(figsize=(5, 4))
-    sns.kdeplot(prm_calls, fill=True, color="#C44E52", label="Shared-Adapter PRM calls")
-    sns.kdeplot(moe_calls, fill=True, color="#8172B2", label="MoE PRM calls")
+    # Use histograms to avoid scipy dependency required by kdeplot
+    sns.histplot(prm_calls, bins=10, stat="density", element="step", color="#C44E52", alpha=0.4, label="Shared-Adapter PRM calls")
+    sns.histplot(moe_calls, bins=10, stat="density", element="step", color="#8172B2", alpha=0.4, label="MoE PRM calls")
     plt.xlabel("Calls per example")
     plt.title("PRM usage distribution")
     plt.legend()
