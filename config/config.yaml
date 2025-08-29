@@ -1,0 +1,26 @@
+# HAT-Q (Hierarchical Attention-aware Token Quantisation) prototype config
+# This config is tuned for a quick, correctness-first run on CPU or a single T4 GPU.
+
+images_dir: .research/iteration1/images
+data_dir: data
+models_dir: models
+
+# Device selection: auto|cuda|cpu
+device: auto
+
+# Quick mode runs unit tests and Experiments A, B, C with light settings
+quick: true
+
+# Training parameters for the toy model (used when not in quick mode)
+train:
+  vocab_size: 128
+  d_model: 64
+  n_layers: 2
+  n_heads: 4
+  mlp_ratio: 4
+  max_seq: 512
+  epochs: 3
+  batch_size: 16
+  n_train: 256
+  n_valid: 64
+  lr: 0.003
