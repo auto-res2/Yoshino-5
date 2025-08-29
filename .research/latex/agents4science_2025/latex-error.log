@@ -1,0 +1,2227 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./paper.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo))
+(./agents4science_2025.sty
+(/usr/share/texlive/texmf-dist/tex/latex/environ/environ.sty
+(/usr/share/texlive/texmf-dist/tex/latex/trimspaces/trimspaces.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/lineno/lineno.sty
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty))))
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/units/nicefrac.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype-pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+No file paper.aux.
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: letterpaper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(92.14519pt, 430.00462pt, 92.14519pt)
+* v-part:(T,H,B)=(95.39737pt, 556.47656pt, 143.09605pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=430.00462pt
+* \textheight=556.47656pt
+* \oddsidemargin=19.8752pt
+* \evensidemargin=19.8752pt
+* \topmargin=-13.87262pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+*geometry* verbose mode - [ newgeometry ] result:
+* driver: pdftex
+* paper: letterpaper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(108.405pt, 397.48499pt, 108.40501pt)
+* v-part:(T,H,B)=(72.26999pt, 650.43pt, 72.27pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=397.48499pt
+* \textheight=650.43pt
+* \oddsidemargin=36.13501pt
+* \evensidemargin=36.13501pt
+* \topmargin=-37.0pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg)
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd)
+
+Package natbib Warning: Citation `lightman-2023-let' on page 1 undefined on inp
+ut line 85.
+
+
+Package natbib Warning: Citation `xie-2023-self' on page 1 undefined on input l
+ine 85.
+
+
+Package natbib Warning: Citation `wang-2024-chain' on page 1 undefined on input
+ line 85.
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-
+dist/fonts/enc/dvips/base/8r.enc}]
+
+Package natbib Warning: Citation `lightman-2023-let' on page 2 undefined on inp
+ut line 93.
+
+
+Package natbib Warning: Citation `creswell-2022-selection' on page 2 undefined 
+on input line 93.
+
+
+Package natbib Warning: Citation `xie-2023-self' on page 2 undefined on input l
+ine 93.
+
+
+Package natbib Warning: Citation `wang-2024-chain' on page 2 undefined on input
+ line 93.
+
+
+Package natbib Warning: Citation `yue-2023-large' on page 2 undefined on input 
+line 93.
+
+
+Package natbib Warning: Citation `dao-2022-flashattention' on page 2 undefined 
+on input line 93.
+
+
+Package natbib Warning: Citation `dettmers-2022-llm' on page 2 undefined on inp
+ut line 93.
+
+
+Package natbib Warning: Citation `bordelon-2024-dynamical' on page 2 undefined 
+on input line 93.
+
+
+Package natbib Warning: Citation `cherti-2022-reproducible' on page 2 undefined
+ on input line 93.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
+
+Package natbib Warning: Citation `lightman-2023-let' on page 2 undefined on inp
+ut line 105.
+
+
+Package natbib Warning: Citation `dao-2022-flashattention' on page 2 undefined 
+on input line 107.
+
+
+Package natbib Warning: Citation `dettmers-2022-llm' on page 2 undefined on inp
+ut line 107.
+
+
+Package natbib Warning: Citation `lightman-2023-let' on page 2 undefined on inp
+ut line 111.
+
+
+Underfull \vbox (badness 2799) has occurred while \output is active [2]
+
+Package natbib Warning: Citation `havrilla-2024-glore' on page 3 undefined on i
+nput line 114.
+
+
+Package natbib Warning: Citation `lightman-2023-let' on page 3 undefined on inp
+ut line 114.
+
+
+Package natbib Warning: Citation `xie-2023-self' on page 3 undefined on input l
+ine 117.
+
+
+Package natbib Warning: Citation `wang-2024-chain' on page 3 undefined on input
+ line 117.
+
+
+Package natbib Warning: Citation `yue-2023-large' on page 3 undefined on input 
+line 120.
+
+
+Package natbib Warning: Citation `zhuo-2020-learning' on page 3 undefined on in
+put line 123.
+
+
+Package natbib Warning: Citation `choo-2022-simulation' on page 3 undefined on 
+input line 123.
+
+
+Package natbib Warning: Citation `hardt-2023-test' on page 3 undefined on input
+ line 126.
+
+
+Package natbib Warning: Citation `dao-2022-flashattention' on page 3 undefined 
+on input line 126.
+
+
+Package natbib Warning: Citation `dettmers-2022-llm' on page 3 undefined on inp
+ut line 126.
+
+
+Package natbib Warning: Citation `bordelon-2024-dynamical' on page 3 undefined 
+on input line 126.
+
+
+Package natbib Warning: Citation `cherti-2022-reproducible' on page 3 undefined
+ on input line 126.
+
+[3]
+
+Package natbib Warning: Citation `lightman-2023-let' on page 4 undefined on inp
+ut line 133.
+
+
+Package natbib Warning: Citation `lightman-2023-let' on page 4 undefined on inp
+ut line 139.
+
+! Undefined control sequence.
+l.139 ..._t$. Controller thresholds use $p\_{\text
+                                                  {high}}$ around 0.95, $p\_...
+
+! Undefined control sequence.
+l.139 ...p\_{\text{high}}$ around 0.95, $p\_{\text
+                                                  {low}}$ around 0.65, and $...
+
+! Undefined control sequence.
+l.139 ...t{low}}$ around 0.65, and $\Delta\_{\text
+                                                  {high}}$ around 0.7 in typ...
+
+
+Package natbib Warning: Citation `creswell-2022-selection' on page 4 undefined 
+on input line 142.
+
+
+Package natbib Warning: Citation `xie-2023-self' on page 4 undefined on input l
+ine 142.
+
+
+Package natbib Warning: Citation `dao-2022-flashattention' on page 4 undefined 
+on input line 142.
+
+
+Package natbib Warning: Citation `dettmers-2022-llm' on page 4 undefined on inp
+ut line 142.
+
+
+Package natbib Warning: Citation `bordelon-2024-dynamical' on page 4 undefined 
+on input line 142.
+
+
+Package natbib Warning: Citation `cherti-2022-reproducible' on page 4 undefined
+ on input line 142.
+
+[4]
+
+Package natbib Warning: Citation `dao-2022-flashattention' on page 5 undefined 
+on input line 157.
+
+
+Package natbib Warning: Citation `dettmers-2022-llm' on page 5 undefined on inp
+ut line 157.
+
+
+! LaTeX Error: Environment algorithm undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.163 \begin{algorithm}
+                       
+
+! LaTeX Error: \caption outside float.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.164 \caption
+              {Budget-Aware Adaptive Beam Control}
+
+! LaTeX Error: Environment algorithmic undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.165 \begin{algorithmic}
+                         
+! Undefined control sequence.
+l.166 \State
+             \textbf{Inputs}: prompt $x$, generator $G$, Shared-Adapter PRM ...
+
+! Undefined control sequence.
+l.166 ...erator $G$, Shared-Adapter PRM $S\_{\text
+                                                  {SA}}$, MoE PRM $S\_{\text...
+
+! Undefined control sequence.
+l.166 ... PRM $S\_{\text{SA}}$, MoE PRM $S\_{\text
+                                                  {MoE}}$, thresholds $p\_{\...
+
+! Undefined control sequence.
+l.166 ... $S\_{\text{MoE}}$, thresholds $p\_{\text
+                                                  {high}}$, $p\_{\text{low}}...
+
+! Undefined control sequence.
+l.166 ...thresholds $p\_{\text{high}}$, $p\_{\text
+                                                  {low}}$, $\Delta\_{\text{h...
+
+! Undefined control sequence.
+l.166 ...gh}}$, $p\_{\text{low}}$, $\Delta\_{\text
+                                                  {high}}$, beam cap $k$, bu...
+
+! Undefined control sequence.
+l.167 \State
+             Initialize partial trace $y \leftarrow \varnothing$, time used ...
+
+! Undefined control sequence.
+l.167 ...e partial trace $y \leftarrow \varnothing
+                                                  $, time used $t\_{\text{us...
+
+! Undefined control sequence.
+l.167 ...tarrow \varnothing$, time used $t\_{\text
+                                                  {used}} \leftarrow 0$
+! Undefined control sequence.
+l.168 \While
+            {not EOS}
+! Undefined control sequence.
+l.169   \State
+               Obtain next-token distribution $q(\cdot\mid x,y)$ from $G$ wi...
+
+! Undefined control sequence.
+l.170   \State
+               Compute $\Delta\_t \leftarrow \log q(\hat{y}\_{t+1}\mid x,y) ...
+
+! Undefined control sequence.
+l.171   \State
+               Compute $p\_t \leftarrow S\_{\text{SA}}(x, y)$ on sliding window
+
+! Undefined control sequence.
+l.171   \State Compute $p\_t \leftarrow S\_{\text
+                                                 {SA}}(x, y)$ on sliding window
+
+! Undefined control sequence.
+l.172   \If
+           {$p\_t > p\_{\text{high}}$ \textbf{or} $\Delta\_t > \Delta\_{\tex...
+
+! Undefined control sequence.
+l.172   \If{$p\_t > p\_{\text
+                             {high}}$ \textbf{or} $\Delta\_t > \Delta\_{\tex...
+
+! Undefined control sequence.
+l.172 ...$ \textbf{or} $\Delta\_t > \Delta\_{\text
+                                                  {high}}$ \textbf{or} $t\_{...
+
+! Undefined control sequence.
+l.172 ...ta\_{\text{high}}$ \textbf{or} $t\_{\text
+                                                  {used}} \geq B$}
+! Undefined control sequence.
+l.173      \State
+                  Commit: $y \leftarrow y \cup \{\arg\max q\}$
+! Undefined control sequence.
+l.174   \ElsIf
+              {$p\_{\text{low}} < p\_t < p\_{\text{high}}$ \textbf{and} $t\_...
+
+! Undefined control sequence.
+l.174   \ElsIf{$p\_{\text
+                         {low}} < p\_t < p\_{\text{high}}$ \textbf{and} $t\_...
+
+! Undefined control sequence.
+l.174   \ElsIf{$p\_{\text{low}} < p\_t < p\_{\text
+                                                  {high}}$ \textbf{and} $t\_...
+
+! Undefined control sequence.
+l.174 ...p\_{\text{high}}$ \textbf{and} $t\_{\text
+                                                  {used}} < B$}
+! Undefined control sequence.
+l.175      \State
+                  Sample up to $k$ rollouts of small horizon $h$ from $G$ co...
+
+! Undefined control sequence.
+l.176      \State
+                  Score prefixes with one call to $S\_{\text{MoE}}$; select ...
+
+! Undefined control sequence.
+l.176 ...core prefixes with one call to $S\_{\text
+                                                  {MoE}}$; select best prefi...
+
+! Undefined control sequence.
+l.177      \State
+                  Update $y \leftarrow y^{\star}$
+! Undefined control sequence.
+l.178   \Else
+             
+! Undefined control sequence.
+l.179      \State
+                  Greedy step: $y \leftarrow y \cup \{\arg\max q\}$
+! Undefined control sequence.
+l.180   \EndIf
+              
+! Undefined control sequence.
+l.181   \State
+               Update $t\_{\text{used}}$ by measured wall time for this step
+! Undefined control sequence.
+l.181   \State Update $t\_{\text
+                                {used}}$ by measured wall time for this step
+! Undefined control sequence.
+l.182 \EndWhile
+               
+! Undefined control sequence.
+l.183 \State
+             \textbf{Return} final $y$
+
+! LaTeX Error: \begin{document} ended by \end{algorithmic}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.184 \end{algorithmic}
+                       
+
+! LaTeX Error: \begin{document} ended by \end{algorithm}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.185 \end{algorithm}
+                     
+
+Package natbib Warning: Citation `lightman-2023-let' on page 5 undefined on inp
+ut line 188.
+
+
+Package natbib Warning: Citation `xie-2023-self' on page 5 undefined on input l
+ine 188.
+
+
+Package natbib Warning: Citation `yue-2023-large' on page 5 undefined on input 
+line 188.
+
+
+Package natbib Warning: Citation `dao-2022-flashattention' on page 5 undefined 
+on input line 188.
+
+
+Package natbib Warning: Citation `dettmers-2022-llm' on page 5 undefined on inp
+ut line 188.
+
+[5]
+
+Package natbib Warning: Citation `lightman-2023-let' on page 6 undefined on inp
+ut line 195.
+
+
+Package natbib Warning: Citation `xie-2023-self' on page 6 undefined on input l
+ine 198.
+
+
+Package natbib Warning: Citation `lightman-2023-let' on page 6 undefined on inp
+ut line 198.
+
+
+Package natbib Warning: Citation `dao-2022-flashattention' on page 6 undefined 
+on input line 204.
+
+
+Package natbib Warning: Citation `dettmers-2022-llm' on page 6 undefined on inp
+ut line 204.
+
+! Undefined control sequence.
+l.207 We sweep early-commit thresholds ($p\_{\text
+                                                  {high}} \in \{0.90, 0.95\}...
+
+! Undefined control sequence.
+l.207 ...xt{high}} \in \{0.90, 0.95\}$, $p\_{\text
+                                                  {low}} \in \{0.60, 0.65\}$...
+
+! Undefined control sequence.
+l.207 ...ow}} \in \{0.60, 0.65\}$, $\Delta\_{\text
+                                                  {high}} \in \{0.60, 0.70\}...
+
+
+Package natbib Warning: Citation `xie-2023-self' on page 6 undefined on input l
+ine 210.
+
+
+Package natbib Warning: Citation `wang-2024-chain' on page 6 undefined on input
+ line 210.
+
+
+Package natbib Warning: Citation `yue-2023-large' on page 6 undefined on input 
+line 210.
+
+
+Package natbib Warning: Citation `lightman-2023-let' on page 6 undefined on inp
+ut line 210.
+
+
+Package natbib Warning: Citation `dao-2022-flashattention' on page 6 undefined 
+on input line 210.
+
+
+Package natbib Warning: Citation `dettmers-2022-llm' on page 6 undefined on inp
+ut line 210.
+
+[6]
+
+Package natbib Warning: Citation `xie-2023-self' on page 7 undefined on input l
+ine 221.
+
+! Undefined control sequence.
+l.227 ...s}: For all tested thresholds ($p\_{\text
+                                                  {high}} \in \{0.90, 0.95\}...
+
+! Undefined control sequence.
+l.227 ...xt{high}} \in \{0.90, 0.95\}$, $p\_{\text
+                                                  {low}} \in \{0.60, 0.65\}$...
+
+! Undefined control sequence.
+l.227 ...ow}} \in \{0.60, 0.65\}$, $\Delta\_{\text
+                                                  {high}} \in \{0.60, 0.70\}...
+
+
+Package natbib Warning: Citation `lightman-2023-let' on page 7 undefined on inp
+ut line 239.
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.242 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.244 \includegraphics
+                      [width=0.7\linewidth]{ images/pareto\_accuracy\_vs\_co...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.244 \includegraphics[width=0.7\linewidth]
+                                           { images/pareto\_accuracy\_vs\_co...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.244 \includegraphics[width=0.7\linewidth]
+                                           { images/pareto\_accuracy\_vs\_co...
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.248 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.250 \includegraphics
+                      [width=0.7\linewidth]{ images/accuracy\_tinyprm\_vs\_b...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.250 \includegraphics[width=0.7\linewidth]
+                                           { images/accuracy\_tinyprm\_vs\_b...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.250 \includegraphics[width=0.7\linewidth]
+                                           { images/accuracy\_tinyprm\_vs\_b...
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.254 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.256 \includegraphics
+                      [width=0.7\linewidth]{ images/inference\_latency\_tiny...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.256 \includegraphics[width=0.7\linewidth]
+                                           { images/inference\_latency\_tiny...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.256 \includegraphics[width=0.7\linewidth]
+                                           { images/inference\_latency\_tiny...
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.260 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.262 \includegraphics
+                      [width=0.7\linewidth]{ images/prm\_usage\_tinyprm.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.262 \includegraphics[width=0.7\linewidth]
+                                           { images/prm\_usage\_tinyprm.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.262 \includegraphics[width=0.7\linewidth]
+                                           { images/prm\_usage\_tinyprm.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.266 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.268 \includegraphics
+                      [width=0.7\linewidth]{ images/reliability\_curve\_shar...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.268 \includegraphics[width=0.7\linewidth]
+                                           { images/reliability\_curve\_shar...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.268 \includegraphics[width=0.7\linewidth]
+                                           { images/reliability\_curve\_shar...
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.272 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.274 \includegraphics
+                      [width=0.7\linewidth]{ images/reliability\_curve\_moe....
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.274 \includegraphics[width=0.7\linewidth]
+                                           { images/reliability\_curve\_moe....
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.274 \includegraphics[width=0.7\linewidth]
+                                           { images/reliability\_curve\_moe....
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.278 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.280 \includegraphics
+                      [width=0.7\linewidth]{ images/accuracy\_robustness.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.280 \includegraphics[width=0.7\linewidth]
+                                           { images/accuracy\_robustness.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.280 \includegraphics[width=0.7\linewidth]
+                                           { images/accuracy\_robustness.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.284 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.286 \includegraphics
+                      [width=0.7\linewidth]{ images/inference\_latency\_robu...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.286 \includegraphics[width=0.7\linewidth]
+                                           { images/inference\_latency\_robu...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.286 \includegraphics[width=0.7\linewidth]
+                                           { images/inference\_latency\_robu...
+
+
+Package natbib Warning: Citation `lightman-2023-let' on page 7 undefined on inp
+ut line 293.
+
+
+Package natbib Warning: Citation `dao-2022-flashattention' on page 7 undefined 
+on input line 296.
+
+
+Package natbib Warning: Citation `dettmers-2022-llm' on page 7 undefined on inp
+ut line 296.
+
+[7]
+No file paper.bbl.
+
+Package natbib Warning: There were undefined citations.
+
+[8] [9] (./paper.aux)
+kpathsea: Running mktexpk --mfmode / --bdpi 600 --mag 1+0/600 --dpi 600 ectt1000
+mktexpk: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1+0/600; nonstopmode; input ectt1000
+This is METAFONT, Version 2.71828182 (TeX Live 2023/Debian) (preloaded base=mf)
+
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/ectt1000.mf
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exbase.mf)
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/ectt.mf
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exroman.mf
+ Ok (/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exaccess.mf
+ Ok) (/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/expseudo.mf
+ Ok) (/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exruwest.mf
+ Ok [192] [193] [194] [195] [196] [197] [198] [199] [200] [201] [202] [203]
+[204] [205] [206] [207] [208] [209] [210] [211] [212] [213] [214] [215]
+[216] [217] [218] [219] [220] [221] [222] [223])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exrlwest.mf
+ Ok [224] [225] [226] [227] [228] [229] [230] [231] [232] [233] [234] [235]
+[236] [237] [238] [239] [240] [241] [242] [243] [244] [245] [246] [247]
+[248] [249] [250] [251] [252] [253] [254] [255])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exrueast.mf
+ Ok [128] [129] [130] [131] [132] [133] [134] [135] [136] [137] [138] [139]
+[140] [141] [142] [143] [144] [145] [146] [147] [148] [149] [150] [151]
+[152] [153] [154] [155] [156] [157])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exrleast.mf
+ Ok [158] [160] [161] [162] [163] [164] [165] [166] [167] [168] [169] [170]
+[171] [172] [173] [174] [175] [176] [177] [178] [179] [180] [181] [182]
+[183] [184] [185] [186] [187] [188])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exbraces.mf
+ Ok [94] [126] [23] [40] [41] [60] [124] [62] [91] [93] [92] [123] [125]
+[95] [127] [32])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/expunct.mf
+ Ok [14] [15] [19] [20] [13] [18] [33] [39] [42] [43] [44] [46] [47] [58]
+[59] [61] [96] [189] [17] [45] [16] [21] [22])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exaccent.mf
+ Ok [0] [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exsign.mf
+ Ok [24] [34] [35] [36] [37] [64] [191] [159])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exrlig.mf
+ Ok [25] [26] [28] [27] [29] [30] [31])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exromp.mf
+ Ok [38] [63] [190])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exrulett.mf
+ Ok [65] [66] [67] [68] [69] [70] [71] [72] [73] [74] [75] [76] [77] [78]
+[79] [80] [81] [82] [83] [84] [85] [86] [87] [88] [89] [90])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exrllett.mf
+ Ok [97] [98] [99] [100] [101] [102] [103] [104] [105] [106] [107] [108]
+[109] [110] [111] [112] [113] [114] [115] [116] [117] [118] [119] [120]
+[121] [122])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exrdigit.mf
+ Ok [48] [49] [50] [51] [52] [53] [54] [55] [56] [57])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exmligtb.mf
+ Ok) ) ) )
+Font metrics written on ectt1000.tfm.
+Output written on ectt1000.600gf (256 characters, 43832 bytes).
+Transcript written on ectt1000.log.
+mktexpk: /home/runner/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk: successfully generated.
+
+
+Package rerunfilecheck Warning: File `paper.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )
+(see the transcript file for additional information) </home/runner/.texlive2023
+/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helv
+etic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (9 pages, 129512 bytes).
+Transcript written on paper.log.
+This is BibTeX, Version 0.99d (TeX Live 2023/Debian)
+The top-level auxiliary file: paper.aux
+The style file: plainnat.bst
+Database file #1: references.bib
+Warning--empty journal in bordelon-2024-dynamical
+Warning--empty journal in choo-2022-simulation
+Warning--empty journal in creswell-2022-selection
+Warning--empty journal in dao-2022-flashattention
+Warning--empty journal in dettmers-2022-llm
+Warning--empty journal in hardt-2023-test
+Warning--empty journal in havrilla-2024-glore
+Warning--empty journal in lightman-2023-let
+Warning--empty journal in wang-2024-chain
+Warning--empty journal in xie-2023-self
+Warning--empty journal in yue-2023-large
+Warning--empty journal in zhuo-2020-learning
+(There were 12 warnings)
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./paper.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo))
+(./agents4science_2025.sty
+(/usr/share/texlive/texmf-dist/tex/latex/environ/environ.sty
+(/usr/share/texlive/texmf-dist/tex/latex/trimspaces/trimspaces.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/lineno/lineno.sty
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty))))
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/units/nicefrac.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype-pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(./paper.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: letterpaper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(92.14519pt, 430.00462pt, 92.14519pt)
+* v-part:(T,H,B)=(95.39737pt, 556.47656pt, 143.09605pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=430.00462pt
+* \textheight=556.47656pt
+* \oddsidemargin=19.8752pt
+* \evensidemargin=19.8752pt
+* \topmargin=-13.87262pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+*geometry* verbose mode - [ newgeometry ] result:
+* driver: pdftex
+* paper: letterpaper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(108.405pt, 397.48499pt, 108.40501pt)
+* v-part:(T,H,B)=(72.26999pt, 650.43pt, 72.27pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=397.48499pt
+* \textheight=650.43pt
+* \oddsidemargin=36.13501pt
+* \evensidemargin=36.13501pt
+* \topmargin=-37.0pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+(./paper.out) (./paper.out)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg)
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd)
+
+Package natbib Warning: Citation `lightman-2023-let' on page 1 undefined on inp
+ut line 85.
+
+
+Package natbib Warning: Citation `xie-2023-self' on page 1 undefined on input l
+ine 85.
+
+
+Package natbib Warning: Citation `wang-2024-chain' on page 1 undefined on input
+ line 85.
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-
+dist/fonts/enc/dvips/base/8r.enc}]
+
+Package natbib Warning: Citation `lightman-2023-let' on page 2 undefined on inp
+ut line 93.
+
+
+Package natbib Warning: Citation `creswell-2022-selection' on page 2 undefined 
+on input line 93.
+
+
+Package natbib Warning: Citation `xie-2023-self' on page 2 undefined on input l
+ine 93.
+
+
+Package natbib Warning: Citation `wang-2024-chain' on page 2 undefined on input
+ line 93.
+
+
+Package natbib Warning: Citation `yue-2023-large' on page 2 undefined on input 
+line 93.
+
+
+Package natbib Warning: Citation `dao-2022-flashattention' on page 2 undefined 
+on input line 93.
+
+
+Package natbib Warning: Citation `dettmers-2022-llm' on page 2 undefined on inp
+ut line 93.
+
+
+Package natbib Warning: Citation `bordelon-2024-dynamical' on page 2 undefined 
+on input line 93.
+
+
+Package natbib Warning: Citation `cherti-2022-reproducible' on page 2 undefined
+ on input line 93.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
+
+Package natbib Warning: Citation `lightman-2023-let' on page 2 undefined on inp
+ut line 105.
+
+
+Package natbib Warning: Citation `dao-2022-flashattention' on page 2 undefined 
+on input line 107.
+
+
+Package natbib Warning: Citation `dettmers-2022-llm' on page 2 undefined on inp
+ut line 107.
+
+
+Package natbib Warning: Citation `lightman-2023-let' on page 2 undefined on inp
+ut line 111.
+
+
+Underfull \vbox (badness 2799) has occurred while \output is active [2]
+
+Package natbib Warning: Citation `havrilla-2024-glore' on page 3 undefined on i
+nput line 114.
+
+
+Package natbib Warning: Citation `lightman-2023-let' on page 3 undefined on inp
+ut line 114.
+
+
+Package natbib Warning: Citation `xie-2023-self' on page 3 undefined on input l
+ine 117.
+
+
+Package natbib Warning: Citation `wang-2024-chain' on page 3 undefined on input
+ line 117.
+
+
+Package natbib Warning: Citation `yue-2023-large' on page 3 undefined on input 
+line 120.
+
+
+Package natbib Warning: Citation `zhuo-2020-learning' on page 3 undefined on in
+put line 123.
+
+
+Package natbib Warning: Citation `choo-2022-simulation' on page 3 undefined on 
+input line 123.
+
+
+Package natbib Warning: Citation `hardt-2023-test' on page 3 undefined on input
+ line 126.
+
+
+Package natbib Warning: Citation `dao-2022-flashattention' on page 3 undefined 
+on input line 126.
+
+
+Package natbib Warning: Citation `dettmers-2022-llm' on page 3 undefined on inp
+ut line 126.
+
+
+Package natbib Warning: Citation `bordelon-2024-dynamical' on page 3 undefined 
+on input line 126.
+
+
+Package natbib Warning: Citation `cherti-2022-reproducible' on page 3 undefined
+ on input line 126.
+
+[3]
+
+Package natbib Warning: Citation `lightman-2023-let' on page 4 undefined on inp
+ut line 133.
+
+
+Package natbib Warning: Citation `lightman-2023-let' on page 4 undefined on inp
+ut line 139.
+
+! Undefined control sequence.
+l.139 ..._t$. Controller thresholds use $p\_{\text
+                                                  {high}}$ around 0.95, $p\_...
+
+! Undefined control sequence.
+l.139 ...p\_{\text{high}}$ around 0.95, $p\_{\text
+                                                  {low}}$ around 0.65, and $...
+
+! Undefined control sequence.
+l.139 ...t{low}}$ around 0.65, and $\Delta\_{\text
+                                                  {high}}$ around 0.7 in typ...
+
+
+Package natbib Warning: Citation `creswell-2022-selection' on page 4 undefined 
+on input line 142.
+
+
+Package natbib Warning: Citation `xie-2023-self' on page 4 undefined on input l
+ine 142.
+
+
+Package natbib Warning: Citation `dao-2022-flashattention' on page 4 undefined 
+on input line 142.
+
+
+Package natbib Warning: Citation `dettmers-2022-llm' on page 4 undefined on inp
+ut line 142.
+
+
+Package natbib Warning: Citation `bordelon-2024-dynamical' on page 4 undefined 
+on input line 142.
+
+
+Package natbib Warning: Citation `cherti-2022-reproducible' on page 4 undefined
+ on input line 142.
+
+[4]
+
+Package natbib Warning: Citation `dao-2022-flashattention' on page 5 undefined 
+on input line 157.
+
+
+Package natbib Warning: Citation `dettmers-2022-llm' on page 5 undefined on inp
+ut line 157.
+
+
+! LaTeX Error: Environment algorithm undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.163 \begin{algorithm}
+                       
+
+! LaTeX Error: \caption outside float.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.164 \caption
+              {Budget-Aware Adaptive Beam Control}
+
+! LaTeX Error: Environment algorithmic undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.165 \begin{algorithmic}
+                         
+! Undefined control sequence.
+l.166 \State
+             \textbf{Inputs}: prompt $x$, generator $G$, Shared-Adapter PRM ...
+
+! Undefined control sequence.
+l.166 ...erator $G$, Shared-Adapter PRM $S\_{\text
+                                                  {SA}}$, MoE PRM $S\_{\text...
+
+! Undefined control sequence.
+l.166 ... PRM $S\_{\text{SA}}$, MoE PRM $S\_{\text
+                                                  {MoE}}$, thresholds $p\_{\...
+
+! Undefined control sequence.
+l.166 ... $S\_{\text{MoE}}$, thresholds $p\_{\text
+                                                  {high}}$, $p\_{\text{low}}...
+
+! Undefined control sequence.
+l.166 ...thresholds $p\_{\text{high}}$, $p\_{\text
+                                                  {low}}$, $\Delta\_{\text{h...
+
+! Undefined control sequence.
+l.166 ...gh}}$, $p\_{\text{low}}$, $\Delta\_{\text
+                                                  {high}}$, beam cap $k$, bu...
+
+! Undefined control sequence.
+l.167 \State
+             Initialize partial trace $y \leftarrow \varnothing$, time used ...
+
+! Undefined control sequence.
+l.167 ...e partial trace $y \leftarrow \varnothing
+                                                  $, time used $t\_{\text{us...
+
+! Undefined control sequence.
+l.167 ...tarrow \varnothing$, time used $t\_{\text
+                                                  {used}} \leftarrow 0$
+! Undefined control sequence.
+l.168 \While
+            {not EOS}
+! Undefined control sequence.
+l.169   \State
+               Obtain next-token distribution $q(\cdot\mid x,y)$ from $G$ wi...
+
+! Undefined control sequence.
+l.170   \State
+               Compute $\Delta\_t \leftarrow \log q(\hat{y}\_{t+1}\mid x,y) ...
+
+! Undefined control sequence.
+l.171   \State
+               Compute $p\_t \leftarrow S\_{\text{SA}}(x, y)$ on sliding window
+
+! Undefined control sequence.
+l.171   \State Compute $p\_t \leftarrow S\_{\text
+                                                 {SA}}(x, y)$ on sliding window
+
+! Undefined control sequence.
+l.172   \If
+           {$p\_t > p\_{\text{high}}$ \textbf{or} $\Delta\_t > \Delta\_{\tex...
+
+! Undefined control sequence.
+l.172   \If{$p\_t > p\_{\text
+                             {high}}$ \textbf{or} $\Delta\_t > \Delta\_{\tex...
+
+! Undefined control sequence.
+l.172 ...$ \textbf{or} $\Delta\_t > \Delta\_{\text
+                                                  {high}}$ \textbf{or} $t\_{...
+
+! Undefined control sequence.
+l.172 ...ta\_{\text{high}}$ \textbf{or} $t\_{\text
+                                                  {used}} \geq B$}
+! Undefined control sequence.
+l.173      \State
+                  Commit: $y \leftarrow y \cup \{\arg\max q\}$
+! Undefined control sequence.
+l.174   \ElsIf
+              {$p\_{\text{low}} < p\_t < p\_{\text{high}}$ \textbf{and} $t\_...
+
+! Undefined control sequence.
+l.174   \ElsIf{$p\_{\text
+                         {low}} < p\_t < p\_{\text{high}}$ \textbf{and} $t\_...
+
+! Undefined control sequence.
+l.174   \ElsIf{$p\_{\text{low}} < p\_t < p\_{\text
+                                                  {high}}$ \textbf{and} $t\_...
+
+! Undefined control sequence.
+l.174 ...p\_{\text{high}}$ \textbf{and} $t\_{\text
+                                                  {used}} < B$}
+! Undefined control sequence.
+l.175      \State
+                  Sample up to $k$ rollouts of small horizon $h$ from $G$ co...
+
+! Undefined control sequence.
+l.176      \State
+                  Score prefixes with one call to $S\_{\text{MoE}}$; select ...
+
+! Undefined control sequence.
+l.176 ...core prefixes with one call to $S\_{\text
+                                                  {MoE}}$; select best prefi...
+
+! Undefined control sequence.
+l.177      \State
+                  Update $y \leftarrow y^{\star}$
+! Undefined control sequence.
+l.178   \Else
+             
+! Undefined control sequence.
+l.179      \State
+                  Greedy step: $y \leftarrow y \cup \{\arg\max q\}$
+! Undefined control sequence.
+l.180   \EndIf
+              
+! Undefined control sequence.
+l.181   \State
+               Update $t\_{\text{used}}$ by measured wall time for this step
+! Undefined control sequence.
+l.181   \State Update $t\_{\text
+                                {used}}$ by measured wall time for this step
+! Undefined control sequence.
+l.182 \EndWhile
+               
+! Undefined control sequence.
+l.183 \State
+             \textbf{Return} final $y$
+
+! LaTeX Error: \begin{document} ended by \end{algorithmic}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.184 \end{algorithmic}
+                       
+
+! LaTeX Error: \begin{document} ended by \end{algorithm}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.185 \end{algorithm}
+                     
+
+Package natbib Warning: Citation `lightman-2023-let' on page 5 undefined on inp
+ut line 188.
+
+
+Package natbib Warning: Citation `xie-2023-self' on page 5 undefined on input l
+ine 188.
+
+
+Package natbib Warning: Citation `yue-2023-large' on page 5 undefined on input 
+line 188.
+
+
+Package natbib Warning: Citation `dao-2022-flashattention' on page 5 undefined 
+on input line 188.
+
+
+Package natbib Warning: Citation `dettmers-2022-llm' on page 5 undefined on inp
+ut line 188.
+
+[5]
+
+Package natbib Warning: Citation `lightman-2023-let' on page 6 undefined on inp
+ut line 195.
+
+
+Package natbib Warning: Citation `xie-2023-self' on page 6 undefined on input l
+ine 198.
+
+
+Package natbib Warning: Citation `lightman-2023-let' on page 6 undefined on inp
+ut line 198.
+
+
+Package natbib Warning: Citation `dao-2022-flashattention' on page 6 undefined 
+on input line 204.
+
+
+Package natbib Warning: Citation `dettmers-2022-llm' on page 6 undefined on inp
+ut line 204.
+
+! Undefined control sequence.
+l.207 We sweep early-commit thresholds ($p\_{\text
+                                                  {high}} \in \{0.90, 0.95\}...
+
+! Undefined control sequence.
+l.207 ...xt{high}} \in \{0.90, 0.95\}$, $p\_{\text
+                                                  {low}} \in \{0.60, 0.65\}$...
+
+! Undefined control sequence.
+l.207 ...ow}} \in \{0.60, 0.65\}$, $\Delta\_{\text
+                                                  {high}} \in \{0.60, 0.70\}...
+
+
+Package natbib Warning: Citation `xie-2023-self' on page 6 undefined on input l
+ine 210.
+
+
+Package natbib Warning: Citation `wang-2024-chain' on page 6 undefined on input
+ line 210.
+
+
+Package natbib Warning: Citation `yue-2023-large' on page 6 undefined on input 
+line 210.
+
+
+Package natbib Warning: Citation `lightman-2023-let' on page 6 undefined on inp
+ut line 210.
+
+
+Package natbib Warning: Citation `dao-2022-flashattention' on page 6 undefined 
+on input line 210.
+
+
+Package natbib Warning: Citation `dettmers-2022-llm' on page 6 undefined on inp
+ut line 210.
+
+[6]
+
+Package natbib Warning: Citation `xie-2023-self' on page 7 undefined on input l
+ine 221.
+
+! Undefined control sequence.
+l.227 ...s}: For all tested thresholds ($p\_{\text
+                                                  {high}} \in \{0.90, 0.95\}...
+
+! Undefined control sequence.
+l.227 ...xt{high}} \in \{0.90, 0.95\}$, $p\_{\text
+                                                  {low}} \in \{0.60, 0.65\}$...
+
+! Undefined control sequence.
+l.227 ...ow}} \in \{0.60, 0.65\}$, $\Delta\_{\text
+                                                  {high}} \in \{0.60, 0.70\}...
+
+
+Package natbib Warning: Citation `lightman-2023-let' on page 7 undefined on inp
+ut line 239.
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.242 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.244 \includegraphics
+                      [width=0.7\linewidth]{ images/pareto\_accuracy\_vs\_co...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.244 \includegraphics[width=0.7\linewidth]
+                                           { images/pareto\_accuracy\_vs\_co...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.244 \includegraphics[width=0.7\linewidth]
+                                           { images/pareto\_accuracy\_vs\_co...
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.248 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.250 \includegraphics
+                      [width=0.7\linewidth]{ images/accuracy\_tinyprm\_vs\_b...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.250 \includegraphics[width=0.7\linewidth]
+                                           { images/accuracy\_tinyprm\_vs\_b...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.250 \includegraphics[width=0.7\linewidth]
+                                           { images/accuracy\_tinyprm\_vs\_b...
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.254 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.256 \includegraphics
+                      [width=0.7\linewidth]{ images/inference\_latency\_tiny...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.256 \includegraphics[width=0.7\linewidth]
+                                           { images/inference\_latency\_tiny...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.256 \includegraphics[width=0.7\linewidth]
+                                           { images/inference\_latency\_tiny...
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.260 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.262 \includegraphics
+                      [width=0.7\linewidth]{ images/prm\_usage\_tinyprm.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.262 \includegraphics[width=0.7\linewidth]
+                                           { images/prm\_usage\_tinyprm.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.262 \includegraphics[width=0.7\linewidth]
+                                           { images/prm\_usage\_tinyprm.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.266 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.268 \includegraphics
+                      [width=0.7\linewidth]{ images/reliability\_curve\_shar...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.268 \includegraphics[width=0.7\linewidth]
+                                           { images/reliability\_curve\_shar...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.268 \includegraphics[width=0.7\linewidth]
+                                           { images/reliability\_curve\_shar...
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.272 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.274 \includegraphics
+                      [width=0.7\linewidth]{ images/reliability\_curve\_moe....
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.274 \includegraphics[width=0.7\linewidth]
+                                           { images/reliability\_curve\_moe....
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.274 \includegraphics[width=0.7\linewidth]
+                                           { images/reliability\_curve\_moe....
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.278 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.280 \includegraphics
+                      [width=0.7\linewidth]{ images/accuracy\_robustness.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.280 \includegraphics[width=0.7\linewidth]
+                                           { images/accuracy\_robustness.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.280 \includegraphics[width=0.7\linewidth]
+                                           { images/accuracy\_robustness.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.284 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.286 \includegraphics
+                      [width=0.7\linewidth]{ images/inference\_latency\_robu...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.286 \includegraphics[width=0.7\linewidth]
+                                           { images/inference\_latency\_robu...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.286 \includegraphics[width=0.7\linewidth]
+                                           { images/inference\_latency\_robu...
+
+
+Package natbib Warning: Citation `lightman-2023-let' on page 7 undefined on inp
+ut line 293.
+
+
+Package natbib Warning: Citation `dao-2022-flashattention' on page 7 undefined 
+on input line 296.
+
+
+Package natbib Warning: Citation `dettmers-2022-llm' on page 7 undefined on inp
+ut line 296.
+
+[7] (./paper.bbl)
+
+Package natbib Warning: There were undefined citations.
+
+[8] [9] (./paper.aux
+
+Package natbib Warning: Citation(s) may have changed.
+(natbib)                Rerun to get citations correct.
+
+) )
+(see the transcript file for additional information) </home/runner/.texlive2023
+/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helv
+etic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (9 pages, 140530 bytes).
+Transcript written on paper.log.
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./paper.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo))
+(./agents4science_2025.sty
+(/usr/share/texlive/texmf-dist/tex/latex/environ/environ.sty
+(/usr/share/texlive/texmf-dist/tex/latex/trimspaces/trimspaces.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/lineno/lineno.sty
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty))))
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/units/nicefrac.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype-pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(./paper.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: letterpaper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(92.14519pt, 430.00462pt, 92.14519pt)
+* v-part:(T,H,B)=(95.39737pt, 556.47656pt, 143.09605pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=430.00462pt
+* \textheight=556.47656pt
+* \oddsidemargin=19.8752pt
+* \evensidemargin=19.8752pt
+* \topmargin=-13.87262pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+*geometry* verbose mode - [ newgeometry ] result:
+* driver: pdftex
+* paper: letterpaper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(108.405pt, 397.48499pt, 108.40501pt)
+* v-part:(T,H,B)=(72.26999pt, 650.43pt, 72.27pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=397.48499pt
+* \textheight=650.43pt
+* \oddsidemargin=36.13501pt
+* \evensidemargin=36.13501pt
+* \topmargin=-37.0pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+(./paper.out) (./paper.out)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg)
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd) [1{/var/lib/texmf/fon
+ts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/
+base/8r.enc}] (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
+[2] [3]
+! Undefined control sequence.
+l.139 ..._t$. Controller thresholds use $p\_{\text
+                                                  {high}}$ around 0.95, $p\_...
+
+! Undefined control sequence.
+l.139 ...p\_{\text{high}}$ around 0.95, $p\_{\text
+                                                  {low}}$ around 0.65, and $...
+
+! Undefined control sequence.
+l.139 ...t{low}}$ around 0.65, and $\Delta\_{\text
+                                                  {high}}$ around 0.7 in typ...
+
+[4]
+
+! LaTeX Error: Environment algorithm undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.163 \begin{algorithm}
+                       
+
+! LaTeX Error: \caption outside float.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.164 \caption
+              {Budget-Aware Adaptive Beam Control}
+
+! LaTeX Error: Environment algorithmic undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.165 \begin{algorithmic}
+                         
+! Undefined control sequence.
+l.166 \State
+             \textbf{Inputs}: prompt $x$, generator $G$, Shared-Adapter PRM ...
+
+! Undefined control sequence.
+l.166 ...erator $G$, Shared-Adapter PRM $S\_{\text
+                                                  {SA}}$, MoE PRM $S\_{\text...
+
+! Undefined control sequence.
+l.166 ... PRM $S\_{\text{SA}}$, MoE PRM $S\_{\text
+                                                  {MoE}}$, thresholds $p\_{\...
+
+! Undefined control sequence.
+l.166 ... $S\_{\text{MoE}}$, thresholds $p\_{\text
+                                                  {high}}$, $p\_{\text{low}}...
+
+! Undefined control sequence.
+l.166 ...thresholds $p\_{\text{high}}$, $p\_{\text
+                                                  {low}}$, $\Delta\_{\text{h...
+
+! Undefined control sequence.
+l.166 ...gh}}$, $p\_{\text{low}}$, $\Delta\_{\text
+                                                  {high}}$, beam cap $k$, bu...
+
+! Undefined control sequence.
+l.167 \State
+             Initialize partial trace $y \leftarrow \varnothing$, time used ...
+
+! Undefined control sequence.
+l.167 ...e partial trace $y \leftarrow \varnothing
+                                                  $, time used $t\_{\text{us...
+
+! Undefined control sequence.
+l.167 ...tarrow \varnothing$, time used $t\_{\text
+                                                  {used}} \leftarrow 0$
+! Undefined control sequence.
+l.168 \While
+            {not EOS}
+! Undefined control sequence.
+l.169   \State
+               Obtain next-token distribution $q(\cdot\mid x,y)$ from $G$ wi...
+
+! Undefined control sequence.
+l.170   \State
+               Compute $\Delta\_t \leftarrow \log q(\hat{y}\_{t+1}\mid x,y) ...
+
+! Undefined control sequence.
+l.171   \State
+               Compute $p\_t \leftarrow S\_{\text{SA}}(x, y)$ on sliding window
+
+! Undefined control sequence.
+l.171   \State Compute $p\_t \leftarrow S\_{\text
+                                                 {SA}}(x, y)$ on sliding window
+
+! Undefined control sequence.
+l.172   \If
+           {$p\_t > p\_{\text{high}}$ \textbf{or} $\Delta\_t > \Delta\_{\tex...
+
+! Undefined control sequence.
+l.172   \If{$p\_t > p\_{\text
+                             {high}}$ \textbf{or} $\Delta\_t > \Delta\_{\tex...
+
+! Undefined control sequence.
+l.172 ...$ \textbf{or} $\Delta\_t > \Delta\_{\text
+                                                  {high}}$ \textbf{or} $t\_{...
+
+! Undefined control sequence.
+l.172 ...ta\_{\text{high}}$ \textbf{or} $t\_{\text
+                                                  {used}} \geq B$}
+! Undefined control sequence.
+l.173      \State
+                  Commit: $y \leftarrow y \cup \{\arg\max q\}$
+! Undefined control sequence.
+l.174   \ElsIf
+              {$p\_{\text{low}} < p\_t < p\_{\text{high}}$ \textbf{and} $t\_...
+
+! Undefined control sequence.
+l.174   \ElsIf{$p\_{\text
+                         {low}} < p\_t < p\_{\text{high}}$ \textbf{and} $t\_...
+
+! Undefined control sequence.
+l.174   \ElsIf{$p\_{\text{low}} < p\_t < p\_{\text
+                                                  {high}}$ \textbf{and} $t\_...
+
+! Undefined control sequence.
+l.174 ...p\_{\text{high}}$ \textbf{and} $t\_{\text
+                                                  {used}} < B$}
+! Undefined control sequence.
+l.175      \State
+                  Sample up to $k$ rollouts of small horizon $h$ from $G$ co...
+
+! Undefined control sequence.
+l.176      \State
+                  Score prefixes with one call to $S\_{\text{MoE}}$; select ...
+
+! Undefined control sequence.
+l.176 ...core prefixes with one call to $S\_{\text
+                                                  {MoE}}$; select best prefi...
+
+! Undefined control sequence.
+l.177      \State
+                  Update $y \leftarrow y^{\star}$
+! Undefined control sequence.
+l.178   \Else
+             
+! Undefined control sequence.
+l.179      \State
+                  Greedy step: $y \leftarrow y \cup \{\arg\max q\}$
+! Undefined control sequence.
+l.180   \EndIf
+              
+! Undefined control sequence.
+l.181   \State
+               Update $t\_{\text{used}}$ by measured wall time for this step
+! Undefined control sequence.
+l.181   \State Update $t\_{\text
+                                {used}}$ by measured wall time for this step
+! Undefined control sequence.
+l.182 \EndWhile
+               
+! Undefined control sequence.
+l.183 \State
+             \textbf{Return} final $y$
+
+! LaTeX Error: \begin{document} ended by \end{algorithmic}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.184 \end{algorithmic}
+                       
+
+! LaTeX Error: \begin{document} ended by \end{algorithm}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.185 \end{algorithm}
+                     
+
+Underfull \vbox (badness 1242) has occurred while \output is active [5]
+! Undefined control sequence.
+l.207 We sweep early-commit thresholds ($p\_{\text
+                                                  {high}} \in \{0.90, 0.95\}...
+
+! Undefined control sequence.
+l.207 ...xt{high}} \in \{0.90, 0.95\}$, $p\_{\text
+                                                  {low}} \in \{0.60, 0.65\}$...
+
+! Undefined control sequence.
+l.207 ...ow}} \in \{0.60, 0.65\}$, $\Delta\_{\text
+                                                  {high}} \in \{0.60, 0.70\}...
+
+[6]
+! Undefined control sequence.
+l.227 ...s}: For all tested thresholds ($p\_{\text
+                                                  {high}} \in \{0.90, 0.95\}...
+
+! Undefined control sequence.
+l.227 ...xt{high}} \in \{0.90, 0.95\}$, $p\_{\text
+                                                  {low}} \in \{0.60, 0.65\}$...
+
+! Undefined control sequence.
+l.227 ...ow}} \in \{0.60, 0.65\}$, $\Delta\_{\text
+                                                  {high}} \in \{0.60, 0.70\}...
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.242 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.244 \includegraphics
+                      [width=0.7\linewidth]{ images/pareto\_accuracy\_vs\_co...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.244 \includegraphics[width=0.7\linewidth]
+                                           { images/pareto\_accuracy\_vs\_co...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.244 \includegraphics[width=0.7\linewidth]
+                                           { images/pareto\_accuracy\_vs\_co...
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.248 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.250 \includegraphics
+                      [width=0.7\linewidth]{ images/accuracy\_tinyprm\_vs\_b...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.250 \includegraphics[width=0.7\linewidth]
+                                           { images/accuracy\_tinyprm\_vs\_b...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.250 \includegraphics[width=0.7\linewidth]
+                                           { images/accuracy\_tinyprm\_vs\_b...
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.254 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.256 \includegraphics
+                      [width=0.7\linewidth]{ images/inference\_latency\_tiny...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.256 \includegraphics[width=0.7\linewidth]
+                                           { images/inference\_latency\_tiny...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.256 \includegraphics[width=0.7\linewidth]
+                                           { images/inference\_latency\_tiny...
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.260 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.262 \includegraphics
+                      [width=0.7\linewidth]{ images/prm\_usage\_tinyprm.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.262 \includegraphics[width=0.7\linewidth]
+                                           { images/prm\_usage\_tinyprm.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.262 \includegraphics[width=0.7\linewidth]
+                                           { images/prm\_usage\_tinyprm.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.266 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.268 \includegraphics
+                      [width=0.7\linewidth]{ images/reliability\_curve\_shar...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.268 \includegraphics[width=0.7\linewidth]
+                                           { images/reliability\_curve\_shar...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.268 \includegraphics[width=0.7\linewidth]
+                                           { images/reliability\_curve\_shar...
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.272 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.274 \includegraphics
+                      [width=0.7\linewidth]{ images/reliability\_curve\_moe....
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.274 \includegraphics[width=0.7\linewidth]
+                                           { images/reliability\_curve\_moe....
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.274 \includegraphics[width=0.7\linewidth]
+                                           { images/reliability\_curve\_moe....
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.278 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.280 \includegraphics
+                      [width=0.7\linewidth]{ images/accuracy\_robustness.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.280 \includegraphics[width=0.7\linewidth]
+                                           { images/accuracy\_robustness.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.280 \includegraphics[width=0.7\linewidth]
+                                           { images/accuracy\_robustness.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.284 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.286 \includegraphics
+                      [width=0.7\linewidth]{ images/inference\_latency\_robu...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.286 \includegraphics[width=0.7\linewidth]
+                                           { images/inference\_latency\_robu...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.286 \includegraphics[width=0.7\linewidth]
+                                           { images/inference\_latency\_robu...
+
+[7] (./paper.bbl) [8] [9] (./paper.aux) )
+(see the transcript file for additional information) </home/runner/.texlive2023
+/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helv
+etic/uhvr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (9 pages, 144376 bytes).
+Transcript written on paper.log.
