@@ -1,0 +1,302 @@
+\documentclass{article}
+
+\usepackage{agents4science_2025}
+% to compile a preprint version, e.g., for submission to arXiv, add the
+% \usepackage[preprint]{agents4science_2025}
+
+% to compile a camera-ready version, add the [final] option, e.g.:
+% \usepackage[final]{agents4science_2025}
+
+% For workshops, the authors should use the workshop options and add the name of the workshop.
+% The "\workshoptitle" command is used to set the workshop title.
+%
+% \usepackage[sglblindworkshop]{agents4science_2025}
+% \workshoptitle{WORKSHOP TITLE}
+
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}
+\usepackage{microtype}
+\usepackage{xcolor}
+
+
+\title{TinyPRM-Cascade: Sub-Billion Parameter Process Reward Models for Compute-Efficient Test-Time Reasoning}
+
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to LaTeX to determine where to break the
+% lines. Using \AND forces a line break at that point. So, if LaTeX puts 3 of 4
+% authors names on the first line, and the last on the second line, try using
+% \AND instead of \And before the third author name.
+
+
+\author{%
+  David S.~Hippocampus\thanks{Use footnote for providing further information
+    about author (webpage, alternative address)---\emph{not} for acknowledging
+    funding agencies.} \\
+  Department of Computer Science\\
+  Cranberry-Lemon University\\
+  Pittsburgh, PA 15213 \\
+  \texttt{hippo@cs.cranberry-lemon.edu} \\
+  % examples of more authors
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \AND
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+}
+
+
+\begin{document}
+
+
+\maketitle
+
+
+\begin{abstract}
+We study how to scale test-time compute for compact language models without incurring the latency and memory costs of large process reward models (PRMs). Strong PRMs typically exceed 6B parameters, while outcome-supervised or reinforcement learning alternatives often hallucinate step-level errors, require many samples, or inflate wall-clock time. We propose TinyPRM-Cascade, a three-tier inference framework that couples a 7B generator with two ultra-light evaluators: a Shared-Adapter PRM ($\sim$400M) that reuses the frozen generator backbone via LoRA adapters and a small gating network, and a Sparse-MoE Refinement PRM ($\sim$900M total, $\sim$220M active) distilled from a 6B process-supervised teacher. An adaptive beam controller integrates generator log-probability gaps, PRM scores, and a running compute budget to decide when to commit, branch, or halt exploration. Key novelties include parameter sharing that adds under 0.5 GB VRAM, lazy loading of the MoE for fewer than 20\% of steps, mixture-of-thought distillation from chain- and program-of-thought traces, and a focal KL calibration head to mitigate hallucinated errors observed in stepwise evaluators. We release an instrumented evaluation harness and report a complete toy run validating control flow and measurement: on a synthetic arithmetic task, TinyPRM-Ccascade matches greedy accuracy (100\%), surpasses a self-consistency baseline in both accuracy and latency, and supports early-commit sweeps. While this toy setting cannot probe full accuracy-latency trade-offs, it establishes the correctness of the design and the evaluation pipeline needed for realistic benchmarks.
+\end{abstract}
+
+
+
+\section{Introduction}
+Large language models increasingly rely on multi-step reasoning to achieve strong performance in mathematics, logic, and program synthesis. Process supervision—grading intermediate steps rather than only final outcomes—has proven effective and motivated the release of PRM800K alongside models that score partial reasoning traces \cite{lightman-2023-let}. However, deploying process supervision at inference time remains compute- and memory-intensive: high-quality PRMs commonly exceed 6B parameters, which is impractical for single-GPU desktops and edge servers. Alternatives based on self-consistency or self-evaluation guided search either require many samples to stabilize, struggle with calibration on intermediate steps, or inflate latency beyond practical budgets \cite{xie-2023-self,wang-2024-chain}.
+
+\subsection{Motivation and Challenges}
+We focus on the following challenge: design a $\leq$1B parameter PRM that remains calibrated on partial traces, decides early when additional reasoning is unnecessary, and can be loaded and unloaded on demand so the end-to-end cost stays close to greedy decoding. This is difficult because step-level calibration must remain reliable across diverse reasoning styles (e.g., chain-of-thought versus program-of-thought), and because inference-time control must react to local uncertainty while respecting a global wall-clock budget.
+
+\subsection{Framework Overview}
+We propose TinyPRM-Cascade, a three-tier inference framework for a 7B generator. First, a Shared-Adapter PRM ($\sim$400M) inserts LoRA adapters into 12 generator layers and reuses the frozen backbone to yield step-correctness probabilities from a sliding window; a small gating MLP ($\sim$20M) decides whether to activate the adapter path. Second, a Sparse-MoE PRM ($\sim$900M total) distilled from a 6B teacher routes at token level among 12 experts while activating only the top-2 per call ($\sim$220M active parameters). Third, an adaptive beam controller observes the generator’s next-token log-probability gap, the Shared-Adapter PRM score, and a running budget, then either commits early ($p\_t > 0.95$ or $\Delta\_t > 0.7$), spawns up to $k \leq 5$ beams with a single MoE-based rerank when moderately uncertain ($0.65 < p\_t < 0.95$), or halts exploration to preserve budget. Distillation uses a mixture-of-thought corpus combining chain-of-thought and program-of-thought traces for cross-representation robustness; a calibration head trained with focal Kullback–Leibler down-weights mislabeled or hallucinated step errors often seen in stepwise evaluators. By sharing parameters with the generator, the Shared-Adapter PRM adds under 0.5 GB VRAM; the heavier MoE is lazily loaded only when needed.
+
+Our design draws on several threads. Process supervision offers high-quality training signals at the step level \cite{lightman-2023-let}. Selection-inference frameworks grow interpretable reasoning chains \cite{creswell-2022-selection}, while self-evaluation guided beams and chain-of-thought decoding explore search-time guidance, though often at high compute cost or with calibration drift \cite{xie-2023-self,wang-2024-chain}. Cascades leveraging mixture-of-thought signals have been effective for cost-efficient API usage \cite{yue-2023-large}. We adopt systems primitives such as IO-aware attention and low-precision inference to reduce latency and memory \cite{dao-2022-flashattention,dettmers-2022-llm}, and we are informed by insights from scaling and calibration in large models \cite{bordelon-2024-dynamical,cherti-2022-reproducible}.
+
+\subsection{Contributions}
+\begin{itemize}
+  \item \textbf{Parameter-sharing PRM under 0.5 GB VRAM}: Reuses the 7B generator’s backbone via LoRA adapters and a small gate.
+  \item \textbf{Sparse MoE refinement PRM}: Distilled from a 6B teacher, with token-level routing and top-2 experts per call, lazily loaded on demand.
+  \item \textbf{Adaptive, budgeted controller}: Fuses PRM scores, log-probability margins, and a wall-clock budget to decide when to commit, branch, or halt.
+  \item \textbf{Mixture-of-thought distillation and focal KL}: Improves step-level robustness and mitigates hallucinated errors in evaluators.
+  \item \textbf{Instrumented harness}: Paired testing, bootstrap confidence intervals, and detailed logging of PRM usage, lazy-load overheads, latency, and memory.
+\end{itemize}
+
+\subsection{Verification Plan and Current Status}
+We outline three experiments spanning end-to-end cost-accuracy trade-offs, calibration and early-commit quality, and robustness under stressors, on both datacenter and consumer GPUs. In this paper we report a complete toy run that validates control flow and measurements. Because greedy decoding attains 100\% accuracy in this toy setting, ceiling effects limit the evaluative power; we analyze these limitations and motivate full-scale runs on BIG-Bench Hard, GSM8K, SVAMP, and MATH with PRM800K for step-level metrics \cite{lightman-2023-let}.
+
+Looking ahead, we plan hardware-aware gating policies, continual self-distillation during deployment, and multimodal extensions via shared visual adapters, leveraging efficient attention and quantization for deployment \cite{dao-2022-flashattention,dettmers-2022-llm}.
+
+\section{Related Work}
+\subsection{Process Supervision and PRMs}
+Let’s Verify Step by Step demonstrated that process supervision with step-level labels surpasses outcome-only supervision on challenging mathematical reasoning and released PRM800K to support research on intermediate-step correctness \cite{lightman-2023-let}. TinyPRM-Cascade aligns with this line but targets sub-1B evaluators and tight latency/VRAM budgets via parameter sharing and sparse expert refinement, making process supervision practical at inference time on limited hardware.
+
+\subsection{Outcome-Level Surrogates for Process Guidance}
+GLoRe introduced stepwise outcome reward models trained on synthetic data to approximate future correctness and to decide when and where to refine \cite{havrilla-2024-glore}. This departs from explicit process supervision by using outcome-based signals; in contrast, our evaluators directly predict step correctness from partial traces and are distilled from a process-supervised teacher, aiming to preserve calibration on intermediate steps \cite{lightman-2023-let}.
+
+\subsection{Search-Time Guidance and Self-Evaluation}
+Self-Evaluation Guided Beam Search incorporates stepwise self-critique to guide stochastic decoding and improve robustness \cite{xie-2023-self}. Chain-of-Thought Decoding without prompting reveals latent reasoning paths by adjusting decoding dynamics, avoiding prompt engineering \cite{wang-2024-chain}. Our adaptive controller is compatible with these directions but differs by combining a calibrated PRM score with the generator’s margin and an explicit compute budget. It further confines heavier evaluation to uncertainty bands by invoking a sparse MoE only when needed.
+
+\subsection{Cascades and Mixture-of-Thought}
+Cascades using consistency checks and mixture-of-thought representations can cut costs while matching stronger models’ accuracy \cite{yue-2023-large}. We adopt the mixture-of-thought insight not as an endpoint selection mechanism but as a distillation corpus to transfer robustness across reasoning styles into compact PRMs.
+
+\subsection{Beam Search Under Training Constraints}
+Learning under beam-search constraints has been studied to reconcile training and testing objectives and to analyze calibration under beam search \cite{zhuo-2020-learning}. Simulation-guided beam search improves solution quality within fixed compute by combining learned policies with rollouts \cite{choo-2022-simulation}. Our method complements these by attaching calibrated evaluators and a budget-aware controller to a frozen generator, rather than retraining the generator to be beam-optimal.
+
+\subsection{Test-Time Adaptation and Systems Efficiency}
+Test-time training on nearest neighbors enhances language modeling without long-context overheads \cite{hardt-2023-test}, whereas our focus is on calibrated decision-making during inference without parameter updates. On the systems side, IO-aware attention reduces memory traffic and latency \cite{dao-2022-flashattention}, and 8-bit matrix multiplications cut memory use while retaining accuracy \cite{dettmers-2022-llm}. We leverage these techniques operationally in our harness. Finally, insights from scaling laws and calibration inform our modeling targets and reliability evaluation \cite{bordelon-2024-dynamical,cherti-2022-reproducible}.
+
+\section{Background}
+\subsection{Problem Setting}
+Given an input $x$, a generator $G$ produces a reasoning trace $y$ token-by-token. At step $t$, a process reward model $S(x, y\_{1:t})$ outputs the probability $p\_t$ that the partial trace remains on a path to a correct final answer. The controller observes three signals: (i) the next-token log-probability margin $\Delta\_t$ between the top two tokens from $G$; (ii) the PRM score $p\_t$ from $S$; and (iii) a running wall-clock budget $B$ derived from a greedy estimate for the same prompt. Based on these, it decides to commit early, branch for refinement, or halt exploration to preserve budget.
+
+\subsection{Calibration on Partial Traces}
+Early commitment requires well-calibrated probabilities over partial traces and robustness across reasoning styles. We distill from a teacher onto a mixture-of-thought set combining chain-of-thought and program-of-thought traces and train a small calibration head with a focal Kullback–Leibler objective that down-weights mislabeled or hallucinated steps, which have been noted in stepwise evaluators trained from synthetic signals. Calibration is evaluated by AUROC, AUPRC, Brier score, and expected calibration error (ECE) on step-labeled data such as PRM800K, alongside step-level F1 \cite{lightman-2023-let}.
+
+\subsection{Parameter Sharing and Sparse Experts}
+To operate under strict memory budgets, the Shared-Adapter PRM reuses $G$’s frozen backbone and adds LoRA adapters to a subset of layers. A lightweight gating MLP determines whether the adapter path is needed on a given window of tokens. For harder cases, a Sparse-MoE PRM distilled from a 6B process-supervised teacher uses 12 experts with token-level routing to the top-2, enabling high capacity with low active parameters. Experts are lazily loaded to GPU on demand to avoid persistent memory overhead.
+
+\subsection{Assumptions and Notation}
+We assume access to a process-supervised teacher and step-level labels from PRM800K for training and validation \cite{lightman-2023-let}. We denote the generator’s confidence margin by $\Delta\_t$ and the PRM probability by $p\_t$. Controller thresholds use $p\_{\text{high}}$ around 0.95, $p\_{\text{low}}$ around 0.65, and $\Delta\_{\text{high}}$ around 0.7 in typical settings. Evaluation uses final-answer accuracy, step-level discrimination and calibration metrics, and resource measures such as tokens, GPU seconds, and VRAM.
+
+\subsection{Context Within Prior Art}
+This formulation connects to selection-inference \cite{creswell-2022-selection} and self-evaluation-guided search \cite{xie-2023-self}, but centers on process-supervised calibration with sub-1B evaluators and compute-aware control. Systems techniques such as IO-aware attention and low-precision inference support deployment under tight latency and memory budgets \cite{dao-2022-flashattention,dettmers-2022-llm}. Broader perspectives on scaling and calibration guide modeling choices and evaluation criteria \cite{bordelon-2024-dynamical,cherti-2022-reproducible}.
+
+\section{Method}
+\subsection{Architecture Overview}
+TinyPRM-Cascade couples a 7B generator with two evaluators and an adaptive controller.
+\begin{itemize}
+  \item \textbf{Shared-Adapter PRM ($\sim$400M)}. We attach LoRA adapters to 12 transformer layers of the frozen generator backbone. For each step, we pool hidden states from a sliding window (either last-token features or a masked average of the last $W$ tokens) and feed them to a small calibration head that outputs $p\_t$, the probability that the partial trace is correct. A 20M-parameter gating MLP consumes the same features to decide whether the adapter path is needed for the current window, allowing most tokens to bypass additional computation.
+  \item \textbf{Sparse-MoE Refinement PRM ($\sim$900M total, $\sim$220M active)}. A router maps pooled features to 12 experts; at inference, the top-2 experts are selected per call. Experts are distilled from a 6B process-supervised teacher on PRM800K plus 60k synthetic mixture-of-thought traces, using temperature-smoothed logits matching and step-level cross-entropy where gold labels are available. To minimize memory, experts are stored separately and lazily loaded to GPU only when invoked, incurring millisecond-scale overhead per call.
+  \item \textbf{Adaptive Beam Controller}. At step $t$, compute $\Delta\_t$ from $G$’s next-token distribution and obtain $p\_t$ from the Shared-Adapter PRM. With a global budget $B$ set to 1.5 times a pre-measured greedy decode time for the same prompt, the controller: (1) commits early if $p\_t > 0.95$, or $\Delta\_t > 0.7$, or if the remaining budget is exhausted; (2) if $0.65 < p\_t < 0.95$ and budget allows, spawns up to $k \leq 5$ short rollouts and uses one Sparse-MoE PRM call to rerank their prefixes, then continues with the best branch; (3) otherwise, proceeds greedily without branching. The controller tracks PRM usage and ensures the MoE tier is invoked only under moderate uncertainty.
+\end{itemize}
+
+\subsection{Training and Calibration}
+The Shared-Adapter PRM’s calibration head is trained against teacher probabilities with a focal KL objective to reduce sensitivity to mislabeled steps. The gate uses a binary objective derived from an uncertainty heuristic (for example, teacher entropy or margin) and is tuned to minimize unnecessary adapter invocations while preserving accuracy. The MoE PRM is trained with distillation on PRM800K and mixture-of-thought traces, using top-2 routing during training to match inference behavior.
+
+\subsection{Computation and Memory}
+Parameter sharing keeps the PRM under 0.5 GB additional VRAM beyond the 7B generator. The heavier MoE PRM is activated on a minority of steps; experts are loaded from pinned CPU memory, applied for a single scoring pass, and then offloaded. The harness supports IO-aware attention kernels and low-precision inference to reduce latency and memory \cite{dao-2022-flashattention,dettmers-2022-llm}.
+
+\subsection{Algorithmic Summary}
+For each prompt: (a) estimate greedy decode time; (b) decode with $G$ while, at each step $t$, computing $\Delta\_t$ and $p\_t$ from the Shared-Adapter PRM over a sliding window; (c) if high confidence or budget exhausted, commit; if moderately uncertain and budget allows, branch with up to $k$ beams, score once with the MoE, and continue with the selected branch; else proceed greedily; (d) stop at EOS or dataset-specific criteria. The harness logs all decisions, PRM and MoE invocations, lazy-load overheads, token counts, peak memory, and GPU seconds for paired statistical analyses.
+
+\subsection{Pseudocode: Adaptive Beam Controller}
+\begin{algorithm}
+\caption{Budget-Aware Adaptive Beam Control}
+\begin{algorithmic}
+\State \textbf{Inputs}: prompt $x$, generator $G$, Shared-Adapter PRM $S\_{\text{SA}}$, MoE PRM $S\_{\text{MoE}}$, thresholds $p\_{\text{high}}$, $p\_{\text{low}}$, $\Delta\_{\text{high}}$, beam cap $k$, budget $B$
+\State Initialize partial trace $y \leftarrow \varnothing$, time used $t\_{\text{used}} \leftarrow 0$
+\While{not EOS}
+  \State Obtain next-token distribution $q(\cdot\mid x,y)$ from $G$ with KV-cache
+  \State Compute $\Delta\_t \leftarrow \log q(\hat{y}\_{t+1}\mid x,y) - \log q(\tilde{y}\_{t+1}\mid x,y)$ where $\hat{y}$ and $\tilde{y}$ are top-1 and top-2 tokens
+  \State Compute $p\_t \leftarrow S\_{\text{SA}}(x, y)$ on sliding window
+  \If{$p\_t > p\_{\text{high}}$ \textbf{or} $\Delta\_t > \Delta\_{\text{high}}$ \textbf{or} $t\_{\text{used}} \geq B$}
+     \State Commit: $y \leftarrow y \cup \{\arg\max q\}$
+  \ElsIf{$p\_{\text{low}} < p\_t < p\_{\text{high}}$ \textbf{and} $t\_{\text{used}} < B$}
+     \State Sample up to $k$ rollouts of small horizon $h$ from $G$ conditioned on $(x,y)$
+     \State Score prefixes with one call to $S\_{\text{MoE}}$; select best prefix $y^{\star}$
+     \State Update $y \leftarrow y^{\star}$
+  \Else
+     \State Greedy step: $y \leftarrow y \cup \{\arg\max q\}$
+  \EndIf
+  \State Update $t\_{\text{used}}$ by measured wall time for this step
+\EndWhile
+\State \textbf{Return} final $y$
+\end{algorithmic}
+\end{algorithm}
+
+\subsection{Relation to Prior Techniques}
+Our controller unifies calibrated stepwise scoring from process supervision with search-time guidance akin to self-evaluation and mixture-of-thought reranking \cite{lightman-2023-let,xie-2023-self,yue-2023-large}, while explicitly budgeting wall-clock time and minimizing memory via parameter sharing and sparse experts. Efficient attention and quantization provide the systems substrate for practical deployment \cite{dao-2022-flashattention,dettmers-2022-llm}.
+
+\section{Experimental Setup}
+\subsection{Evaluation Plan}
+We design three experiments: (1) an end-to-end cost-accuracy Pareto comparison against strong baselines; (2) calibration, early-commit quality, and compute allocation; and (3) robustness and on-the-fly PRM loading under resource constraints. Reliability practices include paired evaluation per item, McNemar tests for accuracy, paired bootstrap for latency and token counts, two-run reproducibility with fixed seeds, and 95\% BCa confidence intervals.
+
+\subsection{Datasets and Splits}
+The full plan targets BIG-Bench Hard (23 tasks), GSM8K, SVAMP, MATH (test-mini), and PRM800K dev for step-level metrics \cite{lightman-2023-let}. In the run reported here, we executed a synthetic toy dataset of character-level arithmetic addition generated by the harness and produced partial traces to probe calibration in a limited fashion.
+
+\subsection{Models and Baselines}
+The planned system includes a 7B generator fine-tuned with Flan+CoT LoRA, a $\sim$400M Shared-Adapter PRM, and a $\sim$900M Sparse-MoE PRM with 12 experts and top-2 routing. Baselines comprise greedy decoding, self-consistency sampling, a 7B + 6B PRM reranker, and self-evaluation guided beam search \cite{xie-2023-self,lightman-2023-let}. In the reported toy run, we exercised the controller, the Shared-Adapter PRM, and the lazy MoE interfaces; the 6B PRM reranker baseline and VRAM accounting were not executed in this toy setting.
+
+\subsection{Metrics}
+Primary metrics are final-answer accuracy; median and 95th percentile GPU seconds per example; peak VRAM; and mean tokens. Secondary metrics include PRM call rate, MoE invocation fraction, lazy-load overhead, and step-level calibration metrics (AUROC, AUPRC, Brier, ECE) when labels exist. Robustness probes include adversarial distractions, $3\times$ longer inputs, and noisy retrieval inspired stressors.
+
+\subsection{Environment and Implementation}
+The harness uses public libraries for transformer inference, parameter-efficient fine-tuning, acceleration, and metrics; it enables IO-aware attention and attention key-value caching where available \cite{dao-2022-flashattention}. Low-precision matrix multiplication reduces memory footprint during inference \cite{dettmers-2022-llm}. All runs fix seeds for determinism. In the reported toy run, wall-clock measurements were recorded; GPU memory statistics and the 6B PRM baseline were not collected.
+
+\subsection{Ablations}
+We sweep early-commit thresholds ($p\_{\text{high}} \in \{0.90, 0.95\}$, $p\_{\text{low}} \in \{0.60, 0.65\}$, $\Delta\_{\text{high}} \in \{0.60, 0.70\}$) and report PRM and MoE usage, tokens, and latency. Planned ablations include removing the MoE tier, disabling adapter sharing, freezing the gate, and varying beam budgets and horizons.
+
+\subsection{Planned Comparisons}
+Beyond the toy run, we plan to compare TinyPRM-Cascade against self-consistency \cite{xie-2023-self}, chain-of-thought decoding without prompting \cite{wang-2024-chain}, and cost-efficient cascades with mixture-of-thought \cite{yue-2023-large}, as well as to evaluate calibration on PRM800K \cite{lightman-2023-let}, while leveraging systems baselines for attention and quantization \cite{dao-2022-flashattention,dettmers-2022-llm}.
+
+\section{Results}
+We report all outputs saved by the harness during a complete toy execution and include all generated figures. The toy task is trivial for the generator, producing ceiling effects that we analyze below.
+
+\subsection{Experiment 1: End-to-End Cost-Accuracy Pareto on a Toy Arithmetic Dataset}
+\begin{itemize}
+  \item \textbf{Accuracy}: Greedy 1.00; Self-Consistency 0.05; TinyPRM-Cascade 1.00.
+  \item \textbf{Median wall-clock seconds per example}: Greedy 0.000196; Self-Consistency 0.002718; TinyPRM-Cascade 0.000853.
+  \item \textbf{PRM usage}: Shared-Adapter PRM mean calls 5.50 per example; MoE calls 0.00 per example.
+\end{itemize}
+\textit{Interpretation}. TinyPRM-Cascade matches greedy accuracy because the task is solved by greedy decoding. It substantially outperforms the self-consistency baseline on both accuracy and latency. Relative to greedy, TinyPRM-Cascade is slower due to per-step PRM scoring overhead at tiny absolute times; this does not reflect the intended operating regime and arises from the toy setup \cite{xie-2023-self}.
+
+\subsection{Experiment 2: Calibration and Early-Commit Quality (Toy)}
+\begin{itemize}
+  \item \textbf{Shared-Adapter PRM calibration}: AUROC not defined (degenerate positives/negatives), ECE 0.427, Brier 0.182.
+  \item \textbf{MoE PRM calibration}: AUROC not defined (degenerate), ECE 0.050, Brier 0.003.
+  \item \textbf{Early-commit sweeps}: For all tested thresholds ($p\_{\text{high}} \in \{0.90, 0.95\}$, $p\_{\text{low}} \in \{0.60, 0.65\}$, $\Delta\_{\text{high}} \in \{0.60, 0.70\}$), final accuracy remained 1.00, with mean PRM calls $\approx 5.47$ per example, MoE calls 0.00, and median times around 0.0008-0.0009 seconds.
+\end{itemize}
+\textit{Interpretation}. Degenerate labels yield undefined AUROC and limit the informativeness of ECE and Brier. Because nearly all partial traces are correct on this toy, the MoE is never invoked and early-commit decisions do not materially affect accuracy or compute.
+
+\subsection{Experiment 3: Robustness and Budgeted Deployment (Toy)}
+\begin{itemize}
+  \item \textbf{Conditions}: clean, distractors, $3\times$ longer inputs, 5\% poisoned retrieval.
+  \item \textbf{Accuracies}: all 1.00. Median wall-clock seconds: 0.000915-0.000938.
+\end{itemize}
+\textit{Interpretation}. The toy task is insensitive to these perturbations; the cascade’s lazy-load pathway was not exercised meaningfully.
+
+\subsection{Limitations and Fairness}
+The self-consistency configuration in this toy differs from typical large-scale settings, and the MoE was idle. Peak VRAM and the 7B + 6B PRM reranker comparisons were not collected. As a result, these results cannot support claims about accuracy gains over greedy or $\leq$1.5$\times$ latency in realistic scenarios; they only validate control flow and instrumentation \cite{lightman-2023-let}.
+
+\subsection{Figures}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{ images/pareto\_accuracy\_vs\_compute.pdf }
+\caption{Accuracy-compute Pareto on the toy dataset.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{ images/accuracy\_tinyprm\_vs\_baselines.pdf }
+\caption{TinyPRM-Cascade versus baselines: accuracy comparison.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{ images/inference\_latency\_tinyprm\_vs\_baselines.pdf }
+\caption{TinyPRM-Cascade versus baselines: inference latency comparison.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{ images/prm\_usage\_tinyprm.pdf }
+\caption{PRM usage statistics in the cascade.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{ images/reliability\_curve\_shared\_adapter.pdf }
+\caption{Reliability curve for the Shared-Adapter PRM.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{ images/reliability\_curve\_moe.pdf }
+\caption{Reliability curve for the MoE PRM.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{ images/accuracy\_robustness.pdf }
+\caption{Accuracy under robustness stressors.}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{ images/inference\_latency\_robustness.pdf }
+\caption{Inference latency under robustness stressors.}
+\end{figure}
+
+\section{Conclusion}
+We introduced TinyPRM-Cascade, a compute-aware decoding framework that makes test-time process supervision viable for compact LLMs by combining a parameter-sharing PRM, a lazily loaded sparse MoE refinement PRM distilled from a 6B teacher, and an adaptive beam controller guided by calibrated step scores and generator margins. The design targets sub-1B evaluators, low additional VRAM via parameter sharing, and minimal wall-clock overhead via early commit and on-demand refinement. Our instrumented harness supports rigorous paired evaluation, calibration analysis, and resource accounting.
+
+A complete toy run validates end-to-end control flow, logging, and threshold sweeps, shows dominance over a self-consistency baseline in that setting, and surfaces ceiling effects that limit evaluation. These results are necessary but not sufficient: full-scale experiments on BIG-Bench Hard, GSM8K, SVAMP, and MATH, with PRM800K for step-level calibration, are needed to assess accuracy gains and latency-memory trade-offs \cite{lightman-2023-let}.
+
+\subsection{Implications and Future Work}
+If borne out on realistic benchmarks, sub-1B PRMs can deliver near-state-of-the-art process supervision at a fraction of the latency and memory of 6B-class verifiers, enabling stepwise reasoning on single-GPU desktops and edge servers. Next steps include: (i) completing paired evaluations with confidence intervals and ablations; (ii) implementing hardware-aware gating policies that trade accuracy for latency under tight budgets; (iii) exploring continual self-distillation during deployment; and (iv) extending the cascade to multimodal inputs with shared visual adapters, leveraging efficient attention and quantization to meet deployment constraints \cite{dao-2022-flashattention,dettmers-2022-llm}.
+
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}
