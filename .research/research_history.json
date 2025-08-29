@@ -6,5 +6,82 @@
     "lightweight LLM reasoning",
     "beam search chain-of-thought",
     "reward guided decoding"
+  ],
+  "research_study_list": [
+    {
+      "title": "On the Scalability of Diffusion-based Text-to-Image Generation"
+    },
+    {
+      "title": "Navigating Scaling Laws: Compute Optimality in Adaptive Model Training"
+    },
+    {
+      "title": "Test-Time Training on Nearest Neighbors for Large Language Models"
+    },
+    {
+      "title": "A Dynamical Model of Neural Scaling Laws"
+    },
+    {
+      "title": "Reproducible Scaling Laws for Contrastive Language-Image Learning"
+    },
+    {
+      "title": "Let's Verify Step by Step"
+    },
+    {
+      "title": "Settling the Reward Hypothesis"
+    },
+    {
+      "title": "Settling the Reward Hypothesis"
+    },
+    {
+      "title": "Reward-Directed Conditional Diffusion: Provable Distribution Estimation and Reward Improvement"
+    },
+    {
+      "title": "Iterative Data Smoothing: Mitigating Reward Overfitting and Overoptimization in RLHF"
+    },
+    {
+      "title": "Selection-Inference: Exploiting Large Language Models for Interpretable Logical Reasoning"
+    },
+    {
+      "title": "Selection-Inference: Exploiting Large Language Models for Interpretable Logical Reasoning"
+    },
+    {
+      "title": "Large Language Model Cascades with Mixture of Thought Representations for Cost-Efficient Reasoning"
+    },
+    {
+      "title": "Chain-of-Thought Reasoning Without Prompting"
+    },
+    {
+      "title": "Self-Evaluation Guided Beam Search for Reasoning"
+    },
+    {
+      "title": "Chain of Preference Optimization: Improving Chain-of-Thought Reasoning in LLMs"
+    },
+    {
+      "title": "Chain of Thought Empowers Transformers to Solve Inherently Serial Problems"
+    },
+    {
+      "title": "Chain-of-Thought Reasoning Without Prompting"
+    },
+    {
+      "title": "Generating Chain-of-Thoughts with a Pairwise-Comparison Approach to Searching for the Most Promising Intermediate Thought"
+    },
+    {
+      "title": "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models"
+    },
+    {
+      "title": "ARGS: Alignment as Reward-Guided Search"
+    },
+    {
+      "title": "Decoding As Dynamic Programming For Recurrent Autoregressive Models"
+    },
+    {
+      "title": "Teacher Forcing Recovers Reward Functions for Text Generation"
+    },
+    {
+      "title": "Teacher Forcing Recovers Reward Functions for Text Generation"
+    },
+    {
+      "title": "Controlled Decoding from Language Models"
+    }
   ]
 }
