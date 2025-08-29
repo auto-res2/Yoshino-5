@@ -35,7 +35,7 @@ def main():
         print(f"Config {args.config} not found. Using defaults.")
         cfg = {}
 
-    images_dir = cfg.get("images_dir", ".research/iteration2/images")
+    images_dir = cfg.get("images_dir", ".research/iteration3/images")
     data_dir = cfg.get("data_dir", "data")
     models_dir = cfg.get("models_dir", "models")
     device = auto_device(cfg.get("device", "auto"))

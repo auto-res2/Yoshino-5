@@ -1,7 +1,7 @@
 # HAT-Q (Hierarchical Attention-aware Token Quantisation) prototype config
 # This config is tuned for a quick, correctness-first run on CPU or a single T4 GPU.
 
-images_dir: .research/iteration2/images
+images_dir: .research/iteration3/images
 data_dir: data
 models_dir: models
 

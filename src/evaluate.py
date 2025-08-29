@@ -437,15 +437,16 @@ def drop_tokens(input_ids: torch.Tensor, drop_prob=0.1, pad_token_id=0):
 
 def inject_punctuation(input_ids: torch.Tensor, punct_token_id: int = 127, every_k: int = 10, repeat=2):
     B, T = input_ids.shape
+    device = input_ids.device
     out = []
     for b in range(B):
         seq = input_ids[b].tolist()
         aug = []
         for i, tok in enumerate(seq):
-            aug.append(tok)
+            aug.append(int(tok))
             if i > 0 and i % every_k == 0:
-                aug.extend([punct_token_id]*repeat)
-        out.append(torch.tensor(aug[:T], dtype=torch.long))
+                aug.extend([int(punct_token_id)]*repeat)
+        out.append(torch.tensor(aug[:T], dtype=torch.long, device=device))
     return torch.stack(out, dim=0)
 
 
