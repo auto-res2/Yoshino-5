@@ -1,0 +1,10 @@
+{
+  "research_topic": "Test-Time Compute Scaling for Compact LLMs : Develop Lightweight Test-Time Reasoning with Process Reward Models (PRM) to enhance reasoning accuracy on BIG-Bench Hard (23 challenging reasoning tasks), GSM8K mathematical reasoning, MATH Dataset advanced problems, and PRM quality scores, compared to standard inference baselines using 7B main model with 1-3B parameter lightweight reward model, beam search-based reasoning (maximum 5 paths), and dynamic model loading, pioneering the 2025 revolutionary concept of making OpenAI o1-style reasoning accessible in resource-constrained environments by implementing 'thinking' mechanisms in smaller models through inference-time computational scaling.",
+  "queries": [
+    "test-time compute scaling",
+    "process reward model",
+    "lightweight LLM reasoning",
+    "beam search chain-of-thought",
+    "reward guided decoding"
+  ]
+}
