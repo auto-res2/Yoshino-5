@@ -6,5 +6,82 @@
     "lightweight LLM reasoning",
     "beam search reasoning",
     "dynamic model loading"
+  ],
+  "research_study_list": [
+    {
+      "title": "On the Scalability of Diffusion-based Text-to-Image Generation"
+    },
+    {
+      "title": "Navigating Scaling Laws: Compute Optimality in Adaptive Model Training"
+    },
+    {
+      "title": "Test-Time Training on Nearest Neighbors for Large Language Models"
+    },
+    {
+      "title": "A Dynamical Model of Neural Scaling Laws"
+    },
+    {
+      "title": "Reproducible Scaling Laws for Contrastive Language-Image Learning"
+    },
+    {
+      "title": "Settling the Reward Hypothesis"
+    },
+    {
+      "title": "Settling the Reward Hypothesis"
+    },
+    {
+      "title": "Let's Verify Step by Step"
+    },
+    {
+      "title": "Non-Markovian Reward Modelling from Trajectory Labels via Interpretable Multiple Instance Learning"
+    },
+    {
+      "title": "GLoRe: When, Where, and How to Improve LLM Reasoning via Global and Local Refinements"
+    },
+    {
+      "title": "Selection-Inference: Exploiting Large Language Models for Interpretable Logical Reasoning"
+    },
+    {
+      "title": "Selection-Inference: Exploiting Large Language Models for Interpretable Logical Reasoning"
+    },
+    {
+      "title": "Large Language Model Cascades with Mixture of Thought Representations for Cost-Efficient Reasoning"
+    },
+    {
+      "title": "Chain-of-Thought Reasoning Without Prompting"
+    },
+    {
+      "title": "Self-Evaluation Guided Beam Search for Reasoning"
+    },
+    {
+      "title": "Beam Tree Recursive Cells"
+    },
+    {
+      "title": "Learning Optimal Tree Models under Beam Search"
+    },
+    {
+      "title": "Self-Evaluation Guided Beam Search for Reasoning"
+    },
+    {
+      "title": "Simulation-guided Beam Search for Neural Combinatorial Optimization"
+    },
+    {
+      "title": "Predictive Querying for Autoregressive Neural Sequence Models"
+    },
+    {
+      "title": "OCD: Learning to Overfit with Conditional Diffusion Models"
+    },
+    {
+      "title": "OCD: Learning to Overfit with Conditional Diffusion Models"
+    },
+    {
+      "title": "Streaming Radiance Fields for 3D Video Synthesis"
+    },
+    {
+      "title": "Streaming Radiance Fields for 3D Video Synthesis"
+    },
+    {
+      "title": "D-LLM: A Token Adaptive Computing Resource Allocation Strategy for Large Language Models"
+    }
   ]
 }
