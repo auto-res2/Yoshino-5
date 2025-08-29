@@ -1,0 +1,22 @@
+# TinyPRM-Cascade (toy) default configuration
+seed: 42
+
+# Directories
+data_dir: data
+models_dir: models
+output_dir: .research/iteration1
+images_dir: .research/iteration1/images
+
+# Experiment sizes (kept small for quick verification on T4/CPU)
+n_train: 200
+n_examples_exp1: 20
+n_examples_exp2: 40
+n_examples_exp3: 20
+
+# Cascade controller hyperparameters (toy)
+pt_high: 0.95
+pt_low: 0.65
+dt_high: 0.7
+beam_k: 5
+horizon: 4
+max_new_tokens: 8
