@@ -1,10 +1,13 @@
 import os
 from typing import Optional
 
-from .train import ensure_dir
+try:
+    from .train import ensure_dir
+except ImportError:  # fallback for script execution
+    from train import ensure_dir
 
 
-def preprocess(images_dir: str = ".research/iteration1/images", data_dir: str = "data", models_dir: str = "models"):
+def preprocess(images_dir: str = ".research/iteration2/images", data_dir: str = "data", models_dir: str = "models"):
     """
     Prepare directories and any lightweight assets needed for the experiments.
     Since we use synthetic data, there is no heavy preprocessing. We just ensure dirs exist.

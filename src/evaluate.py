@@ -13,27 +13,50 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-from .train import (
-    ensure_dir,
-    set_seed,
-    Timer,
-    SyntheticSeqDataset,
-    collate_batch,
-    ToyTransformerLM,
-    teacher_forced_loss,
-    LinearProbe,
-    Thresholds,
-    calibrate_thresholds,
-    per_token_entropy,
-    train_toy_model,
-    train_probe_on_calib,
-    pack_nibbles,
-    unpack_nibbles,
-    quantize_4bit_rowwise,
-    quantize_8bit_rowwise,
-    affine_dequant_per_row,
-    QParams,
-)
+try:
+    from .train import (
+        ensure_dir,
+        set_seed,
+        Timer,
+        SyntheticSeqDataset,
+        collate_batch,
+        ToyTransformerLM,
+        teacher_forced_loss,
+        LinearProbe,
+        Thresholds,
+        calibrate_thresholds,
+        per_token_entropy,
+        train_toy_model,
+        train_probe_on_calib,
+        pack_nibbles,
+        unpack_nibbles,
+        quantize_4bit_rowwise,
+        quantize_8bit_rowwise,
+        affine_dequant_per_row,
+        QParams,
+    )
+except ImportError:  # fallback for script execution
+    from train import (
+        ensure_dir,
+        set_seed,
+        Timer,
+        SyntheticSeqDataset,
+        collate_batch,
+        ToyTransformerLM,
+        teacher_forced_loss,
+        LinearProbe,
+        Thresholds,
+        calibrate_thresholds,
+        per_token_entropy,
+        train_toy_model,
+        train_probe_on_calib,
+        pack_nibbles,
+        unpack_nibbles,
+        quantize_4bit_rowwise,
+        quantize_8bit_rowwise,
+        affine_dequant_per_row,
+        QParams,
+    )
 
 
 # -------------------------------
@@ -145,15 +168,14 @@ def unit_tests():
     print("="*80)
     # Nibble pack/unpack
     x = torch.randint(0, 16, (5, 17), dtype=torch.uint8)
-    from .train import pack_nibbles as pack
-    from .train import unpack_nibbles as unpack
+    pack = pack_nibbles
+    unpack = unpack_nibbles
     p = pack(x)
     u = unpack(p, out_last_dim=x.shape[-1])
     print("Nibble pack/unpack equal:", torch.all(x == u).item())
 
     # Quant round-trip stats
     W = torch.randn(11, 23)
-    from .train import quantize_4bit_rowwise, quantize_8bit_rowwise, affine_dequant_per_row
     q4, qp4 = quantize_4bit_rowwise(W)
     dq4 = affine_dequant_per_row(q4.float(), qp4, symmetric=False)
     q8, qp8 = quantize_8bit_rowwise(W)

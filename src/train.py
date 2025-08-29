@@ -309,9 +309,10 @@ class ToySelfAttention(nn.Module):
             V = self.v_proj.forward_all_8bit(x_flat).view(B, T, C)
         elif method == "hatq":
             assert eight_mask is not None, "eight_mask required for hatq"
-            Q = self.q_proj.forward_with_mask(x_flat, eight_mask.repeat_interleave(T)).view(B, T, C)
-            K = self.k_proj.forward_with_mask(x_flat, eight_mask.repeat_interleave(T)).view(B, T, C)
-            V = self.v_proj.forward_with_mask(x_flat, eight_mask.repeat_interleave(T)).view(B, T, C)
+            mask = eight_mask
+            Q = self.q_proj.forward_with_mask(x_flat, mask).view(B, T, C)
+            K = self.k_proj.forward_with_mask(x_flat, mask).view(B, T, C)
+            V = self.v_proj.forward_with_mask(x_flat, mask).view(B, T, C)
         else:
             raise ValueError("Unknown method")
 
@@ -321,8 +322,8 @@ class ToySelfAttention(nn.Module):
 
         B, H, T, D = Q.shape
         attn_scores = torch.matmul(Q, K.transpose(-2, -1)) / math.sqrt(D)
-        mask = torch.tril(torch.ones(T, T, device=attn_scores.device))
-        attn_scores = attn_scores.masked_fill(mask == 0, float('-inf'))
+        mask_tri = torch.tril(torch.ones(T, T, device=attn_scores.device))
+        attn_scores = attn_scores.masked_fill(mask_tri == 0, float('-inf'))
         attn_probs = attn_scores.softmax(dim=-1)
         y = torch.matmul(attn_probs, V)
 
@@ -334,7 +335,7 @@ class ToySelfAttention(nn.Module):
         elif method == "8b":
             out = self.o_proj.forward_all_8bit(y.reshape(B*T, C)).view(B, -1, C)
         elif method == "hatq":
-            out = self.o_proj.forward_with_mask(y.reshape(B*T, C), eight_mask.repeat_interleave(y.shape[1])).view(B, -1, C)
+            out = self.o_proj.forward_with_mask(y.reshape(B*T, C), mask).view(B, -1, C)
         return out
 
 
@@ -366,10 +367,31 @@ class ToyTransformerBlock(nn.Module):
         elif method == "8b":
             y = self.fc2.forward_all_8bit(self.act(self.fc1.forward_all_8bit(h2.reshape(B*T, C)))).view(B, T, C)
         elif method == "hatq":
-            y_int = self.fc1.forward_with_mask(h2.reshape(B*T, C), eight_mask.repeat_interleave(T))
+            y_int = self.fc1.forward_with_mask(h2.reshape(B*T, C), eight_mask)
             y_act = self.act(y_int)
-            y = self.fc2.forward_with_mask(y_act, eight_mask.repeat_interleave(T)).view(B, T, C)
+            y = self.fc2.forward_with_mask(y_act, eight_mask).view(B, T, C)
         return x + y
+
+
+def _normalize_eight_mask(eight_mask: Optional[torch.Tensor], B: int, T: int, device: torch.device) -> Optional[torch.Tensor]:
+    if eight_mask is None:
+        return None
+    m = eight_mask
+    if not isinstance(m, torch.Tensor):
+        m = torch.tensor(m, device=device)
+    else:
+        m = m.to(device)
+    num = m.numel()
+    if num == B*T:
+        return m.reshape(-1).to(torch.bool)
+    if num == B*(T-1):
+        out = torch.zeros(B, T, dtype=torch.bool, device=device)
+        out[:, 1:] = m.view(B, T-1).to(torch.bool)
+        return out.reshape(-1)
+    if num == B:
+        out = m.view(B, 1).to(torch.bool).expand(B, T)
+        return out.reshape(-1)
+    raise ValueError(f"eight_mask numel {num} doesn't match B*T={B*T}, B*(T-1)={B*(T-1)}, or B={B}")
 
 
 class ToyTransformerLM(nn.Module):
@@ -391,8 +413,9 @@ class ToyTransformerLM(nn.Module):
         B, T = input_ids.shape
         pos = torch.arange(T, device=input_ids.device).unsqueeze(0).expand(B, T)
         x = self.embed(input_ids) + self.pos_embed(pos)
+        mask_norm = _normalize_eight_mask(eight_mask, B, T, device=input_ids.device) if method == "hatq" else None
         for blk in self.blocks:
-            x = blk(x, method=method, eight_mask=eight_mask)
+            x = blk(x, method=method, eight_mask=mask_norm)
         x = self.ln_f(x)
         B, T, C = x.shape
         if method == "fp":
@@ -402,7 +425,7 @@ class ToyTransformerLM(nn.Module):
         elif method == "8b":
             logits = self.lm_head.forward_all_8bit(x.reshape(B*T, C)).view(B, T, -1)
         elif method == "hatq":
-            logits = self.lm_head.forward_with_mask(x.reshape(B*T, C), eight_mask.repeat_interleave(T)).view(B, T, -1)
+            logits = self.lm_head.forward_with_mask(x.reshape(B*T, C), mask_norm).view(B, T, -1)
         return (logits, x) if return_hidden else logits
 
 

@@ -3,9 +3,14 @@ import os
 import yaml
 import torch
 
-from .preprocess import preprocess
-from .evaluate import test_run, run_experiment_A, run_experiment_B, run_experiment_C
-from .train import train_toy_model
+try:
+    from .preprocess import preprocess
+    from .evaluate import test_run, run_experiment_A, run_experiment_B, run_experiment_C
+    from .train import train_toy_model
+except ImportError:  # allow running as a script
+    from preprocess import preprocess
+    from evaluate import test_run, run_experiment_A, run_experiment_B, run_experiment_C
+    from train import train_toy_model
 
 
 def auto_device(pref: str) -> str:
@@ -18,7 +23,7 @@ def auto_device(pref: str) -> str:
 
 def main():
     parser = argparse.ArgumentParser(description="HAT-Q experimental runner")
-    parser.add_argument("--config", type=str, default="config/hatq.yaml", help="Path to YAML config")
+    parser.add_argument("--config", type=str, default="config/config.yaml", help="Path to YAML config")
     parser.add_argument("--quick", action="store_true", help="Run quick functional test (A+B+C)")
     args = parser.parse_args()
 
@@ -30,7 +35,7 @@ def main():
         print(f"Config {args.config} not found. Using defaults.")
         cfg = {}
 
-    images_dir = cfg.get("images_dir", ".research/iteration1/images")
+    images_dir = cfg.get("images_dir", ".research/iteration2/images")
     data_dir = cfg.get("data_dir", "data")
     models_dir = cfg.get("models_dir", "models")
     device = auto_device(cfg.get("device", "auto"))
