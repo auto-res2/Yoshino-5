@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 177, in <module>
+    main()
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 137, in main
+    _ = run_experiment2_microbench(images_dir, device=device)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/evaluate.py", line 327, in run_experiment2_microbench
+    ms = microbench_gemm(M=M, K=K, N=N, mix=mix, mode=mode, device=device, iters=30)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/evaluate.py", line 292, in microbench_gemm
+    _ = run_once()
+        ^^^^^^^^^^
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/evaluate.py", line 255, in run_once
+    contrib = A @ B[p].t()
+              ~~^~~~~~~~~~
+RuntimeError: expected mat1 and mat2 to have the same dtype, but got: c10::Half != float
