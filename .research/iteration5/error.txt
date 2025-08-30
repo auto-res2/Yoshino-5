@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 177, in <module>
+    main()
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 152, in main
+    _ = run_experiment3_controller(model, train_data[:2], ctrl, images_dir, labels_offline)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/evaluate.py", line 385, in run_experiment3_controller
+    sns.kdeplot(y_score[y_true==1], label='positives', fill=True)
+                ~~~~~~~^^^^^^^^^^^
+IndexError: boolean index did not match indexed array along axis 0; size of axis is 512 but size of corresponding boolean axis is 504
