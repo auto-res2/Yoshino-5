@@ -6,5 +6,82 @@
     "compact LLM reasoning",
     "progressive reasoning distillation",
     "GSM8K student model"
+  ],
+  "research_study_list": [
+    {
+      "title": "Keypoint-based Progressive Chain-of-Thought Distillation for LLMs"
+    },
+    {
+      "title": "Automatic Chain of Thought Prompting in Large Language Models"
+    },
+    {
+      "title": "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models"
+    },
+    {
+      "title": "Chain of Thought Empowers Transformers to Solve Inherently Serial Problems"
+    },
+    {
+      "title": "Dissecting Chain-of-Thought: Compositionality through In-Context Filtering and Learning"
+    },
+    {
+      "title": "Keypoint-based Progressive Chain-of-Thought Distillation for LLMs"
+    },
+    {
+      "title": "Towards Efficient Pre-Trained Language Model via Feature Correlation Distillation"
+    },
+    {
+      "title": "Scaffolding a Student to Instill Knowledge"
+    },
+    {
+      "title": "Propagating Knowledge Updates to LMs Through Distillation"
+    },
+    {
+      "title": "Knowledge Distillation with Auxiliary Variable"
+    },
+    {
+      "title": "Specializing Smaller Language Models towards Multi-Step Reasoning"
+    },
+    {
+      "title": "Specializing Smaller Language Models towards Multi-Step Reasoning"
+    },
+    {
+      "title": "Knowledge-Augmented Reasoning Distillation for Small Language Models in Knowledge-Intensive Tasks"
+    },
+    {
+      "title": "Can Language Models Learn to Skip Steps?"
+    },
+    {
+      "title": "D-LLM: A Token Adaptive Computing Resource Allocation Strategy for Large Language Models"
+    },
+    {
+      "title": "Keypoint-based Progressive Chain-of-Thought Distillation for LLMs"
+    },
+    {
+      "title": "Data Distillation Can Be Like Vodka: Distilling More Times For Better Quality"
+    },
+    {
+      "title": "Progressive Ensemble Distillation: Building Ensembles for Efficient Inference"
+    },
+    {
+      "title": "What is Dataset Distillation Learning?"
+    },
+    {
+      "title": "Visual Program Distillation: Distilling Tools and Programmatic Reasoning into Vision-Language Models"
+    },
+    {
+      "title": "A Careful Examination of Large Language Model Performance on Grade School Arithmetic"
+    },
+    {
+      "title": "Language models are multilingual chain-of-thought reasoners"
+    },
+    {
+      "title": "Language Models as Science Tutors"
+    },
+    {
+      "title": "Evaluating Large Vision-and-Language Models on Children's Mathematical Olympiads"
+    },
+    {
+      "title": "OpenMathInstruct-1: A 1.8 Million Math Instruction Tuning Dataset"
+    }
   ]
 }
