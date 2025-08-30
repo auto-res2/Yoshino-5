@@ -602,6 +602,68 @@
       }
     }
   ],
+  "reference_research_study_list": [
+    {
+      "title": "Not-mnist dataset"
+    },
+    {
+      "title": "Efﬁcient lifelong learning with a-gem"
+    },
+    {
+      "title": "Dynamic multi-task learning with convolutional neural network"
+    },
+    {
+      "title": "Unsupervised representation learning by predicting image rotations"
+    },
+    {
+      "title": "Overcoming catastrophic forgetting in neural networks"
+    },
+    {
+      "title": "Learning multiple layers of features from tiny images"
+    },
+    {
+      "title": "Imagenet classiﬁcation with deep convolu- tional neural networks"
+    },
+    {
+      "title": "Learning task grouping and overlap in multi-task learning"
+    },
+    {
+      "title": "Human-level concept learning through probabilistic program induction"
+    },
+    {
+      "title": "Gradient-based learning applied to document recognition"
+    },
+    {
+      "title": "Overcoming catastrophic forgetting by incremental moment matching"
+    },
+    {
+      "title": "Learn to grow: A continual structure learning framework for overcoming catastrophic forgetting"
+    },
+    {
+      "title": "Learning without forgetting"
+    },
+    {
+      "title": "Gradient episodic memory for continual learning"
+    },
+    {
+      "title": "Piggyback: Adapting a single network to multiple tasks by learning to mask weights"
+    },
+    {
+      "title": "Reading digits in natural images with unsupervised feature learning"
+    },
+    {
+      "title": "A data-driven approach to cleaning large face datasets"
+    },
+    {
+      "title": "Variational continual learning"
+    },
+    {
+      "title": "Learning to learn without forgetting by maximizing transfer and minimizing interference"
+    },
+    {
+      "title": "Progressive neural networks"
+    }
+  ],
   "new_method": {
     "method": "Open Problems: Task order strongly influences catastrophic forgetting, yet most continual-learning (CL) pipelines still process tasks in the order they arrive or use simple heuristics (e.g., chronological, random, or nearest-neighbour similarity).  When large (1-3 B) models are adapted with PEFT modules, re-training is expensive, so a poor order choice can permanently degrade knowledge retention.  No existing method (a) estimates transfer-vs-interference fast enough to reorder hundreds of incoming tasks on-the-fly, (b) scales to billion-parameter backbones, and (c) optimises for both long-term accuracy and stability-gap metrics (min-ACC / WC-ACC).\nMethods: We propose Predictive Task Scheduling (PTS), an online curriculum engine that learns to choose the next task from a small look-ahead buffer to minimise future forgetting.\n1. Lightweight Interference Surrogates For every candidate task T_i in the buffer we compute three cheap, frozen-backbone signals on ≤ 32 samples:\n    a) Feature Affinity F_i: centred-kernel-alignment between current replay buffer embeddings and T_i embeddings.\n    b) Gradient Conflict G_i: cosine between PEFT-only gradients (using PCGrad trick without update).\n    c) Linear-Mode Connectivity Loss M_i: average loss at α∈{0.0,0.5,1.0} along the line between current parameters and one gradient step towards T_i.\n2. Meta-Learnt Scoring Function A tiny MLP ω(F_i,G_i,M_i,task_age)→score is meta-trained offline on held-out streams to predict the long-term accuracy drop if T_i is trained next.\n3. Look-Ahead Beam Search At run-time we maintain a size-K buffer of unseen tasks (K=3–5).  Scores are composed additively along beam paths of depth D (D=K) to pick the next task, giving O(K²) complexity.\n4. PEFT-Compatible Training Tasks themselves are learned with a fixed PEFT layer type (we test LoRA, Spectral Adapter, SURM).  PTS never touches backbone weights and adds <0.1 % extra parameters.\n5. Replay-Anchor Consistency To preserve the mode-connectivity assumptions, a small replay buffer keeps one “anchor” mini-batch per completed task; anchors are used in the surrogate computations as well as standard rehearsal.\nExperimental Setup: Datasets & streams\n  • Split-CIFAR100 (20×5 classes)\n  • Permuted-MNIST (20 tasks) & Rotated-MNIST (20)\n  • Split-ImageNet-1k (100×10 classes)\n  • Long-stream CTrL-Slong (100 heterogeneous tasks)\nModels / PEFT\n  • ViT-B/16 (86 M) & ViT-g/14 (1 B) vision backbones\n  • ResNet-50 (for ImageNet)\n  • PEFT variants: LoRA-rank-16, Spectral-Adapter-r=8, SURM-Toeplitz (all <2 % trainable params)\nBaselines\n  1. Random order\n  2. Chronological (arrival order)\n  3. Static similarity sorting (KNN-feature)\n  4. APD ordering heuristic (task-wise clustering)\n  5. Upper bound: multitask-joint training\nMetrics\n  • Average Accuracy (ACC)\n  • Average Forgetting (AF)\n  • min-ACC & WC-ACC (stability gap)\n  • Compute (FLOPs/task) & extra wall-clock\n  • Memory footprint\nAblations\n  • Remove each surrogate signal F/G/M\n  • Different buffer sizes K and beam depths D\n  • Replace meta-MLP with fixed scalarisation\nRobustness Checks\n  • Task-injection attack: adversarially dissimilar task inserted; measure recovery\n  • Subsampled training data (10 %, 50 %)\nResult: We expect PTS to:\n  • Reduce Average Forgetting by 25-35 % vs. random order across all datasets.\n  • Increase final ACC by 3-5 pp on Split-CIFAR100 and 2-3 pp on Split-ImageNet.\n  • Cut worst-case min-ACC drop by ≥40 % and improve WC-ACC by ≈5 pp, narrowing the stability gap.\n  • Add <5 % training time overhead and <0.05 GB memory due to surrogate computations.\n  • Show consistent gains across all three PEFT types; largest gain (≈6 pp ACC) when backbone is 1 B ViT-g where re-training cost is high.\n  • Ablations reveal all three signals are complementary; removing any degrades AF by ≥8 %.\n  • Under adversarial task injection, PTS recovers original ACC within two subsequent tasks, whereas baselines require >5.\nConclusion: Predictive Task Scheduling demonstrates that smart, learned curricula can substantially mitigate catastrophic forgetting even when only low-rank adapters are trainable and backbone models exceed one billion parameters.  By combining ultra-cheap surrogate metrics with a meta-learned scoring function, PTS delivers large accuracy and stability gains at negligible extra cost and is orthogonal to the choice of PEFT layer or replay strategy.  Beyond vision classification, the framework can plug into NLP or multi-modal continual learners by redefining the surrogate triplet.  Future work includes coupling PTS with adaptive capacity growth (e.g., SURM expansions) and extending the scheduler to consider fairness or energy constraints when deciding task sequences.",
     "experimental_design": {
