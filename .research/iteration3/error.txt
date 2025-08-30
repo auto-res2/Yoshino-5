@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 80, in <module>
+    main()
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 61, in main
+    experiment_1_micro_bench(images_dir=images_dir, steps=s, Nx=nx, Ny=ny, device=device, mp_dtype=mp_dtype)
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/train.py", line 545, in experiment_1_micro_bench
+    resA_full = train_one(modelA, base_optA_full, dataA, loss_fnA, mp_dtype, steps=steps, log_every=max(1, steps//5),
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/train.py", line 504, in train_one
+    overhead_ms.append(optimizer_wrapper.projection_overhead_ms())
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'AdamW' object has no attribute 'projection_overhead_ms'
