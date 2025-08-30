@@ -1,0 +1,10 @@
+{
+  "research_topic": "Improve benchmark contamination detection reliability on GSM-8K (8,500 grade school math word problems) and ARC-Challenge (7,787 science questions) datasets through novel evaluation methodologies regarding data leakage identification accuracy and evaluation trustworthiness, compared against existing contamination detection baselines using statistical divergence analysis and model performance distribution patterns, addressing the critical 2025 research integrity challenge where models show 8-16 percentage point artificial inflation due to training data overlap, while establishing robust evaluation protocols for mathematical and scientific reasoning capabilities.",
+  "queries": [
+    "benchmark contamination detection",
+    "training data leakage",
+    "statistical divergence overlap",
+    "GSM-8K contamination",
+    "ARC-Challenge leakage"
+  ]
+}
