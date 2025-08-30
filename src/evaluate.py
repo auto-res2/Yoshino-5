@@ -11,7 +11,7 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-from .train import ABLoRAEff
+from train import ABLoRAEff
 
 # High-quality PDF settings
 plt.rcParams["pdf.fonttype"] = 42

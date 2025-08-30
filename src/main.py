@@ -8,8 +8,8 @@ import torch
 from torch.utils.data import DataLoader
 import yaml
 
-from .preprocess import set_seed, get_device, SynthVideoDataset
-from .train import (
+from preprocess import set_seed, get_device, SynthVideoDataset
+from train import (
     ABLoRAConfig,
     build_models,
     stage2_basis_pretrain,
@@ -19,7 +19,7 @@ from .train import (
     gpu_mem_mb,
     em_learn_bases,
 )
-from .evaluate import (
+from evaluate import (
     evaluate_method,
     plot_training_losses,
     plot_accuracy_bar,
@@ -30,7 +30,7 @@ from .evaluate import (
 )
 
 
-IMAGES_DIR_DEFAULT = ".research/iteration1/images"
+IMAGES_DIR_DEFAULT = ".research/iteration2/images"
 
 
 def ensure_dir(p: str):
@@ -232,8 +232,8 @@ def run_experiment2(cfg_yaml: Dict, out_dir: str):
 
 def run_experiment3(cfg_yaml: Dict, out_dir: str):
     print("=== Experiment 3: Ablations and Scalability (Proxy) ===")
-    from .preprocess import SynthVideoDataset
-    from .train import ABLoRAConfig, build_models, stage2_basis_pretrain, stage3_train_adapter
+    from preprocess import SynthVideoDataset
+    from train import ABLoRAConfig, build_models, stage2_basis_pretrain, stage3_train_adapter
 
     seed = cfg_yaml.get('seed', 321)
     set_seed(seed)
