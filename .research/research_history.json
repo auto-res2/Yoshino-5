@@ -9,34 +9,34 @@
   ],
   "research_study_list": [
     {
+      "title": "Linear Mode Connectivity in Multitask and Continual Learning"
+    },
+    {
+      "title": "Automatic Curriculum Learning through Value Disagreement"
+    },
+    {
+      "title": "Continual Auxiliary Task Learning"
+    },
+    {
+      "title": "Discovering Non-monotonic Autoregressive Orderings with Variational Inference"
+    },
+    {
+      "title": "Navigating Memory Construction by Global Pseudo-Task Simulation for Continual Learning"
+    },
+    {
+      "title": "Linear Mode Connectivity in Multitask and Continual Learning"
+    },
+    {
+      "title": "The Ideal Continual Learner: An Agent That Never Forgets"
+    },
+    {
+      "title": "Recasting Continual Learning as Sequence Modeling"
+    },
+    {
       "title": "Efficient Continual Learning with Modular Networks and Task-Driven Priors"
     },
     {
-      "title": "Continual Learning of a Mixed Sequence of Similar and Dissimilar Tasks"
-    },
-    {
-      "title": "Theory on Forgetting and Generalization of Continual Learning"
-    },
-    {
-      "title": "Scalable and Order-robust Continual Learning with Additive Parameter Decomposition"
-    },
-    {
-      "title": "Beyond Not-Forgetting: Continual Learning with Backward Knowledge Transfer"
-    },
-    {
-      "title": "Long Live the Lottery: The Existence of Winning Tickets in Lifelong Learning"
-    },
-    {
-      "title": "LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning"
-    },
-    {
-      "title": "Lifelong Learning of Compositional Structures"
-    },
-    {
-      "title": "Continuous Coordination As a Realistic Scenario for Lifelong Learning"
-    },
-    {
-      "title": "Neural Topic Modeling with Continual Lifelong Learning"
+      "title": "Compositional Language Continual Learning"
     },
     {
       "title": "Gradient Projection Memory for Continual Learning"
@@ -54,34 +54,34 @@
       "title": "Measuring Forgetting of Memorized Training Examples"
     },
     {
-      "title": "InfLoRA: Interference-Free Low-Rank Adaptation for Continual Learning"
-    },
-    {
       "title": "Semantically-Shifted Incremental Adapter-Tuning is A Continual ViTransformer"
     },
     {
-      "title": "Memory Efficient Continual Learning with Transformers"
+      "title": "InfLoRA: Interference-Free Low-Rank Adaptation for Continual Learning"
     },
     {
       "title": "Overcoming Generic Knowledge Loss with Selective Parameter Update"
     },
     {
-      "title": "Boosting Continual Learning of Vision-Language Models via Mixture-of-Experts Adapters"
+      "title": "Contextual Transformation Networks for Online Continual Learning"
     },
     {
-      "title": "Learn more, but bother less: parameter efficient continual learning"
+      "title": "SAFE: Slow and Fast Parameter-Efficient Tuning for Continual Learning with Pre-Trained Models"
     },
     {
-      "title": "What Will My Model Forget? Forecasting Forgotten Examples in Language Model Refinement"
+      "title": "Geometric Dataset Distances via Optimal Transport"
     },
     {
-      "title": "On the Diminishing Returns of Width for Continual Learning"
+      "title": "Comparing Apples to Oranges: Learning Similarity Functions for Data Produced by Different Distributions"
     },
     {
-      "title": "Measuring Forgetting of Memorized Training Examples"
+      "title": "Words are all you need? Language as an approximation for human similarity judgments"
     },
     {
-      "title": "Model Tailor: Mitigating Catastrophic Forgetting in Multi-modal Large Language Models"
+      "title": "Pre-Trained Model Reusability Evaluation for Small-Data Transfer Learning"
+    },
+    {
+      "title": "Pre-Trained Model Reusability Evaluation for Small-Data Transfer Learning"
     }
   ]
 }
