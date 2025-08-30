@@ -1,0 +1,10 @@
+{
+  "research_topic": "Improve financial reasoning accuracy using hybrid synthetic-real data training methodologies on FinBen benchmark suite regarding quantitative analysis, forecasting precision, and risk assessment capabilities, evaluated against pure synthetic and pure real data baselines using 7B parameter models with QLoRA fine-tuning, addressing the 2025 domain-specific AI trend by implementing Microsoft Phi-4 inspired synthetic data generation techniques while balancing knowledge preservation and reasoning enhancement for specialized financial applications including portfolio optimization and market analysis.",
+  "queries": [
+    "hybrid financial synthetic data",
+    "FinBen benchmark QLoRA",
+    "Phi-4 synthetic generation",
+    "7B QLoRA portfolio",
+    "financial reasoning accuracy"
+  ]
+}
