@@ -6,5 +6,82 @@
     "adaptive demonstration selection",
     "context optimization few-shot",
     "multimodal reasoning meta-learning"
+  ],
+  "research_study_list": [
+    {
+      "title": "Discriminative Sample-Guided and Parameter-Efficient Feature Space Adaptation for Cross-Domain Few-Shot Learning"
+    },
+    {
+      "title": "Meta-Exploiting Frequency Prior for Cross-Domain Few-Shot Learning"
+    },
+    {
+      "title": "Dynamic Distillation Network for Cross-Domain Few-Shot Recognition with Unlabeled Data"
+    },
+    {
+      "title": "Bi-Level Meta-Learning for Few-Shot Domain Generalization"
+    },
+    {
+      "title": "Cross-Level Distillation and Feature Denoising for Cross-Domain Few-Shot Classification"
+    },
+    {
+      "title": "Revisiting the Role of Language Priors in Vision-Language Models"
+    },
+    {
+      "title": "Bridge the Modality and Capability Gaps in Vision-Language Model Selection"
+    },
+    {
+      "title": "Intra-Modal Proxy Learning for Zero-Shot Visual Categorization with CLIP"
+    },
+    {
+      "title": "DeCap: Decoding CLIP Latents for Zero-Shot Captioning via Text-Only Training"
+    },
+    {
+      "title": "VLUE: A Multi-Task Multi-Dimension Benchmark for Evaluating Vision-Language Pre-training"
+    },
+    {
+      "title": "Curriculum Design for Teaching via Demonstrations: Theory and Applications"
+    },
+    {
+      "title": "Environment Design for Inverse Reinforcement Learning"
+    },
+    {
+      "title": "Environment Design for Inverse Reinforcement Learning"
+    },
+    {
+      "title": "An Offline Adaptation Framework for Constrained Multi-Objective Reinforcement Learning"
+    },
+    {
+      "title": "MoDem: Accelerating Visual Model-Based Reinforcement Learning with Demonstrations"
+    },
+    {
+      "title": "Wandering within a world: Online contextualized few-shot learning"
+    },
+    {
+      "title": "What Makes Good Examples for Visual In-Context Learning?"
+    },
+    {
+      "title": "Few-Shot Parameter-Efficient Fine-Tuning is Better and Cheaper than In-Context Learning"
+    },
+    {
+      "title": "In-Context Learning State Vector with Inner and Momentum Optimization"
+    },
+    {
+      "title": "Large Language Models Are Latent Variable Models: Explaining and Finding Good Demonstrations for In-Context Learning"
+    },
+    {
+      "title": "Meta Learning to Bridge Vision and Language Models for Multimodal Few-Shot Learning"
+    },
+    {
+      "title": "Revisit Multimodal Meta-Learning through the Lens of Multi-Task Learning"
+    },
+    {
+      "title": "Are Deep Neural Networks SMARTer Than Second Graders?"
+    },
+    {
+      "title": "MEWL: Few-shot multimodal word learning with referential uncertainty"
+    },
+    {
+      "title": "Look, Remember and Reason: Grounded Reasoning in Videos with Language Models"
+    }
   ]
 }
