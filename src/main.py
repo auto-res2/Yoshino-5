@@ -30,7 +30,7 @@ from evaluate import (
 )
 
 
-IMAGES_DIR_DEFAULT = ".research/iteration2/images"
+IMAGES_DIR_DEFAULT = ".research/iteration3/images"
 
 
 def ensure_dir(p: str):

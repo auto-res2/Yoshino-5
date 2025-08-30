@@ -1,6 +1,6 @@
 # Default configuration for AB-LoRA synthetic experiments
 seed: 123
-output_dir: .research/iteration2/images
+output_dir: .research/iteration3/images
 
 # Model and adapter settings
 hidden_dim: 256

@@ -239,14 +239,19 @@ class TemporalBasisEncoder(nn.Module):
         x = F.relu(self.conv1(x))
         x = F.relu(self.conv2(x))
         logits = self.proj(x).squeeze(0).transpose(0, 1)  # [T,K_max]
-        # EMA smoothing
+        # EMA smoothing without in-place ops to keep autograd happy
         decay = torch.sigmoid(self.log_decay)
-        ema = torch.zeros_like(logits)
+        outputs = []
+        prev = None
         for t in range(logits.shape[0]):
-            if t == 0:
-                ema[t] = logits[t]
+            cur = logits[t]
+            if prev is None:
+                out_t = cur
             else:
-                ema[t] = decay * ema[t - 1] + (1 - decay) * logits[t]
+                out_t = decay * prev + (1 - decay) * cur
+            outputs.append(out_t)
+            prev = out_t
+        ema = torch.stack(outputs, dim=0)
         return ema
 
 
