@@ -597,6 +597,68 @@
       }
     }
   ],
+  "reference_research_study_list": [
+    {
+      "title": "ediffi: Text-to-image diffusion models with an ensemble of expert denoisers"
+    },
+    {
+      "title": "All are worth words: A vit backbone for diffusion models"
+    },
+    {
+      "title": "Improving image generation with better captions"
+    },
+    {
+      "title": "Language models are few-shot learners"
+    },
+    {
+      "title": "Pixart- α: Fast training of diffusion transformer for photorealistic text-to-image synthesis"
+    },
+    {
+      "title": "Reproducible scaling laws for contrastive language-image learning"
+    },
+    {
+      "title": "Scaling instruction-finetuned language models"
+    },
+    {
+      "title": "Emu: Enhancing image generation models using photogenic needles in a haystack"
+    },
+    {
+      "title": "Deepfloyd"
+    },
+    {
+      "title": "Diffusion models beat gans on image synthesis"
+    },
+    {
+      "title": "Scaling rectified flow transformers for high-resolution image synthesis"
+    },
+    {
+      "title": "Masked diffusion transformer is a strong image synthesizer"
+    },
+    {
+      "title": "Generative adversarial nets"
+    },
+    {
+      "title": "Clipscore: A reference-free evaluation metric for image captioning"
+    },
+    {
+      "title": "Classifier-free diffusion guidance"
+    },
+    {
+      "title": "Denoising diffusion probabilistic models"
+    },
+    {
+      "title": "Training compute-optimal large language models"
+    },
+    {
+      "title": "simple diffusion: End-to-end diffusion for high resolution images"
+    },
+    {
+      "title": "Tifa: Accurate and interpretable text-to-image faithfulness evaluation with question answering"
+    },
+    {
+      "title": "Openclip"
+    }
+  ],
   "new_method": {
     "method": "Open Problems: Test-time compute scaling for compact (≤7 B) LLMs currently relies on fixed-depth chain-of-thought or beam-search decoding. In practice the number of steps that should be executed and which auxiliary modules (calculator, verifier, tool-enhanced adapters, etc.) should be invoked varies greatly per question. Existing Process-Reward-Model (PRM) work can grade intermediate reasoning, but no mechanism converts those grades into real-time decisions about 1) how much additional computation to spend, 2) which specialised reasoning modules to call, or 3) when to terminate early. The open problem is therefore: \"How can we learn a light-weight controller that, conditioned on the evolving reasoning trace and PRM scores, adaptively schedules further reasoning steps and dynamically loads specialist modules so that accuracy is maximised under a strict FLOPs / latency budget?\" Solving this would make o1-style reasoning attainable on edge devices and close the gap between 7 B models and 70 B models for hard reasoning tasks.\nMethods: We propose BACS (Budget-Aware Controller for Self-Reasoning). BACS is a tiny (≈350 M) policy network trained offline with reinforcement learning and distilled online into a 1-2 B parameter reward/value hybrid. At inference time it sits between the 7 B backbone and a pool of specialist micro-modules (arith adapter, python executor, verifier, retrieval adapter). \nKey components:\n1. Trace Encoder – a uni-directional Transformer that ingests the partial chain-of-thought tokens, the PRM step-scores, and cheap handcrafted features (step index, cumulative PRM log-prob, elapsed FLOPs).\n2. Action Space – {advance-one-step, branch-beam, call-tool-i, skip-to-final, terminate}. Each action has an associated compute cost obtained from calibration runs.\n3. Budget-Aware RL – we optimise an expected utility U=Acc – λ·Compute where Acc is final answer correctness (via oracle answer checker) and λ is tunable. Training uses Proximal Policy Optimisation over synthetic GSM8K and self-play on BIG-Bench problems.\n4. One-Step Distillation – the learnt policy/value functions are distilled into a single 1 B «meta-reward» model that can be loaded once and queried fast (~3 ms).\n5. On-device Scheduler – during inference the scheduler repeatedly queries the meta-reward to decide the next action until either the budget or a confidence threshold is met.\nNovelty over prior work: (i) unifies PRM scoring with compute-aware decision making; (ii) introduces per-action FLOP pricing so the model can trade accuracy for latency on-the-fly; (iii) modular – new tools are plugged in by adding new actions whose cost is measured once.\nExperimental Setup: Datasets: BIG-Bench Hard (23 tasks), GSM8K, MATH (test split, 5.5 K problems), and an internal 5-K instance arithmetic stress set. \nModels: 7 B Llama-2 base with 4 LoRA specialist adapters (calculator, python-exec, retrieval, verifier). BACS controller: 350 M for training, 1 B distilled for deployment. Baselines: (a) static 7 B + beam-5 search with PRM rerank; (b) 7 B + fixed 4-tool cascade (ToG-style); (c) 13 B Static CoT. \nBudgets: three FLOP caps (5e11, 1e12, 2e12) roughly mapping to 1×,2×,4× real-time on an RTX-4090. \nMetrics: (i) Accuracy; (ii) Mean & 95-th percentile latency; (iii) Average FLOPs per solved instance; (iv) Energy (J) estimated from GPU power logs. \nRobustness tests: probability of budget overrun, accuracy under adversarial \"trap\" problems where extra reasoning hurts, ablation without individual tools, zero-shot generalisation to SVAMP dataset. \nSignificance via paired bootstrap (10 K resamples).\nResult: We expect BACS to match or exceed baseline accuracy while using 35-50 % fewer FLOPs:\n• GSM8K: 63 %→67 % (+4) at 0.6× compute of static beam-5.\n• MATH: 38 %→44 % (+6) at 0.7× compute.\n• BIG-Bench Hard average: 52 %→57 % (+5) at 0.65× compute.\nLatency P95 improves from 8.1 s to 4.9 s under the tight budget. Budget overruns <1 % vs 12 % for baselines. Ablation shows BACS without calculator keeps 90 % of gains, without verifier drops to baseline, confirming controller learns to allocate compute intelligently.\nConclusion: BACS demonstrates that small controllers trained with budget-aware reinforcement learning can turn PRM scores into dynamic compute schedules, delivering large reasoning gains for compact LLMs without blowing the compute budget. Academically, this bridges test-time training, PRM research and neural scheduling under resource constraints. Practically, it brings near-GPT-4 reasoning quality to consumer GPUs and even future phone NPUs by spending compute only where it matters. The framework is extensible: new tools become new actions, new budgets new λ values. Future work will explore hierarchical controllers for multi-agent settings and theoretical bounds on accuracy-vs-compute trade-offs.",
     "experimental_design": {
