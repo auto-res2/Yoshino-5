@@ -6,5 +6,82 @@
     "statistical divergence overlap",
     "GSM-8K contamination",
     "ARC-Challenge leakage"
+  ],
+  "research_study_list": [
+    {
+      "title": "ConStat: Performance-Based Contamination Detection in Large Language Models"
+    },
+    {
+      "title": "To the Cutoff... and Beyond? A Longitudinal Perspective on LLM Data Contamination"
+    },
+    {
+      "title": "Proving Test Set Contamination in Black-Box Language Models"
+    },
+    {
+      "title": "Proving Test Set Contamination in Black-Box Language Models"
+    },
+    {
+      "title": "Time Travel in LLMs: Tracing Data Contamination in Large Language Models"
+    },
+    {
+      "title": "The Privacy Onion Effect: Memorization is Relative"
+    },
+    {
+      "title": "Bounding Training Data Reconstruction in Private (Deep) Learning"
+    },
+    {
+      "title": "Bounding Training Data Reconstruction in Private (Deep) Learning"
+    },
+    {
+      "title": "The Mirrored Influence Hypothesis: Efficient Data Influence Estimation by Harnessing Forward Passes"
+    },
+    {
+      "title": "Amplifying Membership Exposure via Data Poisoning"
+    },
+    {
+      "title": "Spread Divergence"
+    },
+    {
+      "title": "Divergence Frontiers for Generative Models: Sample Complexity, Quantization Effects, and Frontier Integrals"
+    },
+    {
+      "title": "On the Role of Edge Dependency in Graph Generative Models"
+    },
+    {
+      "title": "(f,Gamma)-Divergences: Interpolating between f-Divergences and Integral Probability Metrics"
+    },
+    {
+      "title": "Overlapping Spaces for Compact Graph Representations"
+    },
+    {
+      "title": "To the Cutoff... and Beyond? A Longitudinal Perspective on LLM Data Contamination"
+    },
+    {
+      "title": "Time Travel in LLMs: Tracing Data Contamination in Large Language Models"
+    },
+    {
+      "title": "Dealing with Synthetic Data Contamination in Online Continual Learning"
+    },
+    {
+      "title": "Detecting Pretraining Data from Large Language Models"
+    },
+    {
+      "title": "Radioactive data: tracing through training"
+    },
+    {
+      "title": "Adversarial Vulnerability of Randomized Ensembles"
+    },
+    {
+      "title": "Adversarial Vulnerability of Randomized Ensembles"
+    },
+    {
+      "title": "Are We on the Right Way for Evaluating Large Vision-Language Models?"
+    },
+    {
+      "title": "Private Image Reconstruction from System Side Channels Using Generative Models"
+    },
+    {
+      "title": "Automatically Auditing Large Language Models via Discrete Optimization"
+    }
   ]
 }
