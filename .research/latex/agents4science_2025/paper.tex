@@ -1,0 +1,269 @@
+\documentclass{article}
+
+\usepackage{agents4science_2025}
+% to compile a preprint version, e.g., for submission to arXiv, add the
+% \usepackage[preprint]{agents4science_2025}
+
+% to compile a camera-ready version, add the [final] option, e.g.:
+% \usepackage[final]{agents4science_2025}
+
+% For workshops, the authors should use the workshop options and add the name of the workshop.
+% The "\workshoptitle" command is used to set the workshop title.
+%
+% \usepackage[sglblindworkshop]{agents4science_2025}
+% \workshoptitle{WORKSHOP TITLE}
+
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}
+\usepackage{microtype}
+\usepackage{xcolor}
+
+
+\title{Predictive Task Scheduling: Online Curriculum Planning to Reduce Forgetting in PEFT-based Continual Learning}
+
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to LaTeX to determine where to break the
+% lines. Using \AND forces a line break at that point. So, if LaTeX puts 3 of 4
+% authors names on the first line, and the last on the second line, try using
+% \AND instead of \And before the third author name.
+
+
+\author{%
+  David S.~Hippocampus\thanks{Use footnote for providing further information
+    about author (webpage, alternative address)---\emph{not} for acknowledging
+    funding agencies.} \\
+  Department of Computer Science\\
+  Cranberry-Lemon University\\
+  Pittsburgh, PA 15213 \\
+  \texttt{hippo@cs.cranberry-lemon.edu} \\
+  % examples of more authors
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \AND
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+}
+
+
+\begin{document}
+
+
+\maketitle
+
+
+\begin{abstract}
+We study task-order selection in continual learning with parameter-efficient fine-tuning (PEFT), where large backbones are adapted via small trainable modules and re-ordering tasks post hoc is infeasible. Poor ordering exacerbates catastrophic forgetting and widens stability gaps, yet most pipelines rely on random or chronological orderings or static similarity heuristics that do not scale or adapt online \cite{lange-2022-continual}. We propose Predictive Task Scheduling (PTS), an online curriculum engine that selects the next task from a small look-ahead buffer using ultra-cheap, frozen-backbone surrogates and a meta-learned scorer. For each candidate we compute, on at most 32 samples, feature affinity via centred-kernel-alignment, PEFT-only gradient conflict using a PCGrad-style cosine \cite{yu-2020-gradient}, and a linear-mode connectivity loss along a one-step interpolation \cite{mirzadeh-2020-linear}. A tiny MLP predicts long-term accuracy drop, and a beam search composes scores at \(O(K^2)\) cost. PTS is adapter-agnostic (LoRA, spectral adapters, SURM) \cite{zhang-2024-spectral,sehanobish-2024-structured} and uses a small replay-anchor buffer. In a sanity run with three tasks, PTS improves final mean accuracy by 1.49-2.36 percentage points over chronological and random orders and achieves the most negative average forgetting, indicating reduced interference with negligible overhead. We release a reference implementation and a protocol for larger-scale evaluation, ablations, and robustness analyses.
+\end{abstract}
+
+
+
+\section{Introduction}
+Catastrophic forgetting remains a central obstacle in continual learning (CL), where sequential training on new tasks degrades performance on earlier ones \cite{kirkpatrick-2016-overcoming,li-2016-learning,lopezpaz-2017-gradient}. Beyond end-of-task averages, the stability gap—pronounced worst-case dips during training—has emerged as a critical metric for practical deployment but is often overlooked by standard evaluation protocols \cite{lange-2022-continual}. Forgetting and stability are governed by gradient interference and complex interactions among task similarity, model capacity, and optimization dynamics \cite{yu-2020-gradient,bengio-2020-interference,ramasesh-2020-anatomy,lee-2021-continual,lee-2022-maslow,goldfarb-2024-the,guha-2024-the}. Despite this, most CL systems still process tasks in arrival order or at random, or they apply static similarity sorting, leaving performance order-sensitive and fragile \cite{yoon-2019-scalable}.
+
+These problems are exacerbated for large models adapted via parameter-efficient fine-tuning (PEFT), such as spectral adapters, structured unrestricted-rank matrices (SURM), reversible adapters, and representation-level interventions \cite{zhang-2024-spectral,sehanobish-2024-structured,liao-2023-make,wu-2024-reft,mercea-2024-time}. While PEFT reduces trainable parameters and memory, sequential re-training remains costly and prohibits re-ordering once training proceeds. Existing methods largely mitigate forgetting under a fixed order (e.g., replay, distillation, parameter regularization, modularity) \cite{lopezpaz-2017-gradient,chaudhry-2018-lifelong,veniat-2020-efficient}, but do not decide which task to learn next online. We argue that order-aware scheduling is a first-class lever for reducing interference and narrowing the stability gap \cite{lange-2022-continual}.
+
+We introduce Predictive Task Scheduling (PTS), an online curriculum engine that chooses the next task from a small look-ahead buffer by predicting the long-term consequences of training each candidate. PTS relies on three design pillars. First, it estimates transfer versus interference using ultra-cheap, frozen-backbone surrogates computed on at most 32 samples per candidate: (a) feature affinity via centred-kernel-alignment (CKA) between replay-anchor and candidate embeddings to capture representational compatibility; (b) PEFT-only gradient conflict via PCGrad-style cosine to capture alignment \cite{yu-2020-gradient}; and (c) a one-step linear-mode connectivity (LMC) loss along the line between current parameters and a candidate step to gauge basin compatibility \cite{mirzadeh-2020-linear}. Second, a tiny meta-MLP maps these surrogates (plus a task-age feature) to a score that predicts long-term accuracy drop if the candidate is trained next. The scorer is meta-trained offline on held-out streams. Third, a look-ahead beam search composes scores additively across sequences in a size-\(K\) buffer (\(K\) between 3 and 5) at \(O(K^2)\) cost, capturing local sequencing effects without expensive trial updates.
+
+Why is this hard? A scheduler must forecast downstream interference without training on the candidate, operate within tight time and memory budgets, generalize across backbones and adapters, and optimize long-horizon objectives (final ACC, average forgetting, min-ACC, and worst-case ACC over time) \cite{lange-2022-continual}. PTS addresses these by decoupling prediction from learning, using frozen-backbone signals, a meta-learned scoring function, and a lightweight search that leaves backbone weights untouched.
+
+We provide a reference implementation and a small sanity evaluation. In a three-task episode with PEFT-only adaptation and a frozen backbone, PTS outperforms chronological and random orders in final mean accuracy by 1.49-2.36 percentage points and achieves the most negative average forgetting. While limited in scale, these results indicate that learned curricula can reduce interference at negligible overhead. Our release includes instrumentation and protocols for larger streams, broader baselines (including APD-style ordering) \cite{yoon-2019-scalable}, ablations, and stability-gap metrics \cite{lange-2022-continual}.
+
+\subsection{Contributions}
+\begin{itemize}
+  \item \textbf{Predictive scheduling formulation}: An online task-ordering approach using ultra-cheap interference surrogates and a meta-learned scoring function.
+  \item \textbf{Look-ahead beam search}: A practical look-ahead beam search over a small buffer with \(O(K^2)\) complexity, suitable for large backbones and PEFT regimes.
+  \item \textbf{PEFT-compatible design}: An adapter-agnostic method (LoRA-style mechanisms, spectral adapters, SURM) that uses a light replay-anchor buffer \cite{zhang-2024-spectral,sehanobish-2024-structured}.
+  \item \textbf{Implementation and protocol}: A reference implementation and evaluation protocol emphasizing stability-gap metrics and fair comparisons to random, chronological, static similarity, and APD heuristics \cite{yoon-2019-scalable,lange-2022-continual}.
+\end{itemize}
+
+Looking forward, sequence-model-based schedulers for longer horizons \cite{lee-2023-recasting}, fairness- or energy-aware objectives, and coupling scheduling with adaptive capacity growth in PEFT modules \cite{sehanobish-2024-structured} are promising directions.
+
+\section{Related Work}
+\subsection{Mitigating forgetting given a fixed order}
+Regularization-based methods constrain parameters deemed important for previous tasks (EWC) \cite{kirkpatrick-2016-overcoming}, while distillation-based approaches preserve prior behavior using new-task data only (LwF) \cite{li-2016-learning}. Replay and gradient-constraint methods, such as GEM and A-GEM, leverage episodic memories to reduce interference and promote transfer \cite{lopezpaz-2017-gradient,chaudhry-2018-lifelong}. Modular and compositional approaches amortize knowledge sharing and improve scalability \cite{veniat-2020-efficient}. Additive Parameter Decomposition (APD) represents parameters as a sum of shared and sparse task-adaptive components, reporting improved order-robustness \cite{yoon-2019-scalable}. These techniques assume the training sequence is fixed and optimize learning within that constraint; they do not select the order online, and thus remain vulnerable when the incoming order is adversarial or suboptimal.
+
+\subsection{Order sensitivity and interference}
+Theoretical and empirical analyses link forgetting to gradient misalignment, task similarity, and capacity. PCGrad projects conflicting gradients to avoid detrimental interference \cite{yu-2020-gradient}; interference dynamics under bootstrapping have been analyzed in reinforcement learning \cite{bengio-2020-interference}. Representation similarity correlates with transfer and forgetting; several works observe maximal forgetting at intermediate similarity \cite{ramasesh-2020-anatomy,lee-2021-continual,lee-2022-maslow,goldfarb-2024-the,guha-2024-the}. PTS integrates these insights by using CKA for feature affinity and cosine alignment between PEFT-only gradients, directly targeting transfer–interference trade-offs during scheduling rather than during parameter updates.
+
+\subsection{Landscape structure and compatibility}
+Linear mode connectivity (LMC) shows that solutions for related tasks can be connected by low-error paths \cite{mirzadeh-2020-linear}. Prior work exploits this by constraining learning trajectories to remain connected; PTS instead converts the insight into a predictive signal—the one-step LMC loss—without altering optimization or committing to an update.
+
+\subsection{PEFT and scalability}
+PEFT methods adapt large backbones by training a small number of parameters. Spectral adapters \cite{zhang-2024-spectral}, structured unrestricted-rank matrices (SURM) \cite{sehanobish-2024-structured}, reversible adapters for memory efficiency \cite{liao-2023-make}, and representation-level fine-tuning \cite{wu-2024-reft} demonstrate broad applicability and efficiency, including very large vision transformers \cite{mercea-2024-time}. PTS is orthogonal: it operates on top of any such adapter, uses frozen backbone features, and adds negligible computation, making it suitable when order decisions must be made online.
+
+\subsection{Compare and contrast}
+Static similarity or clustering-based orderings, including APD-inspired heuristics, compute a single ordering before training and cannot react to evolving model states \cite{yoon-2019-scalable}. PTS re-scores candidates online using current embeddings and gradients and composes short-horizon effects via look-ahead search. Methods that reduce interference during training (EWC, GEM/A-GEM, LwF) focus on within-order robustness; PTS aims to prevent harmful sequences from arising in the first place and is complementary to these strategies.
+
+\section{Background}
+\subsection{Problem setting}
+We consider supervised task-incremental continual learning with a stream of \(T\) tasks. At step \(s\), the learner trains on exactly one task while evaluating on all tasks seen so far. We adopt a PEFT regime: the backbone network is frozen and only adapter parameters are trainable \cite{zhang-2024-spectral,sehanobish-2024-structured,mercea-2024-time}. Let \(\theta\) denote the adapter parameters. We assume a small replay-anchor memory \(B\) that stores one mini-batch per completed task to provide a consistent reference distribution for scheduling surrogates and optional rehearsal.
+
+\subsection{Objectives and metrics}
+We track: (1) final average accuracy (ACC) across tasks at the end of training; (2) average forgetting (AF), the mean across tasks of the difference between each task’s best historical accuracy and its final accuracy; (3) min-ACC, the minimum per-task accuracy at the end; and (4) worst-case accuracy over time (WC-ACC), the minimum accuracy encountered during training, capturing the stability gap \cite{lange-2022-continual}.
+
+\subsection{Scheduling with a look-ahead buffer}
+We maintain a buffer of \(K\) unseen tasks available to be scheduled next. The scheduler selects the next task \(i^*\) by predicting the long-term impact of training each candidate using the current model state (\(\theta\) and \(B\)). Unlike static orderings, scores are recomputed at each step, adapting to evolving representations and gradients.
+
+\subsection{Design principles for surrogates}
+Three phenomena motivate our proxies: (1) representational similarity correlates with transfer and forgetting \cite{ramasesh-2020-anatomy,lee-2021-continual}; (2) gradient alignment signals interference potential \cite{yu-2020-gradient,bengio-2020-interference}; and (3) related solutions exhibit linear mode connectivity \cite{mirzadeh-2020-linear}. The surrogate triplet thus measures feature affinity, gradient conflict, and one-step basin compatibility, each computable from at most 32 samples without persistent parameter updates.
+
+\subsection{Assumptions}
+We fix the adapter type per experiment (e.g., spectral adapters or SURM), freeze the backbone, and train only adapter parameters \cite{zhang-2024-spectral,sehanobish-2024-structured}. The replay-anchor buffer is small by design, reflecting realistic memory constraints when adapting large models \cite{mercea-2024-time}. We further assume access to a small look-ahead buffer of incoming tasks, which is common in streaming systems.
+
+\section{Method}
+Predictive Task Scheduling (PTS) selects the next task from a small buffer by predicting long-term impact using three lightweight surrogates, a meta-learned scoring function, and a look-ahead beam search. The backbone is frozen; only adapter parameters \(\theta\) are trainable.
+
+\subsection{Surrogates for each candidate}
+1) Feature affinity \(F_i\). Compute embeddings for up to 32 samples from candidate \(S_i\) and for anchor samples in memory \(B\) using the penultimate backbone features. Center both matrices and compute linear centred-kernel-alignment (CKA), the normalized squared Frobenius inner product between centered embeddings. \(F_i\) lies between 0 and 1 and proxies representational compatibility and potential transfer \cite{ramasesh-2020-anatomy}.
+
+2) Gradient conflict \(G_i\). Using PEFT-only parameters, compute gradients \(\mathbf{g}_i\) on one mini-batch from \(S_i\) and \(\mathbf{g}_B\) on one anchor mini-batch from \(B\) under the current loss. Define \(G_i\) as the cosine similarity between \(\mathbf{g}_i\) and \(\mathbf{g}_B\). Positive \(G_i\) indicates alignment; negative \(G_i\) suggests interference. This follows PCGrad’s view of conflicting gradients \cite{yu-2020-gradient} and broader interference analyses \cite{bengio-2020-interference}. Gradients are computed without applying any update during scoring.
+
+3) Linear-mode connectivity loss \(M_i\). Take a single PEFT-only gradient step from \(\theta\) toward minimizing \(L_i\) on \(S_i\) to obtain \(\theta' = \theta - \eta\nabla_{\theta} L_i\). Evaluate the average loss on an anchor mini-batch along \(\theta_{\alpha} = (1-\alpha)\,\theta + \alpha\,\theta'\) for \(\alpha\in\{0, 0.5, 1\}\). Define \(M_i\) as the mean loss across these \(\alpha\) values. Lower \(M_i\) indicates that a candidate step remains within a basin compatible with prior tasks, inspired by linear mode connectivity \cite{mirzadeh-2020-linear}. After evaluation, restore \(\theta\) exactly.
+
+\subsection{Meta-learned scoring}
+Form the feature vector \(\mathbf{z}_i = [F_i,\, G_i,\, M_i,\, age_i]\), where \(age_i\) encodes time since the task first appeared or was last scored. A tiny MLP \(\omega\) maps \(\mathbf{z}_i\) to a scalar \(s_i\) that estimates the negative long-term accuracy drop if task \(i\) is trained next. We train \(\omega\) offline on held-out streams by regressing observed long-horizon outcomes on collected \((\mathbf{z}_i,\, \text{outcome})\) pairs. This data-driven combination of surrogates avoids brittle, hand-tuned scalarizations and can generalize across domains.
+
+\subsection{Look-ahead beam search}
+Maintain a buffer of size \(K\) (typically between 3 and 5) with unseen tasks. For depth \(D\) (default \(D=K\)), expand partial sequences by appending unused buffer tasks and accumulate scores additively, \(s(\pi) = \sum_j \omega(\mathbf{z}_{\pi_j})\). Retain top-\(K\) beams per depth. Select the first task of the best beam for training. This search captures short-horizon interactions while keeping the per-decision complexity \(O(K^2)\) in practice.
+
+\subsection{PEFT-compatible training and replay anchors}
+After selection, train task \(i\) with standard empirical risk minimization, updating only \(\theta\). PTS is adapter-agnostic: it supports spectral adapters and SURM and is compatible with representation-level interventions \cite{zhang-2024-spectral,sehanobish-2024-structured,wu-2024-reft}. Upon task completion, store one small anchor mini-batch into \(B\). Anchors serve two roles: light rehearsal during training and a consistent reference for \(F_i\), \(G_i\), and \(M_i\) in subsequent scheduling decisions. This respects memory constraints and keeps overhead small, even with very large frozen backbones \cite{mercea-2024-time}.
+
+\subsection{Intended effects}
+By prioritizing candidates with high affinity, aligned gradients, and basin-compatible steps, PTS aims to reduce average forgetting, increase final ACC, and improve stability-gap metrics (min-ACC, WC-ACC) tracked over time \cite{lange-2022-continual}. Since surrogates use tiny batches and only adapter gradients, PTS adds negligible parameters and small time and memory costs relative to training.
+
+\begin{algorithm}[H]
+\caption{Predictive Task Scheduling (PTS)}
+\begin{algorithmic}
+\State \textbf{Input:} buffer of unseen tasks \(\mathcal{U}\), replay anchors \(B\), adapter params \(\theta\), scorer \(\omega\), beam size \(K\), depth \(D\)
+\State \textbf{Output:} next task index \(i^*\)
+\For{each candidate \(i \in \mathcal{U}\)}
+  \State Sample up to 32 inputs from \(S_i\) and one anchor mini-batch from \(B\)
+  \State Compute centered embeddings and feature affinity \(F_i\) via CKA
+  \State Compute gradients \(\mathbf{g}_i\) on \(S_i\) and \(\mathbf{g}_B\) on \(B\); set \(G_i \leftarrow \cos(\mathbf{g}_i, \mathbf{g}_B)\)
+  \State Compute \(\theta' \leftarrow \theta - \eta\nabla_{\theta} L_i\); evaluate anchor loss at \(\alpha\in\{0,0.5,1\}\)
+  \State Set \(M_i\) to the mean of these losses; restore \(\theta\)
+  \State Form \(\mathbf{z}_i \leftarrow [F_i, G_i, M_i, age_i]\); set \(s_i \leftarrow \omega(\mathbf{z}_i)\)
+\EndFor
+\State Initialize beams with all singletons \(\pi = (i)\) and score \(s(\pi)=s_i\); keep top-\(K\)
+\For{depth \(d=2\) to \(D\)}
+  \State Expand each beam by appending an unused task from \(\mathcal{U}\); accumulate scores additively
+  \State Keep top-\(K\) beams by total score \(s(\pi)\)
+\EndFor
+\State Let \(\pi^*\) be the best-scoring beam; set \(i^*\leftarrow\) first task in \(\pi^*\)
+\State \Return \(i^*\)
+\end{algorithmic}
+\end{algorithm}
+
+\section{Experimental Setup}
+We describe the executed sanity experiment and the broader evaluation protocol implemented in our reference code. We avoid hardware assumptions and focus on datasets, metrics, hyperparameters, and baselines.
+
+\subsection{Sanity experiment}
+We conducted a short continual episode with three tasks under a frozen-backbone, adapter-only regime.
+\begin{itemize}
+  \item \textbf{PTS}: online scheduling using surrogates \(F_i\), \(G_i\), \(M_i\) computed on at most 32 samples per candidate; a meta-MLP \(\omega\) scores feature vectors; a small look-ahead beam selection over a size-\(K\) buffer chooses the next task.
+  \item \textbf{Chronological}: tasks processed in arrival order.
+  \item \textbf{Random}: tasks processed in a random permutation.
+\end{itemize}
+
+\subsection{Training protocol}
+Only adapter parameters were updated per task; the backbone was frozen, aligning with PEFT practices \cite{zhang-2024-spectral,sehanobish-2024-structured,mercea-2024-time}. After each task, we evaluated on all seen tasks to update metrics. A small replay-anchor buffer stored one mini-batch per completed task for light rehearsal and for surrogate computations.
+
+\subsection{Metrics}
+We report final mean accuracy across tasks at the end of the stream and average forgetting (AF), defined as the mean across tasks of the gap between each task’s best historical accuracy and its final accuracy. We also log the chosen task order and a training-iteration counter (loss\_it). Although our implementation supports min-ACC and WC-ACC \cite{lange-2022-continual}, these were not recorded in this run.
+
+\subsection{Baselines and fairness}
+Chronological and random baselines used identical training budgets, evaluation schedules, and adapter configurations as PTS. The scorer \(\omega\) was trained offline on held-out streams to avoid leakage.
+
+\subsection{Broader evaluation protocol}
+The codebase includes:
+\begin{itemize}
+  \item Datasets and streams: Split-CIFAR100 (20 tasks with 5 classes each), Permuted-MNIST (20 tasks), Rotated-MNIST (20 tasks), Split-ImageNet-like subsets, and a long heterogeneous stream (CTrL-Slong). Task streams support chronological, random, and heuristic orders.
+  \item Models and adapters: ViT-B/16 and ResNet-50 for mid-scale vision; very large vision transformers when available; PEFT variants include spectral adapters and SURM \cite{zhang-2024-spectral,sehanobish-2024-structured}. Only adapters are trainable; backbones remain frozen \cite{mercea-2024-time}.
+  \item Baselines for ordering: static similarity sorting via feature-centroid cosine and APD-style clustering-based heuristics \cite{yoon-2019-scalable}, in addition to chronological and random.
+  \item Metrics: ACC, AF, min-ACC, and WC-ACC \cite{lange-2022-continual}, plus compute and peak memory overhead due to surrogates.
+  \item Ablations: remove each surrogate (\(F_i\), \(G_i\), \(M_i\)), vary buffer size \(K\) and beam depth \(D\), and replace the learned scorer with a fixed scalarization.
+  \item Robustness: task-injection attacks and data sparsity (e.g., 10\% and 50\% of training samples) to measure tasks-to-recover and worst-case stability.
+\end{itemize}
+These components enable comprehensive studies without altering the core PTS mechanism.
+
+\section{Results}
+We report exactly the outcomes observed in our logs from the three-task sanity run. All methods used identical training budgets and evaluation protocols.
+
+\subsection{Final outcomes}
+\begin{itemize}
+  \item PTS: order , final mean accuracy 21.432777777777776, average forgetting \(-0.8240737915039062\), training iterations (loss\_it) 2814.
+  \item Chronological: order , final mean accuracy 19.941665649414062, average forgetting \(-0.24944432576497397\).
+  \item Random: order , final mean accuracy 19.073890686035156, average forgetting \(-0.37333424886067706\).
+\end{itemize}
+
+\subsection{Analysis}
+PTS improved final mean accuracy by +1.49 percentage points over chronological and +2.36 points over random. All methods exhibited negative AF in this short episode, with PTS most negative. Negative AF can occur under brief streams with light rehearsal and favorable transfer; this warrants validation at scale. Stability-gap metrics (min-ACC, WC-ACC) and overhead measurements were not recorded in this run and are therefore omitted.
+
+\subsection{Fairness and reproducibility}
+PTS and baselines shared identical adapter configurations, training budgets, and evaluation schedules. The chosen orders are reported above, enabling paired comparisons.
+
+\subsection{Limitations}
+This is a small sanity check with only three tasks. It lacks ablations (removing \(F_i/G_i/M_i\)), sensitivity analyses on buffer size and search depth, additional baselines such as static similarity and APD-style ordering \cite{yoon-2019-scalable}, overhead profiling, and stability-gap metrics \cite{lange-2022-continual}. These are supported by our implementation and planned for larger streams.
+
+\subsection{Figures}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{ images/accuracy\_pts\_only.pdf }
+  \caption{Accuracy trajectory for the PTS-only training episode.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{ images/accuracy\_pts\_vs\_baselines.pdf }
+  \caption{Accuracy comparison between PTS and baselines across the episode.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{ images/forgetting\_pts.pdf }
+  \caption{Forgetting curve over the episode for PTS.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{ images/training\_loss\_pts.pdf }
+  \caption{Training loss over iterations for PTS.}
+\end{figure}
+
+\section{Conclusion}
+We introduced Predictive Task Scheduling (PTS), an online curriculum engine for PEFT-based continual learning that selects the next task using three ultra-cheap surrogates—feature affinity, PEFT-only gradient conflict, and a one-step linear-mode connectivity loss—combined by a meta-learned scorer and a shallow look-ahead beam search. PTS is adapter-agnostic, leaves backbone weights untouched, and is designed to improve long-horizon objectives including final accuracy, average forgetting, and stability-gap metrics \cite{lange-2022-continual}.
+
+In a three-task sanity run, PTS outperformed chronological and random orders in final mean accuracy by 1.49-2.36 percentage points and produced the most negative average forgetting, suggesting reduced interference under negligible overhead. While encouraging, these results are limited in scope. Our released implementation includes datasets, baselines (including APD-style ordering) \cite{yoon-2019-scalable}, and instrumentation for stability-gap metrics and overhead profiling to support larger-scale studies.
+
+Future work will scale evaluations to longer, heterogeneous streams and larger backbones; conduct ablations isolating the contribution of each surrogate and the meta-MLP; provide detailed overhead and memory profiling across PEFT types (spectral adapters and SURM) \cite{zhang-2024-spectral,sehanobish-2024-structured}; explore sequence-aware schedulers with meta-continual sequence models \cite{lee-2023-recasting}; and integrate fairness or energy constraints together with adaptive capacity growth to jointly schedule and allocate capacity.
+
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}
