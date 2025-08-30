@@ -46,6 +46,12 @@ Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
 (/usr/share/texlive/texmf-dist/tex/latex/units/nicefrac.sty
 (/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty))
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
@@ -55,7 +61,18 @@ Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
 (/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
-(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)))
+(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/algorithms/algorithm.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty
+(/usr/share/texlive/texmf-dist/tex/latex/algorithmicx/algorithmicx.sty
+Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
+)
+Document Style - pseudocode environments for use with the `algorithmicx' style
+) (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
 No file paper.aux.
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -126,7 +143,9 @@ No file paper.aux.
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg)
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
@@ -134,68 +153,68 @@ No file paper.aux.
 (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd)
 
 Package natbib Warning: Citation `zhao-2024-galore' on page 1 undefined on inpu
-t line 79.
+t line 88.
 
 
 Package natbib Warning: Citation `hao-2024-flora' on page 1 undefined on input 
-line 79.
+line 88.
 
 
 Package natbib Warning: Citation `zhao-2023-pinnsformer' on page 1 undefined on
- input line 79.
+ input line 88.
 
 
 Package natbib Warning: Citation `wu-2024-transolver' on page 1 undefined on in
-put line 79.
+put line 88.
 
 
 Package natbib Warning: Citation `chen-2024-geomformer' on page 1 undefined on 
-input line 79.
+input line 88.
 
 
 Package natbib Warning: Citation `alkin-2024-universal' on page 1 undefined on 
-input line 79.
+input line 88.
 
 
 Package natbib Warning: Citation `bryutkin-2024-hamlet' on page 1 undefined on 
-input line 79.
+input line 88.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd)
 
 Package natbib Warning: Citation `zhao-2023-pinnsformer' on page 1 undefined on
- input line 86.
+ input line 95.
 
 
 Package natbib Warning: Citation `wu-2024-transolver' on page 1 undefined on in
-put line 86.
+put line 95.
 
 
 Package natbib Warning: Citation `chen-2024-positional' on page 1 undefined on 
-input line 86.
+input line 95.
 
 
 Package natbib Warning: Citation `alkin-2024-universal' on page 1 undefined on 
-input line 86.
+input line 95.
 
 
 Package natbib Warning: Citation `bryutkin-2024-hamlet' on page 1 undefined on 
-input line 86.
+input line 95.
 
 
 Package natbib Warning: Citation `chen-2024-geomformer' on page 1 undefined on 
-input line 86.
+input line 95.
 
 
 Package natbib Warning: Citation `luo-2022-one' on page 1 undefined on input li
-ne 86.
+ne 95.
 
 
 Package natbib Warning: Citation `rong-2020-self' on page 1 undefined on input 
-line 86.
+line 95.
 
 
 Package natbib Warning: Citation `zhao-2024-galore' on page 1 undefined on inpu
-t line 89.
+t line 98.
 
 
 Underfull \vbox (badness 1237) has occurred while \output is active [1{/var/lib
@@ -203,900 +222,423 @@ Underfull \vbox (badness 1237) has occurred while \output is active [1{/var/lib
 enc/dvips/base/8r.enc}]
 
 Package natbib Warning: Citation `feinberg-2023-sketchy' on page 2 undefined on
- input line 91.
+ input line 100.
 
 
 Package natbib Warning: Citation `jin-2023-understanding' on page 2 undefined o
-n input line 91.
+n input line 100.
 
 
 Package natbib Warning: Citation `li-2020-towards' on page 2 undefined on input
- line 91.
+ line 100.
 
 
 Package natbib Warning: Citation `hao-2024-flora' on page 2 undefined on input 
-line 94.
+line 103.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
 
 Package natbib Warning: Citation `hao-2024-flora' on page 2 undefined on input 
-line 102.
+line 111.
 
 
 Package natbib Warning: Citation `zhao-2024-galore' on page 2 undefined on inpu
-t line 107.
+t line 116.
 
 
 Package natbib Warning: Citation `hao-2024-flora' on page 2 undefined on input 
-line 107.
+line 116.
 
 
 Package natbib Warning: Citation `zhao-2023-pinnsformer' on page 2 undefined on
- input line 107.
+ input line 116.
 
 
 Package natbib Warning: Citation `wu-2024-transolver' on page 2 undefined on in
-put line 107.
+put line 116.
 
 
 Package natbib Warning: Citation `chen-2024-geomformer' on page 2 undefined on 
-input line 107.
+input line 116.
 
 
 Package natbib Warning: Citation `alkin-2024-universal' on page 2 undefined on 
-input line 107.
+input line 116.
 
 
 Package natbib Warning: Citation `bryutkin-2024-hamlet' on page 2 undefined on 
-input line 107.
+input line 116.
 
 [2]
 
 Package natbib Warning: Citation `zhao-2024-galore' on page 3 undefined on inpu
-t line 110.
+t line 119.
 
 
 Package natbib Warning: Citation `guo-2023-lora' on page 3 undefined on input l
-ine 112.
+ine 121.
 
 
 Package natbib Warning: Citation `liu-2024-dora' on page 3 undefined on input l
-ine 112.
+ine 121.
 
 
 Package natbib Warning: Citation `lialin-2023-relora' on page 3 undefined on in
-put line 112.
+put line 121.
 
 
 Package natbib Warning: Citation `pan-2024-lisa' on page 3 undefined on input l
-ine 112.
+ine 121.
 
 
 Package natbib Warning: Citation `biderman-2024-lora' on page 3 undefined on in
-put line 112.
+put line 121.
 
 
 Package natbib Warning: Citation `hao-2024-flora' on page 3 undefined on input 
-line 112.
+line 121.
 
 
 Package natbib Warning: Citation `feinberg-2023-sketchy' on page 3 undefined on
- input line 114.
+ input line 123.
 
 
 Package natbib Warning: Citation `jin-2023-understanding' on page 3 undefined o
-n input line 114.
+n input line 123.
 
 
 Package natbib Warning: Citation `li-2020-towards' on page 3 undefined on input
- line 114.
+ line 123.
 
 
 Package natbib Warning: Citation `zhao-2023-pinnsformer' on page 3 undefined on
- input line 116.
+ input line 125.
 
 
 Package natbib Warning: Citation `wu-2024-transolver' on page 3 undefined on in
-put line 116.
+put line 125.
 
 
 Package natbib Warning: Citation `chen-2024-positional' on page 3 undefined on 
-input line 116.
+input line 125.
 
 
 Package natbib Warning: Citation `alkin-2024-universal' on page 3 undefined on 
-input line 116.
+input line 125.
 
 
 Package natbib Warning: Citation `bryutkin-2024-hamlet' on page 3 undefined on 
-input line 116.
+input line 125.
 
 
 Package natbib Warning: Citation `chen-2024-geomformer' on page 3 undefined on 
-input line 116.
+input line 125.
 
 
 Package natbib Warning: Citation `luo-2022-one' on page 3 undefined on input li
-ne 116.
+ne 125.
 
 
 Package natbib Warning: Citation `rong-2020-self' on page 3 undefined on input 
-line 116.
+line 125.
 
 
 Package natbib Warning: Citation `zhao-2024-galore' on page 3 undefined on inpu
-t line 118.
+t line 127.
 
 
 Package natbib Warning: Citation `guo-2023-lora' on page 3 undefined on input l
-ine 118.
+ine 127.
 
 
 Package natbib Warning: Citation `liu-2024-dora' on page 3 undefined on input l
-ine 118.
+ine 127.
 
 
 Package natbib Warning: Citation `lialin-2023-relora' on page 3 undefined on in
-put line 118.
+put line 127.
 
 
 Package natbib Warning: Citation `pan-2024-lisa' on page 3 undefined on input l
-ine 118.
+ine 127.
 
 
 Package natbib Warning: Citation `biderman-2024-lora' on page 3 undefined on in
-put line 118.
+put line 127.
 
 
 Package natbib Warning: Citation `hao-2024-flora' on page 3 undefined on input 
-line 118.
+line 127.
 
 
 Package natbib Warning: Citation `zhao-2024-galore' on page 3 undefined on inpu
-t line 122.
+t line 131.
 
 
 Package natbib Warning: Citation `zhao-2024-galore' on page 3 undefined on inpu
-t line 125.
+t line 134.
 
 
 Underfull \vbox (badness 2635) has occurred while \output is active [3]
 
 Package natbib Warning: Citation `feinberg-2023-sketchy' on page 4 undefined on
- input line 128.
+ input line 137.
 
 
 Package natbib Warning: Citation `chen-2024-geomformer' on page 4 undefined on 
-input line 131.
+input line 140.
 
 
 Package natbib Warning: Citation `zhao-2023-pinnsformer' on page 4 undefined on
- input line 131.
+ input line 140.
 
 
 Package natbib Warning: Citation `wu-2024-transolver' on page 4 undefined on in
-put line 131.
+put line 140.
 
 
 Package natbib Warning: Citation `chen-2024-positional' on page 4 undefined on 
-input line 131.
+input line 140.
 
 
 Package natbib Warning: Citation `alkin-2024-universal' on page 4 undefined on 
-input line 131.
+input line 140.
 
 
 Package natbib Warning: Citation `bryutkin-2024-hamlet' on page 4 undefined on 
-input line 131.
+input line 140.
 
 
 Package natbib Warning: Citation `feinberg-2023-sketchy' on page 4 undefined on
- input line 134.
+ input line 143.
 
 
 Package natbib Warning: Citation `jin-2023-understanding' on page 4 undefined o
-n input line 134.
+n input line 143.
 
 
 Package natbib Warning: Citation `li-2020-towards' on page 4 undefined on input
- line 134.
+ line 143.
 
 
 Package natbib Warning: Citation `alkin-2024-universal' on page 4 undefined on 
-input line 137.
+input line 146.
 
 
 Package natbib Warning: Citation `bryutkin-2024-hamlet' on page 4 undefined on 
-input line 137.
+input line 146.
 
 
 Package natbib Warning: Citation `chen-2024-geomformer' on page 4 undefined on 
-input line 137.
+input line 146.
 
 [4]
 
 Package natbib Warning: Citation `hao-2024-flora' on page 5 undefined on input 
-line 152.
+line 161.
 
 
 Package natbib Warning: Citation `zhao-2024-galore' on page 5 undefined on inpu
-t line 152.
+t line 161.
 
 
 Package natbib Warning: Citation `feinberg-2023-sketchy' on page 5 undefined on
- input line 155.
+ input line 164.
 
 
 Package natbib Warning: Citation `zhao-2023-pinnsformer' on page 5 undefined on
- input line 155.
+ input line 164.
 
 
 Package natbib Warning: Citation `wu-2024-transolver' on page 5 undefined on in
-put line 155.
+put line 164.
 
 
 Package natbib Warning: Citation `chen-2024-geomformer' on page 5 undefined on 
-input line 155.
-
-
-! LaTeX Error: Environment algorithm undefined.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.157 \begin{algorithm}
-                       
-
-! LaTeX Error: \caption outside float.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.158 \caption
-              {Phi-GaLore: per-step procedure with periodic refresh}
-
-! LaTeX Error: Environment algorithmic undefined.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.159 \begin{algorithmic}
-                         
-! Undefined control sequence.
-l.160 \State
-             Inputs: gradients $\{G^{(\ell)}\}$, groups $\mathcal{G}$, rank ...
-
-! Undefined control sequence.
-l.161 \For
-          {each group $g\in\mathcal{G}$}
-! Undefined control sequence.
-l.162   \If
-           {first parameter in $g$ encountered}
-! Undefined control sequence.
-l.163     \State
-                 Compute two-sided CountSketch core: $\tilde{G}^{(g)}\leftar...
-
-! Undefined control sequence.
-l.164     \State
-                 EMA update: $\tilde{G}^{(g)}_{\mathrm{ema}}\leftarrow \alph...
-
-! Undefined control sequence.
-l.165   \EndIf
-              
-! Undefined control sequence.
-l.166   \If
-           {step \% $T=0$}
-! Undefined control sequence.
-l.167     \State
-                 $C\leftarrow \tilde{G}^{(g)}_{\mathrm{ema}}\tilde{G}^{(g)}_...
+input line 164.
 
 ! Double superscript.
-l.167 ...thrm{ema}}\tilde{G}^{(g)}_{\mathrm{ema}}^
+l.176 ...thrm{ema}}\tilde{G}^{(g)}_{\mathrm{ema}}^
                                                   {\top}$; $[U,\Sigma]\lefta...
 
-! Undefined control sequence.
-l.167 ...ma}}^{\top}$; $[U,\Sigma]\leftarrow \text
-                                                  {SVD}(C)$
-! Undefined control sequence.
-l.168     \State
-                 $U_{\mathrm{sketch}}\leftarrow U[:,1{:}k]$; lift to row spa...
-
-! Undefined control sequence.
-l.168 ...ce: $P_{\mathrm{learned}}\leftarrow \text
-                                                  {Unsketch}(U_{\mathrm{sket...
-
-! Undefined control sequence.
-l.169     \State
-                 Orthonormalize: $Q\leftarrow \text{QR}(P_{\mathrm{learned}})$
-! Undefined control sequence.
-l.169 ...\State Orthonormalize: $Q\leftarrow \text
-                                                  {QR}(P_{\mathrm{learned}})$
-! Undefined control sequence.
-l.170     \State
-                 Optional physics basis $B$; concatenate $[Q, B]$ and re-ort...
-
-! Undefined control sequence.
-l.171   \EndIf
-              
-! Undefined control sequence.
-l.172   \For
-            {each parameter matrix $W^{(\ell)}$ in group $g$}
-! Undefined control sequence.
-l.173     \If
-             {$\text{size}(W^{(\ell)})$ above threshold}
-! Undefined control sequence.
-<recently read> \text 
-                      
-l.173     \If{$\text
-                    {size}(W^{(\ell)})$ above threshold}
-! Undefined control sequence.
-l.174       \State
-                   Project gradient: $G^{(\ell)}\leftarrow P^{(g)} (P^{(g)\t...
-
-! Undefined control sequence.
-l.175     \EndIf
-                
-! Undefined control sequence.
-l.176   \EndFor
-               
-! Undefined control sequence.
-l.177 \EndFor
-             
-! Undefined control sequence.
-l.178 \State
-             Call base optimizer step (e.g., AdamW) on updated gradients
-
-! LaTeX Error: \begin{document} ended by \end{algorithmic}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.179 \end{algorithmic}
-                       
-
-! LaTeX Error: \begin{document} ended by \end{algorithm}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.180 \end{algorithm}
-                     
 [5]
 
 Package natbib Warning: Citation `zhao-2024-galore' on page 6 undefined on inpu
-t line 195.
+t line 204.
 
 
 Package natbib Warning: Citation `guo-2023-lora' on page 6 undefined on input l
-ine 195.
+ine 204.
 
 
 Package natbib Warning: Citation `liu-2024-dora' on page 6 undefined on input l
-ine 195.
+ine 204.
 
 
 Package natbib Warning: Citation `lialin-2023-relora' on page 6 undefined on in
-put line 195.
+put line 204.
 
 
 Package natbib Warning: Citation `pan-2024-lisa' on page 6 undefined on input l
-ine 195.
+ine 204.
 
 
 Package natbib Warning: Citation `hao-2024-flora' on page 6 undefined on input 
-line 195.
+line 204.
 
 
 Package natbib Warning: Citation `zhao-2023-pinnsformer' on page 6 undefined on
- input line 198.
+ input line 207.
 
 
 Package natbib Warning: Citation `wu-2024-transolver' on page 6 undefined on in
-put line 198.
+put line 207.
 
 
 Package natbib Warning: Citation `alkin-2024-universal' on page 6 undefined on 
-input line 198.
+input line 207.
 
 
 Package natbib Warning: Citation `bryutkin-2024-hamlet' on page 6 undefined on 
-input line 198.
+input line 207.
 
 
 Package natbib Warning: Citation `chen-2024-geomformer' on page 6 undefined on 
-input line 198.
+input line 207.
 
 
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.206 \begin{figure}[H]
-                       
-! Undefined control sequence.
-l.208 \includegraphics
-                      [width=0.7\linewidth]{ images/training_loss_microbench...
-
-! Missing number, treated as zero.
-<to be read again> 
-                   ]
-l.208 \includegraphics[width=0.7\linewidth]
-                                           { images/training_loss_microbench...
-
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   ]
-l.208 \includegraphics[width=0.7\linewidth]
-                                           { images/training_loss_microbench...
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.208 ...cs[width=0.7\linewidth]{ images/training_
-                                                  loss_microbench.pdf }
-! Extra }, or forgotten $.
-l.208 ...h]{ images/training_loss_microbench.pdf }
-                                                  
-! Missing $ inserted.
-<inserted text> 
-                $
-l.209 ...ilename: training\_loss\_microbench.pdf)}
-                                                  
-! Missing } inserted.
-<inserted text> 
-                }
-l.210 \end{figure}
-                  
-
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.212 \begin{figure}[H]
-                       
-! Undefined control sequence.
-l.214 \includegraphics
-                      [width=0.7\linewidth]{ images/gradient_srank_microbenc...
-
-! Missing number, treated as zero.
-<to be read again> 
-                   ]
-l.214 \includegraphics[width=0.7\linewidth]
-                                           { images/gradient_srank_microbenc...
-
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   ]
-l.214 \includegraphics[width=0.7\linewidth]
-                                           { images/gradient_srank_microbenc...
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.214 ...cs[width=0.7\linewidth]{ images/gradient_
-                                                  srank_microbench.pdf }
-! Extra }, or forgotten $.
-l.214 ...]{ images/gradient_srank_microbench.pdf }
-                                                  
-! Missing $ inserted.
-<inserted text> 
-                $
-l.215 ...lename: gradient\_srank\_microbench.pdf)}
-                                                  
-
-Underfull \hbox (badness 2285) in paragraph at lines 215--215
+Underfull \vbox (badness 1158) has occurred while \output is active [6]
+Underfull \hbox (badness 2285) in paragraph at lines 224--224
 []\T1/ptm/m/n/10 (+20) Figure 2: []Gradient stable-rank di-ag-nos-tics on micro
 -bench snap-shots (file-name: gra-di-
-! Missing } inserted.
-<inserted text> 
-                }
-l.216 \end{figure}
-                  
 
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.218 \begin{figure}[H]
-                       
-! Undefined control sequence.
-l.220 \includegraphics
-                      [width=0.7\linewidth]{ images/projection_overhead_micr...
-
-! Missing number, treated as zero.
-<to be read again> 
-                   ]
-l.220 \includegraphics[width=0.7\linewidth]
-                                           { images/projection_overhead_micr...
-
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   ]
-l.220 \includegraphics[width=0.7\linewidth]
-                                           { images/projection_overhead_micr...
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.220 ...[width=0.7\linewidth]{ images/projection_
-                                                  overhead_microbench.pdf }
-! Extra }, or forgotten $.
-l.220 ...ages/projection_overhead_microbench.pdf }
-                                                  
-! Missing $ inserted.
-<inserted text> 
-                $
-l.221 ...e: projection\_overhead\_microbench.pdf)}
-                                                  
-
-Underfull \hbox (badness 1688) in paragraph at lines 221--221
+Underfull \hbox (badness 1688) in paragraph at lines 230--230
 []\T1/ptm/m/n/10 (+20) Figure 3: []Projection over-head on micro-bench per step
  and method (file-name: pro-jec-
-! Missing } inserted.
-<inserted text> 
-                }
-l.222 \end{figure}
-                  
 
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.224 \begin{figure}[H]
-                       
-! Undefined control sequence.
-l.226 \includegraphics
-                      [width=0.7\linewidth]{ images/alignment_phi-galore_mic...
-
-! Missing number, treated as zero.
-<to be read again> 
-                   ]
-l.226 \includegraphics[width=0.7\linewidth]
-                                           { images/alignment_phi-galore_mic...
-
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   ]
-l.226 \includegraphics[width=0.7\linewidth]
-                                           { images/alignment_phi-galore_mic...
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.226 ...s[width=0.7\linewidth]{ images/alignment_
-                                                  phi-galore_microbench.pdf }
-! Extra }, or forgotten $.
-l.226 ...ges/alignment_phi-galore_microbench.pdf }
-                                                  
-! Missing $ inserted.
-<inserted text> 
-                $
-l.227 ...: alignment\_phi-galore\_microbench.pdf)}
-                                                  
-! Missing } inserted.
-<inserted text> 
-                }
-l.228 \end{figure}
-                  
-[6]
-
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.233 \begin{figure}[H]
-                       
-! Undefined control sequence.
-l.235 \includegraphics
-                      [width=0.7\linewidth]{ images/training_loss_navierstok...
-
-! Missing number, treated as zero.
-<to be read again> 
-                   ]
-l.235 \includegraphics[width=0.7\linewidth]
-                                           { images/training_loss_navierstok...
-
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   ]
-l.235 \includegraphics[width=0.7\linewidth]
-                                           { images/training_loss_navierstok...
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.235 ...cs[width=0.7\linewidth]{ images/training_
-                                                  loss_navierstokes.pdf }
-! Extra }, or forgotten $.
-l.235 ...{ images/training_loss_navierstokes.pdf }
-                                                  
-! Missing $ inserted.
-<inserted text> 
-                $
-l.236 ...ename: training\_loss\_navierstokes.pdf)}
-                                                  
-
-Underfull \hbox (badness 10000) in paragraph at lines 236--236
+Underfull \vbox (badness 10000) has occurred while \output is active [7
+pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.232 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.232 
+       <./images/training_loss_microbench.pdf> <./images/gradient_srank_microbe
+nch.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 245--245
 []\T1/ptm/m/n/10 (+20) Figure 5: []Training loss on toy Navier-Stokes across va
 ri-ants (file-name: train-
-! Missing } inserted.
-<inserted text> 
-                }
-l.237 \end{figure}
-                  
 
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 \begin{figure}[H]
-                       
-! Undefined control sequence.
-l.241 \includegraphics
-                      [width=0.7\linewidth]{ images/rL2_navierstokes.pdf }
-! Missing number, treated as zero.
-<to be read again> 
-                   ]
-l.241 \includegraphics[width=0.7\linewidth]
-                                           { images/rL2_navierstokes.pdf }
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   ]
-l.241 \includegraphics[width=0.7\linewidth]
-                                           { images/rL2_navierstokes.pdf }
-! Missing $ inserted.
-<inserted text> 
-                $
-l.241 ...raphics[width=0.7\linewidth]{ images/rL2_
-                                                  navierstokes.pdf }
-! Extra }, or forgotten $.
-l.241 ...linewidth]{ images/rL2_navierstokes.pdf }
-                                                  
-! Missing $ inserted.
-<inserted text> 
-                $
-l.242 ...itions (filename: rL2\_navierstokes.pdf)}
-                                                  
-! Missing } inserted.
-<inserted text> 
-                }
-l.243 \end{figure}
-                  
-
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.245 \begin{figure}[H]
-                       
-! Undefined control sequence.
-l.247 \includegraphics
-                      [width=0.7\linewidth]{ images/divergence_norm_navierst...
-
-! Missing number, treated as zero.
-<to be read again> 
-                   ]
-l.247 \includegraphics[width=0.7\linewidth]
-                                           { images/divergence_norm_navierst...
-
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   ]
-l.247 \includegraphics[width=0.7\linewidth]
-                                           { images/divergence_norm_navierst...
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.247 ...[width=0.7\linewidth]{ images/divergence_
-                                                  norm_navierstokes.pdf }
-! Extra }, or forgotten $.
-l.247 ...images/divergence_norm_navierstokes.pdf }
-                                                  
-! Missing $ inserted.
-<inserted text> 
-                $
-l.248 ...ame: divergence\_norm\_navierstokes.pdf)}
-                                                  
-
-Underfull \hbox (badness 2134) in paragraph at lines 248--248
+Underfull \vbox (badness 10000) has occurred while \output is active [8
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.247 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.247 
+       <./images/projection_overhead_microbench.pdf> <./images/alignment_phi-ga
+lore_microbench.pdf>]
+Underfull \hbox (badness 2134) in paragraph at lines 257--257
 []\T1/ptm/m/n/10 (+20) Figure 7: []Divergence norm on Navier-Stokes un-der clea
 n con-di-tions (file-name: di-ver-
-! Missing } inserted.
-<inserted text> 
-                }
-l.249 \end{figure}
-                  
 
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.254 \begin{figure}[H]
-                       
-! Undefined control sequence.
-l.256 \includegraphics
-                      [width=0.7\linewidth]{ images/training_loss_molecular....
-
-! Missing number, treated as zero.
-<to be read again> 
-                   ]
-l.256 \includegraphics[width=0.7\linewidth]
-                                           { images/training_loss_molecular....
-
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   ]
-l.256 \includegraphics[width=0.7\linewidth]
-                                           { images/training_loss_molecular....
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.256 ...cs[width=0.7\linewidth]{ images/training_
-                                                  loss_molecular.pdf }
-! Extra }, or forgotten $.
-l.256 ...th]{ images/training_loss_molecular.pdf }
-                                                  
-! Missing $ inserted.
-<inserted text> 
-                $
-l.257 ...filename: training\_loss\_molecular.pdf)}
-                                                  
-
-Underfull \hbox (badness 2368) in paragraph at lines 257--257
+Underfull \vbox (badness 10000) has occurred while \output is active [9
+pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.259 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.6}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.259 
+       <./images/training_loss_navierstokes.pdf> <./images/rL2_navierstokes.pdf
+>]
+Underfull \hbox (badness 2368) in paragraph at lines 266--266
 []\T1/ptm/m/n/10 (+20) Figure 8: []Training loss on toy molec-u-lar re-gres-sio
 n across meth-ods (file-name: train-
-! Missing } inserted.
-<inserted text> 
-                }
-l.258 \end{figure}
-                  
 
-! LaTeX Error: Unknown float option `H'.
+Underfull \vbox (badness 10000) has occurred while \output is active [10
+pdfTeX warning (ext4): destination with the same identifier (name{figure.7}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.274 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.8}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.274 
+       <./images/divergence_norm_navierstokes.pdf> <./images/training_loss_mole
+cular.pdf>]
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.260 \begin{figure}[H]
-                       
-! Undefined control sequence.
-l.262 \includegraphics
-                      [width=0.7\linewidth]{ images/projection_overhead_mole...
-
-! Missing number, treated as zero.
-<to be read again> 
-                   ]
-l.262 \includegraphics[width=0.7\linewidth]
-                                           { images/projection_overhead_mole...
-
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   ]
-l.262 \includegraphics[width=0.7\linewidth]
-                                           { images/projection_overhead_mole...
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.262 ...[width=0.7\linewidth]{ images/projection_
-                                                  overhead_molecular.pdf }
-! Extra }, or forgotten $.
-l.262 ...mages/projection_overhead_molecular.pdf }
-                                                  
-! Missing $ inserted.
-<inserted text> 
-                $
-l.263 ...me: projection\_overhead\_molecular.pdf)}
-                                                  
-! Missing } inserted.
-<inserted text> 
-                }
-l.264 \end{figure}
-                  
-
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.266 \begin{figure}[H]
-                       
-! Undefined control sequence.
-l.268 \includegraphics
-                      [width=0.7\linewidth]{ images/mae_molecular.pdf }
-! Missing number, treated as zero.
-<to be read again> 
-                   ]
-l.268 \includegraphics[width=0.7\linewidth]
-                                           { images/mae_molecular.pdf }
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   ]
-l.268 \includegraphics[width=0.7\linewidth]
-                                           { images/mae_molecular.pdf }
-! Missing $ inserted.
-<inserted text> 
-                $
-l.268 ...raphics[width=0.7\linewidth]{ images/mae_
-                                                  molecular.pdf }
-! Extra }, or forgotten $.
-l.268 ....7\linewidth]{ images/mae_molecular.pdf }
-                                                  
-! Missing $ inserted.
-<inserted text> 
-                $
-l.269 ...ate noise (filename: mae\_molecular.pdf)}
-                                                  
-! Missing } inserted.
-<inserted text> 
-                }
-l.270 \end{figure}
-                  
-
-Package natbib Warning: Citation `zhao-2024-galore' on page 7 undefined on inpu
-t line 273.
+Package natbib Warning: Citation `zhao-2024-galore' on page 11 undefined on inp
+ut line 282.
 
 
-Package natbib Warning: Citation `zhao-2024-galore' on page 7 undefined on inpu
-t line 276.
+Package natbib Warning: Citation `zhao-2024-galore' on page 11 undefined on inp
+ut line 285.
 
 
-Package natbib Warning: Citation `hao-2024-flora' on page 7 undefined on input 
-line 276.
+Package natbib Warning: Citation `hao-2024-flora' on page 11 undefined on input
+ line 285.
+
+[11
+pdfTeX warning (ext4): destination with the same identifier (name{figure.9}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.286 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.10}) h
+as been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.286 
+       <./images/projection_overhead_molecular.pdf> <./images/mae_molecular.pdf
+>]
+
+Package natbib Warning: Citation `zhao-2023-pinnsformer' on page 12 undefined o
+n input line 289.
 
 
-Package natbib Warning: Citation `zhao-2023-pinnsformer' on page 7 undefined on
- input line 280.
+Package natbib Warning: Citation `wu-2024-transolver' on page 12 undefined on i
+nput line 289.
 
 
-Package natbib Warning: Citation `wu-2024-transolver' on page 7 undefined on in
-put line 280.
+Package natbib Warning: Citation `chen-2024-geomformer' on page 12 undefined on
+ input line 289.
 
 
-Package natbib Warning: Citation `chen-2024-geomformer' on page 7 undefined on 
-input line 280.
+Package natbib Warning: Citation `alkin-2024-universal' on page 12 undefined on
+ input line 289.
 
 
-Package natbib Warning: Citation `alkin-2024-universal' on page 7 undefined on 
-input line 280.
+Package natbib Warning: Citation `bryutkin-2024-hamlet' on page 12 undefined on
+ input line 289.
 
 
-Package natbib Warning: Citation `bryutkin-2024-hamlet' on page 7 undefined on 
-input line 280.
-
-
-Package natbib Warning: Citation `hao-2024-flora' on page 7 undefined on input 
-line 280.
+Package natbib Warning: Citation `hao-2024-flora' on page 12 undefined on input
+ line 289.
 
 No file paper.bbl.
 
 Package natbib Warning: There were undefined citations.
 
-[7] [8] (./paper.aux)
+[12] (./paper.aux)
 kpathsea: Running mktexpk --mfmode / --bdpi 600 --mag 1+0/600 --dpi 600 ectt1000
 mktexpk: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1+0/600; nonstopmode; input ectt1000
 This is METAFONT, Version 2.71828182 (TeX Live 2023/Debian) (preloaded base=mf)
@@ -1172,7 +714,7 @@ m/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
 usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/te
 xlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dis
 t/fonts/type1/urw/times/utmr8a.pfb>
-Output written on paper.pdf (8 pages, 165672 bytes).
+Output written on paper.pdf (12 pages, 277773 bytes).
 Transcript written on paper.log.
 This is BibTeX, Version 0.99d (TeX Live 2023/Debian)
 The top-level auxiliary file: paper.aux
@@ -1243,6 +785,12 @@ Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
 (/usr/share/texlive/texmf-dist/tex/latex/units/nicefrac.sty
 (/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty))
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
@@ -1252,7 +800,18 @@ Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
 (/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
-(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)))
+(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/algorithms/algorithm.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty
+(/usr/share/texlive/texmf-dist/tex/latex/algorithmicx/algorithmicx.sty
+Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
+)
+Document Style - pseudocode environments for use with the `algorithmicx' style
+) (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
 (./paper.aux)
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1324,7 +883,9 @@ Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg)
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
@@ -1332,68 +893,68 @@ Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd)
 
 Package natbib Warning: Citation `zhao-2024-galore' on page 1 undefined on inpu
-t line 79.
+t line 88.
 
 
 Package natbib Warning: Citation `hao-2024-flora' on page 1 undefined on input 
-line 79.
+line 88.
 
 
 Package natbib Warning: Citation `zhao-2023-pinnsformer' on page 1 undefined on
- input line 79.
+ input line 88.
 
 
 Package natbib Warning: Citation `wu-2024-transolver' on page 1 undefined on in
-put line 79.
+put line 88.
 
 
 Package natbib Warning: Citation `chen-2024-geomformer' on page 1 undefined on 
-input line 79.
+input line 88.
 
 
 Package natbib Warning: Citation `alkin-2024-universal' on page 1 undefined on 
-input line 79.
+input line 88.
 
 
 Package natbib Warning: Citation `bryutkin-2024-hamlet' on page 1 undefined on 
-input line 79.
+input line 88.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd)
 
 Package natbib Warning: Citation `zhao-2023-pinnsformer' on page 1 undefined on
- input line 86.
+ input line 95.
 
 
 Package natbib Warning: Citation `wu-2024-transolver' on page 1 undefined on in
-put line 86.
+put line 95.
 
 
 Package natbib Warning: Citation `chen-2024-positional' on page 1 undefined on 
-input line 86.
+input line 95.
 
 
 Package natbib Warning: Citation `alkin-2024-universal' on page 1 undefined on 
-input line 86.
+input line 95.
 
 
 Package natbib Warning: Citation `bryutkin-2024-hamlet' on page 1 undefined on 
-input line 86.
+input line 95.
 
 
 Package natbib Warning: Citation `chen-2024-geomformer' on page 1 undefined on 
-input line 86.
+input line 95.
 
 
 Package natbib Warning: Citation `luo-2022-one' on page 1 undefined on input li
-ne 86.
+ne 95.
 
 
 Package natbib Warning: Citation `rong-2020-self' on page 1 undefined on input 
-line 86.
+line 95.
 
 
 Package natbib Warning: Citation `zhao-2024-galore' on page 1 undefined on inpu
-t line 89.
+t line 98.
 
 
 Underfull \vbox (badness 1237) has occurred while \output is active [1{/var/lib
@@ -1401,904 +962,423 @@ Underfull \vbox (badness 1237) has occurred while \output is active [1{/var/lib
 enc/dvips/base/8r.enc}]
 
 Package natbib Warning: Citation `feinberg-2023-sketchy' on page 2 undefined on
- input line 91.
+ input line 100.
 
 
 Package natbib Warning: Citation `jin-2023-understanding' on page 2 undefined o
-n input line 91.
+n input line 100.
 
 
 Package natbib Warning: Citation `li-2020-towards' on page 2 undefined on input
- line 91.
+ line 100.
 
 
 Package natbib Warning: Citation `hao-2024-flora' on page 2 undefined on input 
-line 94.
+line 103.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
 
 Package natbib Warning: Citation `hao-2024-flora' on page 2 undefined on input 
-line 102.
+line 111.
 
 
 Package natbib Warning: Citation `zhao-2024-galore' on page 2 undefined on inpu
-t line 107.
+t line 116.
 
 
 Package natbib Warning: Citation `hao-2024-flora' on page 2 undefined on input 
-line 107.
+line 116.
 
 
 Package natbib Warning: Citation `zhao-2023-pinnsformer' on page 2 undefined on
- input line 107.
+ input line 116.
 
 
 Package natbib Warning: Citation `wu-2024-transolver' on page 2 undefined on in
-put line 107.
+put line 116.
 
 
 Package natbib Warning: Citation `chen-2024-geomformer' on page 2 undefined on 
-input line 107.
+input line 116.
 
 
 Package natbib Warning: Citation `alkin-2024-universal' on page 2 undefined on 
-input line 107.
+input line 116.
 
 
 Package natbib Warning: Citation `bryutkin-2024-hamlet' on page 2 undefined on 
-input line 107.
+input line 116.
 
 [2]
 
 Package natbib Warning: Citation `zhao-2024-galore' on page 3 undefined on inpu
-t line 110.
+t line 119.
 
 
 Package natbib Warning: Citation `guo-2023-lora' on page 3 undefined on input l
-ine 112.
+ine 121.
 
 
 Package natbib Warning: Citation `liu-2024-dora' on page 3 undefined on input l
-ine 112.
+ine 121.
 
 
 Package natbib Warning: Citation `lialin-2023-relora' on page 3 undefined on in
-put line 112.
+put line 121.
 
 
 Package natbib Warning: Citation `pan-2024-lisa' on page 3 undefined on input l
-ine 112.
+ine 121.
 
 
 Package natbib Warning: Citation `biderman-2024-lora' on page 3 undefined on in
-put line 112.
+put line 121.
 
 
 Package natbib Warning: Citation `hao-2024-flora' on page 3 undefined on input 
-line 112.
+line 121.
 
 
 Package natbib Warning: Citation `feinberg-2023-sketchy' on page 3 undefined on
- input line 114.
+ input line 123.
 
 
 Package natbib Warning: Citation `jin-2023-understanding' on page 3 undefined o
-n input line 114.
+n input line 123.
 
 
 Package natbib Warning: Citation `li-2020-towards' on page 3 undefined on input
- line 114.
+ line 123.
 
 
 Package natbib Warning: Citation `zhao-2023-pinnsformer' on page 3 undefined on
- input line 116.
+ input line 125.
 
 
 Package natbib Warning: Citation `wu-2024-transolver' on page 3 undefined on in
-put line 116.
+put line 125.
 
 
 Package natbib Warning: Citation `chen-2024-positional' on page 3 undefined on 
-input line 116.
+input line 125.
 
 
 Package natbib Warning: Citation `alkin-2024-universal' on page 3 undefined on 
-input line 116.
+input line 125.
 
 
 Package natbib Warning: Citation `bryutkin-2024-hamlet' on page 3 undefined on 
-input line 116.
+input line 125.
 
 
 Package natbib Warning: Citation `chen-2024-geomformer' on page 3 undefined on 
-input line 116.
+input line 125.
 
 
 Package natbib Warning: Citation `luo-2022-one' on page 3 undefined on input li
-ne 116.
+ne 125.
 
 
 Package natbib Warning: Citation `rong-2020-self' on page 3 undefined on input 
-line 116.
+line 125.
 
 
 Package natbib Warning: Citation `zhao-2024-galore' on page 3 undefined on inpu
-t line 118.
+t line 127.
 
 
 Package natbib Warning: Citation `guo-2023-lora' on page 3 undefined on input l
-ine 118.
+ine 127.
 
 
 Package natbib Warning: Citation `liu-2024-dora' on page 3 undefined on input l
-ine 118.
+ine 127.
 
 
 Package natbib Warning: Citation `lialin-2023-relora' on page 3 undefined on in
-put line 118.
+put line 127.
 
 
 Package natbib Warning: Citation `pan-2024-lisa' on page 3 undefined on input l
-ine 118.
+ine 127.
 
 
 Package natbib Warning: Citation `biderman-2024-lora' on page 3 undefined on in
-put line 118.
+put line 127.
 
 
 Package natbib Warning: Citation `hao-2024-flora' on page 3 undefined on input 
-line 118.
+line 127.
 
 
 Package natbib Warning: Citation `zhao-2024-galore' on page 3 undefined on inpu
-t line 122.
+t line 131.
 
 
 Package natbib Warning: Citation `zhao-2024-galore' on page 3 undefined on inpu
-t line 125.
+t line 134.
 
 
 Underfull \vbox (badness 2635) has occurred while \output is active [3]
 
 Package natbib Warning: Citation `feinberg-2023-sketchy' on page 4 undefined on
- input line 128.
+ input line 137.
 
 
 Package natbib Warning: Citation `chen-2024-geomformer' on page 4 undefined on 
-input line 131.
+input line 140.
 
 
 Package natbib Warning: Citation `zhao-2023-pinnsformer' on page 4 undefined on
- input line 131.
+ input line 140.
 
 
 Package natbib Warning: Citation `wu-2024-transolver' on page 4 undefined on in
-put line 131.
+put line 140.
 
 
 Package natbib Warning: Citation `chen-2024-positional' on page 4 undefined on 
-input line 131.
+input line 140.
 
 
 Package natbib Warning: Citation `alkin-2024-universal' on page 4 undefined on 
-input line 131.
+input line 140.
 
 
 Package natbib Warning: Citation `bryutkin-2024-hamlet' on page 4 undefined on 
-input line 131.
+input line 140.
 
 
 Package natbib Warning: Citation `feinberg-2023-sketchy' on page 4 undefined on
- input line 134.
+ input line 143.
 
 
 Package natbib Warning: Citation `jin-2023-understanding' on page 4 undefined o
-n input line 134.
+n input line 143.
 
 
 Package natbib Warning: Citation `li-2020-towards' on page 4 undefined on input
- line 134.
+ line 143.
 
 
 Package natbib Warning: Citation `alkin-2024-universal' on page 4 undefined on 
-input line 137.
+input line 146.
 
 
 Package natbib Warning: Citation `bryutkin-2024-hamlet' on page 4 undefined on 
-input line 137.
+input line 146.
 
 
 Package natbib Warning: Citation `chen-2024-geomformer' on page 4 undefined on 
-input line 137.
+input line 146.
 
 [4]
 
 Package natbib Warning: Citation `hao-2024-flora' on page 5 undefined on input 
-line 152.
+line 161.
 
 
 Package natbib Warning: Citation `zhao-2024-galore' on page 5 undefined on inpu
-t line 152.
+t line 161.
 
 
 Package natbib Warning: Citation `feinberg-2023-sketchy' on page 5 undefined on
- input line 155.
+ input line 164.
 
 
 Package natbib Warning: Citation `zhao-2023-pinnsformer' on page 5 undefined on
- input line 155.
+ input line 164.
 
 
 Package natbib Warning: Citation `wu-2024-transolver' on page 5 undefined on in
-put line 155.
+put line 164.
 
 
 Package natbib Warning: Citation `chen-2024-geomformer' on page 5 undefined on 
-input line 155.
-
-
-! LaTeX Error: Environment algorithm undefined.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.157 \begin{algorithm}
-                       
-
-! LaTeX Error: \caption outside float.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.158 \caption
-              {Phi-GaLore: per-step procedure with periodic refresh}
-
-! LaTeX Error: Environment algorithmic undefined.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.159 \begin{algorithmic}
-                         
-! Undefined control sequence.
-l.160 \State
-             Inputs: gradients $\{G^{(\ell)}\}$, groups $\mathcal{G}$, rank ...
-
-! Undefined control sequence.
-l.161 \For
-          {each group $g\in\mathcal{G}$}
-! Undefined control sequence.
-l.162   \If
-           {first parameter in $g$ encountered}
-! Undefined control sequence.
-l.163     \State
-                 Compute two-sided CountSketch core: $\tilde{G}^{(g)}\leftar...
-
-! Undefined control sequence.
-l.164     \State
-                 EMA update: $\tilde{G}^{(g)}_{\mathrm{ema}}\leftarrow \alph...
-
-! Undefined control sequence.
-l.165   \EndIf
-              
-! Undefined control sequence.
-l.166   \If
-           {step \% $T=0$}
-! Undefined control sequence.
-l.167     \State
-                 $C\leftarrow \tilde{G}^{(g)}_{\mathrm{ema}}\tilde{G}^{(g)}_...
+input line 164.
 
 ! Double superscript.
-l.167 ...thrm{ema}}\tilde{G}^{(g)}_{\mathrm{ema}}^
+l.176 ...thrm{ema}}\tilde{G}^{(g)}_{\mathrm{ema}}^
                                                   {\top}$; $[U,\Sigma]\lefta...
 
-! Undefined control sequence.
-l.167 ...ma}}^{\top}$; $[U,\Sigma]\leftarrow \text
-                                                  {SVD}(C)$
-! Undefined control sequence.
-l.168     \State
-                 $U_{\mathrm{sketch}}\leftarrow U[:,1{:}k]$; lift to row spa...
-
-! Undefined control sequence.
-l.168 ...ce: $P_{\mathrm{learned}}\leftarrow \text
-                                                  {Unsketch}(U_{\mathrm{sket...
-
-! Undefined control sequence.
-l.169     \State
-                 Orthonormalize: $Q\leftarrow \text{QR}(P_{\mathrm{learned}})$
-! Undefined control sequence.
-l.169 ...\State Orthonormalize: $Q\leftarrow \text
-                                                  {QR}(P_{\mathrm{learned}})$
-! Undefined control sequence.
-l.170     \State
-                 Optional physics basis $B$; concatenate $[Q, B]$ and re-ort...
-
-! Undefined control sequence.
-l.171   \EndIf
-              
-! Undefined control sequence.
-l.172   \For
-            {each parameter matrix $W^{(\ell)}$ in group $g$}
-! Undefined control sequence.
-l.173     \If
-             {$\text{size}(W^{(\ell)})$ above threshold}
-! Undefined control sequence.
-<recently read> \text 
-                      
-l.173     \If{$\text
-                    {size}(W^{(\ell)})$ above threshold}
-! Undefined control sequence.
-l.174       \State
-                   Project gradient: $G^{(\ell)}\leftarrow P^{(g)} (P^{(g)\t...
-
-! Undefined control sequence.
-l.175     \EndIf
-                
-! Undefined control sequence.
-l.176   \EndFor
-               
-! Undefined control sequence.
-l.177 \EndFor
-             
-! Undefined control sequence.
-l.178 \State
-             Call base optimizer step (e.g., AdamW) on updated gradients
-
-! LaTeX Error: \begin{document} ended by \end{algorithmic}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.179 \end{algorithmic}
-                       
-
-! LaTeX Error: \begin{document} ended by \end{algorithm}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.180 \end{algorithm}
-                     
 [5]
 
 Package natbib Warning: Citation `zhao-2024-galore' on page 6 undefined on inpu
-t line 195.
+t line 204.
 
 
 Package natbib Warning: Citation `guo-2023-lora' on page 6 undefined on input l
-ine 195.
+ine 204.
 
 
 Package natbib Warning: Citation `liu-2024-dora' on page 6 undefined on input l
-ine 195.
+ine 204.
 
 
 Package natbib Warning: Citation `lialin-2023-relora' on page 6 undefined on in
-put line 195.
+put line 204.
 
 
 Package natbib Warning: Citation `pan-2024-lisa' on page 6 undefined on input l
-ine 195.
+ine 204.
 
 
 Package natbib Warning: Citation `hao-2024-flora' on page 6 undefined on input 
-line 195.
+line 204.
 
 
 Package natbib Warning: Citation `zhao-2023-pinnsformer' on page 6 undefined on
- input line 198.
+ input line 207.
 
 
 Package natbib Warning: Citation `wu-2024-transolver' on page 6 undefined on in
-put line 198.
+put line 207.
 
 
 Package natbib Warning: Citation `alkin-2024-universal' on page 6 undefined on 
-input line 198.
+input line 207.
 
 
 Package natbib Warning: Citation `bryutkin-2024-hamlet' on page 6 undefined on 
-input line 198.
+input line 207.
 
 
 Package natbib Warning: Citation `chen-2024-geomformer' on page 6 undefined on 
-input line 198.
+input line 207.
 
 
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.206 \begin{figure}[H]
-                       
-! Undefined control sequence.
-l.208 \includegraphics
-                      [width=0.7\linewidth]{ images/training_loss_microbench...
-
-! Missing number, treated as zero.
-<to be read again> 
-                   ]
-l.208 \includegraphics[width=0.7\linewidth]
-                                           { images/training_loss_microbench...
-
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   ]
-l.208 \includegraphics[width=0.7\linewidth]
-                                           { images/training_loss_microbench...
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.208 ...cs[width=0.7\linewidth]{ images/training_
-                                                  loss_microbench.pdf }
-! Extra }, or forgotten $.
-l.208 ...h]{ images/training_loss_microbench.pdf }
-                                                  
-! Missing $ inserted.
-<inserted text> 
-                $
-l.209 ...ilename: training\_loss\_microbench.pdf)}
-                                                  
-! Missing } inserted.
-<inserted text> 
-                }
-l.210 \end{figure}
-                  
-
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.212 \begin{figure}[H]
-                       
-! Undefined control sequence.
-l.214 \includegraphics
-                      [width=0.7\linewidth]{ images/gradient_srank_microbenc...
-
-! Missing number, treated as zero.
-<to be read again> 
-                   ]
-l.214 \includegraphics[width=0.7\linewidth]
-                                           { images/gradient_srank_microbenc...
-
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   ]
-l.214 \includegraphics[width=0.7\linewidth]
-                                           { images/gradient_srank_microbenc...
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.214 ...cs[width=0.7\linewidth]{ images/gradient_
-                                                  srank_microbench.pdf }
-! Extra }, or forgotten $.
-l.214 ...]{ images/gradient_srank_microbench.pdf }
-                                                  
-! Missing $ inserted.
-<inserted text> 
-                $
-l.215 ...lename: gradient\_srank\_microbench.pdf)}
-                                                  
-
-Underfull \hbox (badness 2285) in paragraph at lines 215--215
+Underfull \vbox (badness 1158) has occurred while \output is active [6]
+Underfull \hbox (badness 2285) in paragraph at lines 224--224
 []\T1/ptm/m/n/10 (+20) Figure 2: []Gradient stable-rank di-ag-nos-tics on micro
 -bench snap-shots (file-name: gra-di-
-! Missing } inserted.
-<inserted text> 
-                }
-l.216 \end{figure}
-                  
 
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.218 \begin{figure}[H]
-                       
-! Undefined control sequence.
-l.220 \includegraphics
-                      [width=0.7\linewidth]{ images/projection_overhead_micr...
-
-! Missing number, treated as zero.
-<to be read again> 
-                   ]
-l.220 \includegraphics[width=0.7\linewidth]
-                                           { images/projection_overhead_micr...
-
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   ]
-l.220 \includegraphics[width=0.7\linewidth]
-                                           { images/projection_overhead_micr...
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.220 ...[width=0.7\linewidth]{ images/projection_
-                                                  overhead_microbench.pdf }
-! Extra }, or forgotten $.
-l.220 ...ages/projection_overhead_microbench.pdf }
-                                                  
-! Missing $ inserted.
-<inserted text> 
-                $
-l.221 ...e: projection\_overhead\_microbench.pdf)}
-                                                  
-
-Underfull \hbox (badness 1688) in paragraph at lines 221--221
+Underfull \hbox (badness 1688) in paragraph at lines 230--230
 []\T1/ptm/m/n/10 (+20) Figure 3: []Projection over-head on micro-bench per step
  and method (file-name: pro-jec-
-! Missing } inserted.
-<inserted text> 
-                }
-l.222 \end{figure}
-                  
 
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.224 \begin{figure}[H]
-                       
-! Undefined control sequence.
-l.226 \includegraphics
-                      [width=0.7\linewidth]{ images/alignment_phi-galore_mic...
-
-! Missing number, treated as zero.
-<to be read again> 
-                   ]
-l.226 \includegraphics[width=0.7\linewidth]
-                                           { images/alignment_phi-galore_mic...
-
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   ]
-l.226 \includegraphics[width=0.7\linewidth]
-                                           { images/alignment_phi-galore_mic...
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.226 ...s[width=0.7\linewidth]{ images/alignment_
-                                                  phi-galore_microbench.pdf }
-! Extra }, or forgotten $.
-l.226 ...ges/alignment_phi-galore_microbench.pdf }
-                                                  
-! Missing $ inserted.
-<inserted text> 
-                $
-l.227 ...: alignment\_phi-galore\_microbench.pdf)}
-                                                  
-! Missing } inserted.
-<inserted text> 
-                }
-l.228 \end{figure}
-                  
-[6]
-
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.233 \begin{figure}[H]
-                       
-! Undefined control sequence.
-l.235 \includegraphics
-                      [width=0.7\linewidth]{ images/training_loss_navierstok...
-
-! Missing number, treated as zero.
-<to be read again> 
-                   ]
-l.235 \includegraphics[width=0.7\linewidth]
-                                           { images/training_loss_navierstok...
-
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   ]
-l.235 \includegraphics[width=0.7\linewidth]
-                                           { images/training_loss_navierstok...
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.235 ...cs[width=0.7\linewidth]{ images/training_
-                                                  loss_navierstokes.pdf }
-! Extra }, or forgotten $.
-l.235 ...{ images/training_loss_navierstokes.pdf }
-                                                  
-! Missing $ inserted.
-<inserted text> 
-                $
-l.236 ...ename: training\_loss\_navierstokes.pdf)}
-                                                  
-
-Underfull \hbox (badness 10000) in paragraph at lines 236--236
+Underfull \vbox (badness 10000) has occurred while \output is active [7
+pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.232 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.232 
+       <./images/training_loss_microbench.pdf> <./images/gradient_srank_microbe
+nch.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 245--245
 []\T1/ptm/m/n/10 (+20) Figure 5: []Training loss on toy Navier-Stokes across va
 ri-ants (file-name: train-
-! Missing } inserted.
-<inserted text> 
-                }
-l.237 \end{figure}
-                  
 
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 \begin{figure}[H]
-                       
-! Undefined control sequence.
-l.241 \includegraphics
-                      [width=0.7\linewidth]{ images/rL2_navierstokes.pdf }
-! Missing number, treated as zero.
-<to be read again> 
-                   ]
-l.241 \includegraphics[width=0.7\linewidth]
-                                           { images/rL2_navierstokes.pdf }
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   ]
-l.241 \includegraphics[width=0.7\linewidth]
-                                           { images/rL2_navierstokes.pdf }
-! Missing $ inserted.
-<inserted text> 
-                $
-l.241 ...raphics[width=0.7\linewidth]{ images/rL2_
-                                                  navierstokes.pdf }
-! Extra }, or forgotten $.
-l.241 ...linewidth]{ images/rL2_navierstokes.pdf }
-                                                  
-! Missing $ inserted.
-<inserted text> 
-                $
-l.242 ...itions (filename: rL2\_navierstokes.pdf)}
-                                                  
-! Missing } inserted.
-<inserted text> 
-                }
-l.243 \end{figure}
-                  
-
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.245 \begin{figure}[H]
-                       
-! Undefined control sequence.
-l.247 \includegraphics
-                      [width=0.7\linewidth]{ images/divergence_norm_navierst...
-
-! Missing number, treated as zero.
-<to be read again> 
-                   ]
-l.247 \includegraphics[width=0.7\linewidth]
-                                           { images/divergence_norm_navierst...
-
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   ]
-l.247 \includegraphics[width=0.7\linewidth]
-                                           { images/divergence_norm_navierst...
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.247 ...[width=0.7\linewidth]{ images/divergence_
-                                                  norm_navierstokes.pdf }
-! Extra }, or forgotten $.
-l.247 ...images/divergence_norm_navierstokes.pdf }
-                                                  
-! Missing $ inserted.
-<inserted text> 
-                $
-l.248 ...ame: divergence\_norm\_navierstokes.pdf)}
-                                                  
-
-Underfull \hbox (badness 2134) in paragraph at lines 248--248
+Underfull \vbox (badness 10000) has occurred while \output is active [8
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.247 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.247 
+       <./images/projection_overhead_microbench.pdf> <./images/alignment_phi-ga
+lore_microbench.pdf>]
+Underfull \hbox (badness 2134) in paragraph at lines 257--257
 []\T1/ptm/m/n/10 (+20) Figure 7: []Divergence norm on Navier-Stokes un-der clea
 n con-di-tions (file-name: di-ver-
-! Missing } inserted.
-<inserted text> 
-                }
-l.249 \end{figure}
-                  
 
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.254 \begin{figure}[H]
-                       
-! Undefined control sequence.
-l.256 \includegraphics
-                      [width=0.7\linewidth]{ images/training_loss_molecular....
-
-! Missing number, treated as zero.
-<to be read again> 
-                   ]
-l.256 \includegraphics[width=0.7\linewidth]
-                                           { images/training_loss_molecular....
-
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   ]
-l.256 \includegraphics[width=0.7\linewidth]
-                                           { images/training_loss_molecular....
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.256 ...cs[width=0.7\linewidth]{ images/training_
-                                                  loss_molecular.pdf }
-! Extra }, or forgotten $.
-l.256 ...th]{ images/training_loss_molecular.pdf }
-                                                  
-! Missing $ inserted.
-<inserted text> 
-                $
-l.257 ...filename: training\_loss\_molecular.pdf)}
-                                                  
-
-Underfull \hbox (badness 2368) in paragraph at lines 257--257
+Underfull \vbox (badness 10000) has occurred while \output is active [9
+pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.259 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.6}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.259 
+       <./images/training_loss_navierstokes.pdf> <./images/rL2_navierstokes.pdf
+>]
+Underfull \hbox (badness 2368) in paragraph at lines 266--266
 []\T1/ptm/m/n/10 (+20) Figure 8: []Training loss on toy molec-u-lar re-gres-sio
 n across meth-ods (file-name: train-
-! Missing } inserted.
-<inserted text> 
-                }
-l.258 \end{figure}
-                  
 
-! LaTeX Error: Unknown float option `H'.
+Underfull \vbox (badness 10000) has occurred while \output is active [10
+pdfTeX warning (ext4): destination with the same identifier (name{figure.7}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.274 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.8}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.274 
+       <./images/divergence_norm_navierstokes.pdf> <./images/training_loss_mole
+cular.pdf>]
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.260 \begin{figure}[H]
-                       
-! Undefined control sequence.
-l.262 \includegraphics
-                      [width=0.7\linewidth]{ images/projection_overhead_mole...
-
-! Missing number, treated as zero.
-<to be read again> 
-                   ]
-l.262 \includegraphics[width=0.7\linewidth]
-                                           { images/projection_overhead_mole...
-
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   ]
-l.262 \includegraphics[width=0.7\linewidth]
-                                           { images/projection_overhead_mole...
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.262 ...[width=0.7\linewidth]{ images/projection_
-                                                  overhead_molecular.pdf }
-! Extra }, or forgotten $.
-l.262 ...mages/projection_overhead_molecular.pdf }
-                                                  
-! Missing $ inserted.
-<inserted text> 
-                $
-l.263 ...me: projection\_overhead\_molecular.pdf)}
-                                                  
-! Missing } inserted.
-<inserted text> 
-                }
-l.264 \end{figure}
-                  
-
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.266 \begin{figure}[H]
-                       
-! Undefined control sequence.
-l.268 \includegraphics
-                      [width=0.7\linewidth]{ images/mae_molecular.pdf }
-! Missing number, treated as zero.
-<to be read again> 
-                   ]
-l.268 \includegraphics[width=0.7\linewidth]
-                                           { images/mae_molecular.pdf }
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   ]
-l.268 \includegraphics[width=0.7\linewidth]
-                                           { images/mae_molecular.pdf }
-! Missing $ inserted.
-<inserted text> 
-                $
-l.268 ...raphics[width=0.7\linewidth]{ images/mae_
-                                                  molecular.pdf }
-! Extra }, or forgotten $.
-l.268 ....7\linewidth]{ images/mae_molecular.pdf }
-                                                  
-! Missing $ inserted.
-<inserted text> 
-                $
-l.269 ...ate noise (filename: mae\_molecular.pdf)}
-                                                  
-! Missing } inserted.
-<inserted text> 
-                }
-l.270 \end{figure}
-                  
-
-Package natbib Warning: Citation `zhao-2024-galore' on page 7 undefined on inpu
-t line 273.
+Package natbib Warning: Citation `zhao-2024-galore' on page 11 undefined on inp
+ut line 282.
 
 
-Package natbib Warning: Citation `zhao-2024-galore' on page 7 undefined on inpu
-t line 276.
+Package natbib Warning: Citation `zhao-2024-galore' on page 11 undefined on inp
+ut line 285.
 
 
-Package natbib Warning: Citation `hao-2024-flora' on page 7 undefined on input 
-line 276.
+Package natbib Warning: Citation `hao-2024-flora' on page 11 undefined on input
+ line 285.
+
+[11
+pdfTeX warning (ext4): destination with the same identifier (name{figure.9}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.286 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.10}) h
+as been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.286 
+       <./images/projection_overhead_molecular.pdf> <./images/mae_molecular.pdf
+>]
+
+Package natbib Warning: Citation `zhao-2023-pinnsformer' on page 12 undefined o
+n input line 289.
 
 
-Package natbib Warning: Citation `zhao-2023-pinnsformer' on page 7 undefined on
- input line 280.
+Package natbib Warning: Citation `wu-2024-transolver' on page 12 undefined on i
+nput line 289.
 
 
-Package natbib Warning: Citation `wu-2024-transolver' on page 7 undefined on in
-put line 280.
+Package natbib Warning: Citation `chen-2024-geomformer' on page 12 undefined on
+ input line 289.
 
 
-Package natbib Warning: Citation `chen-2024-geomformer' on page 7 undefined on 
-input line 280.
+Package natbib Warning: Citation `alkin-2024-universal' on page 12 undefined on
+ input line 289.
 
 
-Package natbib Warning: Citation `alkin-2024-universal' on page 7 undefined on 
-input line 280.
+Package natbib Warning: Citation `bryutkin-2024-hamlet' on page 12 undefined on
+ input line 289.
 
 
-Package natbib Warning: Citation `bryutkin-2024-hamlet' on page 7 undefined on 
-input line 280.
+Package natbib Warning: Citation `hao-2024-flora' on page 12 undefined on input
+ line 289.
 
-
-Package natbib Warning: Citation `hao-2024-flora' on page 7 undefined on input 
-line 280.
-
-(./paper.bbl [7]
-! Misplaced alignment tab character &.
-l.94 ...k One transformer can understand both 2d &
-                                                   3d molecular data.
-)
+(./paper.bbl [12])
 
 Package natbib Warning: There were undefined citations.
 
-[8] [9] (./paper.aux
+[13] (./paper.aux
 
 Package natbib Warning: Citation(s) may have changed.
 (natbib)                Rerun to get citations correct.
@@ -2318,7 +1398,7 @@ usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/te
 xlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dis
 t/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmri8a.pfb>
-Output written on paper.pdf (9 pages, 184478 bytes).
+Output written on paper.pdf (13 pages, 296695 bytes).
 Transcript written on paper.log.
 This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
  restricted \write18 enabled.
@@ -2368,6 +1448,12 @@ Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
 (/usr/share/texlive/texmf-dist/tex/latex/units/nicefrac.sty
 (/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty))
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
@@ -2377,7 +1463,18 @@ Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
 (/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
-(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)))
+(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/algorithms/algorithm.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty
+(/usr/share/texlive/texmf-dist/tex/latex/algorithmicx/algorithmicx.sty
+Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
+)
+Document Style - pseudocode environments for use with the `algorithmicx' style
+) (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
 (./paper.aux)
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -2449,7 +1546,9 @@ Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg)
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
+(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
@@ -2459,584 +1558,103 @@ Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
 ts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/
 base/8r.enc}] (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
 [2] [3] [4]
-
-! LaTeX Error: Environment algorithm undefined.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.157 \begin{algorithm}
-                       
-
-! LaTeX Error: \caption outside float.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.158 \caption
-              {Phi-GaLore: per-step procedure with periodic refresh}
-
-! LaTeX Error: Environment algorithmic undefined.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.159 \begin{algorithmic}
-                         
-! Undefined control sequence.
-l.160 \State
-             Inputs: gradients $\{G^{(\ell)}\}$, groups $\mathcal{G}$, rank ...
-
-! Undefined control sequence.
-l.161 \For
-          {each group $g\in\mathcal{G}$}
-! Undefined control sequence.
-l.162   \If
-           {first parameter in $g$ encountered}
-! Undefined control sequence.
-l.163     \State
-                 Compute two-sided CountSketch core: $\tilde{G}^{(g)}\leftar...
-
-! Undefined control sequence.
-l.164     \State
-                 EMA update: $\tilde{G}^{(g)}_{\mathrm{ema}}\leftarrow \alph...
-
-! Undefined control sequence.
-l.165   \EndIf
-              
-! Undefined control sequence.
-l.166   \If
-           {step \% $T=0$}
-! Undefined control sequence.
-l.167     \State
-                 $C\leftarrow \tilde{G}^{(g)}_{\mathrm{ema}}\tilde{G}^{(g)}_...
-
 ! Double superscript.
-l.167 ...thrm{ema}}\tilde{G}^{(g)}_{\mathrm{ema}}^
+l.176 ...thrm{ema}}\tilde{G}^{(g)}_{\mathrm{ema}}^
                                                   {\top}$; $[U,\Sigma]\lefta...
 
-! Undefined control sequence.
-l.167 ...ma}}^{\top}$; $[U,\Sigma]\leftarrow \text
-                                                  {SVD}(C)$
-! Undefined control sequence.
-l.168     \State
-                 $U_{\mathrm{sketch}}\leftarrow U[:,1{:}k]$; lift to row spa...
 
-! Undefined control sequence.
-l.168 ...ce: $P_{\mathrm{learned}}\leftarrow \text
-                                                  {Unsketch}(U_{\mathrm{sket...
-
-! Undefined control sequence.
-l.169     \State
-                 Orthonormalize: $Q\leftarrow \text{QR}(P_{\mathrm{learned}})$
-! Undefined control sequence.
-l.169 ...\State Orthonormalize: $Q\leftarrow \text
-                                                  {QR}(P_{\mathrm{learned}})$
-! Undefined control sequence.
-l.170     \State
-                 Optional physics basis $B$; concatenate $[Q, B]$ and re-ort...
-
-! Undefined control sequence.
-l.171   \EndIf
-              
-! Undefined control sequence.
-l.172   \For
-            {each parameter matrix $W^{(\ell)}$ in group $g$}
-! Undefined control sequence.
-l.173     \If
-             {$\text{size}(W^{(\ell)})$ above threshold}
-! Undefined control sequence.
-<recently read> \text 
-                      
-l.173     \If{$\text
-                    {size}(W^{(\ell)})$ above threshold}
-! Undefined control sequence.
-l.174       \State
-                   Project gradient: $G^{(\ell)}\leftarrow P^{(g)} (P^{(g)\t...
-
-! Undefined control sequence.
-l.175     \EndIf
-                
-! Undefined control sequence.
-l.176   \EndFor
-               
-! Undefined control sequence.
-l.177 \EndFor
-             
-! Undefined control sequence.
-l.178 \State
-             Call base optimizer step (e.g., AdamW) on updated gradients
-
-! LaTeX Error: \begin{document} ended by \end{algorithmic}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.179 \end{algorithmic}
-                       
-
-! LaTeX Error: \begin{document} ended by \end{algorithm}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.180 \end{algorithm}
-                     
-[5] [6]
-
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.206 \begin{figure}[H]
-                       
-! Undefined control sequence.
-l.208 \includegraphics
-                      [width=0.7\linewidth]{ images/training_loss_microbench...
-
-! Missing number, treated as zero.
-<to be read again> 
-                   ]
-l.208 \includegraphics[width=0.7\linewidth]
-                                           { images/training_loss_microbench...
-
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   ]
-l.208 \includegraphics[width=0.7\linewidth]
-                                           { images/training_loss_microbench...
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.208 ...cs[width=0.7\linewidth]{ images/training_
-                                                  loss_microbench.pdf }
-! Extra }, or forgotten $.
-l.208 ...h]{ images/training_loss_microbench.pdf }
-                                                  
-! Missing $ inserted.
-<inserted text> 
-                $
-l.209 ...ilename: training\_loss\_microbench.pdf)}
-                                                  
-! Missing } inserted.
-<inserted text> 
-                }
-l.210 \end{figure}
-                  
-
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.212 \begin{figure}[H]
-                       
-! Undefined control sequence.
-l.214 \includegraphics
-                      [width=0.7\linewidth]{ images/gradient_srank_microbenc...
-
-! Missing number, treated as zero.
-<to be read again> 
-                   ]
-l.214 \includegraphics[width=0.7\linewidth]
-                                           { images/gradient_srank_microbenc...
-
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   ]
-l.214 \includegraphics[width=0.7\linewidth]
-                                           { images/gradient_srank_microbenc...
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.214 ...cs[width=0.7\linewidth]{ images/gradient_
-                                                  srank_microbench.pdf }
-! Extra }, or forgotten $.
-l.214 ...]{ images/gradient_srank_microbench.pdf }
-                                                  
-! Missing $ inserted.
-<inserted text> 
-                $
-l.215 ...lename: gradient\_srank\_microbench.pdf)}
-                                                  
-
-Underfull \hbox (badness 2285) in paragraph at lines 215--215
+Underfull \vbox (badness 2142) has occurred while \output is active [5]
+[6]
+Underfull \hbox (badness 2285) in paragraph at lines 224--224
 []\T1/ptm/m/n/10 (+20) Figure 2: []Gradient stable-rank di-ag-nos-tics on micro
 -bench snap-shots (file-name: gra-di-
-! Missing } inserted.
-<inserted text> 
-                }
-l.216 \end{figure}
-                  
 
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.218 \begin{figure}[H]
-                       
-! Undefined control sequence.
-l.220 \includegraphics
-                      [width=0.7\linewidth]{ images/projection_overhead_micr...
-
-! Missing number, treated as zero.
-<to be read again> 
-                   ]
-l.220 \includegraphics[width=0.7\linewidth]
-                                           { images/projection_overhead_micr...
-
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   ]
-l.220 \includegraphics[width=0.7\linewidth]
-                                           { images/projection_overhead_micr...
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.220 ...[width=0.7\linewidth]{ images/projection_
-                                                  overhead_microbench.pdf }
-! Extra }, or forgotten $.
-l.220 ...ages/projection_overhead_microbench.pdf }
-                                                  
-! Missing $ inserted.
-<inserted text> 
-                $
-l.221 ...e: projection\_overhead\_microbench.pdf)}
-                                                  
-
-Underfull \hbox (badness 1688) in paragraph at lines 221--221
+Underfull \vbox (badness 10000) has occurred while \output is active [7
+pdfTeX warning (ext4): destination with the same identifier (name{figure.1}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.226 
+       <./images/training_loss_microbench.pdf>]
+Underfull \hbox (badness 1688) in paragraph at lines 230--230
 []\T1/ptm/m/n/10 (+20) Figure 3: []Projection over-head on micro-bench per step
  and method (file-name: pro-jec-
-! Missing } inserted.
-<inserted text> 
-                }
-l.222 \end{figure}
-                  
 
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.224 \begin{figure}[H]
-                       
-! Undefined control sequence.
-l.226 \includegraphics
-                      [width=0.7\linewidth]{ images/alignment_phi-galore_mic...
-
-! Missing number, treated as zero.
-<to be read again> 
-                   ]
-l.226 \includegraphics[width=0.7\linewidth]
-                                           { images/alignment_phi-galore_mic...
-
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   ]
-l.226 \includegraphics[width=0.7\linewidth]
-                                           { images/alignment_phi-galore_mic...
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.226 ...s[width=0.7\linewidth]{ images/alignment_
-                                                  phi-galore_microbench.pdf }
-! Extra }, or forgotten $.
-l.226 ...ges/alignment_phi-galore_microbench.pdf }
-                                                  
-! Missing $ inserted.
-<inserted text> 
-                $
-l.227 ...: alignment\_phi-galore\_microbench.pdf)}
-                                                  
-! Missing } inserted.
-<inserted text> 
-                }
-l.228 \end{figure}
-                  
-
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.233 \begin{figure}[H]
-                       
-! Undefined control sequence.
-l.235 \includegraphics
-                      [width=0.7\linewidth]{ images/training_loss_navierstok...
-
-! Missing number, treated as zero.
-<to be read again> 
-                   ]
-l.235 \includegraphics[width=0.7\linewidth]
-                                           { images/training_loss_navierstok...
-
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   ]
-l.235 \includegraphics[width=0.7\linewidth]
-                                           { images/training_loss_navierstok...
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.235 ...cs[width=0.7\linewidth]{ images/training_
-                                                  loss_navierstokes.pdf }
-! Extra }, or forgotten $.
-l.235 ...{ images/training_loss_navierstokes.pdf }
-                                                  
-! Missing $ inserted.
-<inserted text> 
-                $
-l.236 ...ename: training\_loss\_navierstokes.pdf)}
-                                                  
-
-Underfull \hbox (badness 10000) in paragraph at lines 236--236
+Underfull \vbox (badness 10000) has occurred while \output is active [8
+pdfTeX warning (ext4): destination with the same identifier (name{figure.2}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.238 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.3}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.238 
+       <./images/gradient_srank_microbench.pdf> <./images/projection_overhead_m
+icrobench.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 245--245
 []\T1/ptm/m/n/10 (+20) Figure 5: []Training loss on toy Navier-Stokes across va
 ri-ants (file-name: train-
-! Missing } inserted.
-<inserted text> 
-                }
-l.237 \end{figure}
-                  
 
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.239 \begin{figure}[H]
-                       
-! Undefined control sequence.
-l.241 \includegraphics
-                      [width=0.7\linewidth]{ images/rL2_navierstokes.pdf }
-! Missing number, treated as zero.
-<to be read again> 
-                   ]
-l.241 \includegraphics[width=0.7\linewidth]
-                                           { images/rL2_navierstokes.pdf }
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   ]
-l.241 \includegraphics[width=0.7\linewidth]
-                                           { images/rL2_navierstokes.pdf }
-! Missing $ inserted.
-<inserted text> 
-                $
-l.241 ...raphics[width=0.7\linewidth]{ images/rL2_
-                                                  navierstokes.pdf }
-! Extra }, or forgotten $.
-l.241 ...linewidth]{ images/rL2_navierstokes.pdf }
-                                                  
-! Missing $ inserted.
-<inserted text> 
-                $
-l.242 ...itions (filename: rL2\_navierstokes.pdf)}
-                                                  
-! Missing } inserted.
-<inserted text> 
-                }
-l.243 \end{figure}
-                  
-
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.245 \begin{figure}[H]
-                       
-! Undefined control sequence.
-l.247 \includegraphics
-                      [width=0.7\linewidth]{ images/divergence_norm_navierst...
-
-! Missing number, treated as zero.
-<to be read again> 
-                   ]
-l.247 \includegraphics[width=0.7\linewidth]
-                                           { images/divergence_norm_navierst...
-
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   ]
-l.247 \includegraphics[width=0.7\linewidth]
-                                           { images/divergence_norm_navierst...
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.247 ...[width=0.7\linewidth]{ images/divergence_
-                                                  norm_navierstokes.pdf }
-! Extra }, or forgotten $.
-l.247 ...images/divergence_norm_navierstokes.pdf }
-                                                  
-! Missing $ inserted.
-<inserted text> 
-                $
-l.248 ...ame: divergence\_norm\_navierstokes.pdf)}
-                                                  
-
-Underfull \hbox (badness 2134) in paragraph at lines 248--248
+Underfull \vbox (badness 10000) has occurred while \output is active [9
+pdfTeX warning (ext4): destination with the same identifier (name{figure.4}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.253 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.5}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.253 
+       <./images/alignment_phi-galore_microbench.pdf> <./images/training_loss_n
+avierstokes.pdf>]
+Underfull \hbox (badness 2134) in paragraph at lines 257--257
 []\T1/ptm/m/n/10 (+20) Figure 7: []Divergence norm on Navier-Stokes un-der clea
 n con-di-tions (file-name: di-ver-
-! Missing } inserted.
-<inserted text> 
-                }
-l.249 \end{figure}
-                  
 
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.254 \begin{figure}[H]
-                       
-! Undefined control sequence.
-l.256 \includegraphics
-                      [width=0.7\linewidth]{ images/training_loss_molecular....
-
-! Missing number, treated as zero.
-<to be read again> 
-                   ]
-l.256 \includegraphics[width=0.7\linewidth]
-                                           { images/training_loss_molecular....
-
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   ]
-l.256 \includegraphics[width=0.7\linewidth]
-                                           { images/training_loss_molecular....
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.256 ...cs[width=0.7\linewidth]{ images/training_
-                                                  loss_molecular.pdf }
-! Extra }, or forgotten $.
-l.256 ...th]{ images/training_loss_molecular.pdf }
-                                                  
-! Missing $ inserted.
-<inserted text> 
-                $
-l.257 ...filename: training\_loss\_molecular.pdf)}
-                                                  
-
-Underfull \hbox (badness 2368) in paragraph at lines 257--257
+Underfull \hbox (badness 2368) in paragraph at lines 266--266
 []\T1/ptm/m/n/10 (+20) Figure 8: []Training loss on toy molec-u-lar re-gres-sio
 n across meth-ods (file-name: train-
-! Missing } inserted.
-<inserted text> 
-                }
-l.258 \end{figure}
-                  
 
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.260 \begin{figure}[H]
-                       
-! Undefined control sequence.
-l.262 \includegraphics
-                      [width=0.7\linewidth]{ images/projection_overhead_mole...
-
-! Missing number, treated as zero.
-<to be read again> 
-                   ]
-l.262 \includegraphics[width=0.7\linewidth]
-                                           { images/projection_overhead_mole...
-
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   ]
-l.262 \includegraphics[width=0.7\linewidth]
-                                           { images/projection_overhead_mole...
-
-! Missing $ inserted.
-<inserted text> 
-                $
-l.262 ...[width=0.7\linewidth]{ images/projection_
-                                                  overhead_molecular.pdf }
-! Extra }, or forgotten $.
-l.262 ...mages/projection_overhead_molecular.pdf }
-                                                  
-! Missing $ inserted.
-<inserted text> 
-                $
-l.263 ...me: projection\_overhead\_molecular.pdf)}
-                                                  
-! Missing } inserted.
-<inserted text> 
-                }
-l.264 \end{figure}
-                  
-
-! LaTeX Error: Unknown float option `H'.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.266 \begin{figure}[H]
-                       
-! Undefined control sequence.
-l.268 \includegraphics
-                      [width=0.7\linewidth]{ images/mae_molecular.pdf }
-! Missing number, treated as zero.
-<to be read again> 
-                   ]
-l.268 \includegraphics[width=0.7\linewidth]
-                                           { images/mae_molecular.pdf }
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   ]
-l.268 \includegraphics[width=0.7\linewidth]
-                                           { images/mae_molecular.pdf }
-! Missing $ inserted.
-<inserted text> 
-                $
-l.268 ...raphics[width=0.7\linewidth]{ images/mae_
-                                                  molecular.pdf }
-! Extra }, or forgotten $.
-l.268 ....7\linewidth]{ images/mae_molecular.pdf }
-                                                  
-! Missing $ inserted.
-<inserted text> 
-                $
-l.269 ...ate noise (filename: mae\_molecular.pdf)}
-                                                  
-! Missing } inserted.
-<inserted text> 
-                }
-l.270 \end{figure}
-                  
-[7] (./paper.bbl
-! Misplaced alignment tab character &.
-l.94 ...k One transformer can understand both 2d &
-                                                   3d molecular data.
-[8]) [9] [10] (./paper.aux) )
+Underfull \vbox (badness 10000) has occurred while \output is active [10
+pdfTeX warning (ext4): destination with the same identifier (name{figure.6}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.268 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.7}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.268 
+       <./images/rL2_navierstokes.pdf> <./images/divergence_norm_navierstokes.p
+df>]
+Underfull \vbox (badness 10000) has occurred while \output is active [11
+pdfTeX warning (ext4): destination with the same identifier (name{figure.8}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.280 
+      
+pdfTeX warning (ext4): destination with the same identifier (name{figure.9}) ha
+s been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.280 
+       <./images/training_loss_molecular.pdf> <./images/projection_overhead_mol
+ecular.pdf>] (./paper.bbl
+Underfull \vbox (badness 10000) has occurred while \output is active [12
+pdfTeX warning (ext4): destination with the same identifier (name{figure.10}) h
+as been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.15 
+      <./images/mae_molecular.pdf>]) [13] (./paper.aux) )
 (see the transcript file for additional information) </home/runner/.texlive2023
 /texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk></usr/share/texlive/texmf
 -dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/
@@ -3051,5 +1669,5 @@ usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/share/te
 xlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/texmf-dis
 t/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/u
 rw/times/utmri8a.pfb>
-Output written on paper.pdf (10 pages, 191154 bytes).
+Output written on paper.pdf (13 pages, 303945 bytes).
 Transcript written on paper.log.
