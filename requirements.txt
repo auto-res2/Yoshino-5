@@ -1,1 +1,7 @@
-# Please list the required python packages.
+torch>=2.0.0
+numpy>=1.22
+matplotlib>=3.6
+seaborn>=0.12
+sympy>=1.11
+scikit-learn>=1.1
+PyYAML>=6.0

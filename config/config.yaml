@@ -1,0 +1,15 @@
+seed: 42
+images_dir: .research/iteration1/images
+data_path: data/synthetic.jsonl
+models_dir: models
+results_dir: data
+budgets: [6000000000, 12000000000, 24000000000]
+distill_flop_cap: 12000000000
+train:
+  epochs: 3
+  lr: 0.001
+  train_size: 40
+  val_size: 20
+dataset:
+  n_total: 60
+  include_traps: true
