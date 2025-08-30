@@ -1,0 +1,32 @@
+general:
+  seed: 42
+  device: auto  # 'auto' picks cuda if available, else cpu
+
+exp1:
+  run: true
+  n: 12
+  model_name: sshleifer/tiny-gpt2
+  epochs: 2
+  batch_size: 2
+  lr: 5.0e-5
+  core_weight: 2.0
+  lambda_neg: 0.5
+  schedule: [0.0, 0.5]
+  use_lora: false
+
+exp2:
+  run: true
+  n: 9
+  model_name: sshleifer/tiny-gpt2
+  epochs: 2
+  batch_size: 2
+  lr: 5.0e-5
+  core_weight: 2.0
+  lambda_neg: 0.6
+  schedule: [0.0, 0.5]
+  use_lora: false
+
+exp3:
+  run: true
+  # model_name only used if exp1 exact model isn't available
+  model_name: sshleifer/tiny-gpt2
