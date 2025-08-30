@@ -8,9 +8,14 @@ import seaborn as sns
 
 import torch
 
-from .preprocess import set_seed, get_device, ensure_dir, SyntheticDataConfig, generate_language_data, generate_classification_data
-from .train import build_model_and_controller, TrainConfig, train_controller_and_scales
-from .evaluate import evaluate_ppl, decode_throughput, evaluate_classification, compute_offline_labels, run_experiment3_controller, run_experiment2_microbench
+try:
+    from .preprocess import set_seed, get_device, ensure_dir, SyntheticDataConfig, generate_language_data, generate_classification_data
+    from .train import build_model_and_controller, TrainConfig, train_controller_and_scales
+    from .evaluate import evaluate_ppl, decode_throughput, evaluate_classification, compute_offline_labels, run_experiment3_controller, run_experiment2_microbench
+except ImportError:  # fallback when running as a script
+    from preprocess import set_seed, get_device, ensure_dir, SyntheticDataConfig, generate_language_data, generate_classification_data
+    from train import build_model_and_controller, TrainConfig, train_controller_and_scales
+    from evaluate import evaluate_ppl, decode_throughput, evaluate_classification, compute_offline_labels, run_experiment3_controller, run_experiment2_microbench
 
 
 def run_experiment1_end2end(images_dir: str, device: torch.device, fast: bool = True):
@@ -121,7 +126,7 @@ def main():
     device = get_device()
     print(f"Using device: {device}")
 
-    images_dir = cfg.get('images_dir', '.research/iteration1/images')
+    images_dir = cfg.get('images_dir', '.research/iteration2/images')
     ensure_dir(images_dir)
 
     do_run_all = args.run_all or bool(cfg.get('run_all', True))

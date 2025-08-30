@@ -7,7 +7,10 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from .preprocess import get_device
+try:
+    from .preprocess import get_device
+except ImportError:  # fallback when running as a script
+    from preprocess import get_device
 
 
 # ------------------------------
@@ -26,7 +29,7 @@ class HATQLinear(nn.Module):
         device = device if device is not None else get_device()
         self.register_buffer('B', torch.empty(planes, out_f, in_f, dtype=torch.int8, device=device))
         self.scales = nn.Parameter(torch.ones(planes, out_f, dtype=torch.float32, device=device))
-        self.register_buffer('bit_counter', torch.zeros((), dtype=torch.long), persistent=False)
+        self.register_buffer('bit_counter', torch.zeros((), dtype=torch.long, device=device), persistent=False)
 
     @torch.no_grad()
     def init_random_planes(self):
@@ -86,9 +89,10 @@ class HATQLinear(nn.Module):
         inv_idx[sort_idx] = torch.arange(sort_idx.size(0), device=sort_idx.device)
         out = out_sorted.index_select(0, inv_idx)
 
-        self.bit_counter += token_bits.sum().detach().cpu()
+        # keep on the same device and dtype long
+        self.bit_counter += token_bits.sum().to(device=self.bit_counter.device, dtype=self.bit_counter.dtype)
 
-        if original_shape[0] is not None and len(original_shape) == 3:
+        if len(original_shape) == 3:
             return out.reshape(original_shape[0], original_shape[1], self.out_f)
         return out
 

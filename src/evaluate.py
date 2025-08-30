@@ -17,8 +17,12 @@ try:
 except Exception:
     _HAVE_SKLEARN = False
 
-from .preprocess import get_device, now_ms, measure_memory_bytes
-from .train import TinyHATQTransformer, GlobalBudgetRNN, TokenMaskBlock, BudgetHead
+try:
+    from .preprocess import get_device, now_ms, measure_memory_bytes
+    from .train import TinyHATQTransformer, GlobalBudgetRNN, TokenMaskBlock, BudgetHead
+except ImportError:  # fallback when running as scripts
+    from preprocess import get_device, now_ms, measure_memory_bytes
+    from train import TinyHATQTransformer, GlobalBudgetRNN, TokenMaskBlock, BudgetHead
 
 
 class BitStats:
