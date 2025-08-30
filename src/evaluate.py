@@ -14,6 +14,7 @@ import seaborn as sns
 
 # Use a non-interactive backend for headless environments
 
+
 def ensure_pdf_backend_and_style():
     try:
         matplotlib.use('Agg')
@@ -31,6 +32,7 @@ def save_plot(path: str):
 
 
 # Physics-related evaluation
+
 
 def divergence_and_laplacian(u: torch.Tensor) -> Tuple[torch.Tensor, torch.Tensor]:
     # u: [B, 2, Nx, Ny]

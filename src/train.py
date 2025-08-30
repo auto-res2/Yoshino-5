@@ -419,7 +419,6 @@ def stable_rank(G: torch.Tensor) -> float:
     sr = (fro2 / (top1 * top1 + 1e-12)).item()
     return float(sr)
 
-@torch.no_grad()
 def cos_sim_full_vs_projected(model: nn.Module,
                               loss_fn: Callable[[torch.Tensor, torch.Tensor], torch.Tensor],
                               batch: Tuple[torch.Tensor, torch.Tensor],
