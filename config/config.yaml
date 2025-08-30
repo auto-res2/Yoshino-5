@@ -1,0 +1,19 @@
+# Default configuration for quick test run
+images_dir: .research/iteration1/images
+
+exp1:
+  run: true
+  steps: 8
+  Nx: 16
+  Ny: 16
+
+exp2:
+  run: true
+  steps: 8
+  Nx: 16
+  Ny: 16
+
+exp3:
+  run: true
+  steps: 8
+  seq_len: 16
