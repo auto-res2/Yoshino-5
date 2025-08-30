@@ -7,12 +7,26 @@ import os
 import yaml
 from typing import Any, Dict
 
-from .preprocess import get_device_and_mp_dtype
-from .train import (
-    experiment_1_micro_bench,
-    experiment_2_physics_aware,
-    experiment_3_hierarchical_sharing,
-)
+# Support running both as a module (python -m src.main) and as a script (python src/main.py)
+try:
+    from .preprocess import get_device_and_mp_dtype
+    from .train import (
+        experiment_1_micro_bench,
+        experiment_2_physics_aware,
+        experiment_3_hierarchical_sharing,
+    )
+except Exception:  # Fallback when executed as a script with no package context
+    import sys as _sys
+    import os as _os
+    _SRC_DIR = _os.path.dirname(__file__)
+    if _SRC_DIR not in _sys.path:
+        _sys.path.insert(0, _SRC_DIR)
+    from preprocess import get_device_and_mp_dtype  # type: ignore
+    from train import (  # type: ignore
+        experiment_1_micro_bench,
+        experiment_2_physics_aware,
+        experiment_3_hierarchical_sharing,
+    )
 
 
 def load_config(path: str) -> Dict[str, Any]:
@@ -24,7 +38,7 @@ def load_config(path: str) -> Dict[str, Any]:
 
 
 def ensure_dirs():
-    os.makedirs('.research/iteration1/images', exist_ok=True)
+    os.makedirs('.research/iteration2/images', exist_ok=True)
     os.makedirs('data', exist_ok=True)
     os.makedirs('models', exist_ok=True)
 
@@ -36,7 +50,7 @@ def main():
     device, mp_dtype = get_device_and_mp_dtype()
     print(f"Using device: {device} | mixed-precision dtype: {mp_dtype}")
 
-    images_dir = cfg.get('images_dir', '.research/iteration1/images')
+    images_dir = cfg.get('images_dir', '.research/iteration2/images')
 
     # Experiment 1
     if cfg.get('exp1', {}).get('run', True):
