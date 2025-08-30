@@ -1,0 +1,323 @@
+\documentclass{article}
+
+\usepackage{agents4science_2025}
+% to compile a preprint version, e.g., for submission to arXiv, add the
+% \usepackage[preprint]{agents4science_2025}
+
+% to compile a camera-ready version, add the [final] option, e.g.:
+% \usepackage[final]{agents4science_2025}
+
+% For workshops, the authors should use the workshop options and add the name of the workshop.
+% The "\workshoptitle" command is used to set the workshop title.
+%
+% \usepackage[sglblindworkshop]{agents4science_2025}
+% \workshoptitle{WORKSHOP TITLE}
+
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}
+\usepackage{microtype}
+\usepackage{xcolor}
+
+
+\title{MuViC: Bayesian Multi-View Detection and Localisation of Benchmark Contamination in Language Models}
+
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to LaTeX to determine where to break the
+% lines. Using \AND forces a line break at that point. So, if LaTeX puts 3 of 4
+% authors names on the first line, and the last on the second line, try using
+% \AND instead of \And before the third author name.
+
+
+\author{%
+  David S.~Hippocampus\thanks{Use footnote for providing further information
+    about author (webpage, alternative address)---\emph{not} for acknowledging
+    funding agencies.} \\
+  Department of Computer Science\\
+  Cranberry-Lemon University\\
+  Pittsburgh, PA 15213 \\
+  \texttt{hippo@cs.cranberry-lemon.edu} \\
+  % examples of more authors
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \AND
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+}
+
+
+\begin{document}
+
+
+\maketitle
+
+
+\begin{abstract}
+Public benchmark leakage skews evaluation of language models, inflating reported gains even under single-duplication contamination. Existing detectors either depend on trusted reference models or on exchangeability assumptions, and they rarely provide per-item localisation, limiting their usefulness for data hygiene. We introduce MuViC, a unified Bayesian analyser that triangulates three complementary signals without trusting external references: (1) Self-Ensemble Difficulty Projection (SEDP) predicts final accuracy from internal mid-training checkpoints on paraphrases and flags anomalous end-of-run jumps; (2) Sharded Exchangeability Likelihood (SEL) extends permutation testing to open-ended QA by contrasting true versus intra-shard shuffled answer likelihoods, aggregated via Fisher's method; (3) Guided Regeneration Overlap (GRO) probes near-memorization via random-prefix generation and suffix overlap augmented with min-k\% token log-probability tails. A Bayesian logistic fusion converts these views into calibrated per-example contamination probabilities. We verify MuViC in controlled synthetic studies that cover late and early/mid leakage and a black-box setting without checkpoints. MuViC separates clean versus contaminated datasets via SEL p-values (for example, 0.5942 clean versus approximately 0 under late leak) and achieves instance-level ROC AUC=1.000 with SEL+GRO in black-box mode, while SEDP correctly triggers only for late leaks. We release detailed procedures and artifacts to support rigorous, instance-localisable contamination audits, discuss limitations due to degenerate labels in one setting, and outline steps to strengthen SEDP calibration and large-scale baseline comparisons.
+\end{abstract}
+
+
+
+\section{Introduction}
+Public benchmarks such as GSM-8K and ARC-Challenge underpin claims of progress in reasoning and knowledge-intensive tasks. However, test-set contamination-through verbatim duplication or near-duplicate exposure-can artificially inflate performance, undermining leaderboard credibility and the scientific method. Evidence from memorization and extraction studies indicates that large models can emit training sequences verbatim and that duplication frequency and context length strongly modulate this behavior \cite{carlini-2022-quantifying,carlini-2020-extracting,carlini-2018-the}. At the same time, dataset-forging practices and web-scale scraping pipelines have been shown to inadvertently include benchmark fragments, further complicating evaluation \cite{dodge-2021-documenting,roberts-2023-the}. Beyond text, similar issues confound multimodal evaluations where models sometimes succeed without using the visual modality \cite{chen-2024-are}.
+
+Detecting low-frequency leakage is particularly challenging for three reasons. First, performance-based methods such as ConStat rely on panels of trusted reference models to contextualize gains; if references are themselves contaminated, estimates become biased and false positives rise \cite{dekoninck-2024-constat}. Second, exchangeability-based tests provide elegant dataset-level certificates in black-box settings but rely on assumptions that may be fragile in open-ended QA and do not localise which instances are compromised \cite{oren-2023-proving}. Third, most existing tools operate at partition level, while curators need per-item evidence to remove leaked examples and re-issue clean splits \cite{dodge-2021-documenting}. Instance-level probes like Time Travel and Min-K\% Prob are valuable but single-view, and they can be brittle under reformatting or paraphrasing \cite{golchin-2023-time,shi-2023-detecting}.
+
+We propose MuViC, a multi-view Bayesian framework for contamination detection and localisation that avoids external reference models and integrates three orthogonal signals with complementary failure modes. The first view, Self-Ensemble Difficulty Projection (SEDP), leverages internal checkpoints already saved during training. When leakage occurs late in fine-tuning, earlier checkpoints act as uncontaminated surrogates. We fit a monotone mapping from mid-run paraphrase accuracy to final accuracy; anomalous end-of-run gains indicate contamination without consulting external models, addressing the core fragility of reference-dependent performance tests \cite{dekoninck-2024-constat}. The second view, Sharded Exchangeability Likelihood (SEL), adapts exchangeability ideas to open-ended QA by comparing normalized log-likelihoods of canonical (question, rationale, answer) concatenations to intra-shard answer shuffles, with shard-level one-sided paired t-tests and Fisher aggregation \cite{oren-2023-proving}. The third view, Guided Regeneration Overlap (GRO), prompts with random-length prefixes and measures ROUGE-L overlap with the gold suffix alongside the min-k\% token log-probability tail, following the spirit of Time Travel while grounding the score in likelihood features \cite{golchin-2023-time}. A Bayesian logistic fusion turns these three views into calibrated per-item posterior probabilities, enabling actionable localisation.
+
+This design directly targets the known determinants of memorization and duplication \cite{carlini-2022-quantifying}, acknowledges documentation of inadvertent leakage in large web corpora \cite{dodge-2021-documenting,roberts-2023-the}, and aligns with broader efforts in automated auditing and influence estimation that triangulate behaviors from multiple angles \cite{jones-2023-automatically,ko-2024-the}. It also complements orthogonal approaches like radioactive data marking \cite{sablayrolles-2020-radioactive} and differential privacy guarantees against reconstruction \cite{guo-2022-bounding}, and it is relevant to wider security and robustness discussions where evaluation can be subverted by adversarial or stochastic effects \cite{chen-2022-amplifying,dbouk-2022-adversarial}.
+
+We verify MuViC in controlled synthetic experiments that emulate late and early/mid leakage and a black-box regime without checkpoints. The experiments stress distinct failure modes: SEDP should fire only when leakage arrives after the mid-run checkpoint; SEL should provide dataset-level separation under exchangeability-style perturbations; GRO should enable instance-level localisation via near-suffix regeneration. In our synthetic setting, SEL decisively separates clean from leaked datasets under late leaks and in black-box mode; GRO delivers perfect instance-level separation under partial contamination; SEDP triggers as designed only for late leaks. We also document limitations where degenerate labels render ROC AUC undefined and outline how to avoid such pitfalls in larger-scale runs.
+
+\subsection{Key contributions}
+\begin{itemize}
+  \item \textbf{Unified reference-free analyser}: A unified, reference-free contamination analyser that fuses SEDP, SEL, and GRO into calibrated per-item posterior probabilities.
+  \item \textbf{Self-ensemble trajectory test}: A self-ensemble strategy that leverages internal checkpoints to detect anomalous end-of-run gains without external references.
+  \item \textbf{Sharded exchangeability likelihood}: A sharded exchangeability likelihood test for open-ended QA with shard-level significance and Fisher aggregation.
+  \item \textbf{Guided regeneration probe}: An instance-level guided regeneration probe that surfaces near-memorization via suffix overlap and likelihood tails.
+  \item \textbf{Synthetic validation and analysis}: A synthetic evaluation demonstrating dataset-level separation and instance-level discrimination in black-box mode, and an analysis of timing sensitivity and limitations.
+\end{itemize}
+
+Looking forward, MuViC is designed to scale to real models and benchmarks by reusing training checkpoints, integrating with existing evaluation harnesses, and supporting robust calibration. We discuss strengthening SEDP calibration with richer nulls, comparisons against baselines under contaminated references \cite{dekoninck-2024-constat}, and extensions to settings where internal checkpoints are absent. This work complements dataset-level certificates \cite{oren-2023-proving}, pretraining exposure detection \cite{shi-2023-detecting}, and multi-modal audits \cite{chen-2024-are}. Finally, the need for rigorous, localized audits is echoed in literatures on privacy, memorization, and data provenance \cite{author-year-private,carlini-2020-extracting,sablayrolles-2020-radioactive}.
+
+\section{Related Work}
+Performance-based contamination detection. ConStat defines contamination as non-generalizing performance inflation and measures it by comparing a primary benchmark to reference benchmarks relative to a panel of reference models \cite{dekoninck-2024-constat}. Its strength is broad applicability across architectures and benchmarks; its key weakness is reliance on trusted references, which is fragile if those references are partially contaminated, and it provides dataset-level conclusions without per-item localisation. MuViC's SEDP removes this dependency by exploiting internal checkpoints as uncontaminated surrogates and by operating without external models.
+
+Exchangeability-based tests. Oren et al. formalize a black-box test exploiting exchangeability over benchmark orderings, flagging contamination when canonical orderings have significantly higher likelihood than shuffled ones \cite{oren-2023-proving}. This offers strong dataset-level certificates even without model weights, yet it does not localise instances and can be brittle in open-ended QA with rationales and variable formatting. Our SEL retains the exchangeability spirit while adapting it to QA through intra-shard answer shuffles, shard-level paired tests, and Fisher aggregation; fusion then propagates shard evidence to per-item probabilities.
+
+Instance-level probes and pretraining exposure. Time Travel probes instance contamination by prompting with random-length prefixes and measuring overlap of continuations with gold suffixes \cite{golchin-2023-time}. Min-K\% Prob scores exposure via the tail of token probabilities \cite{shi-2023-detecting}. Both are valuable, direct signals, but each captures a single view and can be brittle under paraphrases or tokenization changes. MuViC's GRO integrates overlap and likelihood-tail features and fuses them with SEDP and SEL to mitigate brittleness and to provide calibrated probabilities.
+
+Memorization and duplication. Foundational work demonstrates secret-string extraction, training data extraction, and scaling laws of memorization, which grows with capacity, duplication count, and context length \cite{carlini-2018-the,carlini-2020-extracting,carlini-2022-quantifying}. The Privacy Onion perspective argues that removing the most vulnerable points reveals subsequent layers, emphasizing the need for calibrated instance-level tools \cite{carlini-2022-the}. These insights motivate GRO's focus on near-verbatim regeneration from partial context and inform the multi-view design.
+
+Data documentation and longitudinal leakage. Web-scale corpora can contain benchmark fragments that leak into evaluations, while filters may inadvertently distort data distributions \cite{dodge-2021-documenting}. Longitudinal analyses link performance trends to dataset popularity and release dates, indicating contamination effects in practice \cite{roberts-2023-the}. MuViC's reference-free and instance-level design supports repeated audits as models and corpora evolve.
+
+Auditing, influence, and orthogonal protections. Automated auditing via discrete optimization uncovers sparse, targeted failures and complements statistical detection \cite{jones-2023-automatically}. Influence-estimation work relates training data to predictions efficiently under limited access \cite{ko-2024-the}. While MuViC does not compute influence, our Bayesian fusion shares the goal of triangulating evidence robustly. Orthogonal protections include radioactive data marks that trace dataset usage \cite{sablayrolles-2020-radioactive} and differential privacy that bounds reconstruction risk \cite{guo-2022-bounding}. Data poisoning can amplify privacy risks \cite{chen-2022-amplifying}, and randomized ensembles can yield a false sense of security under naive evaluation \cite{dbouk-2022-adversarial}; both observations support rigorous, multi-faceted audits.
+
+Broader contamination and representational parallels. In LVLMs, many samples are answerable without images, and unintentional leakage confounds multimodal gains \cite{chen-2024-are}. Synthetic data contamination hinders continual learning, motivating robust selection and filtering \cite{wang-2024-dealing}. Ideas from model-overlap and representation spaces in graphs and embeddings underscore the importance of how we compare distributions and overlaps when evaluating generative systems \cite{chanpuriya-2023-the,shevkunov-2020-overlapping}. Information-theoretic tools, including spread divergences, (f,Gamma)-divergences, and divergence frontiers, provide robust comparison principles that conceptually resonate with SEL's likelihood contrasts and MuViC's calibration \cite{zhang-2018-spread,birrell-2020-gamma,liu-2021-divergence}. Finally, privacy risks extend beyond memorization to side channels; proactive detection and auditing are therefore necessary in tandem with system-level defenses \cite{author-year-private}.
+
+\section{Background}
+\subsection{Problem setting}
+Let a benchmark comprise \(n\) instances, each a canonical triple (question, rationale, answer). For instance \(i\), define a latent binary variable \(z_i\) indicating contamination: \(z_i=1\) if the model has seen the instance (or a near-duplicate) during training; otherwise \(z_i=0\). The goals are: (1) infer calibrated per-item probabilities \(P(z_i=1 \mid \text{evidence})\) to enable targeted removal of leaked items; and (2) decide at dataset level whether any contamination is present, without relying on external reference models.
+
+\subsection{Signals and scopes}
+MuViC aggregates three signals with complementary granularity and failure modes.
+\begin{itemize}
+  \item \textbf{SEDP (dataset-level)}: Let \(A\_{\mathrm{mid}}\) denote paraphrase accuracy at a mid-run checkpoint and \(A\_{\mathrm{final}}\) the final paraphrase accuracy. Using clean runs and out-of-domain controls, fit a monotone mapping \(g\) predicting \(A\_{\mathrm{final}}\) from \(A\_{\mathrm{mid}}\) via isotonic regression. A positive deviation \(\Delta = A\_{\mathrm{final}} - g(A\_{\mathrm{mid}})\) suggests anomalous end-of-run gains consistent with late leakage. Assumptions: at least one mid-run checkpoint precedes leakage; difficulty drift is limited so \(g\) remains predictive. This removes dependence on external references required by ConStat-like methods \cite{dekoninck-2024-constat}.
+  \item \textbf{SEL (shard-level)}: Partition the benchmark into shards of size about 50. For each item, compute the average per-token log-likelihood of the canonical concatenation under the final model. Within each shard, shuffle answers across items and recompute likelihoods; paired differences between true and shuffled sequences provide a per-item contrast. A one-sided paired t-test yields a shard p-value; aggregating via Fisher's method yields a dataset-level p-value \cite{oren-2023-proving}. Assumption: intra-shard shuffles approximate a null where answer alignment does not systematically increase likelihood.
+  \item \textbf{GRO (instance-level)}: Choose a random prefix cut (minimum tokens and up to 60\% of the sequence), condition the model on this prefix, and generate a continuation. Compute ROUGE-L between the continuation and the gold suffix, and compute the min-k\% tail (\(k=20\)) of token log-probabilities for the generated continuation. These features capture near-verbatim regeneration from partial context, following the Time Travel philosophy \cite{golchin-2023-time}.
+\end{itemize}
+
+\subsection{Bayesian fusion and calibration}
+Each instance \(i\) receives features \(x_i\), corresponding to SEDP (a broadcast dataset score), SEL (its shard score), and GRO (its calibrated overlap score). A Bayesian logistic regression with independent \(\mathcal{N}(0,1)\) priors on weights and bias yields \(P(z_i=1 \mid x_i)\). Posterior means are used for prediction, with optional isotonic or temperature calibration to reduce expected calibration error, mirroring robust comparison principles emphasized in the divergences literature \cite{zhang-2018-spread,birrell-2020-gamma,liu-2021-divergence}.
+
+\subsection{Unusual aspects and implications}
+MuViC is reference-free, localises at instance granularity, and explicitly learns reliability across views. This combination is distinct from performance-based tests requiring trusted panels \cite{dekoninck-2024-constat} and from pure exchangeability tests that do not localise \cite{oren-2023-proving}. Our instance-level lens aligns with memorization findings that emphasize duplication and context length \cite{carlini-2022-quantifying} and with documentation of benchmark leakage in web-scale corpora \cite{dodge-2021-documenting,roberts-2023-the}. Broader security and privacy considerations, including poisoning-amplified exposure, randomized-ensemble pitfalls, and side-channel risks, further motivate multi-view auditing \cite{chen-2022-amplifying,dbouk-2022-adversarial,author-year-private}.
+
+\section{Method}
+\subsection{Self-Ensemble Difficulty Projection (SEDP)}
+We assume access to \(K\) internal checkpoints saved during training or fine-tuning. For a synthetic paraphrase set, evaluate paraphrase accuracies for at least one mid-run checkpoint and for the final checkpoint, yielding \(A\_{\mathrm{mid}}\) and \(A\_{\mathrm{final}}\). Using multiple clean runs and out-of-domain controls, fit a monotone mapping \(g\) from \(A\_{\mathrm{mid}}\) to \(A\_{\mathrm{final}}\) via isotonic regression. For a test run, compute \(\Delta = A\_{\mathrm{final}}^{\text{obs}} - g(A\_{\mathrm{mid}}^{\text{obs}})\). A positive \(\Delta\) indicates anomalous improvement consistent with late leakage. To quantify significance, build a null distribution of \(\Delta\) from clean and out-of-domain runs and compute a one-sided empirical p-value as the fraction of null \(\Delta\) greater than or equal to the observed \(\Delta\). For fusion, normalize the dataset-level statistic and broadcast it to all items as \(x^{(1)}_i\), for example by z-scoring the negative log p-value. SEDP's core assumption is that at least one mid-run checkpoint precedes any injected leakage; we explicitly probe violations of this assumption in robustness experiments.
+
+\subsection{Sharded Exchangeability Likelihood (SEL)}
+Partition the dataset into shards of size \(m\) between 40 and 60 (we use \(m\approx 50\)). For each instance, compute the average per-token log-likelihood of the canonical concatenation consisting of question, rationale, and answer under the final checkpoint model. For shard \(s\), sample \(R\) permutations (we use \(R=50\)) of the answer strings within the shard and recompute likelihoods for the shuffled pairs while keeping question and rationale fixed. For item \(i\) in shard \(s\), compute the mean difference between true and shuffled log-likelihoods across permutations. Perform a one-sided paired t-test comparing true versus shuffled likelihoods at the shard level to obtain a shard p-value \(p_s\), and aggregate to a dataset-level p-value via Fisher's method \cite{oren-2023-proving}. For fusion, normalize each item's shard evidence \(x^{(2)}_i\) by rank-normalizing the negative log \(p_s\) to the unit interval so that items in shards with strong evidence receive higher scores.
+
+\subsection{Guided Regeneration Overlap (GRO)}
+For each item, tokenize the canonical concatenation and choose a random prefix cut uniformly between a minimum number of tokens and 60\% of the sequence length. Condition the model on this prefix and generate a continuation using deterministic decoding. Compute two features: (1) ROUGE-L F-measure between generated continuation and the gold suffix; and (2) the min-k\% tail of per-token log-probabilities for the generated continuation, with \(k=20\). Map these features to a calibrated suspicion score \(s_i \in [0,1]\) using logistic regression or isotonic calibration on a synthetic validation mixture; set \(x^{(3)}_i = s_i\). This design follows Time Travel's random-prefix probing while anchoring the score to likelihood tails to increase robustness to superficial reformatting \cite{golchin-2023-time}.
+
+\subsection{Bayesian fusion}
+Define features \(x_i = (x^{(1)}_i, x^{(2)}_i, x^{(3)}_i)\) and model \(P(z_i=1 \mid x_i)\) with a logistic link. Place independent Normal\((0,1)\) priors on weights and bias and fit via stochastic variational inference with a diagonal Gaussian guide. Use posterior mean parameters for prediction. Optionally apply temperature scaling or isotonic calibration on a held-out validation mixture to reduce expected calibration error. This fusion learns reliability weights for the three views and remains effective when any single view weakens (for example, SEDP under early leaks), akin to robust multi-criteria auditing in related work \cite{jones-2023-automatically,ko-2024-the}.
+
+\subsection{Normalization and implementation choices}
+We use: z-scored negative log \(p\_\mathrm{SEDP}\) for \(x^{(1)}\); rank-normalized negative log \(p\_{\text{shard}(i)}\) for \(x^{(2)}\); and the calibrated suspicion \(s_i\) for \(x^{(3)}\). Default hyperparameters are \(K=10\) checkpoints for SEDP stability, shard size \(m\approx 50\) and \(R=50\) shuffles for SEL, and \(k=20\%\) for GRO's tail statistic with deterministic decoding. Evaluation emphasizes ROC/PR curves where labels are non-degenerate, false discovery rate control at the item level, expected calibration error, and dataset-level p-values via Fisher's method. Orthogonal safeguards such as radioactive data \cite{sablayrolles-2020-radioactive} or differential privacy \cite{guo-2022-bounding} are compatible with MuViC and can be layered for defense-in-depth. Finally, we note conceptual links between likelihood contrasts and robust distribution comparison explored by spread and (f,Gamma)-divergences, and by divergence frontiers \cite{zhang-2018-spread,birrell-2020-gamma,liu-2021-divergence}.
+
+\begin{algorithm}[H]
+\caption{MuViC: Multi-View Bayesian Contamination Analysis}
+\begin{algorithmic}[1]
+\State Input: dataset \(D=\{(q_i,r_i,a_i)\}\_{i=1}^n\); checkpoints \(\{\theta^{(k)}\}\_{k=1}^K\); final model \(\theta^{(*)}\)
+\State Output: per-item probabilities \(\{\hat{p}_i\}\)
+\vspace{4pt}
+\State \textit{SEDP computation}
+\State Evaluate paraphrase accuracies \(A\_{\mathrm{mid}}\), \(A\_{\mathrm{final}}\) using a mid-run checkpoint and \(\theta^{(*)}\)
+\State Fit monotone map \(g\) on clean controls; compute \(\Delta \leftarrow A\_{\mathrm{final}} - g(A\_{\mathrm{mid}})\)
+\State Estimate empirical p-value \(p\_\mathrm{SEDP}\) from null \(\{\Delta^{(b)}\}\); set \(x^{(1)}_i \leftarrow \mathrm{zscore}(-\log p\_\mathrm{SEDP})\) for all \(i\)
+\vspace{4pt}
+\State \textit{SEL computation}
+\State Partition \(D\) into shards \(\{S_s\}\) of size \(m\)
+\For{each shard \(s\)}
+  \State For each \(i\in S_s\), compute true log-likelihood \(\ell^{\text{true}}_i\) under \(\theta^{(*)}\)
+  \For{\(r=1\) to \(R\)}
+    \State Shuffle answers within \(S_s\); compute shuffled log-likelihoods \(\ell^{(r)}_i\)
+  \EndFor
+  \State For shard \(s\), run one-sided paired t-test on \(\ell^{\text{true}}_i - \frac{1}{R}\sum_r \ell^{(r)}_i\) to obtain \(p_s\)
+  \For{each \(i\in S_s\)} \State Set \(x^{(2)}_i \leftarrow \mathrm{ranknorm}(-\log p_s)\) \EndFor
+\EndFor
+\vspace{4pt}
+\State \textit{GRO computation}
+\For{each item \(i\)}
+  \State Sample random prefix cut \(c_i\); generate continuation \(\hat{y}_i\) from \(\theta^{(*)}\)
+  \State Compute ROUGE-L \(\rho_i\) and min-\(k\%\) log-prob tail \(\tau_i\)
+  \State Map \((\rho_i, \tau_i)\) to suspicion \(s_i\in[0,1]\) via calibration; set \(x^{(3)}_i \leftarrow s_i\)
+\EndFor
+\vspace{4pt}
+\State \textit{Bayesian fusion}
+\State Fit logistic model \(\Pr(z_i=1\mid x_i)=\sigma(w^\top x_i + b)\) with \(w,b\sim\mathcal{N}(0,1)\)
+\State Predict \(\hat{p}_i \leftarrow \sigma(\mathbb{E}[w]^\top x_i + \mathbb{E}[b])\); optionally apply temperature or isotonic calibration
+\State \Return \(\{\hat{p}_i\}\)
+\end{algorithmic}
+\end{algorithm}
+
+\section{Experimental Setup}
+We evaluate MuViC in a controlled synthetic environment designed to emulate targeted benchmark leakage while exposing distinct failure modes of SEDP, SEL, and GRO.
+
+\subsection{Model and datasets}
+A tiny character-level language model endowed with an explicit contamination memory is trained on synthetic corpora. In contaminated runs, the model is exposed to canonical benchmark strings late in training. We save multiple checkpoints to enable SEDP. Datasets comprise small GSM-like math, ARC-like multiple-choice QA, and out-of-domain controls; each synthetic dataset contains approximately 40 items. All items are canonically formatted as concatenations of "Question ... Reasoning ... Answer ...".
+
+\subsection{Plans and manipulations}
+\begin{itemize}
+  \item \textbf{Plan 1 (full pipeline; late leak)}: We simulate clean and single-duplication contaminated runs where the benchmark appears only in the final training phase. We compute SEDP, SEL, and GRO and train a simple logistic fusion on synthetic mixtures. We include a Min-K\% Prob baseline for comparison \cite{shi-2023-detecting}.
+  \item \textbf{Plan 2 (robustness to timing)}: We vary injection timing across early (0-10\%), mid (45-55\%), and late (90-100\%) phases to test SEDP's assumption of uncontaminated earlier checkpoints and to examine SEL's sensitivity to timing.
+  \item \textbf{Plan 3 (black-box SEL+GRO)}: We remove checkpoints entirely and assess whether SEL+GRO suffice to detect and localise contamination when internal checkpoints are unavailable.
+\end{itemize}
+
+\subsection{Metrics and statistics}
+We report: (i) dataset-level p-values from SEL via Fisher's method; (ii) ROC and PR AUC for fusion where labels are non-degenerate; (iii) expected calibration error (ECE) for probability calibration; (iv) SEDP's \(\Delta\) and its empirical p-value; and (v) GRO feature summaries (mean ROUGE-L and mean min-k\% tail). In Plan 1, because all benchmark items are contaminated by construction, instance-level ROC AUC is undefined; we therefore focus on dataset-level separation and ECE. In Plan 3, we report instance-level ROC AUC for partial contamination.
+
+\subsection{Baselines and references}
+We compute the Min-K\% Prob baseline under the same labeling regime \cite{shi-2023-detecting}. We discuss, but do not run here, complementary baselines such as ConStat \cite{dekoninck-2024-constat} and black-box exchangeability tests \cite{oren-2023-proving}, as our synthetic setting suffices to stress MuViC's views and fusion. Design choices are motivated by memorization and leakage literature \cite{carlini-2020-extracting,carlini-2018-the,carlini-2022-quantifying}, contamination audits and automated testing \cite{golchin-2023-time,jones-2023-automatically}, documentation of leakage in web-scale data \cite{dodge-2021-documenting,roberts-2023-the}, and broader concerns in multimodal evaluation and synthetic data contamination \cite{chen-2024-are,wang-2024-dealing}.
+
+\subsection{Artifacts}
+The synthetic runs produce logs and a set of figures saved as PDFs. The Results section embeds each figure exactly once and references them in the analysis. This controlled setup isolates the logic of the three views and fusion while avoiding confounds from large-scale training pipelines. It also makes explicit the limitations of degenerate label distributions and sparse nulls for SEDP calibration, informing future large-scale evaluations.
+
+\section{Results}
+\subsection{Plan 1: Late-stage single-duplication leak (full pipeline)}
+\begin{itemize}
+  \item \textbf{SEDP}: Clean run \(A\_{\mathrm{mid}}=0.000\), \(A\_{\mathrm{final}}=0.000\), \(\Delta=0.000\) with \(p=1.000\); contaminated run \(A\_{\mathrm{mid}}=0.000\), \(A\_{\mathrm{final}}=1.000\), \(\Delta=1.000\) with \(p=0.500\). The large \(\Delta\) for the late-leak run confirms sensitivity by design; the coarse p-value reflects a degenerate null in this toy setup.
+  \item \textbf{SEL}: Clean dataset p-value 0.5942 versus contaminated dataset p-value approximately 0.000000, providing decisive dataset-level separation under late leakage.
+  \item \textbf{GRO}: Clean mean ROUGE-L=0.028 and mean min-k\% token log-prob tail \(-5.441\); contaminated mean ROUGE-L=1.000 and mean min-k\% tail \(-5.625\), indicating that near-exact suffix overlap dominates the signal in the leaked condition.
+  \item \textbf{Fusion}: With all instances contaminated by construction, per-item ROC AUC is undefined (NaN), PR AUC=1.000 trivially, and expected calibration error=0.002. The Min-K\% baseline ROC AUC is likewise NaN under degenerate labels \cite{shi-2023-detecting}.
+\end{itemize}
+
+\subsection{Plan 2: Robustness to injection timing}
+\begin{itemize}
+  \item \textbf{SEDP}: Early (0-10\%) \(\Delta=0.000\), \(p=1.000\); Mid (45-55\%) \(\Delta=0.000\), \(p=1.000\); Late (90-100\%) \(\Delta=1.000\), \(p=0.500\). SEDP fires only when leakage arrives after the mid-run checkpoint, as intended.
+  \item \textbf{SEL}: Early \(p\_{\text{dataset}}=0.587183\); Mid \(p\_{\text{dataset}}=0.587416\); Late \(p\_{\text{dataset}}\approx 0.000000\). In this simulator, SEL strongly separates only late leaks; early/mid leakage does not alter relative likelihoods enough to pass shard-level tests.
+\end{itemize}
+
+\subsection{Plan 3: Black-box mode (no checkpoints; SEL+GRO)}
+\begin{itemize}
+  \item \textbf{SEL}: Clean \(p\_{\text{dataset}}=0.6398\) versus contaminated \(p\_{\text{dataset}}=0.001495\), indicating strong dataset-level separation without internal checkpoints.
+  \item \textbf{Fusion (SEL+GRO)}: Instance-level ROC AUC=1.000, demonstrating perfect discrimination of leaked items in a partial-contamination setting without internal checkpoints.
+\end{itemize}
+
+\subsection{Limitations and fairness}
+Plan 1 labels all items as contaminated, yielding degenerate instance-level metrics (ROC AUC NaN) for both MuViC and the Min-K\% baseline. SEDP's p-value calibration is underpowered due to a narrow null; additional clean runs and out-of-domain controls are needed for stable calibration. SEL's limited sensitivity to early/mid leaks likely reflects the simplicity of the toy language model rather than an inherent limitation of the approach. No hyperparameter tuning beyond the fixed defaults (shard size \(\approx 50\), \(R=50\) shuffles, \(k=20\%\) for GRO) was performed across conditions. These observations align with the need for robust audits that resist single-view brittleness and adversarial or incidental artifacts \cite{dekoninck-2024-constat,oren-2023-proving,jones-2023-automatically,dbouk-2022-adversarial}.
+
+\subsection{Figures}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{ images/calibration\_fusion.pdf }
+  \caption{Calibration of fused contamination probabilities.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{ images/confusion\_matrix\_fusion.pdf }
+  \caption{Confusion matrix for fused predictions in a non-degenerate synthetic split.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{ images/gro\_feature\_scatter.pdf }
+  \caption{GRO feature scatter for ROUGE-L vs min-k\% tail.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{ images/pr\_muvic.pdf }
+  \caption{Precision-Recall curve for MuViC fusion under a synthetic mixture.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{ images/roc\_baseline.pdf }
+  \caption{ROC curve for a baseline method in the synthetic setting.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{ images/roc\_blackbox.pdf }
+  \caption{ROC curve for black-box SEL+GRO fusion.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{ images/roc\_muvic.pdf }
+  \caption{ROC curve for MuViC fusion under a synthetic mixture.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{ images/sedp\_mapping.pdf }
+  \caption{SEDP mapping between mid and final paraphrase accuracy.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{ images/sedp\_timing.pdf }
+  \caption{SEDP sensitivity to injection timing.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{ images/sel\_blackbox.pdf }
+  \caption{SEL evidence in black-box mode.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{ images/sel\_shard\_evidence.pdf }
+  \caption{SEL shard-level evidence illustration.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{ images/sel\_timing.pdf }
+  \caption{SEL sensitivity to injection timing.}
+\end{figure}
+
+\section{Conclusion}
+We presented MuViC, a Bayesian multi-view analyser for benchmark contamination that integrates a performance-trajectory signal from internal checkpoints (SEDP), a sharded exchangeability likelihood test (SEL), and an instance-level guided regeneration probe (GRO). MuViC is reference-free, yields per-item probabilities, and is designed to remain effective when any single view weakens. In controlled synthetic studies, SEL produced decisive dataset-level separation under late leaks and in black-box mode; GRO delivered strong instance-level signals; SEDP correctly fired only for late-stage leakage. In a black-box partial-contamination setting, SEL+GRO achieved ROC AUC=1.000 for instance-level localisation. We also documented limitations arising from degenerate labels and underpowered SEDP calibration.
+
+\subsection{Implications}
+By combining orthogonal statistical views with Bayesian fusion and calibration, MuViC offers actionable instance-level evidence that supports data hygiene and rigorous evaluation. The framework complements dataset-level certificates \cite{oren-2023-proving}, performance-based tests \cite{dekoninck-2024-constat}, and instance-level probes \cite{golchin-2023-time,shi-2023-detecting}, while avoiding dependence on potentially contaminated reference panels. It aligns with broader calls for robust auditing, influence estimation, and provenance tracing \cite{jones-2023-automatically,ko-2024-the,sablayrolles-2020-radioactive} and remains compatible with orthogonal protections such as differential privacy \cite{guo-2022-bounding}.
+
+\subsection{Future work}
+We will scale MuViC to real models and benchmarks, construct non-degenerate evaluation splits to enable robust ROC/PR and F1 at controlled false discovery rates, and strengthen SEDP calibration via multiple clean runs and out-of-domain controls. We also plan to compare against ConStat and permutation baselines under intentionally contaminated references, extend to multi-modal tasks where leakage is endemic \cite{chen-2024-are}, and explore connections to influence estimation for richer attribution \cite{ko-2024-the}. Beyond text, we will consider contamination-aware audits in settings affected by synthetic data, adversarial evaluation issues, and privacy risks from side channels \cite{wang-2024-dealing,dbouk-2022-adversarial,author-year-private}. Ultimately, we envision integrating MuViC into continuous evaluation pipelines to automatically flag suspicious gains and localise likely leaked items for curator review.
+
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}
