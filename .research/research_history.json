@@ -6,5 +6,82 @@
     "gradient interference forgetting",
     "parameter-efficient adaptation continual",
     "large models catastrophic forgetting"
+  ],
+  "research_study_list": [
+    {
+      "title": "Efficient Continual Learning with Modular Networks and Task-Driven Priors"
+    },
+    {
+      "title": "Continual Learning of a Mixed Sequence of Similar and Dissimilar Tasks"
+    },
+    {
+      "title": "Theory on Forgetting and Generalization of Continual Learning"
+    },
+    {
+      "title": "Scalable and Order-robust Continual Learning with Additive Parameter Decomposition"
+    },
+    {
+      "title": "Beyond Not-Forgetting: Continual Learning with Backward Knowledge Transfer"
+    },
+    {
+      "title": "Long Live the Lottery: The Existence of Winning Tickets in Lifelong Learning"
+    },
+    {
+      "title": "LIBERO: Benchmarking Knowledge Transfer for Lifelong Robot Learning"
+    },
+    {
+      "title": "Lifelong Learning of Compositional Structures"
+    },
+    {
+      "title": "Continuous Coordination As a Realistic Scenario for Lifelong Learning"
+    },
+    {
+      "title": "Neural Topic Modeling with Continual Lifelong Learning"
+    },
+    {
+      "title": "Gradient Projection Memory for Continual Learning"
+    },
+    {
+      "title": "Gradient Projection Memory for Continual Learning"
+    },
+    {
+      "title": "Interference and Generalization in Temporal Difference Learning"
+    },
+    {
+      "title": "An Effective Dynamic Gradient Calibration Method for Continual Learning"
+    },
+    {
+      "title": "Measuring Forgetting of Memorized Training Examples"
+    },
+    {
+      "title": "InfLoRA: Interference-Free Low-Rank Adaptation for Continual Learning"
+    },
+    {
+      "title": "Semantically-Shifted Incremental Adapter-Tuning is A Continual ViTransformer"
+    },
+    {
+      "title": "Memory Efficient Continual Learning with Transformers"
+    },
+    {
+      "title": "Overcoming Generic Knowledge Loss with Selective Parameter Update"
+    },
+    {
+      "title": "Boosting Continual Learning of Vision-Language Models via Mixture-of-Experts Adapters"
+    },
+    {
+      "title": "Learn more, but bother less: parameter efficient continual learning"
+    },
+    {
+      "title": "What Will My Model Forget? Forecasting Forgotten Examples in Language Model Refinement"
+    },
+    {
+      "title": "On the Diminishing Returns of Width for Continual Learning"
+    },
+    {
+      "title": "Measuring Forgetting of Memorized Training Examples"
+    },
+    {
+      "title": "Model Tailor: Mitigating Catastrophic Forgetting in Multi-modal Large Language Models"
+    }
   ]
 }
