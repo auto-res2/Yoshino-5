@@ -1,0 +1,15 @@
+Traceback (most recent call last):
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 66, in <module>
+    main()
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 52, in main
+    run_plan1_synthetic(seed=int(cfg.get("plan1_seed", 42)), outdir=outdir)
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/evaluate.py", line 405, in run_plan1_synthetic
+    gro_clean = [gro_item_score(run_clean_math.checkpoints[fin_c], tok, it, k_tail=0.2, max_new_tokens=64) for it in ds_math]
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/evaluate.py", line 405, in <listcomp>
+    gro_clean = [gro_item_score(run_clean_math.checkpoints[fin_c], tok, it, k_tail=0.2, max_new_tokens=64) for it in ds_math]
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/evaluate.py", line 228, in gro_item_score
+    tok_lp = logprobs.gather(-1, y.unsqueeze(-1)).squeeze(-1).squeeze(0).cpu().numpy()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Can't call numpy() on Tensor that requires grad. Use tensor.detach().numpy() instead.
