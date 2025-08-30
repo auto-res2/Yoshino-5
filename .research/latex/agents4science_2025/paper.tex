@@ -20,10 +20,19 @@
 \usepackage{url}            % simple URL typesetting
 \usepackage{booktabs}       % professional-quality tables
 \usepackage{amsfonts}       % blackboard math symbols
+\usepackage{amsmath}        % math environments and \text
 \usepackage{nicefrac}
 \usepackage{microtype}
 \usepackage{xcolor}
+\usepackage{graphicx}       % includegraphics
+\usepackage{float}          % [H] float placement
+\usepackage{algorithm}      % algorithm float
+\usepackage{algpseudocode}  % algorithmicx with \State, \For, ...
+\usepackage{etoolbox}       % environment patching
 
+% Make '&' a normal character inside the bibliography (to avoid errors from unescaped '&' in .bib titles)
+\AtBeginEnvironment{thebibliography}{\begingroup\catcode`\&=12\relax}
+\AtEndEnvironment{thebibliography}{\endgroup}
 
 \title{Physically-Aware Hierarchical GaLore for Memory-Efficient SciML Training}
 
@@ -205,25 +214,25 @@ Training loss trajectories over 8 steps were similar across methods. For MLPFiel
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\linewidth]{ images/training_loss_microbench.pdf }
+\includegraphics[width=0.7\linewidth]{images/training_loss_microbench.pdf}
 \caption{Training loss on micro-bench models (MLPField and tiny transformer) across methods (filename: training\_loss\_microbench.pdf)}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\linewidth]{ images/gradient_srank_microbench.pdf }
+\includegraphics[width=0.7\linewidth]{images/gradient_srank_microbench.pdf}
 \caption{Gradient stable-rank diagnostics on micro-bench snapshots (filename: gradient\_srank\_microbench.pdf)}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\linewidth]{ images/projection_overhead_microbench.pdf }
+\includegraphics[width=0.7\linewidth]{images/projection_overhead_microbench.pdf}
 \caption{Projection overhead on micro-bench per step and method (filename: projection\_overhead\_microbench.pdf)}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\linewidth]{ images/alignment_phi-galore_microbench.pdf }
+\includegraphics[width=0.7\linewidth]{images/alignment_phi-galore_microbench.pdf}
 \caption{Cosine alignment of Phi-GaLore vs. full gradients on largest parameters (filename: alignment\_phi-galore\_microbench.pdf)}
 \end{figure}
 
@@ -232,19 +241,19 @@ Full-rank and Phi-GaLore without basis reduced training loss from 0.237570 to 0.
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\linewidth]{ images/training_loss_navierstokes.pdf }
+\includegraphics[width=0.7\linewidth]{images/training_loss_navierstokes.pdf}
 \caption{Training loss on toy Navier-Stokes across variants (filename: training\_loss\_navierstokes.pdf)}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\linewidth]{ images/rL2_navierstokes.pdf }
+\includegraphics[width=0.7\linewidth]{images/rL2_navierstokes.pdf}
 \caption{Relative L2 error on Navier-Stokes under clean, boundary-noise, and jitter conditions (filename: rL2\_navierstokes.pdf)}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\linewidth]{ images/divergence_norm_navierstokes.pdf }
+\includegraphics[width=0.7\linewidth]{images/divergence_norm_navierstokes.pdf}
 \caption{Divergence norm on Navier-Stokes under clean conditions (filename: divergence\_norm\_navierstokes.pdf)}
 \end{figure}
 
@@ -253,19 +262,19 @@ All methods achieved comparable training losses (mid-20s to high-20s) over 8 ste
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\linewidth]{ images/training_loss_molecular.pdf }
+\includegraphics[width=0.7\linewidth]{images/training_loss_molecular.pdf}
 \caption{Training loss on toy molecular regression across methods (filename: training\_loss\_molecular.pdf)}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\linewidth]{ images/projection_overhead_molecular.pdf }
+\includegraphics[width=0.7\linewidth]{images/projection_overhead_molecular.pdf}
 \caption{Projection overhead on toy molecular regression with and without sharing (filename: projection\_overhead\_molecular.pdf)}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\linewidth]{ images/mae_molecular.pdf }
+\includegraphics[width=0.7\linewidth]{images/mae_molecular.pdf}
 \caption{Robustness MAE on molecular task under rotations and coordinate noise (filename: mae\_molecular.pdf)}
 \end{figure}
 
