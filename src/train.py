@@ -18,7 +18,11 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.utils.data import DataLoader
 
-from .preprocess import SyntheticMultimodalDataset, ClientConfig
+# Support both package and script execution
+try:
+    from .preprocess import SyntheticMultimodalDataset, ClientConfig
+except ImportError:  # pragma: no cover
+    from preprocess import SyntheticMultimodalDataset, ClientConfig
 
 
 # -----------------------------

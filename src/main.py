@@ -11,29 +11,52 @@ from typing import Dict, List
 import numpy as np
 import torch
 
-from .preprocess import set_seed, create_federated_clients
-from .train import (
-    FedUAlignModel,
-    ConformalAggregator,
-    train_one_round,
-)
-from .evaluate import (
-    evaluate_global,
-    plot_training_loss,
-    plot_acc_missingness,
-    plot_ece_missingness,
-    plot_comm_per_round,
-    plot_confusion_matrix,
-    plot_aumc_bar,
-    trapezoidal_area,
-    cross_modal_retrieval,
-    plot_fdr_over_rounds,
-    plot_comm_vs_rounds,
-    plot_comm_vs_rank_summary,
-)
+# Support both package and script execution for imports
+try:
+    from .preprocess import set_seed, create_federated_clients
+    from .train import (
+        FedUAlignModel,
+        ConformalAggregator,
+        train_one_round,
+    )
+    from .evaluate import (
+        evaluate_global,
+        plot_training_loss,
+        plot_acc_missingness,
+        plot_ece_missingness,
+        plot_comm_per_round,
+        plot_confusion_matrix,
+        plot_aumc_bar,
+        trapezoidal_area,
+        cross_modal_retrieval,
+        plot_fdr_over_rounds,
+        plot_comm_vs_rounds,
+        plot_comm_vs_rank_summary,
+    )
+except ImportError:  # pragma: no cover
+    from preprocess import set_seed, create_federated_clients
+    from train import (
+        FedUAlignModel,
+        ConformalAggregator,
+        train_one_round,
+    )
+    from evaluate import (
+        evaluate_global,
+        plot_training_loss,
+        plot_acc_missingness,
+        plot_ece_missingness,
+        plot_comm_per_round,
+        plot_confusion_matrix,
+        plot_aumc_bar,
+        trapezoidal_area,
+        cross_modal_retrieval,
+        plot_fdr_over_rounds,
+        plot_comm_vs_rounds,
+        plot_comm_vs_rank_summary,
+    )
 
 
-DEFAULT_IMAGE_DIR = os.path.join('.research', 'iteration1', 'images')
+DEFAULT_IMAGE_DIR = os.path.join('.research', 'iteration2', 'images')
 
 
 def run_experiment1(cfg: Dict, device: torch.device, image_dir: str):
@@ -302,14 +325,14 @@ def run_baseline_lora_quick(device: torch.device, image_dir: str):
         print(f"  [Round {r+1}/{cfg['n_rounds']}] selected={sel_cnt}/{len(clients_cfg)} comm={comm_mb:.2f} MB")
 
     eval_res = evaluate_global(model, clients_cfg, batch_size=64, beta_fusion=cfg['beta_fusion'], missing_rates=[0.0, 0.5, 1.0], device=device)
-    from .evaluate import plot_acc_missingness
-    plot_acc_missingness(eval_res['missing_rate'], eval_res['acc'], image_dir, tag='lora_baseline')
+    from evaluate import plot_acc_missingness as plot_acc_missingness_local  # safe import
+    plot_acc_missingness_local(eval_res['missing_rate'], eval_res['acc'], image_dir, tag='lora_baseline')
     return {'acc_curve': eval_res['acc']}
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--config', type=str, default=os.path.join('config', 'experiment.yaml'))
+    parser.add_argument('--config', type=str, default=os.path.join('config', 'config.yaml'))
     parser.add_argument('--quick', action='store_true', help='Run a quick smoke test')
     args = parser.parse_args()
 

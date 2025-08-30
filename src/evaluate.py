@@ -11,8 +11,13 @@ import torch.nn.functional as F
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-from .preprocess import SyntheticMultimodalDataset, SyntheticMMItem
-from .train import FederatedClient
+# Support both package and script execution
+try:
+    from .preprocess import SyntheticMultimodalDataset, SyntheticMMItem
+    from .train import FederatedClient
+except ImportError:  # pragma: no cover
+    from preprocess import SyntheticMultimodalDataset, SyntheticMMItem
+    from train import FederatedClient
 
 
 # High-quality PDF settings
