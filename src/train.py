@@ -93,9 +93,10 @@ class SpectralAdapter(nn.Module):
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         # x: [B, T, in_dim]
-        self._orthonormalize_(self.U)
-        self._orthonormalize_(self.V)
-        deltaW = (self.U * self.s) @ self.V.t()  # [out_dim, in_dim]
+        # IMPORTANT: avoid in-place parameter modification during forward to keep autograd graph valid
+        U_hat, _ = torch.linalg.qr(self.U, mode='reduced')
+        V_hat, _ = torch.linalg.qr(self.V, mode='reduced')
+        deltaW = (U_hat * self.s) @ V_hat.t()  # [out_dim, in_dim]
         out = F.linear(x, deltaW)
         return self.dropout(out)
 

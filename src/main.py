@@ -56,7 +56,7 @@ except ImportError:  # pragma: no cover
     )
 
 
-DEFAULT_IMAGE_DIR = os.path.join('.research', 'iteration4', 'images')
+DEFAULT_IMAGE_DIR = os.path.join('.research', 'iteration5', 'images')
 
 
 def run_experiment1(cfg: Dict, device: torch.device, image_dir: str):
