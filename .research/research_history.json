@@ -6,5 +6,82 @@
     "video question answering",
     "vision-language temporal models",
     "low-rank video adaptation"
+  ],
+  "research_study_list": [
+    {
+      "title": "Align Your Latents: High-Resolution Video Synthesis With Latent Diffusion Models"
+    },
+    {
+      "title": "AnimateDiff: Animate Your Personalized Text-to-Image Diffusion Models without Specific Tuning"
+    },
+    {
+      "title": "SimDA: Simple Diffusion Adapter for Efficient Video Generation"
+    },
+    {
+      "title": "DoRA: Weight-Decomposed Low-Rank Adaptation"
+    },
+    {
+      "title": "DoRA: Weight-Decomposed Low-Rank Adaptation"
+    },
+    {
+      "title": "DoRA: Weight-Decomposed Low-Rank Adaptation"
+    },
+    {
+      "title": "DoRA: Weight-Decomposed Low-Rank Adaptation"
+    },
+    {
+      "title": "Training for the Future: A Simple Gradient Interpolation Loss to Generalize Along Time"
+    },
+    {
+      "title": "Flora: Low-Rank Adapters Are Secretly Gradient Compressors"
+    },
+    {
+      "title": "Temporal Interpolation Is All You Need for Dynamic Neural Radiance Fields"
+    },
+    {
+      "title": "Towards Video Text Visual Question Answering: Benchmark and Baseline"
+    },
+    {
+      "title": "Towards Video Text Visual Question Answering: Benchmark and Baseline"
+    },
+    {
+      "title": "Zero-Shot Video Question Answering via Frozen Bidirectional Language Models"
+    },
+    {
+      "title": "Self-Chained Image-Language Model for Video Localization and Question Answering"
+    },
+    {
+      "title": "Slot-VLM: Object-Event Slots for Video-Language Modeling"
+    },
+    {
+      "title": "Test of Time: Instilling Video-Language Models With a Sense of Time"
+    },
+    {
+      "title": "Language Models with Image Descriptors are Strong Few-Shot Video-Language Learners"
+    },
+    {
+      "title": "VTimeLLM: Empower LLM to Grasp Video Moments"
+    },
+    {
+      "title": "Video-LaVIT: Unified Video-Language Pre-training with Decoupled Visual-Motional Tokenization"
+    },
+    {
+      "title": "Video-LaVIT: Unified Video-Language Pre-training with Decoupled Visual-Motional Tokenization"
+    },
+    {
+      "title": "The Expressive Power of Low-Rank Adaptation"
+    },
+    {
+      "title": "Efficient Adaptation of Pre-trained Vision Transformer via Householder Transformation"
+    },
+    {
+      "title": "Low-Rank Subspaces in GANs"
+    },
+    {
+      "title": "Low-rank lottery tickets: finding efficient low-rank neural networks via matrix differential equations"
+    },
+    {
+      "title": "A Video is Worth 256 Bases: Spatial-Temporal Expectation-Maximization Inversion for Zero-Shot Video Editing"
+    }
   ]
 }
