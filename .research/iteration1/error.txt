@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 11, in <module>
+    from .preprocess import set_seed, get_device, ensure_dir, SyntheticDataConfig, generate_language_data, generate_classification_data
+ImportError: attempted relative import with no known parent package
