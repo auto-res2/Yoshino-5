@@ -6,5 +6,82 @@
     "federated multimodal learning",
     "uncertainty feature alignment",
     "parameter efficient adapters"
+  ],
+  "research_study_list": [
+    {
+      "title": "Deep Correlated Prompting for Visual Recognition with Missing Modalities"
+    },
+    {
+      "title": "Multimodal Prompting With Missing Modalities for Visual Recognition"
+    },
+    {
+      "title": "Incomplete Multimodality-Diffused Emotion Recognition"
+    },
+    {
+      "title": "Probabilistic Conformal Distillation for Enhancing Missing Modality Robustness"
+    },
+    {
+      "title": "MMANet: Margin-Aware Distillation and Modality-Aware Regularization for Incomplete Multimodal Learning"
+    },
+    {
+      "title": "Provable Dynamic Fusion for Low-Quality Multimodal Data"
+    },
+    {
+      "title": "Adaptive Fusion of Single-View and Multi-View Depth for Autonomous Driving"
+    },
+    {
+      "title": "Test-Time Dynamic Image Fusion"
+    },
+    {
+      "title": "Predictive Dynamic Fusion"
+    },
+    {
+      "title": "Fusion Is Not Enough: Single Modal Attacks on Fusion Models for 3D Object Detection"
+    },
+    {
+      "title": "Multimodal Federated Learning via Contrastive Representation Ensemble"
+    },
+    {
+      "title": "Enhancing Storage and Computational Efficiency in Federated Multimodal Learning for Large-Scale Models"
+    },
+    {
+      "title": "FedMBridge: Bridgeable Multimodal Federated Learning"
+    },
+    {
+      "title": "FedMBridge: Bridgeable Multimodal Federated Learning"
+    },
+    {
+      "title": "Adaptive Hyper-graph Aggregation for Modality-Agnostic Federated Learning"
+    },
+    {
+      "title": "Transitional Uncertainty with Layered Intermediate Predictions"
+    },
+    {
+      "title": "SSAL: Synergizing between Self-Training and Adversarial Learning for Domain Adaptive Object Detection"
+    },
+    {
+      "title": "URL: A Representation Learning Benchmark for Transferable Uncertainty Estimates"
+    },
+    {
+      "title": "Adaptive Uncertainty Estimation via High-Dimensional Testing on Latent Representations"
+    },
+    {
+      "title": "Combining Statistical Depth and Fermat Distance for Uncertainty Quantification"
+    },
+    {
+      "title": "Make Pre-trained Model Reversible: From Parameter to Memory Efficient Fine-Tuning"
+    },
+    {
+      "title": "Structured Unrestricted-Rank Matrices for Parameter Efficient Finetuning"
+    },
+    {
+      "title": "Adapters Strike Back"
+    },
+    {
+      "title": "Time- Memory- and Parameter-Efficient Visual Adaptation"
+    },
+    {
+      "title": "Parameter-Efficient Fine-Tuning Design Spaces"
+    }
   ]
 }
