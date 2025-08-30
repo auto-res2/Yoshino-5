@@ -2,7 +2,7 @@
 # Run with: python -m src.main --config config/config.yaml
 
 # Output directory for all figures (PDF)
-output_dir: .research/iteration1/images
+output_dir: .research/iteration2/images
 
 # Random seeds for each plan
 plan1_seed: 42

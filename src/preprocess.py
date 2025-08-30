@@ -17,7 +17,7 @@ import numpy as np
 class TinyCharTokenizer:
     def __init__(self, texts: List[str]):
         base_chars = list(
-            "\n\t .,;:!?-_=+*/()[]{}<>\'\"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+            "\n\t .,;:!?-_=+*/()[]{}<>'\"0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
         )
         vocab_set = set(base_chars)
         for t in texts:

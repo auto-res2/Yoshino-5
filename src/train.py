@@ -17,12 +17,20 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from .preprocess import (
-    TinyCharTokenizer,
-    QAItem,
-    canonical_text,
-    prompt_prefix_for_answer,
-)
+try:
+    from .preprocess import (
+        TinyCharTokenizer,
+        QAItem,
+        canonical_text,
+        prompt_prefix_for_answer,
+    )
+except ImportError:  # Fallback when running as a script without package context
+    from preprocess import (  # type: ignore
+        TinyCharTokenizer,
+        QAItem,
+        canonical_text,
+        prompt_prefix_for_answer,
+    )
 
 
 class TinyLM(nn.Module):

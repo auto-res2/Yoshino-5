@@ -6,7 +6,7 @@ Run from project root with:
     python -m src.main
 
 This will load config/config.yaml and run the selected plan(s), saving all figures
-as high-quality PDFs in .research/iteration1/images.
+as high-quality PDFs in .research/iteration2/images.
 """
 from __future__ import annotations
 import argparse
@@ -15,7 +15,10 @@ from typing import Any, Dict
 
 import yaml
 
-from .evaluate import run_plan1_synthetic, run_plan2_robustness, run_plan3_blackbox
+try:
+    from .evaluate import run_plan1_synthetic, run_plan2_robustness, run_plan3_blackbox
+except ImportError:  # Fallback when executed as a script without package context
+    from evaluate import run_plan1_synthetic, run_plan2_robustness, run_plan3_blackbox  # type: ignore
 
 
 def load_config(path: str) -> Dict[str, Any]:
@@ -37,7 +40,7 @@ def main():
 
     cfg = load_config(args.config)
 
-    outdir = cfg.get("output_dir", ".research/iteration1/images")
+    outdir = cfg.get("output_dir", ".research/iteration2/images")
     os.makedirs(outdir, exist_ok=True)
 
     print("================ MuViC Synthetic Experiments ================")

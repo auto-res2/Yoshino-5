@@ -19,14 +19,27 @@ from scipy.stats import chi2, ttest_rel
 from sklearn.isotonic import IsotonicRegression
 from sklearn.metrics import auc, confusion_matrix, precision_recall_curve, roc_curve
 
-from .preprocess import (
-    QAItem,
-    TinyCharTokenizer,
-    canonical_text,
-    generate_dataset,
-    paraphrase_question,  # not directly used but exported for completeness
-)
-from .train import TinyLM, TrainingRun, build_training_run, eval_paraphrase_accuracy
+try:
+    from .preprocess import (
+        QAItem,
+        TinyCharTokenizer,
+        canonical_text,
+        generate_dataset,
+        paraphrase_question,  # not directly used but exported for completeness
+    )
+except ImportError:  # Fallback for script execution without package context
+    from preprocess import (  # type: ignore
+        QAItem,
+        TinyCharTokenizer,
+        canonical_text,
+        generate_dataset,
+        paraphrase_question,
+    )
+
+try:
+    from .train import TinyLM, TrainingRun, build_training_run, eval_paraphrase_accuracy
+except ImportError:  # Fallback for script execution without package context
+    from train import TinyLM, TrainingRun, build_training_run, eval_paraphrase_accuracy  # type: ignore
 
 
 # ------------------------------
