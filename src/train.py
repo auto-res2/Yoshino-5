@@ -131,6 +131,7 @@ class TinyTransformerRegressor(nn.Module):
         self.ln = nn.LayerNorm(dim)
         self.seq_len = seq_len
 
+        
     def forward(self, tokens: torch.Tensor) -> torch.Tensor:
         # tokens: [B, L, 4]
         h = self.embed(tokens)
@@ -501,7 +502,14 @@ def train_one(model: nn.Module,
                         sr = stable_rank(p.grad)
                         sranks.append(sr)
                         break
-        overhead_ms.append(optimizer_wrapper.projection_overhead_ms())
+        # handle both wrapped optimizers and plain torch optimizers
+        overhead = 0.0
+        if hasattr(optimizer_wrapper, 'projection_overhead_ms'):
+            try:
+                overhead = float(optimizer_wrapper.projection_overhead_ms())
+            except Exception:
+                overhead = 0.0
+        overhead_ms.append(overhead)
         if (step + 1) % log_every == 0 or step == 0:
             print(f"Step {step+1}/{steps} | loss={l:.6f} | proj_overhead_ms={overhead_ms[-1]:.3f}")
     return TrainResult(losses=losses, sranks=sranks, overhead_ms=overhead_ms)
