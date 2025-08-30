@@ -14,24 +14,24 @@ matplotlib.rcParams['ps.fonttype'] = 42
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-from .preprocess import CharTokenizer, MathReasoningDataset, collate_batch
-from .train import TinyTransformer, TrainConfig, train_one
-from .evaluate import evaluate_em, save_barplot_pdf, save_scatter_pdf, spearman_corr
+from preprocess import CharTokenizer, MathReasoningDataset, collate_batch
+from train import TinyTransformer, TrainConfig, train_one
+from evaluate import evaluate_em, save_barplot_pdf, save_scatter_pdf, spearman_corr
 
 
-def ensure_dirs():
-    os.makedirs('.research/iteration1/images', exist_ok=True)
+def ensure_dirs(images_dir: str):
+    os.makedirs(images_dir, exist_ok=True)
     os.makedirs('data', exist_ok=True)
     os.makedirs('models', exist_ok=True)
 
 
-def load_config(path: str = 'config/experiment.yaml') -> Dict:
+def load_config(path: str = 'config/config.yaml') -> Dict:
     if not os.path.exists(path):
         # default minimal config
         return {
             'seed': 42,
             'device': 'cuda' if torch.cuda.is_available() else 'cpu',
-            'images_dir': '.research/iteration1/images'
+            'images_dir': '.research/iteration2/images'
         }
     with open(path, 'r') as f:
         cfg = yaml.safe_load(f)
@@ -278,11 +278,11 @@ def experiment3_faithfulness(core: Dict, images_dir: str, seed: int = 42, device
 
 
 def run_all():
-    ensure_dirs()
     cfg = load_config()
     seed = int(cfg.get('seed', 42))
     device = cfg.get('device', 'cuda' if torch.cuda.is_available() else 'cpu')
-    images_dir = cfg.get('images_dir', '.research/iteration1/images')
+    images_dir = cfg.get('images_dir', '.research/iteration2/images')
+    ensure_dirs(images_dir)
 
     core = experiment1_core(images_dir=images_dir, seed=seed, device=device)
     exp2 = experiment2_long_context(core, images_dir=images_dir, seed=seed, device=device)

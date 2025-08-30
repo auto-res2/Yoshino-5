@@ -11,8 +11,8 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torch.utils.data import DataLoader
 
-from .preprocess import collate_batch
-from .evaluate import evaluate_em, measure_inference
+from preprocess import collate_batch
+from evaluate import evaluate_em, measure_inference
 
 
 # -------------------------
@@ -347,7 +347,7 @@ class TrainConfig:
     block_size: int = 16
     device: str = 'cuda' if torch.cuda.is_available() else 'cpu'
     seed: int = 0
-    images_dir: str = '.research/iteration1/images'
+    images_dir: str = '.research/iteration2/images'
 
 
 def set_seed(seed: int = 0):
