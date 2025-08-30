@@ -1,0 +1,10 @@
+{
+  "research_topic": "Improve GaLore gradient projection computational efficiency on scientific computing tasks including physics-informed neural networks for PDE solving and molecular property prediction on MolPuzzle dataset (217 molecular instances) regarding memory reduction and training speed optimization, evaluated against full-parameter training and standard LoRA approaches using 1-1.5B parameter transformer models, addressing the 2025 trend of scientific machine learning by enabling full-parameter optimization within memory constraints through low-rank gradient projection while preserving domain-specific inductive biases and physical symmetries.",
+  "queries": [
+    "GaLore optimization",
+    "low rank gradient",
+    "physics informed transformers",
+    "molecular property transformers",
+    "memory efficient LoRA"
+  ]
+}
