@@ -5,3 +5,917 @@
   publisher = {GitHub},
   url       = {https://github.com/airas-org/airas}
 }
+
+% ===========================================
+% REQUIRED CITATIONS
+% These papers must be cited in the manuscript
+% ===========================================
+
+@article{author-year-knowledge,
+ title = {Knowledge Distillation with Auxiliary Variable}
+}
+
+@article{author-year-llm,
+ title = {D-LLM: A Token Adaptive Computing Resource Allocation Strategy for Large Language Models}
+}
+
+@article{author-year-scaffolding,
+ title = {Scaffolding a Student to Instill Knowledge}
+}
+
+@article{author-year-towards,
+ title = {Towards Efficient Pre-Trained Language Model via Feature Correlation Distillation}
+}
+
+@article{chen-2023-data,
+ abstract = {Dataset distillation aims to minimize the time and memory needed for training
+deep networks on large datasets, by creating a small set of synthetic images
+that has a similar generalization performance to that of the full dataset.
+However, current dataset distillation techniques fall short, showing a notable
+performance gap when compared to training on the original data. In this work,
+we are the first to argue that using just one synthetic subset for distillation
+will not yield optimal generalization performance. This is because the training
+dynamics of deep networks drastically change during the training. Hence,
+multiple synthetic subsets are required to capture the training dynamics at
+different phases of training. To address this issue, we propose Progressive
+Dataset Distillation (PDD). PDD synthesizes multiple small sets of synthetic
+images, each conditioned on the previous sets, and trains the model on the
+cumulative union of these subsets without requiring additional training time.
+Our extensive experiments show that PDD can effectively improve the performance
+of existing dataset distillation methods by up to 4.3%. In addition, our method
+for the first time enable generating considerably larger synthetic datasets.},
+ arxiv_url = {https://arxiv.org/pdf/2310.06982v1.pdf},
+ author = {Xuxi Chen and Yu Yang and Zhangyang Wang and Baharan Mirzasoleiman},
+ title = {Data Distillation Can Be Like Vodka: Distilling More Times For Better Quality},
+ year = {2023}
+}
+
+@article{cherian-2024-evaluating,
+ abstract = {Recent years have seen a significant progress in the general-purpose problem
+solving abilities of large vision and language models (LVLMs), such as ChatGPT,
+Gemini, etc.; some of these breakthroughs even seem to enable AI models to
+outperform human abilities in varied tasks that demand higher-order cognitive
+skills. Are the current large AI models indeed capable of generalized problem
+solving as humans do? A systematic analysis of AI capabilities for joint vision
+and text reasoning, however, is missing in the current scientific literature.
+In this paper, we make an effort towards filling this gap, by evaluating
+state-of-the-art LVLMs on their mathematical and algorithmic reasoning
+abilities using visuo-linguistic problems from children's Olympiads.
+Specifically, we consider problems from the Mathematical Kangaroo (MK)
+Olympiad, which is a popular international competition targeted at children
+from grades 1-12, that tests children's deeper mathematical abilities using
+puzzles that are appropriately gauged to their age and skills. Using the
+puzzles from MK, we created a dataset, dubbed SMART-840, consisting of 840
+problems from years 2020-2024. With our dataset, we analyze LVLMs power on
+mathematical reasoning; their responses on our puzzles offer a direct way to
+compare against that of children. Our results show that modern LVLMs do
+demonstrate increasingly powerful reasoning skills in solving problems for
+higher grades, but lack the foundations to correctly answer problems designed
+for younger children. Further analysis shows that there is no significant
+correlation between the reasoning capabilities of AI models and that of young
+children, and their capabilities appear to be based on a different type of
+reasoning than the cumulative knowledge that underlies children's mathematics
+and logic skills.},
+ arxiv_url = {https://arxiv.org/pdf/2406.15736v2.pdf},
+ author = {Anoop Cherian and Kuan-Chuan Peng and Suhas Lohit and Joanna Matthiesen and Kevin Smith and Joshua B. Tenenbaum},
+ title = {Evaluating Large Vision-and-Language Models on Children's Mathematical Olympiads},
+ year = {2024}
+}
+
+@article{chevalier-2024-language,
+ abstract = {NLP has recently made exciting progress toward training language models (LMs)
+with strong scientific problem-solving skills. However, model development has
+not focused on real-life use-cases of LMs for science, including applications
+in education that require processing long scientific documents. To address
+this, we introduce TutorEval and TutorChat. TutorEval is a diverse
+question-answering benchmark consisting of questions about long chapters from
+STEM textbooks, written by experts. TutorEval helps measure real-life usability
+of LMs as scientific assistants, and it is the first benchmark combining long
+contexts, free-form generation, and multi-disciplinary scientific knowledge.
+Moreover, we show that fine-tuning base models with existing dialogue datasets
+leads to poor performance on TutorEval. Therefore, we create TutorChat, a
+dataset of 80,000 long synthetic dialogues about textbooks. We use TutorChat to
+fine-tune Llemma models with 7B and 34B parameters. These LM tutors specialized
+in math have a 32K-token context window, and they excel at TutorEval while
+performing strongly on GSM8K and MATH. Our datasets build on open-source
+materials, and we release our models, data, and evaluations.},
+ arxiv_url = {https://arxiv.org/pdf/2402.11111v2.pdf},
+ author = {Alexis Chevalier and Jiayi Geng and Alexander Wettig and Howard Chen and Sebastian Mizera and Toni Annala and Max Jameson Aragon and Arturo Rodríguez Fanlo and Simon Frieder and Simon Machado and Akshara Prabhakar and Ellie Thieu and Jiachen T. Wang and Zirui Wang and Xindi Wu and Mengzhou Xia and Wenhan Xia and Jiatong Yu and Jun-Jie Zhu and Zhiyong Jason Ren and Sanjeev Arora and Danqi Chen},
+ title = {Language Models as Science Tutors},
+ year = {2024}
+}
+
+@article{dennis-2023-progressive,
+ abstract = {We study the problem of progressive ensemble distillation: Given a large,
+pretrained teacher model $g$, we seek to decompose the model into smaller,
+low-inference cost student models $f_i$, such that progressively evaluating
+additional models in this ensemble leads to improved predictions. The resulting
+ensemble allows for flexibly tuning accuracy vs. inference cost at runtime,
+which is useful for a number of applications in on-device inference. The method
+we propose, B-DISTIL , relies on an algorithmic procedure that uses function
+composition over intermediate activations to construct expressive ensembles
+with similar performance as $g$ , but with smaller student models. We
+demonstrate the effectiveness of B-DISTIL by decomposing pretrained models
+across standard image, speech, and sensor datasets. We also provide theoretical
+guarantees in terms of convergence and generalization.},
+ arxiv_url = {https://arxiv.org/pdf/2302.10093v2.pdf},
+ author = {Don Kurian Dennis and Abhishek Shetty and Anish Sevekari and Kazuhito Koishida and Virginia Smith},
+ title = {Progressive Ensemble Distillation: Building Ensembles for Efficient Inference},
+ year = {2023}
+}
+
+@article{feng-2024-keypoint,
+ abstract = {Chain-of-thought distillation is a powerful technique for transferring
+reasoning abilities from large language models (LLMs) to smaller student
+models. Previous methods typically require the student to mimic the
+step-by-step rationale produced by LLMs, often facing the following challenges:
+(i) Tokens within a rationale vary in significance, and treating them equally
+may fail to accurately mimic keypoint tokens, leading to reasoning errors. (ii)
+They usually distill knowledge by consistently predicting all the steps in a
+rationale, which falls short in distinguishing the learning order of step
+generation. This diverges from the human cognitive progression of starting with
+easy tasks and advancing to harder ones, resulting in sub-optimal outcomes. To
+this end, we propose a unified framework, called KPOD, to address these issues.
+Specifically, we propose a token weighting module utilizing mask learning to
+encourage accurate mimicry of keypoint tokens by the student during
+distillation. Besides, we develop an in-rationale progressive distillation
+strategy, starting with training the student to generate the final reasoning
+steps and gradually extending to cover the entire rationale. To accomplish
+this, a weighted token generation loss is proposed to assess step reasoning
+difficulty, and a value function is devised to schedule the progressive
+distillation by considering both step difficulty and question diversity.
+Extensive experiments on four reasoning benchmarks illustrate our KPOD
+outperforms previous methods by a large margin.},
+ arxiv_url = {https://arxiv.org/pdf/2405.16064v1.pdf},
+ author = {Kaituo Feng and Changsheng Li and Xiaolu Zhang and Jun Zhou and Ye Yuan and Guoren Wang},
+ title = {Keypoint-based Progressive Chain-of-Thought Distillation for LLMs},
+ year = {2024}
+}
+
+@article{fu-2023-specializing,
+ abstract = {The surprising ability of Large Language Models (LLMs) to perform well on
+complex reasoning with only few-shot chain-of-thought prompts is believed to
+emerge only in very large-scale models (100+ billion parameters). We show that
+such abilities can, in fact, be distilled down from GPT-3.5 ($\ge$ 175B) to T5
+variants ($\le$ 11B). We propose model specialization, to specialize the
+model's ability towards a target task. The hypothesis is that large models
+(commonly viewed as larger than 100B) have strong modeling power, but are
+spread on a large spectrum of tasks. Small models (commonly viewed as smaller
+than 10B) have limited model capacity, but if we concentrate their capacity on
+a specific target task, the model can achieve a decent improved performance. We
+use multi-step math reasoning as our testbed because it is a very typical
+emergent ability. We show two important aspects of model abilities: (1). there
+exists a very complex balance/ tradeoff between language models'
+multi-dimensional abilities; (2). by paying the price of decreased generic
+ability, we can clearly lift up the scaling curve of models smaller than 10B
+towards a specialized multi-step math reasoning ability. We further give
+comprehensive discussions about important design choices for better
+generalization, including the tuning data format, the start model checkpoint,
+and a new model selection method. We hope our practice and discoveries can
+serve as an important attempt towards specialized smaller models in the new
+research paradigm set by LLMs.},
+ arxiv_url = {https://arxiv.org/pdf/2301.12726v1.pdf},
+ author = {Yao Fu and Hao Peng and Litu Ou and Ashish Sabharwal and Tushar Khot},
+ title = {Specializing Smaller Language Models towards Multi-Step Reasoning},
+ year = {2023}
+}
+
+@article{hu-2023-visual,
+ abstract = {Solving complex visual tasks such as "Who invented the musical instrument on
+the right?" involves a composition of skills: understanding space, recognizing
+instruments, and also retrieving prior knowledge. Recent work shows promise by
+decomposing such tasks using a large language model (LLM) into an executable
+program that invokes specialized vision models. However, generated programs are
+error-prone: they omit necessary steps, include spurious ones, and are unable
+to recover when the specialized models give incorrect outputs. Moreover, they
+require loading multiple models, incurring high latency and computation costs.
+We propose Visual Program Distillation (VPD), an instruction tuning framework
+that produces a vision-language model (VLM) capable of solving complex visual
+tasks with a single forward pass. VPD distills the reasoning ability of LLMs by
+using them to sample multiple candidate programs, which are then executed and
+verified to identify a correct one. It translates each correct program into a
+language description of the reasoning steps, which are then distilled into a
+VLM. Extensive experiments show that VPD improves the VLM's ability to count,
+understand spatial relations, and reason compositionally. Our VPD-trained
+PaLI-X outperforms all prior VLMs, achieving state-of-the-art performance
+across complex vision tasks, including MMBench, OK-VQA, A-OKVQA, TallyQA, POPE,
+and Hateful Memes. An evaluation with human annotators also confirms that VPD
+improves model response factuality and consistency. Finally, experiments on
+content moderation demonstrate that VPD is also helpful for adaptation to
+real-world applications with limited data.},
+ arxiv_url = {https://arxiv.org/pdf/2312.03052v2.pdf},
+ author = {Yushi Hu and Otilia Stretcu and Chun-Ta Lu and Krishnamurthy Viswanathan and Kenji Hata and Enming Luo and Ranjay Krishna and Ariel Fuxman},
+ title = {Visual Program Distillation: Distilling Tools and Programmatic Reasoning into Vision-Language Models},
+ year = {2023}
+}
+
+@article{kang-2023-knowledge,
+ abstract = {Large Language Models (LLMs) have shown promising performance in
+knowledge-intensive reasoning tasks that require a compound understanding of
+knowledge. However, deployment of the LLMs in real-world applications can be
+challenging due to their high computational requirements and concerns on data
+privacy. Previous studies have focused on building task-specific small Language
+Models (LMs) by fine-tuning them with labeled data or distilling LLMs. However,
+these approaches are ill-suited for knowledge-intensive reasoning tasks due to
+the limited capacity of small LMs in memorizing the knowledge required.
+Motivated by our theoretical analysis on memorization, we propose
+Knowledge-Augmented Reasoning Distillation (KARD), a novel method that
+fine-tunes small LMs to generate rationales obtained from LLMs with augmented
+knowledge retrieved from an external knowledge base. Moreover, we further
+propose a neural reranker to obtain documents relevant to rationale generation.
+We empirically show that KARD significantly improves the performance of small
+T5 and GPT models on the challenging knowledge-intensive reasoning datasets,
+namely MedQA-USMLE, StrategyQA, and OpenbookQA. Notably, our method makes the
+250M T5 models achieve superior performance against the fine-tuned 3B models,
+having 12 times larger parameters, on both MedQA-USMLE and StrategyQA
+benchmarks.},
+ arxiv_url = {https://arxiv.org/pdf/2305.18395v2.pdf},
+ author = {Minki Kang and Seanie Lee and Jinheon Baek and Kenji Kawaguchi and Sung Ju Hwang},
+ github_url = {https://github.com/Nardien/KARD},
+ title = {Knowledge-Augmented Reasoning Distillation for Small Language Models in Knowledge-Intensive Tasks},
+ year = {2023}
+}
+
+@article{li-2023-dissecting,
+ abstract = {Chain-of-thought (CoT) is a method that enables language models to handle
+complex reasoning tasks by decomposing them into simpler steps. Despite its
+success, the underlying mechanics of CoT are not yet fully understood. In an
+attempt to shed light on this, our study investigates the impact of CoT on the
+ability of transformers to in-context learn a simple to study, yet general
+family of compositional functions: multi-layer perceptrons (MLPs). In this
+setting, we find that the success of CoT can be attributed to breaking down
+in-context learning of a compositional function into two distinct phases:
+focusing on and filtering data related to each step of the composition and
+in-context learning the single-step composition function. Through both
+experimental and theoretical evidence, we demonstrate how CoT significantly
+reduces the sample complexity of in-context learning (ICL) and facilitates the
+learning of complex functions that non-CoT methods struggle with. Furthermore,
+we illustrate how transformers can transition from vanilla in-context learning
+to mastering a compositional function with CoT by simply incorporating
+additional layers that perform the necessary data-filtering for CoT via the
+attention mechanism. In addition to these test-time benefits, we show CoT helps
+accelerate pretraining by learning shortcuts to represent complex functions and
+filtering plays an important role in this process. These findings collectively
+provide insights into the mechanics of CoT, inviting further investigation of
+its role in complex reasoning tasks.},
+ arxiv_url = {https://arxiv.org/pdf/2305.18869v2.pdf},
+ author = {Yingcong Li and Kartik Sreenivasan and Angeliki Giannou and Dimitris Papailiopoulos and Samet Oymak},
+ github_url = {https://github.com/yingcong-li/Dissecting-CoT},
+ title = {Dissecting Chain-of-Thought: Compositionality through In-Context Filtering and Learning},
+ year = {2023}
+}
+
+@article{li-2024-chain,
+ abstract = {Instructing the model to generate a sequence of intermediate steps, a.k.a., a
+chain of thought (CoT), is a highly effective method to improve the accuracy of
+large language models (LLMs) on arithmetics and symbolic reasoning tasks.
+However, the mechanism behind CoT remains unclear. This work provides a
+theoretical understanding of the power of CoT for decoder-only transformers
+through the lens of expressiveness. Conceptually, CoT empowers the model with
+the ability to perform inherently serial computation, which is otherwise
+lacking in transformers, especially when depth is low. Given input length $n$,
+previous works have shown that constant-depth transformers with finite
+precision $\mathsf{poly}(n)$ embedding size can only solve problems in
+$\mathsf{TC}^0$ without CoT. We first show an even tighter expressiveness upper
+bound for constant-depth transformers with constant-bit precision, which can
+only solve problems in $\mathsf{AC}^0$, a proper subset of $ \mathsf{TC}^0$.
+However, with $T$ steps of CoT, constant-depth transformers using constant-bit
+precision and $O(\log n)$ embedding size can solve any problem solvable by
+boolean circuits of size $T$. Empirically, enabling CoT dramatically improves
+the accuracy for tasks that are hard for parallel computation, including the
+composition of permutation groups, iterated squaring, and circuit value
+problems, especially for low-depth transformers.},
+ arxiv_url = {https://arxiv.org/pdf/2402.12875v4.pdf},
+ author = {Zhiyuan Li and Hong Liu and Denny Zhou and Tengyu Ma},
+ title = {Chain of Thought Empowers Transformers to Solve Inherently Serial Problems},
+ year = {2024}
+}
+
+@article{liu-2024-can,
+ abstract = {Trained on vast corpora of human language, language models demonstrate
+emergent human-like reasoning abilities. Yet they are still far from true
+intelligence, which opens up intriguing opportunities to explore the parallels
+of humans and model behaviors. In this work, we study the ability to skip steps
+in reasoning - a hallmark of human expertise developed through practice. Unlike
+humans, who may skip steps to enhance efficiency or to reduce cognitive load,
+models do not inherently possess such motivations to minimize reasoning steps.
+To address this, we introduce a controlled framework that stimulates
+step-skipping behavior by iteratively refining models to generate shorter and
+accurate reasoning paths. Empirical results indicate that models can develop
+the step skipping ability under our guidance. Moreover, after fine-tuning on
+expanded datasets that include both complete and skipped reasoning sequences,
+the models can not only resolve tasks with increased efficiency without
+sacrificing accuracy, but also exhibit comparable and even enhanced
+generalization capabilities in out-of-domain scenarios. Our work presents the
+first exploration into human-like step-skipping ability and provides fresh
+perspectives on how such cognitive abilities can benefit AI models.},
+ arxiv_url = {https://arxiv.org/pdf/2411.01855v1.pdf},
+ author = {Tengxiao Liu and Qipeng Guo and Xiangkun Hu and Cheng Jiayang and Yue Zhang and Xipeng Qiu and Zheng Zhang},
+ github_url = {https://github.com/tengxiaoliu/LM_skip},
+ title = {Can Language Models Learn to Skip Steps?},
+ year = {2024}
+}
+
+@article{padmanabhan-2023-propagating,
+ abstract = {Modern language models have the capacity to store and use immense amounts of
+knowledge about real-world entities, but it remains unclear how to update such
+knowledge stored in model parameters. While prior methods for updating
+knowledge in LMs successfully inject atomic facts, updated LMs fail to make
+inferences based on injected facts. In this work, we demonstrate that a context
+distillation-based approach can both impart knowledge about entities and
+propagate that knowledge to enable broader inferences. Our approach consists of
+two stages: transfer set generation and distillation on the transfer set. We
+first generate a transfer set by prompting a language model to generate
+continuations from the entity definition. Then, we update the model parameters
+so that the distribution of the LM (the student) matches the distribution of
+the LM conditioned on the definition (the teacher) on the transfer set. Our
+experiments demonstrate that this approach is more effective at propagating
+knowledge updates than fine-tuning and other gradient-based knowledge-editing
+methods. Moreover, it does not compromise performance in other contexts, even
+when injecting the definitions of up to 150 entities at once.},
+ arxiv_url = {https://arxiv.org/pdf/2306.09306v2.pdf},
+ author = {Shankar Padmanabhan and Yasumasa Onoe and Michael J. Q. Zhang and Greg Durrett and Eunsol Choi},
+ github_url = {https://github.com/microsoft/DeepSpeed},
+ title = {Propagating Knowledge Updates to LMs Through Distillation},
+ year = {2023}
+}
+
+@article{shi-2022-language,
+ abstract = {We evaluate the reasoning abilities of large language models in multilingual
+settings. We introduce the Multilingual Grade School Math (MGSM) benchmark, by
+manually translating 250 grade-school math problems from the GSM8K dataset
+(Cobbe et al., 2021) into ten typologically diverse languages. We find that the
+ability to solve MGSM problems via chain-of-thought prompting emerges with
+increasing model scale, and that models have strikingly strong multilingual
+reasoning abilities, even in underrepresented languages such as Bengali and
+Swahili. Finally, we show that the multilingual reasoning abilities of language
+models extend to other tasks such as commonsense reasoning and word-in-context
+semantic judgment. The MGSM benchmark is publicly available at
+https://github.com/google-research/url-nlp.},
+ arxiv_url = {https://arxiv.org/pdf/2210.03057v1.pdf},
+ author = {Freda Shi and Mirac Suzgun and Markus Freitag and Xuezhi Wang and Suraj Srivats and Soroush Vosoughi and Hyung Won Chung and Yi Tay and Sebastian Ruder and Denny Zhou and Dipanjan Das and Jason Wei},
+ github_url = {https://github.com/cambridgeltl/xcopa},
+ title = {Language models are multilingual chain-of-thought reasoners},
+ year = {2022}
+}
+
+@article{toshniwal-2024-openmathinstruct,
+ abstract = {Recent work has shown the immense potential of synthetically generated
+datasets for training large language models (LLMs), especially for acquiring
+targeted skills. Current large-scale math instruction tuning datasets such as
+MetaMathQA (Yu et al., 2024) and MAmmoTH (Yue et al., 2024) are constructed
+using outputs from closed-source LLMs with commercially restrictive licenses. A
+key reason limiting the use of open-source LLMs in these data generation
+pipelines has been the wide gap between the mathematical skills of the best
+closed-source LLMs, such as GPT-4, and the best open-source LLMs. Building on
+the recent progress in open-source LLMs, our proposed prompting novelty, and
+some brute-force scaling, we construct OpenMathInstruct-1, a math instruction
+tuning dataset with 1.8M problem-solution pairs. The dataset is constructed by
+synthesizing code-interpreter solutions for GSM8K and MATH, two popular math
+reasoning benchmarks, using the recently released and permissively licensed
+Mixtral model. Our best model, OpenMath-CodeLlama-70B, trained on a subset of
+OpenMathInstruct-1, achieves a score of 84.6% on GSM8K and 50.7% on MATH, which
+is competitive with the best gpt-distilled models. We release our code, models,
+and the OpenMathInstruct-1 dataset under a commercially permissive license.},
+ arxiv_url = {https://arxiv.org/pdf/2402.10176v2.pdf},
+ author = {Shubham Toshniwal and Ivan Moshkov and Sean Narenthiran and Daria Gitman and Fei Jia and Igor Gitman},
+ github_url = {https://github.com/Kipok/NeMo-Skills},
+ title = {OpenMathInstruct-1: A 1.8 Million Math Instruction Tuning Dataset},
+ year = {2024}
+}
+
+@article{wei-2022-chain,
+ abstract = {We explore how generating a chain of thought -- a series of intermediate
+reasoning steps -- significantly improves the ability of large language models
+to perform complex reasoning. In particular, we show how such reasoning
+abilities emerge naturally in sufficiently large language models via a simple
+method called chain of thought prompting, where a few chain of thought
+demonstrations are provided as exemplars in prompting. Experiments on three
+large language models show that chain of thought prompting improves performance
+on a range of arithmetic, commonsense, and symbolic reasoning tasks. The
+empirical gains can be striking. For instance, prompting a 540B-parameter
+language model with just eight chain of thought exemplars achieves state of the
+art accuracy on the GSM8K benchmark of math word problems, surpassing even
+finetuned GPT-3 with a verifier.},
+ arxiv_url = {https://arxiv.org/pdf/2201.11903v6.pdf},
+ author = {Jason Wei and Xuezhi Wang and Dale Schuurmans and Maarten Bosma and Brian Ichter and Fei Xia and Ed Chi and Quoc Le and Denny Zhou},
+ github_url = {https://github.com/openai/grade-school-math},
+ title = {Chain-of-Thought Prompting Elicits Reasoning in Large Language Models},
+ year = {2022}
+}
+
+@article{yang-2024-what,
+ abstract = {Dataset distillation has emerged as a strategy to overcome the hurdles
+associated with large datasets by learning a compact set of synthetic data that
+retains essential information from the original dataset. While distilled data
+can be used to train high performing models, little is understood about how the
+information is stored. In this study, we posit and answer three questions about
+the behavior, representativeness, and point-wise information content of
+distilled data. We reveal distilled data cannot serve as a substitute for real
+data during training outside the standard evaluation setting for dataset
+distillation. Additionally, the distillation process retains high task
+performance by compressing information related to the early training dynamics
+of real models. Finally, we provide an framework for interpreting distilled
+data and reveal that individual distilled data points contain meaningful
+semantic information. This investigation sheds light on the intricate nature of
+distilled data, providing a better understanding on how they can be effectively
+utilized.},
+ arxiv_url = {https://arxiv.org/pdf/2406.04284v2.pdf},
+ author = {William Yang and Ye Zhu and Zhiwei Deng and Olga Russakovsky},
+ title = {What is Dataset Distillation Learning?},
+ year = {2024}
+}
+
+@article{zhang-2022-automatic,
+ abstract = {Large language models (LLMs) can perform complex reasoning by generating
+intermediate reasoning steps. Providing these steps for prompting
+demonstrations is called chain-of-thought (CoT) prompting. CoT prompting has
+two major paradigms. One leverages a simple prompt like "Let's think step by
+step" to facilitate step-by-step thinking before answering a question. The
+other uses a few manual demonstrations one by one, each composed of a question
+and a reasoning chain that leads to an answer. The superior performance of the
+second paradigm hinges on the hand-crafting of task-specific demonstrations one
+by one. We show that such manual efforts may be eliminated by leveraging LLMs
+with the "Let's think step by step" prompt to generate reasoning chains for
+demonstrations one by one, i.e., let's think not just step by step, but also
+one by one. However, these generated chains often come with mistakes. To
+mitigate the effect of such mistakes, we find that diversity matters for
+automatically constructing demonstrations. We propose an automatic CoT
+prompting method: Auto-CoT. It samples questions with diversity and generates
+reasoning chains to construct demonstrations. On ten public benchmark reasoning
+tasks with GPT-3, Auto-CoT consistently matches or exceeds the performance of
+the CoT paradigm that requires manual designs of demonstrations. Code is
+available at https://github.com/amazon-research/auto-cot},
+ arxiv_url = {https://arxiv.org/pdf/2210.03493v1.pdf},
+ author = {Zhuosheng Zhang and Aston Zhang and Mu Li and Alex Smola},
+ github_url = {https://github.com/amazon-research/auto-cot},
+ title = {Automatic Chain of Thought Prompting in Large Language Models},
+ year = {2022}
+}
+
+@article{zhang-2024-careful,
+ abstract = {Large language models (LLMs) have achieved impressive success on many
+benchmarks for mathematical reasoning. However, there is growing concern that
+some of this performance actually reflects dataset contamination, where data
+closely resembling benchmark questions leaks into the training data, instead of
+true reasoning ability. To investigate this claim rigorously, we commission
+Grade School Math 1000 (GSM1k). GSM1k is designed to mirror the style and
+complexity of the established GSM8k benchmark, the gold standard for measuring
+elementary mathematical reasoning. We ensure that the two benchmarks are
+comparable across important metrics such as human solve rates, number of steps
+in solution, answer magnitude, and more. When evaluating leading open- and
+closed-source LLMs on GSM1k, we observe accuracy drops of up to 8%, with
+several families of models showing evidence of systematic overfitting across
+almost all model sizes. Further analysis suggests a positive relationship
+(Spearman's r^2 = 0.36) between a model's probability of generating an example
+from GSM8k and its performance gap between GSM8k and GSM1k, suggesting that
+some models may have partially memorized GSM8k. Nevertheless, many models,
+especially those on the frontier, show minimal signs of overfitting, and all
+models broadly demonstrate generalization to novel math problems guaranteed to
+not be in their training data.},
+ arxiv_url = {https://arxiv.org/pdf/2405.00332v4.pdf},
+ author = {Hugh Zhang and Jeff Da and Dean Lee and Vaughn Robinson and Catherine Wu and Will Song and Tiffany Zhao and Pranav Raja and Charlotte Zhuang and Dylan Slack and Qin Lyu and Sean Hendryx and Russell Kaplan and Michele Lunati and Summer Yue},
+ title = {A Careful Examination of Large Language Model Performance on Grade School Arithmetic},
+ year = {2024}
+}
+
+% ===========================================
+% REFERENCE CANDIDATES
+% Additional reference papers for context
+% ===========================================
+
+@article{ahn-2022-can,
+ abstract = {Large language models can encode a wealth of semantic knowledge about the
+world. Such knowledge could be extremely useful to robots aiming to act upon
+high-level, temporally extended instructions expressed in natural language.
+However, a significant weakness of language models is that they lack real-world
+experience, which makes it difficult to leverage them for decision making
+within a given embodiment. For example, asking a language model to describe how
+to clean a spill might result in a reasonable narrative, but it may not be
+applicable to a particular agent, such as a robot, that needs to perform this
+task in a particular environment. We propose to provide real-world grounding by
+means of pretrained skills, which are used to constrain the model to propose
+natural language actions that are both feasible and contextually appropriate.
+The robot can act as the language model's "hands and eyes," while the language
+model supplies high-level semantic knowledge about the task. We show how
+low-level skills can be combined with large language models so that the
+language model provides high-level knowledge about the procedures for
+performing complex and temporally-extended instructions, while value functions
+associated with these skills provide the grounding necessary to connect this
+knowledge to a particular physical environment. We evaluate our method on a
+number of real-world robotic tasks, where we show the need for real-world
+grounding and that this approach is capable of completing long-horizon,
+abstract, natural language instructions on a mobile manipulator. The project's
+website and the video can be found at https://say-can.github.io/.},
+ arxiv_url = {https://arxiv.org/pdf/2204.01691v2.pdf},
+ author = {Michael Ahn and Anthony Brohan and Noah Brown and Yevgen Chebotar and Omar Cortes and Byron David and Chelsea Finn and Chuyuan Fu and Keerthana Gopalakrishnan and Karol Hausman and Alex Herzog and Daniel Ho and Jasmine Hsu and Julian Ibarz and Brian Ichter and Alex Irpan and Eric Jang and Rosario Jauregui Ruano and Kyle Jeffrey and Sally Jesmonth and Nikhil J Joshi and Ryan Julian and Dmitry Kalashnikov and Yuheng Kuang and Kuang-Huei Lee and Sergey Levine and Yao Lu and Linda Luu and Carolina Parada and Peter Pastor and Jornell Quiambao and Kanishka Rao and Jarek Rettinghouse and Diego Reyes and Pierre Sermanet and Nicolas Sievers and Clayton Tan and Alexander Toshev and Vincent Vanhoucke and Fei Xia and Ted Xiao and Peng Xu and Sichun Xu and Mengyuan Yan and Andy Zeng},
+ title = {Do as I can, not as I say: Grounding language in robotic affordances},
+ year = {2022}
+}
+
+@article{amini-2019-mathqa,
+ abstract = {We introduce a large-scale dataset of math word problems and an interpretable
+neural math problem solver that learns to map problems to operation programs.
+Due to annotation challenges, current datasets in this domain have been either
+relatively small in scale or did not offer precise operational annotations over
+diverse problem types. We introduce a new representation language to model
+precise operation programs corresponding to each math problem that aim to
+improve both the performance and the interpretability of the learned models.
+Using this representation language, our new dataset, MathQA, significantly
+enhances the AQuA dataset with fully-specified operational programs. We
+additionally introduce a neural sequence-to-program model enhanced with
+automatic problem categorization. Our experiments show improvements over
+competitive baselines in our MathQA as well as the AQuA dataset. The results
+are still significantly lower than human performance indicating that the
+dataset poses new challenges for future research. Our dataset is available at:
+https://math-qa.github.io/math-QA/},
+ arxiv_url = {https://arxiv.org/pdf/1905.13319v1.pdf},
+ author = {Aida Amini and Saadia Gabriel and Peter Lin and Rik Koncel-Kedziorski and Yejin Choi and Hannaneh Hajishirzi},
+ title = {MathQA: Towards interpretable math word problem solving with operation-based formalisms},
+ year = {2019}
+}
+
+@article{andor-2019-giving,
+ abstract = {Reading comprehension models have been successfully applied to extractive
+text answers, but it is unclear how best to generalize these models to
+abstractive numerical answers. We enable a BERT-based reading comprehension
+model to perform lightweight numerical reasoning. We augment the model with a
+predefined set of executable 'programs' which encompass simple arithmetic as
+well as extraction. Rather than having to learn to manipulate numbers directly,
+the model can pick a program and execute it. On the recent Discrete Reasoning
+Over Passages (DROP) dataset, designed to challenge reading comprehension
+models, we show a 33% absolute improvement by adding shallow programs. The
+model can learn to predict new operations when appropriate in a math word
+problem setting (Roy and Roth, 2015) with very few training examples.},
+ arxiv_url = {https://arxiv.org/pdf/1909.00109v2.pdf},
+ author = {Daniel Andor and Luheng He and Kenton Lee and Emily Pitler},
+ title = {Giving BERT a calculator: Finding operations and arguments with reading comprehension},
+ year = {2019}
+}
+
+@article{andreas-2017-learning,
+ abstract = {The named concepts and compositional operators present in natural language
+provide a rich source of information about the kinds of abstractions humans use
+to navigate the world. Can this linguistic background knowledge improve the
+generality and efficiency of learned classifiers and control policies? This
+paper aims to show that using the space of natural language strings as a
+parameter space is an effective way to capture natural task structure. In a
+pretraining phase, we learn a language interpretation model that transforms
+inputs (e.g. images) into outputs (e.g. labels) given natural language
+descriptions. To learn a new concept (e.g. a classifier), we search directly in
+the space of descriptions to minimize the interpreter's loss on training
+examples. Crucially, our models do not require language data to learn these
+concepts: language is used only in pretraining to impose structure on
+subsequent learning. Results on image classification, text editing, and
+reinforcement learning show that, in all settings, models with a linguistic
+parameterization outperform those without.},
+ arxiv_url = {https://arxiv.org/pdf/1711.00482v1.pdf},
+ author = {Jacob Andreas and Dan Klein and Sergey Levine},
+ title = {Learning with latent language},
+ year = {2017}
+}
+
+@article{austin-2021-program,
+ abstract = {This paper explores the limits of the current generation of large language
+models for program synthesis in general purpose programming languages. We
+evaluate a collection of such models (with between 244M and 137B parameters) on
+two new benchmarks, MBPP and MathQA-Python, in both the few-shot and
+fine-tuning regimes. Our benchmarks are designed to measure the ability of
+these models to synthesize short Python programs from natural language
+descriptions. The Mostly Basic Programming Problems (MBPP) dataset contains 974
+programming tasks, designed to be solvable by entry-level programmers. The
+MathQA-Python dataset, a Python version of the MathQA benchmark, contains 23914
+problems that evaluate the ability of the models to synthesize code from more
+complex text. On both datasets, we find that synthesis performance scales
+log-linearly with model size. Our largest models, even without finetuning on a
+code dataset, can synthesize solutions to 59.6 percent of the problems from
+MBPP using few-shot learning with a well-designed prompt. Fine-tuning on a
+held-out portion of the dataset improves performance by about 10 percentage
+points across most model sizes. On the MathQA-Python dataset, the largest
+fine-tuned model achieves 83.8 percent accuracy. Going further, we study the
+model's ability to engage in dialog about code, incorporating human feedback to
+improve its solutions. We find that natural language feedback from a human
+halves the error rate compared to the model's initial prediction. Additionally,
+we conduct an error analysis to shed light on where these models fall short and
+what types of programs are most difficult to generate. Finally, we explore the
+semantic grounding of these models by fine-tuning them to predict the results
+of program execution. We find that even our best models are generally unable to
+predict the output of a program given a specific input.},
+ arxiv_url = {https://arxiv.org/pdf/2108.07732v1.pdf},
+ author = {Jacob Austin and Augustus Odena and Maxwell Nye and Maarten Bosma and Henryk Michalewski and David Dohan and Ellen Jiang and Carrie Cai and Michael Terry and Quoc Le and Charles Sutton},
+ title = {Program synthesis with large language models},
+ year = {2021}
+}
+
+@article{author-year-benefits,
+ title = {Benefits of intermediate annotations in reading comprehension}
+}
+
+@article{author-year-neural,
+ title = {Neural symbolic reader: Scalable integration of distributed and symbolic representations for reading comprehension}
+}
+
+@article{bostrom-2021-flexible,
+ abstract = {An interpretable system for open-domain reasoning needs to express its
+reasoning process in a transparent form. Natural language is an attractive
+representation for this purpose -- it is both highly expressive and easy for
+humans to understand. However, manipulating natural language statements in
+logically consistent ways is hard: models must cope with variation in how
+meaning is expressed while remaining precise. In this paper, we describe
+ParaPattern, a method for building models to generate deductive inferences from
+diverse natural language inputs without direct human supervision. We train
+BART-based models (Lewis et al., 2020) to generate the result of applying a
+particular logical operation to one or more premise statements. Crucially, we
+develop a largely automated pipeline for constructing suitable training
+examples from Wikipedia. We evaluate our models using out-of-domain sentence
+compositions from the QASC (Khot et al., 2020) and EntailmentBank (Dalvi et
+al., 2021) datasets as well as targeted perturbation sets. Our results show
+that our models are substantially more accurate and flexible than baseline
+systems. ParaPattern achieves 85% validity on examples of the 'substitution'
+operation from EntailmentBank without the use of any in-domain training data,
+matching the performance of a model fine-tuned for EntailmentBank. The full
+source code for our method is publicly available.},
+ arxiv_url = {https://arxiv.org/pdf/2104.08825v2.pdf},
+ author = {Kaj Bostrom and Xinyu Zhao and Swarat Chaudhuri and Greg Durrett},
+ title = {Flexible generation of natural language deductions},
+ year = {2021}
+}
+
+@article{brown-2020-language,
+ abstract = {Recent work has demonstrated substantial gains on many NLP tasks and
+benchmarks by pre-training on a large corpus of text followed by fine-tuning on
+a specific task. While typically task-agnostic in architecture, this method
+still requires task-specific fine-tuning datasets of thousands or tens of
+thousands of examples. By contrast, humans can generally perform a new language
+task from only a few examples or from simple instructions - something which
+current NLP systems still largely struggle to do. Here we show that scaling up
+language models greatly improves task-agnostic, few-shot performance, sometimes
+even reaching competitiveness with prior state-of-the-art fine-tuning
+approaches. Specifically, we train GPT-3, an autoregressive language model with
+175 billion parameters, 10x more than any previous non-sparse language model,
+and test its performance in the few-shot setting. For all tasks, GPT-3 is
+applied without any gradient updates or fine-tuning, with tasks and few-shot
+demonstrations specified purely via text interaction with the model. GPT-3
+achieves strong performance on many NLP datasets, including translation,
+question-answering, and cloze tasks, as well as several tasks that require
+on-the-fly reasoning or domain adaptation, such as unscrambling words, using a
+novel word in a sentence, or performing 3-digit arithmetic. At the same time,
+we also identify some datasets where GPT-3's few-shot learning still struggles,
+as well as some datasets where GPT-3 faces methodological issues related to
+training on large web corpora. Finally, we find that GPT-3 can generate samples
+of news articles which human evaluators have difficulty distinguishing from
+articles written by humans. We discuss broader societal impacts of this finding
+and of GPT-3 in general.},
+ arxiv_url = {https://arxiv.org/pdf/2005.14165v4.pdf},
+ author = {Tom B. Brown and Benjamin Mann and Nick Ryder and Melanie Subbiah and Jared Kaplan and Prafulla Dhariwal and Arvind Neelakantan and Pranav Shyam and Girish Sastry and Amanda Askell and Sandhini Agarwal and Ariel Herbert-Voss and Gretchen Krueger and Tom Henighan and Rewon Child and Aditya Ramesh and Daniel M. Ziegler and Jeffrey Wu and Clemens Winter and Christopher Hesse and Mark Chen and Eric Sigler and Mateusz Litwin and Scott Gray and Benjamin Chess and Jack Clark and Christopher Berner and Sam McCandlish and Alec Radford and Ilya Sutskever and Dario Amodei},
+ title = {Language models are few-shot learners},
+ year = {2020}
+}
+
+@article{cai-2017-making,
+ abstract = {Empirically, neural networks that attempt to learn programs from data have
+exhibited poor generalizability. Moreover, it has traditionally been difficult
+to reason about the behavior of these models beyond a certain level of input
+complexity. In order to address these issues, we propose augmenting neural
+architectures with a key abstraction: recursion. As an application, we
+implement recursion in the Neural Programmer-Interpreter framework on four
+tasks: grade-school addition, bubble sort, topological sort, and quicksort. We
+demonstrate superior generalizability and interpretability with small amounts
+of training data. Recursion divides the problem into smaller pieces and
+drastically reduces the domain of each neural network component, making it
+tractable to prove guarantees about the overall system's behavior. Our
+experience suggests that in order for neural architectures to robustly learn
+program semantics, it is necessary to incorporate a concept like recursion.},
+ arxiv_url = {https://arxiv.org/pdf/1704.06611v1.pdf},
+ author = {Jonathon Cai and Richard Shin and Dawn Song},
+ title = {Making neural programming architectures generalize via recursion},
+ year = {2017}
+}
+
+@article{camburu-2018-snli,
+ abstract = {In order for machine learning to garner widespread public adoption, models
+must be able to provide interpretable and robust explanations for their
+decisions, as well as learn from human-provided explanations at train time. In
+this work, we extend the Stanford Natural Language Inference dataset with an
+additional layer of human-annotated natural language explanations of the
+entailment relations. We further implement models that incorporate these
+explanations into their training process and output them at test time. We show
+how our corpus of explanations, which we call e-SNLI, can be used for various
+goals, such as obtaining full sentence justifications of a model's decisions,
+improving universal sentence representations and transferring to out-of-domain
+NLI datasets. Our dataset thus opens up a range of research directions for
+using natural language explanations, both for improving models and for
+asserting their trust.},
+ arxiv_url = {https://arxiv.org/pdf/1812.01193v2.pdf},
+ author = {Oana-Maria Camburu and Tim Rocktäschel and Thomas Lukasiewicz and Phil Blunsom},
+ title = {e-SNLI: Natural language inference with natural language explanations},
+ year = {2018}
+}
+
+@article{chen-2021-evaluating,
+ abstract = {We introduce Codex, a GPT language model fine-tuned on publicly available
+code from GitHub, and study its Python code-writing capabilities. A distinct
+production version of Codex powers GitHub Copilot. On HumanEval, a new
+evaluation set we release to measure functional correctness for synthesizing
+programs from docstrings, our model solves 28.8% of the problems, while GPT-3
+solves 0% and GPT-J solves 11.4%. Furthermore, we find that repeated sampling
+from the model is a surprisingly effective strategy for producing working
+solutions to difficult prompts. Using this method, we solve 70.2% of our
+problems with 100 samples per problem. Careful investigation of our model
+reveals its limitations, including difficulty with docstrings describing long
+chains of operations and with binding operations to variables. Finally, we
+discuss the potential broader impacts of deploying powerful code generation
+technologies, covering safety, security, and economics.},
+ arxiv_url = {https://arxiv.org/pdf/2107.03374v2.pdf},
+ author = {Mark Chen and Jerry Tworek and Heewoo Jun and Qiming Yuan and Henrique Ponde de Oliveira Pinto and Jared Kaplan and Harri Edwards and Yuri Burda and Nicholas Joseph and Greg Brockman and Alex Ray and Raul Puri and Gretchen Krueger and Michael Petrov and Heidy Khlaaf and Girish Sastry and Pamela Mishkin and Brooke Chan and Scott Gray and Nick Ryder and Mikhail Pavlov and Alethea Power and Lukasz Kaiser and Mohammad Bavarian and Clemens Winter and Philippe Tillet and Felipe Petroski Such and Dave Cummings and Matthias Plappert and Fotios Chantzis and Elizabeth Barnes and Ariel Herbert-Voss and William Hebgen Guss and Alex Nichol and Alex Paino and Nikolas Tezak and Jie Tang and Igor Babuschkin and Suchir Balaji and Shantanu Jain and William Saunders and Christopher Hesse and Andrew N. Carr and Jan Leike and Josh Achiam and Vedant Misra and Evan Morikawa and Alec Radford and Matthew Knight and Miles Brundage and Mira Murati and Katie Mayer and Peter Welinder and Bob McGrew and Dario Amodei and Sam McCandlish and Ilya Sutskever and Wojciech Zaremba},
+ title = {Evaluating large language models trained on code},
+ year = {2021}
+}
+
+@article{chen-2022-can,
+ abstract = {A growing line of work has investigated the development of neural NLP models
+that can produce rationales--subsets of input that can explain their model
+predictions. In this paper, we ask whether such rationale models can also
+provide robustness to adversarial attacks in addition to their interpretable
+nature. Since these models need to first generate rationales ("rationalizer")
+before making predictions ("predictor"), they have the potential to ignore
+noise or adversarially added text by simply masking it out of the generated
+rationale. To this end, we systematically generate various types of 'AddText'
+attacks for both token and sentence-level rationalization tasks, and perform an
+extensive empirical evaluation of state-of-the-art rationale models across five
+different tasks. Our experiments reveal that the rationale models show the
+promise to improve robustness, while they struggle in certain scenarios--when
+the rationalizer is sensitive to positional bias or lexical choices of attack
+text. Further, leveraging human rationale as supervision does not always
+translate to better performance. Our study is a first step towards exploring
+the interplay between interpretability and robustness in the
+rationalize-then-predict framework.},
+ arxiv_url = {https://arxiv.org/pdf/2204.11790v2.pdf},
+ author = {Howard Chen and Jacqueline He and Karthik Narasimhan and Danqi Chen},
+ title = {Can rationalization improve robustness?},
+ year = {2022}
+}
+
+@article{chiang-2018-semantically,
+ abstract = {Solving math word problems is a challenging task that requires accurate
+natural language understanding to bridge natural language texts and math
+expressions. Motivated by the intuition about how human generates the equations
+given the problem texts, this paper presents a neural approach to automatically
+solve math word problems by operating symbols according to their semantic
+meanings in texts. This paper views the process of generating equation as a
+bridge between the semantic world and the symbolic world, where the proposed
+neural math solver is based on an encoder-decoder framework. In the proposed
+model, the encoder is designed to understand the semantics of problems, and the
+decoder focuses on tracking semantic meanings of the generated symbols and then
+deciding which symbol to generate next. The preliminary experiments are
+conducted in a dataset Math23K, and our model significantly outperforms both
+the state-of-the-art single model and the best non-retrieval-based model over
+about 10% accuracy, demonstrating the effectiveness of bridging the symbolic
+and semantic worlds from math word problems.},
+ arxiv_url = {https://arxiv.org/pdf/1811.00720v2.pdf},
+ author = {Ting-Rui Chiang and Yun-Nung Chen},
+ title = {Semantically-aligned equation generation for solving and reasoning math word problems},
+ year = {2018}
+}
+
+@article{clark-2020-transformers,
+ abstract = {Beginning with McCarthy's Advice Taker (1959), AI has pursued the goal of
+providing a system with explicit, general knowledge and having the system
+reason over that knowledge. However, expressing the knowledge in a formal
+(logical or probabilistic) representation has been a major obstacle to this
+research. This paper investigates a modern approach to this problem where the
+facts and rules are provided as natural language sentences, thus bypassing a
+formal representation. We train transformers to reason (or emulate reasoning)
+over these sentences using synthetically generated data. Our models, that we
+call RuleTakers, provide the first empirical demonstration that this kind of
+soft reasoning over language is learnable, can achieve high (99%) accuracy, and
+generalizes to test data requiring substantially deeper chaining than seen
+during training (95%+ scores). We also demonstrate that the models transfer
+well to two hand-authored rulebases, and to rulebases paraphrased into more
+natural language. These findings are significant as it suggests a new role for
+transformers, namely as limited "soft theorem provers" operating over explicit
+theories in language. This in turn suggests new possibilities for
+explainability, correctability, and counterfactual reasoning in
+question-answering.},
+ arxiv_url = {https://arxiv.org/pdf/2002.05867v2.pdf},
+ author = {Peter Clark and Oyvind Tafjord and Kyle Richardson},
+ title = {Transformers as soft reasoners over language},
+ year = {2020}
+}
+
+@article{cobbe-2021-training,
+ abstract = {State-of-the-art language models can match human performance on many tasks,
+but they still struggle to robustly perform multi-step mathematical reasoning.
+To diagnose the failures of current models and support research, we introduce
+GSM8K, a dataset of 8.5K high quality linguistically diverse grade school math
+word problems. We find that even the largest transformer models fail to achieve
+high test performance, despite the conceptual simplicity of this problem
+distribution. To increase performance, we propose training verifiers to judge
+the correctness of model completions. At test time, we generate many candidate
+solutions and select the one ranked highest by the verifier. We demonstrate
+that verification significantly improves performance on GSM8K, and we provide
+strong empirical evidence that verification scales more effectively with
+increased data than a finetuning baseline.},
+ arxiv_url = {https://arxiv.org/pdf/2110.14168v2.pdf},
+ author = {Karl Cobbe and Vineet Kosaraju and Mohammad Bavarian and Mark Chen and Heewoo Jun and Lukasz Kaiser and Matthias Plappert and Jerry Tworek and Jacob Hilton and Reiichiro Nakano and Christopher Hesse and John Schulman},
+ title = {Training verifiers to solve math word problems},
+ year = {2021}
+}
+
+@article{devlin-2018-bert,
+ abstract = {We introduce a new language representation model called BERT, which stands
+for Bidirectional Encoder Representations from Transformers. Unlike recent
+language representation models, BERT is designed to pre-train deep
+bidirectional representations from unlabeled text by jointly conditioning on
+both left and right context in all layers. As a result, the pre-trained BERT
+model can be fine-tuned with just one additional output layer to create
+state-of-the-art models for a wide range of tasks, such as question answering
+and language inference, without substantial task-specific architecture
+modifications.
+  BERT is conceptually simple and empirically powerful. It obtains new
+state-of-the-art results on eleven natural language processing tasks, including
+pushing the GLUE score to 80.5% (7.7% point absolute improvement), MultiNLI
+accuracy to 86.7% (4.6% absolute improvement), SQuAD v1.1 question answering
+Test F1 to 93.2 (1.5 point absolute improvement) and SQuAD v2.0 Test F1 to 83.1
+(5.1 point absolute improvement).},
+ arxiv_url = {https://arxiv.org/pdf/1810.04805v2.pdf},
+ author = {Jacob Devlin and Ming-Wei Chang and Kenton Lee and Kristina Toutanova},
+ title = {BERT: Pre-training of deep bidirectional transformers for language understanding},
+ year = {2018}
+}
+
+@article{dong-2019-neural,
+ abstract = {We propose the Neural Logic Machine (NLM), a neural-symbolic architecture for
+both inductive learning and logic reasoning. NLMs exploit the power of both
+neural networks---as function approximators, and logic programming---as a
+symbolic processor for objects with properties, relations, logic connectives,
+and quantifiers. After being trained on small-scale tasks (such as sorting
+short arrays), NLMs can recover lifted rules, and generalize to large-scale
+tasks (such as sorting longer arrays). In our experiments, NLMs achieve perfect
+generalization in a number of tasks, from relational reasoning tasks on the
+family tree and general graphs, to decision making tasks including sorting
+arrays, finding shortest paths, and playing the blocks world. Most of these
+tasks are hard to accomplish for neural networks or inductive logic programming
+alone.},
+ arxiv_url = {https://arxiv.org/pdf/1904.11694v1.pdf},
+ author = {Honghua Dong and Jiayuan Mao and Tian Lin and Chong Wang and Lihong Li and Denny Zhou},
+ title = {Neural logic machines},
+ year = {2019}
+}
+
+@article{geva-2021-did,
+ abstract = {A key limitation in current datasets for multi-hop reasoning is that the
+required steps for answering the question are mentioned in it explicitly. In
+this work, we introduce StrategyQA, a question answering (QA) benchmark where
+the required reasoning steps are implicit in the question, and should be
+inferred using a strategy. A fundamental challenge in this setup is how to
+elicit such creative questions from crowdsourcing workers, while covering a
+broad range of potential strategies. We propose a data collection procedure
+that combines term-based priming to inspire annotators, careful control over
+the annotator population, and adversarial filtering for eliminating reasoning
+shortcuts. Moreover, we annotate each question with (1) a decomposition into
+reasoning steps for answering it, and (2) Wikipedia paragraphs that contain the
+answers to each step. Overall, StrategyQA includes 2,780 examples, each
+consisting of a strategy question, its decomposition, and evidence paragraphs.
+Analysis shows that questions in StrategyQA are short, topic-diverse, and cover
+a wide range of strategies. Empirically, we show that humans perform well (87%)
+on this task, while our best baseline reaches an accuracy of $\sim$66%.},
+ arxiv_url = {https://arxiv.org/pdf/2101.02235v1.pdf},
+ author = {Mor Geva and Daniel Khashabi and Elad Segal and Tushar Khot and Dan Roth and Jonathan Berant},
+ title = {Did aristotle use a laptop? A question answering benchmark with implicit reasoning strategies},
+ year = {2021}
+}
+
+@article{srivastava-2022-beyond,
+ abstract = {Language models demonstrate both quantitative improvement and new qualitative
+capabilities with increasing scale. Despite their potentially transformative
+impact, these new capabilities are as yet poorly characterized. In order to
+inform future research, prepare for disruptive new model capabilities, and
+ameliorate socially harmful effects, it is vital that we understand the present
+and near-future capabilities and limitations of language models. To address
+this challenge, we introduce the Beyond the Imitation Game benchmark
+(BIG-bench). BIG-bench currently consists of 204 tasks, contributed by 450
+authors across 132 institutions. Task topics are diverse, drawing problems from
+linguistics, childhood development, math, common-sense reasoning, biology,
+physics, social bias, software development, and beyond. BIG-bench focuses on
+tasks that are believed to be beyond the capabilities of current language
+models. We evaluate the behavior of OpenAI's GPT models, Google-internal dense
+transformer architectures, and Switch-style sparse transformers on BIG-bench,
+across model sizes spanning millions to hundreds of billions of parameters. In
+addition, a team of human expert raters performed all tasks in order to provide
+a strong baseline. Findings include: model performance and calibration both
+improve with scale, but are poor in absolute terms (and when compared with
+rater performance); performance is remarkably similar across model classes,
+though with benefits from sparsity; tasks that improve gradually and
+predictably commonly involve a large knowledge or memorization component,
+whereas tasks that exhibit "breakthrough" behavior at a critical scale often
+involve multiple steps or components, or brittle metrics; social bias typically
+increases with scale in settings with ambiguous context, but this can be
+improved with prompting.},
+ arxiv_url = {https://arxiv.org/pdf/2206.04615v3.pdf},
+ author = {Aarohi Srivastava and Abhinav Rastogi and Abhishek Rao and Abu Awal Md Shoeb and Abubakar Abid and Adam Fisch and Adam R. Brown and Adam Santoro and Aditya Gupta and Adrià Garriga-Alonso and Agnieszka Kluska and Aitor Lewkowycz and Akshat Agarwal and Alethea Power and Alex Ray and Alex Warstadt and Alexander W. Kocurek and Ali Safaya and Ali Tazarv and Alice Xiang and Alicia Parrish and Allen Nie and Aman Hussain and Amanda Askell and Amanda Dsouza and Ambrose Slone and Ameet Rahane and Anantharaman S. Iyer and Anders Andreassen and Andrea Madotto and Andrea Santilli and Andreas Stuhlmüller and Andrew Dai and Andrew La and Andrew Lampinen and Andy Zou and Angela Jiang and Angelica Chen and Anh Vuong and Animesh Gupta and Anna Gottardi and Antonio Norelli and Anu Venkatesh and Arash Gholamidavoodi and Arfa Tabassum and Arul Menezes and Arun Kirubarajan and Asher Mullokandov and Ashish Sabharwal and Austin Herrick and Avia Efrat and Aykut Erdem and Ayla Karakaş and B. Ryan Roberts and Bao Sheng Loe and Barret Zoph and Bartłomiej Bojanowski and Batuhan Özyurt and Behnam Hedayatnia and Behnam Neyshabur and Benjamin Inden and Benno Stein and Berk Ekmekci and Bill Yuchen Lin and Blake Howald and Bryan Orinion and Cameron Diao and Cameron Dour and Catherine Stinson and Cedrick Argueta and César Ferri Ramírez and Chandan Singh and Charles Rathkopf and Chenlin Meng and Chitta Baral and Chiyu Wu and Chris Callison-Burch and Chris Waites and Christian Voigt and Christopher D. Manning and Christopher Potts and Cindy Ramirez and Clara E. Rivera and Clemencia Siro and Colin Raffel and Courtney Ashcraft and Cristina Garbacea and Damien Sileo and Dan Garrette and Dan Hendrycks and Dan Kilman and Dan Roth and Daniel Freeman and Daniel Khashabi and Daniel Levy and Daniel Moseguí González and Danielle Perszyk and Danny Hernandez and Danqi Chen and Daphne Ippolito and Dar Gilboa and David Dohan and David Drakard and David Jurgens and Debajyoti Datta and Deep Ganguli and Denis Emelin and Denis Kleyko and Deniz Yuret and Derek Chen and Derek Tam and Dieuwke Hupkes and Diganta Misra and Dilyar Buzan and Dimitri Coelho Mollo and Diyi Yang and Dong-Ho Lee and Dylan Schrader and Ekaterina Shutova and Ekin Dogus Cubuk and Elad Segal and Eleanor Hagerman and Elizabeth Barnes and Elizabeth Donoway and Ellie Pavlick and Emanuele Rodola and Emma Lam and Eric Chu and Eric Tang and Erkut Erdem and Ernie Chang and Ethan A. Chi and Ethan Dyer and Ethan Jerzak and Ethan Kim and Eunice Engefu Manyasi and Evgenii Zheltonozhskii and Fanyue Xia and Fatemeh Siar and Fernando Martínez-Plumed and Francesca Happé and Francois Chollet and Frieda Rong and Gaurav Mishra and Genta Indra Winata and Gerard de Melo and Germán Kruszewski and Giambattista Parascandolo and Giorgio Mariani and Gloria Wang and Gonzalo Jaimovitch-López and Gregor Betz and Guy Gur-Ari and Hana Galijasevic and Hannah Kim and Hannah Rashkin and Hannaneh Hajishirzi and Harsh Mehta and Hayden Bogar and Henry Shevlin and Hinrich Schütze and Hiromu Yakura and Hongming Zhang and Hugh Mee Wong and Ian Ng and Isaac Noble and Jaap Jumelet and Jack Geissinger and Jackson Kernion and Jacob Hilton and Jaehoon Lee and Jaime Fernández Fisac and James B. Simon and James Koppel and James Zheng and James Zou and Jan Kocoń and Jana Thompson and Janelle Wingfield and Jared Kaplan and Jarema Radom and Jascha Sohl-Dickstein and Jason Phang and Jason Wei and Jason Yosinski and Jekaterina Novikova and Jelle Bosscher and Jennifer Marsh and Jeremy Kim and Jeroen Taal and Jesse Engel and Jesujoba Alabi and Jiacheng Xu and Jiaming Song and Jillian Tang and Joan Waweru and John Burden and John Miller and John U. Balis and Jonathan Batchelder and Jonathan Berant and Jörg Frohberg and Jos Rozen and Jose Hernandez-Orallo and Joseph Boudeman and Joseph Guerr and Joseph Jones and Joshua B. Tenenbaum and Joshua S. Rule and Joyce Chua and Kamil Kanclerz and Karen Livescu and Karl Krauth and Karthik Gopalakrishnan and Katerina Ignatyeva and Katja Markert and Kaustubh D. Dhole and Kevin Gimpel and Kevin Omondi and Kory Mathewson and Kristen Chiafullo and Ksenia Shkaruta and Kumar Shridhar and Kyle McDonell and Kyle Richardson and Laria Reynolds and Leo Gao and Li Zhang and Liam Dugan and Lianhui Qin and Lidia Contreras-Ochando and Louis-Philippe Morency and Luca Moschella and Lucas Lam and Lucy Noble and Ludwig Schmidt and Luheng He and Luis Oliveros Colón and Luke Metz and Lütfi Kerem Şenel and Maarten Bosma and Maarten Sap and Maartje ter Hoeve and Maheen Farooqi and Manaal Faruqui and Mantas Mazeika and Marco Baturan and Marco Marelli and Marco Maru and Maria Jose Ramírez Quintana and Marie Tolkiehn and Mario Giulianelli and Martha Lewis and Martin Potthast and Matthew L. Leavitt and Matthias Hagen and Mátyás Schubert and Medina Orduna Baitemirova and Melody Arnaud and Melvin McElrath and Michael A. Yee and Michael Cohen and Michael Gu and Michael Ivanitskiy and Michael Starritt and Michael Strube and Michał Swędrowski and Michele Bevilacqua and Michihiro Yasunaga and Mihir Kale and Mike Cain and Mimee Xu and Mirac Suzgun and Mitch Walker and Mo Tiwari and Mohit Bansal and Moin Aminnaseri and Mor Geva and Mozhdeh Gheini and Mukund Varma T and Nanyun Peng and Nathan A. Chi and Nayeon Lee and Neta Gur-Ari Krakover and Nicholas Cameron and Nicholas Roberts and Nick Doiron and Nicole Martinez and Nikita Nangia and Niklas Deckers and Niklas Muennighoff and Nitish Shirish Keskar and Niveditha S. Iyer and Noah Constant and Noah Fiedel and Nuan Wen and Oliver Zhang and Omar Agha and Omar Elbaghdadi and Omer Levy and Owain Evans and Pablo Antonio Moreno Casares and Parth Doshi and Pascale Fung and Paul Pu Liang and Paul Vicol and Pegah Alipoormolabashi and Peiyuan Liao and Percy Liang and Peter Chang and Peter Eckersley and Phu Mon Htut and Pinyu Hwang and Piotr Miłkowski and Piyush Patil and Pouya Pezeshkpour and Priti Oli and Qiaozhu Mei and Qing Lyu and Qinlang Chen and Rabin Banjade and Rachel Etta Rudolph and Raefer Gabriel and Rahel Habacker and Ramon Risco and Raphaël Millière and Rhythm Garg and Richard Barnes and Rif A. Saurous and Riku Arakawa and Robbe Raymaekers and Robert Frank and Rohan Sikand and Roman Novak and Roman Sitelew and Ronan LeBras and Rosanne Liu and Rowan Jacobs and Rui Zhang and Ruslan Salakhutdinov and Ryan Chi and Ryan Lee and Ryan Stovall and Ryan Teehan and Rylan Yang and Sahib Singh and Saif M. Mohammad and Sajant Anand and Sam Dillavou and Sam Shleifer and Sam Wiseman and Samuel Gruetter and Samuel R. Bowman and Samuel S. Schoenholz and Sanghyun Han and Sanjeev Kwatra and Sarah A. Rous and Sarik Ghazarian and Sayan Ghosh and Sean Casey and Sebastian Bischoff and Sebastian Gehrmann and Sebastian Schuster and Sepideh Sadeghi and Shadi Hamdan and Sharon Zhou and Shashank Srivastava and Sherry Shi and Shikhar Singh and Shima Asaadi and Shixiang Shane Gu and Shubh Pachchigar and Shubham Toshniwal and Shyam Upadhyay and Shyamolima and Debnath and Siamak Shakeri and Simon Thormeyer and Simone Melzi and Siva Reddy and Sneha Priscilla Makini and Soo-Hwan Lee and Spencer Torene and Sriharsha Hatwar and Stanislas Dehaene and Stefan Divic and Stefano Ermon and Stella Biderman and Stephanie Lin and Stephen Prasad and Steven T. Piantadosi and Stuart M. Shieber and Summer Misherghi and Svetlana Kiritchenko and Swaroop Mishra and Tal Linzen and Tal Schuster and Tao Li and Tao Yu and Tariq Ali and Tatsu Hashimoto and Te-Lin Wu and Théo Desbordes and Theodore Rothschild and Thomas Phan and Tianle Wang and Tiberius Nkinyili and Timo Schick and Timofei Kornev and Titus Tunduny and Tobias Gerstenberg and Trenton Chang and Trishala Neeraj and Tushar Khot and Tyler Shultz and Uri Shaham and Vedant Misra and Vera Demberg and Victoria Nyamai and Vikas Raunak and Vinay Ramasesh and Vinay Uday Prabhu and Vishakh Padmakumar and Vivek Srikumar and William Fedus and William Saunders and William Zhang and Wout Vossen and Xiang Ren and Xiaoyu Tong and Xinran Zhao and Xinyi Wu and Xudong Shen and Yadollah Yaghoobzadeh and Yair Lakretz and Yangqiu Song and Yasaman Bahri and Yejin Choi and Yichi Yang and Yiding Hao and Yifu Chen and Yonatan Belinkov and Yu Hou and Yufang Hou and Yuntao Bai and Zachary Seid and Zhuoye Zhao and Zijian Wang and Zijie J. Wang and Zirui Wang and Ziyi Wu},
+ journal = {Transactions on Machine Learning Research, May/2022,
+  https://openreview.net/forum?id=uyTL5Bvosj},
+ title = {Beyond the imitation game: Measuring and extrapolating the capabilities of language models},
+ year = {2022}
+}
