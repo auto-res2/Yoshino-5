@@ -169,62 +169,6 @@ def decode_throughput(model: TinyHATQTransformer,
     return float(tps), int(mem_bytes), float(bit_stats.avg_bits())
 
 
-@torch.no_grad()
-def evaluate_classification(model: TinyHATQTransformer,
-                            X: torch.Tensor,
-                            y: torch.Tensor,
-                            controller_modules: Optional[Tuple[GlobalBudgetRNN, TokenMaskBlock, BudgetHead]] = None,
-                            ablation: str = "hatq") -> Tuple[float, np.ndarray]:
-    model.eval()
-    gb_rnn = mask_block = budget_head = None
-    if controller_modules is not None:
-        gb_rnn, mask_block, budget_head = controller_modules
-        gb_rnn.eval(); mask_block.eval(); budget_head.eval()
-
-    B = X.size(0)
-    if ablation == "hatq" and controller_modules is not None:
-        # Clear any stale token-bit assignments before the first pass
-        model._force_bits(4)
-        kv_stats = torch.zeros(B, 8, model.config.num_hidden_layers, device=X.device)
-        logits, hidden = model(X, return_hidden=True)
-        gbits = gb_rnn(kv_stats)
-        token_logits = mask_block(hidden)
-        extra_mask = budget_head(gbits, token_logits, enable_mask=True)
-        bits_btl = torch.clamp(3 + extra_mask.unsqueeze(-1).expand(-1, -1, model.config.num_hidden_layers), 3, 8)
-        model._set_token_bits(bits_btl)
-        logits = model(X)
-    elif ablation == "global_only" and controller_modules is not None:
-        kv_stats = torch.zeros(B, 8, model.config.num_hidden_layers, device=X.device)
-        gbits = gb_rnn(kv_stats)
-        bits_btl = torch.clamp(gbits.unsqueeze(1).expand(-1, X.size(1), -1), 3, 8)
-        model._set_token_bits(bits_btl)
-        logits = model(X)
-    else:
-        model._force_bits(4)
-        logits = model(X)
-
-    pooled = logits[:, -4:, :].mean(dim=1)
-    v = logits.size(-1)
-    pos_score = pooled[:, :v//2].sum(dim=1)
-    neg_score = pooled[:, v//2:].sum(dim=1)
-    pred = (pos_score > neg_score).long()
-    acc = (pred == y).float().mean().item()
-    cm = None
-    try:
-        if _HAVE_SKLEARN:
-            cm = confusion_matrix(y.cpu().numpy(), pred.cpu().numpy())
-        else:
-            cm_np = np.zeros((2,2), dtype=int)
-            y_np = y.detach().cpu().numpy()
-            p_np = pred.detach().cpu().numpy()
-            for i in range(y_np.shape[0]):
-                cm_np[y_np[i], p_np[i]] += 1
-            cm = cm_np
-    except Exception:
-        cm = None
-    return float(acc), cm
-
-
 # ------------------------------
 # Systems micro-benchmarks
 # ------------------------------
@@ -238,8 +182,8 @@ def microbench_gemm(M: int = 128, K: int = 512, N: int = 512,
     planes = 8
     dtype = torch.float32 if device.type == 'cpu' else torch.float16
     A = torch.randn(M, K, device=device, dtype=dtype)
-    B = (torch.randint(0, 2, (planes, N, K), device=device, dtype=torch.int8) * 2 - 1).to(torch.float32)
-    scales = torch.ones(planes, N, device=device, dtype=torch.float32)
+    B = (torch.randint(0, 2, (planes, N, K), device=device, dtype=torch.int8) * 2 - 1).to(dtype=dtype)
+    scales = torch.ones(planes, N, device=device, dtype=dtype)
 
     keys = sorted(list(mix.keys()))
     probs = torch.tensor([mix[k] for k in keys], device=device, dtype=torch.float32)
