@@ -72,10 +72,14 @@ def _unlikelihood_loss(logits: torch.Tensor, target_ids: torch.Tensor, rej_mask:
     logits = logits[:, :-1]
     target_ids = target_ids[:, 1:]
     rej_mask = rej_mask[:, 1:]
+    # Exclude ignored positions (-100) from contributing and from gather indices
+    valid = (target_ids != -100).float()
+    rej_mask = rej_mask * valid
     if rej_mask.sum() == 0:
         return torch.tensor(0.0, device=logits.device)
     log_probs = torch.log_softmax(logits, dim=-1)
-    p = log_probs.gather(-1, target_ids.unsqueeze(-1)).squeeze(-1).exp().clamp(min=1e-6, max=1-1e-6)
+    safe_targets = target_ids.masked_fill(target_ids < 0, 0)
+    p = log_probs.gather(-1, safe_targets.unsqueeze(-1)).squeeze(-1).exp().clamp(min=1e-6, max=1 - 1e-6)
     ul = -torch.log(1 - p)
     loss = (ul * rej_mask).sum() / (rej_mask.sum() + 1e-6)
     return loss
@@ -87,7 +91,9 @@ def _weighted_ce_loss(logits: torch.Tensor, labels: torch.Tensor, core_mask: tor
     labels = labels[:, 1:]
     core_mask = core_mask[:, 1:]
     log_probs = torch.log_softmax(logits, dim=-1)
-    nll = -log_probs.gather(-1, labels.unsqueeze(-1)).squeeze(-1)
+    # Safely gather: replace ignore_index (-100) with a valid index (0) before gather
+    safe_labels = labels.masked_fill(labels < 0, 0)
+    nll = -log_probs.gather(-1, safe_labels.unsqueeze(-1)).squeeze(-1)
     valid = (labels != -100).float()
     weights = torch.ones_like(valid)
     weights = torch.where(core_mask > 0, weights * core_weight, weights)

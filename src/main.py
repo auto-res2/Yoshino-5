@@ -6,7 +6,7 @@ This will:
   - Generate synthetic teacher data (toy) for math and commonsense
   - Verify steps, extract minimal core, build datasets
   - Train three models per task: EXACT, CoT-KD baseline, Answer-only baseline
-  - Evaluate and save high-quality PDF plots under .research/iteration2/images
+  - Evaluate and save high-quality PDF plots under .research/iteration3/images
 """
 import os
 import json
@@ -45,7 +45,7 @@ except Exception:  # noqa: E722
 
 
 DEFAULT_CONFIG_PATH = os.path.join("config", "config.yaml")
-IMAGES_DIR = os.path.join(".research", "iteration2", "images")
+IMAGES_DIR = os.path.join(".research", "iteration3", "images")
 MODELS_DIR = os.path.join("models")
 
 
