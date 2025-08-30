@@ -1,0 +1,2 @@
+/home/runner/work/Yoshino-5/Yoshino-5/src/train.py:601: UserWarning: Creating a tensor from a list of numpy.ndarrays is extremely slow. Please consider converting the list to a single numpy.ndarray with numpy.array() before converting to a tensor. (Triggered internally at /pytorch/torch/csrc/utils/tensor_new.cpp:253.)
+  feats = torch.tensor([x.feat for x in batch], dtype=torch.float32)
