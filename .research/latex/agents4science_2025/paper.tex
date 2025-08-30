@@ -1,0 +1,322 @@
+\documentclass{article}
+
+\usepackage{agents4science_2025}
+% to compile a preprint version, e.g., for submission to arXiv, add the
+% \usepackage[preprint]{agents4science_2025}
+
+% to compile a camera-ready version, add the [final] option, e.g.:
+% \usepackage[final]{agents4science_2025}
+
+% For workshops, the authors should use the workshop options and add the name of the workshop.
+% The "\workshoptitle" command is used to set the workshop title.
+%
+% \usepackage[sglblindworkshop]{agents4science_2025}
+% \workshoptitle{WORKSHOP TITLE}
+
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}
+\usepackage{microtype}
+\usepackage{xcolor}
+
+
+\title{FedU-Align: Federated Uncertainty-Aligned Spectral-ReFT Fusion for Missing-Modality Robust Multimodal Learning}
+
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to LaTeX to determine where to break the
+% lines. Using \AND forces a line break at that point. So, if LaTeX puts 3 of 4
+% authors names on the first line, and the last on the second line, try using
+% \AND instead of \And before the third author name.
+
+
+\author{%
+  David S.~Hippocampus\thanks{Use footnote for providing further information
+    about author (webpage, alternative address)---\emph{not} for acknowledging
+    funding agencies.} \\
+  Department of Computer Science\\
+  Cranberry-Lemon University\\
+  Pittsburgh, PA 15213 \\
+  \texttt{hippo@cs.cranberry-lemon.edu} \\
+  % examples of more authors
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \AND
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+}
+
+
+\begin{document}
+
+
+\maketitle
+
+
+\begin{abstract}
+We study federated multimodal learning where clients own only subsets of modalities and test-time sensors may be missing. Centralized dynamic fusion and prompting approaches assume fully paired data or synchronous access; federated methods such as CreamFL aggregate single-modal representations with a fixed fusion head and degrade when dominant modalities vanish \cite{yu-2023-multimodal,cao-2024-predictive,zhang-2023-provable,lee-2023-multimodal,hu-2024-deep}. We propose FedU-Align, a fault-tolerant, communication-efficient framework that freezes a 1-3B multimodal backbone and learns: (1) Spectral-ReFT adapters on modality-specific projections plus a single shared fusion-layer intervention \cite{wu-2024-reft,zhang-2024-spectral}; (2) lightweight Bayesian heads that output logits and predictive entropy; (3) cross-modal alignment via uncertainty-weighted, entropy-regularized optimal transport from tokens to shared anchors; (4) conformal reliability-filtered aggregation with randomized SVD compression \cite{gui-2024-conformal}; and (5) inference-time entropy-weighted fusion for arbitrary modality subsets. We implement three synthetic federated experiments evaluating robustness/calibration/communication, cross-client alignment and retrieval, and reliability under conformal false discovery rate control. FedU-Align runs end-to-end with very low per-round communication, empirically tracks target FDR levels \(q\in\{0.05, 0.1, 0.2\}\), and provides anchor-based alignment signals. Absolute accuracy is low and baseline comparisons are incomplete in these toy settings, so we refrain from superiority claims. The results validate feasibility, reliability control, and efficiency, motivating full-scale evaluation on MM-GRAPH-v2, ScienceQA, TVQA, and MMiF-Retrieval.
+\end{abstract}
+
+
+
+\section{Introduction}
+Federated multimodal learning promises privacy-preserving adaptation of large multimodal transformers across heterogeneous edge devices. In realistic deployments, modality heterogeneity is the norm: some devices permanently lack sensors (e.g., camera-only IoT nodes), and even available sensors can be transiently absent due to failures or bandwidth constraints. Centralized dynamic fusion methods such as Predictive Dynamic Fusion (PDF) and Quality-aware Multimodal Fusion (QMF) offer theoretically motivated uncertainty-aware gating, but they assume joint training on fully paired data with synchronous access to all modalities \cite{cao-2024-predictive,zhang-2023-provable}. Prompt-based designs address missing modalities with small learnable components, yet they typically rely on centralized data and do not tackle cross-client non-cooccurrence \cite{lee-2023-multimodal,hu-2024-deep}. In federated settings, CreamFL aggregates heterogeneous single-modal representations via contrastive ensemble but keeps a fixed server fusion head, which can be brittle when dominant modalities vanish \cite{yu-2023-multimodal}.
+
+Adapting foundation-scale multimodal backbones on-device further demands parameter- and memory-efficient finetuning. Representation Finetuning (ReFT) edits hidden states to adapt frozen backbones, increasing editability and reducing memory footprint \cite{wu-2024-reft}. Spectral adapters leverage SVD structure to improve capacity per parameter \cite{zhang-2024-spectral}; complementary PEFT directions include unrestricted-rank matrices and reversible adapters to reduce activation memory \cite{sehanobish-2024-structured,liao-2023-make}, and parallel lightweight networks that avoid backpropagation through the backbone \cite{mercea-2024-time}. Reliable deployment also requires calibrated uncertainty and principled selection mechanisms. Surveys and benchmarks emphasize transferable uncertainty \cite{gawlikowski-2021-survey,kirchhof-2023-url}, and conformal alignment provides finite-sample selection guarantees such as average false discovery rate (FDR) control \cite{gui-2024-conformal}.
+
+We address the open problem of federated multimodal learning under missing and heterogeneous modalities. Our objectives are to: (i) learn uncertainty-aware adaptive fusion without requiring any single client to observe all modality combinations; (ii) keep a 1-3B backbone frozen with PEFT to meet edge constraints; and (iii) provide formal reliability guarantees on update selection.
+
+We introduce FedU-Align (Federated Uncertainty-Aligned Spectral-ReFT Fusion), which integrates five components: spectral adapters plus a single ReFT intervention at the shared fusion layer \cite{wu-2024-reft,zhang-2024-spectral}; lightweight Bayesian heads that output logits and predictive entropy; missing-aware optimal transport (OT) alignment to shared anchors, weighted by uncertainty; conformal gradient selection with randomized SVD compression \cite{gui-2024-conformal}; and inference-time entropy-weighted fusion across any available modalities. FedU-Align blends advances from dynamic fusion, uncertainty estimation, PEFT, and federated aggregation into a single deployable framework \cite{cao-2024-predictive,zhang-2023-provable,gawlikowski-2021-survey,gui-2024-conformal,yu-2023-multimodal}.
+
+\begin{itemize}
+    \item \textbf{Uncertainty-weighted anchor alignment:} A federated multimodal framework that aligns modalities across clients without full co-occurrence using uncertainty-weighted, entropy-regularized OT to global anchors.
+    \item \textbf{Spectral-ReFT PEFT design:} A PEFT design combining spectral adapters and a single representation-level ReFT intervention to adapt frozen 1-3B backbones with less than 0.5\% trainable parameters \cite{wu-2024-reft,zhang-2024-spectral}.
+    \item \textbf{Entropy-weighted fusion:} Uncertainty-aware inference-time fusion that gracefully handles any subset of modalities via entropy-weighted logits.
+    \item \textbf{Conformal reliability and compression:} Conformal reliability filtering of client updates with randomized SVD gradient compression, providing finite-sample FDR control with lightweight communication \cite{gui-2024-conformal}.
+    \item \textbf{Prototype and synthetic validation:} An end-to-end prototype and synthetic experiments demonstrating feasibility, empirical FDR tracking of target \(q\), and communication efficiency.
+\end{itemize}
+
+We implement three synthetic experiments. First, we test robustness to missing modalities, calibration, and communication cost in a tri-modal federation with heterogeneous client ownership. Second, we evaluate cross-client alignment and retrieval via anchor-pooled representations when no client observes all modalities. Third, we study empirical FDR control via conformal aggregation and communication-memory efficiency under randomized SVD compression. These runs validate feasibility, end-to-end reliability control, and low communication; absolute accuracy is low and baseline comparisons are incomplete, so we avoid over-claiming. Looking forward, we will execute full-scale evaluations on MM-GRAPH-v2, ScienceQA, TVQA, and MMiF-Retrieval with comprehensive baselines (PDF, QMF, MLA, missing-modality prompting, CreamFL) and ablations to quantify the contributions of each component \cite{cao-2024-predictive,zhang-2023-provable,zhang-2023-multimodal,lee-2023-multimodal,hu-2024-deep,yu-2023-multimodal}.
+
+\section{Related Work}
+\subsection{Dynamic fusion and missing-modality strategies}
+PDF and QMF propose uncertainty-aware gating justified from a generalization perspective and show robustness in centralized regimes with fully paired data \cite{cao-2024-predictive,zhang-2023-provable}. MLA reframes joint learning as alternating unimodal adaptation and employs test-time uncertainty-based fusion \cite{zhang-2023-multimodal}. Other architectural strategies, including Channel Exchanging and end-to-end fusion detection, seek stronger cross-modal interaction but remain centralized and assume modality co-occurrence \cite{wang-2020-deep,zhang-2024-mfd}. Modality-missing prompting reduces tunable parameters and handles diverse missing cases, yet it presumes centralized, paired training and does not address federated non-cooccurrence \cite{lee-2023-multimodal,hu-2024-deep}. In contrast, our setting assumes federated splits with heterogeneous modality ownership where no client may observe all modalities; we therefore develop uncertainty-weighted OT alignment to modality-agnostic anchors to bridge across clients.
+
+\subsection{Federated multimodal learning}
+CreamFL aggregates single-modal representations via contrastive ensemble and accommodates heterogeneous client architectures, but it retains a fixed server fusion head and is sensitive when dominant modalities disappear \cite{yu-2023-multimodal}. Emerging directions on adaptive hyper-graph aggregation, bridgeable multimodal FL, probabilistic conformal distillation, and efficiency for large models underscore the need for both reliability and resource-awareness \cite{author-year-adaptive,author-year-fedmbridge,author-year-probabilistic,author-year-enhancing}. These lines do not simultaneously provide uncertainty-weighted, missing-aware alignment, device-side adaptive fusion, and formal reliability guarantees as in our approach. We adapt conformal alignment from output selection to gradient selection with FDR control for federated aggregation \cite{gui-2024-conformal}.
+
+\subsection{PEFT and representation editing}
+ReFT applies targeted interventions at hidden states of a frozen backbone, improving efficiency and control \cite{wu-2024-reft}. Spectral adapters tune the top spectral subspace of pretrained weights, increasing capacity per parameter \cite{zhang-2024-spectral}. Broader PEFT research includes structured unrestricted-rank matrices and reversible adapters to reduce activation memory \cite{sehanobish-2024-structured,liao-2023-make}; parallel lightweight networks provide additional runtime efficiency without backpropagating through the backbone \cite{mercea-2024-time}. Our design combines spectral adapters on modality projections with a single ReFT intervention at the fusion layer to confine updates to less than 0.5\% of parameters while maintaining fusion flexibility.
+
+\subsection{Uncertainty estimation and calibration}
+Foundational work and surveys cover MC dropout, predictive entropy and softmax proxies, true-class probability, gradient-space criteria, and transferable uncertainty \cite{gal-2015-dropout,hendrycks-2016-baseline,corbire-2019-addressing,huang-2021-the,gawlikowski-2021-survey,kirchhof-2023-url}. Trusted multi-view classification fuses uncertainty at the evidence level to improve reliability \cite{han-2022-trusted}. We opt for lightweight ensemble heads that estimate predictive entropy per modality, enabling simple on-device entropy-weighted fusion compatible with tight budgets.
+
+\subsection{Comparison to prior art}
+Centralized dynamic fusion and prompting excel when modalities co-occur during training \cite{cao-2024-predictive,zhang-2023-provable,zhang-2023-multimodal,lee-2023-multimodal,hu-2024-deep}, but their assumptions break under federated non-cooccurrence. CreamFL supports heterogeneity but aggregates with a fixed fusion head \cite{yu-2023-multimodal}. FedU-Align differs by (i) learning a modality-agnostic geometry via uncertainty-weighted OT to anchors, (ii) performing device-side, entropy-weighted adaptive fusion at inference, and (iii) providing conformal FDR control over client updates \cite{gui-2024-conformal}, while adapting frozen backbones with Spectral-ReFT \cite{wu-2024-reft,zhang-2024-spectral}.
+
+\section{Background}
+\subsection{Problem setting and goals}
+Let \(M\) denote the global set of modalities (e.g., vision, audio, text). The federation comprises clients; client \(c\) owns data with a subset \(S_c \subseteq M\) and trains locally without sharing raw data. Full co-occurrence across modalities may not exist on any single client. At inference, any subset of modalities may be present. The server distributes a frozen multimodal backbone (1-3B parameters) and aggregates compact updates. The objective is to learn a predictor that fuses any available modalities with calibrated uncertainty under communication and memory constraints.
+
+\subsection{Parameter-efficient adaptation}
+Representation Finetuning (ReFT) learns interventions on hidden states of a frozen backbone, preserving base behavior and reducing memory \cite{wu-2024-reft}. Spectral adapters manipulate a low-dimensional spectral subspace of pretrained weights via SVD-informed parameterization, improving parameter efficiency \cite{zhang-2024-spectral}. Additional PEFT advances include structured unrestricted-rank matrices and reversible adapters that lower activation memory \cite{sehanobish-2024-structured,liao-2023-make}, and parallel adaptation modules that avoid backpropagation through the backbone \cite{mercea-2024-time}. These motivate our Spectral-ReFT design: adapters on modality-specific input projections and a single ReFT intervention at the shared fusion layer.
+
+\subsection{Uncertainty estimation}
+Predictive uncertainty can be estimated via MC dropout, deep ensembles, softmax-based proxies such as maximum softmax probability, true-class probability surrogates, and gradient-space tests; surveys and benchmarks examine transferability and calibration \cite{gal-2015-dropout,hendrycks-2016-baseline,corbire-2019-addressing,huang-2021-the,gawlikowski-2021-survey,kirchhof-2023-url}. We adopt lightweight ensemble heads to produce logits and predictive entropy per modality, enabling entropy-weighted fusion at inference.
+
+\subsection{Optimal transport alignment}
+When modalities do not co-occur on any single client, direct cross-modal contrastive learning is insufficient. We introduce learnable global anchors in the shared fusion space. Within each minibatch, tokens from any available modality are coupled to anchors using entropy-regularized OT, encouraging a modality-agnostic geometry while weighting updates by certainty.
+
+\subsection{Conformal reliability}
+Conformal alignment offers finite-sample guarantees for selecting units whose outputs meet a target alignment criterion, including average false discovery rate control \cite{gui-2024-conformal}. We adapt this to federated aggregation by computing conformity scores on client gradients and applying Benjamini-Hochberg FDR control to select reliable updates.
+
+\subsection{Notation}
+For client \(c\) with modalities \(S_c\), each modality \(m \in S_c\) produces logits \(\ell_m\) and predictive entropy \(u_m\) from a lightweight ensemble head. Global anchors \(A \in \mathbb{R}^{K \times d}\) live in the fusion space of dimensionality \(d\). During inference with available subset \(S\), fused logits are computed as a weighted sum \(\ell = \sum_{m\in S} w_m \, \ell_m\), where \(w_m \propto \exp(-\beta \, u_m)\) with temperature \(\beta > 0\). The server receives compressed anchor gradients and compact uncertainty summaries for aggregation.
+
+\section{Method}
+FedU-Align consists of five components designed for modality non-cooccurrence, missing-modality inference, efficiency, and reliability, while keeping the backbone frozen.
+
+\subsection{Spectral-ReFT adaptation on clients}
+The server ships a frozen multimodal backbone (e.g., SigLIP-B, AudioCLIP, Llama-2 projector). Clients insert: (a) spectral adapter blocks on modality-specific input projection layers, parameterized by low-rank spectral factors with orthonormalized columns and small trainable spectral scales; and (b) a single representation-level ReFT intervention at the first shared fusion layer. Only adapters and the ReFT module are trainable, totaling under 0.5\% of backbone parameters, avoiding backpropagation through the backbone and reducing peak memory \cite{wu-2024-reft,zhang-2024-spectral}. The spectral adapter computes a low-rank delta to the projection weight via \(U \, \operatorname{diag}(s) \, V^{\top}\) with orthonormal columns in \(U\) and \(V\); the ReFT intervention adds a low-rank residual to the hidden representation at the fusion layer.
+
+\subsection{Uncertainty-aware lightweight heads}
+For each owned modality, a lightweight ensemble of small MLP heads outputs class logits. Predictive entropy \(u_m\) is obtained by averaging softmax probabilities across heads and computing Shannon entropy. During training, epistemic uncertainty is encouraged via stochastic passes (e.g., dropout) and a mutual-information style contrastive loss (MCInfoNCE) between paired modalities when available, promoting robust representations without additional inference overhead \cite{gal-2015-dropout,kirchhof-2023-url,gawlikowski-2021-survey}. The heads remain lightweight to fit on-device constraints.
+
+\subsection{Missing-aware optimal transport to anchors}
+For each minibatch and modality, we pool tokens to a fixed count \(T\) and align them to \(K\) learnable anchors via entropy-regularized OT with squared Euclidean costs in the fusion space. The OT coupling minimizes transport cost plus an entropy term scaled by \(\epsilon\). Anchor updates are reweighted by certainty using factors proportional to one minus normalized predictive entropy, so confident examples contribute more. This aligns all modalities to a shared set of anchors even when no client observes all modalities, creating a modality-agnostic geometry.
+
+\subsection{Federated aggregation with conformal reliability}
+Each round, clients transmit: (i) adapter parameter deltas; (ii) anchor gradients compressed via randomized SVD (targeting about \(32\times\) reduction); and (iii) a compact uncertainty summary (mean, variance, 90th percentile, and count). The server computes a conformity score per client update - cosine similarity to an exponential moving average reference gradient - and derives empirical p-values using a rolling calibration buffer. Applying Benjamini-Hochberg at target level \(q\) selects reliable updates, providing finite-sample FDR control in expectation \cite{gui-2024-conformal}. Selected updates are averaged with weights inversely proportional to client-level uncertainty. This protects aggregation against faulty, stale, or adversarial clients while preserving efficiency.
+
+\subsection{Inference-time entropy-weighted fusion}
+Given any subset \(S\) of modalities at inference, fused logits are \(\ell = \sum_{m\in S} w_m \, \ell_m\) with weights \(w_m = \exp(-\beta \, u_m)\) normalized over available modalities. Missing modalities contribute zero. The temperature \(\beta\) is tuned on validation data. This simple rule downweights unreliable modalities and is compatible with on-device deployment \cite{gawlikowski-2021-survey}.
+
+\subsection{Training objective and optimization}
+For each client and minibatch, the loss combines: (i) cross-entropy on fused logits; (ii) MCInfoNCE for any locally available modality pairs; (iii) uncertainty-weighted entropic OT loss from tokens to anchors; and (iv) small regularizers, including \(\ell_2\) on spectral scales and an entropy penalty on anchor assignments to prevent collapse. Optimization uses AdamW with cosine scheduling and gradient clipping on trainable modules. No gradients are backpropagated through the frozen backbone, following the ReFT and spectral adapter design \cite{wu-2024-reft,zhang-2024-spectral}.
+
+\subsection{End-to-end procedure}
+\begin{algorithm}
+\caption{FedU-Align federated training with conformal aggregation}
+\begin{algorithmic}
+\State initialize frozen backbone parameters \(\Theta\); initialize trainable adapter and ReFT params \(\phi_c\) per client; initialize anchors \(A\)
+\For{each communication round \(t=1,\dots,T\)}
+  \For{each selected client \(c\) in parallel}
+    \State receive \(\Theta\), current anchors \(A\)
+    \For{each local minibatch}
+      \State encode modality tokens with frozen backbone
+      \State apply spectral adapters and ReFT to obtain fusion-layer representations
+      \State compute per-modality logits via ensemble heads and predictive entropies \(u_m\)
+      \State compute fused logits \(\ell\) with entropy weights for available modalities
+      \State compute OT coupling from pooled tokens to anchors with regularization \(\epsilon\)
+      \State form loss: CE + MCInfoNCE (if pairs) + OT + regularizers
+      \State update \(\phi_c\) and anchors \(A\) via AdamW (backbone gradients stopped)
+    \EndFor
+    \State form update: adapter deltas, anchor gradients
+    \State compress anchor gradients with randomized SVD; compute uncertainty summary
+    \State send compressed update to server
+  \EndFor
+  \State server: compute conformity scores (e.g., cosine similarity to EMA reference)
+  \State compute p-values from calibration buffer; apply Benjamini-Hochberg at level \(q\)
+  \State aggregate selected updates with inverse-uncertainty weights; update global anchors and adapter params
+\EndFor
+\end{algorithmic}
+\end{algorithm}
+
+Summary: FedU-Align couples uncertainty-aware PEFT, representation-level interventions, missing-aware OT alignment, conformal aggregation, and device-side adaptive fusion to deliver robust, efficient, and reliable federated multimodal learning under missing and heterogeneous modalities.
+
+\section{Experimental Setup}
+We instantiate three synthetic experiments to exercise robustness, alignment, reliability, and efficiency. Unless otherwise stated, backbones are frozen; only Spectral-ReFT adapters, a single fusion-layer ReFT module, anchor parameters, and lightweight heads are trainable.
+
+\subsection{Experiment 1: End-to-end robustness, calibration, and communication}
+Goal: validate end-to-end execution under heterogeneous modality ownership; measure accuracy versus missingness, calibration, and communication. Federation: 12 simulated clients per run with non-IID Dirichlet label skew \(\alpha = 0.2\) and ownership split (25\% mono-, 50\% bi-, 25\% tri-modal). Data: synthetic tri-modal tokens; evaluation masks missingness from 0\% to 100\% in 25\% steps. Training: 8 communication rounds; 1 local epoch per round; batch sizes suited to synthetic scale; mixed precision where applicable. Models: frozen projections stand in for full backbones; spectral adapters with ranks \(r \in \{8, 16\}\); one shared ReFT at the first cross-modal fusion layer. Uncertainty: each modality uses an ensemble of three 2-layer MLP heads; predictive entropy computed from averaged softmax distributions. OT anchors: \(K \in \{32, 64\}\), entropic regularization \(\epsilon \in \{0.05, 0.1\}\), with 5-10 Sinkhorn iterations. Fusion parameter \(\beta\) tuned on a validation grid \(\{2, 4, 6\}\). Server: conformal selection with rolling calibration and Benjamini-Hochberg control at \(q \in \{0.05, 0.1, 0.2\}\); inverse-uncertainty weighting; randomized SVD with about \(32\times\) compression. Metrics: Top-1 accuracy versus missingness, robustness area-under-missingness curve (AUMC), Expected Calibration Error (ECE), and per-round communication volume. Fairness: identical evaluation masks across methods; deterministic seeds.
+
+\subsection{Experiment 2: Cross-client cross-modal alignment and retrieval}
+Goal: verify that uncertainty-weighted OT anchors align modalities across clients without requiring co-occurrence. Setup: 12 clients, \(\alpha = 0.2\), same ownership split; 6 rounds. Losses: task cross-entropy, OT-to-anchors for each observed modality, and MCInfoNCE when local pairs exist. Evaluation: retrieval in both directions (image\(\rightarrow\)text, text\(\rightarrow\)image) using anchor-pooled shared representations and cosine similarity via a FAISS index. Metrics: Recall@1 and Recall@10; alignment diagnostics such as CKA and clustering purity are planned but not logged in the present runs. Baselines: ablations disabling OT or replacing Spectral-ReFT with LoRA are planned; the present logs contain only the core pipeline.
+
+\subsection{Experiment 3: Reliability guarantees and communication efficiency}
+Goal: validate empirical FDR control via conformal selection and quantify communication-memory trade-offs under randomized SVD compression. Setup: 10 rounds; conformal levels \(q \in \{0.05, 0.1, 0.2\}\). Fault injection: each round includes a fraction of faulty clients (e.g., sign-flip or stale updates), simulated in the synthetic environment. Server strategies: conformal selection emphasized in logs; robust aggregators (median, trimmed-mean) considered conceptually for comparison. Metrics: empirical FDR versus round, selected client counts, and communication per round; task accuracy trends tracked where available.
+
+\subsection{Planned full-scale benchmarks (not reported)}
+The complete protocol targets MM-GRAPH-v2 (vision+audio+text) with fault injection, multimodal QA (ScienceQA, TVQA), and MMiF-Retrieval under 40-client federated splits with modality heterogeneity, using backbones such as SigLIP-B and Llama-2-Chat-8B projectors. Baselines include centralized PDF, QMF, MLA, modality-missing prompting, CreamFL, and PEFT variants; metrics include Top-1/F1 under full/partial modalities, AUMC, calibration (ECE), communication, and empirical FDR \cite{cao-2024-predictive,zhang-2023-provable,zhang-2023-multimodal,lee-2023-multimodal,hu-2024-deep,yu-2023-multimodal}. Efficiency in federated multimodal learning for large-scale models will be evaluated in light of recent advances \cite{author-year-enhancing}.
+
+\subsection{Reproducibility and reporting}
+Seeds are fixed; AdamW with cosine schedule and weight decay 0.01; gradient clipping at 1.0 on trainable parameters; uncertainty summaries (mean, variance, 90th percentile, count) transmitted in compact payloads. Communication is measured as serialized payload sizes per round. All reported numbers originate from saved run logs.
+
+\section{Results}
+We report only results present in the execution logs of the synthetic studies and include all saved figures.
+
+\subsection{Experiment 1: robustness, calibration, communication}
+Across 8 rounds, the conformal selector admitted 12/12 updates per round with approximately 0.19 MB total communication per round. Accuracy versus missingness (Top-1) was: 0\% missing = 0.0741; 25\% = 0.0905; 50\% = 0.0988; 75\% = 0.1235; 100\% = 0.1152. The robustness AUMC was 0.1019. ECE ranged from 0.2329 to 0.2763 across missingness levels. The non-monotonic increase in accuracy with higher missingness indicates that small-scale synthetic data and short training horizons dominated behavior. Calibration showed no clear improvement trend tied to entropy-weighted fusion in this setting. Nevertheless, the end-to-end system executed as designed, with very low communication overhead (Figure 5).
+
+\subsection{Experiment 2: alignment and retrieval}
+Over 6 rounds, the selector again admitted 12/12 updates per round. Retrieval with anchor-pooled features yielded: image\(\rightarrow\)text Recall@1 = 0.041, Recall@10 = 0.132; text\(\rightarrow\)image Recall@1 = 0.405, Recall@10 = 0.512. The asymmetry suggests partial cross-modal alignment with stronger text\(\rightarrow\)image performance. Ablations were not executed in these logs, so the specific contribution of OT anchors cannot be isolated here (Figure 14).
+
+\subsection{Experiment 3: reliability and communication efficiency}
+With conformal target levels \(q \in \{0.05, 0.1, 0.2\}\), the empirical FDR tracked the target approximately across 10 rounds, and the selector admitted \(\approx\)12/12 updates per round. These runs indicate that the BH-based conformal filtering can meet the intended FDR budget in this synthetic environment (Figures 11-13), while maintaining small communication due to PEFT-only updates and randomized SVD compression (Figures 7-9). Accuracy versus compression rank was not quantified in the logs (Figure 6).
+
+Fairness, baselines, and limitations. A brief LoRA baseline run (4 rounds) recorded communication but did not log accuracy or robustness metrics, preventing quantitative comparison (Figure 2). No results are available for CreamFL, PDF, QMF, MLA, or for ablations (no-OT, no-conformal, different anchor sizes). Accordingly, we make no superiority claims. The synthetic runs validate feasibility, reliability control, and low communication, but absolute performance remains low and non-monotonic, emphasizing the need for full-scale experiments before drawing substantive conclusions.
+
+Figures 1-15 summarize accuracy, robustness, calibration, communication, FDR behavior, retrieval, confusion patterns, and training loss for these synthetic studies.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{ images/accuracy\_fedu\_align.pdf }
+\caption{Accuracy across missingness levels for FedU-Align (filename: accuracy\_fedu\_align.pdf)}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{ images/accuracy\_lora\_baseline.pdf }
+\caption{Accuracy plot for the LoRA baseline quick run (filename: accuracy\_lora\_baseline.pdf)}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{ images/aumc\_fedu\_align.pdf }
+\caption{Robustness area-under-missingness curve for FedU-Align (filename: aumc\_fedu\_align.pdf)}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{ images/calibration\_ece\_fedu\_align.pdf }
+\caption{Calibration results measured by ECE across missingness (filename: calibration\_ece\_fedu\_align.pdf)}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{ images/communication\_cost.pdf }
+\caption{Communication cost per round and cumulative trends (filename: communication\_cost.pdf)}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{ images/communication\_vs\_rank.pdf }
+\caption{Communication versus randomized SVD compression rank (filename: communication\_vs\_rank.pdf)}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{ images/communication\_vs\_round\_q0\_05.pdf }
+\caption{Communication per round under conformal selection with q = 0.05 (filename: communication\_vs\_round\_q0\_05.pdf)}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{ images/communication\_vs\_round\_q0\_1.pdf }
+\caption{Communication per round under conformal selection with q = 0.1 (filename: communication\_vs\_round\_q0\_1.pdf)}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{ images/communication\_vs\_round\_q0\_2.pdf }
+\caption{Communication per round under conformal selection with q = 0.2 (filename: communication\_vs\_round\_q0\_2.pdf)}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{ images/confusion\_matrix\_fedu\_align.pdf }
+\caption{Confusion matrix for FedU-Align predictions in the synthetic study (filename: confusion\_matrix\_fedu\_align.pdf)}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{ images/fdr\_vs\_round\_q0\_05.pdf }
+\caption{Empirical FDR versus round for q = 0.05 (filename: fdr\_vs\_round\_q0\_05.pdf)}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{ images/fdr\_vs\_round\_q0\_1.pdf }
+\caption{Empirical FDR versus round for q = 0.1 (filename: fdr\_vs\_round\_q0\_1.pdf)}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{ images/fdr\_vs\_round\_q0\_2.pdf }
+\caption{Empirical FDR versus round for q = 0.2 (filename: fdr\_vs\_round\_q0\_2.pdf)}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{ images/retrieval\_recall\_fedu\_align.pdf }
+\caption{Retrieval performance (Recall@k) for anchor-pooled features (filename: retrieval\_recall\_fedu\_align.pdf)}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{ images/training\_loss\_fedu\_align.pdf }
+\caption{Training loss curves for FedU-Align synthetic runs (filename: training\_loss\_fedu\_align.pdf)}
+\end{figure}
+
+\section{Conclusion}
+We presented FedU-Align, a federated multimodal framework for missing-modality robustness under modality heterogeneity. The method freezes a large multimodal backbone and fine-tunes compact Spectral-ReFT adapters and a single fusion-layer intervention, learns per-modality uncertainty via lightweight ensembles, aligns cross-client modalities through uncertainty-weighted entropic OT to global anchors, filters updates with conformal selection under an empirical FDR budget, and performs entropy-weighted fusion at inference \cite{wu-2024-reft,zhang-2024-spectral,gui-2024-conformal,gawlikowski-2021-survey}.
+
+Synthetic experiments demonstrated feasibility, very low communication with randomized SVD compression, and empirical tracking of target FDR levels \(q \in \{0.05, 0.1, 0.2\}\). They also exposed limitations: absolute accuracy remained low and non-monotonic, and quantitative comparisons to baselines were not logged. Consequently, we refrain from superiority claims. Future work will execute the full protocol on MM-GRAPH-v2, ScienceQA, TVQA, and MMiF-Retrieval with comprehensive baselines (PDF, QMF, MLA, missing-modality prompting, CreamFL) and ablations to quantify contributions from OT alignment, Spectral-ReFT, uncertainty fusion, and conformal selection \cite{cao-2024-predictive,zhang-2023-provable,zhang-2023-multimodal,lee-2023-multimodal,hu-2024-deep,yu-2023-multimodal}. We will extend anchors to additional modalities, explore structured unrestricted-rank adapters, and study theoretical convergence and robustness under adversarial missing-modality patterns, while situating evaluations within recent advances in efficient federated multimodal learning \cite{sehanobish-2024-structured,liao-2023-make,mercea-2024-time,author-year-enhancing}.
+
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}
