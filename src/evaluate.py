@@ -59,6 +59,8 @@ def evaluate_ppl(model: TinyHATQTransformer, data: List[Dict[str, torch.Tensor]]
         input_ids = batch["input_ids"]
         B, T = input_ids.shape
         if ablation == "hatq" and controller_modules is not None:
+            # Clear any stale token-bit assignments before the first pass
+            model._force_bits(4)
             kv_stats = torch.zeros(B, 8, model.config.num_hidden_layers, device=input_ids.device)
             logits, hidden = model(input_ids, return_hidden=True)
             gbits = gb_rnn(kv_stats)
@@ -107,6 +109,8 @@ def decode_throughput(model: TinyHATQTransformer,
 
     def step(ids_):
         B_, T_ = ids_.shape
+        # Clear any stale per-token bit assignments before the first pass
+        model._force_bits(4)
         if ablation == "hatq" and controller_modules is not None:
             kv_stats = torch.zeros(B_, 8, model.config.num_hidden_layers, device=ids_.device)
             logits, hidden = model(ids_, return_hidden=True)
@@ -179,6 +183,8 @@ def evaluate_classification(model: TinyHATQTransformer,
 
     B = X.size(0)
     if ablation == "hatq" and controller_modules is not None:
+        # Clear any stale token-bit assignments before the first pass
+        model._force_bits(4)
         kv_stats = torch.zeros(B, 8, model.config.num_hidden_layers, device=X.device)
         logits, hidden = model(X, return_hidden=True)
         gbits = gb_rnn(kv_stats)
@@ -385,6 +391,8 @@ def run_experiment3_controller(model: TinyHATQTransformer, data_small: List[Dict
 
     batch = data_small[0]
     x = batch["input_ids"]
+    # Clear any stale token-bit assignments before the first pass
+    model._force_bits(4)
     logits, hidden = model(x, return_hidden=True)
 
     kv_stats = torch.zeros(x.size(0), 8, model.config.num_hidden_layers, device=x.device)
