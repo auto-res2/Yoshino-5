@@ -125,19 +125,25 @@ def build_backbone(dataset_name: str, num_classes: int):
 def compute_embeddings(model: nn.Module, loader: DataLoader, device: str, max_samples: int = 32):
     model.eval()
     embs, ys = [], []
-    n = 0
+    n_collected = 0
     for x, y in loader:
+        if n_collected >= max_samples:
+            break
         x = x.to(device)
         try:
             _, e = model(x, return_embed=True)
         except TypeError:
             # Fallback if wrapper didn't handle: use logits as embedding
             e = model(x)
-        embs.append(e.detach().cpu())
+        e = e.detach().cpu()
+        # Cap to max_samples even if batch is larger
+        remaining = max_samples - n_collected
+        if e.size(0) > remaining:
+            e = e[:remaining]
+            y = y[:remaining]
+        embs.append(e)
         ys.append(y)
-        n += x.size(0)
-        if n >= max_samples:
-            break
+        n_collected += e.size(0)
     if len(embs) == 0:
         return torch.zeros(1, 16), torch.zeros(1, dtype=torch.long)
     return torch.cat(embs, 0), torch.cat(ys, 0)
@@ -147,6 +153,15 @@ def compute_embeddings(model: nn.Module, loader: DataLoader, device: str, max_sa
 def linear_cka(X: torch.Tensor, Y: torch.Tensor) -> float:
     if X is None or Y is None or X.numel() == 0 or Y.numel() == 0:
         return 0.0
+    # Ensure same number of samples
+    n = min(X.shape[0], Y.shape[0])
+    if n == 0:
+        return 0.0
+    if X.shape[0] != n:
+        X = X[:n]
+    if Y.shape[0] != n:
+        Y = Y[:n]
+    # Center features
     X = X - X.mean(0, keepdim=True)
     Y = Y - Y.mean(0, keepdim=True)
     HSIC = (X.t() @ Y).pow(2).sum()
