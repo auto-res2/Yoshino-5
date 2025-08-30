@@ -8,18 +8,34 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import seaborn as sns
+import torch
 
-from .train import (
-    Problem,
-    Tools,
-    SimplePRM,
-    SyntheticBackbone,
-    Action,
-    DEFAULT_COSTS,
-    EpisodeResult,
-    StudentController,
-    run_episode,
-)
+try:
+    from .train import (
+        Problem,
+        Tools,
+        SimplePRM,
+        SyntheticBackbone,
+        Action,
+        DEFAULT_COSTS,
+        EpisodeResult,
+        StudentController,
+        run_episode,
+        ALL_ACTIONS,
+    )
+except ImportError:  # fallback when running as a script
+    from train import (
+        Problem,
+        Tools,
+        SimplePRM,
+        SyntheticBackbone,
+        Action,
+        DEFAULT_COSTS,
+        EpisodeResult,
+        StudentController,
+        run_episode,
+        ALL_ACTIONS,
+    )
 
 
 def serialize_episode(ep: EpisodeResult) -> Dict[str, Any]:
@@ -256,7 +272,10 @@ class _FixedCascadeWrapper:
 
     def decide(self, problem, trace, prm_scores, features):
         # Lazy import from train to avoid circular import at module import time
-        from .train import FixedCascade
+        try:
+            from .train import FixedCascade
+        except ImportError:
+            from train import FixedCascade
         if self._delegate is None:
             self._delegate = FixedCascade()
         return self._delegate.decide(problem, trace, prm_scores, features)
@@ -267,7 +286,10 @@ class _StaticBeamWrapper:
         self._delegate = None
 
     def decide(self, problem, trace, prm_scores, features):
-        from .train import StaticBeam
+        try:
+            from .train import StaticBeam
+        except ImportError:
+            from train import StaticBeam
         if self._delegate is None:
             self._delegate = StaticBeam()
         return self._delegate.decide(problem, trace, prm_scores, features)
@@ -278,7 +300,10 @@ class _StaticCoTWrapper:
         self._delegate = None
 
     def decide(self, problem, trace, prm_scores, features):
-        from .train import StaticCoT
+        try:
+            from .train import StaticCoT
+        except ImportError:
+            from train import StaticCoT
         if self._delegate is None:
             self._delegate = StaticCoT()
         return self._delegate.decide(problem, trace, prm_scores, features)

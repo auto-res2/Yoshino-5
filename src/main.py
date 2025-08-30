@@ -4,23 +4,37 @@ import yaml
 import random
 from typing import List
 
-from .train import (
-    set_seed,
-    ensure_dir,
-    Problem,
-    load_dataset,
-    experiment3_distillation,
-    save_model,
-    StudentController,
-    load_model,
-)
-from .evaluate import experiment1_end_to_end, experiment2_causal_ablation
-from .preprocess import preprocess_main
+try:
+    from .train import (
+        set_seed,
+        ensure_dir,
+        Problem,
+        load_dataset,
+        experiment3_distillation,
+        save_model,
+        StudentController,
+        load_model,
+    )
+    from .evaluate import experiment1_end_to_end, experiment2_causal_ablation
+    from .preprocess import preprocess_main
+except ImportError:  # fallback when running as a script
+    from train import (
+        set_seed,
+        ensure_dir,
+        Problem,
+        load_dataset,
+        experiment3_distillation,
+        save_model,
+        StudentController,
+        load_model,
+    )
+    from evaluate import experiment1_end_to_end, experiment2_causal_ablation
+    from preprocess import preprocess_main
 
 
 DEFAULT_CFG = {
     "seed": 42,
-    "images_dir": ".research/iteration1/images",
+    "images_dir": ".research/iteration2/images",
     "data_path": "data/synthetic.jsonl",
     "models_dir": "models",
     "results_dir": "data",
@@ -63,7 +77,7 @@ def main():
     seed = int(cfg.get("seed", 42))
     set_seed(seed)
 
-    images_dir = cfg.get("images_dir", ".research/iteration1/images")
+    images_dir = cfg.get("images_dir", ".research/iteration2/images")
     models_dir = cfg.get("models_dir", "models")
     results_dir = cfg.get("results_dir", "data")
     ensure_dir(images_dir)
@@ -112,7 +126,10 @@ def main():
     print("\n========== EVALUATION (Experiment 2) ==========")
     # Build reference logs at mid budget using BACS
     mid_cap = float(budgets[min(1, len(budgets) - 1)])
-    from .train import SyntheticBackbone, SimplePRM, DEFAULT_COSTS, run_episode, Tools
+    try:
+        from .train import SyntheticBackbone, SimplePRM, DEFAULT_COSTS, run_episode, Tools
+    except ImportError:
+        from train import SyntheticBackbone, SimplePRM, DEFAULT_COSTS, run_episode, Tools
 
     backbone = SyntheticBackbone()
     prm = SimplePRM()

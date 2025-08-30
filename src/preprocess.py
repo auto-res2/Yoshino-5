@@ -7,7 +7,10 @@ from typing import List, Tuple
 import numpy as np
 from sympy import sympify
 
-from .train import Problem
+try:
+    from .train import Problem
+except ImportError:
+    from train import Problem
 
 
 def ensure_dir(path: str):

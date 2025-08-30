@@ -1,5 +1,5 @@
 seed: 42
-images_dir: .research/iteration1/images
+images_dir: .research/iteration2/images
 data_path: data/synthetic.jsonl
 models_dir: models
 results_dir: data
