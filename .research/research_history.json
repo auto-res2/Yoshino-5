@@ -633,6 +633,68 @@
       }
     }
   ],
+  "reference_research_study_list": [
+    {
+      "title": "Frozen in time: A joint video and image encoder for end-to-end retrieval"
+    },
+    {
+      "title": "ediffi: Text-to-image diffusion models with an ensemble of expert denoisers"
+    },
+    {
+      "title": "Align your latents: High-resolution video synthesis with latent diffusion models"
+    },
+    {
+      "title": "Pix2video: Video editing using image diffusion"
+    },
+    {
+      "title": "Diffusion models beat gans on image synthesis"
+    },
+    {
+      "title": "Cogview: Mastering text-to-image generation via transformers"
+    },
+    {
+      "title": "Dreamartist: Towards controllable one-shot text-to-image generation via contrastive prompt-tuning"
+    },
+    {
+      "title": "Structure and content-guided video synthesis with diffusion models"
+    },
+    {
+      "title": "Catastrophic forgetting in connectionist networks"
+    },
+    {
+      "title": "An image is worth one word: Personalizing text-to-image generation using textual inversion"
+    },
+    {
+      "title": "Designing an encoder for fast personalization of text-to-image models"
+    },
+    {
+      "title": "Vector quantized diffusion model for text-to-image synthesis"
+    },
+    {
+      "title": "Deep residual learning for image recognition"
+    },
+    {
+      "title": "Denoising diffusion probabilistic models"
+    },
+    {
+      "title": "Imagen video: High definition video generation with diffusion models"
+    },
+    {
+      "title": "Video diffusion models"
+    },
+    {
+      "title": "Cogvideo: Large-scale pre-training for text-to-video generation via transformers"
+    },
+    {
+      "title": "Lora: Low-rank adaptation of large language models"
+    },
+    {
+      "title": "Taming encoder for zero fine-tuning image customization with text-to-image diffusion models"
+    },
+    {
+      "title": "Text2video-zero: Text-to-image diffusion models are zero-shot video generators"
+    }
+  ],
   "new_method": {
     "method": "Open Problems: Temporal Reasoning Bottleneck under Token- and Parameter-Budgets \nToday’s Video-LLMs observe <16 sparsely-sampled frames because feeding full frame streams (hundreds of 224×224 patches) into the LLM explodes the context length.  Parameter-efficient finetuning schemes (LoRA, SimDA, MotionLoRA) alleviate compute but keep a *fixed, small rank* that is shared by all time‐steps.  Consequently the adapters have to encode *all* temporal variations into a few low-rank directions, which (1) limits expressive power for complex motion, (2) forces aggressive frame dropping, (3) yields temporally inconsistent answers and poor localisation of event boundaries.  The field lacks a PEFT method whose capacity *grows with the temporal complexity of the input* while remaining memory-light and that can be used plug-and-play on existing Image-LLMs to turn them into long-video reasoners.\nMethods: Adaptive Basis LoRA (AB-LoRA) \nThe core idea is to replace the single static low-rank adapter by a *video-adaptive mixture of bases*.  For every incoming video we learn K≤256 orthogonal temporal bases B∈RK×T with an Expectation–Maximisation procedure similar to STEM, but computed in latent space (after CLIP ViT/B-16).  Each attention block receives: \n1. Temporal Basis Encoder – small CNN + EMA downsampler that produces the EM “responsibility” map; K is chosen automatically by minimum description length (MDL) so long videos get more bases. \n2. DoRA-style Direction/Magnitude Decomposition – for every basis we keep a rank-r (r=4) LoRA direction ΔV_k plus a magnitude scalar m_k that is jointly learned.  During inference we compute a weighted sum Σγ_k m_k ΔV_k where γ_k is the basis responsibility for the current time-step.  This gives an *effective* rank of r·K but stores only r·K tiny matrices that are reused across videos. \n3. Householder Compression – each ΔV_k is expressed with Householder vectors (HTA) to cut parameters by another ×2. \nTraining recipe: \nStage-1 Feature Alignment (1 epoch) : freeze Vicuna-7B, train visual adapter as in Video-LaVIT. \nStage-2 Temporal Basis Pre-training (2 epochs) : optimise only basis encoder on WebVid-10M to minimise reconstruction loss of CLIP features. \nStage-3 Instruction-Tuning (2 epochs) : enable DoRA parameters, freeze basis encoder, tune on 36 k curated QA/dialogue pairs (Video-ChatGPT, VideoInstruct100 k).  All other weights frozen.\nExperimental Setup: Models \n• Base: Vicuna-7B + CLIP ViT/B-16 (same as Video-LLaMA) \n• Finetuning variants:  (a) full LoRA-8,  (b) MotionLoRA-SimDA,  (c) DoRA-64,  (d) proposed AB-LoRA.\n\nDatasets & Tasks \n1. Video QA: MSR-VTT-QA, MSVD-QA, ActivityNet-QA (10-30 s clips) \n2. Temporal Grounding: Charades-STA, ActivityNet-Captions (use ‘from-s-to-e’ output) \n3. Doc/Chart-QA (static) to verify language preservation \n4. Long-video split of EgoSchema (2-3 min) for zero-shot.\n\nMetrics \n• QA accuracy, BLEU/CIDEr for captions, mIoU & R@1 IoU≥0.5 for grounding \n• Temporal Consistency: feature-warped cosine similarity (as in TokenFlow) \n• Efficiency: trainable params, peak-GPU-mem, wall-time/epoch \nRobustness grid: video length (10-180 s), motion complexity (optical-flow entropy quartiles), domain shift (recipes→sports). \nAblations: (i) no MDL (fixed K), (ii) no DoRA (pure LoRA bases), (iii) K=1 (equivalent to SimDA).\nResult: We expect AB-LoRA to \n• raise QA accuracy by +4 % on MSR-VTT and +6 % on MSVD over MotionLoRA at equal GPU memory; \n• cut temporal grounding mIoU error by 20 % versus LoRA-8 through better boundary awareness; \n• keep DocVQA accuracy within 0.3 % of frozen Vicuna – no language regression; \n• use 28 M trainable parameters (≈SimDA) and 12 GB peak memory on A100 (-35 % vs DoRA-64) while supporting 64-frame inputs; \n• show smooth temporal feature curves with >0.92 cosine similarity on long-video set, vs 0.79 for baselines.\nConclusion: Adaptive Basis LoRA marries low-rank adaptation with video-specific basis learning, yielding the *first parameter-efficient scheme whose capacity scales with temporal complexity*.  It delivers consistent long-video understanding without adding inference latency and fits into a single 40 GB GPU, paving the way for practical deployment of Video-LLMs on edge servers.  Future extensions include sharing bases across users for on-device personalisation and applying the same MDL-driven basis idea to diffusion-based video generation for temporally coherent edits.",
     "experimental_design": {
