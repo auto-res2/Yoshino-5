@@ -6,5 +6,82 @@
     "zero-shot adaptation gap",
     "adaptive demonstration selection",
     "context optimization multimodal"
+  ],
+  "research_study_list": [
+    {
+      "title": "Discriminative Sample-Guided and Parameter-Efficient Feature Space Adaptation for Cross-Domain Few-Shot Learning"
+    },
+    {
+      "title": "Meta-Exploiting Frequency Prior for Cross-Domain Few-Shot Learning"
+    },
+    {
+      "title": "Dynamic Distillation Network for Cross-Domain Few-Shot Recognition with Unlabeled Data"
+    },
+    {
+      "title": "Learning to Adapt to Evolving Domains"
+    },
+    {
+      "title": "Learning to Adapt via Latent Domains for Adaptive Semantic Segmentation"
+    },
+    {
+      "title": "Multimodal Few-Shot Learning with Frozen Language Models"
+    },
+    {
+      "title": "Few-Shot Learning With Visual Distribution Calibration and Cross-Modal Distribution Alignment"
+    },
+    {
+      "title": "Revisiting Few-Shot Object Detection with Vision-Language Models"
+    },
+    {
+      "title": "Meta Learning to Bridge Vision and Language Models for Multimodal Few-Shot Learning"
+    },
+    {
+      "title": "Language Models with Image Descriptors are Strong Few-Shot Video-Language Learners"
+    },
+    {
+      "title": "Bridge the Modality and Capability Gaps in Vision-Language Model Selection"
+    },
+    {
+      "title": "Stabilizing Zero-Shot Prediction: A Novel Antidote to Forgetting in Continual Vision-Language Tasks"
+    },
+    {
+      "title": "Zero-Shot Reinforcement Learning from Low Quality Data"
+    },
+    {
+      "title": "Continual evaluation for lifelong learning: Identifying the stability gap"
+    },
+    {
+      "title": "Zero-Shot Robustification of Zero-Shot Models"
+    },
+    {
+      "title": "Curriculum Design for Teaching via Demonstrations: Theory and Applications"
+    },
+    {
+      "title": "Environment Design for Inverse Reinforcement Learning"
+    },
+    {
+      "title": "Environment Design for Inverse Reinforcement Learning"
+    },
+    {
+      "title": "An Offline Adaptation Framework for Constrained Multi-Objective Reinforcement Learning"
+    },
+    {
+      "title": "MoDem: Accelerating Visual Model-Based Reinforcement Learning with Demonstrations"
+    },
+    {
+      "title": "Leveraging Visual Tokens for Extended Text Contexts in Multi-Modal Learning"
+    },
+    {
+      "title": "Mirasol3B: A Multimodal Autoregressive Model for Time-Aligned and Contextual Modalities"
+    },
+    {
+      "title": "Generative Multimodal Models are In-Context Learners"
+    },
+    {
+      "title": "Causal-CoG: A Causal-Effect Look at Context Generation for Boosting Multi-modal Language Models"
+    },
+    {
+      "title": "Towards More Unified In-context Visual Understanding"
+    }
   ]
 }
