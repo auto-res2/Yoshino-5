@@ -346,11 +346,13 @@ def run_experiment3_controller(model: TinyHATQTransformer, data_small: List[Dict
 
     if labels_offline is None:
         labels_offline = compute_offline_labels(model, data_small)
-    y = labels_offline[:x.size(0), :x.size(1)]
+    # offline labels are for next-token prediction, so they have length T-1
+    y = labels_offline[:x.size(0), :x.size(1)-1]
 
+    # Align controller scores and predictions to T-1 as well
     y_true = y.reshape(-1).cpu().numpy()
-    y_score = torch.sigmoid(token_logits).reshape(-1).detach().cpu().numpy()
-    y_pred = (ctrl_mask.reshape(-1) > 0.5).int().cpu().numpy()
+    y_score = torch.sigmoid(token_logits[:, :-1]).reshape(-1).detach().cpu().numpy()
+    y_pred = (ctrl_mask[:, :-1].reshape(-1) > 0.5).int().cpu().numpy()
 
     auc = None
     if _HAVE_SKLEARN:
