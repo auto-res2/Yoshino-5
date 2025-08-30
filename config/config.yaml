@@ -1,0 +1,25 @@
+# Default configuration for a quick PTS test run
+# Run with: python -m src.main
+
+seed: 123
+use_gpu: true
+save_plots: true
+
+# Data
+dataset: permuted_mnist  # choices: permuted_mnist, rotated_mnist, cifar100
+num_tasks: 3
+classes_per_task: 5  # used for cifar100 splits
+batch_size_train: 64
+batch_size_eval: 128
+
+# Training
+epochs_per_task: 1
+lora_rank: 4
+
+# PTS scheduler
+K: 3  # buffer size
+D: 3  # beam depth
+meta_train: false  # placeholder (not used in quick test)
+
+# Baselines
+compare_baselines: true
