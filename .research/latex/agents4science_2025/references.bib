@@ -5,3 +5,666 @@
   publisher = {GitHub},
   url       = {https://github.com/airas-org/airas}
 }
+
+% ===========================================
+% REQUIRED CITATIONS
+% These papers must be cited in the manuscript
+% ===========================================
+
+@article{author-year-iron,
+ title = {Iron: Private Inference on Transformers}
+}
+
+@article{author-year-like,
+ title = {Be Like Water: Adaptive Floating Point for Machine Learning}
+}
+
+@article{author-year-not,
+ title = {Not All Bits have Equal Value: Heterogeneous Precisions via Trainable Noise}
+}
+
+@article{author-year-outlier,
+ title = {Outlier-aware Slicing for Post-Training Quantization in Vision Transformer}
+}
+
+@article{author-year-qbb,
+ title = {QBB: Quantization with Binary Bases for LLMs}
+}
+
+@article{author-year-toward,
+ title = {Toward Accurate Post-Training Quantization for Image Super Resolution}
+}
+
+@article{chee-2023-quip,
+ abstract = {This work studies post-training parameter quantization in large language
+models (LLMs). We introduce quantization with incoherence processing (QuIP), a
+new method based on the insight that quantization benefits from
+$\textit{incoherent}$ weight and Hessian matrices, i.e., from the weights being
+even in magnitude and the directions in which it is important to round them
+accurately being unaligned with the coordinate axes. QuIP consists of two
+steps: (1) an adaptive rounding procedure minimizing a quadratic proxy
+objective; (2) efficient pre- and post-processing that ensures weight and
+Hessian incoherence via multiplication by random orthogonal matrices. We
+complement QuIP with the first theoretical analysis for an LLM-scale
+quantization algorithm, and show that our theory also applies to an existing
+method, OPTQ. Empirically, we find that our incoherence preprocessing improves
+several existing quantization algorithms and yields the first LLM quantization
+methods that produce viable results using only two bits per weight. Our code
+can be found at https://github.com/Cornell-RelaxML/QuIP.},
+ arxiv_url = {https://arxiv.org/pdf/2307.13304v2.pdf},
+ author = {Jerry Chee and Yaohui Cai and Volodymyr Kuleshov and Christopher De Sa},
+ github_url = {https://github.com/Cornell-RelaxML/QuIP},
+ title = {QuIP: 2-Bit Quantization of Large Language Models With Guarantees},
+ year = {2023}
+}
+
+@article{cui-2024-cherry,
+ abstract = {This paper reveals the phenomenon of parameter heterogeneity in large
+language models (LLMs). We find that a small subset of "cherry" parameters
+exhibit a disproportionately large influence on model performance, while the
+vast majority of parameters have minimal impact. This heterogeneity is found to
+be prevalent across different model families, scales, and types. Motivated by
+this observation, we propose CherryQ, a novel quantization method that unifies
+the optimization of mixed-precision parameters. CherryQ identifies and
+preserves the critical cherry parameters in high precision while aggressively
+quantizing the remaining parameters to low precision. Extensive experiments
+demonstrate the effectiveness of CherryQ. CherryQ outperforms existing
+quantization approaches in terms of perplexity and downstream task performance.
+Notably, our 3-bit quantized Vicuna-1.5 exhibits competitive performance
+compared to their 16-bit counterparts.},
+ arxiv_url = {https://arxiv.org/pdf/2404.02837v2.pdf},
+ author = {Wanyun Cui and Qianle Wang},
+ github_url = {https://github.com/AutoGPTQ/AutoGPTQ},
+ title = {Cherry on Top: Parameter Heterogeneity and Quantization in Large Language Models},
+ year = {2024}
+}
+
+@article{fu-2021-cpt,
+ abstract = {Low-precision deep neural network (DNN) training has gained tremendous
+attention as reducing precision is one of the most effective knobs for boosting
+DNNs' training time/energy efficiency. In this paper, we attempt to explore
+low-precision training from a new perspective as inspired by recent findings in
+understanding DNN training: we conjecture that DNNs' precision might have a
+similar effect as the learning rate during DNN training, and advocate dynamic
+precision along the training trajectory for further boosting the time/energy
+efficiency of DNN training. Specifically, we propose Cyclic Precision Training
+(CPT) to cyclically vary the precision between two boundary values which can be
+identified using a simple precision range test within the first few training
+epochs. Extensive simulations and ablation studies on five datasets and eleven
+models demonstrate that CPT's effectiveness is consistent across various
+models/tasks (including classification and language modeling). Furthermore,
+through experiments and visualization we show that CPT helps to (1) converge to
+a wider minima with a lower generalization error and (2) reduce training
+variance which we believe opens up a new design knob for simultaneously
+improving the optimization and efficiency of DNN training. Our codes are
+available at: https://github.com/RICE-EIC/CPT.},
+ arxiv_url = {https://arxiv.org/pdf/2101.09868v4.pdf},
+ author = {Yonggan Fu and Han Guo and Meng Li and Xin Yang and Yining Ding and Vikas Chandra and Yingyan Celine Lin},
+ github_url = {https://github.com/RICE-EIC/CPT},
+ title = {CPT: Efficient Deep Neural Network Training via Cyclic Precision},
+ year = {2021}
+}
+
+@article{kim-2023-squeezellm,
+ abstract = {Generative Large Language Models (LLMs) have demonstrated remarkable results
+for a wide range of tasks. However, deploying these models for inference has
+been a significant challenge due to their unprecedented resource requirements.
+This has forced existing deployment frameworks to use multi-GPU inference
+pipelines, which are often complex and costly, or to use smaller and less
+performant models. In this work, we demonstrate that the main bottleneck for
+generative inference with LLMs is memory bandwidth, rather than compute,
+specifically for single batch inference. While quantization has emerged as a
+promising solution by representing weights with reduced precision, previous
+efforts have often resulted in notable performance degradation. To address
+this, we introduce SqueezeLLM, a post-training quantization framework that not
+only enables lossless compression to ultra-low precisions of up to 3-bit, but
+also achieves higher quantization performance under the same memory constraint.
+Our framework incorporates two novel ideas: (i) sensitivity-based non-uniform
+quantization, which searches for the optimal bit precision assignment based on
+second-order information; and (ii) the Dense-and-Sparse decomposition that
+stores outliers and sensitive weight values in an efficient sparse format. When
+applied to the LLaMA models, our 3-bit quantization significantly reduces the
+perplexity gap from the FP16 baseline by up to 2.1x as compared to the
+state-of-the-art methods with the same memory requirement. Furthermore, when
+deployed on an A6000 GPU, our quantized models achieve up to 2.3x speedup
+compared to the baseline. Our code is available at
+https://github.com/SqueezeAILab/SqueezeLLM.},
+ arxiv_url = {https://arxiv.org/pdf/2306.07629v4.pdf},
+ author = {Sehoon Kim and Coleman Hooper and Amir Gholami and Zhen Dong and Xiuyu Li and Sheng Shen and Michael W. Mahoney and Kurt Keutzer},
+ github_url = {https://github.com/SqueezeAILab/SqueezeLLM},
+ title = {SqueezeLLM: Dense-and-Sparse Quantization},
+ year = {2023}
+}
+
+@article{narayanan-2023-cheaply,
+ abstract = {Large language models (LLMs) power many state-of-the-art systems in natural
+language processing. However, these models are extremely computationally
+expensive, even at inference time, raising the natural question: when is the
+extra cost of deploying a larger model worth the anticipated boost in
+capabilities? Better understanding this tradeoff fundamentally could benefit
+from an inference efficiency metric that is both (i) easily comparable across
+models from different providers, and (ii) representative of the true cost of
+running queries in an isolated performance environment. Unfortunately, access
+to LLMs today is largely restricted to black-box text generation APIs and raw
+runtimes measured through this interface do not satisfy these desiderata: model
+providers can apply various software and hardware optimizations orthogonal to
+the model, and models served on shared infrastructure are susceptible to
+performance contention. To circumvent these problems, we propose a new metric
+for comparing inference efficiency across models. This metric puts models on
+equal footing as though they were served (i) on uniform hardware and software,
+and (ii) without performance contention. We call this metric the
+\emph{idealized runtime}, and we propose a methodology to efficiently estimate
+this metric for autoregressive Transformer models. We also propose cost-aware
+variants that incorporate the number of accelerators needed to serve the model.
+Using these metrics, we compare ten state-of-the-art LLMs to provide the first
+analysis of inference efficiency-capability tradeoffs; we make several
+observations from this analysis, including the fact that the superior inference
+runtime performance of certain APIs is often a byproduct of optimizations
+within the API rather than the underlying model. Our methodology also
+facilitates the efficient comparison of different software and hardware stacks.},
+ arxiv_url = {https://arxiv.org/pdf/2305.02440v1.pdf},
+ author = {Deepak Narayanan and Keshav Santhanam and Peter Henderson and Rishi Bommasani and Tony Lee and Percy Liang},
+ title = {Cheaply Estimating Inference Efficiency Metrics for Autoregressive Transformer Models},
+ year = {2023}
+}
+
+@article{park-2024-any,
+ abstract = {Recently, considerable efforts have been directed towards compressing Large
+Language Models (LLMs), which showcase groundbreaking capabilities across
+diverse applications but entail significant deployment costs due to their large
+sizes. Meanwhile, much less attention has been given to mitigating the costs
+associated with deploying multiple LLMs of varying sizes despite its practical
+significance. Thus, this paper introduces \emph{any-precision LLM}, extending
+the concept of any-precision DNN to LLMs. Addressing challenges in
+any-precision LLM, we propose a lightweight method for any-precision
+quantization of LLMs, leveraging a post-training quantization framework, and
+develop a specialized software engine for its efficient serving. As a result,
+our solution significantly reduces the high costs of deploying multiple,
+different-sized LLMs by overlaying LLMs quantized to varying bit-widths, such
+as 3, 4, ..., $n$ bits, into a memory footprint comparable to a single $n$-bit
+LLM. All the supported LLMs with varying bit-widths demonstrate
+state-of-the-art model quality and inference throughput, proving itself to be a
+compelling option for deployment of multiple, different-sized LLMs. Our code is
+open-sourced and available online.},
+ arxiv_url = {https://arxiv.org/pdf/2402.10517v4.pdf},
+ author = {Yeonhong Park and Jake Hyun and SangLyul Cho and Bonggeun Sim and Jae W. Lee},
+ title = {Any-Precision LLM: Low-Cost Deployment of Multiple, Different-Sized LLMs},
+ year = {2024}
+}
+
+@article{shomron-2021-post,
+ abstract = {Quantization is a technique used in deep neural networks (DNNs) to increase
+execution performance and hardware efficiency. Uniform post-training
+quantization (PTQ) methods are common, since they can be implemented
+efficiently in hardware and do not require extensive hardware resources or a
+training set. Mapping FP32 models to INT8 using uniform PTQ yields models with
+negligible accuracy degradation; however, reducing precision below 8 bits with
+PTQ is challenging, as accuracy degradation becomes noticeable, due to the
+increase in quantization noise. In this paper, we propose a sparsity-aware
+quantization (SPARQ) method, in which the unstructured and dynamic activation
+sparsity is leveraged in different representation granularities. 4-bit
+quantization, for example, is employed by dynamically examining the bits of
+8-bit values and choosing a window of 4 bits, while first skipping zero-value
+bits. Moreover, instead of quantizing activation-by-activation to 4 bits, we
+focus on pairs of 8-bit activations and examine whether one of the two is equal
+to zero. If one is equal to zero, the second can opportunistically use the
+other's 4-bit budget; if both do not equal zero, then each is dynamically
+quantized to 4 bits, as described. SPARQ achieves minor accuracy degradation
+and a practical hardware implementation. The code is available at
+https://github.com/gilshm/sparq.},
+ arxiv_url = {https://arxiv.org/pdf/2105.11010v2.pdf},
+ author = {Gil Shomron and Freddy Gabbay and Samer Kurzum and Uri Weiser},
+ github_url = {https://github.com/gilshm/sparq},
+ title = {Post-Training Sparsity-Aware Quantization},
+ year = {2021}
+}
+
+@article{so-2023-temporal,
+ abstract = {The diffusion model has gained popularity in vision applications due to its
+remarkable generative performance and versatility. However, high storage and
+computation demands, resulting from the model size and iterative generation,
+hinder its use on mobile devices. Existing quantization techniques struggle to
+maintain performance even in 8-bit precision due to the diffusion model's
+unique property of temporal variation in activation. We introduce a novel
+quantization method that dynamically adjusts the quantization interval based on
+time step information, significantly improving output quality. Unlike
+conventional dynamic quantization techniques, our approach has no computational
+overhead during inference and is compatible with both post-training
+quantization (PTQ) and quantization-aware training (QAT). Our extensive
+experiments demonstrate substantial improvements in output quality with the
+quantized diffusion model across various datasets.},
+ arxiv_url = {https://arxiv.org/pdf/2306.02316v2.pdf},
+ author = {Junhyuk So and Jungwon Lee and Daehyun Ahn and Hyungjun Kim and Eunhyeok Park},
+ title = {Temporal Dynamic Quantization for Diffusion Models},
+ year = {2023}
+}
+
+@article{wang-2023-zero,
+ abstract = {Deployment of Transformer models on edge devices is becoming increasingly
+challenging due to the exponentially growing inference cost that scales
+quadratically with the number of tokens in the input sequence. Token pruning is
+an emerging solution to address this challenge due to its ease of deployment on
+various Transformer backbones. However, most token pruning methods require
+computationally expensive fine-tuning, which is undesirable in many edge
+deployment cases. In this work, we propose Zero-TPrune, the first zero-shot
+method that considers both the importance and similarity of tokens in
+performing token pruning. It leverages the attention graph of pre-trained
+Transformer models to produce an importance distribution for tokens via our
+proposed Weighted Page Rank (WPR) algorithm. This distribution further guides
+token partitioning for efficient similarity-based pruning. Due to the
+elimination of the fine-tuning overhead, Zero-TPrune can prune large models at
+negligible computational cost, switch between different pruning configurations
+at no computational cost, and perform hyperparameter tuning efficiently. We
+evaluate the performance of Zero-TPrune on vision tasks by applying it to
+various vision Transformer backbones and testing them on ImageNet. Without any
+fine-tuning, Zero-TPrune reduces the FLOPs cost of DeiT-S by 34.7% and improves
+its throughput by 45.3% with only 0.4% accuracy loss. Compared with
+state-of-the-art pruning methods that require fine-tuning, Zero-TPrune not only
+eliminates the need for fine-tuning after pruning but also does so with only
+0.1% accuracy loss. Compared with state-of-the-art fine-tuning-free pruning
+methods, Zero-TPrune reduces accuracy loss by up to 49% with similar FLOPs
+budgets. Project webpage: https://jha-lab.github.io/zerotprune.},
+ arxiv_url = {https://arxiv.org/pdf/2305.17328v3.pdf},
+ author = {Hongjie Wang and Bhishma Dedhia and Niraj K. Jha},
+ title = {Zero-TPrune: Zero-Shot Token Pruning through Leveraging of the Attention Graph in Pre-Trained Transformers},
+ year = {2023}
+}
+
+@article{wei-2022-outlier,
+ abstract = {Transformer architecture has become the fundamental element of the widespread
+natural language processing~(NLP) models. With the trends of large NLP models,
+the increasing memory and computation costs hinder their efficient deployment
+on resource-limited devices. Therefore, transformer quantization attracts wide
+research interest. Recent work recognizes that structured outliers are the
+critical bottleneck for quantization performance. However, their proposed
+methods increase the computation overhead and still leave the outliers there.
+To fundamentally address this problem, this paper delves into the inherent
+inducement and importance of the outliers. We discover that $\boldsymbol
+\gamma$ in LayerNorm (LN) acts as a sinful amplifier for the outliers, and the
+importance of outliers varies greatly where some outliers provided by a few
+tokens cover a large area but can be clipped sharply without negative impacts.
+Motivated by these findings, we propose an outlier suppression framework
+including two components: Gamma Migration and Token-Wise Clipping. The Gamma
+Migration migrates the outlier amplifier to subsequent modules in an equivalent
+transformation, contributing to a more quantization-friendly model without any
+extra burden. The Token-Wise Clipping takes advantage of the large variance of
+token range and designs a token-wise coarse-to-fine pipeline, obtaining a
+clipping range with minimal final quantization loss in an efficient way. This
+framework effectively suppresses the outliers and can be used in a
+plug-and-play mode. Extensive experiments prove that our framework surpasses
+the existing works and, for the first time, pushes the 6-bit post-training BERT
+quantization to the full-precision (FP) level. Our code is available at
+https://github.com/wimh966/outlier_suppression.},
+ arxiv_url = {https://arxiv.org/pdf/2209.13325v3.pdf},
+ author = {Xiuying Wei and Yunchen Zhang and Xiangguo Zhang and Ruihao Gong and Shanghang Zhang and Qi Zhang and Fengwei Yu and Xianglong Liu},
+ github_url = {https://github.com/wimh966/outlier_suppression},
+ title = {Outlier Suppression: Pushing the Limit of Low-bit Transformer Language Models},
+ year = {2022}
+}
+
+@article{wu-2023-understanding,
+ abstract = {Improving the deployment efficiency of transformer-based language models has
+been challenging given their high computation and memory cost. While INT8
+quantization has recently been shown to be effective in reducing both the
+memory cost and latency while preserving model accuracy, it remains unclear
+whether we can leverage INT4 (which doubles peak hardware throughput) to
+achieve further latency improvement. In this study, we explore the feasibility
+of employing INT4 weight and activation (W4A4) quantization for language
+models. Our findings indicate that W4A4 quantization introduces no to
+negligible accuracy degradation for encoder-only and encoder-decoder models,
+but causes a significant accuracy drop for decoder-only models. To materialize
+the performance gain using W4A4, we develop a highly optimized end-to-end W4A4
+encoder inference pipeline supporting different quantization strategies. Our
+INT4 pipeline is $8.5\times$ faster for latency-oriented scenarios and up to
+$3\times$ for throughput-oriented scenarios compared to the inference of FP16,
+and improves the SOTA BERT INT8 performance from FasterTransformer by up to
+$1.7\times$. We provide insights into the failure cases when applying W4A4 to
+decoder-only models, and further explore the compatibility of INT4 quantization
+with other compression methods, like pruning and layer reduction.},
+ arxiv_url = {https://arxiv.org/pdf/2301.12017v2.pdf},
+ author = {Xiaoxia Wu and Cheng Li and Reza Yazdani Aminabadi and Zhewei Yao and Yuxiong He},
+ github_url = {https://github.com/amazon-science/dq-bart},
+ journal = {Fortieth International Conference on Machine Learning 2023},
+ title = {Understanding Int4 Quantization for Language Models: Latency Speedup,  Composability,  and Failure Cases},
+ year = {2023}
+}
+
+@article{xi-2023-training,
+ abstract = {Quantizing the activation, weight, and gradient to 4-bit is promising to
+accelerate neural network training. However, existing 4-bit training methods
+require custom numerical formats which are not supported by contemporary
+hardware. In this work, we propose a training method for transformers with all
+matrix multiplications implemented with the INT4 arithmetic. Training with an
+ultra-low INT4 precision is challenging. To achieve this, we carefully analyze
+the specific structures of activation and gradients in transformers to propose
+dedicated quantizers for them. For forward propagation, we identify the
+challenge of outliers and propose a Hadamard quantizer to suppress the
+outliers. For backpropagation, we leverage the structural sparsity of gradients
+by proposing bit splitting and leverage score sampling techniques to quantize
+gradients accurately. Our algorithm achieves competitive accuracy on a wide
+range of tasks including natural language understanding, machine translation,
+and image classification. Unlike previous 4-bit training methods, our algorithm
+can be implemented on the current generation of GPUs. Our prototypical linear
+operator implementation is up to 2.2 times faster than the FP16 counterparts
+and speeds up the training by up to 35.1%.},
+ arxiv_url = {https://arxiv.org/pdf/2306.11987v2.pdf},
+ author = {Haocheng Xi and Changhao Li and Jianfei Chen and Jun Zhu},
+ github_url = {https://github.com/xijiu9/Train_Transformers_with_INT4},
+ title = {Training Transformers with 4-bit Integers},
+ year = {2023}
+}
+
+@article{yang-2020-searching,
+ abstract = {Quantized neural networks with low-bit weights and activations are attractive
+for developing AI accelerators. However, the quantization functions used in
+most conventional quantization methods are non-differentiable, which increases
+the optimization difficulty of quantized networks. Compared with full-precision
+parameters (i.e., 32-bit floating numbers), low-bit values are selected from a
+much smaller set. For example, there are only 16 possibilities in 4-bit space.
+Thus, we present to regard the discrete weights in an arbitrary quantized
+neural network as searchable variables, and utilize a differential method to
+search them accurately. In particular, each weight is represented as a
+probability distribution over the discrete value set. The probabilities are
+optimized during training and the values with the highest probability are
+selected to establish the desired quantized network. Experimental results on
+benchmarks demonstrate that the proposed method is able to produce quantized
+neural networks with higher performance over the state-of-the-art methods on
+both image classification and super-resolution tasks.},
+ arxiv_url = {https://arxiv.org/pdf/2009.08695v1.pdf},
+ author = {Zhaohui Yang and Yunhe Wang and Kai Han and Chunjing Xu and Chao Xu and Dacheng Tao and Chang Xu},
+ title = {Searching for Low-Bit Weights in Quantized Neural Networks},
+ year = {2020}
+}
+
+@article{yu-2024-collage,
+ abstract = {Large models training is plagued by the intense compute cost and limited
+hardware memory. A practical solution is low-precision representation but is
+troubled by loss in numerical accuracy and unstable training rendering the
+model less useful. We argue that low-precision floating points can perform well
+provided the error is properly compensated at the critical locations in the
+training process. We propose Collage which utilizes multi-component float
+representation in low-precision to accurately perform operations with numerical
+errors accounted. To understand the impact of imprecision to training, we
+propose a simple and novel metric which tracks the lost information during
+training as well as differentiates various precision strategies. Our method
+works with commonly used low-precision such as half-precision ($16$-bit
+floating points) and can be naturally extended to work with even lower
+precision such as $8$-bit. Experimental results show that pre-training using
+Collage removes the requirement of using $32$-bit floating-point copies of the
+model and attains similar/better training performance compared to $(16,
+32)$-bit mixed-precision strategy, with up to $3.7\times$ speedup and $\sim
+15\%$ to $23\%$ less memory usage in practice.},
+ arxiv_url = {https://arxiv.org/pdf/2405.03637v1.pdf},
+ author = {Tao Yu and Gaurav Gupta and Karthick Gopalswamy and Amith Mamidala and Hao Zhou and Jeffrey Huynh and Youngsuk Park and Ron Diamant and Anoop Deoras and Luke Huan},
+ title = {Collage: Light-Weight Low-Precision Strategy for LLM Training},
+ year = {2024}
+}
+
+@article{zhaoyang-2021-differentiable,
+ abstract = {Model quantization is challenging due to many tedious hyper-parameters such
+as precision (bitwidth), dynamic range (minimum and maximum discrete values)
+and stepsize (interval between discrete values). Unlike prior arts that
+carefully tune these values, we present a fully differentiable approach to
+learn all of them, named Differentiable Dynamic Quantization (DDQ), which has
+several benefits. (1) DDQ is able to quantize challenging lightweight
+architectures like MobileNets, where different layers prefer different
+quantization parameters. (2) DDQ is hardware-friendly and can be easily
+implemented using low-precision matrix-vector multiplication, making it capable
+in many hardware such as ARM. (3) Extensive experiments show that DDQ
+outperforms prior arts on many networks and benchmarks, especially when models
+are already efficient and compact. e.g., DDQ is the first approach that
+achieves lossless 4-bit quantization for MobileNetV2 on ImageNet.},
+ arxiv_url = {https://arxiv.org/pdf/2106.02295v2.pdf},
+ author = {Zhang Zhaoyang and Shao Wenqi and Gu Jinwei and Wang Xiaogang and Luo Ping},
+ title = {Differentiable Dynamic Quantization with Mixed Precision and Adaptive Resolution},
+ year = {2021}
+}
+
+@article{zhou-2023-neural,
+ abstract = {The recent success of neural networks as implicit representation of data has
+driven growing interest in neural functionals: models that can process other
+neural networks as input by operating directly over their weight spaces.
+Nevertheless, constructing expressive and efficient neural functional
+architectures that can handle high-dimensional weight-space objects remains
+challenging. This paper uses the attention mechanism to define a novel set of
+permutation equivariant weight-space layers and composes them into deep
+equivariant models called neural functional Transformers (NFTs). NFTs respect
+weight-space permutation symmetries while incorporating the advantages of
+attention, which have exhibited remarkable success across multiple domains. In
+experiments processing the weights of feedforward MLPs and CNNs, we find that
+NFTs match or exceed the performance of prior weight-space methods. We also
+leverage NFTs to develop Inr2Array, a novel method for computing permutation
+invariant latent representations from the weights of implicit neural
+representations (INRs). Our proposed method improves INR classification
+accuracy by up to $+17\%$ over existing methods. We provide an implementation
+of our layers at https://github.com/AllanYangZhou/nfn.},
+ arxiv_url = {https://arxiv.org/pdf/2305.13546v1.pdf},
+ author = {Allan Zhou and Kaien Yang and Yiding Jiang and Kaylee Burns and Winnie Xu and Samuel Sokota and J. Zico Kolter and Chelsea Finn},
+ github_url = {https://github.com/AllanYangZhou/nfn},
+ title = {Neural Functional Transformers},
+ year = {2023}
+}
+
+@article{zimerman-2023-converting,
+ abstract = {Designing privacy-preserving deep learning models is a major challenge within
+the deep learning community. Homomorphic Encryption (HE) has emerged as one of
+the most promising approaches in this realm, enabling the decoupling of
+knowledge between the model owner and the data owner. Despite extensive
+research and application of this technology, primarily in convolutional neural
+networks, incorporating HE into transformer models has been challenging because
+of the difficulties in converting these models into a polynomial form. We break
+new ground by introducing the first polynomial transformer, providing the first
+demonstration of secure inference over HE with transformers. This includes a
+transformer architecture tailored for HE, alongside a novel method for
+converting operators to their polynomial equivalent. This innovation enables us
+to perform secure inference on LMs with WikiText-103. It also allows us to
+perform image classification with CIFAR-100 and Tiny-ImageNet. Our models yield
+results comparable to traditional methods, bridging the performance gap with
+transformers of similar scale and underscoring the viability of HE for
+state-of-the-art applications. Finally, we assess the stability of our models
+and conduct a series of ablations to quantify the contribution of each model
+component.},
+ arxiv_url = {https://arxiv.org/pdf/2311.08610v1.pdf},
+ author = {Itamar Zimerman and Moran Baruch and Nir Drucker and Gilad Ezov and Omri Soceanu and Lior Wolf},
+ title = {Converting Transformers to Polynomial Form for Secure Inference Over Homomorphic Encryption},
+ year = {2023}
+}
+
+% ===========================================
+% REFERENCE CANDIDATES
+% Additional reference papers for context
+% ===========================================
+
+@article{cai-2017-deep,
+ abstract = {The problem of quantizing the activations of a deep neural network is
+considered. An examination of the popular binary quantization approach shows
+that this consists of approximating a classical non-linearity, the hyperbolic
+tangent, by two functions: a piecewise constant sign function, which is used in
+feedforward network computations, and a piecewise linear hard tanh function,
+used in the backpropagation step during network learning. The problem of
+approximating the ReLU non-linearity, widely used in the recent deep learning
+literature, is then considered. An half-wave Gaussian quantizer (HWGQ) is
+proposed for forward approximation and shown to have efficient implementation,
+by exploiting the statistics of of network activations and batch normalization
+operations commonly used in the literature. To overcome the problem of gradient
+mismatch, due to the use of different forward and backward approximations,
+several piece-wise backward approximators are then investigated. The
+implementation of the resulting quantized network, denoted as HWGQ-Net, is
+shown to achieve much closer performance to full precision networks, such as
+AlexNet, ResNet, GoogLeNet and VGG-Net, than previously available low-precision
+networks, with 1-bit binary weights and 2-bit quantized activations.},
+ arxiv_url = {https://arxiv.org/pdf/1702.00953v1.pdf},
+ author = {Zhaowei Cai and Xiaodong He and Jian Sun and Nuno Vasconcelos},
+ title = {Deep learning with low precision by half-wave gaussian quantization},
+ year = {2017}
+}
+
+@article{choi-2018-pact,
+ abstract = {Deep learning algorithms achieve high classification accuracy at the expense
+of significant computation cost. To address this cost, a number of quantization
+schemes have been proposed - but most of these techniques focused on quantizing
+weights, which are relatively smaller in size compared to activations. This
+paper proposes a novel quantization scheme for activations during training -
+that enables neural networks to work well with ultra low precision weights and
+activations without any significant accuracy degradation. This technique,
+PArameterized Clipping acTivation (PACT), uses an activation clipping parameter
+$\alpha$ that is optimized during training to find the right quantization
+scale. PACT allows quantizing activations to arbitrary bit precisions, while
+achieving much better accuracy relative to published state-of-the-art
+quantization schemes. We show, for the first time, that both weights and
+activations can be quantized to 4-bits of precision while still achieving
+accuracy comparable to full precision networks across a range of popular models
+and datasets. We also show that exploiting these reduced-precision
+computational units in hardware can enable a super-linear improvement in
+inferencing performance due to a significant reduction in the area of
+accelerator compute engines coupled with the ability to retain the quantized
+model and activation data in on-chip memories.},
+ arxiv_url = {https://arxiv.org/pdf/1805.06085v2.pdf},
+ author = {Jungwook Choi and Zhuo Wang and Swagath Venkataramani and Pierce I-Jen Chuang and Vijayalakshmi Srinivasan and Kailash Gopalakrishnan},
+ title = {Pact: Parameterized clipping activation for quantized neural networks},
+ year = {2018}
+}
+
+@article{courbariaux-2015-binaryconnect,
+ abstract = {Deep Neural Networks (DNN) have achieved state-of-the-art results in a wide
+range of tasks, with the best results obtained with large training sets and
+large models. In the past, GPUs enabled these breakthroughs because of their
+greater computational speed. In the future, faster computation at both training
+and test time is likely to be crucial for further progress and for consumer
+applications on low-power devices. As a result, there is much interest in
+research and development of dedicated hardware for Deep Learning (DL). Binary
+weights, i.e., weights which are constrained to only two possible values (e.g.
+-1 or 1), would bring great benefits to specialized DL hardware by replacing
+many multiply-accumulate operations by simple accumulations, as multipliers are
+the most space and power-hungry components of the digital implementation of
+neural networks. We introduce BinaryConnect, a method which consists in
+training a DNN with binary weights during the forward and backward
+propagations, while retaining precision of the stored weights in which
+gradients are accumulated. Like other dropout schemes, we show that
+BinaryConnect acts as regularizer and we obtain near state-of-the-art results
+with BinaryConnect on the permutation-invariant MNIST, CIFAR-10 and SVHN.},
+ arxiv_url = {https://arxiv.org/pdf/1511.00363v3.pdf},
+ author = {Matthieu Courbariaux and Yoshua Bengio and Jean-Pierre David},
+ title = {Binaryconnect: training deep neural networks with binary weights during propagations},
+ year = {2015}
+}
+
+@article{ding-2019-regularizing,
+ abstract = {Binarized Neural Networks (BNNs) can significantly reduce the inference
+latency and energy consumption in resource-constrained devices due to their
+pure-logical computation and fewer memory accesses. However, training BNNs is
+difficult since the activation flow encounters degeneration, saturation, and
+gradient mismatch problems. Prior work alleviates these issues by increasing
+activation bits and adding floating-point scaling factors, thereby sacrificing
+BNN's energy efficiency. In this paper, we propose to use distribution loss to
+explicitly regularize the activation flow, and develop a framework to
+systematically formulate the loss. Our experiments show that the distribution
+loss can consistently improve the accuracy of BNNs without losing their energy
+benefits. Moreover, equipped with the proposed regularization, BNN training is
+shown to be robust to the selection of hyper-parameters including optimizer and
+learning rate.},
+ arxiv_url = {https://arxiv.org/pdf/1904.02823v1.pdf},
+ author = {Ruizhou Ding and Ting-Wu Chin and Zeye Liu and Diana Marculescu},
+ title = {Regularizing activation distribution for training binarized deep networks},
+ year = {2019}
+}
+
+@article{faraone-2018-syq,
+ abstract = {Inference for state-of-the-art deep neural networks is computationally
+expensive, making them difficult to deploy on constrained hardware
+environments. An efficient way to reduce this complexity is to quantize the
+weight parameters and/or activations during training by approximating their
+distributions with a limited entry codebook. For very low-precisions, such as
+binary or ternary networks with 1-8-bit activations, the information loss from
+quantization leads to significant accuracy degradation due to large gradient
+mismatches between the forward and backward functions. In this paper, we
+introduce a quantization method to reduce this loss by learning a symmetric
+codebook for particular weight subgroups. These subgroups are determined based
+on their locality in the weight matrix, such that the hardware simplicity of
+the low-precision representations is preserved. Empirically, we show that
+symmetric quantization can substantially improve accuracy for networks with
+extremely low-precision weights and activations. We also demonstrate that this
+representation imposes minimal or no hardware implications to more
+coarse-grained approaches. Source code is available at
+https://www.github.com/julianfaraone/SYQ.},
+ arxiv_url = {https://arxiv.org/pdf/1807.00301v1.pdf},
+ author = {Julian Faraone and Nicholas Fraser and Michaela Blott and Philip H. W. Leong},
+ title = {Syq: Learning symmetric quantization for efﬁcient deep neural networks},
+ year = {2018}
+}
+
+@article{gong-2019-differentiable,
+ abstract = {Hardware-friendly network quantization (e.g., binary/uniform quantization)
+can efficiently accelerate the inference and meanwhile reduce memory
+consumption of the deep neural networks, which is crucial for model deployment
+on resource-limited devices like mobile phones. However, due to the
+discreteness of low-bit quantization, existing quantization methods often face
+the unstable training process and severe performance degradation. To address
+this problem, in this paper we propose Differentiable Soft Quantization (DSQ)
+to bridge the gap between the full-precision and low-bit networks. DSQ can
+automatically evolve during training to gradually approximate the standard
+quantization. Owing to its differentiable property, DSQ can help pursue the
+accurate gradients in backward propagation, and reduce the quantization loss in
+forward process with an appropriate clipping range. Extensive experiments over
+several popular network structures show that training low-bit neural networks
+with DSQ can consistently outperform state-of-the-art quantization methods.
+Besides, our first efficient implementation for deploying 2 to 4-bit DSQ on
+devices with ARM architecture achieves up to 1.7$\times$ speed up, compared
+with the open-source 8-bit high-performance inference framework NCNN. [31]},
+ arxiv_url = {https://arxiv.org/pdf/1908.05033v1.pdf},
+ author = {Ruihao Gong and Xianglong Liu and Shenghu Jiang and Tianxiang Li and Peng Hu and Jiazhen Lin and Fengwei Yu and Junjie Yan},
+ title = {Differentiable soft quantization: Bridging full-precision and low-bit neural networks},
+ year = {2019}
+}
+
+@article{han-2015-deep,
+ abstract = {Neural networks are both computationally intensive and memory intensive,
+making them difficult to deploy on embedded systems with limited hardware
+resources. To address this limitation, we introduce "deep compression", a three
+stage pipeline: pruning, trained quantization and Huffman coding, that work
+together to reduce the storage requirement of neural networks by 35x to 49x
+without affecting their accuracy. Our method first prunes the network by
+learning only the important connections. Next, we quantize the weights to
+enforce weight sharing, finally, we apply Huffman coding. After the first two
+steps we retrain the network to fine tune the remaining connections and the
+quantized centroids. Pruning, reduces the number of connections by 9x to 13x;
+Quantization then reduces the number of bits that represent each connection
+from 32 to 5. On the ImageNet dataset, our method reduced the storage required
+by AlexNet by 35x, from 240MB to 6.9MB, without loss of accuracy. Our method
+reduced the size of VGG-16 by 49x from 552MB to 11.3MB, again with no loss of
+accuracy. This allows fitting the model into on-chip SRAM cache rather than
+off-chip DRAM memory. Our compression method also facilitates the use of
+complex neural networks in mobile applications where application size and
+download bandwidth are constrained. Benchmarked on CPU, GPU and mobile GPU,
+compressed network has 3x to 4x layerwise speedup and 3x to 7x better energy
+efficiency.},
+ arxiv_url = {https://arxiv.org/pdf/1510.00149v5.pdf},
+ author = {Song Han and Huizi Mao and William J. Dally},
+ title = {Deep compression: Compressing deep neural networks with pruning, trained quantization and huffman coding},
+ year = {2015}
+}
+
+@article{he-2015-deep,
+ abstract = {Deeper neural networks are more difficult to train. We present a residual
+learning framework to ease the training of networks that are substantially
+deeper than those used previously. We explicitly reformulate the layers as
+learning residual functions with reference to the layer inputs, instead of
+learning unreferenced functions. We provide comprehensive empirical evidence
+showing that these residual networks are easier to optimize, and can gain
+accuracy from considerably increased depth. On the ImageNet dataset we evaluate
+residual nets with a depth of up to 152 layers---8x deeper than VGG nets but
+still having lower complexity. An ensemble of these residual nets achieves
+3.57% error on the ImageNet test set. This result won the 1st place on the
+ILSVRC 2015 classification task. We also present analysis on CIFAR-10 with 100
+and 1000 layers.
+  The depth of representations is of central importance for many visual
+recognition tasks. Solely due to our extremely deep representations, we obtain
+a 28% relative improvement on the COCO object detection dataset. Deep residual
+nets are foundations of our submissions to ILSVRC & COCO 2015 competitions,
+where we also won the 1st places on the tasks of ImageNet detection, ImageNet
+localization, COCO detection, and COCO segmentation.},
+ arxiv_url = {https://arxiv.org/pdf/1512.03385v1.pdf},
+ author = {Kaiming He and Xiangyu Zhang and Shaoqing Ren and Jian Sun},
+ title = {Deep residual learning for image recognition},
+ year = {2015}
+}
