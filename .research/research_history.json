@@ -6,5 +6,82 @@
     "QLoRA 7B finance",
     "Phi-4 synthetic generation",
     "LLM portfolio optimization"
+  ],
+  "research_study_list": [
+    {
+      "title": "FinBen: A Holistic Financial Benchmark for Large Language Models"
+    },
+    {
+      "title": "PIXIU: A Comprehensive Benchmark, Instruction Dataset and Large Language Model for Finance"
+    },
+    {
+      "title": "LegalBench: A Collaboratively Built Benchmark for Measuring Legal Reasoning in Large Language Models"
+    },
+    {
+      "title": "MR-Ben: A Meta-Reasoning Benchmark for Evaluating System-2 Thinking in LLMs"
+    },
+    {
+      "title": "BeanCounter: A low-toxicity, large-scale, and open dataset of business-oriented text"
+    },
+    {
+      "title": "Train 'n Trade: Foundations of Parameter Markets"
+    },
+    {
+      "title": "Deep Smoothing of the Implied Volatility Surface"
+    },
+    {
+      "title": "Hedging as Reward Augmentation in Probabilistic Graphical Models"
+    },
+    {
+      "title": "SocioDojo: Building Lifelong Analytical Agents with Real-world Text and Time Series"
+    },
+    {
+      "title": "Teaching Language Models to Hallucinate Less with Synthetic Tasks"
+    },
+    {
+      "title": "QLoRA: Efficient Finetuning of Quantized LLMs"
+    },
+    {
+      "title": "QLoRA: Efficient Finetuning of Quantized LLMs"
+    },
+    {
+      "title": "Adapting Large Language Models via Reading Comprehension"
+    },
+    {
+      "title": "PIXIU: A Comprehensive Benchmark, Instruction Dataset and Large Language Model for Finance"
+    },
+    {
+      "title": "LoftQ: LoRA-Fine-Tuning-aware Quantization for Large Language Models"
+    },
+    {
+      "title": "Spontaneous symmetry breaking in generative diffusion models"
+    },
+    {
+      "title": "Conditionally Strongly Log-Concave Generative Models"
+    },
+    {
+      "title": "Self-Correcting Self-Consuming Loops for Generative Model Training"
+    },
+    {
+      "title": "Conditional Generation Using Polynomial Expansions"
+    },
+    {
+      "title": "Patch-Based 3D Natural Scene Generation From a Single Example"
+    },
+    {
+      "title": "FinCon: A Synthesized LLM Multi-Agent System with Conceptual Verbal Reinforcement for Enhanced Financial Decision Making"
+    },
+    {
+      "title": "Discovering Preference Optimization Algorithms with and for Large Language Models"
+    },
+    {
+      "title": "Adaptive Layer Sparsity for Large Language Models via Activation Correlation Assessment"
+    },
+    {
+      "title": "The LLM Surgeon"
+    },
+    {
+      "title": "Position: Leverage Foundational Models for Black-Box Optimization"
+    }
   ]
 }
