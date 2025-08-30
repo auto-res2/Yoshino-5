@@ -223,9 +223,17 @@ def gro_item_score(
         return 0.0, 0.0, cut
     x = ids_full[:-1].unsqueeze(0)
     y = ids_full[1:].unsqueeze(0)
-    logits = model(x)
-    logprobs = F.log_softmax(logits, dim=-1)
-    tok_lp = logprobs.gather(-1, y.unsqueeze(-1)).squeeze(-1).squeeze(0).cpu().numpy()
+    with torch.no_grad():
+        logits = model(x)
+        logprobs = F.log_softmax(logits, dim=-1)
+        tok_lp = (
+            logprobs.gather(-1, y.unsqueeze(-1))
+            .squeeze(-1)
+            .squeeze(0)
+            .detach()
+            .cpu()
+            .numpy()
+        )
     if tok_lp.size == 0:
         return r, 0.0, cut
     k = max(1, int(len(tok_lp) * k_tail))

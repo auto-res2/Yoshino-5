@@ -40,7 +40,7 @@ def main():
 
     cfg = load_config(args.config)
 
-    outdir = cfg.get("output_dir", ".research/iteration2/images")
+    outdir = cfg.get("output_dir", ".research/iteration3/images")
     os.makedirs(outdir, exist_ok=True)
 
     print("================ MuViC Synthetic Experiments ================")
