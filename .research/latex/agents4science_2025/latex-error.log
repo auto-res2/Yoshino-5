@@ -1,0 +1,2371 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./paper.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo))
+(./agents4science_2025.sty
+(/usr/share/texlive/texmf-dist/tex/latex/environ/environ.sty
+(/usr/share/texlive/texmf-dist/tex/latex/trimspaces/trimspaces.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/lineno/lineno.sty
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty))))
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/units/nicefrac.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype-pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+No file paper.aux.
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: letterpaper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(92.14519pt, 430.00462pt, 92.14519pt)
+* v-part:(T,H,B)=(95.39737pt, 556.47656pt, 143.09605pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=430.00462pt
+* \textheight=556.47656pt
+* \oddsidemargin=19.8752pt
+* \evensidemargin=19.8752pt
+* \topmargin=-13.87262pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+*geometry* verbose mode - [ newgeometry ] result:
+* driver: pdftex
+* paper: letterpaper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(108.405pt, 397.48499pt, 108.40501pt)
+* v-part:(T,H,B)=(72.26999pt, 650.43pt, 72.27pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=397.48499pt
+* \textheight=650.43pt
+* \oddsidemargin=36.13501pt
+* \evensidemargin=36.13501pt
+* \topmargin=-37.0pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg)
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd)
+
+Package natbib Warning: Citation `carlini-2022-quantifying' on page 1 undefined
+ on input line 85.
+
+
+Package natbib Warning: Citation `carlini-2020-extracting' on page 1 undefined 
+on input line 85.
+
+
+Package natbib Warning: Citation `carlini-2018-the' on page 1 undefined on inpu
+t line 85.
+
+
+Package natbib Warning: Citation `dodge-2021-documenting' on page 1 undefined o
+n input line 85.
+
+
+Package natbib Warning: Citation `roberts-2023-the' on page 1 undefined on inpu
+t line 85.
+
+
+Package natbib Warning: Citation `chen-2024-are' on page 1 undefined on input l
+ine 85.
+
+
+Package natbib Warning: Citation `dekoninck-2024-constat' on page 1 undefined o
+n input line 87.
+
+
+Package natbib Warning: Citation `oren-2023-proving' on page 1 undefined on inp
+ut line 87.
+
+
+Package natbib Warning: Citation `dodge-2021-documenting' on page 1 undefined o
+n input line 87.
+
+
+Package natbib Warning: Citation `golchin-2023-time' on page 1 undefined on inp
+ut line 87.
+
+
+Package natbib Warning: Citation `shi-2023-detecting' on page 1 undefined on in
+put line 87.
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-
+dist/fonts/enc/dvips/base/8r.enc}]
+
+Package natbib Warning: Citation `dekoninck-2024-constat' on page 2 undefined o
+n input line 89.
+
+
+Package natbib Warning: Citation `oren-2023-proving' on page 2 undefined on inp
+ut line 89.
+
+
+Package natbib Warning: Citation `golchin-2023-time' on page 2 undefined on inp
+ut line 89.
+
+
+Package natbib Warning: Citation `carlini-2022-quantifying' on page 2 undefined
+ on input line 91.
+
+
+Package natbib Warning: Citation `dodge-2021-documenting' on page 2 undefined o
+n input line 91.
+
+
+Package natbib Warning: Citation `roberts-2023-the' on page 2 undefined on inpu
+t line 91.
+
+
+Package natbib Warning: Citation `jones-2023-automatically' on page 2 undefined
+ on input line 91.
+
+
+Package natbib Warning: Citation `ko-2024-the' on page 2 undefined on input lin
+e 91.
+
+
+Package natbib Warning: Citation `sablayrolles-2020-radioactive' on page 2 unde
+fined on input line 91.
+
+
+Package natbib Warning: Citation `guo-2022-bounding' on page 2 undefined on inp
+ut line 91.
+
+
+Package natbib Warning: Citation `chen-2022-amplifying' on page 2 undefined on 
+input line 91.
+
+
+Package natbib Warning: Citation `dbouk-2022-adversarial' on page 2 undefined o
+n input line 91.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
+
+Package natbib Warning: Citation `dekoninck-2024-constat' on page 2 undefined o
+n input line 104.
+
+
+Package natbib Warning: Citation `oren-2023-proving' on page 2 undefined on inp
+ut line 104.
+
+
+Package natbib Warning: Citation `shi-2023-detecting' on page 2 undefined on in
+put line 104.
+
+
+Package natbib Warning: Citation `chen-2024-are' on page 2 undefined on input l
+ine 104.
+
+
+Package natbib Warning: Citation `author-year-private' on page 2 undefined on i
+nput line 104.
+
+
+Package natbib Warning: Citation `carlini-2020-extracting' on page 2 undefined 
+on input line 104.
+
+
+Package natbib Warning: Citation `sablayrolles-2020-radioactive' on page 2 unde
+fined on input line 104.
+
+[2]
+
+Package natbib Warning: Citation `dekoninck-2024-constat' on page 3 undefined o
+n input line 107.
+
+
+Package natbib Warning: Citation `oren-2023-proving' on page 3 undefined on inp
+ut line 109.
+
+
+Package natbib Warning: Citation `golchin-2023-time' on page 3 undefined on inp
+ut line 111.
+
+
+Package natbib Warning: Citation `shi-2023-detecting' on page 3 undefined on in
+put line 111.
+
+
+Package natbib Warning: Citation `carlini-2018-the' on page 3 undefined on inpu
+t line 113.
+
+
+Package natbib Warning: Citation `carlini-2020-extracting' on page 3 undefined 
+on input line 113.
+
+
+Package natbib Warning: Citation `carlini-2022-quantifying' on page 3 undefined
+ on input line 113.
+
+
+Package natbib Warning: Citation `carlini-2022-the' on page 3 undefined on inpu
+t line 113.
+
+
+Package natbib Warning: Citation `dodge-2021-documenting' on page 3 undefined o
+n input line 115.
+
+
+Package natbib Warning: Citation `roberts-2023-the' on page 3 undefined on inpu
+t line 115.
+
+
+Package natbib Warning: Citation `jones-2023-automatically' on page 3 undefined
+ on input line 117.
+
+
+Package natbib Warning: Citation `ko-2024-the' on page 3 undefined on input lin
+e 117.
+
+
+Package natbib Warning: Citation `sablayrolles-2020-radioactive' on page 3 unde
+fined on input line 117.
+
+
+Package natbib Warning: Citation `guo-2022-bounding' on page 3 undefined on inp
+ut line 117.
+
+
+Package natbib Warning: Citation `chen-2022-amplifying' on page 3 undefined on 
+input line 117.
+
+
+Package natbib Warning: Citation `dbouk-2022-adversarial' on page 3 undefined o
+n input line 117.
+
+
+Package natbib Warning: Citation `chen-2024-are' on page 3 undefined on input l
+ine 119.
+
+
+Package natbib Warning: Citation `wang-2024-dealing' on page 3 undefined on inp
+ut line 119.
+
+
+Package natbib Warning: Citation `chanpuriya-2023-the' on page 3 undefined on i
+nput line 119.
+
+
+Package natbib Warning: Citation `shevkunov-2020-overlapping' on page 3 undefin
+ed on input line 119.
+
+
+Package natbib Warning: Citation `zhang-2018-spread' on page 3 undefined on inp
+ut line 119.
+
+
+Package natbib Warning: Citation `birrell-2020-gamma' on page 3 undefined on in
+put line 119.
+
+
+Package natbib Warning: Citation `liu-2021-divergence' on page 3 undefined on i
+nput line 119.
+
+
+Package natbib Warning: Citation `author-year-private' on page 3 undefined on i
+nput line 119.
+
+! Undefined control sequence.
+l.123 ...r-item probabilities \(P(z_i=1 \mid \text
+                                                  {evidence})\) to enable ta...
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active [3]
+
+Package natbib Warning: Citation `dekoninck-2024-constat' on page 4 undefined o
+n input line 128.
+
+
+Package natbib Warning: Citation `oren-2023-proving' on page 4 undefined on inp
+ut line 129.
+
+
+Package natbib Warning: Citation `golchin-2023-time' on page 4 undefined on inp
+ut line 130.
+
+
+Package natbib Warning: Citation `zhang-2018-spread' on page 4 undefined on inp
+ut line 134.
+
+
+Package natbib Warning: Citation `birrell-2020-gamma' on page 4 undefined on in
+put line 134.
+
+
+Package natbib Warning: Citation `liu-2021-divergence' on page 4 undefined on i
+nput line 134.
+
+
+Package natbib Warning: Citation `dekoninck-2024-constat' on page 4 undefined o
+n input line 137.
+
+
+Package natbib Warning: Citation `oren-2023-proving' on page 4 undefined on inp
+ut line 137.
+
+
+Package natbib Warning: Citation `carlini-2022-quantifying' on page 4 undefined
+ on input line 137.
+
+
+Package natbib Warning: Citation `dodge-2021-documenting' on page 4 undefined o
+n input line 137.
+
+
+Package natbib Warning: Citation `roberts-2023-the' on page 4 undefined on inpu
+t line 137.
+
+
+Package natbib Warning: Citation `chen-2022-amplifying' on page 4 undefined on 
+input line 137.
+
+
+Package natbib Warning: Citation `dbouk-2022-adversarial' on page 4 undefined o
+n input line 137.
+
+
+Package natbib Warning: Citation `author-year-private' on page 4 undefined on i
+nput line 137.
+
+! Undefined control sequence.
+l.141 ...ute \(\Delta = A\_{\mathrm{final}}^{\text
+                                                  {obs}} - g(A\_{\mathrm{mid...
+
+! Undefined control sequence.
+l.141 ...{\text{obs}} - g(A\_{\mathrm{mid}}^{\text
+                                                  {obs}})\). A positive \(\D...
+
+[4]
+
+Package natbib Warning: Citation `oren-2023-proving' on page 5 undefined on inp
+ut line 144.
+
+
+Package natbib Warning: Citation `golchin-2023-time' on page 5 undefined on inp
+ut line 147.
+
+
+Package natbib Warning: Citation `jones-2023-automatically' on page 5 undefined
+ on input line 150.
+
+
+Package natbib Warning: Citation `ko-2024-the' on page 5 undefined on input lin
+e 150.
+
+! Undefined control sequence.
+l.153 ... rank-normalized negative log \(p\_{\text
+                                                  {shard}(i)}\) for \(x^{(2)...
+
+
+Package natbib Warning: Citation `sablayrolles-2020-radioactive' on page 5 unde
+fined on input line 153.
+
+
+Package natbib Warning: Citation `guo-2022-bounding' on page 5 undefined on inp
+ut line 153.
+
+
+Package natbib Warning: Citation `zhang-2018-spread' on page 5 undefined on inp
+ut line 153.
+
+
+Package natbib Warning: Citation `birrell-2020-gamma' on page 5 undefined on in
+put line 153.
+
+
+Package natbib Warning: Citation `liu-2021-divergence' on page 5 undefined on i
+nput line 153.
+
+
+! LaTeX Error: Environment algorithm undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.155 \begin{algorithm}
+                       [H]
+
+! LaTeX Error: \caption outside float.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.156 \caption
+              {MuViC: Multi-View Bayesian Contamination Analysis}
+
+! LaTeX Error: Environment algorithmic undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.157 \begin{algorithmic}
+                         [1]
+! Undefined control sequence.
+l.158 \State
+             Input: dataset \(D=\{(q_i,r_i,a_i)\}\_{i=1}^n\); checkpoints \(...
+
+! Undefined control sequence.
+l.159 \State
+             Output: per-item probabilities \(\{\hat{p}_i\}\)
+! Undefined control sequence.
+l.161 \State
+             \textit{SEDP computation}
+! Undefined control sequence.
+l.162 \State
+             Evaluate paraphrase accuracies \(A\_{\mathrm{mid}}\), \(A\_{\ma...
+
+! Undefined control sequence.
+l.163 \State
+             Fit monotone map \(g\) on clean controls; compute \(\Delta \lef...
+
+! Undefined control sequence.
+l.164 \State
+             Estimate empirical p-value \(p\_\mathrm{SEDP}\) from null \(\{\...
+
+! Undefined control sequence.
+l.166 \State
+             \textit{SEL computation}
+! Undefined control sequence.
+l.167 \State
+             Partition \(D\) into shards \(\{S_s\}\) of size \(m\)
+! Undefined control sequence.
+l.168 \For
+          {each shard \(s\)}
+! Undefined control sequence.
+l.169   \State
+               For each \(i\in S_s\), compute true log-likelihood \(\ell^{\t...
+
+! Undefined control sequence.
+l.169 ...compute true log-likelihood \(\ell^{\text
+                                                  {true}}_i\) under \(\theta...
+
+! Undefined control sequence.
+l.170   \For
+            {\(r=1\) to \(R\)}
+! Undefined control sequence.
+l.171     \State
+                 Shuffle answers within \(S_s\); compute shuffled log-likeli...
+
+! Undefined control sequence.
+l.172   \EndFor
+               
+! Undefined control sequence.
+l.173   \State
+               For shard \(s\), run one-sided paired t-test on \(\ell^{\text...
+
+! Undefined control sequence.
+l.173 ... one-sided paired t-test on \(\ell^{\text
+                                                  {true}}_i - \frac{1}{R}\su...
+
+! Undefined control sequence.
+l.174   \For
+            {each \(i\in S_s\)} \State Set \(x^{(2)}_i \leftarrow \mathrm{ra...
+
+! Undefined control sequence.
+l.174   \For{each \(i\in S_s\)} \State
+                                       Set \(x^{(2)}_i \leftarrow \mathrm{ra...
+
+! Undefined control sequence.
+l.174 ...ow \mathrm{ranknorm}(-\log p_s)\) \EndFor
+                                                  
+! Undefined control sequence.
+l.175 \EndFor
+             
+! Undefined control sequence.
+l.177 \State
+             \textit{GRO computation}
+! Undefined control sequence.
+l.178 \For
+          {each item \(i\)}
+! Undefined control sequence.
+l.179   \State
+               Sample random prefix cut \(c_i\); generate continuation \(\ha...
+
+! Undefined control sequence.
+l.180   \State
+               Compute ROUGE-L \(\rho_i\) and min-\(k\%\) log-prob tail \(\t...
+
+! Undefined control sequence.
+l.181   \State
+               Map \((\rho_i, \tau_i)\) to suspicion \(s_i\in[0,1]\) via cal...
+
+! Undefined control sequence.
+l.182 \EndFor
+             
+! Undefined control sequence.
+l.184 \State
+             \textit{Bayesian fusion}
+! Undefined control sequence.
+l.185 \State
+             Fit logistic model \(\Pr(z_i=1\mid x_i)=\sigma(w^\top x_i + b)\...
+
+! Undefined control sequence.
+l.186 \State
+             Predict \(\hat{p}_i \leftarrow \sigma(\mathbb{E}[w]^\top x_i + ...
+
+! Undefined control sequence.
+l.187 \State
+             \Return \(\{\hat{p}_i\}\)
+! Undefined control sequence.
+l.187 \State \Return
+                     \(\{\hat{p}_i\}\)
+
+! LaTeX Error: \begin{document} ended by \end{algorithmic}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.188 \end{algorithmic}
+                       
+
+! LaTeX Error: \begin{document} ended by \end{algorithm}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.189 \end{algorithm}
+                     
+
+Underfull \hbox (badness 4254) in paragraph at lines 155--190
+[]\T1/ptm/m/n/10 (+20) [H] Mu-ViC: Multi-View Bayesian Con-tam-i-na-tion Anal-y
+-sis [1] In-put: dataset $\OML/cmm/m/it/10 D \OT1/cmr/m/n/10 =
+[5]
+
+Package natbib Warning: Citation `shi-2023-detecting' on page 6 undefined on in
+put line 199.
+
+
+Package natbib Warning: Citation `shi-2023-detecting' on page 6 undefined on in
+put line 208.
+
+
+Package natbib Warning: Citation `dekoninck-2024-constat' on page 6 undefined o
+n input line 208.
+
+
+Package natbib Warning: Citation `oren-2023-proving' on page 6 undefined on inp
+ut line 208.
+
+
+Package natbib Warning: Citation `carlini-2020-extracting' on page 6 undefined 
+on input line 208.
+
+
+Package natbib Warning: Citation `carlini-2018-the' on page 6 undefined on inpu
+t line 208.
+
+
+Package natbib Warning: Citation `carlini-2022-quantifying' on page 6 undefined
+ on input line 208.
+
+
+Package natbib Warning: Citation `golchin-2023-time' on page 6 undefined on inp
+ut line 208.
+
+
+Package natbib Warning: Citation `jones-2023-automatically' on page 6 undefined
+ on input line 208.
+
+
+Package natbib Warning: Citation `dodge-2021-documenting' on page 6 undefined o
+n input line 208.
+
+
+Package natbib Warning: Citation `roberts-2023-the' on page 6 undefined on inpu
+t line 208.
+
+
+Package natbib Warning: Citation `chen-2024-are' on page 6 undefined on input l
+ine 208.
+
+
+Package natbib Warning: Citation `wang-2024-dealing' on page 6 undefined on inp
+ut line 208.
+
+[6]
+
+Package natbib Warning: Citation `shi-2023-detecting' on page 7 undefined on in
+put line 219.
+
+! Undefined control sequence.
+l.225   \item \textbf{SEL}: Early \(p\_{\text
+                                             {dataset}}=0.587183\); Mid \(p\...
+
+! Undefined control sequence.
+l.225 ...ext{dataset}}=0.587183\); Mid \(p\_{\text
+                                                  {dataset}}=0.587416\); Lat...
+
+! Undefined control sequence.
+l.225 ...xt{dataset}}=0.587416\); Late \(p\_{\text
+                                                  {dataset}}\approx 0.000000...
+
+! Undefined control sequence.
+l.230   \item \textbf{SEL}: Clean \(p\_{\text
+                                             {dataset}}=0.6398\) versus cont...
+
+! Undefined control sequence.
+l.230 ...=0.6398\) versus contaminated \(p\_{\text
+                                                  {dataset}}=0.001495\), ind...
+
+
+Package natbib Warning: Citation `dekoninck-2024-constat' on page 7 undefined o
+n input line 235.
+
+
+Package natbib Warning: Citation `oren-2023-proving' on page 7 undefined on inp
+ut line 235.
+
+
+Package natbib Warning: Citation `jones-2023-automatically' on page 7 undefined
+ on input line 235.
+
+
+Package natbib Warning: Citation `dbouk-2022-adversarial' on page 7 undefined o
+n input line 235.
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.238 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.240   \includegraphics
+                        [width=0.7\linewidth]{ images/calibration\_fusion.pdf }
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.240   \includegraphics[width=0.7\linewidth]
+                                             { images/calibration\_fusion.pdf }
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.240   \includegraphics[width=0.7\linewidth]
+                                             { images/calibration\_fusion.pdf }
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.244 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.246   \includegraphics
+                        [width=0.7\linewidth]{ images/confusion\_matrix\_fus...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.246   \includegraphics[width=0.7\linewidth]
+                                             { images/confusion\_matrix\_fus...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.246   \includegraphics[width=0.7\linewidth]
+                                             { images/confusion\_matrix\_fus...
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.250 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.252   \includegraphics
+                        [width=0.7\linewidth]{ images/gro\_feature\_scatter....
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.252   \includegraphics[width=0.7\linewidth]
+                                             { images/gro\_feature\_scatter....
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.252   \includegraphics[width=0.7\linewidth]
+                                             { images/gro\_feature\_scatter....
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.256 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.258   \includegraphics
+                        [width=0.7\linewidth]{ images/pr\_muvic.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.258   \includegraphics[width=0.7\linewidth]
+                                             { images/pr\_muvic.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.258   \includegraphics[width=0.7\linewidth]
+                                             { images/pr\_muvic.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.262 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.264   \includegraphics
+                        [width=0.7\linewidth]{ images/roc\_baseline.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.264   \includegraphics[width=0.7\linewidth]
+                                             { images/roc\_baseline.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.264   \includegraphics[width=0.7\linewidth]
+                                             { images/roc\_baseline.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.268 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.270   \includegraphics
+                        [width=0.7\linewidth]{ images/roc\_blackbox.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.270   \includegraphics[width=0.7\linewidth]
+                                             { images/roc\_blackbox.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.270   \includegraphics[width=0.7\linewidth]
+                                             { images/roc\_blackbox.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.274 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.276   \includegraphics
+                        [width=0.7\linewidth]{ images/roc\_muvic.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.276   \includegraphics[width=0.7\linewidth]
+                                             { images/roc\_muvic.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.276   \includegraphics[width=0.7\linewidth]
+                                             { images/roc\_muvic.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.280 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.282   \includegraphics
+                        [width=0.7\linewidth]{ images/sedp\_mapping.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.282   \includegraphics[width=0.7\linewidth]
+                                             { images/sedp\_mapping.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.282   \includegraphics[width=0.7\linewidth]
+                                             { images/sedp\_mapping.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.286 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.288   \includegraphics
+                        [width=0.7\linewidth]{ images/sedp\_timing.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.288   \includegraphics[width=0.7\linewidth]
+                                             { images/sedp\_timing.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.288   \includegraphics[width=0.7\linewidth]
+                                             { images/sedp\_timing.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.292 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.294   \includegraphics
+                        [width=0.7\linewidth]{ images/sel\_blackbox.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.294   \includegraphics[width=0.7\linewidth]
+                                             { images/sel\_blackbox.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.294   \includegraphics[width=0.7\linewidth]
+                                             { images/sel\_blackbox.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.298 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.300   \includegraphics
+                        [width=0.7\linewidth]{ images/sel\_shard\_evidence.p...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.300   \includegraphics[width=0.7\linewidth]
+                                             { images/sel\_shard\_evidence.p...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.300   \includegraphics[width=0.7\linewidth]
+                                             { images/sel\_shard\_evidence.p...
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.304 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.306   \includegraphics
+                        [width=0.7\linewidth]{ images/sel\_timing.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.306   \includegraphics[width=0.7\linewidth]
+                                             { images/sel\_timing.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.306   \includegraphics[width=0.7\linewidth]
+                                             { images/sel\_timing.pdf }
+[7]
+
+Package natbib Warning: Citation `oren-2023-proving' on page 8 undefined on inp
+ut line 314.
+
+
+Package natbib Warning: Citation `dekoninck-2024-constat' on page 8 undefined o
+n input line 314.
+
+
+Package natbib Warning: Citation `golchin-2023-time' on page 8 undefined on inp
+ut line 314.
+
+
+Package natbib Warning: Citation `shi-2023-detecting' on page 8 undefined on in
+put line 314.
+
+
+Package natbib Warning: Citation `jones-2023-automatically' on page 8 undefined
+ on input line 314.
+
+
+Package natbib Warning: Citation `ko-2024-the' on page 8 undefined on input lin
+e 314.
+
+
+Package natbib Warning: Citation `sablayrolles-2020-radioactive' on page 8 unde
+fined on input line 314.
+
+
+Package natbib Warning: Citation `guo-2022-bounding' on page 8 undefined on inp
+ut line 314.
+
+
+Package natbib Warning: Citation `chen-2024-are' on page 8 undefined on input l
+ine 317.
+
+
+Package natbib Warning: Citation `ko-2024-the' on page 8 undefined on input lin
+e 317.
+
+
+Package natbib Warning: Citation `wang-2024-dealing' on page 8 undefined on inp
+ut line 317.
+
+
+Package natbib Warning: Citation `dbouk-2022-adversarial' on page 8 undefined o
+n input line 317.
+
+
+Package natbib Warning: Citation `author-year-private' on page 8 undefined on i
+nput line 317.
+
+No file paper.bbl.
+
+Package natbib Warning: There were undefined citations.
+
+[8] [9] (./paper.aux)
+kpathsea: Running mktexpk --mfmode / --bdpi 600 --mag 1+0/600 --dpi 600 ectt1000
+mktexpk: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1+0/600; nonstopmode; input ectt1000
+This is METAFONT, Version 2.71828182 (TeX Live 2023/Debian) (preloaded base=mf)
+
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/ectt1000.mf
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exbase.mf)
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/ectt.mf
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exroman.mf
+ Ok (/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exaccess.mf
+ Ok) (/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/expseudo.mf
+ Ok) (/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exruwest.mf
+ Ok [192] [193] [194] [195] [196] [197] [198] [199] [200] [201] [202] [203]
+[204] [205] [206] [207] [208] [209] [210] [211] [212] [213] [214] [215]
+[216] [217] [218] [219] [220] [221] [222] [223])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exrlwest.mf
+ Ok [224] [225] [226] [227] [228] [229] [230] [231] [232] [233] [234] [235]
+[236] [237] [238] [239] [240] [241] [242] [243] [244] [245] [246] [247]
+[248] [249] [250] [251] [252] [253] [254] [255])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exrueast.mf
+ Ok [128] [129] [130] [131] [132] [133] [134] [135] [136] [137] [138] [139]
+[140] [141] [142] [143] [144] [145] [146] [147] [148] [149] [150] [151]
+[152] [153] [154] [155] [156] [157])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exrleast.mf
+ Ok [158] [160] [161] [162] [163] [164] [165] [166] [167] [168] [169] [170]
+[171] [172] [173] [174] [175] [176] [177] [178] [179] [180] [181] [182]
+[183] [184] [185] [186] [187] [188])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exbraces.mf
+ Ok [94] [126] [23] [40] [41] [60] [124] [62] [91] [93] [92] [123] [125]
+[95] [127] [32])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/expunct.mf
+ Ok [14] [15] [19] [20] [13] [18] [33] [39] [42] [43] [44] [46] [47] [58]
+[59] [61] [96] [189] [17] [45] [16] [21] [22])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exaccent.mf
+ Ok [0] [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exsign.mf
+ Ok [24] [34] [35] [36] [37] [64] [191] [159])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exrlig.mf
+ Ok [25] [26] [28] [27] [29] [30] [31])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exromp.mf
+ Ok [38] [63] [190])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exrulett.mf
+ Ok [65] [66] [67] [68] [69] [70] [71] [72] [73] [74] [75] [76] [77] [78]
+[79] [80] [81] [82] [83] [84] [85] [86] [87] [88] [89] [90])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exrllett.mf
+ Ok [97] [98] [99] [100] [101] [102] [103] [104] [105] [106] [107] [108]
+[109] [110] [111] [112] [113] [114] [115] [116] [117] [118] [119] [120]
+[121] [122])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exrdigit.mf
+ Ok [48] [49] [50] [51] [52] [53] [54] [55] [56] [57])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exmligtb.mf
+ Ok) ) ) )
+Font metrics written on ectt1000.tfm.
+Output written on ectt1000.600gf (256 characters, 43832 bytes).
+Transcript written on ectt1000.log.
+mktexpk: /home/runner/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk: successfully generated.
+
+
+Package rerunfilecheck Warning: File `paper.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )
+(see the transcript file for additional information) </home/runner/.texlive2023
+/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
+y7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm1
+0.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (9 pages, 172249 bytes).
+Transcript written on paper.log.
+This is BibTeX, Version 0.99d (TeX Live 2023/Debian)
+The top-level auxiliary file: paper.aux
+The style file: plainnat.bst
+Database file #1: references.bib
+Warning--to sort, need author or key in author-year-private
+Warning--empty author in author-year-private
+Warning--empty journal in author-year-private
+Warning--empty year in author-year-private
+Warning--empty year in author-year-private
+Warning--empty journal in birrell-2020-gamma
+Warning--empty journal in carlini-2018-the
+Warning--empty journal in carlini-2020-extracting
+Warning--empty journal in carlini-2022-quantifying
+Warning--empty journal in carlini-2022-the
+Warning--empty journal in chanpuriya-2023-the
+Warning--empty journal in chen-2024-are
+Warning--empty journal in chen-2022-amplifying
+Warning--empty journal in dbouk-2022-adversarial
+Warning--empty journal in dekoninck-2024-constat
+Warning--empty journal in dodge-2021-documenting
+Warning--empty journal in golchin-2023-time
+Warning--empty journal in guo-2022-bounding
+Warning--empty journal in jones-2023-automatically
+Warning--empty journal in liu-2021-divergence
+Warning--empty journal in oren-2023-proving
+Warning--empty journal in roberts-2023-the
+Warning--empty journal in sablayrolles-2020-radioactive
+Warning--empty journal in shi-2023-detecting
+Warning--empty journal in wang-2024-dealing
+(There were 25 warnings)
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./paper.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo))
+(./agents4science_2025.sty
+(/usr/share/texlive/texmf-dist/tex/latex/environ/environ.sty
+(/usr/share/texlive/texmf-dist/tex/latex/trimspaces/trimspaces.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/lineno/lineno.sty
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty))))
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/units/nicefrac.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype-pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(./paper.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: letterpaper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(92.14519pt, 430.00462pt, 92.14519pt)
+* v-part:(T,H,B)=(95.39737pt, 556.47656pt, 143.09605pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=430.00462pt
+* \textheight=556.47656pt
+* \oddsidemargin=19.8752pt
+* \evensidemargin=19.8752pt
+* \topmargin=-13.87262pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+*geometry* verbose mode - [ newgeometry ] result:
+* driver: pdftex
+* paper: letterpaper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(108.405pt, 397.48499pt, 108.40501pt)
+* v-part:(T,H,B)=(72.26999pt, 650.43pt, 72.27pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=397.48499pt
+* \textheight=650.43pt
+* \oddsidemargin=36.13501pt
+* \evensidemargin=36.13501pt
+* \topmargin=-37.0pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+(./paper.out) (./paper.out)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg)
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd)
+
+Package natbib Warning: Citation `carlini-2022-quantifying' on page 1 undefined
+ on input line 85.
+
+
+Package natbib Warning: Citation `carlini-2020-extracting' on page 1 undefined 
+on input line 85.
+
+
+Package natbib Warning: Citation `carlini-2018-the' on page 1 undefined on inpu
+t line 85.
+
+
+Package natbib Warning: Citation `dodge-2021-documenting' on page 1 undefined o
+n input line 85.
+
+
+Package natbib Warning: Citation `roberts-2023-the' on page 1 undefined on inpu
+t line 85.
+
+
+Package natbib Warning: Citation `chen-2024-are' on page 1 undefined on input l
+ine 85.
+
+
+Package natbib Warning: Citation `dekoninck-2024-constat' on page 1 undefined o
+n input line 87.
+
+
+Package natbib Warning: Citation `oren-2023-proving' on page 1 undefined on inp
+ut line 87.
+
+
+Package natbib Warning: Citation `dodge-2021-documenting' on page 1 undefined o
+n input line 87.
+
+
+Package natbib Warning: Citation `golchin-2023-time' on page 1 undefined on inp
+ut line 87.
+
+
+Package natbib Warning: Citation `shi-2023-detecting' on page 1 undefined on in
+put line 87.
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-
+dist/fonts/enc/dvips/base/8r.enc}]
+
+Package natbib Warning: Citation `dekoninck-2024-constat' on page 2 undefined o
+n input line 89.
+
+
+Package natbib Warning: Citation `oren-2023-proving' on page 2 undefined on inp
+ut line 89.
+
+
+Package natbib Warning: Citation `golchin-2023-time' on page 2 undefined on inp
+ut line 89.
+
+
+Package natbib Warning: Citation `carlini-2022-quantifying' on page 2 undefined
+ on input line 91.
+
+
+Package natbib Warning: Citation `dodge-2021-documenting' on page 2 undefined o
+n input line 91.
+
+
+Package natbib Warning: Citation `roberts-2023-the' on page 2 undefined on inpu
+t line 91.
+
+
+Package natbib Warning: Citation `jones-2023-automatically' on page 2 undefined
+ on input line 91.
+
+
+Package natbib Warning: Citation `ko-2024-the' on page 2 undefined on input lin
+e 91.
+
+
+Package natbib Warning: Citation `sablayrolles-2020-radioactive' on page 2 unde
+fined on input line 91.
+
+
+Package natbib Warning: Citation `guo-2022-bounding' on page 2 undefined on inp
+ut line 91.
+
+
+Package natbib Warning: Citation `chen-2022-amplifying' on page 2 undefined on 
+input line 91.
+
+
+Package natbib Warning: Citation `dbouk-2022-adversarial' on page 2 undefined o
+n input line 91.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
+
+Package natbib Warning: Citation `dekoninck-2024-constat' on page 2 undefined o
+n input line 104.
+
+
+Package natbib Warning: Citation `oren-2023-proving' on page 2 undefined on inp
+ut line 104.
+
+
+Package natbib Warning: Citation `shi-2023-detecting' on page 2 undefined on in
+put line 104.
+
+
+Package natbib Warning: Citation `chen-2024-are' on page 2 undefined on input l
+ine 104.
+
+
+Package natbib Warning: Citation `author-year-private' on page 2 undefined on i
+nput line 104.
+
+
+Package natbib Warning: Citation `carlini-2020-extracting' on page 2 undefined 
+on input line 104.
+
+
+Package natbib Warning: Citation `sablayrolles-2020-radioactive' on page 2 unde
+fined on input line 104.
+
+[2]
+
+Package natbib Warning: Citation `dekoninck-2024-constat' on page 3 undefined o
+n input line 107.
+
+
+Package natbib Warning: Citation `oren-2023-proving' on page 3 undefined on inp
+ut line 109.
+
+
+Package natbib Warning: Citation `golchin-2023-time' on page 3 undefined on inp
+ut line 111.
+
+
+Package natbib Warning: Citation `shi-2023-detecting' on page 3 undefined on in
+put line 111.
+
+
+Package natbib Warning: Citation `carlini-2018-the' on page 3 undefined on inpu
+t line 113.
+
+
+Package natbib Warning: Citation `carlini-2020-extracting' on page 3 undefined 
+on input line 113.
+
+
+Package natbib Warning: Citation `carlini-2022-quantifying' on page 3 undefined
+ on input line 113.
+
+
+Package natbib Warning: Citation `carlini-2022-the' on page 3 undefined on inpu
+t line 113.
+
+
+Package natbib Warning: Citation `dodge-2021-documenting' on page 3 undefined o
+n input line 115.
+
+
+Package natbib Warning: Citation `roberts-2023-the' on page 3 undefined on inpu
+t line 115.
+
+
+Package natbib Warning: Citation `jones-2023-automatically' on page 3 undefined
+ on input line 117.
+
+
+Package natbib Warning: Citation `ko-2024-the' on page 3 undefined on input lin
+e 117.
+
+
+Package natbib Warning: Citation `sablayrolles-2020-radioactive' on page 3 unde
+fined on input line 117.
+
+
+Package natbib Warning: Citation `guo-2022-bounding' on page 3 undefined on inp
+ut line 117.
+
+
+Package natbib Warning: Citation `chen-2022-amplifying' on page 3 undefined on 
+input line 117.
+
+
+Package natbib Warning: Citation `dbouk-2022-adversarial' on page 3 undefined o
+n input line 117.
+
+
+Package natbib Warning: Citation `chen-2024-are' on page 3 undefined on input l
+ine 119.
+
+
+Package natbib Warning: Citation `wang-2024-dealing' on page 3 undefined on inp
+ut line 119.
+
+
+Package natbib Warning: Citation `chanpuriya-2023-the' on page 3 undefined on i
+nput line 119.
+
+
+Package natbib Warning: Citation `shevkunov-2020-overlapping' on page 3 undefin
+ed on input line 119.
+
+
+Package natbib Warning: Citation `zhang-2018-spread' on page 3 undefined on inp
+ut line 119.
+
+
+Package natbib Warning: Citation `birrell-2020-gamma' on page 3 undefined on in
+put line 119.
+
+
+Package natbib Warning: Citation `liu-2021-divergence' on page 3 undefined on i
+nput line 119.
+
+
+Package natbib Warning: Citation `author-year-private' on page 3 undefined on i
+nput line 119.
+
+! Undefined control sequence.
+l.123 ...r-item probabilities \(P(z_i=1 \mid \text
+                                                  {evidence})\) to enable ta...
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active [3]
+
+Package natbib Warning: Citation `dekoninck-2024-constat' on page 4 undefined o
+n input line 128.
+
+
+Package natbib Warning: Citation `oren-2023-proving' on page 4 undefined on inp
+ut line 129.
+
+
+Package natbib Warning: Citation `golchin-2023-time' on page 4 undefined on inp
+ut line 130.
+
+
+Package natbib Warning: Citation `zhang-2018-spread' on page 4 undefined on inp
+ut line 134.
+
+
+Package natbib Warning: Citation `birrell-2020-gamma' on page 4 undefined on in
+put line 134.
+
+
+Package natbib Warning: Citation `liu-2021-divergence' on page 4 undefined on i
+nput line 134.
+
+
+Package natbib Warning: Citation `dekoninck-2024-constat' on page 4 undefined o
+n input line 137.
+
+
+Package natbib Warning: Citation `oren-2023-proving' on page 4 undefined on inp
+ut line 137.
+
+
+Package natbib Warning: Citation `carlini-2022-quantifying' on page 4 undefined
+ on input line 137.
+
+
+Package natbib Warning: Citation `dodge-2021-documenting' on page 4 undefined o
+n input line 137.
+
+
+Package natbib Warning: Citation `roberts-2023-the' on page 4 undefined on inpu
+t line 137.
+
+
+Package natbib Warning: Citation `chen-2022-amplifying' on page 4 undefined on 
+input line 137.
+
+
+Package natbib Warning: Citation `dbouk-2022-adversarial' on page 4 undefined o
+n input line 137.
+
+
+Package natbib Warning: Citation `author-year-private' on page 4 undefined on i
+nput line 137.
+
+! Undefined control sequence.
+l.141 ...ute \(\Delta = A\_{\mathrm{final}}^{\text
+                                                  {obs}} - g(A\_{\mathrm{mid...
+
+! Undefined control sequence.
+l.141 ...{\text{obs}} - g(A\_{\mathrm{mid}}^{\text
+                                                  {obs}})\). A positive \(\D...
+
+[4]
+
+Package natbib Warning: Citation `oren-2023-proving' on page 5 undefined on inp
+ut line 144.
+
+
+Package natbib Warning: Citation `golchin-2023-time' on page 5 undefined on inp
+ut line 147.
+
+
+Package natbib Warning: Citation `jones-2023-automatically' on page 5 undefined
+ on input line 150.
+
+
+Package natbib Warning: Citation `ko-2024-the' on page 5 undefined on input lin
+e 150.
+
+! Undefined control sequence.
+l.153 ... rank-normalized negative log \(p\_{\text
+                                                  {shard}(i)}\) for \(x^{(2)...
+
+
+Package natbib Warning: Citation `sablayrolles-2020-radioactive' on page 5 unde
+fined on input line 153.
+
+
+Package natbib Warning: Citation `guo-2022-bounding' on page 5 undefined on inp
+ut line 153.
+
+
+Package natbib Warning: Citation `zhang-2018-spread' on page 5 undefined on inp
+ut line 153.
+
+
+Package natbib Warning: Citation `birrell-2020-gamma' on page 5 undefined on in
+put line 153.
+
+
+Package natbib Warning: Citation `liu-2021-divergence' on page 5 undefined on i
+nput line 153.
+
+
+! LaTeX Error: Environment algorithm undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.155 \begin{algorithm}
+                       [H]
+
+! LaTeX Error: \caption outside float.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.156 \caption
+              {MuViC: Multi-View Bayesian Contamination Analysis}
+
+! LaTeX Error: Environment algorithmic undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.157 \begin{algorithmic}
+                         [1]
+! Undefined control sequence.
+l.158 \State
+             Input: dataset \(D=\{(q_i,r_i,a_i)\}\_{i=1}^n\); checkpoints \(...
+
+! Undefined control sequence.
+l.159 \State
+             Output: per-item probabilities \(\{\hat{p}_i\}\)
+! Undefined control sequence.
+l.161 \State
+             \textit{SEDP computation}
+! Undefined control sequence.
+l.162 \State
+             Evaluate paraphrase accuracies \(A\_{\mathrm{mid}}\), \(A\_{\ma...
+
+! Undefined control sequence.
+l.163 \State
+             Fit monotone map \(g\) on clean controls; compute \(\Delta \lef...
+
+! Undefined control sequence.
+l.164 \State
+             Estimate empirical p-value \(p\_\mathrm{SEDP}\) from null \(\{\...
+
+! Undefined control sequence.
+l.166 \State
+             \textit{SEL computation}
+! Undefined control sequence.
+l.167 \State
+             Partition \(D\) into shards \(\{S_s\}\) of size \(m\)
+! Undefined control sequence.
+l.168 \For
+          {each shard \(s\)}
+! Undefined control sequence.
+l.169   \State
+               For each \(i\in S_s\), compute true log-likelihood \(\ell^{\t...
+
+! Undefined control sequence.
+l.169 ...compute true log-likelihood \(\ell^{\text
+                                                  {true}}_i\) under \(\theta...
+
+! Undefined control sequence.
+l.170   \For
+            {\(r=1\) to \(R\)}
+! Undefined control sequence.
+l.171     \State
+                 Shuffle answers within \(S_s\); compute shuffled log-likeli...
+
+! Undefined control sequence.
+l.172   \EndFor
+               
+! Undefined control sequence.
+l.173   \State
+               For shard \(s\), run one-sided paired t-test on \(\ell^{\text...
+
+! Undefined control sequence.
+l.173 ... one-sided paired t-test on \(\ell^{\text
+                                                  {true}}_i - \frac{1}{R}\su...
+
+! Undefined control sequence.
+l.174   \For
+            {each \(i\in S_s\)} \State Set \(x^{(2)}_i \leftarrow \mathrm{ra...
+
+! Undefined control sequence.
+l.174   \For{each \(i\in S_s\)} \State
+                                       Set \(x^{(2)}_i \leftarrow \mathrm{ra...
+
+! Undefined control sequence.
+l.174 ...ow \mathrm{ranknorm}(-\log p_s)\) \EndFor
+                                                  
+! Undefined control sequence.
+l.175 \EndFor
+             
+! Undefined control sequence.
+l.177 \State
+             \textit{GRO computation}
+! Undefined control sequence.
+l.178 \For
+          {each item \(i\)}
+! Undefined control sequence.
+l.179   \State
+               Sample random prefix cut \(c_i\); generate continuation \(\ha...
+
+! Undefined control sequence.
+l.180   \State
+               Compute ROUGE-L \(\rho_i\) and min-\(k\%\) log-prob tail \(\t...
+
+! Undefined control sequence.
+l.181   \State
+               Map \((\rho_i, \tau_i)\) to suspicion \(s_i\in[0,1]\) via cal...
+
+! Undefined control sequence.
+l.182 \EndFor
+             
+! Undefined control sequence.
+l.184 \State
+             \textit{Bayesian fusion}
+! Undefined control sequence.
+l.185 \State
+             Fit logistic model \(\Pr(z_i=1\mid x_i)=\sigma(w^\top x_i + b)\...
+
+! Undefined control sequence.
+l.186 \State
+             Predict \(\hat{p}_i \leftarrow \sigma(\mathbb{E}[w]^\top x_i + ...
+
+! Undefined control sequence.
+l.187 \State
+             \Return \(\{\hat{p}_i\}\)
+! Undefined control sequence.
+l.187 \State \Return
+                     \(\{\hat{p}_i\}\)
+
+! LaTeX Error: \begin{document} ended by \end{algorithmic}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.188 \end{algorithmic}
+                       
+
+! LaTeX Error: \begin{document} ended by \end{algorithm}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.189 \end{algorithm}
+                     
+
+Underfull \hbox (badness 4254) in paragraph at lines 155--190
+[]\T1/ptm/m/n/10 (+20) [H] Mu-ViC: Multi-View Bayesian Con-tam-i-na-tion Anal-y
+-sis [1] In-put: dataset $\OML/cmm/m/it/10 D \OT1/cmr/m/n/10 =
+[5]
+
+Package natbib Warning: Citation `shi-2023-detecting' on page 6 undefined on in
+put line 199.
+
+
+Package natbib Warning: Citation `shi-2023-detecting' on page 6 undefined on in
+put line 208.
+
+
+Package natbib Warning: Citation `dekoninck-2024-constat' on page 6 undefined o
+n input line 208.
+
+
+Package natbib Warning: Citation `oren-2023-proving' on page 6 undefined on inp
+ut line 208.
+
+
+Package natbib Warning: Citation `carlini-2020-extracting' on page 6 undefined 
+on input line 208.
+
+
+Package natbib Warning: Citation `carlini-2018-the' on page 6 undefined on inpu
+t line 208.
+
+
+Package natbib Warning: Citation `carlini-2022-quantifying' on page 6 undefined
+ on input line 208.
+
+
+Package natbib Warning: Citation `golchin-2023-time' on page 6 undefined on inp
+ut line 208.
+
+
+Package natbib Warning: Citation `jones-2023-automatically' on page 6 undefined
+ on input line 208.
+
+
+Package natbib Warning: Citation `dodge-2021-documenting' on page 6 undefined o
+n input line 208.
+
+
+Package natbib Warning: Citation `roberts-2023-the' on page 6 undefined on inpu
+t line 208.
+
+
+Package natbib Warning: Citation `chen-2024-are' on page 6 undefined on input l
+ine 208.
+
+
+Package natbib Warning: Citation `wang-2024-dealing' on page 6 undefined on inp
+ut line 208.
+
+[6]
+
+Package natbib Warning: Citation `shi-2023-detecting' on page 7 undefined on in
+put line 219.
+
+! Undefined control sequence.
+l.225   \item \textbf{SEL}: Early \(p\_{\text
+                                             {dataset}}=0.587183\); Mid \(p\...
+
+! Undefined control sequence.
+l.225 ...ext{dataset}}=0.587183\); Mid \(p\_{\text
+                                                  {dataset}}=0.587416\); Lat...
+
+! Undefined control sequence.
+l.225 ...xt{dataset}}=0.587416\); Late \(p\_{\text
+                                                  {dataset}}\approx 0.000000...
+
+! Undefined control sequence.
+l.230   \item \textbf{SEL}: Clean \(p\_{\text
+                                             {dataset}}=0.6398\) versus cont...
+
+! Undefined control sequence.
+l.230 ...=0.6398\) versus contaminated \(p\_{\text
+                                                  {dataset}}=0.001495\), ind...
+
+
+Package natbib Warning: Citation `dekoninck-2024-constat' on page 7 undefined o
+n input line 235.
+
+
+Package natbib Warning: Citation `oren-2023-proving' on page 7 undefined on inp
+ut line 235.
+
+
+Package natbib Warning: Citation `jones-2023-automatically' on page 7 undefined
+ on input line 235.
+
+
+Package natbib Warning: Citation `dbouk-2022-adversarial' on page 7 undefined o
+n input line 235.
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.238 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.240   \includegraphics
+                        [width=0.7\linewidth]{ images/calibration\_fusion.pdf }
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.240   \includegraphics[width=0.7\linewidth]
+                                             { images/calibration\_fusion.pdf }
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.240   \includegraphics[width=0.7\linewidth]
+                                             { images/calibration\_fusion.pdf }
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.244 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.246   \includegraphics
+                        [width=0.7\linewidth]{ images/confusion\_matrix\_fus...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.246   \includegraphics[width=0.7\linewidth]
+                                             { images/confusion\_matrix\_fus...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.246   \includegraphics[width=0.7\linewidth]
+                                             { images/confusion\_matrix\_fus...
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.250 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.252   \includegraphics
+                        [width=0.7\linewidth]{ images/gro\_feature\_scatter....
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.252   \includegraphics[width=0.7\linewidth]
+                                             { images/gro\_feature\_scatter....
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.252   \includegraphics[width=0.7\linewidth]
+                                             { images/gro\_feature\_scatter....
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.256 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.258   \includegraphics
+                        [width=0.7\linewidth]{ images/pr\_muvic.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.258   \includegraphics[width=0.7\linewidth]
+                                             { images/pr\_muvic.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.258   \includegraphics[width=0.7\linewidth]
+                                             { images/pr\_muvic.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.262 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.264   \includegraphics
+                        [width=0.7\linewidth]{ images/roc\_baseline.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.264   \includegraphics[width=0.7\linewidth]
+                                             { images/roc\_baseline.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.264   \includegraphics[width=0.7\linewidth]
+                                             { images/roc\_baseline.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.268 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.270   \includegraphics
+                        [width=0.7\linewidth]{ images/roc\_blackbox.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.270   \includegraphics[width=0.7\linewidth]
+                                             { images/roc\_blackbox.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.270   \includegraphics[width=0.7\linewidth]
+                                             { images/roc\_blackbox.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.274 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.276   \includegraphics
+                        [width=0.7\linewidth]{ images/roc\_muvic.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.276   \includegraphics[width=0.7\linewidth]
+                                             { images/roc\_muvic.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.276   \includegraphics[width=0.7\linewidth]
+                                             { images/roc\_muvic.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.280 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.282   \includegraphics
+                        [width=0.7\linewidth]{ images/sedp\_mapping.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.282   \includegraphics[width=0.7\linewidth]
+                                             { images/sedp\_mapping.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.282   \includegraphics[width=0.7\linewidth]
+                                             { images/sedp\_mapping.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.286 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.288   \includegraphics
+                        [width=0.7\linewidth]{ images/sedp\_timing.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.288   \includegraphics[width=0.7\linewidth]
+                                             { images/sedp\_timing.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.288   \includegraphics[width=0.7\linewidth]
+                                             { images/sedp\_timing.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.292 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.294   \includegraphics
+                        [width=0.7\linewidth]{ images/sel\_blackbox.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.294   \includegraphics[width=0.7\linewidth]
+                                             { images/sel\_blackbox.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.294   \includegraphics[width=0.7\linewidth]
+                                             { images/sel\_blackbox.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.298 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.300   \includegraphics
+                        [width=0.7\linewidth]{ images/sel\_shard\_evidence.p...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.300   \includegraphics[width=0.7\linewidth]
+                                             { images/sel\_shard\_evidence.p...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.300   \includegraphics[width=0.7\linewidth]
+                                             { images/sel\_shard\_evidence.p...
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.304 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.306   \includegraphics
+                        [width=0.7\linewidth]{ images/sel\_timing.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.306   \includegraphics[width=0.7\linewidth]
+                                             { images/sel\_timing.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.306   \includegraphics[width=0.7\linewidth]
+                                             { images/sel\_timing.pdf }
+[7]
+
+Package natbib Warning: Citation `oren-2023-proving' on page 8 undefined on inp
+ut line 314.
+
+
+Package natbib Warning: Citation `dekoninck-2024-constat' on page 8 undefined o
+n input line 314.
+
+
+Package natbib Warning: Citation `golchin-2023-time' on page 8 undefined on inp
+ut line 314.
+
+
+Package natbib Warning: Citation `shi-2023-detecting' on page 8 undefined on in
+put line 314.
+
+
+Package natbib Warning: Citation `jones-2023-automatically' on page 8 undefined
+ on input line 314.
+
+
+Package natbib Warning: Citation `ko-2024-the' on page 8 undefined on input lin
+e 314.
+
+
+Package natbib Warning: Citation `sablayrolles-2020-radioactive' on page 8 unde
+fined on input line 314.
+
+
+Package natbib Warning: Citation `guo-2022-bounding' on page 8 undefined on inp
+ut line 314.
+
+
+Package natbib Warning: Citation `chen-2024-are' on page 8 undefined on input l
+ine 317.
+
+
+Package natbib Warning: Citation `ko-2024-the' on page 8 undefined on input lin
+e 317.
+
+
+Package natbib Warning: Citation `wang-2024-dealing' on page 8 undefined on inp
+ut line 317.
+
+
+Package natbib Warning: Citation `dbouk-2022-adversarial' on page 8 undefined o
+n input line 317.
+
+
+Package natbib Warning: Citation `author-year-private' on page 8 undefined on i
+nput line 317.
+
+(./paper.bbl [8])
+
+Package natbib Warning: There were undefined citations.
+
+[9] [10] (./paper.aux
+
+Package natbib Warning: Citation(s) may have changed.
+(natbib)                Rerun to get citations correct.
+
+) )
+(see the transcript file for additional information) </home/runner/.texlive2023
+/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
+y7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm1
+0.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/
+share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/fonts
+/type1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (10 pages, 185000 bytes).
+Transcript written on paper.log.
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./paper.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo))
+(./agents4science_2025.sty
+(/usr/share/texlive/texmf-dist/tex/latex/environ/environ.sty
+(/usr/share/texlive/texmf-dist/tex/latex/trimspaces/trimspaces.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/lineno/lineno.sty
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty))))
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/units/nicefrac.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype-pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(./paper.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: letterpaper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(92.14519pt, 430.00462pt, 92.14519pt)
+* v-part:(T,H,B)=(95.39737pt, 556.47656pt, 143.09605pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=430.00462pt
+* \textheight=556.47656pt
+* \oddsidemargin=19.8752pt
+* \evensidemargin=19.8752pt
+* \topmargin=-13.87262pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+*geometry* verbose mode - [ newgeometry ] result:
+* driver: pdftex
+* paper: letterpaper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(108.405pt, 397.48499pt, 108.40501pt)
+* v-part:(T,H,B)=(72.26999pt, 650.43pt, 72.27pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=397.48499pt
+* \textheight=650.43pt
+* \oddsidemargin=36.13501pt
+* \evensidemargin=36.13501pt
+* \topmargin=-37.0pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+(./paper.out) (./paper.out)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg)
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd) [1{/var/lib/texmf/fon
+ts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/
+base/8r.enc}] (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
+[2
