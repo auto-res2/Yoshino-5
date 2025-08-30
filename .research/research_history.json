@@ -9,79 +9,79 @@
   ],
   "research_study_list": [
     {
-      "title": "Linear Mode Connectivity in Multitask and Continual Learning"
-    },
-    {
-      "title": "Automatic Curriculum Learning through Value Disagreement"
-    },
-    {
-      "title": "Continual Auxiliary Task Learning"
-    },
-    {
-      "title": "Discovering Non-monotonic Autoregressive Orderings with Variational Inference"
-    },
-    {
-      "title": "Navigating Memory Construction by Global Pseudo-Task Simulation for Continual Learning"
+      "title": "Efficient Continual Learning with Modular Networks and Task-Driven Priors"
     },
     {
       "title": "Linear Mode Connectivity in Multitask and Continual Learning"
     },
     {
-      "title": "The Ideal Continual Learner: An Agent That Never Forgets"
+      "title": "Scalable and Order-robust Continual Learning with Additive Parameter Decomposition"
+    },
+    {
+      "title": "CLeAR: Continual Learning on Algorithmic Reasoning for Human-like Intelligence"
     },
     {
       "title": "Recasting Continual Learning as Sequence Modeling"
     },
     {
-      "title": "Efficient Continual Learning with Modular Networks and Task-Driven Priors"
+      "title": "Anatomy of Catastrophic Forgetting: Hidden Representations and Task Semantics"
     },
     {
-      "title": "Compositional Language Continual Learning"
+      "title": "Continual evaluation for lifelong learning: Identifying the stability gap"
     },
     {
-      "title": "Gradient Projection Memory for Continual Learning"
+      "title": "On the Diminishing Returns of Width for Continual Learning"
     },
     {
-      "title": "Gradient Projection Memory for Continual Learning"
+      "title": "Continual Learning in the Teacher-Student Setup: Impact of Task Similarity"
+    },
+    {
+      "title": "Maslow's Hammer in Catastrophic Forgetting: Node Re-Use vs. Node Activation "
+    },
+    {
+      "title": "Analyzing and Mitigating Interference in Neural Architecture Search"
+    },
+    {
+      "title": "Analyzing and Mitigating Interference in Neural Architecture Search"
+    },
+    {
+      "title": "Understanding Gradient Regularization in Deep Learning: Efficient Finite-Difference Computation and Implicit Bias"
+    },
+    {
+      "title": "Gradient Surgery for Multi-Task Learning"
     },
     {
       "title": "Interference and Generalization in Temporal Difference Learning"
     },
     {
-      "title": "An Effective Dynamic Gradient Calibration Method for Continual Learning"
+      "title": "Continual Learning of a Mixed Sequence of Similar and Dissimilar Tasks"
     },
     {
-      "title": "Measuring Forgetting of Memorized Training Examples"
+      "title": "The Joint Effect of Task Similarity and Overparameterization on Catastrophic Forgetting — An Analytical Model"
     },
     {
-      "title": "Semantically-Shifted Incremental Adapter-Tuning is A Continual ViTransformer"
+      "title": "Disentangling and mitigating the impact of task similarity for continual learning"
     },
     {
-      "title": "InfLoRA: Interference-Free Low-Rank Adaptation for Continual Learning"
+      "title": "Prototype-Sample Relation Distillation: Towards Replay-Free Continual Learning"
     },
     {
-      "title": "Overcoming Generic Knowledge Loss with Selective Parameter Update"
+      "title": "Linear Mode Connectivity in Multitask and Continual Learning"
     },
     {
-      "title": "Contextual Transformation Networks for Online Continual Learning"
+      "title": "Time- Memory- and Parameter-Efficient Visual Adaptation"
     },
     {
-      "title": "SAFE: Slow and Fast Parameter-Efficient Tuning for Continual Learning with Pre-Trained Models"
+      "title": "Make Pre-trained Model Reversible: From Parameter to Memory Efficient Fine-Tuning"
     },
     {
-      "title": "Geometric Dataset Distances via Optimal Transport"
+      "title": "Spectral Adapter: Fine-Tuning in Spectral Space"
     },
     {
-      "title": "Comparing Apples to Oranges: Learning Similarity Functions for Data Produced by Different Distributions"
+      "title": "ReFT: Representation Finetuning for Language Models"
     },
     {
-      "title": "Words are all you need? Language as an approximation for human similarity judgments"
-    },
-    {
-      "title": "Pre-Trained Model Reusability Evaluation for Small-Data Transfer Learning"
-    },
-    {
-      "title": "Pre-Trained Model Reusability Evaluation for Small-Data Transfer Learning"
+      "title": "Structured Unrestricted-Rank Matrices for Parameter Efficient Finetuning"
     }
   ]
 }
