@@ -1,0 +1,9 @@
+/home/runner/work/Yoshino-5/Yoshino-5/src/evaluate.py:186: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  x = F.normalize(torch.tensor(x), dim=-1)
+/home/runner/work/Yoshino-5/Yoshino-5/src/evaluate.py:187: UserWarning: To copy construct from a tensor, it is recommended to use sourceTensor.detach().clone() or sourceTensor.detach().clone().requires_grad_(True), rather than torch.tensor(sourceTensor).
+  y = F.normalize(torch.tensor(y), dim=-1)
+/home/runner/work/Yoshino-5/Yoshino-5/src/evaluate.py:204: FutureWarning: 
+
+Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
+
+  sns.barplot(x=names, y=vals, palette='viridis')
