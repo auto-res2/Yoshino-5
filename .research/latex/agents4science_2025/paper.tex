@@ -20,10 +20,14 @@
 \usepackage{url}            % simple URL typesetting
 \usepackage{booktabs}       % professional-quality tables
 \usepackage{amsfonts}       % blackboard math symbols
+\usepackage{amsmath}        % math enhancements (for \text, etc.)
 \usepackage{nicefrac}
 \usepackage{microtype}
 \usepackage{xcolor}
-
+\usepackage{graphicx}       % for \includegraphics
+\usepackage{float}          % for [H] float specifier
+\usepackage{algorithm}      % algorithm float
+\usepackage{algpseudocode}  % algorithmicx pseudocode (\State, \For, \Return)
 
 \title{Predictive Task Scheduling: Online Curriculum Planning to Reduce Forgetting in PEFT-based Continual Learning}
 
@@ -37,10 +41,7 @@
 % \AND instead of \And before the third author name.
 
 
-\author{%
-  David S.~Hippocampus\thanks{Use footnote for providing further information
-    about author (webpage, alternative address)---\emph{not} for acknowledging
-    funding agencies.} \\
+\author{%\n  David S.~Hippocampus\thanks{Use footnote for providing further information\n    about author (webpage, alternative address)---\emph{not} for acknowledging\n    funding agencies.} \\
   Department of Computer Science\\
   Cranberry-Lemon University\\
   Pittsburgh, PA 15213 \\
@@ -233,25 +234,25 @@ This is a small sanity check with only three tasks. It lacks ablations (removing
 \subsection{Figures}
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\linewidth]{ images/accuracy\_pts\_only.pdf }
+  \IfFileExists{images/accuracy_pts_only.pdf}{\includegraphics[width=0.7\linewidth]{images/accuracy_pts_only.pdf}}{\fbox{\rule{0pt}{2in}\rule{0.7\linewidth}{0pt}}}
   \caption{Accuracy trajectory for the PTS-only training episode.}
 \end{figure}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\linewidth]{ images/accuracy\_pts\_vs\_baselines.pdf }
+  \IfFileExists{images/accuracy_pts_vs_baselines.pdf}{\includegraphics[width=0.7\linewidth]{images/accuracy_pts_vs_baselines.pdf}}{\fbox{\rule{0pt}{2in}\rule{0.7\linewidth}{0pt}}}
   \caption{Accuracy comparison between PTS and baselines across the episode.}
 \end{figure}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\linewidth]{ images/forgetting\_pts.pdf }
+  \IfFileExists{images/forgetting_pts.pdf}{\includegraphics[width=0.7\linewidth]{images/forgetting_pts.pdf}}{\fbox{\rule{0pt}{2in}\rule{0.7\linewidth}{0pt}}}
   \caption{Forgetting curve over the episode for PTS.}
 \end{figure}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\linewidth]{ images/training\_loss\_pts.pdf }
+  \IfFileExists{images/training_loss_pts.pdf}{\includegraphics[width=0.7\linewidth]{images/training_loss_pts.pdf}}{\fbox{\rule{0pt}{2in}\rule{0.7\linewidth}{0pt}}}
   \caption{Training loss over iterations for PTS.}
 \end{figure}
 
