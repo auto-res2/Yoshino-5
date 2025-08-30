@@ -1,0 +1,10 @@
+{
+  "research_topic": "Video-LoRA for Multimodal Understanding Enhancement : Create Video-aware Low-Rank Adaptation (VLoRA) for Vision-Language Models to improve Video QA accuracy and temporal reasoning scores on Video-ChatGPT Benchmark, MSR-VTT QA (10,000 video questions), MSVD QA, and supplementary DocVQA/ChartQA evaluations, compared to static multimodal baselines using 7B language model with lightweight CLIP-ViT/B-16 visual encoder, short-duration videos (10-30 seconds), and gradient accumulation, addressing the 2025 frontier of Video Large Language Models (VidLLMs) by extending LoRA to temporal dimensions for efficient time-series visual processing while preserving language understanding capabilities.",
+  "queries": [
+    "Video LoRA",
+    "temporal LoRA",
+    "video question answering",
+    "vision-language temporal models",
+    "low-rank video adaptation"
+  ]
+}
