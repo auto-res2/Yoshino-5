@@ -5,3 +5,761 @@
   publisher = {GitHub},
   url       = {https://github.com/airas-org/airas}
 }
+
+% ===========================================
+% REQUIRED CITATIONS
+% These papers must be cited in the manuscript
+% ===========================================
+
+@article{author-year-private,
+ title = {Private Image Reconstruction from System Side Channels Using Generative Models}
+}
+
+@article{birrell-2020-gamma,
+ abstract = {We develop a rigorous and general framework for constructing
+information-theoretic divergences that subsume both $f$-divergences and
+integral probability metrics (IPMs), such as the $1$-Wasserstein distance. We
+prove under which assumptions these divergences, hereafter referred to as
+$(f,\Gamma)$-divergences, provide a notion of `distance' between probability
+measures and show that they can be expressed as a two-stage
+mass-redistribution/mass-transport process. The $(f,\Gamma)$-divergences
+inherit features from IPMs, such as the ability to compare distributions which
+are not absolutely continuous, as well as from $f$-divergences, namely the
+strict concavity of their variational representations and the ability to
+control heavy-tailed distributions for particular choices of $f$. When
+combined, these features establish a divergence with improved properties for
+estimation, statistical learning, and uncertainty quantification applications.
+Using statistical learning as an example, we demonstrate their advantage in
+training generative adversarial networks (GANs) for heavy-tailed,
+not-absolutely continuous sample distributions. We also show improved
+performance and stability over gradient-penalized Wasserstein GAN in image
+generation.},
+ arxiv_url = {https://arxiv.org/pdf/2011.05953v3.pdf},
+ author = {Jeremiah Birrell and Paul Dupuis and Markos A. Katsoulakis and Yannis Pantazis and Luc Rey-Bellet},
+ title = {(f,Gamma)-Divergences: Interpolating between f-Divergences and Integral Probability Metrics},
+ year = {2020}
+}
+
+@article{carlini-2022-the,
+ abstract = {Machine learning models trained on private datasets have been shown to leak
+their private data. While recent work has found that the average data point is
+rarely leaked, the outlier samples are frequently subject to memorization and,
+consequently, privacy leakage. We demonstrate and analyse an Onion Effect of
+memorization: removing the "layer" of outlier points that are most vulnerable
+to a privacy attack exposes a new layer of previously-safe points to the same
+attack. We perform several experiments to study this effect, and understand why
+it occurs. The existence of this effect has various consequences. For example,
+it suggests that proposals to defend against memorization without training with
+rigorous privacy guarantees are unlikely to be effective. Further, it suggests
+that privacy-enhancing technologies such as machine unlearning could actually
+harm the privacy of other users.},
+ arxiv_url = {https://arxiv.org/pdf/2206.10469v2.pdf},
+ author = {Nicholas Carlini and Matthew Jagielski and Chiyuan Zhang and Nicolas Papernot and Andreas Terzis and Florian Tramer},
+ title = {The Privacy Onion Effect: Memorization is Relative},
+ year = {2022}
+}
+
+@article{chanpuriya-2023-the,
+ abstract = {In this work, we introduce a novel evaluation framework for generative models
+of graphs, emphasizing the importance of model-generated graph overlap
+(Chanpuriya et al., 2021) to ensure both accuracy and edge-diversity. We
+delineate a hierarchy of graph generative models categorized into three levels
+of complexity: edge independent, node independent, and fully dependent models.
+This hierarchy encapsulates a wide range of prevalent methods. We derive
+theoretical bounds on the number of triangles and other short-length cycles
+producible by each level of the hierarchy, contingent on the model overlap. We
+provide instances demonstrating the asymptotic optimality of our bounds.
+Furthermore, we introduce new generative models for each of the three
+hierarchical levels, leveraging dense subgraph discovery (Gionis & Tsourakakis,
+2015). Our evaluation, conducted on real-world datasets, focuses on assessing
+the output quality and overlap of our proposed models in comparison to other
+popular models. Our results indicate that our simple, interpretable models
+provide competitive baselines to popular generative models. Through this
+investigation, we aim to propel the advancement of graph generative models by
+offering a structured framework and robust evaluation metrics, thereby
+facilitating the development of models capable of generating accurate and
+edge-diverse graphs.},
+ arxiv_url = {https://arxiv.org/pdf/2312.03691v1.pdf},
+ author = {Sudhanshu Chanpuriya and Cameron Musco and Konstantinos Sotiropoulos and Charalampos Tsourakakis},
+ title = {On the Role of Edge Dependency in Graph Generative Models},
+ year = {2023}
+}
+
+@article{chen-2022-amplifying,
+ abstract = {As in-the-wild data are increasingly involved in the training stage, machine
+learning applications become more susceptible to data poisoning attacks. Such
+attacks typically lead to test-time accuracy degradation or controlled
+misprediction. In this paper, we investigate the third type of exploitation of
+data poisoning - increasing the risks of privacy leakage of benign training
+samples. To this end, we demonstrate a set of data poisoning attacks to amplify
+the membership exposure of the targeted class. We first propose a generic
+dirty-label attack for supervised classification algorithms. We then propose an
+optimization-based clean-label attack in the transfer learning scenario,
+whereby the poisoning samples are correctly labeled and look "natural" to evade
+human moderation. We extensively evaluate our attacks on computer vision
+benchmarks. Our results show that the proposed attacks can substantially
+increase the membership inference precision with minimum overall test-time
+model performance degradation. To mitigate the potential negative impacts of
+our attacks, we also investigate feasible countermeasures.},
+ arxiv_url = {https://arxiv.org/pdf/2211.00463v1.pdf},
+ author = {Yufei Chen and Chao Shen and Yun Shen and Cong Wang and Yang Zhang},
+ github_url = {https://github.com/tensorflow/privacy},
+ title = {Amplifying Membership Exposure via Data Poisoning},
+ year = {2022}
+}
+
+@article{chen-2024-are,
+ abstract = {Large vision-language models (LVLMs) have recently achieved rapid progress,
+sparking numerous studies to evaluate their multi-modal capabilities. However,
+we dig into current evaluation works and identify two primary issues: 1) Visual
+content is unnecessary for many samples. The answers can be directly inferred
+from the questions and options, or the world knowledge embedded in LLMs. This
+phenomenon is prevalent across current benchmarks. For instance, GeminiPro
+achieves 42.9% on the MMMU benchmark without any visual input, and outperforms
+the random choice baseline across six benchmarks over 24% on average. 2)
+Unintentional data leakage exists in LLM and LVLM training. LLM and LVLM could
+still answer some visual-necessary questions without visual content, indicating
+the memorizing of these samples within large-scale training data. For example,
+Sphinx-X-MoE gets 43.6% on MMMU without accessing images, surpassing its LLM
+backbone with 17.9%. Both problems lead to misjudgments of actual multi-modal
+gains and potentially misguide the study of LVLM. To this end, we present
+MMStar, an elite vision-indispensable multi-modal benchmark comprising 1,500
+samples meticulously selected by humans. MMStar benchmarks 6 core capabilities
+and 18 detailed axes, aiming to evaluate LVLMs' multi-modal capacities with
+carefully balanced and purified samples. These samples are first roughly
+selected from current benchmarks with an automated pipeline, human review is
+then involved to ensure each curated sample exhibits visual dependency, minimal
+data leakage, and requires advanced multi-modal capabilities. Moreover, two
+metrics are developed to measure data leakage and actual performance gain in
+multi-modal training. We evaluate 16 leading LVLMs on MMStar to assess their
+multi-modal capabilities, and on 7 benchmarks with the proposed metrics to
+investigate their data leakage and actual multi-modal gain.},
+ arxiv_url = {https://arxiv.org/pdf/2403.20330v2.pdf},
+ author = {Lin Chen and Jinsong Li and Xiaoyi Dong and Pan Zhang and Yuhang Zang and Zehui Chen and Haodong Duan and Jiaqi Wang and Yu Qiao and Dahua Lin and Feng Zhao},
+ title = {Are We on the Right Way for Evaluating Large Vision-Language Models?},
+ year = {2024}
+}
+
+@article{dbouk-2022-adversarial,
+ abstract = {Despite the tremendous success of deep neural networks across various tasks,
+their vulnerability to imperceptible adversarial perturbations has hindered
+their deployment in the real world. Recently, works on randomized ensembles
+have empirically demonstrated significant improvements in adversarial
+robustness over standard adversarially trained (AT) models with minimal
+computational overhead, making them a promising solution for safety-critical
+resource-constrained applications. However, this impressive performance raises
+the question: Are these robustness gains provided by randomized ensembles real?
+In this work we address this question both theoretically and empirically. We
+first establish theoretically that commonly employed robustness evaluation
+methods such as adaptive PGD provide a false sense of security in this setting.
+Subsequently, we propose a theoretically-sound and efficient adversarial attack
+algorithm (ARC) capable of compromising random ensembles even in cases where
+adaptive PGD fails to do so. We conduct comprehensive experiments across a
+variety of network architectures, training schemes, datasets, and norms to
+support our claims, and empirically establish that randomized ensembles are in
+fact more vulnerable to $\ell_p$-bounded adversarial perturbations than even
+standard AT models. Our code can be found at https://github.com/hsndbk4/ARC.},
+ arxiv_url = {https://arxiv.org/pdf/2206.06737v1.pdf},
+ author = {Hassan Dbouk and Naresh R. Shanbhag},
+ title = {Adversarial Vulnerability of Randomized Ensembles},
+ year = {2022}
+}
+
+@article{dekoninck-2024-constat,
+ abstract = {Public benchmarks play an essential role in the evaluation of large language
+models. However, data contamination can lead to inflated performance, rendering
+them unreliable for model comparison. It is therefore crucial to detect
+contamination and estimate its impact on measured performance. Unfortunately,
+existing detection methods can be easily evaded and fail to quantify
+contamination. To overcome these limitations, we propose a novel definition of
+contamination as artificially inflated and non-generalizing benchmark
+performance instead of the inclusion of benchmark samples in the training data.
+This perspective enables us to detect any model with inflated performance,
+i.e., performance that does not generalize to rephrased samples, synthetic
+samples from the same distribution, or different benchmarks for the same task.
+Based on this insight, we develop ConStat, a statistical method that reliably
+detects and quantifies contamination by comparing performance between a primary
+and reference benchmark relative to a set of reference models. We demonstrate
+the effectiveness of ConStat in an extensive evaluation of diverse model
+architectures, benchmarks, and contamination scenarios and find high levels of
+contamination in multiple popular models including Mistral, Llama, Yi, and the
+top-3 Open LLM Leaderboard models.},
+ arxiv_url = {https://arxiv.org/pdf/2405.16281v1.pdf},
+ author = {Jasper Dekoninck and Mark Niklas Müller and Martin Vechev},
+ github_url = {https://github.com/eth-sri/ConStat},
+ title = {ConStat: Performance-Based Contamination Detection in Large Language Models},
+ year = {2024}
+}
+
+@article{golchin-2023-time,
+ abstract = {Data contamination, i.e., the presence of test data from downstream tasks in
+the training data of large language models (LLMs), is a potential major issue
+in measuring LLMs' real effectiveness on other tasks. We propose a
+straightforward yet effective method for identifying data contamination within
+LLMs. At its core, our approach starts by identifying potential contamination
+at the instance level; using this information, our approach then assesses wider
+contamination at the partition level. To estimate contamination of individual
+instances, we employ "guided instruction:" a prompt consisting of the dataset
+name, partition type, and the random-length initial segment of a reference
+instance, asking the LLM to complete it. An instance is flagged as contaminated
+if the LLM's output either exactly or nearly matches the latter segment of the
+reference. To understand if an entire partition is contaminated, we propose two
+ideas. The first idea marks a dataset partition as contaminated if the average
+overlap score with the reference instances (as measured by ROUGE-L or BLEURT)
+is statistically significantly better with the completions from guided
+instruction compared to a "general instruction" that does not include the
+dataset and partition name. The second idea marks a dataset partition as
+contaminated if a classifier based on GPT-4 with few-shot in-context learning
+prompt marks multiple generated completions as exact/near-exact matches of the
+corresponding reference instances. Our best method achieves an accuracy between
+92% and 100% in detecting if an LLM is contaminated with seven datasets,
+containing train and test/validation partitions, when contrasted with manual
+evaluation by human experts. Further, our findings indicate that GPT-4 is
+contaminated with AG News, WNLI, and XSum datasets.},
+ arxiv_url = {https://arxiv.org/pdf/2308.08493v3.pdf},
+ author = {Shahriar Golchin and Mihai Surdeanu},
+ title = {Time Travel in LLMs: Tracing Data Contamination in Large Language Models},
+ year = {2023}
+}
+
+@article{guo-2022-bounding,
+ abstract = {Differential privacy is widely accepted as the de facto method for preventing
+data leakage in ML, and conventional wisdom suggests that it offers strong
+protection against privacy attacks. However, existing semantic guarantees for
+DP focus on membership inference, which may overestimate the adversary's
+capabilities and is not applicable when membership status itself is
+non-sensitive. In this paper, we derive the first semantic guarantees for DP
+mechanisms against training data reconstruction attacks under a formal threat
+model. We show that two distinct privacy accounting methods -- Renyi
+differential privacy and Fisher information leakage -- both offer strong
+semantic protection against data reconstruction attacks.},
+ arxiv_url = {https://arxiv.org/pdf/2201.12383v4.pdf},
+ author = {Chuan Guo and Brian Karrer and Kamalika Chaudhuri and Laurens van der Maaten},
+ github_url = {https://github.com/google/jax},
+ title = {Bounding Training Data Reconstruction in Private (Deep) Learning},
+ year = {2022}
+}
+
+@article{jones-2023-automatically,
+ abstract = {Auditing large language models for unexpected behaviors is critical to
+preempt catastrophic deployments, yet remains challenging. In this work, we
+cast auditing as an optimization problem, where we automatically search for
+input-output pairs that match a desired target behavior. For example, we might
+aim to find a non-toxic input that starts with "Barack Obama" that a model maps
+to a toxic output. This optimization problem is difficult to solve as the set
+of feasible points is sparse, the space is discrete, and the language models we
+audit are non-linear and high-dimensional. To combat these challenges, we
+introduce a discrete optimization algorithm, ARCA, that jointly and efficiently
+optimizes over inputs and outputs. Our approach automatically uncovers
+derogatory completions about celebrities (e.g. "Barack Obama is a legalized
+unborn" -> "child murderer"), produces French inputs that complete to English
+outputs, and finds inputs that generate a specific name. Our work offers a
+promising new tool to uncover models' failure-modes before deployment.},
+ arxiv_url = {https://arxiv.org/pdf/2303.04381v1.pdf},
+ author = {Erik Jones and Anca Dragan and Aditi Raghunathan and Jacob Steinhardt},
+ github_url = {https://github.com/facebookresearch/text-adversarial-attack},
+ title = {Automatically Auditing Large Language Models via Discrete Optimization},
+ year = {2023}
+}
+
+@article{ko-2024-the,
+ abstract = {Large-scale black-box models have become ubiquitous across numerous
+applications. Understanding the influence of individual training data sources
+on predictions made by these models is crucial for improving their
+trustworthiness. Current influence estimation techniques involve computing
+gradients for every training point or repeated training on different subsets.
+These approaches face obvious computational challenges when scaled up to large
+datasets and models.
+  In this paper, we introduce and explore the Mirrored Influence Hypothesis,
+highlighting a reciprocal nature of influence between training and test data.
+Specifically, it suggests that evaluating the influence of training data on
+test predictions can be reformulated as an equivalent, yet inverse problem:
+assessing how the predictions for training samples would be altered if the
+model were trained on specific test samples. Through both empirical and
+theoretical validations, we demonstrate the wide applicability of our
+hypothesis. Inspired by this, we introduce a new method for estimating the
+influence of training data, which requires calculating gradients for specific
+test samples, paired with a forward pass for each training point. This approach
+can capitalize on the common asymmetry in scenarios where the number of test
+samples under concurrent examination is much smaller than the scale of the
+training dataset, thus gaining a significant improvement in efficiency compared
+to existing approaches.
+  We demonstrate the applicability of our method across a range of scenarios,
+including data attribution in diffusion models, data leakage detection,
+analysis of memorization, mislabeled data detection, and tracing behavior in
+language models. Our code will be made available at
+https://github.com/ruoxi-jia-group/Forward-INF.},
+ arxiv_url = {https://arxiv.org/pdf/2402.08922v2.pdf},
+ author = {Myeongseob Ko and Feiyang Kang and Weiyan Shi and Ming Jin and Zhou Yu and Ruoxi Jia},
+ github_url = {https://github.com/ruoxi-jia-group/Forward-INF},
+ journal = {The IEEE/CVF Conference on Computer Vision and Pattern Recognition
+  2024},
+ title = {The Mirrored Influence Hypothesis: Efficient Data Influence Estimation by Harnessing Forward Passes},
+ year = {2024}
+}
+
+@article{liu-2021-divergence,
+ abstract = {The spectacular success of deep generative models calls for quantitative
+tools to measure their statistical performance. Divergence frontiers have
+recently been proposed as an evaluation framework for generative models, due to
+their ability to measure the quality-diversity trade-off inherent to deep
+generative modeling. We establish non-asymptotic bounds on the sample
+complexity of divergence frontiers. We also introduce frontier integrals which
+provide summary statistics of divergence frontiers. We show how smoothed
+estimators such as Good-Turing or Krichevsky-Trofimov can overcome the missing
+mass problem and lead to faster rates of convergence. We illustrate the
+theoretical results with numerical examples from natural language processing
+and computer vision.},
+ arxiv_url = {https://arxiv.org/pdf/2106.07898v2.pdf},
+ author = {Lang Liu and Krishna Pillutla and Sean Welleck and Sewoong Oh and Yejin Choi and Zaid Harchaoui},
+ github_url = {https://github.com/langliu95/divergence-frontier-bounds},
+ title = {Divergence Frontiers for Generative Models: Sample Complexity, Quantization Effects, and Frontier Integrals},
+ year = {2021}
+}
+
+@article{oren-2023-proving,
+ abstract = {Large language models are trained on vast amounts of internet data, prompting
+concerns and speculation that they have memorized public benchmarks. Going from
+speculation to proof of contamination is challenging, as the pretraining data
+used by proprietary models are often not publicly accessible. We show that it
+is possible to provide provable guarantees of test set contamination in
+language models without access to pretraining data or model weights. Our
+approach leverages the fact that when there is no data contamination, all
+orderings of an exchangeable benchmark should be equally likely. In contrast,
+the tendency for language models to memorize example order means that a
+contaminated language model will find certain canonical orderings to be much
+more likely than others. Our test flags potential contamination whenever the
+likelihood of a canonically ordered benchmark dataset is significantly higher
+than the likelihood after shuffling the examples. We demonstrate that our
+procedure is sensitive enough to reliably prove test set contamination in
+challenging situations, including models as small as 1.4 billion parameters, on
+small test sets of only 1000 examples, and datasets that appear only a few
+times in the pretraining corpus. Using our test, we audit five popular publicly
+accessible language models for test set contamination and find little evidence
+for pervasive contamination.},
+ arxiv_url = {https://arxiv.org/pdf/2310.17623v2.pdf},
+ author = {Yonatan Oren and Nicole Meister and Niladri Chatterji and Faisal Ladhak and Tatsunori B. Hashimoto},
+ github_url = {https://github.com/tatsu-lab/test_set_contamination},
+ title = {Proving Test Set Contamination in Black-Box Language Models},
+ year = {2023}
+}
+
+@article{roberts-2023-the,
+ abstract = {Recent claims about the impressive abilities of large language models (LLMs)
+are often supported by evaluating publicly available benchmarks. Since LLMs
+train on wide swaths of the internet, this practice raises concerns of data
+contamination, i.e., evaluating on examples that are explicitly or implicitly
+included in the training data. Data contamination remains notoriously
+challenging to measure and mitigate, even with partial attempts like controlled
+experimentation of training data, canary strings, or embedding similarities. In
+this work, we conduct the first thorough longitudinal analysis of data
+contamination in LLMs by using the natural experiment of training cutoffs in
+GPT models to look at benchmarks released over time. Specifically, we consider
+two code/mathematical problem-solving datasets, Codeforces and Project Euler,
+and find statistically significant trends among LLM pass rate vs. GitHub
+popularity and release date that provide strong evidence of contamination. By
+open-sourcing our dataset, raw results, and evaluation framework, our work
+paves the way for rigorous analyses of data contamination in modern models. We
+conclude with a discussion of best practices and future steps for publicly
+releasing benchmarks in the age of LLMs that train on webscale data.},
+ arxiv_url = {https://arxiv.org/pdf/2310.10628v1.pdf},
+ author = {Manley Roberts and Himanshu Thakur and Christine Herlihy and Colin White and Samuel Dooley},
+ title = {To the Cutoff... and Beyond? A Longitudinal Perspective on LLM Data Contamination},
+ year = {2023}
+}
+
+@article{sablayrolles-2020-radioactive,
+ abstract = {We want to detect whether a particular image dataset has been used to train a
+model. We propose a new technique, \emph{radioactive data}, that makes
+imperceptible changes to this dataset such that any model trained on it will
+bear an identifiable mark. The mark is robust to strong variations such as
+different architectures or optimization methods. Given a trained model, our
+technique detects the use of radioactive data and provides a level of
+confidence (p-value). Our experiments on large-scale benchmarks (Imagenet),
+using standard architectures (Resnet-18, VGG-16, Densenet-121) and training
+procedures, show that we can detect usage of radioactive data with high
+confidence (p<10^-4) even when only 1% of the data used to trained our model is
+radioactive. Our method is robust to data augmentation and the stochasticity of
+deep network optimization. As a result, it offers a much higher signal-to-noise
+ratio than data poisoning and backdoor methods.},
+ arxiv_url = {https://arxiv.org/pdf/2002.00937v1.pdf},
+ author = {Alexandre Sablayrolles and Matthijs Douze and Cordelia Schmid and Hervé Jégou},
+ title = {Radioactive data: tracing through training},
+ year = {2020}
+}
+
+@article{shevkunov-2020-overlapping,
+ abstract = {Various non-trivial spaces are becoming popular for embedding structured data
+such as graphs, texts, or images. Following spherical and hyperbolic spaces,
+more general product spaces have been proposed. However, searching for the best
+configuration of product space is a resource-intensive procedure, which reduces
+the practical applicability of the idea. We generalize the concept of product
+space and introduce an overlapping space that does not have the configuration
+search problem. The main idea is to allow subsets of coordinates to be shared
+between spaces of different types (Euclidean, hyperbolic, spherical). As a
+result, parameter optimization automatically learns the optimal configuration.
+Additionally, overlapping spaces allow for more compact representations since
+their geometry is more complex. Our experiments confirm that overlapping spaces
+outperform the competitors in graph embedding tasks. Here, we consider both
+distortion setup, where the aim is to preserve distances, and ranking setup,
+where the relative order should be preserved. The proposed method effectively
+solves the problem and outperforms the competitors in both settings. We also
+perform an empirical analysis in a realistic information retrieval task, where
+we compare all spaces by incorporating them into DSSM. In this case, the
+proposed overlapping space consistently achieves nearly optimal results without
+any configuration tuning. This allows for reducing training time, which can be
+significant in large-scale applications.},
+ arxiv_url = {https://arxiv.org/pdf/2007.02445v3.pdf},
+ author = {Kirill Shevkunov and Liudmila Prokhorenkova},
+ github_url = {https://github.com/shevkunov/overlapping-spaces-for-compact-graph-representations},
+ journal = {Advances in Neural Information Processing Systems 34 (NeurIPS
+  2021)},
+ title = {Overlapping Spaces for Compact Graph Representations},
+ year = {2020}
+}
+
+@article{shi-2023-detecting,
+ abstract = {Although large language models (LLMs) are widely deployed, the data used to
+train them is rarely disclosed. Given the incredible scale of this data, up to
+trillions of tokens, it is all but certain that it includes potentially
+problematic text such as copyrighted materials, personally identifiable
+information, and test data for widely reported reference benchmarks. However,
+we currently have no way to know which data of these types is included or in
+what proportions. In this paper, we study the pretraining data detection
+problem: given a piece of text and black-box access to an LLM without knowing
+the pretraining data, can we determine if the model was trained on the provided
+text? To facilitate this study, we introduce a dynamic benchmark WIKIMIA that
+uses data created before and after model training to support gold truth
+detection. We also introduce a new detection method Min-K% Prob based on a
+simple hypothesis: an unseen example is likely to contain a few outlier words
+with low probabilities under the LLM, while a seen example is less likely to
+have words with such low probabilities. Min-K% Prob can be applied without any
+knowledge about the pretraining corpus or any additional training, departing
+from previous detection methods that require training a reference model on data
+that is similar to the pretraining data. Moreover, our experiments demonstrate
+that Min-K% Prob achieves a 7.4% improvement on WIKIMIA over these previous
+methods. We apply Min-K% Prob to three real-world scenarios, copyrighted book
+detection, contaminated downstream example detection and privacy auditing of
+machine unlearning, and find it a consistently effective solution.},
+ arxiv_url = {https://arxiv.org/pdf/2310.16789v3.pdf},
+ author = {Weijia Shi and Anirudh Ajith and Mengzhou Xia and Yangsibo Huang and Daogao Liu and Terra Blevins and Danqi Chen and Luke Zettlemoyer},
+ title = {Detecting Pretraining Data from Large Language Models},
+ year = {2023}
+}
+
+@article{wang-2024-dealing,
+ abstract = {Image generation has shown remarkable results in generating high-fidelity
+realistic images, in particular with the advancement of diffusion-based models.
+However, the prevalence of AI-generated images may have side effects for the
+machine learning community that are not clearly identified. Meanwhile, the
+success of deep learning in computer vision is driven by the massive dataset
+collected on the Internet. The extensive quantity of synthetic data being added
+to the Internet would become an obstacle for future researchers to collect
+"clean" datasets without AI-generated content. Prior research has shown that
+using datasets contaminated by synthetic images may result in performance
+degradation when used for training. In this paper, we investigate the potential
+impact of contaminated datasets on Online Continual Learning (CL) research. We
+experimentally show that contaminated datasets might hinder the training of
+existing online CL methods. Also, we propose Entropy Selection with
+Real-synthetic similarity Maximization (ESRM), a method to alleviate the
+performance deterioration caused by synthetic images when training online CL
+models. Experiments show that our method can significantly alleviate
+performance deterioration, especially when the contamination is severe. For
+reproducibility, the source code of our work is available at
+https://github.com/maorong-wang/ESRM.},
+ arxiv_url = {https://arxiv.org/pdf/2411.13852v1.pdf},
+ author = {Maorong Wang and Nicolas Michel and Jiafeng Mao and Toshihiko Yamasaki},
+ github_url = {https://github.com/maorong-wang/ESRM},
+ title = {Dealing with Synthetic Data Contamination in Online Continual Learning},
+ year = {2024}
+}
+
+@article{zhang-2018-spread,
+ abstract = {For distributions $\mathbb{P}$ and $\mathbb{Q}$ with different supports or
+undefined densities, the divergence $\textrm{D}(\mathbb{P}||\mathbb{Q})$ may
+not exist. We define a Spread Divergence
+$\tilde{\textrm{D}}(\mathbb{P}||\mathbb{Q})$ on modified $\mathbb{P}$ and
+$\mathbb{Q}$ and describe sufficient conditions for the existence of such a
+divergence. We demonstrate how to maximize the discriminatory power of a given
+divergence by parameterizing and learning the spread. We also give examples of
+using a Spread Divergence to train implicit generative models, including linear
+models (Independent Components Analysis) and non-linear models (Deep Generative
+Networks).},
+ arxiv_url = {https://arxiv.org/pdf/1811.08968v5.pdf},
+ author = {Mingtian Zhang and Peter Hayes and Tom Bird and Raza Habib and David Barber},
+ journal = {Volume 119: International Conference on Machine Learning, 13-18
+  July 2020, Virtual},
+ title = {Spread Divergence},
+ year = {2018}
+}
+
+% ===========================================
+% REFERENCE CANDIDATES
+% Additional reference papers for context
+% ===========================================
+
+@article{aiyappa-2023-can,
+ abstract = {ChatGPT, the first large language model (LLM) with mass adoption, has
+demonstrated remarkable performance in numerous natural language tasks. Despite
+its evident usefulness, evaluating ChatGPT's performance in diverse problem
+domains remains challenging due to the closed nature of the model and its
+continuous updates via Reinforcement Learning from Human Feedback (RLHF). We
+highlight the issue of data contamination in ChatGPT evaluations, with a case
+study of the task of stance detection. We discuss the challenge of preventing
+data contamination and ensuring fair model evaluation in the age of closed and
+continuously trained models.},
+ arxiv_url = {https://arxiv.org/pdf/2303.12767v2.pdf},
+ author = {Rachith Aiyappa and Jisun An and Haewoon Kwak and Yong-Yeol Ahn},
+ doi = {10.18653/v1/2023.trustnlp-1.5},
+ journal = {Proceedings of the 3rd Workshop on Trustworthy Natural Language
+  Processing (TrustNLP 2023) (July 2023) 47-54},
+ title = {Can we trust the evaluation on chatgpt?},
+ year = {2023}
+}
+
+@article{austin-2021-program,
+ abstract = {This paper explores the limits of the current generation of large language
+models for program synthesis in general purpose programming languages. We
+evaluate a collection of such models (with between 244M and 137B parameters) on
+two new benchmarks, MBPP and MathQA-Python, in both the few-shot and
+fine-tuning regimes. Our benchmarks are designed to measure the ability of
+these models to synthesize short Python programs from natural language
+descriptions. The Mostly Basic Programming Problems (MBPP) dataset contains 974
+programming tasks, designed to be solvable by entry-level programmers. The
+MathQA-Python dataset, a Python version of the MathQA benchmark, contains 23914
+problems that evaluate the ability of the models to synthesize code from more
+complex text. On both datasets, we find that synthesis performance scales
+log-linearly with model size. Our largest models, even without finetuning on a
+code dataset, can synthesize solutions to 59.6 percent of the problems from
+MBPP using few-shot learning with a well-designed prompt. Fine-tuning on a
+held-out portion of the dataset improves performance by about 10 percentage
+points across most model sizes. On the MathQA-Python dataset, the largest
+fine-tuned model achieves 83.8 percent accuracy. Going further, we study the
+model's ability to engage in dialog about code, incorporating human feedback to
+improve its solutions. We find that natural language feedback from a human
+halves the error rate compared to the model's initial prediction. Additionally,
+we conduct an error analysis to shed light on where these models fall short and
+what types of programs are most difficult to generate. Finally, we explore the
+semantic grounding of these models by fine-tuning them to predict the results
+of program execution. We find that even our best models are generally unable to
+predict the output of a program given a specific input.},
+ arxiv_url = {https://arxiv.org/pdf/2108.07732v1.pdf},
+ author = {Jacob Austin and Augustus Odena and Maxwell Nye and Maarten Bosma and Henryk Michalewski and David Dohan and Ellen Jiang and Carrie Cai and Michael Terry and Quoc Le and Charles Sutton},
+ title = {Program Synthesis with Large Language Models},
+ year = {2021}
+}
+
+@article{author-year-gpt,
+ title = {Gpt-4 memorizes project euler numerical solutions}
+}
+
+@article{author-year-the,
+ title = {On the dangers of stochastic parrots: Can language models be too big?}
+}
+
+@article{biderman-2023-emergent,
+ abstract = {Memorization, or the tendency of large language models (LLMs) to output
+entire sequences from their training data verbatim, is a key concern for safely
+deploying language models. In particular, it is vital to minimize a model's
+memorization of sensitive datapoints such as those containing personal
+identifiable information (PII). The prevalence of such undesirable memorization
+can pose issues for model trainers, and may even require discarding an
+otherwise functional model. We therefore seek to predict which sequences will
+be memorized before a large model's full train-time by extrapolating the
+memorization behavior of lower-compute trial runs. We measure memorization of
+the Pythia model suite and plot scaling laws for forecasting memorization,
+allowing us to provide equi-compute recommendations to maximize the reliability
+(recall) of such predictions. We additionally provide further novel discoveries
+on the distribution of memorization scores across models and data. We release
+all code and data necessary to reproduce the results in this paper at
+https://github.com/EleutherAI/pythia},
+ arxiv_url = {https://arxiv.org/pdf/2304.11158v2.pdf},
+ author = {Stella Biderman and USVSN Sai Prashanth and Lintang Sutawika and Hailey Schoelkopf and Quentin Anthony and Shivanshu Purohit and Edward Raff},
+ title = {Emergent and predictable memorization in large language models},
+ year = {2023}
+}
+
+@article{brown-2020-language,
+ abstract = {Recent work has demonstrated substantial gains on many NLP tasks and
+benchmarks by pre-training on a large corpus of text followed by fine-tuning on
+a specific task. While typically task-agnostic in architecture, this method
+still requires task-specific fine-tuning datasets of thousands or tens of
+thousands of examples. By contrast, humans can generally perform a new language
+task from only a few examples or from simple instructions - something which
+current NLP systems still largely struggle to do. Here we show that scaling up
+language models greatly improves task-agnostic, few-shot performance, sometimes
+even reaching competitiveness with prior state-of-the-art fine-tuning
+approaches. Specifically, we train GPT-3, an autoregressive language model with
+175 billion parameters, 10x more than any previous non-sparse language model,
+and test its performance in the few-shot setting. For all tasks, GPT-3 is
+applied without any gradient updates or fine-tuning, with tasks and few-shot
+demonstrations specified purely via text interaction with the model. GPT-3
+achieves strong performance on many NLP datasets, including translation,
+question-answering, and cloze tasks, as well as several tasks that require
+on-the-fly reasoning or domain adaptation, such as unscrambling words, using a
+novel word in a sentence, or performing 3-digit arithmetic. At the same time,
+we also identify some datasets where GPT-3's few-shot learning still struggles,
+as well as some datasets where GPT-3 faces methodological issues related to
+training on large web corpora. Finally, we find that GPT-3 can generate samples
+of news articles which human evaluators have difficulty distinguishing from
+articles written by humans. We discuss broader societal impacts of this finding
+and of GPT-3 in general.},
+ arxiv_url = {https://arxiv.org/pdf/2005.14165v4.pdf},
+ author = {Tom B. Brown and Benjamin Mann and Nick Ryder and Melanie Subbiah and Jared Kaplan and Prafulla Dhariwal and Arvind Neelakantan and Pranav Shyam and Girish Sastry and Amanda Askell and Sandhini Agarwal and Ariel Herbert-Voss and Gretchen Krueger and Tom Henighan and Rewon Child and Aditya Ramesh and Daniel M. Ziegler and Jeffrey Wu and Clemens Winter and Christopher Hesse and Mark Chen and Eric Sigler and Mateusz Litwin and Scott Gray and Benjamin Chess and Jack Clark and Christopher Berner and Sam McCandlish and Alec Radford and Ilya Sutskever and Dario Amodei},
+ title = {Language models are few-shot learners},
+ year = {2020}
+}
+
+@article{carlini-2018-the,
+ abstract = {This paper describes a testing methodology for quantitatively assessing the
+risk that rare or unique training-data sequences are unintentionally memorized
+by generative sequence models---a common type of machine-learning model.
+Because such models are sometimes trained on sensitive data (e.g., the text of
+users' private messages), this methodology can benefit privacy by allowing
+deep-learning practitioners to select means of training that minimize such
+memorization.
+  In experiments, we show that unintended memorization is a persistent,
+hard-to-avoid issue that can have serious consequences. Specifically, for
+models trained without consideration of memorization, we describe new,
+efficient procedures that can extract unique, secret sequences, such as credit
+card numbers. We show that our testing strategy is a practical and easy-to-use
+first line of defense, e.g., by describing its application to quantitatively
+limit data exposure in Google's Smart Compose, a commercial text-completion
+neural network trained on millions of users' email messages.},
+ arxiv_url = {https://arxiv.org/pdf/1802.08232v3.pdf},
+ author = {Nicholas Carlini and Chang Liu and Úlfar Erlingsson and Jernej Kos and Dawn Song},
+ title = {The secret sharer: Evaluating and testing unintended memorization in neural networks},
+ year = {2018}
+}
+
+@article{carlini-2020-extracting,
+ abstract = {It has become common to publish large (billion parameter) language models
+that have been trained on private datasets. This paper demonstrates that in
+such settings, an adversary can perform a training data extraction attack to
+recover individual training examples by querying the language model.
+  We demonstrate our attack on GPT-2, a language model trained on scrapes of
+the public Internet, and are able to extract hundreds of verbatim text
+sequences from the model's training data. These extracted examples include
+(public) personally identifiable information (names, phone numbers, and email
+addresses), IRC conversations, code, and 128-bit UUIDs. Our attack is possible
+even though each of the above sequences are included in just one document in
+the training data.
+  We comprehensively evaluate our extraction attack to understand the factors
+that contribute to its success. Worryingly, we find that larger models are more
+vulnerable than smaller models. We conclude by drawing lessons and discussing
+possible safeguards for training large language models.},
+ arxiv_url = {https://arxiv.org/pdf/2012.07805v2.pdf},
+ author = {Nicholas Carlini and Florian Tramer and Eric Wallace and Matthew Jagielski and Ariel Herbert-Voss and Katherine Lee and Adam Roberts and Tom Brown and Dawn Song and Ulfar Erlingsson and Alina Oprea and Colin Raffel},
+ title = {Extracting training data from large language models},
+ year = {2020}
+}
+
+@article{carlini-2022-quantifying,
+ abstract = {Large language models (LMs) have been shown to memorize parts of their
+training data, and when prompted appropriately, they will emit the memorized
+training data verbatim. This is undesirable because memorization violates
+privacy (exposing user data), degrades utility (repeated easy-to-memorize text
+is often low quality), and hurts fairness (some texts are memorized over
+others).
+  We describe three log-linear relationships that quantify the degree to which
+LMs emit memorized training data. Memorization significantly grows as we
+increase (1) the capacity of a model, (2) the number of times an example has
+been duplicated, and (3) the number of tokens of context used to prompt the
+model. Surprisingly, we find the situation becomes more complicated when
+generalizing these results across model families. On the whole, we find that
+memorization in LMs is more prevalent than previously believed and will likely
+get worse as models continues to scale, at least without active mitigations.},
+ arxiv_url = {https://arxiv.org/pdf/2202.07646v3.pdf},
+ author = {Nicholas Carlini and Daphne Ippolito and Matthew Jagielski and Katherine Lee and Florian Tramer and Chiyuan Zhang},
+ title = {Quantifying memorization across neural language models},
+ year = {2022}
+}
+
+@article{chang-2023-speak,
+ abstract = {In this work, we carry out a data archaeology to infer books that are known
+to ChatGPT and GPT-4 using a name cloze membership inference query. We find
+that OpenAI models have memorized a wide collection of copyrighted materials,
+and that the degree of memorization is tied to the frequency with which
+passages of those books appear on the web. The ability of these models to
+memorize an unknown set of books complicates assessments of measurement
+validity for cultural analytics by contaminating test data; we show that models
+perform much better on memorized books than on non-memorized books for
+downstream tasks. We argue that this supports a case for open models whose
+training data is known.},
+ arxiv_url = {https://arxiv.org/pdf/2305.00118v2.pdf},
+ author = {Kent K. Chang and Mackenzie Cramer and Sandeep Soni and David Bamman},
+ title = {Speak, memory: An archaeology of books known to chatgpt/gpt-4},
+ year = {2023}
+}
+
+@article{chen-2021-evaluating,
+ abstract = {We introduce Codex, a GPT language model fine-tuned on publicly available
+code from GitHub, and study its Python code-writing capabilities. A distinct
+production version of Codex powers GitHub Copilot. On HumanEval, a new
+evaluation set we release to measure functional correctness for synthesizing
+programs from docstrings, our model solves 28.8% of the problems, while GPT-3
+solves 0% and GPT-J solves 11.4%. Furthermore, we find that repeated sampling
+from the model is a surprisingly effective strategy for producing working
+solutions to difficult prompts. Using this method, we solve 70.2% of our
+problems with 100 samples per problem. Careful investigation of our model
+reveals its limitations, including difficulty with docstrings describing long
+chains of operations and with binding operations to variables. Finally, we
+discuss the potential broader impacts of deploying powerful code generation
+technologies, covering safety, security, and economics.},
+ arxiv_url = {https://arxiv.org/pdf/2107.03374v2.pdf},
+ author = {Mark Chen and Jerry Tworek and Heewoo Jun and Qiming Yuan and Henrique Ponde de Oliveira Pinto and Jared Kaplan and Harri Edwards and Yuri Burda and Nicholas Joseph and Greg Brockman and Alex Ray and Raul Puri and Gretchen Krueger and Michael Petrov and Heidy Khlaaf and Girish Sastry and Pamela Mishkin and Brooke Chan and Scott Gray and Nick Ryder and Mikhail Pavlov and Alethea Power and Lukasz Kaiser and Mohammad Bavarian and Clemens Winter and Philippe Tillet and Felipe Petroski Such and Dave Cummings and Matthias Plappert and Fotios Chantzis and Elizabeth Barnes and Ariel Herbert-Voss and William Hebgen Guss and Alex Nichol and Alex Paino and Nikolas Tezak and Jie Tang and Igor Babuschkin and Suchir Balaji and Shantanu Jain and William Saunders and Christopher Hesse and Andrew N. Carr and Jan Leike and Josh Achiam and Vedant Misra and Evan Morikawa and Alec Radford and Matthew Knight and Miles Brundage and Mira Murati and Katie Mayer and Peter Welinder and Bob McGrew and Dario Amodei and Sam McCandlish and Ilya Sutskever and Wojciech Zaremba},
+ title = {Evaluating Large Language Models Trained on Code},
+ year = {2021}
+}
+
+@article{chowdhery-2022-palm,
+ abstract = {Large language models have been shown to achieve remarkable performance
+across a variety of natural language tasks using few-shot learning, which
+drastically reduces the number of task-specific training examples needed to
+adapt the model to a particular application. To further our understanding of
+the impact of scale on few-shot learning, we trained a 540-billion parameter,
+densely activated, Transformer language model, which we call Pathways Language
+Model PaLM. We trained PaLM on 6144 TPU v4 chips using Pathways, a new ML
+system which enables highly efficient training across multiple TPU Pods. We
+demonstrate continued benefits of scaling by achieving state-of-the-art
+few-shot learning results on hundreds of language understanding and generation
+benchmarks. On a number of these tasks, PaLM 540B achieves breakthrough
+performance, outperforming the finetuned state-of-the-art on a suite of
+multi-step reasoning tasks, and outperforming average human performance on the
+recently released BIG-bench benchmark. A significant number of BIG-bench tasks
+showed discontinuous improvements from model scale, meaning that performance
+steeply increased as we scaled to our largest model. PaLM also has strong
+capabilities in multilingual tasks and source code generation, which we
+demonstrate on a wide array of benchmarks. We additionally provide a
+comprehensive analysis on bias and toxicity, and study the extent of training
+data memorization with respect to model scale. Finally, we discuss the ethical
+considerations related to large language models and discuss potential
+mitigation strategies.},
+ arxiv_url = {https://arxiv.org/pdf/2204.02311v5.pdf},
+ author = {Aakanksha Chowdhery and Sharan Narang and Jacob Devlin and Maarten Bosma and Gaurav Mishra and Adam Roberts and Paul Barham and Hyung Won Chung and Charles Sutton and Sebastian Gehrmann and Parker Schuh and Kensen Shi and Sasha Tsvyashchenko and Joshua Maynez and Abhishek Rao and Parker Barnes and Yi Tay and Noam Shazeer and Vinodkumar Prabhakaran and Emily Reif and Nan Du and Ben Hutchinson and Reiner Pope and James Bradbury and Jacob Austin and Michael Isard and Guy Gur-Ari and Pengcheng Yin and Toju Duke and Anselm Levskaya and Sanjay Ghemawat and Sunipa Dev and Henryk Michalewski and Xavier Garcia and Vedant Misra and Kevin Robinson and Liam Fedus and Denny Zhou and Daphne Ippolito and David Luan and Hyeontaek Lim and Barret Zoph and Alexander Spiridonov and Ryan Sepassi and David Dohan and Shivani Agrawal and Mark Omernick and Andrew M. Dai and Thanumalayan Sankaranarayana Pillai and Marie Pellat and Aitor Lewkowycz and Erica Moreira and Rewon Child and Oleksandr Polozov and Katherine Lee and Zongwei Zhou and Xuezhi Wang and Brennan Saeta and Mark Diaz and Orhan Firat and Michele Catasta and Jason Wei and Kathy Meier-Hellstern and Douglas Eck and Jeff Dean and Slav Petrov and Noah Fiedel},
+ title = {Palm: Scaling language modeling with pathways},
+ year = {2022}
+}
+
+@article{dodge-2021-documenting,
+ abstract = {Large language models have led to remarkable progress on many NLP tasks, and
+researchers are turning to ever-larger text corpora to train them. Some of the
+largest corpora available are made by scraping significant portions of the
+internet, and are frequently introduced with only minimal documentation. In
+this work we provide some of the first documentation for the Colossal Clean
+Crawled Corpus (C4; Raffel et al., 2020), a dataset created by applying a set
+of filters to a single snapshot of Common Crawl. We begin by investigating
+where the data came from, and find a significant amount of text from unexpected
+sources like patents and US military websites. Then we explore the content of
+the text itself, and find machine-generated text (e.g., from machine
+translation systems) and evaluation examples from other benchmark NLP datasets.
+To understand the impact of the filters applied to create this dataset, we
+evaluate the text that was removed, and show that blocklist filtering
+disproportionately removes text from and about minority individuals. Finally,
+we conclude with some recommendations for how to created and document web-scale
+datasets from a scrape of the internet.},
+ arxiv_url = {https://arxiv.org/pdf/2104.08758v2.pdf},
+ author = {Jesse Dodge and Maarten Sap and Ana Marasović and William Agnew and Gabriel Ilharco and Dirk Groeneveld and Margaret Mitchell and Matt Gardner},
+ title = {Documenting large webtext corpora: A case study on the colossal clean crawled corpus},
+ year = {2021}
+}
