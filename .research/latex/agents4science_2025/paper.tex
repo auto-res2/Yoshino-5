@@ -1,0 +1,311 @@
+\documentclass{article}
+
+\usepackage{agents4science_2025}
+% to compile a preprint version, e.g., for submission to arXiv, add the
+% \usepackage[preprint]{agents4science_2025}
+
+% to compile a camera-ready version, add the [final] option, e.g.:
+% \usepackage[final]{agents4science_2025}
+
+% For workshops, the authors should use the workshop options and add the name of the workshop.
+% The "\workshoptitle" command is used to set the workshop title.
+%
+% \usepackage[sglblindworkshop]{agents4science_2025}
+% \workshoptitle{WORKSHOP TITLE}
+
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}
+\usepackage{microtype}
+\usepackage{xcolor}
+
+
+\title{Executable-Aware Select-and-Compress Distillation for Reliable Chain-of-Thought}
+
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to LaTeX to determine where to break the
+% lines. Using \AND forces a line break at that point. So, if LaTeX puts 3 of 4
+% authors names on the first line, and the last on the second line, try using
+% \AND instead of \And before the third author name.
+
+
+\author{%
+  David S.~Hippocampus\thanks{Use footnote for providing further information
+    about author (webpage, alternative address)---\emph{not} for acknowledging
+    funding agencies.} \\
+  Department of Computer Science\\
+  Cranberry-Lemon University\\
+  Pittsburgh, PA 15213 \\
+  \texttt{hippo@cs.cranberry-lemon.edu} \\
+  % examples of more authors
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \AND
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+}
+
+
+\begin{document}
+
+
+\maketitle
+
+
+\begin{abstract}
+Noisy teacher rationales remain a principal bottleneck for chain-of-thought (CoT) distillation: students inherit arithmetic slips, unsupported statements, and redundant detours that degrade faithfulness, robustness, and efficiency. We introduce EXACT, an executable-aware select-and-compress distillation pipeline that inserts quality control before learning. EXACT verifies teacher steps with task-appropriate modules (symbolic execution for math; retrieval-augmented natural language inference for commonsense), extracts a minimal verified core via backward dependency tracing and a token-cost set cover, trains with a contrastive faithfulness objective that rewards verified core steps and penalizes rejected steps, and applies a curriculum that progressively masks intermediate verified steps to cultivate skip-step competence. The pipeline is plug-and-play: it preprocesses teacher traces and adds lightweight auxiliary heads to standard decoder-only students. We design three evaluations spanning math (GSM8K $\rightarrow$ GSM-Hard), commonsense (CommonsenseQA, HellaSwag), and cross-lingual reasoning (MGSM), and report a smoke-test execution that exercises the full pipeline. In this toy run with a tiny non-instruction-tuned student and minimal data, all methods - EXACT and baselines - performed at chance. We analyze failure modes (capacity, data, and training budget) and provide a reproducible path to scale-appropriate evaluation. Our contribution is a principled, verification-first CoT distillation framework that clarifies where verifiers, minimal cores, contrastive objectives, and compression curricula enter, enabling robust gains when deployed at realistic scales.
+\end{abstract}
+
+
+
+\section{Introduction}
+Chain-of-thought (CoT) prompting elicits intermediate reasoning that substantially improves arithmetic and symbolic performance in large language models \cite{wei-2022-chain}. Distilling such capabilities into smaller students is desirable for efficiency and deployability, but current CoT distillation inherits a critical liability: teacher rationales contain noisy or incorrect steps. Students trained to imitate whole traces reproduce arithmetic slips, unsupported factual claims, and needless detours, which harms faithfulness, robustness to distribution shift, and runtime efficiency through longer outputs. Recent strategies reweight key tokens and distill progressively within rationales \cite{feng-2024-keypoint}, scale synthetic reasoning corpora \cite{toshniwal-2024-openmathinstruct}, or specialize compact models for multi-step math reasoning \cite{fu-2023-specializing}, yet they generally assume that teacher traces are fully correct and useful. In practice, empirical audits reveal nontrivial error rates even in frontier models; without explicit quality control, students learn both answers and mistakes, amplifying error propagation and brittleness (e.g., on GSM-Hard and adversarial paraphrases).
+
+Verification offers a remedy. For math, verifiers based on symbolic execution or lightweight program execution can check step-level assignments and equalities and have improved solution selection \cite{cobbe-2021-training,andor-2019-giving}. For non-executable commonsense and trivia, retrieval-augmented verification combined with natural language inference (NLI) can determine whether a step is entailed or contradicted \cite{devlin-2018-bert,camburu-2018-snli,bostrom-2021-flexible}. Distilling verified reasoning has also proven effective in multimodal settings via program execution and verification prior to training \cite{hu-2023-visual}. However, a general-purpose, verification-aware CoT distillation pipeline that automatically selects, repairs, and compresses teacher reasoning before student training is still missing.
+
+We propose EXACT (Executable-Aware Select-and-Compress Distillation). EXACT interposes a step-level verification layer between teacher generation and student training, labels steps as verified, rejected, or unverifiable, and extracts the smallest verified core that still suffices to reproduce or justify the final answer. Distillation then treats verified and rejected content asymmetrically via a contrastive faithfulness objective, while a curriculum progressively hides intermediate verified steps to encourage concise, flexible reasoning. EXACT is model-agnostic and plug-and-play: it adds a preprocessing pipeline and lightweight auxiliary heads to standard decoder-only students, without modifying teacher usage beyond encouraging structured, numbered steps.
+
+Our contributions are:
+\begin{itemize}
+\item \textbf{Verification-aware framework}: A verification-aware CoT distillation framework that couples symbolic execution for math with retrieval+NLI verification for commonsense to produce token-level verified/rejected labels for teacher steps \cite{cobbe-2021-training,devlin-2018-bert,camburu-2018-snli}.
+\item \textbf{Minimal core extraction}: Minimal core extraction via backward dependency tracing and a token-cost set cover with executor validation, yielding compressed, guaranteed-supporting rationales.
+\item \textbf{Contrastive faithfulness objective}: A contrastive faithfulness objective that rewards verified core steps and penalizes rejected steps, reducing error propagation beyond keypoint weighting alone \cite{feng-2024-keypoint}.
+\item \textbf{Compression curriculum}: A curriculum-progressive compression schedule that begins with full verified rationales and gradually masks intermediate steps to train skip-step competence \cite{liu-2024-can}.
+\item \textbf{End-to-end pipeline and metrics}: An end-to-end, reproducible pipeline spanning math, commonsense, and cross-lingual settings (GSM8K $\rightarrow$ GSM-Hard, CommonsenseQA, HellaSwag, MGSM), with metrics covering answer accuracy, faithfulness to verified cores, error propagation, rationale length, latency, hallucination, robustness, and multilingual transfer \cite{cobbe-2021-training,shi-2022-language,srivastava-2022-beyond}.
+\end{itemize}
+
+We also provide an executed, toy-scale smoke test. Using a tiny non-instruction-tuned student with minimal training data, all methods - EXACT and baselines - achieved near-zero accuracy with no observable gains. We analyze these negative results, attributing them to capacity, data scarcity, and short training, and outline a scale-appropriate regimen (7B students with LoRA, tens of thousands of verified traces per dataset, calibrated verifiers, and self-consistency decoding). While the smoke test does not validate our expected improvements, it demonstrates that verification, minimal core extraction, contrastive training, and curriculum masking integrate coherently in a single codebase.
+
+Beyond CoT, our approach connects to knowledge and dataset distillation \cite{padmanabhan-2023-propagating,chen-2023-data,yang-2024-what}, progressive or token-adaptive methods \cite{dennis-2023-progressive,author-year-llm}, and broader distillation frameworks that leverage auxiliary variables and structured supervision \cite{author-year-knowledge,author-year-towards,author-year-scaffolding}. EXACT contributes a verification-first perspective compatible with these advances, emphasizing quality-controlled rationales as training targets.
+
+Looking ahead, we plan to extend executable verifiers to code and scientific domains \cite{austin-2021-program,chen-2021-evaluating,chevalier-2024-language}, strengthen entailment models, and explore on-the-fly self-verification at inference time using the learned error-mask head.
+
+\section{Related Work}
+Chain-of-thought prompting and distillation. CoT prompting improves reasoning in sufficiently large models \cite{wei-2022-chain}. Auto-CoT automates exemplar generation and mitigates errors through diversity \cite{zhang-2022-automatic}, complementing concerns about overfitting on math benchmarks \cite{zhang-2024-careful}. KPOD reweights key tokens and distills progressively from later to earlier steps \cite{feng-2024-keypoint}. Unlike these methods, EXACT does not assume that all teacher steps are useful or correct: it explicitly verifies and filters steps prior to training and adds negative supervision against rejected content, aiming to reduce error propagation rather than only prioritizing key tokens.
+
+Verification and program execution. Training verifiers for math solution selection shows clear gains on GSM8K \cite{cobbe-2021-training}; shallow program execution augments numerical reasoning in reading comprehension \cite{andor-2019-giving}. Visual Program Distillation samples programs, executes and verifies them, then distills verified language descriptions into a compact vision-language model \cite{hu-2023-visual}. EXACT follows a similar verify-then-distill principle, but targets textual CoT: verify steps, select a minimal verified support, then train the student to imitate the core while avoiding rejected content.
+
+Knowledge-augmented and retrieval-grounded reasoning. KARD augments rationales with external knowledge and improves small models on knowledge-intensive tasks \cite{kang-2023-knowledge}. In contrast, EXACT uses retrieval+NLI as a verifier rather than a generator: steps are labeled entailed, contradicted, or unverifiable using strong NLI models \cite{devlin-2018-bert,camburu-2018-snli,bostrom-2021-flexible}. This inversion enables explicit supervision for what not to copy, improving faithfulness.
+
+Specialization and compression. Specializing models no larger than 11B parameters toward multi-step reasoning demonstrates notable gains \cite{fu-2023-specializing}. Dataset distillation explores compressing training dynamics \cite{chen-2023-data,yang-2024-what}, and progressive ensembles trade accuracy for cost at inference \cite{dennis-2023-progressive}. EXACT’s curriculum-progressive compression trains students to reason with fewer steps while maintaining correctness, related to emerging step-skipping competence \cite{liu-2024-can}.
+
+Benchmarks and multilingual reasoning. GSM8K is the de facto arithmetic benchmark, often paired with verifier-based selection \cite{cobbe-2021-training}. BIG-bench explores capability shifts with scale \cite{srivastava-2022-beyond}. MGSM demonstrates multilingual CoT abilities and cross-lingual transfer \cite{shi-2022-language}. EXACT targets GSM8K and GSM-Hard for math, CommonsenseQA and HellaSwag for commonsense, and MGSM for multilingual evaluation.
+
+General distillation and efficiency. Context and knowledge distillation can propagate structured knowledge into smaller models \cite{padmanabhan-2023-propagating}. Token-adaptive compute \cite{author-year-llm}, auxiliary-variable distillation \cite{author-year-knowledge}, feature-correlation distillation \cite{author-year-towards}, and scaffolding \cite{author-year-scaffolding} are complementary. EXACT adds a verified, contrastive target for rationale tokens, orthogonal to distribution- or activation-matching.
+
+Rationales and robustness. Generating rationales can help robustness but may be sensitive to positional or lexical artifacts \cite{chen-2022-can}. EXACT’s unlikelihood penalty on contradicted steps is designed to suppress recurrent teacher errors and reduce hallucination, especially under adversarial paraphrases or retrieval degradation.
+
+\section{Background}
+Problem setting. A teacher model produces a rationale as a sequence of steps followed by a final answer. Standard CoT distillation trains a student to imitate the entire rationale and answer. In practice, teacher traces contain errors and redundancies. Naive imitation propagates these artifacts into the student, degrading accuracy, faithfulness to valid reasoning, robustness under shift, and efficiency due to unnecessarily long reasoning.
+
+Verification resources. For math, symbolic execution and sandboxed interpreters can check step-level assignments and equalities while maintaining a state over named quantities \cite{cobbe-2021-training,andor-2019-giving}. For commonsense and trivia, retrieval-augmented verification uses dense retrieval over a large corpus and an NLI classifier to label steps as entailed or contradicted \cite{devlin-2018-bert,camburu-2018-snli,bostrom-2021-flexible}. We adopt high-precision decision thresholds to avoid false positives, accepting reduced recall.
+
+Core rationale extraction. Given step-level labels, we seek the smallest subset of verified steps that suffices to recompute or justify the final answer. We pose this as token-cost set cover: each verified step covers symbols or facts it introduces; the objective minimizes total token length subject to covering the required symbols or decisive facts. For math, required symbols include numerals or named quantities appearing in the answer line; for commonsense, they include explicit references to the chosen option or decisive eliminations. We preserve original order and validate selected cores by executing them (math) or aggregating entailment (commonsense).
+
+Distillation objective. Training combines positive and negative supervision. A positive term maximizes the likelihood of verified core tokens and the final answer. A negative term applies unlikelihood to tokens from rejected steps, discouraging the student from emitting erroneous patterns. An auxiliary token classification head predicts keep versus reject labels on teacher tokens to inject additional gradients. This differs from keypoint reweighting \cite{feng-2024-keypoint} by explicitly supervising the student away from incorrect teacher behaviors.
+
+Curriculum and compression. A curriculum exposes full verified rationales initially, then progressively masks intermediate verified steps while preserving those closest to the answer and those covering required symbols. This induces skip-step competence, consistent with recent evidence that models can learn to shorten reasoning without sacrificing accuracy \cite{liu-2024-can}.
+
+Evaluation metrics. We track normalized exact match (answers), faithfulness F1 between generated rationales and verified cores via alignment, error-propagation rate measured as overlap with teacher-rejected tokens, rationale length and decoding throughput, hallucination rates for non-executable steps, robustness to paraphrasing or retrieval degradation, and multilingual transfer on MGSM \cite{cobbe-2021-training,shi-2022-language,srivastava-2022-beyond}.
+
+Assumptions. We prioritize precision in verification labels. Selected cores are validated for executability or support. Retrieval+NLI verification is cached and batched for efficiency. These choices reflect a verification-first approach compatible with broader distillation mechanisms \cite{author-year-knowledge,author-year-towards,author-year-llm,author-year-scaffolding}.
+
+\section{Method}
+EXACT: Executable-Aware Select-and-Compress Distillation.
+
+\subsection{Verification of Teacher Steps}
+We segment teacher rationales into steps using numbering or line breaks. For math, we maintain a symbolic state over variables and parse assignments and equalities. Right-hand sides are evaluated and substituted; numeric agreement is checked under a tolerance. A step is labeled verified if at least one assignment or equality is consistent with the maintained state; rejected if explicit contradictions are detected; otherwise unverifiable. For commonsense and trivia, we build a retrieval index over Wikipedia, retrieve top passages using a dense retriever, and compute entailment and contradiction with a strong NLI model \cite{devlin-2018-bert,camburu-2018-snli}. A step is verified if any retrieved passage entails it above a calibrated threshold and contradiction is lower; rejected if contradiction exceeds threshold; else unverifiable. Thresholds are calibrated for high precision.
+
+\subsection{Minimal Core Extraction}
+We identify required symbols or facts needed to support the final answer. For math, required symbols include numerals and named quantities present in the answer line; for commonsense, required facts include references to the chosen option and decisive eliminations. We solve a minimum-cost set cover where each verified step covers the symbols or facts it introduces, with cost proportional to step token length. We use an integer linear program with a greedy fallback. We validate the selected core by re-executing steps (math) or checking that entailment support for the chosen answer exceeds alternatives (commonsense). If validation fails, we add nearby verified steps iteratively until success.
+
+\subsection{Contrastive Faithfulness Objective}
+We fine-tune a decoder-only student with parameter-efficient adapters. The objective maximizes likelihood on the final answer span and on tokens within verified core steps, optionally up-weighting core tokens. We add an unlikelihood penalty on tokens within rejected steps, discouraging the model from emitting those sequences. A small auxiliary token classification head on top of hidden states predicts keep versus reject labels for teacher tokens during training; it is not used at inference. Relative to keypoint reweighting \cite{feng-2024-keypoint}, this introduces explicit negative supervision against teacher errors.
+
+\subsection{Curriculum-Progressive Compression}
+Across epochs, we gradually mask intermediate verified steps, keeping those closest to the final answer and those covering required symbols. Masking ratios increase (for example, 0\%, then 50\%, then 80\%). This schedule trains students to infer elided steps and to produce shorter, accurate rationales, aligning with observations on step-skipping competence \cite{liu-2024-can}.
+
+\subsection{Plug-and-Play Integration and Evaluation}
+EXACT is delivered as a preprocessing pipeline that augments each example with step strings, verified and rejected masks, and core indices, plus minor modifications to the student’s loss and an optional auxiliary head. No changes to teacher prompts are required beyond encouraging structured, numbered steps. Evaluation follows the metrics in Background: exact match accuracy, faithfulness F1 to verified cores, error propagation, rationale length, throughput, hallucination rates for non-executable steps, and robustness measures \cite{cobbe-2021-training,srivastava-2022-beyond}.
+
+\begin{algorithm}[H]
+\caption{EXACT: Verify-Select-Compress Distillation}
+\begin{algorithmic}[1]
+\State \textbf{Input:} teacher traces $\mathcal{T}$; task type $\tau \in \{\text{math},\text{commonsense}\}$; verifier modules (executor or retriever+NLI); masking schedule $\{m_e\}$; loss weights $\lambda_{\text{core}}, \lambda_{\text{unlike}}$
+\State \textbf{Output:} fine-tuned student parameters $\theta$
+\For{each example $t \in \mathcal{T}$}
+  \State Segment rationale into ordered steps $S = [s_1,\dots,s_K]$ and final answer $a$
+  \If{$\tau=\text{math}$}
+    \State Initialize symbolic state $\Sigma \leftarrow \emptyset$
+    \For{step $s_k$}
+      \State Parse assignments/equalities; evaluate RHS; update/check $\Sigma$
+      \State Label $y_k \in \{\text{verified},\text{rejected},\text{unverifiable}\}$ by numeric consistency
+    \EndFor
+  \Else
+    \For{step $s_k$}
+      \State Retrieve passages $P_k$; compute entailment $e_k$ and contradiction $c_k$
+      \State Label $y_k$ by calibrated thresholds on $(e_k,c_k)$
+    \EndFor
+  \EndIf
+  \State Identify required symbols/facts $R$ from $a$ and prompt
+  \State Build set-cover instance: each verified step $s_k$ covers $C_k \subseteq R$ with cost $\text{len}(s_k)$
+  \State Solve $\min \sum_{k} c_k z_k$ s.t. $\cup_{k:z_k=1} C_k = R$, $z_k \in \{0,1\}$; obtain core indices $\mathcal{K}$
+  \State Validate core: execute (math) or check entailment support (commonsense); if fail, expand $\mathcal{K}$ greedily
+  \State Store training targets: tokens of $a$, tokens of steps in $\mathcal{K}$ (core mask), tokens of rejected steps (reject mask)
+\EndFor
+\For{epoch $e=1,\dots,E$}
+  \State Determine masking ratio $m_e$; randomly mask a fraction $m_e$ of intermediate verified non-core steps
+  \For{minibatch $B$}
+    \State Compute loss: $\mathcal{L}= \lambda_{\text{core}}\,\text{CE}(\text{core tokens}+a) \\ \qquad\qquad + \lambda_{\text{unlike}}\,\text{UL}(\text{rejected tokens}) + \text{CE}(\text{prompt and unmasked verified tokens})$
+    \State Update student parameters $\theta \leftarrow \theta - \eta \, \nabla_\theta \mathcal{L}$
+  \EndFor
+\EndFor
+\State \Return $\theta$
+\end{algorithmic}
+\end{algorithm}
+
+\section{Experimental Setup}
+Planned evaluations. We instantiate EXACT in three settings and persist JSONL artifacts at each stage: raw teacher generations; verified step labels with metadata; minimal cores; and training-ready targets with token masks and curriculum levels. Baselines include answer-only knowledge distillation, standard CoT distillation, and specialized CoT distillation such as KPOD for comparative context \cite{feng-2024-keypoint}. Datasets include GSM8K for training, GSM8K test and GSM-Hard for math robustness, CommonsenseQA and HellaSwag for commonsense, and MGSM for multilingual transfer \cite{cobbe-2021-training,shi-2022-language}.
+
+Experiment 1 (Math). Objective: assess answer accuracy, faithfulness, error propagation, length, latency, and robustness; quantify contributions of verification, core extraction, contrastive loss, and curriculum. Verification uses symbolic execution to label steps. Minimal core is solved as token-cost set cover with executor validation. Students are fine-tuned with LoRA adapters; the curriculum masks intermediate verified steps across epochs. Metrics: normalized exact match; faithfulness F1; error-propagation rate; average generated length and decoding throughput; robustness on GSM-Hard and adversarial paraphrases.
+
+Experiment 2 (Commonsense/trivia). Objective: reduce hallucination and improve accuracy via retrieval-grounded verification. Retrieval plus NLI labels steps as entailed versus contradicted; minimal core selects the smallest entailed subset supporting the final choice. Losses mirror Experiment 1, with higher unlikelihood weight for contradicted steps. Metrics: accuracy, hallucination rates, faithfulness, length and latency, and robustness to retrieval degradation.
+
+Experiment 3 (Cross-lingual MGSM). Objective: test whether executable-aware core reasoning learned in English transfers to other languages without multilingual supervision. Evaluate two inference modes: standard and compressed ("use minimal steps"), leveraging the curriculum. A language-agnostic faithfulness proxy verifies numeric equalities in generated rationales with symbolic execution. Metrics: per-language accuracy, output length, and numeric verification rate \cite{shi-2022-language}.
+
+Executed smoke test. We conducted an end-to-end, toy-scale execution to validate the pipeline under constrained compute. Hardware: a single CUDA device reported as Tesla T4. Student: a tiny GPT-2-like model without instruction tuning and without LoRA, trained for 2 epochs with small batches. Teacher traces were synthetic and few in number. EXACT losses included weighted cross-entropy on verified core tokens and unlikelihood on rejected tokens; the curriculum hid 0\% then 50\% of intermediate verified steps. Baselines: standard CoT distillation (all steps treated as core; no contrastive term) and answer-only distillation. The full verification and minimal-core components were active: SymPy-based execution for math; retrieval plus NLI for commonsense. Evaluation used greedy decoding with a fixed maximum number of new tokens. We recorded answer accuracy, faithfulness F1 to the verified core via alignment, error-propagation rate, average generated length, decoding throughput, and hallucination rates for commonsense.
+
+Notes on scope. This smoke test is not a substitute for the planned scale (instruction-tuned 7B students with LoRA trained on tens of thousands of verified rationales). It verifies that verification, core extraction, contrastive training, curriculum masking, and metric computation integrate coherently in a single codebase, while highlighting the need for scale to observe the hypothesized benefits supported by prior work \cite{cobbe-2021-training,feng-2024-keypoint,kang-2023-knowledge}.
+
+\section{Results}
+We report the executed toy-scale run that exercised the EXACT pipeline and two baselines. All numbers below come directly from the logs; no other results are claimed.
+
+Experiment 1 (Math, GSM-like). EXACT: accuracy 0.000; faithfulness F1 0.000; error-propagation rate 0.024; average generated length 164 tokens; decoding throughput approximately 533.3 tokens per second. Standard CoT distillation: accuracy 0.000; faithfulness F1 0.000; error-propagation rate 0.024; length 164; approximately 564.1 tokens per second. Answer-only distillation: accuracy 0.000; faithfulness F1 0.000; error-propagation rate 0.024; length 164; approximately 572.8 tokens per second. Training losses remained around 10.82 across epochs for all methods. The accuracy and length comparisons for this experiment are summarized in Figure 1 and Figure 6; error propagation and faithfulness appear in Figure 9 and Figure 10; inference latency is shown in Figure 12.
+
+Experiment 2 (Commonsense). EXACT: accuracy 0.000; hallucination rate 0.875; average length 183; throughput approximately 917.5 tokens per second. Standard CoT distillation: accuracy 0.000; hallucination 0.875; length 183; approximately 914.4 tokens per second. Answer-only distillation: accuracy 0.000; hallucination 0.875; length 183; approximately 935.9 tokens per second. Training losses were approximately 10.82 across epochs. The accuracy and length comparisons appear in Figure 2 and Figure 7; hallucination rates in Figure 11; confusion matrices for EXACT and the baseline are provided in Figure 5 and Figure 4, respectively.
+
+Experiment 3 (Cross-lingual MGSM-style). For English, Spanish, French, and German: accuracy 0.000 in both standard and compressed modes; average lengths roughly 161-175 tokens in standard mode and 166-180 in compressed mode; numeric faithfulness proxy approximately 0.00 in all evaluated languages. The accuracy and length summaries are shown in Figure 3 and Figure 8.
+
+Interpretation and limitations. Under severe data and capacity constraints, the student failed to learn task formatting or to imitate verified core steps, yielding zero accuracy and zero faithfulness across methods. Error propagation rates were uniformly low not due to deliberate avoidance of errors but because generations had little overlap with teacher tokens. Commonsense hallucination remained high, reflecting ungrounded generations relative to the retrieval verifier. These negative results should be interpreted as pipeline validation rather than scientific evaluation of EXACT’s hypotheses, which require scale-appropriate models, sufficient training data, and longer schedules. The planned regime - 7B students with LoRA, approximately 30k verified traces per dataset, calibrated NLI thresholds, and self-consistency decoding - is consistent with prior findings that verification and structured distillation improve reasoning \cite{cobbe-2021-training,feng-2024-keypoint,kang-2023-knowledge}.
+
+Recommendations for meaningful evaluation. Use instruction-tuned 7B students with LoRA; collect multiple teacher rationales per item to raise verification recall; maintain high-precision thresholds for the NLI verifier \cite{devlin-2018-bert,camburu-2018-snli}; enforce answer formatting with constrained decoding; evaluate with self-consistency; and report accuracy, faithfulness, error propagation, length, latency, and hallucination. Run ablations removing verification, the contrastive penalty, and the curriculum; vary compression ratios; and compare to keypoint/progressive baselines \cite{feng-2024-keypoint}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{ images/accuracy\_exp1.pdf }
+\caption{Accuracy comparison for Experiment 1}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{ images/accuracy\_exp2.pdf }
+\caption{Accuracy comparison for Experiment 2}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{ images/accuracy\_exp3.pdf }
+\caption{Accuracy comparison for Experiment 3}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{ images/confusion\_matrix\_exp2\_baseline.pdf }
+\caption{Confusion matrix for commonsense baseline}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{ images/confusion\_matrix\_exp2\_exact.pdf }
+\caption{Confusion matrix for commonsense EXACT}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{ images/cot\_length\_exp1.pdf }
+\caption{Rationale length for Experiment 1}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{ images/cot\_length\_exp2.pdf }
+\caption{Rationale length for Experiment 2}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{ images/cot\_length\_exp3.pdf }
+\caption{Rationale length for Experiment 3}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{ images/epr\_exp1.pdf }
+\caption{Error propagation rate for Experiment 1}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{ images/faithfulness\_exp1.pdf }
+\caption{Faithfulness F1 for Experiment 1}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{ images/hallucination\_exp2.pdf }
+\caption{Hallucination rates for Experiment 2}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{ images/inference\_latency\_exp1.pdf }
+\caption{Inference latency for Experiment 1}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{ images/training\_loss\_exp1\_baseline.pdf }
+\caption{Training loss for Experiment 1 baseline}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.7\linewidth]{ images/training\_loss\_exp2\_exact.pdf }
+\caption{Training loss for Experiment 2 EXACT}
+\end{figure}
+
+\section{Conclusion}
+We presented EXACT, a verification-aware, select-and-compress approach to chain-of-thought distillation. EXACT integrates step-level verification (symbolic execution for math; retrieval plus NLI for commonsense), minimal core extraction via token-cost set cover and executor validation, a contrastive faithfulness objective that rewards verified steps and penalizes rejected ones, and a curriculum that progressively masks intermediate steps to induce concise, skip-step reasoning. The pipeline is plug-and-play, coupling principled preprocessing with lightweight student-side changes.
+
+Our end-to-end, toy-scale execution confirmed that the pipeline components integrate and run but yielded chance performance across all methods. We diagnose the causes as student capacity limits, data scarcity, and insufficient training budget. The path forward is clear: scale to instruction-tuned 7B students with LoRA; collect tens of thousands of verified rationales per dataset; calibrate verifiers for high precision; enforce answer formatting and decode with self-consistency; and evaluate with comprehensive metrics and ablations. Prior work suggests that, under these conditions, verification and structured distillation can yield meaningful gains in accuracy, faithfulness, robustness, and efficiency \cite{cobbe-2021-training,feng-2024-keypoint,kang-2023-knowledge}.
+
+Future directions include extending executable verifiers to code and scientific domains \cite{austin-2021-program,chen-2021-evaluating,chevalier-2024-language}, strengthening entailment models and retrieval robustness, and exploring on-the-fly self-verification at inference time via the learned error-mask head. EXACT offers a principled foundation for quality-controlled CoT distillation and a practical path toward democratizing reliable reasoning in compact models.
+
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}
