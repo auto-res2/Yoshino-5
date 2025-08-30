@@ -6,5 +6,82 @@
     "quantized 7B GSM8K",
     "math reasoning adapters",
     "LoRA MATH benchmark"
+  ],
+  "research_study_list": [
+    {
+      "title": "DoRA: Weight-Decomposed Low-Rank Adaptation"
+    },
+    {
+      "title": "DoRA: Weight-Decomposed Low-Rank Adaptation"
+    },
+    {
+      "title": "VeRA: Vector-based Random Matrix Adaptation"
+    },
+    {
+      "title": "The Expressive Power of Low-Rank Adaptation"
+    },
+    {
+      "title": "Compressible Dynamics in Deep Overparameterized Low-Rank Learning & Adaptation"
+    },
+    {
+      "title": "O(n) Connections are Expressive Enough: Universal Approximability of Sparse Transformers"
+    },
+    {
+      "title": "Fast Attention Over Long Sequences With Dynamic Sparse Flash Attention"
+    },
+    {
+      "title": "SAC: Accelerating and Structuring Self-Attention via Sparse Adaptive Connection"
+    },
+    {
+      "title": "Scatterbrain: Unifying Sparse and Low-rank Attention"
+    },
+    {
+      "title": "SEA: Sparse Linear Attention with Estimated Attention Mask"
+    },
+    {
+      "title": "GPT3.int8(): 8-bit Matrix Multiplication for Transformers at Scale"
+    },
+    {
+      "title": "KVQuant: Towards 10 Million Context Length LLM Inference with KV Cache Quantization"
+    },
+    {
+      "title": "The case for 4-bit precision: k-bit Inference Scaling Laws"
+    },
+    {
+      "title": "Intriguing Properties of Quantization at Scale"
+    },
+    {
+      "title": "SmoothQuant: Accurate and Efficient Post-Training Quantization for Large Language Models"
+    },
+    {
+      "title": "Specializing Smaller Language Models towards Multi-Step Reasoning"
+    },
+    {
+      "title": "Specializing Smaller Language Models towards Multi-Step Reasoning"
+    },
+    {
+      "title": "ELASTIC: Numerical Reasoning with Adaptive Symbolic Compiler"
+    },
+    {
+      "title": "MetaMath: Bootstrap Your Own Mathematical Questions for Large Language Models"
+    },
+    {
+      "title": "Evaluating Large Vision-and-Language Models on Children's Mathematical Olympiads"
+    },
+    {
+      "title": "ToRA: A Tool-Integrated Reasoning Agent for Mathematical Problem Solving"
+    },
+    {
+      "title": "Long Range Arena : A Benchmark for Efficient Transformers "
+    },
+    {
+      "title": "MathVista: Evaluating Mathematical Reasoning of Foundation Models in Visual Contexts"
+    },
+    {
+      "title": "MathVista: Evaluating Mathematical Reasoning of Foundation Models in Visual Contexts"
+    },
+    {
+      "title": "MetaMath: Bootstrap Your Own Mathematical Questions for Large Language Models"
+    }
   ]
 }
