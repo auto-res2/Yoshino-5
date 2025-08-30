@@ -96,6 +96,6 @@ def build_task_loaders(tasks: List[torch.utils.data.Dataset], batch_train: int =
 
 
 def get_images_dir() -> str:
-    path = os.path.join('.research', 'iteration1', 'images')
+    path = os.path.join('.research', 'iteration2', 'images')
     os.makedirs(path, exist_ok=True)
     return path

@@ -7,21 +7,45 @@ import numpy as np
 import torch
 from torch.utils.data import DataLoader
 
-from .preprocess import (
-    set_seed, device_default,
-    get_permuted_mnist_tasks, get_rotated_mnist_tasks, get_cifar100_split_tasks,
-    build_task_loaders, get_images_dir,
-)
-from .train import (
-    build_backbone, PEFTWrapper, MetaMLP, PTSScheduler, ReplayBuffer,
-    train_task, compute_embeddings, compute_surrogates,
-    chronological_order, random_order,
-)
-from .evaluate import (
-    evaluate_taskwise, compute_accuracy_matrix, compute_forgetting,
-    build_confusion_matrix, plot_training_loss, plot_accuracy_curves,
-    plot_forgetting, plot_confusion, plot_overhead_bars, print_summary,
-)
+# Robust imports: support running as a module (python -m src.main) or as a script (python src/main.py)
+try:
+    from .preprocess import (
+        set_seed, device_default,
+        get_permuted_mnist_tasks, get_rotated_mnist_tasks, get_cifar100_split_tasks,
+        build_task_loaders, get_images_dir,
+    )
+except ImportError:
+    from preprocess import (
+        set_seed, device_default,
+        get_permuted_mnist_tasks, get_rotated_mnist_tasks, get_cifar100_split_tasks,
+        build_task_loaders, get_images_dir,
+    )
+
+try:
+    from .train import (
+        build_backbone, PEFTWrapper, MetaMLP, PTSScheduler, ReplayBuffer,
+        train_task, compute_embeddings, compute_surrogates,
+        chronological_order, random_order,
+    )
+except ImportError:
+    from train import (
+        build_backbone, PEFTWrapper, MetaMLP, PTSScheduler, ReplayBuffer,
+        train_task, compute_embeddings, compute_surrogates,
+        chronological_order, random_order,
+    )
+
+try:
+    from .evaluate import (
+        evaluate_taskwise, compute_accuracy_matrix, compute_forgetting,
+        build_confusion_matrix, plot_training_loss, plot_accuracy_curves,
+        plot_forgetting, plot_confusion, plot_overhead_bars, print_summary,
+    )
+except ImportError:
+    from evaluate import (
+        evaluate_taskwise, compute_accuracy_matrix, compute_forgetting,
+        build_confusion_matrix, plot_training_loss, plot_accuracy_curves,
+        plot_forgetting, plot_confusion, plot_overhead_bars, print_summary,
+    )
 
 
 def load_config(path: str) -> Dict:

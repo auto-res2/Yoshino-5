@@ -10,7 +10,10 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-from .train import train_task, compute_embeddings, ReplayBuffer
+try:
+    from .train import train_task, compute_embeddings, ReplayBuffer
+except ImportError:
+    from train import train_task, compute_embeddings, ReplayBuffer
 
 
 def ensure_dir(path: str):
