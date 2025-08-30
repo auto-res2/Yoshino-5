@@ -1,0 +1,10 @@
+{
+  "research_topic": "Improve zero-shot to few-shot performance gaps in cross-domain scenarios through meta-learning frameworks for 3-7B parameter vision-language models regarding transfer capability enhancement across domain boundaries, evaluated on cross-domain few-shot benchmarks including visual question answering, image classification, and multimodal reasoning tasks with 1-16 shot demonstrations, addressing the 2025 research challenge where larger models show increasing zero-shot versus few-shot performance discrepancies by developing adaptive demonstration selection and context optimization strategies for improved generalization.",
+  "queries": [
+    "cross-domain few-shot meta-learning",
+    "vision-language zero-shot gap",
+    "adaptive demonstration selection",
+    "context optimization few-shot",
+    "multimodal reasoning meta-learning"
+  ]
+}
