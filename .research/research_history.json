@@ -6,5 +6,82 @@
     "token importance quantization",
     "context adaptive precision",
     "BitsAndBytes LLM efficiency"
+  ],
+  "research_study_list": [
+    {
+      "title": "Searching for Low-Bit Weights in Quantized Neural Networks"
+    },
+    {
+      "title": "Toward Accurate Post-Training Quantization for Image Super Resolution"
+    },
+    {
+      "title": "Temporal Dynamic Quantization for Diffusion Models"
+    },
+    {
+      "title": "Post-Training Sparsity-Aware Quantization"
+    },
+    {
+      "title": "Differentiable Dynamic Quantization with Mixed Precision and Adaptive Resolution"
+    },
+    {
+      "title": "Understanding Int4 Quantization for Language Models: Latency Speedup,  Composability,  and Failure Cases"
+    },
+    {
+      "title": "Training Transformers with 4-bit Integers"
+    },
+    {
+      "title": "Converting Transformers to Polynomial Form for Secure Inference Over Homomorphic Encryption"
+    },
+    {
+      "title": "Neural Functional Transformers"
+    },
+    {
+      "title": "Iron: Private Inference on Transformers"
+    },
+    {
+      "title": "QuIP: 2-Bit Quantization of Large Language Models With Guarantees"
+    },
+    {
+      "title": "Outlier-aware Slicing for Post-Training Quantization in Vision Transformer"
+    },
+    {
+      "title": "Zero-TPrune: Zero-Shot Token Pruning through Leveraging of the Attention Graph in Pre-Trained Transformers"
+    },
+    {
+      "title": "Cherry on Top: Parameter Heterogeneity and Quantization in Large Language Models"
+    },
+    {
+      "title": "Outlier Suppression: Pushing the Limit of Low-bit Transformer Language Models"
+    },
+    {
+      "title": "Not All Bits have Equal Value: Heterogeneous Precisions via Trainable Noise"
+    },
+    {
+      "title": "Collage: Light-Weight Low-Precision Strategy for LLM Training"
+    },
+    {
+      "title": "Be Like Water: Adaptive Floating Point for Machine Learning"
+    },
+    {
+      "title": "Be Like Water: Adaptive Floating Point for Machine Learning"
+    },
+    {
+      "title": "CPT: Efficient Deep Neural Network Training via Cyclic Precision"
+    },
+    {
+      "title": "SqueezeLLM: Dense-and-Sparse Quantization"
+    },
+    {
+      "title": "Cheaply Estimating Inference Efficiency Metrics for Autoregressive Transformer Models"
+    },
+    {
+      "title": "QBB: Quantization with Binary Bases for LLMs"
+    },
+    {
+      "title": "Any-Precision LLM: Low-Cost Deployment of Multiple, Different-Sized LLMs"
+    },
+    {
+      "title": "Any-Precision LLM: Low-Cost Deployment of Multiple, Different-Sized LLMs"
+    }
   ]
 }
