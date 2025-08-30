@@ -227,7 +227,7 @@ def plot_fdr_over_rounds(fdr_over_rounds: List[float], q: float, image_dir: str)
     plt.title(f'FDR vs Rounds (q={q})')
     plt.legend()
     plt.tight_layout()
-    save_pdf(fig, f'fdr_vs_round_q{str(q).replace(".", "_")}.pdf', image_dir)
+    save_pdf(fig, f'fdr_vs_round_q{str(q).replace('.', '_')}.pdf', image_dir)
 
 
 def plot_comm_vs_rounds(comm_over_rounds: Dict[int, List[float]], q: float, image_dir: str):
@@ -239,7 +239,7 @@ def plot_comm_vs_rounds(comm_over_rounds: Dict[int, List[float]], q: float, imag
     plt.title(f'Communication vs Rounds (q={q})')
     plt.legend()
     plt.tight_layout()
-    save_pdf(fig, f'communication_vs_round_q{str(q).replace(".", "_")}.pdf', image_dir)
+    save_pdf(fig, f'communication_vs_round_q{str(q).replace('.', '_')}.pdf', image_dir)
 
 
 def plot_comm_vs_rank_summary(ranks: List[int], comm_means: List[float], image_dir: str):

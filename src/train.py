@@ -361,7 +361,14 @@ class FederatedClient:
                 for k in ['vision_tokens', 'audio_tokens', 'text_tokens']:
                     batch[k] = batch[k].to(self.device)
 
-                reps = self.model.forward_modalities(batch)
+                # Encode tokens and apply ReFT once; reuse for pooled reps and OT loss
+                z_tokens: Dict[str, torch.Tensor] = {}
+                for m in ['vision', 'audio', 'text']:
+                    z = self.model.encoders[m](batch[f'{m}_tokens'])
+                    z = self.model.reft(z)
+                    z_tokens[m] = z
+                reps = {m: z_tokens[m].mean(dim=1) for m in ['vision', 'audio', 'text']}
+
                 logits_dict, entropy_dict = self.model.heads_logits_entropy(reps)
                 fused_logits = self.model.fusion_logits(logits_dict, entropy_dict, mask=mask, beta=beta_fusion)
                 ce = F.cross_entropy(fused_logits, labels)
@@ -385,7 +392,7 @@ class FederatedClient:
                     inf_losses.append(mc_infonce(reps['audio'][idx_at], reps['text'][idx_at]))
                 inf_total = sum(inf_losses) / len(inf_losses) if len(inf_losses) > 0 else torch.tensor(0.0, device=self.device)
 
-                # OT loss per modality on available samples
+                # OT loss per modality on available samples (use embedded + ReFT tokens to match anchor space)
                 ot_losses = []
                 lnC = math.log(self.model.n_classes + 1e-6)
                 for mi, m in enumerate(['vision', 'audio', 'text']):
@@ -394,7 +401,7 @@ class FederatedClient:
                         ent = entropy_dict[m][idx]
                         norm_ent = (ent / lnC).clamp(0, 1).mean().item()
                         w = 1.0 - float(np.clip(norm_ent, 0.0, 1.0))
-                        ot_losses.append(self.model.ot_anchor_loss(batch[f'{m}_tokens'][idx], self.model.anchors, entropy_weight=w, eps=sink_eps, iters=sink_iters))
+                        ot_losses.append(self.model.ot_anchor_loss(z_tokens[m][idx], self.model.anchors, entropy_weight=w, eps=sink_eps, iters=sink_iters))
                 ot_total = sum(ot_losses) / len(ot_losses) if len(ot_losses) > 0 else torch.tensor(0.0, device=self.device)
 
                 # spectral reg
