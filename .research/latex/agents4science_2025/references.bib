@@ -5,3 +5,768 @@
   publisher = {GitHub},
   url       = {https://github.com/airas-org/airas}
 }
+
+% ===========================================
+% REQUIRED CITATIONS
+% These papers must be cited in the manuscript
+% ===========================================
+
+@article{asadi-2023-prototype,
+ abstract = {In Continual learning (CL) balancing effective adaptation while combating
+catastrophic forgetting is a central challenge. Many of the recent
+best-performing methods utilize various forms of prior task data, e.g. a replay
+buffer, to tackle the catastrophic forgetting problem. Having access to
+previous task data can be restrictive in many real-world scenarios, for example
+when task data is sensitive or proprietary. To overcome the necessity of using
+previous tasks' data, in this work, we start with strong representation
+learning methods that have been shown to be less prone to forgetting. We
+propose a holistic approach to jointly learn the representation and class
+prototypes while maintaining the relevance of old class prototypes and their
+embedded similarities. Specifically, samples are mapped to an embedding space
+where the representations are learned using a supervised contrastive loss.
+Class prototypes are evolved continually in the same latent space, enabling
+learning and prediction at any point. To continually adapt the prototypes
+without keeping any prior task data, we propose a novel distillation loss that
+constrains class prototypes to maintain relative similarities as compared to
+new task data. This method yields state-of-the-art performance in the
+task-incremental setting, outperforming methods relying on large amounts of
+data, and provides strong performance in the class-incremental setting without
+using any stored data points.},
+ arxiv_url = {https://arxiv.org/pdf/2303.14771v2.pdf},
+ author = {Nader Asadi and MohammadReza Davari and Sudhir Mudur and Rahaf Aljundi and Eugene Belilovsky},
+ github_url = {https://github.com/naderAsadi/CLHive},
+ title = {Prototype-Sample Relation Distillation: Towards Replay-Free Continual Learning},
+ year = {2023}
+}
+
+@article{author-year-clear,
+ title = {CLeAR: Continual Learning on Algorithmic Reasoning for Human-like Intelligence}
+}
+
+@article{bengio-2020-interference,
+ abstract = {We study the link between generalization and interference in
+temporal-difference (TD) learning. Interference is defined as the inner product
+of two different gradients, representing their alignment. This quantity emerges
+as being of interest from a variety of observations about neural networks,
+parameter sharing and the dynamics of learning. We find that TD easily leads to
+low-interference, under-generalizing parameters, while the effect seems
+reversed in supervised learning. We hypothesize that the cause can be traced
+back to the interplay between the dynamics of interference and bootstrapping.
+This is supported empirically by several observations: the negative
+relationship between the generalization gap and interference in TD, the
+negative effect of bootstrapping on interference and the local coherence of
+targets, and the contrast between the propagation rate of information in TD(0)
+versus TD($\lambda$) and regression tasks such as Monte-Carlo policy
+evaluation. We hope that these new findings can guide the future discovery of
+better bootstrapping methods.},
+ arxiv_url = {https://arxiv.org/pdf/2003.06350v1.pdf},
+ author = {Emmanuel Bengio and Joelle Pineau and Doina Precup},
+ title = {Interference and Generalization in Temporal Difference Learning},
+ year = {2020}
+}
+
+@article{goldfarb-2024-the,
+ abstract = {In continual learning, catastrophic forgetting is affected by multiple
+aspects of the tasks. Previous works have analyzed separately how forgetting is
+affected by either task similarity or overparameterization. In contrast, our
+paper examines how task similarity and overparameterization jointly affect
+forgetting in an analyzable model. Specifically, we focus on two-task continual
+linear regression, where the second task is a random orthogonal transformation
+of an arbitrary first task (an abstraction of random permutation tasks). We
+derive an exact analytical expression for the expected forgetting - and uncover
+a nuanced pattern. In highly overparameterized models, intermediate task
+similarity causes the most forgetting. However, near the interpolation
+threshold, forgetting decreases monotonically with the expected task
+similarity. We validate our findings with linear regression on synthetic data,
+and with neural networks on established permutation task benchmarks.},
+ arxiv_url = {https://arxiv.org/pdf/2401.12617v2.pdf},
+ author = {Daniel Goldfarb and Itay Evron and Nir Weinberger and Daniel Soudry and Paul Hand},
+ title = {The Joint Effect of Task Similarity and Overparameterization on Catastrophic Forgetting — An Analytical Model},
+ year = {2024}
+}
+
+@article{guha-2024-the,
+ abstract = {While deep neural networks have demonstrated groundbreaking performance in
+various settings, these models often suffer from \emph{catastrophic forgetting}
+when trained on new tasks in sequence. Several works have empirically
+demonstrated that increasing the width of a neural network leads to a decrease
+in catastrophic forgetting but have yet to characterize the exact relationship
+between width and continual learning. We design one of the first frameworks to
+analyze Continual Learning Theory and prove that width is directly related to
+forgetting in Feed-Forward Networks (FFN). Specifically, we demonstrate that
+increasing network widths to reduce forgetting yields diminishing returns. We
+empirically verify our claims at widths hitherto unexplored in prior studies
+where the diminishing returns are clearly observed as predicted by our theory.},
+ arxiv_url = {https://arxiv.org/pdf/2403.06398v3.pdf},
+ author = {Etash Guha and Vihan Lakshman},
+ title = {On the Diminishing Returns of Width for Continual Learning},
+ year = {2024}
+}
+
+@article{hiratani-2024-disentangling,
+ abstract = {Continual learning of partially similar tasks poses a challenge for
+artificial neural networks, as task similarity presents both an opportunity for
+knowledge transfer and a risk of interference and catastrophic forgetting.
+However, it remains unclear how task similarity in input features and readout
+patterns influences knowledge transfer and forgetting, as well as how they
+interact with common algorithms for continual learning. Here, we develop a
+linear teacher-student model with latent structure and show analytically that
+high input feature similarity coupled with low readout similarity is
+catastrophic for both knowledge transfer and retention. Conversely, the
+opposite scenario is relatively benign. Our analysis further reveals that
+task-dependent activity gating improves knowledge retention at the expense of
+transfer, while task-dependent plasticity gating does not affect either
+retention or transfer performance at the over-parameterized limit. In contrast,
+weight regularization based on the Fisher information metric significantly
+improves retention, regardless of task similarity, without compromising
+transfer performance. Nevertheless, its diagonal approximation and
+regularization in the Euclidean space are much less robust against task
+similarity. We demonstrate consistent results in a permuted MNIST task with
+latent variables. Overall, this work provides insights into when continual
+learning is difficult and how to mitigate it.},
+ arxiv_url = {https://arxiv.org/pdf/2405.20236v1.pdf},
+ author = {Naoki Hiratani},
+ title = {Disentangling and mitigating the impact of task similarity for continual learning},
+ year = {2024}
+}
+
+@article{karakida-2022-understanding,
+ abstract = {Gradient regularization (GR) is a method that penalizes the gradient norm of
+the training loss during training. While some studies have reported that GR can
+improve generalization performance, little attention has been paid to it from
+the algorithmic perspective, that is, the algorithms of GR that efficiently
+improve the performance. In this study, we first reveal that a specific
+finite-difference computation, composed of both gradient ascent and descent
+steps, reduces the computational cost of GR. Next, we show that the
+finite-difference computation also works better in the sense of generalization
+performance. We theoretically analyze a solvable model, a diagonal linear
+network, and clarify that GR has a desirable implicit bias to so-called rich
+regime and finite-difference computation strengthens this bias. Furthermore,
+finite-difference GR is closely related to some other algorithms based on
+iterative ascent and descent steps for exploring flat minima. In particular, we
+reveal that the flooding method can perform finite-difference GR in an implicit
+way. Thus, this work broadens our understanding of GR for both practice and
+theory.},
+ arxiv_url = {https://arxiv.org/pdf/2210.02720v2.pdf},
+ author = {Ryo Karakida and Tomoumi Takase and Tomohiro Hayase and Kazuki Osawa},
+ title = {Understanding Gradient Regularization in Deep Learning: Efficient Finite-Difference Computation and Implicit Bias},
+ year = {2022}
+}
+
+@article{ke-2021-continual,
+ abstract = {Existing research on continual learning of a sequence of tasks focused on
+dealing with catastrophic forgetting, where the tasks are assumed to be
+dissimilar and have little shared knowledge. Some work has also been done to
+transfer previously learned knowledge to the new task when the tasks are
+similar and have shared knowledge. To the best of our knowledge, no technique
+has been proposed to learn a sequence of mixed similar and dissimilar tasks
+that can deal with forgetting and also transfer knowledge forward and backward.
+This paper proposes such a technique to learn both types of tasks in the same
+network. For dissimilar tasks, the algorithm focuses on dealing with
+forgetting, and for similar tasks, the algorithm focuses on selectively
+transferring the knowledge learned from some similar previous tasks to improve
+the new task learning. Additionally, the algorithm automatically detects
+whether a new task is similar to any previous tasks. Empirical evaluation using
+sequences of mixed tasks demonstrates the effectiveness of the proposed model.},
+ arxiv_url = {https://arxiv.org/pdf/2112.10017v1.pdf},
+ author = {Zixuan Ke and Bing Liu and Xingchang Huang},
+ github_url = {https://github.com/ZixuanKe/CAT},
+ journal = {NeurIPS 2020},
+ title = {Continual Learning of a Mixed Sequence of Similar and Dissimilar Tasks},
+ year = {2021}
+}
+
+@article{lange-2022-continual,
+ abstract = {Time-dependent data-generating distributions have proven to be difficult for
+gradient-based training of neural networks, as the greedy updates result in
+catastrophic forgetting of previously learned knowledge. Despite the progress
+in the field of continual learning to overcome this forgetting, we show that a
+set of common state-of-the-art methods still suffers from substantial
+forgetting upon starting to learn new tasks, except that this forgetting is
+temporary and followed by a phase of performance recovery. We refer to this
+intriguing but potentially problematic phenomenon as the stability gap. The
+stability gap had likely remained under the radar due to standard practice in
+the field of evaluating continual learning models only after each task.
+Instead, we establish a framework for continual evaluation that uses
+per-iteration evaluation and we define a new set of metrics to quantify
+worst-case performance. Empirically we show that experience replay,
+constraint-based replay, knowledge-distillation, and parameter regularization
+methods are all prone to the stability gap; and that the stability gap can be
+observed in class-, task-, and domain-incremental learning benchmarks.
+Additionally, a controlled experiment shows that the stability gap increases
+when tasks are more dissimilar. Finally, by disentangling gradients into
+plasticity and stability components, we propose a conceptual explanation for
+the stability gap.},
+ arxiv_url = {https://arxiv.org/pdf/2205.13452v2.pdf},
+ author = {Matthias De Lange and Gido van de Ven and Tinne Tuytelaars},
+ github_url = {https://github.com/mattdl/ContinualEvaluation},
+ title = {Continual evaluation for lifelong learning: Identifying the stability gap},
+ year = {2022}
+}
+
+@article{lee-2021-continual,
+ abstract = {Continual learning-the ability to learn many tasks in sequence-is critical
+for artificial learning systems. Yet standard training methods for deep
+networks often suffer from catastrophic forgetting, where learning new tasks
+erases knowledge of earlier tasks. While catastrophic forgetting labels the
+problem, the theoretical reasons for interference between tasks remain unclear.
+Here, we attempt to narrow this gap between theory and practice by studying
+continual learning in the teacher-student setup. We extend previous analytical
+work on two-layer networks in the teacher-student setup to multiple teachers.
+Using each teacher to represent a different task, we investigate how the
+relationship between teachers affects the amount of forgetting and transfer
+exhibited by the student when the task switches. In line with recent work, we
+find that when tasks depend on similar features, intermediate task similarity
+leads to greatest forgetting. However, feature similarity is only one way in
+which tasks may be related. The teacher-student approach allows us to
+disentangle task similarity at the level of readouts (hidden-to-output weights)
+and features (input-to-hidden weights). We find a complex interplay between
+both types of similarity, initial transfer/forgetting rates, maximum
+transfer/forgetting, and long-term transfer/forgetting. Together, these results
+help illuminate the diverse factors contributing to catastrophic forgetting.},
+ arxiv_url = {https://arxiv.org/pdf/2107.04384v1.pdf},
+ author = {Sebastian Lee and Sebastian Goldt and Andrew Saxe},
+ journal = {Proceedings of the 38th International Conference on Machine
+  Learning, PMLR 139:6109-6119, 2021},
+ title = {Continual Learning in the Teacher-Student Setup: Impact of Task Similarity},
+ year = {2021}
+}
+
+@article{lee-2022-maslow,
+ abstract = {Continual learning - learning new tasks in sequence while maintaining
+performance on old tasks - remains particularly challenging for artificial
+neural networks. Surprisingly, the amount of forgetting does not increase with
+the dissimilarity between the learned tasks, but appears to be worst in an
+intermediate similarity regime.
+  In this paper we theoretically analyse both a synthetic teacher-student
+framework and a real data setup to provide an explanation of this phenomenon
+that we name Maslow's hammer hypothesis. Our analysis reveals the presence of a
+trade-off between node activation and node re-use that results in worst
+forgetting in the intermediate regime. Using this understanding we reinterpret
+popular algorithmic interventions for catastrophic interference in terms of
+this trade-off, and identify the regimes in which they are most effective.},
+ arxiv_url = {https://arxiv.org/pdf/2205.09029v1.pdf},
+ author = {Sebastian Lee and Stefano Sarao Mannelli and Claudia Clopath and Sebastian Goldt and Andrew Saxe},
+ journal = {Proceedings of the 39th International Conference on Machine
+  Learning, PMLR 162:12455-12477 (2022)},
+ title = {Maslow's Hammer in Catastrophic Forgetting: Node Re-Use vs. Node Activation },
+ year = {2022}
+}
+
+@article{lee-2023-recasting,
+ abstract = {In this work, we aim to establish a strong connection between two significant
+bodies of machine learning research: continual learning and sequence modeling.
+That is, we propose to formulate continual learning as a sequence modeling
+problem, allowing advanced sequence models to be utilized for continual
+learning. Under this formulation, the continual learning process becomes the
+forward pass of a sequence model. By adopting the meta-continual learning (MCL)
+framework, we can train the sequence model at the meta-level, on multiple
+continual learning episodes. As a specific example of our new formulation, we
+demonstrate the application of Transformers and their efficient variants as MCL
+methods. Our experiments on seven benchmarks, covering both classification and
+regression, show that sequence models can be an attractive solution for general
+MCL.},
+ arxiv_url = {https://arxiv.org/pdf/2310.11952v2.pdf},
+ author = {Soochan Lee and Jaehyeon Son and Gunhee Kim},
+ github_url = {https://github.com/soochan-lee/cl-as-seq},
+ title = {Recasting Continual Learning as Sequence Modeling},
+ year = {2023}
+}
+
+@article{liao-2023-make,
+ abstract = {Parameter-efficient fine-tuning (PEFT) of pre-trained language models (PLMs)
+has emerged as a highly successful approach, with training only a small number
+of parameters without sacrificing performance and becoming the de-facto
+learning paradigm with the increasing size of PLMs. However, existing PEFT
+methods are not memory-efficient, because they still require caching most of
+the intermediate activations for the gradient calculation, akin to fine-tuning.
+One effective way to reduce the activation memory is to apply a reversible
+model, so the intermediate activations are not necessary to be cached and can
+be recomputed. Nevertheless, modifying a PLM to its reversible variant is not
+straightforward, since the reversible model has a distinct architecture from
+the currently released PLMs. In this paper, we first investigate what is a key
+factor for the success of existing PEFT methods, and realize that it's
+essential to preserve the PLM's starting point when initializing a PEFT method.
+With this finding, we propose memory-efficient fine-tuning (MEFT) that inserts
+adapters into a PLM, preserving the PLM's starting point and making it
+reversible without additional pre-training. We evaluate MEFT on the GLUE
+benchmark and five question-answering tasks with various backbones, BERT,
+RoBERTa, BART and OPT. MEFT significantly reduces the activation memory up to
+84% of full fine-tuning with a negligible amount of trainable parameters.
+Moreover, MEFT achieves the same score on GLUE and a comparable score on the
+question-answering tasks as full fine-tuning. A similar finding is also
+observed for the image classification task.},
+ arxiv_url = {https://arxiv.org/pdf/2306.00477v4.pdf},
+ author = {Baohao Liao and Shaomu Tan and Christof Monz},
+ github_url = {https://github.com/baohaoliao/mefts},
+ title = {Make Pre-trained Model Reversible: From Parameter to Memory Efficient Fine-Tuning},
+ year = {2023}
+}
+
+@article{mercea-2024-time,
+ abstract = {As foundation models become more popular, there is a growing need to
+efficiently finetune them for downstream tasks. Although numerous adaptation
+methods have been proposed, they are designed to be efficient only in terms of
+how many parameters are trained. They, however, typically still require
+backpropagating gradients throughout the model, meaning that their
+training-time and -memory cost does not reduce as significantly. We propose an
+adaptation method which does not backpropagate gradients through the backbone.
+We achieve this by designing a lightweight network in parallel that operates on
+features from the frozen, pretrained backbone. As a result, our method is
+efficient not only in terms of parameters, but also in training-time and memory
+usage. Our approach achieves state-of-the-art accuracy-parameter trade-offs on
+the popular VTAB benchmark, and we further show how we outperform prior works
+with respect to training-time and -memory usage too. We further demonstrate the
+training efficiency and scalability of our method by adapting a vision
+transformer backbone of 4 billion parameters for the computationally demanding
+task of video classification, without any intricate model parallelism. Here, we
+outperform a prior adaptor-based method which could only scale to a 1 billion
+parameter backbone, or fully-finetuning a smaller backbone, with the same GPU
+and less training time.},
+ arxiv_url = {https://arxiv.org/pdf/2402.02887v1.pdf},
+ author = {Otniel-Bogdan Mercea and Alexey Gritsenko and Cordelia Schmid and Anurag Arnab},
+ title = {Time- Memory- and Parameter-Efficient Visual Adaptation},
+ year = {2024}
+}
+
+@article{mirzadeh-2020-linear,
+ abstract = {Continual (sequential) training and multitask (simultaneous) training are
+often attempting to solve the same overall objective: to find a solution that
+performs well on all considered tasks. The main difference is in the training
+regimes, where continual learning can only have access to one task at a time,
+which for neural networks typically leads to catastrophic forgetting. That is,
+the solution found for a subsequent task does not perform well on the previous
+ones anymore. However, the relationship between the different minima that the
+two training regimes arrive at is not well understood. What sets them apart? Is
+there a local structure that could explain the difference in performance
+achieved by the two different schemes? Motivated by recent work showing that
+different minima of the same task are typically connected by very simple curves
+of low error, we investigate whether multitask and continual solutions are
+similarly connected. We empirically find that indeed such connectivity can be
+reliably achieved and, more interestingly, it can be done by a linear path,
+conditioned on having the same initialization for both. We thoroughly analyze
+this observation and discuss its significance for the continual learning
+process. Furthermore, we exploit this finding to propose an effective algorithm
+that constrains the sequentially learned minima to behave as the multitask
+solution. We show that our method outperforms several state of the art
+continual learning algorithms on various vision benchmarks.},
+ arxiv_url = {https://arxiv.org/pdf/2010.04495v1.pdf},
+ author = {Seyed Iman Mirzadeh and Mehrdad Farajtabar and Dilan Gorur and Razvan Pascanu and Hassan Ghasemzadeh},
+ github_url = {https://github.com/imirzadeh/MC-SGD},
+ title = {Linear Mode Connectivity in Multitask and Continual Learning},
+ year = {2020}
+}
+
+@article{ramasesh-2020-anatomy,
+ abstract = {A central challenge in developing versatile machine learning systems is
+catastrophic forgetting: a model trained on tasks in sequence will suffer
+significant performance drops on earlier tasks. Despite the ubiquity of
+catastrophic forgetting, there is limited understanding of the underlying
+process and its causes. In this paper, we address this important knowledge gap,
+investigating how forgetting affects representations in neural network models.
+Through representational analysis techniques, we find that deeper layers are
+disproportionately the source of forgetting. Supporting this, a study of
+methods to mitigate forgetting illustrates that they act to stabilize deeper
+layers. These insights enable the development of an analytic argument and
+empirical picture relating the degree of forgetting to representational
+similarity between tasks. Consistent with this picture, we observe maximal
+forgetting occurs for task sequences with intermediate similarity. We perform
+empirical studies on the standard split CIFAR-10 setup and also introduce a
+novel CIFAR-100 based task approximating realistic input distribution shift.},
+ arxiv_url = {https://arxiv.org/pdf/2007.07400v1.pdf},
+ author = {Vinay V. Ramasesh and Ethan Dyer and Maithra Raghu},
+ title = {Anatomy of Catastrophic Forgetting: Hidden Representations and Task Semantics},
+ year = {2020}
+}
+
+@article{sehanobish-2024-structured,
+ abstract = {Recent efforts to scale Transformer models have demonstrated rapid progress
+across a wide range of tasks (Wei et al., 2022). However, fine-tuning these
+models for downstream tasks is expensive due to their large parameter counts.
+Parameter-efficient fine-tuning (PEFT) approaches have emerged as a viable
+alternative by allowing us to fine-tune models by updating only a small number
+of parameters. In this work, we propose a general framework for parameter
+efficient fine-tuning (PEFT), based on structured unrestricted-rank matrices
+(SURM) which can serve as a drop-in replacement for popular approaches such as
+Adapters and LoRA. Unlike other methods like LoRA, SURMs provides more
+flexibility in finding the right balance between compactness and
+expressiveness. This is achieved by using low displacement rank matrices
+(LDRMs), which hasn't been used in this context before. SURMs remain
+competitive with baselines, often providing significant quality improvements
+while using a smaller parameter budget. SURMs achieve 5-7% accuracy gains on
+various image classification tasks while replacing low-rank matrices in LoRA.
+It also results in up to 12x reduction of the number of parameters in adapters
+(with virtually no loss in quality) on the GLUE benchmark.},
+ arxiv_url = {https://arxiv.org/pdf/2406.17740v3.pdf},
+ author = {Arijit Sehanobish and Avinava Dubey and Krzysztof Choromanski and Somnath Basu Roy Chowdhury and Deepali Jain and Vikas Sindhwani and Snigdha Chaturvedi},
+ title = {Structured Unrestricted-Rank Matrices for Parameter Efficient Finetuning},
+ year = {2024}
+}
+
+@article{veniat-2020-efficient,
+ abstract = {Existing literature in Continual Learning (CL) has focused on overcoming
+catastrophic forgetting, the inability of the learner to recall how to perform
+tasks observed in the past. There are however other desirable properties of a
+CL system, such as the ability to transfer knowledge from previous tasks and to
+scale memory and compute sub-linearly with the number of tasks. Since most
+current benchmarks focus only on forgetting using short streams of tasks, we
+first propose a new suite of benchmarks to probe CL algorithms across these new
+axes. Finally, we introduce a new modular architecture, whose modules represent
+atomic skills that can be composed to perform a certain task. Learning a task
+reduces to figuring out which past modules to re-use, and which new modules to
+instantiate to solve the current task. Our learning algorithm leverages a
+task-driven prior over the exponential search space of all possible ways to
+combine modules, enabling efficient learning on long streams of tasks. Our
+experiments show that this modular architecture and learning algorithm perform
+competitively on widely used CL benchmarks while yielding superior performance
+on the more challenging benchmarks we introduce in this work.},
+ arxiv_url = {https://arxiv.org/pdf/2012.12631v2.pdf},
+ author = {Tom Veniat and Ludovic Denoyer and Marc'Aurelio Ranzato},
+ github_url = {https://github.com/TomVeniat/MNTDP},
+ title = {Efficient Continual Learning with Modular Networks and Task-Driven Priors},
+ year = {2020}
+}
+
+@article{wu-2024-reft,
+ abstract = {Parameter-efficient finetuning (PEFT) methods seek to adapt large neural
+models via updates to a small number of weights. However, much prior
+interpretability work has shown that representations encode rich semantic
+information, suggesting that editing representations might be a more powerful
+alternative. We pursue this hypothesis by developing a family of Representation
+Finetuning (ReFT) methods. ReFT methods operate on a frozen base model and
+learn task-specific interventions on hidden representations. We define a strong
+instance of the ReFT family, Low-rank Linear Subspace ReFT (LoReFT), and we
+identify an ablation of this method that trades some performance for increased
+efficiency. Both are drop-in replacements for existing PEFTs and learn
+interventions that are 15x--65x more parameter-efficient than LoRA. We showcase
+LoReFT on eight commonsense reasoning tasks, four arithmetic reasoning tasks,
+instruction-tuning, and GLUE. In all these evaluations, our ReFTs deliver the
+best balance of efficiency and performance, and almost always outperform
+state-of-the-art PEFTs. We release a generic ReFT training library publicly at
+https://github.com/stanfordnlp/pyreft.},
+ arxiv_url = {https://arxiv.org/pdf/2404.03592v3.pdf},
+ author = {Zhengxuan Wu and Aryaman Arora and Zheng Wang and Atticus Geiger and Dan Jurafsky and Christopher D. Manning and Christopher Potts},
+ github_url = {https://github.com/stanfordnlp/pyreft},
+ title = {ReFT: Representation Finetuning for Language Models},
+ year = {2024}
+}
+
+@article{xu-2021-analyzing,
+ abstract = {Weight sharing is a popular approach to reduce the cost of neural
+architecture search (NAS) by reusing the weights of shared operators from
+previously trained child models. However, the rank correlation between the
+estimated accuracy and ground truth accuracy of those child models is low due
+to the interference among different child models caused by weight sharing. In
+this paper, we investigate the interference issue by sampling different child
+models and calculating the gradient similarity of shared operators, and
+observe: 1) the interference on a shared operator between two child models is
+positively correlated with the number of different operators; 2) the
+interference is smaller when the inputs and outputs of the shared operator are
+more similar. Inspired by these two observations, we propose two approaches to
+mitigate the interference: 1) MAGIC-T: rather than randomly sampling child
+models for optimization, we propose a gradual modification scheme by modifying
+one operator between adjacent optimization steps to minimize the interference
+on the shared operators; 2) MAGIC-A: forcing the inputs and outputs of the
+operator across all child models to be similar to reduce the interference.
+Experiments on a BERT search space verify that mitigating interference via each
+of our proposed methods improves the rank correlation of super-pet and
+combining both methods can achieve better results. Our discovered architecture
+outperforms RoBERTa$_{\rm base}$ by 1.1 and 0.6 points and ELECTRA$_{\rm base}$
+by 1.6 and 1.1 points on the dev and test set of GLUE benchmark. Extensive
+results on the BERT compression, reading comprehension and ImageNet task
+demonstrate the effectiveness and generality of our proposed methods.},
+ arxiv_url = {https://arxiv.org/pdf/2108.12821v3.pdf},
+ author = {Jin Xu and Xu Tan and Kaitao Song and Renqian Luo and Yichong Leng and Tao Qin and Tie-Yan Liu and Jian Li},
+ title = {Analyzing and Mitigating Interference in Neural Architecture Search},
+ year = {2021}
+}
+
+@article{yoon-2019-scalable,
+ abstract = {While recent continual learning methods largely alleviate the catastrophic
+problem on toy-sized datasets, some issues remain to be tackled to apply them
+to real-world problem domains. First, a continual learning model should
+effectively handle catastrophic forgetting and be efficient to train even with
+a large number of tasks. Secondly, it needs to tackle the problem of
+order-sensitivity, where the performance of the tasks largely varies based on
+the order of the task arrival sequence, as it may cause serious problems where
+fairness plays a critical role (e.g. medical diagnosis). To tackle these
+practical challenges, we propose a novel continual learning method that is
+scalable as well as order-robust, which instead of learning a completely shared
+set of weights, represents the parameters for each task as a sum of task-shared
+and sparse task-adaptive parameters. With our Additive Parameter Decomposition
+(APD), the task-adaptive parameters for earlier tasks remain mostly unaffected,
+where we update them only to reflect the changes made to the task-shared
+parameters. This decomposition of parameters effectively prevents catastrophic
+forgetting and order-sensitivity, while being computation- and
+memory-efficient. Further, we can achieve even better scalability with APD
+using hierarchical knowledge consolidation, which clusters the task-adaptive
+parameters to obtain hierarchically shared parameters. We validate our network
+with APD, APD-Net, on multiple benchmark datasets against state-of-the-art
+continual learning methods, which it largely outperforms in accuracy,
+scalability, and order-robustness.},
+ arxiv_url = {https://arxiv.org/pdf/1902.09432v3.pdf},
+ author = {Jaehong Yoon and Saehoon Kim and Eunho Yang and Sung Ju Hwang},
+ title = {Scalable and Order-robust Continual Learning with Additive Parameter Decomposition},
+ year = {2019}
+}
+
+@article{yu-2020-gradient,
+ abstract = {While deep learning and deep reinforcement learning (RL) systems have
+demonstrated impressive results in domains such as image classification, game
+playing, and robotic control, data efficiency remains a major challenge.
+Multi-task learning has emerged as a promising approach for sharing structure
+across multiple tasks to enable more efficient learning. However, the
+multi-task setting presents a number of optimization challenges, making it
+difficult to realize large efficiency gains compared to learning tasks
+independently. The reasons why multi-task learning is so challenging compared
+to single-task learning are not fully understood. In this work, we identify a
+set of three conditions of the multi-task optimization landscape that cause
+detrimental gradient interference, and develop a simple yet general approach
+for avoiding such interference between task gradients. We propose a form of
+gradient surgery that projects a task's gradient onto the normal plane of the
+gradient of any other task that has a conflicting gradient. On a series of
+challenging multi-task supervised and multi-task RL problems, this approach
+leads to substantial gains in efficiency and performance. Further, it is
+model-agnostic and can be combined with previously-proposed multi-task
+architectures for enhanced performance.},
+ arxiv_url = {https://arxiv.org/pdf/2001.06782v4.pdf},
+ author = {Tianhe Yu and Saurabh Kumar and Abhishek Gupta and Sergey Levine and Karol Hausman and Chelsea Finn},
+ github_url = {https://github.com/tianheyu927/PCGrad},
+ title = {Gradient Surgery for Multi-Task Learning},
+ year = {2020}
+}
+
+@article{zhang-2024-spectral,
+ abstract = {Recent developments in Parameter-Efficient Fine-Tuning (PEFT) methods for
+pretrained deep neural networks have captured widespread interest. In this
+work, we study the enhancement of current PEFT methods by incorporating the
+spectral information of pretrained weight matrices into the fine-tuning
+procedure. We investigate two spectral adaptation mechanisms, namely additive
+tuning and orthogonal rotation of the top singular vectors, both are done via
+first carrying out Singular Value Decomposition (SVD) of pretrained weights and
+then fine-tuning the top spectral space. We provide a theoretical analysis of
+spectral fine-tuning and show that our approach improves the rank capacity of
+low-rank adapters given a fixed trainable parameter budget. We show through
+extensive experiments that the proposed fine-tuning model enables better
+parameter efficiency and tuning performance as well as benefits multi-adapter
+fusion.},
+ arxiv_url = {https://arxiv.org/pdf/2405.13952v2.pdf},
+ author = {Fangzhao Zhang and Mert Pilanci},
+ github_url = {https://github.com/pilancilab/spectral_adapter},
+ title = {Spectral Adapter: Fine-Tuning in Spectral Space},
+ year = {2024}
+}
+
+% ===========================================
+% REFERENCE CANDIDATES
+% Additional reference papers for context
+% ===========================================
+
+@article{author-year-data,
+ title = {A data-driven approach to cleaning large face datasets}
+}
+
+@article{author-year-dynamic,
+ title = {Dynamic multi-task learning with convolutional neural network}
+}
+
+@article{author-year-gradient,
+ title = {Gradient-based learning applied to document recognition}
+}
+
+@article{author-year-human,
+ title = {Human-level concept learning through probabilistic program induction}
+}
+
+@article{author-year-imagenet,
+ title = {Imagenet classiﬁcation with deep convolu- tional neural networks}
+}
+
+@article{author-year-learning,
+ title = {Learning multiple layers of features from tiny images}
+}
+
+@article{author-year-not,
+ title = {Not-mnist dataset}
+}
+
+@article{author-year-reading,
+ title = {Reading digits in natural images with unsupervised feature learning}
+}
+
+@article{chaudhry-2018-lifelong,
+ abstract = {In lifelong learning, the learner is presented with a sequence of tasks,
+incrementally building a data-driven prior which may be leveraged to speed up
+learning of a new task. In this work, we investigate the efficiency of current
+lifelong approaches, in terms of sample complexity, computational and memory
+cost. Towards this end, we first introduce a new and a more realistic
+evaluation protocol, whereby learners observe each example only once and
+hyper-parameter selection is done on a small and disjoint set of tasks, which
+is not used for the actual learning experience and evaluation. Second, we
+introduce a new metric measuring how quickly a learner acquires a new skill.
+Third, we propose an improved version of GEM (Lopez-Paz & Ranzato, 2017),
+dubbed Averaged GEM (A-GEM), which enjoys the same or even better performance
+as GEM, while being almost as computationally and memory efficient as EWC
+(Kirkpatrick et al., 2016) and other regularization-based methods. Finally, we
+show that all algorithms including A-GEM can learn even more quickly if they
+are provided with task descriptors specifying the classification tasks under
+consideration. Our experiments on several standard lifelong learning benchmarks
+demonstrate that A-GEM has the best trade-off between accuracy and efficiency.},
+ arxiv_url = {https://arxiv.org/pdf/1812.00420v2.pdf},
+ author = {Arslan Chaudhry and Marc'Aurelio Ranzato and Marcus Rohrbach and Mohamed Elhoseiny},
+ title = {Efﬁcient lifelong learning with a-gem},
+ year = {2018}
+}
+
+@article{kirkpatrick-2016-overcoming,
+ abstract = {The ability to learn tasks in a sequential fashion is crucial to the
+development of artificial intelligence. Neural networks are not, in general,
+capable of this and it has been widely thought that catastrophic forgetting is
+an inevitable feature of connectionist models. We show that it is possible to
+overcome this limitation and train networks that can maintain expertise on
+tasks which they have not experienced for a long time. Our approach remembers
+old tasks by selectively slowing down learning on the weights important for
+those tasks. We demonstrate our approach is scalable and effective by solving a
+set of classification tasks based on the MNIST hand written digit dataset and
+by learning several Atari 2600 games sequentially.},
+ arxiv_url = {https://arxiv.org/pdf/1612.00796v2.pdf},
+ author = {James Kirkpatrick and Razvan Pascanu and Neil Rabinowitz and Joel Veness and Guillaume Desjardins and Andrei A. Rusu and Kieran Milan and John Quan and Tiago Ramalho and Agnieszka Grabska-Barwinska and Demis Hassabis and Claudia Clopath and Dharshan Kumaran and Raia Hadsell},
+ doi = {10.1073/pnas.1611835114},
+ title = {Overcoming catastrophic forgetting in neural networks},
+ year = {2016}
+}
+
+@article{kumar-2012-learning,
+ abstract = {In the paradigm of multi-task learning, mul- tiple related prediction tasks
+are learned jointly, sharing information across the tasks. We propose a
+framework for multi-task learn- ing that enables one to selectively share the
+information across the tasks. We assume that each task parameter vector is a
+linear combi- nation of a finite number of underlying basis tasks. The
+coefficients of the linear combina- tion are sparse in nature and the overlap
+in the sparsity patterns of two tasks controls the amount of sharing across
+these. Our model is based on on the assumption that task pa- rameters within a
+group lie in a low dimen- sional subspace but allows the tasks in differ- ent
+groups to overlap with each other in one or more bases. Experimental results on
+four datasets show that our approach outperforms competing methods.},
+ arxiv_url = {https://arxiv.org/pdf/1206.6417v1.pdf},
+ author = {Abhishek Kumar and Hal Daume III},
+ title = {Learning task grouping and overlap in multi-task learning},
+ year = {2012}
+}
+
+@article{lee-2017-overcoming,
+ abstract = {Catastrophic forgetting is a problem of neural networks that loses the
+information of the first task after training the second task. Here, we propose
+a method, i.e. incremental moment matching (IMM), to resolve this problem. IMM
+incrementally matches the moment of the posterior distribution of the neural
+network which is trained on the first and the second task, respectively. To
+make the search space of posterior parameter smooth, the IMM procedure is
+complemented by various transfer learning techniques including weight transfer,
+L2-norm of the old and the new parameter, and a variant of dropout with the old
+parameter. We analyze our approach on a variety of datasets including the
+MNIST, CIFAR-10, Caltech-UCSD-Birds, and Lifelog datasets. The experimental
+results show that IMM achieves state-of-the-art performance by balancing the
+information between an old and a new network.},
+ arxiv_url = {https://arxiv.org/pdf/1703.08475v3.pdf},
+ author = {Sang-Woo Lee and Jin-Hwa Kim and Jaehyun Jun and Jung-Woo Ha and Byoung-Tak Zhang},
+ title = {Overcoming catastrophic forgetting by incremental moment matching},
+ year = {2017}
+}
+
+@article{li-2016-learning,
+ abstract = {When building a unified vision system or gradually adding new capabilities to
+a system, the usual assumption is that training data for all tasks is always
+available. However, as the number of tasks grows, storing and retraining on
+such data becomes infeasible. A new problem arises where we add new
+capabilities to a Convolutional Neural Network (CNN), but the training data for
+its existing capabilities are unavailable. We propose our Learning without
+Forgetting method, which uses only new task data to train the network while
+preserving the original capabilities. Our method performs favorably compared to
+commonly used feature extraction and fine-tuning adaption techniques and
+performs similarly to multitask learning that uses original task data we assume
+unavailable. A more surprising observation is that Learning without Forgetting
+may be able to replace fine-tuning with similar old and new task datasets for
+improved new task performance.},
+ arxiv_url = {https://arxiv.org/pdf/1606.09282v3.pdf},
+ author = {Zhizhong Li and Derek Hoiem},
+ title = {Learning without forgetting},
+ year = {2016}
+}
+
+@article{lopezpaz-2017-gradient,
+ abstract = {One major obstacle towards AI is the poor ability of models to solve new
+problems quicker, and without forgetting previously acquired knowledge. To
+better understand this issue, we study the problem of continual learning, where
+the model observes, once and one by one, examples concerning a sequence of
+tasks. First, we propose a set of metrics to evaluate models learning over a
+continuum of data. These metrics characterize models not only by their test
+accuracy, but also in terms of their ability to transfer knowledge across
+tasks. Second, we propose a model for continual learning, called Gradient
+Episodic Memory (GEM) that alleviates forgetting, while allowing beneficial
+transfer of knowledge to previous tasks. Our experiments on variants of the
+MNIST and CIFAR-100 datasets demonstrate the strong performance of GEM when
+compared to the state-of-the-art.},
+ arxiv_url = {https://arxiv.org/pdf/1706.08840v6.pdf},
+ author = {David Lopez-Paz and Marc'Aurelio Ranzato},
+ title = {Gradient episodic memory for continual learning},
+ year = {2017}
+}
+
+@article{mallya-2018-piggyback,
+ abstract = {This work presents a method for adapting a single, fixed deep neural network
+to multiple tasks without affecting performance on already learned tasks. By
+building upon ideas from network quantization and pruning, we learn binary
+masks that piggyback on an existing network, or are applied to unmodified
+weights of that network to provide good performance on a new task. These masks
+are learned in an end-to-end differentiable fashion, and incur a low overhead
+of 1 bit per network parameter, per task. Even though the underlying network is
+fixed, the ability to mask individual weights allows for the learning of a
+large number of filters. We show performance comparable to dedicated fine-tuned
+networks for a variety of classification tasks, including those with large
+domain shifts from the initial task (ImageNet), and a variety of network
+architectures. Unlike prior work, we do not suffer from catastrophic forgetting
+or competition between tasks, and our performance is agnostic to task ordering.
+Code available at https://github.com/arunmallya/piggyback.},
+ arxiv_url = {https://arxiv.org/pdf/1801.06519v2.pdf},
+ author = {Arun Mallya and Dillon Davis and Svetlana Lazebnik},
+ title = {Piggyback: Adapting a single network to multiple tasks by learning to mask weights},
+ year = {2018}
+}
+
+@article{nguyen-2017-variational,
+ abstract = {This paper develops variational continual learning (VCL), a simple but
+general framework for continual learning that fuses online variational
+inference (VI) and recent advances in Monte Carlo VI for neural networks. The
+framework can successfully train both deep discriminative models and deep
+generative models in complex continual learning settings where existing tasks
+evolve over time and entirely new tasks emerge. Experimental results show that
+VCL outperforms state-of-the-art continual learning methods on a variety of
+tasks, avoiding catastrophic forgetting in a fully automatic way.},
+ arxiv_url = {https://arxiv.org/pdf/1710.10628v3.pdf},
+ author = {Cuong V. Nguyen and Yingzhen Li and Thang D. Bui and Richard E. Turner},
+ title = {Variational continual learning},
+ year = {2017}
+}
+
+@article{riemer-2018-learning,
+ abstract = {Lack of performance when it comes to continual learning over non-stationary
+distributions of data remains a major challenge in scaling neural network
+learning to more human realistic settings. In this work we propose a new
+conceptualization of the continual learning problem in terms of a temporally
+symmetric trade-off between transfer and interference that can be optimized by
+enforcing gradient alignment across examples. We then propose a new algorithm,
+Meta-Experience Replay (MER), that directly exploits this view by combining
+experience replay with optimization based meta-learning. This method learns
+parameters that make interference based on future gradients less likely and
+transfer based on future gradients more likely. We conduct experiments across
+continual lifelong supervised learning benchmarks and non-stationary
+reinforcement learning environments demonstrating that our approach
+consistently outperforms recently proposed baselines for continual learning.
+Our experiments show that the gap between the performance of MER and baseline
+algorithms grows both as the environment gets more non-stationary and as the
+fraction of the total experiences stored gets smaller.},
+ arxiv_url = {https://arxiv.org/pdf/1810.11910v3.pdf},
+ author = {Matthew Riemer and Ignacio Cases and Robert Ajemian and Miao Liu and Irina Rish and Yuhai Tu and Gerald Tesauro},
+ title = {Learning to learn without forgetting by maximizing transfer and minimizing interference},
+ year = {2018}
+}
