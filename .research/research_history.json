@@ -598,6 +598,68 @@
       }
     }
   ],
+  "reference_research_study_list": [
+    {
+      "title": "Instruction tuning for large language models: A survey"
+    },
+    {
+      "title": "Training language models to follow instructions with human feedback"
+    },
+    {
+      "title": "Parameter-efficient fine-tuning for large models: A comprehensive survey"
+    },
+    {
+      "title": "Lora: Low-rank adaptation of large language models"
+    },
+    {
+      "title": "Attention is all you need"
+    },
+    {
+      "title": "Parameter-efficient fine-tuning of large-scale pre-trained language models"
+    },
+    {
+      "title": "Lisa: Layerwise importance sampling for memory-efficient large language model fine-tuning"
+    },
+    {
+      "title": "Dora: Weight-decomposed low-rank adaptation"
+    },
+    {
+      "title": "Lora learns less and forgets less"
+    },
+    {
+      "title": "Pre-train, prompt, and predict: A systematic survey of prompting methods in natural language processing"
+    },
+    {
+      "title": "Delving deep into rectifiers: Surpassing human-level performance on imagenet classification"
+    },
+    {
+      "title": "Gradient descent happens in a tiny subspace"
+    },
+    {
+      "title": "Intrinsic dimensionality explains the effectiveness of language model fine-tuning"
+    },
+    {
+      "title": "Glue: A multi-task benchmark and analysis platform for natural language understanding"
+    },
+    {
+      "title": "Exploring the limits of transfer learning with a unified text-to-text transformer"
+    },
+    {
+      "title": "Judging llm-as-a-judge with mt-bench and chatbot arena"
+    },
+    {
+      "title": "Training verifiers to solve math word problems"
+    },
+    {
+      "title": "Evaluating large language models trained on code"
+    },
+    {
+      "title": "Llama 2: Open foundation and fine-tuned chat models"
+    },
+    {
+      "title": "Understanding the difficulty of training deep feedforward neural networks"
+    }
+  ],
   "new_method": {
     "method": "Open Problems: Existing gradient-projection methods such as GaLore drastically reduce optimizer-state memory, but three obstacles prevent their direct adoption for large-scale scientific ML (SciML):\n1. Costly full-matrix SVD: every 100–200 steps the gradient of each large parameter matrix must be decomposed, creating a non-negligible wall-clock overhead that grows quadratically with hidden size.\n2. Physics-ignorant sub-spaces: the purely data-driven sub-spaces chosen by vanilla GaLore ignore known symmetries (e.g. rotational, permutation, temporal causality) that are crucial for PINNs, neural operators and molecular transformers, so low-rank projection can inadvertently discard gradient directions needed to preserve physical constraints.\n3. Lack of cross-task generality: current evaluations focus on language modelling; it is unknown whether low-rank gradients persist in stiff PDE regimes or in long-range molecular interactions, and whether memory savings can be realised on 1–1.5 B parameter SciML transformers within <48 GB GPU budgets.\nResolving these issues would enable full-parameter optimisation of billion-scale SciML models on single or few consumer GPUs, accelerating research in CFD, climate modelling and drug discovery.\nMethods: We propose Physically-Aware Hierarchical GaLore (Phi-GaLore): a symmetry-aware, two-stage gradient projection framework.\nStage-1: Fast hierarchical randomised projection\n• For every weight matrix W∈ℝ^{m×n}, compute a fast Randomised Subspace Sketch G̃=P_rᵀ G Q_r with r≈32 using one pass of Count-Sketch (no SVD) every iteration – O((m+n)r) time, negligible memory.\n• Maintain exponentially-moving-average (EMA) of this sketch to damp stochastic noise.\nStage-2: Physics-informed sub-space refinement (every T≈400 steps)\n• Build a small r×r covariance C=G̃ G̃ᵀ; perform SVD on C only (cost O(r³)).\n• Augment the left singular vectors with analytic symmetry bases B (e.g. divergence-free basis for incompressible flow, SO(3) spherical-harmonic basis for molecular rotations).  Final projector P=[U_r  B] is orthonormalised by two iterations of Gram–Schmidt.\nHierarchical sharing\n• For groups of layers that share resolution (e.g. all attention value matrices at level k) use a common projector; this shrinks SVD count by >8×.\nOptimizer integration\n• Implement in PyTorch/JAX as a drop-in optax/torch.optim wrapper that keeps EMA sketch and symmetry bases in BF16.\n• Compatible with 8-bit Adam states and FLORA-style momentum compression; choose the cheaper of Phi-GaLore and FLORA on a layer-by-layer basis.\nDifferences to prior work\n• Replaces expensive full-gradient SVD with tiny r×r SVD plus Count-Sketch.\n• Injects task-specific symmetry bases, guaranteeing invariance/equivariance of projected gradients.\n• Introduces cross-layer projector sharing to amortise cost on deep transformers.\n• Targets SciML workloads rather than NLP.\nExperimental Setup: Models\n1. PINNsFormer-Large (≈1 B params) for transient 2-D Navier–Stokes, 1024 pseudo-sequence length.\n2. Transolver-XL (≈1.3 B params) for 3-D AirfRANS industrial benchmark.\n3. GeoMFormer-Base (≈1 B) fine-tuned on MolPuzzle (217 molecules) for HOMO-LUMO gap prediction.\nBaselines\n• Full-rank AdamW (mixed precision).\n• LoRA (rank-64) fine-tuning.\n• Original GaLore (rank-64, T=200).\n• FLORA (rank-64, τ=64) where applicable.\nMetrics\n• Physics tasks: relative L2 error on velocity/pressure fields, volume-averaged residual, inference stability under mesh refinement.\n• Molecular task: MAE on HOMO-LUMO, Spearman-ρ.\n• Computational: peak GPU memory, optimizer-state memory, training tokens/s (or grid-points/s), total wall-clock to reach a fixed error, projection overhead %.\nProtocols\n• Train each model for a fixed 150K gradient steps on 2×RTX 4090 (24 GB) or 1×A100-80 GB.\n• Ablate (r∈{16,32,64}, presence/absence of symmetry bases, projector sharing factor).\n• Robustness: (a) noisy boundary conditions, (b) random mesh perturbations, (c) molecular conformer noise.\n• Measure rank of true gradients during training to validate low-rank assumption in SciML.\nResult: Expected outcomes:\n• Phi-GaLore matches or beats full-rank accuracy (≤1% degradation) on all tasks.\n• Reduces optimizer-state memory by 60–68 % vs full-rank and by 10–15 % vs GaLore through projector sharing; fits 1.3 B model in 24 GB.\n• Cuts projection overhead from GaLore’s 14–20 % to <5 %; overall training throughput +18 % vs GaLore, +2 % vs Full-rank despite memory gain.\n• Symmetry bases lower Navier–Stokes rL2 error by ~8 % relative to purely data-driven projectors.\n• Low-rank structure persists: effective stable rank of gradients ≤40 throughout training, validating approach.\nConclusion: Phi-GaLore closes the gap between memory-efficient gradient projection and the stringent symmetry requirements of SciML, enabling billion-parameter PDE solvers and molecular transformers to train on commodity hardware with full-parameter updates. By combining fast randomised sketches, physics-aware bases and cross-layer projector sharing, it removes GaLore’s main bottleneck while improving accuracy in physics-sensitive regimes.\nPractically, this unlocks agile experimentation for researchers without multi-GPU clusters, accelerating progress in climate, CFD and drug discovery. Academically, it provides the first systematic study of gradient low-rankness in SciML, introduces symmetry-informed compression and suggests a unifying view that blends GaLore and FLORA. Future work can extend the framework to multi-physics coupling and adaptive rank selection, and explore theoretical bounds on error induced by symmetry-constrained projections.",
     "experimental_design": {
