@@ -1,0 +1,242 @@
+\documentclass{article}
+
+\usepackage{agents4science_2025}
+% to compile a preprint version, e.g., for submission to arXiv, add the
+% \usepackage[preprint]{agents4science_2025}
+
+% to compile a camera-ready version, add the [final] option, e.g.:
+% \usepackage[final]{agents4science_2025}
+
+% For workshops, the authors should use the workshop options and add the name of the workshop.
+% The "\workshoptitle" command is used to set the workshop title.
+%
+% \usepackage[sglblindworkshop]{agents4science_2025}
+% \workshoptitle{WORKSHOP TITLE}
+
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}
+\usepackage{microtype}
+\usepackage{xcolor}
+
+
+\title{HATQ: Hardware-Aware Token-Adaptive Quantization for Any-Precision Weight Execution in LLMs}
+
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to LaTeX to determine where to break the
+% lines. Using \AND forces a line break at that point. So, if LaTeX puts 3 of 4
+% authors names on the first line, and the last on the second line, try using
+% \AND instead of \And before the third author name.
+
+
+\author{%
+  David S.~Hippocampus\thanks{Use footnote for providing further information
+    about author (webpage, alternative address)---\emph{not} for acknowledging
+    funding agencies.} \\
+  Department of Computer Science\\
+  Cranberry-Lemon University\\
+  Pittsburgh, PA 15213 \\
+  \texttt{hippo@cs.cranberry-lemon.edu} \\
+  % examples of more authors
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \AND
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+}
+
+
+\begin{document}
+
+
+\maketitle
+
+
+\begin{abstract}
+Token-level dynamic quantization promises to reduce memory traffic and latency for large language model inference by allocating precision where it matters. However, two obstacles block practical deployment: current GPU kernels accept a single weight precision per matrix multiply, and deciding per-token precision quickly and accurately is difficult. We present HATQ, a hardware-aware token-adaptive quantization method that varies weight precision per token at run time. HATQ combines bit-plane ready weights derived from a 3-bit SqueezeLLM seed, a hierarchical precision controller that predicts layer-global budgets and per-token masks, budgeted bit-plane fetch with grouping, joint fine-tuning of plane scales and controller under a latency-regularized objective, and a drop-in linear layer. We prototype HATQ in PyTorch and evaluate end-to-end perplexity, classification accuracy, throughput, effective average bits, controller quality, and systems micro-benchmarks. On synthetic tasks HATQ matches static 4-bit perplexity but, without fused masked bit-plane kernels, is slower than static 4-bit; the controller shows near-random token selection (ROC-AUC \(\approx 0.52\)) with \(\approx 1.48\) ms overhead. Micro-benchmarks confirm that naive dynamic execution is dominated by grouping and launch costs, motivating fused masked-load kernels to realize bandwidth savings. These results clarify where engineering effort is required to make token-adaptive weight precision practical.
+\end{abstract}
+
+
+
+\section{Introduction}
+Low-precision inference is a primary lever for reducing the cost of serving large language models, where single-batch, autoregressive decoding is frequently memory-bandwidth bound rather than compute bound \cite{kim-2023-squeezellm,wu-2023-understanding}. Post-training quantization (PTQ) to 3-4 bits can preserve accuracy for decoder blocks but typically fixes precision globally at load time \cite{kim-2023-squeezellm,park-2024-any,cui-2024-cherry,chee-2023-quip}. Yet the precision a token needs varies with context: rare words, arithmetic chains, or control symbols may demand more accurate weights, while surrounding tokens may tolerate fewer bit-planes. Token-level dynamic quantization therefore offers a pathway to drive effective average precision below four bits without degrading accuracy, aiming for improvements in tokens per second and peak memory.
+Two obstacles have limited progress toward this goal. First, contemporary GPU kernels enforce a single weight precision per matrix multiply, which has steered most dynamic approaches to vary activation-side quantization or clipping instead \cite{shomron-2021-post,gong-2019-differentiable,zhaoyang-2021-differentiable}. Any-precision overlays demonstrate shared storage across multiple bit-widths, but do not vary weight precision per token within a single call \cite{park-2024-any}. Second, selecting per-token precision rapidly and accurately is challenging. Heuristics based on norms, entropy, or gradient proxies can be brittle and add latency, echoing observations from heterogeneous-precision and outlier-aware studies \cite{cui-2024-cherry,wei-2022-outlier,author-year-not}. Broader work on adaptive numeric formats and fair efficiency measurement further cautions that algorithmic ideas must be co-designed with kernels to deliver end-to-end gains \cite{author-year-like,wu-2023-understanding,narayanan-2023-cheaply}.
+We introduce HATQ, a hardware-aware token-adaptive quantization system that pairs a bit-plane representation of weights with a learned hierarchical controller and an execution path intended to load only the necessary planes per token. Conceptually, HATQ enables any-precision execution: at each decode step, a token-specific mask selects how many most-significant bit-planes contribute to each layer's dot products. Compared to switching entire models \cite{park-2024-any} or preserving fixed high-precision subsets \cite{cui-2024-cherry}, HATQ varies weight precision at token granularity and couples decisions with masked fetch and micro-batch grouping to retain GPU efficiency. Our quantization pipeline builds on robust PTQ seeds and small trainable plane scales, akin to QuIP-style reordering that prioritizes important components \cite{chee-2023-quip}, while the controller reuses last-layer hidden states and incurs no KV-cache growth.
+We evaluate a working PyTorch prototype using synthetic language modeling and classification tasks, along with systems micro-benchmarks and controller diagnostics. The prototype emulates masked plane selection at the Python level and trains the controller briefly, without fused Triton or CUDA kernels. Consequently, results reflect algorithmic behavior and overheads rather than final kernel performance. Even so, the experiments precisely locate where latency accrues and how to assess controller quality alongside end-to-end metrics. The prototype serves as a transparent baseline that motivates the necessary systems work to realize the intended bandwidth savings.
+Our contributions are:
+\begin{itemize}
+  \item \textbf{Token-level any-precision framework:} A weight-execution design that uses bit-plane ready weights and a hierarchical controller that combines layer-global budgets with per-token masks \cite{kim-2023-squeezellm,chee-2023-quip}.
+  \item \textbf{Latency-regularized joint training:} A loss with straight-through estimation over discrete plane counts that jointly trains controller parameters and per-plane scales \cite{gong-2019-differentiable,zhaoyang-2021-differentiable,author-year-not}.
+  \item \textbf{Budgeted fetch with grouping:} A practical plan for masked bit-plane fetch and micro-batch grouping that highlights the need for fused masked-load kernels to avoid Python-level overhead, echoing kernel-centric findings for low-bit execution \cite{wu-2023-understanding}.
+  \item \textbf{Transparent prototype evaluation:} Ablations, systems micro-benchmarks, and controller-quality reporting framed by principled efficiency analysis \cite{narayanan-2023-cheaply}.
+\end{itemize}
+Looking ahead, we discuss how fused masked-load kernels, training on real LLM hidden states, and integration with activation-side methods \cite{shomron-2021-post,wei-2022-outlier} and adaptive number formats \cite{author-year-like} can move HATQ toward its intended Pareto frontier. We also outline potential compatibility with privacy-preserving inference \cite{author-year-iron,zimerman-2023-converting}.
+
+\section{Related Work}
+Post-training quantization and weight representations. SqueezeLLM demonstrates that decoder-only LLMs can be quantized to 3-4 bits with minimal accuracy loss and that single-batch generation is bandwidth bound \cite{kim-2023-squeezellm}. QuIP introduces incoherence processing with adaptive rounding and orthogonal preprocessing that enables aggressive PTQ, including viable 2-bit regimes supported by theory and small trainable transforms \cite{chee-2023-quip}. CherryQ exploits parameter heterogeneity by preserving influential subsets at higher precision while aggressively quantizing the remainder \cite{cui-2024-cherry}. These approaches fix precision at load time. In contrast, HATQ adapts weight precision online at token granularity and explicitly structures weights into bit-planes to enable masked fetching.
+Any-precision overlays and execution. Any-Precision LLM overlays multiple quantized variants within a shared representation to reduce the cost of deploying several bit-widths \cite{park-2024-any}. Although storage is shared across discrete precisions, this approach does not vary weight precision within a single kernel invocation. HATQ borrows the shared-representation spirit but introduces token-level precision decisions and an execution path that selects planes on the fly. Prior analyses of low-bit training and inference emphasize that realized speedups depend critically on kernel design and bandwidth behavior, not only arithmetic precision \cite{wu-2023-understanding}. Our findings reinforce this point: lacking fused masked loads and bit-packing, dynamic precision underperforms static baselines in our prototype.
+Dynamic quantization and heterogeneous precision. Differentiable schemes learn quantization ranges and bit-widths via smooth relaxations and straight-through estimators \cite{gong-2019-differentiable,zhaoyang-2021-differentiable}. Heterogeneous-precision learning argues that not all bits are equally valuable and that precision should be allocated where it matters most \cite{author-year-not}. HATQ adopts a differentiable allocation of discrete bit-planes guided by a latency surrogate, but changes the granularity to token time and couples the policy with an execution mechanism designed to exploit the learned schedules.
+Activation dynamics and outliers. Sparsity-aware and dynamic-activation quantization techniques use activation statistics and sparsity to enable low precision with minimal loss \cite{shomron-2021-post}. Outlier suppression shows that layer-norm scaling and token variability drive quantization failures and that mitigating outliers improves robustness \cite{wei-2022-outlier}. HATQ is complementary: it primarily varies weight precision while reusing last-layer hidden states to inform token difficulty. Combining activation- and weight-side adaptivity is a natural next step.
+Token importance and pruning. Zero-TPrune leverages attention graphs and weighted PageRank to zero-shot prune tokens \cite{wang-2023-zero}. Although it targets token count rather than bit allocation, it exemplifies token-level selectivity. HATQ similarly aims for token-level decisions, but to allocate precision instead of pruning.
+Inference efficiency and adaptive formats. The idealized runtime lens highlights that system-level optimizations often dominate reported latencies and that fair comparisons require controlled stacks \cite{narayanan-2023-cheaply}. Adaptive numeric formats advocate tailoring representations to data distributions \cite{author-year-like}. HATQ preserves integer bit-planes but schedules their use per token, with evaluation framed by the idealized-runtime perspective.
+Compared to these lines, HATQ targets online, token-level variation in weight precision and introduces the systems elements required to make such variation practical, echoing kernel-centric insights on realizing low-bit speedups \cite{wu-2023-understanding}.
+
+\section{Background}
+Problem setting. We consider decode-time inference for an autoregressive transformer with \(L\) layers. At time step \(t\), given cached key-value states and the current hidden activations, each layer applies weight matrices \(W_{l}\) (attention projections and MLPs). On contemporary GPUs, each matrix multiplication uses a single weight precision per invocation. Our goal is to assign, for each token \(t\) and layer \(l\), a discrete number of most-significant bit-planes \(b(t,l)\) from a shared bit-plane decomposition of \(W_{l}\), while preserving efficiency by avoiding excessive serialization across the batch. The objective is to reduce the effective average weight bits below four without degrading perplexity or downstream accuracy and, ultimately, to improve tokens per second and peak memory.
+Bit-plane representation. Starting from a 3-bit SqueezeLLM seed \cite{kim-2023-squeezellm}, we represent each weight matrix \(W_{l}\) as a sum of \(P\) planes with per-plane scales. Concretely, \(W_{l} \approx \sum_{p \in \{0,\dots,P-1\}} s(l,p)\,B(l,p)\), where \(B(l,p) \in \{-1,+1\}^{\cdot}\) denotes the sign pattern of plane \(p\), and \(s(l,p)\) are small trainable scales, for example per-row. The top three planes coincide with the 3-bit seed; remaining planes refine accuracy. This structure permits reconstruction of different effective precisions at run time by summing the most-significant planes, similar in spirit to shared overlays \cite{park-2024-any} and to QuIP-style reordering that prioritizes important components \cite{chee-2023-quip}.
+Token-wise precision allocation. For each new token, we predict \(b(t,l) \in \{3,\dots,8\}\) via a hierarchical controller. A layer-global budget assigns bit counts per layer conditioned on recent KV statistics, and a per-token mask refines allocation within that budget using last-layer hidden states. Straight-through estimation is used to backpropagate through rounding of bit counts \cite{gong-2019-differentiable,zhaoyang-2021-differentiable}.
+Latency-regularized objective. We train per-plane scales and controller parameters on mixed-domain sequences with a loss that balances language modeling quality and a latency proxy. Specifically, the loss equals \(\lambda\) times negative log-likelihood plus \((1-\lambda)\) times a proxy summarizing average planes per matrix multiply. This aligns with heterogeneous-precision insights that accuracy and efficiency trade off across bits \cite{author-year-not}.
+Assumptions and constraints. We assume \(P=8\) planes resident on GPU and that they can be selectively loaded. We enforce a minimum of three planes to match the seed's most significant bits. We require execution to avoid excessive micro-batch serialization; this motivates grouping tokens by requested bit counts and, ideally, fused kernels that conditionally load planes per row to reduce memory traffic \cite{wu-2023-understanding}.
+Relation to activation dynamics and outliers. While HATQ targets weights, activation-side strategies such as sparsity-aware quantization and outlier suppression are complementary and could be layered with HATQ \cite{shomron-2021-post,wei-2022-outlier}. We also view HATQ through the lens of principled efficiency evaluation \cite{narayanan-2023-cheaply} and adaptive formats \cite{author-year-like}, though our representation remains plane-based integers rather than adaptive floating point.
+
+\section{Method}
+\subsection{Bit-Plane Weight Preparation}
+For each linear layer \(l\), we construct \(P=8\) planes \(B(l,p)\) with per-plane scales \(s(l,p)\). The top three planes reproduce a 3-bit SqueezeLLM seed \cite{kim-2023-squeezellm}. We freeze \(B(l,p)\) and train only small per-plane scales and optional centroid reorderings, leveraging the observation that low-dimensional trainables can recover most accuracy after aggressive PTQ \cite{chee-2023-quip}. At inference, a \(k\)-bit reconstruction for a token uses planes \(\{P-k,\dots,P-1\}\).
+\subsection{Hierarchical Precision Controller}
+At each decode step \(t\), we predict per-layer bit budgets and a per-token refinement. First, a lightweight recurrent unit consumes a short history of per-layer KV statistics and outputs continuous budgets that are rounded with straight-through estimation to produce base layer budgets. Second, a single transformer block reads last-layer hidden states at step \(t\) and emits a scalar score per token; after a sigmoid and straight-through rounding, this yields a 0-1 extra-bit mask. The final allocation is \(b(t,l)=\max\{3,\min\{8,\,\text{base}(l)+\text{mask}(t)\}\}\). The controller reuses existing hidden states and maintains no additional KV cache.
+\subsection{Budgeted Bit-Plane Fetch}
+Execution selects requested planes at run time. A minimum of three most-significant planes is fetched for all tokens; additional planes are loaded only for tokens flagged by the controller. Micro-batch grouping clusters tokens requesting the same bit count to limit the number of matrix-multiply invocations. To realize benefits, a fused kernel should conditionally load planes per row and keep grouping within a single launch to minimize Python overhead and global-memory traffic \cite{wu-2023-understanding}.
+\subsection{Joint Fine-Tuning under Latency Regularization}
+We fine-tune \(s(l,p)\) and controller parameters on short mixed-domain sequences using the objective \(\mathcal{L}=\lambda\,\text{NLL}+(1-\lambda)\,\overline{\text{planes}}\). Discrete decisions use straight-through estimation \cite{gong-2019-differentiable,zhaoyang-2021-differentiable}. We clip gradients and keep base model weights frozen, following PTQ practice \cite{kim-2023-squeezellm,chee-2023-quip}.
+\subsection{Drop-in Interface and Design Rationale}
+We implement a linear operator that stores \(P\) planes as buffers and reads a per-token bit vector at forward time to select which planes to multiply. This preserves compatibility with standard transformer code and allows ablations by forcing fixed bits using the same operator. Bit-plane decomposition enables an any-precision overlay at token granularity; hierarchical control separates slow-moving layer-level budgets from fast token-level variation; and masked fetch with grouping targets the algorithm-hardware gap \cite{wu-2023-understanding}.
+\subsection{Limitations and Assumptions}
+Without fused kernels that pack planes into bit-level storage and conditionally load them within a single matrix multiply, Python-side grouping and multiple launches can dominate latency. Controller effectiveness depends on training signals; short runs on synthetic data may not outperform simple heuristics.
+\begin{algorithm}
+\caption{Hierarchical precision scheduling and masked plane selection per decode step}
+\begin{algorithmic}
+  \State Input: KV stats history \(H\), last-layer hidden state \(x_{t}\), minimum planes \(k_{\min}=3\), maximum planes \(k_{\max}=8\)
+  \State Base budgets: \(u \leftarrow \text{GRU}(H)\); \(\text{base}(l) \leftarrow \text{round}_{\text{STE}}(u_{l})\)
+  \State Token mask: \(m \leftarrow \sigma(\text{TokenBlock}(x_{t}))\); \(\text{mask}(t) \leftarrow \text{round}_{\text{STE}}(m)\)
+  \For{each layer \(l=1\) to \(L\)}
+    \State \(b(t,l) \leftarrow \max\{k_{\min},\min\{k_{\max},\,\text{base}(l)+\text{mask}(t)\}\}\)
+    \State Select planes \(\mathcal{P}_{t,l} \leftarrow \{P-b(t,l),\dots,P-1\}\)
+  \EndFor
+  \State Group tokens by identical \(b(t,\cdot)\); within a fused kernel, conditionally load planes in \(\mathcal{P}_{t,l}\) per row
+\end{algorithmic}
+\end{algorithm}
+
+\section{Experimental Setup}
+We evaluate HATQ along three axes: end-to-end feasibility, systems behavior, and controller quality. All experiments use a CUDA-capable GPU and PyTorch. The prototype operator emulates masked plane selection in Python and does not deploy fused bit-packed kernels. We fix random seeds, warm up kernels before timing, and report the measurements recorded by our runs.
+\subsection{Experiment 1: End-to-End Effectiveness on Synthetic Tasks}
+\begin{itemize}
+  \item \textbf{Goal:} Assess whether token-adaptive precision preserves accuracy and how it affects throughput and effective bits in a decode loop.
+  \item \textbf{Model:} A compact autoregressive transformer wrapped with the HATQ linear operator.
+  \item \textbf{Quantization seed and planes:} 3-bit seed; \(P=8\) planes; a minimum of three most-significant planes per token is enforced.
+  \item \textbf{Controller:} A GRU-based global budget and a single transformer-block token mask, trained briefly with the loss \(\lambda\,\text{NLL}+(1-\lambda)\,\overline{\text{planes}}\), using straight-through estimation and gradient clipping.
+  \item \textbf{Tasks and metrics:} Synthetic language modeling perplexity; a proxy classification accuracy; decode throughput in tokens per second at total sequence lengths of 16, 64, and 128; effective average bits computed from plane counts.
+  \item \textbf{Ablations:} (i) controller off (static 4-bit using the same operator), (ii) global-only (no token mask).
+\end{itemize}
+\subsection{Experiment 2: Systems Micro-Benchmarks}
+\begin{itemize}
+  \item \textbf{Goal:} Isolate overhead sources for dynamic execution.
+  \item \textbf{Setup:} Synthetic matrix multiplication workloads that mimic transformer linear layers, comparing four modes: static 4-bit (fixed four planes), HATQ grouped dynamic (masked fetch with grouping by bit count), naive dynamic (one launch per row), and fetch-all-then-mask (load all planes unconditionally, then mask contributions).
+  \item \textbf{Row sizes and mixes:} Row sizes \(M \in \{32,128,512\}\). Bit mixes A, B, and C defined by fractions of rows requesting 3, 4, 6, and 7 bits.
+  \item \textbf{Measurement:} Average kernel time in milliseconds after warm-up iterations.
+\end{itemize}
+\subsection{Experiment 3: Controller Quality and Overhead}
+\begin{itemize}
+  \item \textbf{Goal:} Evaluate whether the controller flags tokens that benefit from extra precision and measure runtime overhead.
+  \item \textbf{Labels:} Construct offline labels on held-out synthetic sequences by comparing token-level negative log-likelihood under 3-bit versus 5-bit and marking tokens with significant improvement.
+  \item \textbf{Metrics:} ROC-AUC for the controller's mask logits against these labels; wall-clock overhead per invocation for the GRU and token block; comparison to the global-only ablation.
+\end{itemize}
+Implementation notes and fairness. The prototype uses PyTorch-level grouping and multiple matrix multiplies to emulate masked plane fetch. This isolates algorithmic behavior but prevents the bandwidth savings that would come from fused masked loads and bit-packing. All timing comparisons use identical prompts and greedy decoding. We perform warm-up iterations before measurement and average across multiple iterations. Observations are contextualized with kernel-centric analyses \cite{wu-2023-understanding} and idealized-runtime considerations \cite{narayanan-2023-cheaply}.
+
+\section{Results}
+We report all logged results and discuss implications.
+\subsection{Experiment 1: End-to-End Effectiveness on Synthetic Tasks}
+Perplexity (lower is better): HATQ 296.87; global-only 298.93; static 4-bit 297.08. Classification accuracy (higher is better): HATQ 0.465; global-only 0.520; static 4-bit 0.512. Decode throughput in tokens per second and effective bits: at total length 16, HATQ 207.7 versus static-4b 420.3 with average bits 3.00; at length 64, HATQ 205.3 versus 411.2 with average bits 3.00; at length 128, HATQ 204.8 versus 414.5 with average bits 3.00.
+Observations: HATQ matches static 4-bit perplexity on synthetic language modeling but underperforms static 4-bit on the proxy classification task. Despite using fewer average bits (the three-plane floor), HATQ achieves roughly half the throughput of static 4-bit, indicating that grouping and multiple matrix multiply invocations dominate without fused kernels. The latency proxy during training saturates at the three-plane minimum, consistent with measured average bits.
+\subsection{Experiment 2: Systems Micro-Benchmarks}
+Average kernel time in milliseconds across mixes and row sizes:
+Mix A (70\% 3-bit, 25\% 4-bit, 5\% 6-bit): \(M=32\) static4 0.196, HATQ 0.649, naive 6.702, fetch-all-then-mask 0.382; \(M=128\) static4 0.188, HATQ 1.045, naive 27.088, fetch-all-then-mask 0.384; \(M=512\) static4 0.231, HATQ 1.080, naive 107.404, fetch-all-then-mask 0.463.
+Mix B (85\% 3-bit, 10\% 4-bit, 5\% 7-bit): \(M=32\) static4 0.193, HATQ 1.088, naive 6.098, fetch-all-then-mask 0.383; \(M=128\) static4 0.190, HATQ 1.116, naive 25.836, fetch-all-then-mask 0.384; \(M=512\) static4 0.231, HATQ 1.131, naive 104.594, fetch-all-then-mask 0.464.
+Mix C (10\% 3-bit, 60\% 4-bit, 30\% 6-bit): \(M=32\) static4 0.189, HATQ 1.057, naive 9.168, fetch-all-then-mask 0.384; \(M=128\) static4 0.189, HATQ 1.074, naive 32.530, fetch-all-then-mask 0.383; \(M=512\) static4 0.231, HATQ 1.056, naive 140.218, fetch-all-then-mask 0.468.
+Observations: Grouped dynamic execution is consistently slower than static 4-bit; naive per-row launches are prohibitive; fetching all planes then masking, while bandwidth-inefficient, outperforms grouped dynamic due to reduced launch overhead. These results pinpoint the need for fused masked plane loads and within-kernel per-row masking to realize bandwidth savings, in line with analyses that emphasize kernel design for low-bit gains \cite{wu-2023-understanding}.
+\subsection{Experiment 3: Controller Quality and Overhead}
+ROC-AUC against offline labels: 0.521, indicating near-random discrimination of tokens that benefit from extra precision. Overhead: approximately 1.477 ms per invocation for the GRU plus token block. These figures indicate that the controller, trained briefly on synthetic data, does not reliably identify hard tokens and contributes nontrivial overhead. Improving both accuracy and latency of the controller is necessary alongside kernel optimization.
+Ablations and fairness. The controller-off ablation (static-4b) is both faster and, on the proxy classification task, more accurate than HATQ; the global-only ablation attains similar perplexity to HATQ and the highest proxy accuracy. All timing comparisons use identical prompts and greedy decoding; measurements are averaged with warm-up.
+Limitations. The experiments use synthetic tasks with a PyTorch-level operator lacking bit-packing and fused masked-load kernels. Measured throughput reflects Python-level grouping and launch costs rather than the memory bandwidth savings HATQ is designed to exploit. Controller training was short and confined to synthetic data. These limitations motivate kernel development and training on real LLM hidden states and mixed-domain corpora.
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{ images/tokens\_per\_sec\_hatq\_vs\_static.pdf }
+  \caption{End-to-end throughput comparison across sequence lengths.}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{ images/accuracy\_hatq\_vs\_static.pdf }
+  \caption{Accuracy comparison across methods on the proxy task.}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{ images/training\_loss\_hatq.pdf }
+  \caption{Training loss curves for controller and plane scales.}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{ images/bits\_histogram\_hatq.pdf }
+  \caption{Histogram of effective bits per token.}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{ images/confusion\_matrix\_hatq.pdf }
+  \caption{Confusion matrix on the proxy classification task.}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{ images/kernel\_time\_mixA.pdf }
+  \caption{Kernel timings for mix A across modes.}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{ images/kernel\_time\_mixB.pdf }
+  \caption{Kernel timings for mix B across modes.}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{ images/kernel\_time\_mixC.pdf }
+  \caption{Kernel timings for mix C across modes.}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{ images/controller\_roc\_hatq.pdf }
+  \caption{Controller ROC curve versus offline labels.}
+\end{figure}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{ images/controller\_overhead.pdf }
+  \caption{Controller overhead per invocation.}
+\end{figure}
+
+\section{Conclusion}
+We presented HATQ, a hardware-aware token-adaptive quantization method that varies weight precision per token by combining bit-plane ready weights, a hierarchical precision controller, and budgeted bit-plane execution. HATQ is motivated by the gap between algorithmic precision flexibility and the fixed-precision constraint of current GPU matrix multiplies, and by the desire to allocate bits only where tokens require them. Our prototype demonstrates feasibility and yields a clear negative result: without fused masked bit-plane kernels, dynamic execution is slowed by grouping and launch overhead; with short training on synthetic data, the controller fails to reliably identify hard tokens. End-to-end, HATQ matches static 4-bit perplexity but is slower and underperforms on a proxy classification task; micro-benchmarks show grouped dynamic execution slower than static 4-bit, and a fetch-all-then-mask variant faster than grouped dynamic but still slower than static, in keeping with kernel-centric analyses \cite{wu-2023-understanding}.
+These findings sharpen the engineering roadmap. First, implement fused Triton or CUDA kernels that pack bit-planes and conditionally load them per row within a single launch, aligning with hardware realities emphasized in low-bit studies \cite{wu-2023-understanding}. Second, train the controller on real LLM hidden states and mixed-domain corpora with stronger supervision signals, drawing on heterogeneous-precision and outlier-aware insights \cite{author-year-not,wei-2022-outlier,kim-2023-squeezellm,chee-2023-quip}. Third, integrate activation-side techniques \cite{shomron-2021-post} and any-precision overlays \cite{park-2024-any} to broaden the Pareto frontier, and evaluate under principled efficiency metrics \cite{narayanan-2023-cheaply}. If successful, HATQ could achieve sub-4-bit effective precision with preserved accuracy, lowering latency and memory for reasoning-heavy services. Future directions include exploring adaptive numeric formats \cite{author-year-like}, compatibility with privacy-preserving inference \cite{author-year-iron,zimerman-2023-converting}, and cross-model transfer of learned precision schedules.
+
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}
