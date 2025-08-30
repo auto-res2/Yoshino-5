@@ -18,6 +18,7 @@ try:
         FedUAlignModel,
         ConformalAggregator,
         train_one_round,
+        randomized_svd_compress,
     )
     from .evaluate import (
         evaluate_global,
@@ -39,6 +40,7 @@ except ImportError:  # pragma: no cover
         FedUAlignModel,
         ConformalAggregator,
         train_one_round,
+        randomized_svd_compress,
     )
     from evaluate import (
         evaluate_global,
@@ -56,7 +58,7 @@ except ImportError:  # pragma: no cover
     )
 
 
-DEFAULT_IMAGE_DIR = os.path.join('.research', 'iteration5', 'images')
+DEFAULT_IMAGE_DIR = os.path.join('.research', 'iteration6', 'images')
 
 
 def run_experiment1(cfg: Dict, device: torch.device, image_dir: str):
@@ -256,7 +258,7 @@ def run_experiment3(cfg: Dict, device: torch.device, image_dir: str):
             for rank in svd_rank_list:
                 comm_mb = 0.0
                 for G in grads:
-                    U, S, Vh = torch.linalg.svd_lowrank(G, q=min(rank, max(1, min(G.shape) - 1)))
+                    U, S, Vh = randomized_svd_compress(G, rank=rank)
                     # account payload
                     comm_mb += (U.numel() + S.numel() + Vh.numel()) * 4 / (1024.0 * 1024.0)
                 comm_over_rounds[rank].append(comm_mb)

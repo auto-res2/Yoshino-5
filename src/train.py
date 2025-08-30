@@ -494,7 +494,11 @@ def flatten_adapter_deltas(model: FedUAlignModel) -> Tuple[torch.Tensor, List[st
 def randomized_svd_compress(mat: torch.Tensor, rank: int) -> Tuple[torch.Tensor, torch.Tensor, torch.Tensor]:
     if rank <= 0:
         raise ValueError("rank must be positive")
-    U, S, Vh = torch.linalg.svd_lowrank(mat, q=min(rank, max(1, min(mat.shape) - 1)))
+    q = int(min(rank, max(1, min(mat.shape) - 1)))
+    # Use legacy torch.svd_lowrank for broad compatibility
+    with torch.no_grad():
+        U, S, V = torch.svd_lowrank(mat, q=q)
+    Vh = V.t()
     return U, S, Vh
 
 
