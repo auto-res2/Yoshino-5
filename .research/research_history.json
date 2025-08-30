@@ -6,5 +6,82 @@
     "multimodal federated learning",
     "uncertainty-aware alignment",
     "parameter efficient adaptation"
+  ],
+  "research_study_list": [
+    {
+      "title": "Predictive Dynamic Fusion"
+    },
+    {
+      "title": "Provable Dynamic Fusion for Low-Quality Multimodal Data"
+    },
+    {
+      "title": "Multimodal Representation Learning by Alternating Unimodal Adaptation"
+    },
+    {
+      "title": "Deep Multimodal Fusion by Channel  Exchanging"
+    },
+    {
+      "title": "E2E-MFD: Towards End-to-End Synchronous Multimodal Fusion Detection"
+    },
+    {
+      "title": "Probabilistic Conformal Distillation for Enhancing Missing Modality Robustness"
+    },
+    {
+      "title": "Multimodal Prompting With Missing Modalities for Visual Recognition"
+    },
+    {
+      "title": "Deep Correlated Prompting for Visual Recognition with Missing Modalities"
+    },
+    {
+      "title": "Learning Unseen Modality Interaction"
+    },
+    {
+      "title": "Multi-Modal Learning With Missing Modality via Shared-Specific Feature Modelling"
+    },
+    {
+      "title": "Multimodal Federated Learning via Contrastive Representation Ensemble"
+    },
+    {
+      "title": "Enhancing Storage and Computational Efficiency in Federated Multimodal Learning for Large-Scale Models"
+    },
+    {
+      "title": "FedMBridge: Bridgeable Multimodal Federated Learning"
+    },
+    {
+      "title": "FedMBridge: Bridgeable Multimodal Federated Learning"
+    },
+    {
+      "title": "Adaptive Hyper-graph Aggregation for Modality-Agnostic Federated Learning"
+    },
+    {
+      "title": "Alignment Attention by Matching Key and Query Distributions"
+    },
+    {
+      "title": "SSAL: Synergizing between Self-Training and Adversarial Learning for Domain Adaptive Object Detection"
+    },
+    {
+      "title": "Conformal Alignment: Knowing When to Trust Foundation Models with Guarantees"
+    },
+    {
+      "title": "Uncertainty Estimation in Autoregressive Structured Prediction"
+    },
+    {
+      "title": "URL: A Representation Learning Benchmark for Transferable Uncertainty Estimates"
+    },
+    {
+      "title": "Time- Memory- and Parameter-Efficient Visual Adaptation"
+    },
+    {
+      "title": "Make Pre-trained Model Reversible: From Parameter to Memory Efficient Fine-Tuning"
+    },
+    {
+      "title": "Spectral Adapter: Fine-Tuning in Spectral Space"
+    },
+    {
+      "title": "ReFT: Representation Finetuning for Language Models"
+    },
+    {
+      "title": "Structured Unrestricted-Rank Matrices for Parameter Efficient Finetuning"
+    }
   ]
 }
