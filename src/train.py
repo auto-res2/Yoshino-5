@@ -26,7 +26,11 @@ try:
 except Exception:
     PEFT_AVAILABLE = False
 
-from .preprocess import ExactDataset, collate_exact
+# Support running as a module or as a script
+try:
+    from .preprocess import ExactDataset, collate_exact  # type: ignore
+except Exception:  # noqa: E722
+    from preprocess import ExactDataset, collate_exact  # type: ignore
 
 
 def get_tokenizer_and_model(model_name: str, device: str = "cpu") -> Tuple[AutoTokenizer, AutoModelForCausalLM]:

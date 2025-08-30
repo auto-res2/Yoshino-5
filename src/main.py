@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 """
 Main entry point for running EXACT experiments end-to-end.
-Run from project root using:  python -m src.main
+Run from project root using:  python -m src.main  or  python src/main.py
 This will:
   - Generate synthetic teacher data (toy) for math and commonsense
   - Verify steps, extract minimal core, build datasets
   - Train three models per task: EXACT, CoT-KD baseline, Answer-only baseline
-  - Evaluate and save high-quality PDF plots under .research/iteration1/images
+  - Evaluate and save high-quality PDF plots under .research/iteration2/images
 """
 import os
 import json
@@ -15,22 +15,37 @@ from typing import Dict, List
 import torch
 import yaml
 
-from .preprocess import (
-    set_seed, get_device, ensure_dir,
-    make_synthetic_math_teacher_data,
-    build_exact_examples_from_teacher_math,
-    ToyRetriever, make_synthetic_commonsense_teacher_data, build_exact_examples_from_teacher_csqa,
-)
-from .train import get_tokenizer_and_model, train_exact_language_model
-from .evaluate import (
-    evaluate_experiment1_math,
-    evaluate_experiment2_commonsense,
-    evaluate_experiment3_mgsm,
-)
+# Support running as a module or as a script
+try:
+    from .preprocess import (
+        set_seed, get_device, ensure_dir,
+        make_synthetic_math_teacher_data,
+        build_exact_examples_from_teacher_math,
+        ToyRetriever, make_synthetic_commonsense_teacher_data, build_exact_examples_from_teacher_csqa,
+    )
+    from .train import get_tokenizer_and_model, train_exact_language_model
+    from .evaluate import (
+        evaluate_experiment1_math,
+        evaluate_experiment2_commonsense,
+        evaluate_experiment3_mgsm,
+    )
+except Exception:  # noqa: E722
+    from preprocess import (  # type: ignore
+        set_seed, get_device, ensure_dir,
+        make_synthetic_math_teacher_data,
+        build_exact_examples_from_teacher_math,
+        ToyRetriever, make_synthetic_commonsense_teacher_data, build_exact_examples_from_teacher_csqa,
+    )
+    from train import get_tokenizer_and_model, train_exact_language_model  # type: ignore
+    from evaluate import (  # type: ignore
+        evaluate_experiment1_math,
+        evaluate_experiment2_commonsense,
+        evaluate_experiment3_mgsm,
+    )
 
 
 DEFAULT_CONFIG_PATH = os.path.join("config", "config.yaml")
-IMAGES_DIR = os.path.join(".research", "iteration1", "images")
+IMAGES_DIR = os.path.join(".research", "iteration2", "images")
 MODELS_DIR = os.path.join("models")
 
 
@@ -176,7 +191,10 @@ def run():
             return build_exact_examples_from_teacher_csqa  # placeholder to satisfy linter (unused)
         # Build a closure that calls retriever-backed verifier
         def _verify(problem: str, step: str):
-            from .preprocess import verify_step_rag
+            try:
+                from .preprocess import verify_step_rag  # type: ignore
+            except Exception:  # noqa: E722
+                from preprocess import verify_step_rag  # type: ignore
             return verify_step_rag(problem, step, retriever)
 
         res_exp2 = evaluate_experiment2_commonsense(models_cs, tokenizer2, val_items, verify_fn=_verify, images_dir=IMAGES_DIR, device=device)

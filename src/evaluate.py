@@ -29,11 +29,19 @@ try:
 except Exception:
     RAPIDFUZZ_AVAILABLE = False
 
-from .preprocess import (
-    split_steps,
-    build_exact_examples_from_teacher_math,
-    make_synthetic_mgsm_items,
-)
+# Support running as a module or as a script
+try:
+    from .preprocess import (
+        split_steps,
+        build_exact_examples_from_teacher_math,
+        make_synthetic_mgsm_items,
+    )
+except Exception:  # noqa: E722
+    from preprocess import (  # type: ignore
+        split_steps,
+        build_exact_examples_from_teacher_math,
+        make_synthetic_mgsm_items,
+    )
 
 
 def ensure_dir(path: str):
