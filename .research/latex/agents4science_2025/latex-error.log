@@ -1,0 +1,2962 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./paper.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo))
+(./agents4science_2025.sty
+(/usr/share/texlive/texmf-dist/tex/latex/environ/environ.sty
+(/usr/share/texlive/texmf-dist/tex/latex/trimspaces/trimspaces.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/lineno/lineno.sty
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty))))
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/units/nicefrac.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype-pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+No file paper.aux.
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: letterpaper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(92.14519pt, 430.00462pt, 92.14519pt)
+* v-part:(T,H,B)=(95.39737pt, 556.47656pt, 143.09605pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=430.00462pt
+* \textheight=556.47656pt
+* \oddsidemargin=19.8752pt
+* \evensidemargin=19.8752pt
+* \topmargin=-13.87262pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+*geometry* verbose mode - [ newgeometry ] result:
+* driver: pdftex
+* paper: letterpaper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(108.405pt, 397.48499pt, 108.40501pt)
+* v-part:(T,H,B)=(72.26999pt, 650.43pt, 72.27pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=397.48499pt
+* \textheight=650.43pt
+* \oddsidemargin=36.13501pt
+* \evensidemargin=36.13501pt
+* \topmargin=-37.0pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg)
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd)
+
+Package natbib Warning: Citation `wei-2022-chain' on page 1 undefined on input 
+line 85.
+
+
+Package natbib Warning: Citation `feng-2024-keypoint' on page 1 undefined on in
+put line 85.
+
+
+Package natbib Warning: Citation `toshniwal-2024-openmathinstruct' on page 1 un
+defined on input line 85.
+
+
+Package natbib Warning: Citation `fu-2023-specializing' on page 1 undefined on 
+input line 85.
+
+
+Package natbib Warning: Citation `cobbe-2021-training' on page 1 undefined on i
+nput line 87.
+
+
+Package natbib Warning: Citation `andor-2019-giving' on page 1 undefined on inp
+ut line 87.
+
+
+Package natbib Warning: Citation `devlin-2018-bert' on page 1 undefined on inpu
+t line 87.
+
+
+Package natbib Warning: Citation `camburu-2018-snli' on page 1 undefined on inp
+ut line 87.
+
+
+Package natbib Warning: Citation `bostrom-2021-flexible' on page 1 undefined on
+ input line 87.
+
+
+Package natbib Warning: Citation `hu-2023-visual' on page 1 undefined on input 
+line 87.
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-
+dist/fonts/enc/dvips/base/8r.enc}]
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
+
+Package natbib Warning: Citation `cobbe-2021-training' on page 2 undefined on i
+nput line 93.
+
+
+Package natbib Warning: Citation `devlin-2018-bert' on page 2 undefined on inpu
+t line 93.
+
+
+Package natbib Warning: Citation `camburu-2018-snli' on page 2 undefined on inp
+ut line 93.
+
+
+Package natbib Warning: Citation `feng-2024-keypoint' on page 2 undefined on in
+put line 95.
+
+
+Package natbib Warning: Citation `liu-2024-can' on page 2 undefined on input li
+ne 96.
+
+
+Package natbib Warning: Citation `cobbe-2021-training' on page 2 undefined on i
+nput line 97.
+
+
+Package natbib Warning: Citation `shi-2022-language' on page 2 undefined on inp
+ut line 97.
+
+
+Package natbib Warning: Citation `srivastava-2022-beyond' on page 2 undefined o
+n input line 97.
+
+
+Package natbib Warning: Citation `padmanabhan-2023-propagating' on page 2 undef
+ined on input line 102.
+
+
+Package natbib Warning: Citation `chen-2023-data' on page 2 undefined on input 
+line 102.
+
+
+Package natbib Warning: Citation `yang-2024-what' on page 2 undefined on input 
+line 102.
+
+
+Package natbib Warning: Citation `dennis-2023-progressive' on page 2 undefined 
+on input line 102.
+
+
+Package natbib Warning: Citation `author-year-llm' on page 2 undefined on input
+ line 102.
+
+
+Package natbib Warning: Citation `author-year-knowledge' on page 2 undefined on
+ input line 102.
+
+
+Package natbib Warning: Citation `author-year-towards' on page 2 undefined on i
+nput line 102.
+
+
+Package natbib Warning: Citation `author-year-scaffolding' on page 2 undefined 
+on input line 102.
+
+
+Package natbib Warning: Citation `austin-2021-program' on page 2 undefined on i
+nput line 104.
+
+
+Package natbib Warning: Citation `chen-2021-evaluating' on page 2 undefined on 
+input line 104.
+
+
+Package natbib Warning: Citation `chevalier-2024-language' on page 2 undefined 
+on input line 104.
+
+
+Package natbib Warning: Citation `wei-2022-chain' on page 2 undefined on input 
+line 107.
+
+
+Package natbib Warning: Citation `zhang-2022-automatic' on page 2 undefined on 
+input line 107.
+
+
+Package natbib Warning: Citation `zhang-2024-careful' on page 2 undefined on in
+put line 107.
+
+
+Package natbib Warning: Citation `feng-2024-keypoint' on page 2 undefined on in
+put line 107.
+
+
+Package natbib Warning: Citation `cobbe-2021-training' on page 2 undefined on i
+nput line 109.
+
+
+Package natbib Warning: Citation `andor-2019-giving' on page 2 undefined on inp
+ut line 109.
+
+
+Package natbib Warning: Citation `hu-2023-visual' on page 2 undefined on input 
+line 109.
+
+[2]
+
+Package natbib Warning: Citation `kang-2023-knowledge' on page 3 undefined on i
+nput line 111.
+
+
+Package natbib Warning: Citation `devlin-2018-bert' on page 3 undefined on inpu
+t line 111.
+
+
+Package natbib Warning: Citation `camburu-2018-snli' on page 3 undefined on inp
+ut line 111.
+
+
+Package natbib Warning: Citation `bostrom-2021-flexible' on page 3 undefined on
+ input line 111.
+
+
+Package natbib Warning: Citation `fu-2023-specializing' on page 3 undefined on 
+input line 113.
+
+
+Package natbib Warning: Citation `chen-2023-data' on page 3 undefined on input 
+line 113.
+
+
+Package natbib Warning: Citation `yang-2024-what' on page 3 undefined on input 
+line 113.
+
+
+Package natbib Warning: Citation `dennis-2023-progressive' on page 3 undefined 
+on input line 113.
+
+
+Package natbib Warning: Citation `liu-2024-can' on page 3 undefined on input li
+ne 113.
+
+
+Package natbib Warning: Citation `cobbe-2021-training' on page 3 undefined on i
+nput line 115.
+
+
+Package natbib Warning: Citation `srivastava-2022-beyond' on page 3 undefined o
+n input line 115.
+
+
+Package natbib Warning: Citation `shi-2022-language' on page 3 undefined on inp
+ut line 115.
+
+
+Package natbib Warning: Citation `padmanabhan-2023-propagating' on page 3 undef
+ined on input line 117.
+
+
+Package natbib Warning: Citation `author-year-llm' on page 3 undefined on input
+ line 117.
+
+
+Package natbib Warning: Citation `author-year-knowledge' on page 3 undefined on
+ input line 117.
+
+
+Package natbib Warning: Citation `author-year-towards' on page 3 undefined on i
+nput line 117.
+
+
+Package natbib Warning: Citation `author-year-scaffolding' on page 3 undefined 
+on input line 117.
+
+
+Package natbib Warning: Citation `chen-2022-can' on page 3 undefined on input l
+ine 119.
+
+
+Package natbib Warning: Citation `cobbe-2021-training' on page 3 undefined on i
+nput line 124.
+
+
+Package natbib Warning: Citation `andor-2019-giving' on page 3 undefined on inp
+ut line 124.
+
+
+Package natbib Warning: Citation `devlin-2018-bert' on page 3 undefined on inpu
+t line 124.
+
+
+Package natbib Warning: Citation `camburu-2018-snli' on page 3 undefined on inp
+ut line 124.
+
+
+Package natbib Warning: Citation `bostrom-2021-flexible' on page 3 undefined on
+ input line 124.
+
+
+Package natbib Warning: Citation `feng-2024-keypoint' on page 3 undefined on in
+put line 128.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active [3]
+
+Package natbib Warning: Citation `liu-2024-can' on page 4 undefined on input li
+ne 130.
+
+
+Package natbib Warning: Citation `cobbe-2021-training' on page 4 undefined on i
+nput line 132.
+
+
+Package natbib Warning: Citation `shi-2022-language' on page 4 undefined on inp
+ut line 132.
+
+
+Package natbib Warning: Citation `srivastava-2022-beyond' on page 4 undefined o
+n input line 132.
+
+
+Package natbib Warning: Citation `author-year-knowledge' on page 4 undefined on
+ input line 134.
+
+
+Package natbib Warning: Citation `author-year-towards' on page 4 undefined on i
+nput line 134.
+
+
+Package natbib Warning: Citation `author-year-llm' on page 4 undefined on input
+ line 134.
+
+
+Package natbib Warning: Citation `author-year-scaffolding' on page 4 undefined 
+on input line 134.
+
+
+Package natbib Warning: Citation `devlin-2018-bert' on page 4 undefined on inpu
+t line 140.
+
+
+Package natbib Warning: Citation `camburu-2018-snli' on page 4 undefined on inp
+ut line 140.
+
+
+Package natbib Warning: Citation `feng-2024-keypoint' on page 4 undefined on in
+put line 146.
+
+
+Package natbib Warning: Citation `liu-2024-can' on page 4 undefined on input li
+ne 149.
+
+
+Package natbib Warning: Citation `cobbe-2021-training' on page 4 undefined on i
+nput line 152.
+
+
+Package natbib Warning: Citation `srivastava-2022-beyond' on page 4 undefined o
+n input line 152.
+
+[4]
+
+! LaTeX Error: Environment algorithm undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.154 \begin{algorithm}
+                       [H]
+
+! LaTeX Error: \caption outside float.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.155 \caption
+              {EXACT: Verify-Select-Compress Distillation}
+
+! LaTeX Error: Environment algorithmic undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.156 \begin{algorithmic}
+                         [1]
+! Undefined control sequence.
+l.157 \State
+             \textbf{Input:} teacher traces $\mathcal{T}$; task type $\tau \...
+
+! Undefined control sequence.
+l.157 ...\mathcal{T}$; task type $\tau \in \{\text
+                                                  {math},\text{commonsense}\...
+
+! Undefined control sequence.
+l.157 ...; task type $\tau \in \{\text{math},\text
+                                                  {commonsense}\}$; verifier...
+
+! Undefined control sequence.
+l.157 ...e $\{m_e\}$; loss weights $\lambda_{\text
+                                                  {core}}, \lambda_{\text{un...
+
+! Undefined control sequence.
+l.157 ...ts $\lambda_{\text{core}}, \lambda_{\text
+                                                  {unlike}}$
+! Undefined control sequence.
+l.158 \State
+             \textbf{Output:} fine-tuned student parameters $\theta$
+! Undefined control sequence.
+l.159 \For
+          {each example $t \in \mathcal{T}$}
+! Undefined control sequence.
+l.160   \State
+               Segment rationale into ordered steps $S = [s_1,\dots,s_K]$ an...
+
+! Undefined control sequence.
+l.161   \If
+           {$\tau=\text{math}$}
+! Undefined control sequence.
+l.161   \If{$\tau=\text
+                       {math}$}
+! Undefined control sequence.
+l.162     \State
+                 Initialize symbolic state $\Sigma \leftarrow \emptyset$
+! Undefined control sequence.
+l.163     \For
+              {step $s_k$}
+! Undefined control sequence.
+l.164       \State
+                   Parse assignments/equalities; evaluate RHS; update/check ...
+
+! Undefined control sequence.
+l.165       \State
+                   Label $y_k \in \{\text{verified},\text{rejected},\text{un...
+
+! Undefined control sequence.
+l.165       \State Label $y_k \in \{\text
+                                         {verified},\text{rejected},\text{un...
+
+! Undefined control sequence.
+l.165 ...te Label $y_k \in \{\text{verified},\text
+                                                  {rejected},\text{unverifia...
+
+! Undefined control sequence.
+l.165 ...n \{\text{verified},\text{rejected},\text
+                                                  {unverifiable}\}$ by numer...
+
+! Undefined control sequence.
+l.166     \EndFor
+                 
+! Undefined control sequence.
+l.167   \Else
+             
+! Undefined control sequence.
+l.168     \For
+              {step $s_k$}
+! Undefined control sequence.
+l.169       \State
+                   Retrieve passages $P_k$; compute entailment $e_k$ and con...
+
+! Undefined control sequence.
+l.170       \State
+                   Label $y_k$ by calibrated thresholds on $(e_k,c_k)$
+! Undefined control sequence.
+l.171     \EndFor
+                 
+! Undefined control sequence.
+l.172   \EndIf
+              
+! Undefined control sequence.
+l.173   \State
+               Identify required symbols/facts $R$ from $a$ and prompt
+! Undefined control sequence.
+l.174   \State
+               Build set-cover instance: each verified step $s_k$ covers $C_...
+
+! Undefined control sequence.
+<recently read> \text 
+                      
+l.174 ...covers $C_k \subseteq R$ with cost $\text
+                                                  {len}(s_k)$
+! Undefined control sequence.
+l.175   \State
+               Solve $\min \sum_{k} c_k z_k$ s.t. $\cup_{k:z_k=1} C_k = R$, ...
+
+! Undefined control sequence.
+l.176   \State
+               Validate core: execute (math) or check entailment support (co...
+
+! Undefined control sequence.
+l.177   \State
+               Store training targets: tokens of $a$, tokens of steps in $\m...
+
+! Undefined control sequence.
+l.178 \EndFor
+             
+! Undefined control sequence.
+l.179 \For
+          {epoch $e=1,\dots,E$}
+! Undefined control sequence.
+l.180   \State
+               Determine masking ratio $m_e$; randomly mask a fraction $m_e$...
+
+! Undefined control sequence.
+l.181   \For
+            {minibatch $B$}
+! Undefined control sequence.
+l.182     \State
+                 Compute loss: $\mathcal{L}= \lambda_{\text{core}}\,\text{CE...
+
+! Undefined control sequence.
+l.182 ...ompute loss: $\mathcal{L}= \lambda_{\text
+                                                  {core}}\,\text{CE}(\text{c...
+
+! Undefined control sequence.
+l.182 ...\mathcal{L}= \lambda_{\text{core}}\,\text
+                                                  {CE}(\text{core tokens}+a)...
+
+! Undefined control sequence.
+l.182 ...}= \lambda_{\text{core}}\,\text{CE}(\text
+                                                  {core tokens}+a) \\ \qquad...
+
+! Undefined control sequence.
+l.182 ...kens}+a) \\ \qquad\qquad + \lambda_{\text
+                                                  {unlike}}\,\text{UL}(\text...
+
+! Undefined control sequence.
+l.182 ...ad\qquad + \lambda_{\text{unlike}}\,\text
+                                                  {UL}(\text{rejected tokens...
+
+! Undefined control sequence.
+l.182 ... \lambda_{\text{unlike}}\,\text{UL}(\text
+                                                  {rejected tokens}) + \text...
+
+! Undefined control sequence.
+l.182 ...\text{UL}(\text{rejected tokens}) + \text
+                                                  {CE}(\text{prompt and unma...
+
+! Undefined control sequence.
+l.182 ...\text{rejected tokens}) + \text{CE}(\text
+                                                  {prompt and unmasked verif...
+
+! Undefined control sequence.
+l.183     \State
+                 Update student parameters $\theta \leftarrow \theta - \eta ...
+
+! Undefined control sequence.
+l.184   \EndFor
+               
+! Undefined control sequence.
+l.185 \EndFor
+             
+! Undefined control sequence.
+l.186 \State
+             \Return $\theta$
+! Undefined control sequence.
+l.186 \State \Return
+                     $\theta$
+
+! LaTeX Error: \begin{document} ended by \end{algorithmic}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.187 \end{algorithmic}
+                       
+
+! LaTeX Error: \begin{document} ended by \end{algorithm}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.188 \end{algorithm}
+                     
+
+Package natbib Warning: Citation `feng-2024-keypoint' on page 5 undefined on in
+put line 191.
+
+
+Package natbib Warning: Citation `cobbe-2021-training' on page 5 undefined on i
+nput line 191.
+
+
+Package natbib Warning: Citation `shi-2022-language' on page 5 undefined on inp
+ut line 191.
+
+
+Package natbib Warning: Citation `shi-2022-language' on page 5 undefined on inp
+ut line 197.
+
+[5]
+
+Package natbib Warning: Citation `cobbe-2021-training' on page 6 undefined on i
+nput line 201.
+
+
+Package natbib Warning: Citation `feng-2024-keypoint' on page 6 undefined on in
+put line 201.
+
+
+Package natbib Warning: Citation `kang-2023-knowledge' on page 6 undefined on i
+nput line 201.
+
+
+Package natbib Warning: Citation `cobbe-2021-training' on page 6 undefined on i
+nput line 212.
+
+
+Package natbib Warning: Citation `feng-2024-keypoint' on page 6 undefined on in
+put line 212.
+
+
+Package natbib Warning: Citation `kang-2023-knowledge' on page 6 undefined on i
+nput line 212.
+
+
+Package natbib Warning: Citation `devlin-2018-bert' on page 6 undefined on inpu
+t line 214.
+
+
+Package natbib Warning: Citation `camburu-2018-snli' on page 6 undefined on inp
+ut line 214.
+
+
+Package natbib Warning: Citation `feng-2024-keypoint' on page 6 undefined on in
+put line 214.
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.216 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.218 \includegraphics
+                      [width=0.7\linewidth]{ images/accuracy\_exp1.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.218 \includegraphics[width=0.7\linewidth]
+                                           { images/accuracy\_exp1.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.218 \includegraphics[width=0.7\linewidth]
+                                           { images/accuracy\_exp1.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.222 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.224 \includegraphics
+                      [width=0.7\linewidth]{ images/accuracy\_exp2.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.224 \includegraphics[width=0.7\linewidth]
+                                           { images/accuracy\_exp2.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.224 \includegraphics[width=0.7\linewidth]
+                                           { images/accuracy\_exp2.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.228 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.230 \includegraphics
+                      [width=0.7\linewidth]{ images/accuracy\_exp3.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.230 \includegraphics[width=0.7\linewidth]
+                                           { images/accuracy\_exp3.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.230 \includegraphics[width=0.7\linewidth]
+                                           { images/accuracy\_exp3.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.234 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.236 \includegraphics
+                      [width=0.7\linewidth]{ images/confusion\_matrix\_exp2\...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.236 \includegraphics[width=0.7\linewidth]
+                                           { images/confusion\_matrix\_exp2\...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.236 \includegraphics[width=0.7\linewidth]
+                                           { images/confusion\_matrix\_exp2\...
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.240 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.242 \includegraphics
+                      [width=0.7\linewidth]{ images/confusion\_matrix\_exp2\...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.242 \includegraphics[width=0.7\linewidth]
+                                           { images/confusion\_matrix\_exp2\...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.242 \includegraphics[width=0.7\linewidth]
+                                           { images/confusion\_matrix\_exp2\...
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.246 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.248 \includegraphics
+                      [width=0.7\linewidth]{ images/cot\_length\_exp1.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.248 \includegraphics[width=0.7\linewidth]
+                                           { images/cot\_length\_exp1.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.248 \includegraphics[width=0.7\linewidth]
+                                           { images/cot\_length\_exp1.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.252 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.254 \includegraphics
+                      [width=0.7\linewidth]{ images/cot\_length\_exp2.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.254 \includegraphics[width=0.7\linewidth]
+                                           { images/cot\_length\_exp2.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.254 \includegraphics[width=0.7\linewidth]
+                                           { images/cot\_length\_exp2.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.258 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.260 \includegraphics
+                      [width=0.7\linewidth]{ images/cot\_length\_exp3.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.260 \includegraphics[width=0.7\linewidth]
+                                           { images/cot\_length\_exp3.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.260 \includegraphics[width=0.7\linewidth]
+                                           { images/cot\_length\_exp3.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.264 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.266 \includegraphics
+                      [width=0.7\linewidth]{ images/epr\_exp1.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.266 \includegraphics[width=0.7\linewidth]
+                                           { images/epr\_exp1.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.266 \includegraphics[width=0.7\linewidth]
+                                           { images/epr\_exp1.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.270 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.272 \includegraphics
+                      [width=0.7\linewidth]{ images/faithfulness\_exp1.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.272 \includegraphics[width=0.7\linewidth]
+                                           { images/faithfulness\_exp1.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.272 \includegraphics[width=0.7\linewidth]
+                                           { images/faithfulness\_exp1.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.276 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.278 \includegraphics
+                      [width=0.7\linewidth]{ images/hallucination\_exp2.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.278 \includegraphics[width=0.7\linewidth]
+                                           { images/hallucination\_exp2.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.278 \includegraphics[width=0.7\linewidth]
+                                           { images/hallucination\_exp2.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.282 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.284 \includegraphics
+                      [width=0.7\linewidth]{ images/inference\_latency\_exp1...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.284 \includegraphics[width=0.7\linewidth]
+                                           { images/inference\_latency\_exp1...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.284 \includegraphics[width=0.7\linewidth]
+                                           { images/inference\_latency\_exp1...
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.288 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.290 \includegraphics
+                      [width=0.7\linewidth]{ images/training\_loss\_exp1\_ba...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.290 \includegraphics[width=0.7\linewidth]
+                                           { images/training\_loss\_exp1\_ba...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.290 \includegraphics[width=0.7\linewidth]
+                                           { images/training\_loss\_exp1\_ba...
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.294 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.296 \includegraphics
+                      [width=0.7\linewidth]{ images/training\_loss\_exp2\_ex...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.296 \includegraphics[width=0.7\linewidth]
+                                           { images/training\_loss\_exp2\_ex...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.296 \includegraphics[width=0.7\linewidth]
+                                           { images/training\_loss\_exp2\_ex...
+
+[6] [7]
+
+Package natbib Warning: Citation `cobbe-2021-training' on page 8 undefined on i
+nput line 303.
+
+
+Package natbib Warning: Citation `feng-2024-keypoint' on page 8 undefined on in
+put line 303.
+
+
+Package natbib Warning: Citation `kang-2023-knowledge' on page 8 undefined on i
+nput line 303.
+
+
+Package natbib Warning: Citation `austin-2021-program' on page 8 undefined on i
+nput line 305.
+
+
+Package natbib Warning: Citation `chen-2021-evaluating' on page 8 undefined on 
+input line 305.
+
+
+Package natbib Warning: Citation `chevalier-2024-language' on page 8 undefined 
+on input line 305.
+
+No file paper.bbl.
+
+Package natbib Warning: There were undefined citations.
+
+[8] (./paper.aux)
+kpathsea: Running mktexpk --mfmode / --bdpi 600 --mag 1+0/600 --dpi 600 ectt1000
+mktexpk: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1+0/600; nonstopmode; input ectt1000
+This is METAFONT, Version 2.71828182 (TeX Live 2023/Debian) (preloaded base=mf)
+
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/ectt1000.mf
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exbase.mf)
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/ectt.mf
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exroman.mf
+ Ok (/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exaccess.mf
+ Ok) (/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/expseudo.mf
+ Ok) (/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exruwest.mf
+ Ok [192] [193] [194] [195] [196] [197] [198] [199] [200] [201] [202] [203]
+[204] [205] [206] [207] [208] [209] [210] [211] [212] [213] [214] [215]
+[216] [217] [218] [219] [220] [221] [222] [223])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exrlwest.mf
+ Ok [224] [225] [226] [227] [228] [229] [230] [231] [232] [233] [234] [235]
+[236] [237] [238] [239] [240] [241] [242] [243] [244] [245] [246] [247]
+[248] [249] [250] [251] [252] [253] [254] [255])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exrueast.mf
+ Ok [128] [129] [130] [131] [132] [133] [134] [135] [136] [137] [138] [139]
+[140] [141] [142] [143] [144] [145] [146] [147] [148] [149] [150] [151]
+[152] [153] [154] [155] [156] [157])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exrleast.mf
+ Ok [158] [160] [161] [162] [163] [164] [165] [166] [167] [168] [169] [170]
+[171] [172] [173] [174] [175] [176] [177] [178] [179] [180] [181] [182]
+[183] [184] [185] [186] [187] [188])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exbraces.mf
+ Ok [94] [126] [23] [40] [41] [60] [124] [62] [91] [93] [92] [123] [125]
+[95] [127] [32])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/expunct.mf
+ Ok [14] [15] [19] [20] [13] [18] [33] [39] [42] [43] [44] [46] [47] [58]
+[59] [61] [96] [189] [17] [45] [16] [21] [22])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exaccent.mf
+ Ok [0] [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exsign.mf
+ Ok [24] [34] [35] [36] [37] [64] [191] [159])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exrlig.mf
+ Ok [25] [26] [28] [27] [29] [30] [31])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exromp.mf
+ Ok [38] [63] [190])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exrulett.mf
+ Ok [65] [66] [67] [68] [69] [70] [71] [72] [73] [74] [75] [76] [77] [78]
+[79] [80] [81] [82] [83] [84] [85] [86] [87] [88] [89] [90])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exrllett.mf
+ Ok [97] [98] [99] [100] [101] [102] [103] [104] [105] [106] [107] [108]
+[109] [110] [111] [112] [113] [114] [115] [116] [117] [118] [119] [120]
+[121] [122])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exrdigit.mf
+ Ok [48] [49] [50] [51] [52] [53] [54] [55] [56] [57])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exmligtb.mf
+ Ok) ) ) )
+Font metrics written on ectt1000.tfm.
+Output written on ectt1000.600gf (256 characters, 43832 bytes).
+Transcript written on ectt1000.log.
+mktexpk: /home/runner/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk: successfully generated.
+
+
+Package rerunfilecheck Warning: File `paper.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )
+(see the transcript file for additional information) </home/runner/.texlive2023
+/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
+10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
+Output written on paper.pdf (8 pages, 145904 bytes).
+Transcript written on paper.log.
+This is BibTeX, Version 0.99d (TeX Live 2023/Debian)
+The top-level auxiliary file: paper.aux
+The style file: plainnat.bst
+Database file #1: references.bib
+Warning--to sort, need author or key in author-year-llm
+Warning--to sort, need author or key in author-year-knowledge
+Warning--to sort, need author or key in author-year-towards
+Warning--to sort, need author or key in author-year-scaffolding
+Warning--empty author in author-year-knowledge
+Warning--empty journal in author-year-knowledge
+Warning--empty year in author-year-knowledge
+Warning--empty author in author-year-llm
+Warning--empty journal in author-year-llm
+Warning--empty year in author-year-llm
+Warning--empty author in author-year-scaffolding
+Warning--empty journal in author-year-scaffolding
+Warning--empty year in author-year-scaffolding
+Warning--empty author in author-year-towards
+Warning--empty journal in author-year-towards
+Warning--empty year in author-year-towards
+Warning--empty journal in andor-2019-giving
+Warning--empty journal in austin-2021-program
+Warning--empty journal in bostrom-2021-flexible
+Warning--empty journal in camburu-2018-snli
+Warning--empty journal in chen-2022-can
+Warning--empty journal in chen-2021-evaluating
+Warning--empty journal in chen-2023-data
+Warning--empty journal in chevalier-2024-language
+Warning--empty journal in cobbe-2021-training
+Warning--empty journal in dennis-2023-progressive
+Warning--empty journal in devlin-2018-bert
+Warning--empty journal in feng-2024-keypoint
+Warning--empty journal in fu-2023-specializing
+Warning--empty journal in hu-2023-visual
+Warning--empty journal in kang-2023-knowledge
+Warning--empty journal in liu-2024-can
+Warning--empty journal in padmanabhan-2023-propagating
+Warning--empty journal in shi-2022-language
+Warning--empty journal in toshniwal-2024-openmathinstruct
+Warning--empty journal in wei-2022-chain
+Warning--empty journal in yang-2024-what
+Warning--empty journal in zhang-2024-careful
+Warning--empty journal in zhang-2022-automatic
+(There were 39 warnings)
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./paper.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo))
+(./agents4science_2025.sty
+(/usr/share/texlive/texmf-dist/tex/latex/environ/environ.sty
+(/usr/share/texlive/texmf-dist/tex/latex/trimspaces/trimspaces.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/lineno/lineno.sty
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty))))
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/units/nicefrac.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype-pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(./paper.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: letterpaper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(92.14519pt, 430.00462pt, 92.14519pt)
+* v-part:(T,H,B)=(95.39737pt, 556.47656pt, 143.09605pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=430.00462pt
+* \textheight=556.47656pt
+* \oddsidemargin=19.8752pt
+* \evensidemargin=19.8752pt
+* \topmargin=-13.87262pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+*geometry* verbose mode - [ newgeometry ] result:
+* driver: pdftex
+* paper: letterpaper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(108.405pt, 397.48499pt, 108.40501pt)
+* v-part:(T,H,B)=(72.26999pt, 650.43pt, 72.27pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=397.48499pt
+* \textheight=650.43pt
+* \oddsidemargin=36.13501pt
+* \evensidemargin=36.13501pt
+* \topmargin=-37.0pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+(./paper.out) (./paper.out)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg)
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd)
+
+Package natbib Warning: Citation `wei-2022-chain' on page 1 undefined on input 
+line 85.
+
+
+Package natbib Warning: Citation `feng-2024-keypoint' on page 1 undefined on in
+put line 85.
+
+
+Package natbib Warning: Citation `toshniwal-2024-openmathinstruct' on page 1 un
+defined on input line 85.
+
+
+Package natbib Warning: Citation `fu-2023-specializing' on page 1 undefined on 
+input line 85.
+
+
+Package natbib Warning: Citation `cobbe-2021-training' on page 1 undefined on i
+nput line 87.
+
+
+Package natbib Warning: Citation `andor-2019-giving' on page 1 undefined on inp
+ut line 87.
+
+
+Package natbib Warning: Citation `devlin-2018-bert' on page 1 undefined on inpu
+t line 87.
+
+
+Package natbib Warning: Citation `camburu-2018-snli' on page 1 undefined on inp
+ut line 87.
+
+
+Package natbib Warning: Citation `bostrom-2021-flexible' on page 1 undefined on
+ input line 87.
+
+
+Package natbib Warning: Citation `hu-2023-visual' on page 1 undefined on input 
+line 87.
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-
+dist/fonts/enc/dvips/base/8r.enc}]
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
+
+Package natbib Warning: Citation `cobbe-2021-training' on page 2 undefined on i
+nput line 93.
+
+
+Package natbib Warning: Citation `devlin-2018-bert' on page 2 undefined on inpu
+t line 93.
+
+
+Package natbib Warning: Citation `camburu-2018-snli' on page 2 undefined on inp
+ut line 93.
+
+
+Package natbib Warning: Citation `feng-2024-keypoint' on page 2 undefined on in
+put line 95.
+
+
+Package natbib Warning: Citation `liu-2024-can' on page 2 undefined on input li
+ne 96.
+
+
+Package natbib Warning: Citation `cobbe-2021-training' on page 2 undefined on i
+nput line 97.
+
+
+Package natbib Warning: Citation `shi-2022-language' on page 2 undefined on inp
+ut line 97.
+
+
+Package natbib Warning: Citation `srivastava-2022-beyond' on page 2 undefined o
+n input line 97.
+
+
+Package natbib Warning: Citation `padmanabhan-2023-propagating' on page 2 undef
+ined on input line 102.
+
+
+Package natbib Warning: Citation `chen-2023-data' on page 2 undefined on input 
+line 102.
+
+
+Package natbib Warning: Citation `yang-2024-what' on page 2 undefined on input 
+line 102.
+
+
+Package natbib Warning: Citation `dennis-2023-progressive' on page 2 undefined 
+on input line 102.
+
+
+Package natbib Warning: Citation `author-year-llm' on page 2 undefined on input
+ line 102.
+
+
+Package natbib Warning: Citation `author-year-knowledge' on page 2 undefined on
+ input line 102.
+
+
+Package natbib Warning: Citation `author-year-towards' on page 2 undefined on i
+nput line 102.
+
+
+Package natbib Warning: Citation `author-year-scaffolding' on page 2 undefined 
+on input line 102.
+
+
+Package natbib Warning: Citation `austin-2021-program' on page 2 undefined on i
+nput line 104.
+
+
+Package natbib Warning: Citation `chen-2021-evaluating' on page 2 undefined on 
+input line 104.
+
+
+Package natbib Warning: Citation `chevalier-2024-language' on page 2 undefined 
+on input line 104.
+
+
+Package natbib Warning: Citation `wei-2022-chain' on page 2 undefined on input 
+line 107.
+
+
+Package natbib Warning: Citation `zhang-2022-automatic' on page 2 undefined on 
+input line 107.
+
+
+Package natbib Warning: Citation `zhang-2024-careful' on page 2 undefined on in
+put line 107.
+
+
+Package natbib Warning: Citation `feng-2024-keypoint' on page 2 undefined on in
+put line 107.
+
+
+Package natbib Warning: Citation `cobbe-2021-training' on page 2 undefined on i
+nput line 109.
+
+
+Package natbib Warning: Citation `andor-2019-giving' on page 2 undefined on inp
+ut line 109.
+
+
+Package natbib Warning: Citation `hu-2023-visual' on page 2 undefined on input 
+line 109.
+
+[2]
+
+Package natbib Warning: Citation `kang-2023-knowledge' on page 3 undefined on i
+nput line 111.
+
+
+Package natbib Warning: Citation `devlin-2018-bert' on page 3 undefined on inpu
+t line 111.
+
+
+Package natbib Warning: Citation `camburu-2018-snli' on page 3 undefined on inp
+ut line 111.
+
+
+Package natbib Warning: Citation `bostrom-2021-flexible' on page 3 undefined on
+ input line 111.
+
+
+Package natbib Warning: Citation `fu-2023-specializing' on page 3 undefined on 
+input line 113.
+
+
+Package natbib Warning: Citation `chen-2023-data' on page 3 undefined on input 
+line 113.
+
+
+Package natbib Warning: Citation `yang-2024-what' on page 3 undefined on input 
+line 113.
+
+
+Package natbib Warning: Citation `dennis-2023-progressive' on page 3 undefined 
+on input line 113.
+
+
+Package natbib Warning: Citation `liu-2024-can' on page 3 undefined on input li
+ne 113.
+
+
+Package natbib Warning: Citation `cobbe-2021-training' on page 3 undefined on i
+nput line 115.
+
+
+Package natbib Warning: Citation `srivastava-2022-beyond' on page 3 undefined o
+n input line 115.
+
+
+Package natbib Warning: Citation `shi-2022-language' on page 3 undefined on inp
+ut line 115.
+
+
+Package natbib Warning: Citation `padmanabhan-2023-propagating' on page 3 undef
+ined on input line 117.
+
+
+Package natbib Warning: Citation `author-year-llm' on page 3 undefined on input
+ line 117.
+
+
+Package natbib Warning: Citation `author-year-knowledge' on page 3 undefined on
+ input line 117.
+
+
+Package natbib Warning: Citation `author-year-towards' on page 3 undefined on i
+nput line 117.
+
+
+Package natbib Warning: Citation `author-year-scaffolding' on page 3 undefined 
+on input line 117.
+
+
+Package natbib Warning: Citation `chen-2022-can' on page 3 undefined on input l
+ine 119.
+
+
+Package natbib Warning: Citation `cobbe-2021-training' on page 3 undefined on i
+nput line 124.
+
+
+Package natbib Warning: Citation `andor-2019-giving' on page 3 undefined on inp
+ut line 124.
+
+
+Package natbib Warning: Citation `devlin-2018-bert' on page 3 undefined on inpu
+t line 124.
+
+
+Package natbib Warning: Citation `camburu-2018-snli' on page 3 undefined on inp
+ut line 124.
+
+
+Package natbib Warning: Citation `bostrom-2021-flexible' on page 3 undefined on
+ input line 124.
+
+
+Package natbib Warning: Citation `feng-2024-keypoint' on page 3 undefined on in
+put line 128.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active [3]
+
+Package natbib Warning: Citation `liu-2024-can' on page 4 undefined on input li
+ne 130.
+
+
+Package natbib Warning: Citation `cobbe-2021-training' on page 4 undefined on i
+nput line 132.
+
+
+Package natbib Warning: Citation `shi-2022-language' on page 4 undefined on inp
+ut line 132.
+
+
+Package natbib Warning: Citation `srivastava-2022-beyond' on page 4 undefined o
+n input line 132.
+
+
+Package natbib Warning: Citation `author-year-knowledge' on page 4 undefined on
+ input line 134.
+
+
+Package natbib Warning: Citation `author-year-towards' on page 4 undefined on i
+nput line 134.
+
+
+Package natbib Warning: Citation `author-year-llm' on page 4 undefined on input
+ line 134.
+
+
+Package natbib Warning: Citation `author-year-scaffolding' on page 4 undefined 
+on input line 134.
+
+
+Package natbib Warning: Citation `devlin-2018-bert' on page 4 undefined on inpu
+t line 140.
+
+
+Package natbib Warning: Citation `camburu-2018-snli' on page 4 undefined on inp
+ut line 140.
+
+
+Package natbib Warning: Citation `feng-2024-keypoint' on page 4 undefined on in
+put line 146.
+
+
+Package natbib Warning: Citation `liu-2024-can' on page 4 undefined on input li
+ne 149.
+
+
+Package natbib Warning: Citation `cobbe-2021-training' on page 4 undefined on i
+nput line 152.
+
+
+Package natbib Warning: Citation `srivastava-2022-beyond' on page 4 undefined o
+n input line 152.
+
+[4]
+
+! LaTeX Error: Environment algorithm undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.154 \begin{algorithm}
+                       [H]
+
+! LaTeX Error: \caption outside float.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.155 \caption
+              {EXACT: Verify-Select-Compress Distillation}
+
+! LaTeX Error: Environment algorithmic undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.156 \begin{algorithmic}
+                         [1]
+! Undefined control sequence.
+l.157 \State
+             \textbf{Input:} teacher traces $\mathcal{T}$; task type $\tau \...
+
+! Undefined control sequence.
+l.157 ...\mathcal{T}$; task type $\tau \in \{\text
+                                                  {math},\text{commonsense}\...
+
+! Undefined control sequence.
+l.157 ...; task type $\tau \in \{\text{math},\text
+                                                  {commonsense}\}$; verifier...
+
+! Undefined control sequence.
+l.157 ...e $\{m_e\}$; loss weights $\lambda_{\text
+                                                  {core}}, \lambda_{\text{un...
+
+! Undefined control sequence.
+l.157 ...ts $\lambda_{\text{core}}, \lambda_{\text
+                                                  {unlike}}$
+! Undefined control sequence.
+l.158 \State
+             \textbf{Output:} fine-tuned student parameters $\theta$
+! Undefined control sequence.
+l.159 \For
+          {each example $t \in \mathcal{T}$}
+! Undefined control sequence.
+l.160   \State
+               Segment rationale into ordered steps $S = [s_1,\dots,s_K]$ an...
+
+! Undefined control sequence.
+l.161   \If
+           {$\tau=\text{math}$}
+! Undefined control sequence.
+l.161   \If{$\tau=\text
+                       {math}$}
+! Undefined control sequence.
+l.162     \State
+                 Initialize symbolic state $\Sigma \leftarrow \emptyset$
+! Undefined control sequence.
+l.163     \For
+              {step $s_k$}
+! Undefined control sequence.
+l.164       \State
+                   Parse assignments/equalities; evaluate RHS; update/check ...
+
+! Undefined control sequence.
+l.165       \State
+                   Label $y_k \in \{\text{verified},\text{rejected},\text{un...
+
+! Undefined control sequence.
+l.165       \State Label $y_k \in \{\text
+                                         {verified},\text{rejected},\text{un...
+
+! Undefined control sequence.
+l.165 ...te Label $y_k \in \{\text{verified},\text
+                                                  {rejected},\text{unverifia...
+
+! Undefined control sequence.
+l.165 ...n \{\text{verified},\text{rejected},\text
+                                                  {unverifiable}\}$ by numer...
+
+! Undefined control sequence.
+l.166     \EndFor
+                 
+! Undefined control sequence.
+l.167   \Else
+             
+! Undefined control sequence.
+l.168     \For
+              {step $s_k$}
+! Undefined control sequence.
+l.169       \State
+                   Retrieve passages $P_k$; compute entailment $e_k$ and con...
+
+! Undefined control sequence.
+l.170       \State
+                   Label $y_k$ by calibrated thresholds on $(e_k,c_k)$
+! Undefined control sequence.
+l.171     \EndFor
+                 
+! Undefined control sequence.
+l.172   \EndIf
+              
+! Undefined control sequence.
+l.173   \State
+               Identify required symbols/facts $R$ from $a$ and prompt
+! Undefined control sequence.
+l.174   \State
+               Build set-cover instance: each verified step $s_k$ covers $C_...
+
+! Undefined control sequence.
+<recently read> \text 
+                      
+l.174 ...covers $C_k \subseteq R$ with cost $\text
+                                                  {len}(s_k)$
+! Undefined control sequence.
+l.175   \State
+               Solve $\min \sum_{k} c_k z_k$ s.t. $\cup_{k:z_k=1} C_k = R$, ...
+
+! Undefined control sequence.
+l.176   \State
+               Validate core: execute (math) or check entailment support (co...
+
+! Undefined control sequence.
+l.177   \State
+               Store training targets: tokens of $a$, tokens of steps in $\m...
+
+! Undefined control sequence.
+l.178 \EndFor
+             
+! Undefined control sequence.
+l.179 \For
+          {epoch $e=1,\dots,E$}
+! Undefined control sequence.
+l.180   \State
+               Determine masking ratio $m_e$; randomly mask a fraction $m_e$...
+
+! Undefined control sequence.
+l.181   \For
+            {minibatch $B$}
+! Undefined control sequence.
+l.182     \State
+                 Compute loss: $\mathcal{L}= \lambda_{\text{core}}\,\text{CE...
+
+! Undefined control sequence.
+l.182 ...ompute loss: $\mathcal{L}= \lambda_{\text
+                                                  {core}}\,\text{CE}(\text{c...
+
+! Undefined control sequence.
+l.182 ...\mathcal{L}= \lambda_{\text{core}}\,\text
+                                                  {CE}(\text{core tokens}+a)...
+
+! Undefined control sequence.
+l.182 ...}= \lambda_{\text{core}}\,\text{CE}(\text
+                                                  {core tokens}+a) \\ \qquad...
+
+! Undefined control sequence.
+l.182 ...kens}+a) \\ \qquad\qquad + \lambda_{\text
+                                                  {unlike}}\,\text{UL}(\text...
+
+! Undefined control sequence.
+l.182 ...ad\qquad + \lambda_{\text{unlike}}\,\text
+                                                  {UL}(\text{rejected tokens...
+
+! Undefined control sequence.
+l.182 ... \lambda_{\text{unlike}}\,\text{UL}(\text
+                                                  {rejected tokens}) + \text...
+
+! Undefined control sequence.
+l.182 ...\text{UL}(\text{rejected tokens}) + \text
+                                                  {CE}(\text{prompt and unma...
+
+! Undefined control sequence.
+l.182 ...\text{rejected tokens}) + \text{CE}(\text
+                                                  {prompt and unmasked verif...
+
+! Undefined control sequence.
+l.183     \State
+                 Update student parameters $\theta \leftarrow \theta - \eta ...
+
+! Undefined control sequence.
+l.184   \EndFor
+               
+! Undefined control sequence.
+l.185 \EndFor
+             
+! Undefined control sequence.
+l.186 \State
+             \Return $\theta$
+! Undefined control sequence.
+l.186 \State \Return
+                     $\theta$
+
+! LaTeX Error: \begin{document} ended by \end{algorithmic}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.187 \end{algorithmic}
+                       
+
+! LaTeX Error: \begin{document} ended by \end{algorithm}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.188 \end{algorithm}
+                     
+
+Package natbib Warning: Citation `feng-2024-keypoint' on page 5 undefined on in
+put line 191.
+
+
+Package natbib Warning: Citation `cobbe-2021-training' on page 5 undefined on i
+nput line 191.
+
+
+Package natbib Warning: Citation `shi-2022-language' on page 5 undefined on inp
+ut line 191.
+
+
+Package natbib Warning: Citation `shi-2022-language' on page 5 undefined on inp
+ut line 197.
+
+[5]
+
+Package natbib Warning: Citation `cobbe-2021-training' on page 6 undefined on i
+nput line 201.
+
+
+Package natbib Warning: Citation `feng-2024-keypoint' on page 6 undefined on in
+put line 201.
+
+
+Package natbib Warning: Citation `kang-2023-knowledge' on page 6 undefined on i
+nput line 201.
+
+
+Package natbib Warning: Citation `cobbe-2021-training' on page 6 undefined on i
+nput line 212.
+
+
+Package natbib Warning: Citation `feng-2024-keypoint' on page 6 undefined on in
+put line 212.
+
+
+Package natbib Warning: Citation `kang-2023-knowledge' on page 6 undefined on i
+nput line 212.
+
+
+Package natbib Warning: Citation `devlin-2018-bert' on page 6 undefined on inpu
+t line 214.
+
+
+Package natbib Warning: Citation `camburu-2018-snli' on page 6 undefined on inp
+ut line 214.
+
+
+Package natbib Warning: Citation `feng-2024-keypoint' on page 6 undefined on in
+put line 214.
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.216 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.218 \includegraphics
+                      [width=0.7\linewidth]{ images/accuracy\_exp1.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.218 \includegraphics[width=0.7\linewidth]
+                                           { images/accuracy\_exp1.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.218 \includegraphics[width=0.7\linewidth]
+                                           { images/accuracy\_exp1.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.222 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.224 \includegraphics
+                      [width=0.7\linewidth]{ images/accuracy\_exp2.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.224 \includegraphics[width=0.7\linewidth]
+                                           { images/accuracy\_exp2.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.224 \includegraphics[width=0.7\linewidth]
+                                           { images/accuracy\_exp2.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.228 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.230 \includegraphics
+                      [width=0.7\linewidth]{ images/accuracy\_exp3.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.230 \includegraphics[width=0.7\linewidth]
+                                           { images/accuracy\_exp3.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.230 \includegraphics[width=0.7\linewidth]
+                                           { images/accuracy\_exp3.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.234 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.236 \includegraphics
+                      [width=0.7\linewidth]{ images/confusion\_matrix\_exp2\...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.236 \includegraphics[width=0.7\linewidth]
+                                           { images/confusion\_matrix\_exp2\...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.236 \includegraphics[width=0.7\linewidth]
+                                           { images/confusion\_matrix\_exp2\...
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.240 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.242 \includegraphics
+                      [width=0.7\linewidth]{ images/confusion\_matrix\_exp2\...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.242 \includegraphics[width=0.7\linewidth]
+                                           { images/confusion\_matrix\_exp2\...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.242 \includegraphics[width=0.7\linewidth]
+                                           { images/confusion\_matrix\_exp2\...
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.246 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.248 \includegraphics
+                      [width=0.7\linewidth]{ images/cot\_length\_exp1.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.248 \includegraphics[width=0.7\linewidth]
+                                           { images/cot\_length\_exp1.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.248 \includegraphics[width=0.7\linewidth]
+                                           { images/cot\_length\_exp1.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.252 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.254 \includegraphics
+                      [width=0.7\linewidth]{ images/cot\_length\_exp2.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.254 \includegraphics[width=0.7\linewidth]
+                                           { images/cot\_length\_exp2.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.254 \includegraphics[width=0.7\linewidth]
+                                           { images/cot\_length\_exp2.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.258 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.260 \includegraphics
+                      [width=0.7\linewidth]{ images/cot\_length\_exp3.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.260 \includegraphics[width=0.7\linewidth]
+                                           { images/cot\_length\_exp3.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.260 \includegraphics[width=0.7\linewidth]
+                                           { images/cot\_length\_exp3.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.264 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.266 \includegraphics
+                      [width=0.7\linewidth]{ images/epr\_exp1.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.266 \includegraphics[width=0.7\linewidth]
+                                           { images/epr\_exp1.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.266 \includegraphics[width=0.7\linewidth]
+                                           { images/epr\_exp1.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.270 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.272 \includegraphics
+                      [width=0.7\linewidth]{ images/faithfulness\_exp1.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.272 \includegraphics[width=0.7\linewidth]
+                                           { images/faithfulness\_exp1.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.272 \includegraphics[width=0.7\linewidth]
+                                           { images/faithfulness\_exp1.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.276 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.278 \includegraphics
+                      [width=0.7\linewidth]{ images/hallucination\_exp2.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.278 \includegraphics[width=0.7\linewidth]
+                                           { images/hallucination\_exp2.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.278 \includegraphics[width=0.7\linewidth]
+                                           { images/hallucination\_exp2.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.282 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.284 \includegraphics
+                      [width=0.7\linewidth]{ images/inference\_latency\_exp1...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.284 \includegraphics[width=0.7\linewidth]
+                                           { images/inference\_latency\_exp1...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.284 \includegraphics[width=0.7\linewidth]
+                                           { images/inference\_latency\_exp1...
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.288 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.290 \includegraphics
+                      [width=0.7\linewidth]{ images/training\_loss\_exp1\_ba...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.290 \includegraphics[width=0.7\linewidth]
+                                           { images/training\_loss\_exp1\_ba...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.290 \includegraphics[width=0.7\linewidth]
+                                           { images/training\_loss\_exp1\_ba...
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.294 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.296 \includegraphics
+                      [width=0.7\linewidth]{ images/training\_loss\_exp2\_ex...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.296 \includegraphics[width=0.7\linewidth]
+                                           { images/training\_loss\_exp2\_ex...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.296 \includegraphics[width=0.7\linewidth]
+                                           { images/training\_loss\_exp2\_ex...
+
+[6] [7]
+
+Package natbib Warning: Citation `cobbe-2021-training' on page 8 undefined on i
+nput line 303.
+
+
+Package natbib Warning: Citation `feng-2024-keypoint' on page 8 undefined on in
+put line 303.
+
+
+Package natbib Warning: Citation `kang-2023-knowledge' on page 8 undefined on i
+nput line 303.
+
+
+Package natbib Warning: Citation `austin-2021-program' on page 8 undefined on i
+nput line 305.
+
+
+Package natbib Warning: Citation `chen-2021-evaluating' on page 8 undefined on 
+input line 305.
+
+
+Package natbib Warning: Citation `chevalier-2024-language' on page 8 undefined 
+on input line 305.
+
+(./paper.bbl [8] [9] [10])
+
+Package natbib Warning: There were undefined citations.
+
+[11] (./paper.aux
+
+Package natbib Warning: Citation(s) may have changed.
+(natbib)                Rerun to get citations correct.
+
+) )
+(see the transcript file for additional information) </home/runner/.texlive2023
+/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
+10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/font
+s/type1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (11 pages, 175333 bytes).
+Transcript written on paper.log.
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./paper.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo))
+(./agents4science_2025.sty
+(/usr/share/texlive/texmf-dist/tex/latex/environ/environ.sty
+(/usr/share/texlive/texmf-dist/tex/latex/trimspaces/trimspaces.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/lineno/lineno.sty
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty))))
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/units/nicefrac.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype-pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(./paper.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: letterpaper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(92.14519pt, 430.00462pt, 92.14519pt)
+* v-part:(T,H,B)=(95.39737pt, 556.47656pt, 143.09605pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=430.00462pt
+* \textheight=556.47656pt
+* \oddsidemargin=19.8752pt
+* \evensidemargin=19.8752pt
+* \topmargin=-13.87262pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+*geometry* verbose mode - [ newgeometry ] result:
+* driver: pdftex
+* paper: letterpaper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(108.405pt, 397.48499pt, 108.40501pt)
+* v-part:(T,H,B)=(72.26999pt, 650.43pt, 72.27pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=397.48499pt
+* \textheight=650.43pt
+* \oddsidemargin=36.13501pt
+* \evensidemargin=36.13501pt
+* \topmargin=-37.0pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+(./paper.out) (./paper.out)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg)
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd) [1{/var/lib/texmf/fon
+ts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/
+base/8r.enc}] (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
+[2]
+Underfull \vbox (badness 1168) has occurred while \output is active [3]
+[4]
+
+! LaTeX Error: Environment algorithm undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.154 \begin{algorithm}
+                       [H]
+
+! LaTeX Error: \caption outside float.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.155 \caption
+              {EXACT: Verify-Select-Compress Distillation}
+
+! LaTeX Error: Environment algorithmic undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.156 \begin{algorithmic}
+                         [1]
+! Undefined control sequence.
+l.157 \State
+             \textbf{Input:} teacher traces $\mathcal{T}$; task type $\tau \...
+
+! Undefined control sequence.
+l.157 ...\mathcal{T}$; task type $\tau \in \{\text
+                                                  {math},\text{commonsense}\...
+
+! Undefined control sequence.
+l.157 ...; task type $\tau \in \{\text{math},\text
+                                                  {commonsense}\}$; verifier...
+
+! Undefined control sequence.
+l.157 ...e $\{m_e\}$; loss weights $\lambda_{\text
+                                                  {core}}, \lambda_{\text{un...
+
+! Undefined control sequence.
+l.157 ...ts $\lambda_{\text{core}}, \lambda_{\text
+                                                  {unlike}}$
+! Undefined control sequence.
+l.158 \State
+             \textbf{Output:} fine-tuned student parameters $\theta$
+! Undefined control sequence.
+l.159 \For
+          {each example $t \in \mathcal{T}$}
+! Undefined control sequence.
+l.160   \State
+               Segment rationale into ordered steps $S = [s_1,\dots,s_K]$ an...
+
+! Undefined control sequence.
+l.161   \If
+           {$\tau=\text{math}$}
+! Undefined control sequence.
+l.161   \If{$\tau=\text
+                       {math}$}
+! Undefined control sequence.
+l.162     \State
+                 Initialize symbolic state $\Sigma \leftarrow \emptyset$
+! Undefined control sequence.
+l.163     \For
+              {step $s_k$}
+! Undefined control sequence.
+l.164       \State
+                   Parse assignments/equalities; evaluate RHS; update/check ...
+
+! Undefined control sequence.
+l.165       \State
+                   Label $y_k \in \{\text{verified},\text{rejected},\text{un...
+
+! Undefined control sequence.
+l.165       \State Label $y_k \in \{\text
+                                         {verified},\text{rejected},\text{un...
+
+! Undefined control sequence.
+l.165 ...te Label $y_k \in \{\text{verified},\text
+                                                  {rejected},\text{unverifia...
+
+! Undefined control sequence.
+l.165 ...n \{\text{verified},\text{rejected},\text
+                                                  {unverifiable}\}$ by numer...
+
+! Undefined control sequence.
+l.166     \EndFor
+                 
+! Undefined control sequence.
+l.167   \Else
+             
+! Undefined control sequence.
+l.168     \For
+              {step $s_k$}
+! Undefined control sequence.
+l.169       \State
+                   Retrieve passages $P_k$; compute entailment $e_k$ and con...
+
+! Undefined control sequence.
+l.170       \State
+                   Label $y_k$ by calibrated thresholds on $(e_k,c_k)$
+! Undefined control sequence.
+l.171     \EndFor
+                 
+! Undefined control sequence.
+l.172   \EndIf
+              
+! Undefined control sequence.
+l.173   \State
+               Identify required symbols/facts $R$ from $a$ and prompt
+! Undefined control sequence.
+l.174   \State
+               Build set-cover instance: each verified step $s_k$ covers $C_...
+
+! Undefined control sequence.
+<recently read> \text 
+                      
+l.174 ...covers $C_k \subseteq R$ with cost $\text
+                                                  {len}(s_k)$
+! Undefined control sequence.
+l.175   \State
+               Solve $\min \sum_{k} c_k z_k$ s.t. $\cup_{k:z_k=1} C_k = R$, ...
+
+! Undefined control sequence.
+l.176   \State
+               Validate core: execute (math) or check entailment support (co...
+
+! Undefined control sequence.
+l.177   \State
+               Store training targets: tokens of $a$, tokens of steps in $\m...
+
+! Undefined control sequence.
+l.178 \EndFor
+             
+! Undefined control sequence.
+l.179 \For
+          {epoch $e=1,\dots,E$}
+! Undefined control sequence.
+l.180   \State
+               Determine masking ratio $m_e$; randomly mask a fraction $m_e$...
+
+! Undefined control sequence.
+l.181   \For
+            {minibatch $B$}
+! Undefined control sequence.
+l.182     \State
+                 Compute loss: $\mathcal{L}= \lambda_{\text{core}}\,\text{CE...
+
+! Undefined control sequence.
+l.182 ...ompute loss: $\mathcal{L}= \lambda_{\text
+                                                  {core}}\,\text{CE}(\text{c...
+
+! Undefined control sequence.
+l.182 ...\mathcal{L}= \lambda_{\text{core}}\,\text
+                                                  {CE}(\text{core tokens}+a)...
+
+! Undefined control sequence.
+l.182 ...}= \lambda_{\text{core}}\,\text{CE}(\text
+                                                  {core tokens}+a) \\ \qquad...
+
+! Undefined control sequence.
+l.182 ...kens}+a) \\ \qquad\qquad + \lambda_{\text
+                                                  {unlike}}\,\text{UL}(\text...
+
+! Undefined control sequence.
+l.182 ...ad\qquad + \lambda_{\text{unlike}}\,\text
+                                                  {UL}(\text{rejected tokens...
+
+! Undefined control sequence.
+l.182 ... \lambda_{\text{unlike}}\,\text{UL}(\text
+                                                  {rejected tokens}) + \text...
+
+! Undefined control sequence.
+l.182 ...\text{UL}(\text{rejected tokens}) + \text
+                                                  {CE}(\text{prompt and unma...
+
+! Undefined control sequence.
+l.182 ...\text{rejected tokens}) + \text{CE}(\text
+                                                  {prompt and unmasked verif...
+
+! Undefined control sequence.
+l.183     \State
+                 Update student parameters $\theta \leftarrow \theta - \eta ...
+
+! Undefined control sequence.
+l.184   \EndFor
+               
+! Undefined control sequence.
+l.185 \EndFor
+             
+! Undefined control sequence.
+l.186 \State
+             \Return $\theta$
+! Undefined control sequence.
+l.186 \State \Return
+                     $\theta$
+
+! LaTeX Error: \begin{document} ended by \end{algorithmic}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.187 \end{algorithmic}
+                       
+
+! LaTeX Error: \begin{document} ended by \end{algorithm}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.188 \end{algorithm}
+                     
+
+Underfull \vbox (badness 1270) has occurred while \output is active [5]
+Underfull \vbox (badness 10000) has occurred while \output is active [6]
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.216 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.218 \includegraphics
+                      [width=0.7\linewidth]{ images/accuracy\_exp1.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.218 \includegraphics[width=0.7\linewidth]
+                                           { images/accuracy\_exp1.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.218 \includegraphics[width=0.7\linewidth]
+                                           { images/accuracy\_exp1.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.222 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.224 \includegraphics
+                      [width=0.7\linewidth]{ images/accuracy\_exp2.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.224 \includegraphics[width=0.7\linewidth]
+                                           { images/accuracy\_exp2.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.224 \includegraphics[width=0.7\linewidth]
+                                           { images/accuracy\_exp2.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.228 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.230 \includegraphics
+                      [width=0.7\linewidth]{ images/accuracy\_exp3.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.230 \includegraphics[width=0.7\linewidth]
+                                           { images/accuracy\_exp3.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.230 \includegraphics[width=0.7\linewidth]
+                                           { images/accuracy\_exp3.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.234 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.236 \includegraphics
+                      [width=0.7\linewidth]{ images/confusion\_matrix\_exp2\...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.236 \includegraphics[width=0.7\linewidth]
+                                           { images/confusion\_matrix\_exp2\...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.236 \includegraphics[width=0.7\linewidth]
+                                           { images/confusion\_matrix\_exp2\...
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.240 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.242 \includegraphics
+                      [width=0.7\linewidth]{ images/confusion\_matrix\_exp2\...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.242 \includegraphics[width=0.7\linewidth]
+                                           { images/confusion\_matrix\_exp2\...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.242 \includegraphics[width=0.7\linewidth]
+                                           { images/confusion\_matrix\_exp2\...
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.246 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.248 \includegraphics
+                      [width=0.7\linewidth]{ images/cot\_length\_exp1.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.248 \includegraphics[width=0.7\linewidth]
+                                           { images/cot\_length\_exp1.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.248 \includegraphics[width=0.7\linewidth]
+                                           { images/cot\_length\_exp1.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.252 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.254 \includegraphics
+                      [width=0.7\linewidth]{ images/cot\_length\_exp2.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.254 \includegraphics[width=0.7\linewidth]
+                                           { images/cot\_length\_exp2.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.254 \includegraphics[width=0.7\linewidth]
+                                           { images/cot\_length\_exp2.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.258 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.260 \includegraphics
+                      [width=0.7\linewidth]{ images/cot\_length\_exp3.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.260 \includegraphics[width=0.7\linewidth]
+                                           { images/cot\_length\_exp3.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.260 \includegraphics[width=0.7\linewidth]
+                                           { images/cot\_length\_exp3.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.264 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.266 \includegraphics
+                      [width=0.7\linewidth]{ images/epr\_exp1.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.266 \includegraphics[width=0.7\linewidth]
+                                           { images/epr\_exp1.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.266 \includegraphics[width=0.7\linewidth]
+                                           { images/epr\_exp1.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.270 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.272 \includegraphics
+                      [width=0.7\linewidth]{ images/faithfulness\_exp1.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.272 \includegraphics[width=0.7\linewidth]
+                                           { images/faithfulness\_exp1.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.272 \includegraphics[width=0.7\linewidth]
+                                           { images/faithfulness\_exp1.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.276 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.278 \includegraphics
+                      [width=0.7\linewidth]{ images/hallucination\_exp2.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.278 \includegraphics[width=0.7\linewidth]
+                                           { images/hallucination\_exp2.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.278 \includegraphics[width=0.7\linewidth]
+                                           { images/hallucination\_exp2.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.282 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.284 \includegraphics
+                      [width=0.7\linewidth]{ images/inference\_latency\_exp1...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.284 \includegraphics[width=0.7\linewidth]
+                                           { images/inference\_latency\_exp1...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.284 \includegraphics[width=0.7\linewidth]
+                                           { images/inference\_latency\_exp1...
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.288 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.290 \includegraphics
+                      [width=0.7\linewidth]{ images/training\_loss\_exp1\_ba...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.290 \includegraphics[width=0.7\linewidth]
+                                           { images/training\_loss\_exp1\_ba...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.290 \includegraphics[width=0.7\linewidth]
+                                           { images/training\_loss\_exp1\_ba...
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.294 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.296 \includegraphics
+                      [width=0.7\linewidth]{ images/training\_loss\_exp2\_ex...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.296 \includegraphics[width=0.7\linewidth]
+                                           { images/training\_loss\_exp2\_ex...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.296 \includegraphics[width=0.7\linewidth]
+                                           { images/training\_loss\_exp2\_ex...
+
+(./paper.bbl [7] [8] [9]
+Underfull \vbox (badness 10000) has occurred while \output is active [10])
+[11] (./paper.aux) )
+(see the transcript file for additional information) </home/runner/.texlive2023
+/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts
+/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy
+10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr
+/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/
+texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/font
+s/type1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (11 pages, 181520 bytes).
+Transcript written on paper.log.
