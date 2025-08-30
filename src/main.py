@@ -126,7 +126,7 @@ def main():
     device = get_device()
     print(f"Using device: {device}")
 
-    images_dir = cfg.get('images_dir', '.research/iteration2/images')
+    images_dir = cfg.get('images_dir', '.research/iteration5/images')
     ensure_dir(images_dir)
 
     do_run_all = args.run_all or bool(cfg.get('run_all', True))

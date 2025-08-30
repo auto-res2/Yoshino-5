@@ -111,7 +111,7 @@ def decode_throughput(model: TinyHATQTransformer,
         B_, T_ = ids_.shape
         # Clear any stale per-token bit assignments before the first pass
         model._force_bits(4)
-        if ablation == "hatq" and controller_modules is not None:
+        if ablation == 'hatq' and controller_modules is not None:
             kv_stats = torch.zeros(B_, 8, model.config.num_hidden_layers, device=ids_.device)
             logits, hidden = model(ids_, return_hidden=True)
             gbits = gb_rnn(kv_stats)
@@ -121,14 +121,14 @@ def decode_throughput(model: TinyHATQTransformer,
             model._set_token_bits(bits_btl)
             bit_stats.update(bits_btl.reshape(-1))
             logits = model(ids_)
-        elif ablation == "global_only" and controller_modules is not None:
+        elif ablation == 'global_only' and controller_modules is not None:
             kv_stats = torch.zeros(B_, 8, model.config.num_hidden_layers, device=ids_.device)
             gbits = gb_rnn(kv_stats)
             bits_btl = torch.clamp(gbits.unsqueeze(1).expand(-1, T_, -1), 3, 8)
             model._set_token_bits(bits_btl)
             bit_stats.update(bits_btl.reshape(-1))
             logits = model(ids_)
-        elif ablation == "controller_off":
+        elif ablation == 'controller_off':
             model._force_bits(4)
             logits = model(ids_)
             bit_stats.update(torch.full((B_*T_*model.config.num_hidden_layers,), 4, device=ids_.device))
@@ -403,3 +403,68 @@ def run_experiment3_controller(model: TinyHATQTransformer, data_small: List[Dict
     plt.close()
 
     return auc
+
+
+@torch.no_grad()
+def evaluate_classification(model: TinyHATQTransformer,
+                            X: torch.Tensor,
+                            y: torch.Tensor,
+                            controller_modules: Optional[Tuple[GlobalBudgetRNN, TokenMaskBlock, BudgetHead]] = None,
+                            ablation: str = 'hatq') -> Tuple[float, Optional[np.ndarray]]:
+    """Evaluate a simple binary classification using LM perplexity as a score.
+    - Compute mean token NLL per sequence; predict positive if score above median.
+    - Supports the same ablation modes as other evaluators.
+    Returns: (accuracy, confusion_matrix_or_None)
+    """
+    model.eval()
+    device = X.device
+    B, T = X.shape
+
+    gb_rnn = mask_block = budget_head = None
+    if controller_modules is not None:
+        gb_rnn, mask_block, budget_head = controller_modules
+        gb_rnn.eval(); mask_block.eval(); budget_head.eval()
+
+    # Prepare logits according to ablation
+    if ablation == 'hatq' and controller_modules is not None:
+        model._force_bits(4)
+        kv_stats = torch.zeros(B, 8, model.config.num_hidden_layers, device=device)
+        logits_first, hidden = model(X, return_hidden=True)
+        gbits = gb_rnn(kv_stats)
+        token_logits = mask_block(hidden)
+        extra_mask = budget_head(gbits, token_logits, enable_mask=True)
+        bits_btl = torch.clamp(3 + extra_mask.unsqueeze(-1).expand(-1, -1, model.config.num_hidden_layers), 3, 8)
+        model._set_token_bits(bits_btl)
+        logits = model(X)
+    elif ablation == 'global_only' and controller_modules is not None:
+        kv_stats = torch.zeros(B, 8, model.config.num_hidden_layers, device=device)
+        gbits = gb_rnn(kv_stats)
+        bits_btl = torch.clamp(gbits.unsqueeze(1).expand(-1, T, -1), 3, 8)
+        model._set_token_bits(bits_btl)
+        logits = model(X)
+    else:  # controller_off or fallback
+        model._force_bits(4)
+        logits = model(X)
+
+    # Per-sequence mean NLL
+    shift_logits = logits[:, :-1, :].contiguous()
+    shift_labels = X[:, 1:].contiguous()
+    token_nll = F.cross_entropy(shift_logits.view(-1, shift_logits.size(-1)), shift_labels.view(-1), reduction='none')
+    token_nll = token_nll.view(B, -1)
+    seq_nll = token_nll.mean(dim=1)
+    score = -seq_nll  # higher is "better"
+
+    # Threshold by median
+    thresh = score.median()
+    y_pred = (score >= thresh).long()
+
+    y_true = y.long().detach().cpu().numpy()
+    yhat = y_pred.detach().cpu().numpy()
+    acc = float((yhat == y_true).mean())
+    cm = None
+    if _HAVE_SKLEARN:
+        try:
+            cm = confusion_matrix(y_true, yhat)
+        except Exception:
+            cm = None
+    return acc, cm
