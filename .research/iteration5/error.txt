@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 384, in <module>
+    main()
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 374, in main
+    _ = run_experiment1(cfg.get('exp1', {}), device, DEFAULT_IMAGE_DIR)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 94, in run_experiment1
+    model, comm_mb, sel_cnt, _, loss_add = train_one_round(
+                                           ^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/train.py", line 593, in train_one_round
+    U, S, Vh = randomized_svd_compress(anchor_grad, rank=svd_rank)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/train.py", line 497, in randomized_svd_compress
+    U, S, Vh = torch.linalg.svd_lowrank(mat, q=min(rank, max(1, min(mat.shape) - 1)))
+               ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'torch.linalg' has no attribute 'svd_lowrank'
