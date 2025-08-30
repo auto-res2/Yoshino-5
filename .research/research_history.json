@@ -6,5 +6,82 @@
     "physics informed transformers",
     "molecular property transformers",
     "memory efficient LoRA"
+  ],
+  "research_study_list": [
+    {
+      "title": "GaLore: Memory-Efficient LLM Training by Gradient Low-Rank Projection"
+    },
+    {
+      "title": "GaLore: Memory-Efficient LLM Training by Gradient Low-Rank Projection"
+    },
+    {
+      "title": "LoRA-GA: Low-Rank Adaptation with Gradient Approximation"
+    },
+    {
+      "title": "Overcoming the Optimizer's Curse: Obtaining Realistic Prescriptions from Neural Networks"
+    },
+    {
+      "title": "Efficiently Controlling Multiple Risks with Pareto Testing"
+    },
+    {
+      "title": "Sketchy: Memory-efficient Adaptive Regularization with Frequent Directions"
+    },
+    {
+      "title": "Towards Resolving the Implicit Bias of Gradient Descent for Matrix Factorization: Greedy Low-Rank Learning"
+    },
+    {
+      "title": "Local Search Algorithms for Rank-Constrained Convex Optimization"
+    },
+    {
+      "title": "Understanding Incremental Learning of Gradient Descent: A Fine-grained Analysis of Matrix Sensing"
+    },
+    {
+      "title": "Low-Rank Subspaces in GANs"
+    },
+    {
+      "title": "PINNsFormer: A Transformer-Based Framework For Physics-Informed Neural Networks"
+    },
+    {
+      "title": "Transolver: A Fast Transformer Solver for PDEs on General Geometries"
+    },
+    {
+      "title": "Universal Physics Transformers: A Framework For Efficiently Scaling Neural Operators"
+    },
+    {
+      "title": "HAMLET: Graph Transformer Neural Operator for Partial Differential Equations"
+    },
+    {
+      "title": "Positional Knowledge is All You Need: Position-induced Transformer (PiT) for Operator Learning"
+    },
+    {
+      "title": "GeoMFormer: A General Architecture for Geometric Molecular Representation Learning"
+    },
+    {
+      "title": "Geometric Transformer with Interatomic Positional Encoding"
+    },
+    {
+      "title": "Self-Supervised Graph Transformer on Large-Scale Molecular Data"
+    },
+    {
+      "title": "One Transformer Can Understand Both 2D & 3D Molecular Data"
+    },
+    {
+      "title": "Molecule Design by Latent Prompt Transformer"
+    },
+    {
+      "title": "ReLoRA: High-Rank Training Through Low-Rank Updates"
+    },
+    {
+      "title": "LQ-LoRA: Low-rank plus Quantized Matrix Decomposition for Efficient Language Model Finetuning"
+    },
+    {
+      "title": "Flora: Low-Rank Adapters Are Secretly Gradient Compressors"
+    },
+    {
+      "title": "GaLore: Memory-Efficient LLM Training by Gradient Low-Rank Projection"
+    },
+    {
+      "title": "GaLore: Memory-Efficient LLM Training by Gradient Low-Rank Projection"
+    }
   ]
 }
