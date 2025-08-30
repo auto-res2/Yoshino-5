@@ -38,7 +38,7 @@ def load_config(path: str) -> Dict[str, Any]:
 
 
 def ensure_dirs():
-    os.makedirs('.research/iteration2/images', exist_ok=True)
+    os.makedirs('.research/iteration3/images', exist_ok=True)
     os.makedirs('data', exist_ok=True)
     os.makedirs('models', exist_ok=True)
 
@@ -50,7 +50,8 @@ def main():
     device, mp_dtype = get_device_and_mp_dtype()
     print(f"Using device: {device} | mixed-precision dtype: {mp_dtype}")
 
-    images_dir = cfg.get('images_dir', '.research/iteration2/images')
+    # Force all experiment images to be saved under iteration3 images directory
+    images_dir = '.research/iteration3/images'
 
     # Experiment 1
     if cfg.get('exp1', {}).get('run', True):

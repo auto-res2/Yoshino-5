@@ -22,22 +22,41 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from .preprocess import (
-    set_seed,
-    autocast_if_cuda,
-    get_device_and_mp_dtype,
-    gen_darcy_like_batch,
-    gen_burgers_bc_variants,
-    gen_molecular_like_batch,
-    build_divfree_basis_fourier,
-)
-from .evaluate import (
-    physics_loss,
-    relative_l2,
-    divergence_and_laplacian,
-    ensure_pdf_backend_and_style,
-    save_plot,
-)
+# Support being imported as a package (src.train) or as a script (train)
+try:
+    from .preprocess import (
+        set_seed,
+        autocast_if_cuda,
+        get_device_and_mp_dtype,
+        gen_darcy_like_batch,
+        gen_burgers_bc_variants,
+        gen_molecular_like_batch,
+        build_divfree_basis_fourier,
+    )
+    from .evaluate import (
+        physics_loss,
+        relative_l2,
+        divergence_and_laplacian,
+        ensure_pdf_backend_and_style,
+        save_plot,
+    )
+except Exception:  # fallback for direct script execution
+    from preprocess import (  # type: ignore
+        set_seed,
+        autocast_if_cuda,
+        get_device_and_mp_dtype,
+        gen_darcy_like_batch,
+        gen_burgers_bc_variants,
+        gen_molecular_like_batch,
+        build_divfree_basis_fourier,
+    )
+    from evaluate import (  # type: ignore
+        physics_loss,
+        relative_l2,
+        divergence_and_laplacian,
+        ensure_pdf_backend_and_style,
+        save_plot,
+    )
 
 
 # ------------------------------
