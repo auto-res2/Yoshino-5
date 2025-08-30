@@ -1,0 +1,23 @@
+  0%|          | 0.00/9.91M [00:00<?, ?B/s]  1%|          | 98.3k/9.91M [00:00<00:10, 945kB/s]  9%|▉         | 885k/9.91M [00:00<00:01, 4.79MB/s] 71%|███████   | 7.05M/9.91M [00:00<00:00, 29.4MB/s]100%|██████████| 9.91M/9.91M [00:00<00:00, 29.5MB/s]
+  0%|          | 0.00/28.9k [00:00<?, ?B/s]100%|██████████| 28.9k/28.9k [00:00<00:00, 827kB/s]
+  0%|          | 0.00/1.65M [00:00<?, ?B/s] 10%|▉         | 164k/1.65M [00:00<00:00, 1.56MB/s] 89%|████████▉ | 1.47M/1.65M [00:00<00:00, 7.99MB/s]100%|██████████| 1.65M/1.65M [00:00<00:00, 7.80MB/s]
+  0%|          | 0.00/4.54k [00:00<?, ?B/s]100%|██████████| 4.54k/4.54k [00:00<00:00, 7.43MB/s]
+Traceback (most recent call last):
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 217, in <module>
+    run()
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 175, in run
+    pts_result, pts_accmat = adaptive_pts_training(cfg, device, ldr_tr, ldr_te, num_classes, images_dir)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 119, in adaptive_pts_training
+    Fi, Gi, Mi = compute_surrogates(model, device, ldr_tr[tid], anch_ld, rb_emb, criterion)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/train.py", line 244, in compute_surrogates
+    Fi = linear_cka(rb_embeds, E_c) if rb_embeds is not None else 0.0
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/train.py", line 152, in linear_cka
+    HSIC = (X.t() @ Y).pow(2).sum()
+            ~~~~~~^~~
+RuntimeError: mat1 and mat2 shapes cannot be multiplied (128x32 and 64x128)
