@@ -1,0 +1,248 @@
+\documentclass{article}
+
+\usepackage{agents4science_2025}
+% to compile a preprint version, e.g., for submission to arXiv, add the
+% \usepackage[preprint]{agents4science_2025}
+
+% to compile a camera-ready version, add the [final] option, e.g.:
+% \usepackage[final]{agents4science_2025}
+
+% For workshops, the authors should use the workshop options and add the name of the workshop.
+% The "\workshoptitle" command is used to set the workshop title.
+%
+% \usepackage[sglblindworkshop]{agents4science_2025}
+% \workshoptitle{WORKSHOP TITLE}
+
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+\usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{hyperref}       % hyperlinks
+\usepackage{url}            % simple URL typesetting
+\usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}
+\usepackage{microtype}
+\usepackage{xcolor}
+
+
+\title{Adaptive Basis LoRA: Temporal-Complexity-Scaled PEFT for Video-LLMs}
+
+
+% The \author macro works with any number of authors. There are two commands
+% used to separate the names and addresses of multiple authors: \And and \AND.
+%
+% Using \And between authors leaves it to LaTeX to determine where to break the
+% lines. Using \AND forces a line break at that point. So, if LaTeX puts 3 of 4
+% authors names on the first line, and the last on the second line, try using
+% \AND instead of \And before the third author name.
+
+
+\author{%
+  David S.~Hippocampus\thanks{Use footnote for providing further information
+    about author (webpage, alternative address)---\emph{not} for acknowledging
+    funding agencies.} \\
+  Department of Computer Science\\
+  Cranberry-Lemon University\\
+  Pittsburgh, PA 15213 \\
+  \texttt{hippo@cs.cranberry-lemon.edu} \\
+  % examples of more authors
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \AND
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+  % \And
+  % Coauthor \\
+  % Affiliation \\
+  % Address \\
+  % \texttt{email} \\
+}
+
+
+\begin{document}
+
+
+\maketitle
+
+
+\begin{abstract}
+We address a central bottleneck in video-language models: temporal reasoning under strict token and parameter budgets. Existing parameter-efficient fine-tuning (PEFT) methods such as LoRA and DoRA enforce a fixed small rank across time, compressing complex motion into a handful of shared directions and encouraging aggressive frame dropping, which harms temporal consistency and boundary localization \cite{hu-2021-lora,liu-2024-dora}. We propose Adaptive Basis LoRA (AB-LoRA), a plug-and-play adapter that replaces the single static low-rank update with a video-adaptive mixture of bases. For each video, we estimate a variable number of orthogonal temporal bases in CLIP latent space using EM with MDL/BIC selection and train a lightweight temporal encoder to predict per-time-step responsibilities \cite{li-2023-video}. Each attention block mixes basis-specific directions and magnitudes in a DoRA-style decomposition, with Householder-inspired compression for parameter reduction \cite{liu-2024-dora,dong-2024-efficient}. Training proceeds in three stages: feature alignment, basis pretraining with an MDL-GMM teacher on WebVid-scale data \cite{bain-2021-frozen}, and instruction tuning with the basis encoder frozen. We provide a full experimental plan covering datasets, metrics, fairness controls, robustness grids, and ablations, plus PyTorch skeletons. A minimal synthetic sanity check verifies end-to-end feasibility; it is not a benchmark evaluation. AB-LoRA establishes a principled route to temporally adaptive PEFT that can be layered on existing Image-LLMs to enable consistent long-video understanding.
+\end{abstract}
+
+
+
+\section{Introduction}
+Large multimodal language models have become the backbone of video-language systems, yet they must reason over long and irregular temporal dynamics under tight context windows and memory constraints. Contemporary pipelines often process fewer than 16 sparsely sampled frames to remain tractable, which sacrifices temporal fidelity. Parameter-efficient fine-tuning (PEFT) is attractive compared to full model tuning, but dominant variants such as LoRA and DoRA apply a fixed low rank to all time steps within each adapted projection \cite{hu-2021-lora,liu-2024-dora}. Although DoRA improves stability by decoupling magnitude and direction, neither adapts the available capacity to the temporal complexity of the input. This mismatch forces dynamic, long videos to compress motion variability into few shared directions, often manifesting as temporally inconsistent answers and poor localization of event boundaries-issues echoed in recent video-language studies focused on temporal understanding \cite{yang-2022-zero,yu-2023-self,huang-2023-vtimellm}.
+
+We hypothesize that temporal reasoning under token and parameter constraints requires adaptation capacity that scales with input complexity. We introduce Adaptive Basis LoRA (AB-LoRA), which replaces a single static low-rank adapter with a per-video mixture of bases. For each video, we obtain a variable number of temporal bases in CLIP latent space via an expectation-maximization (EM) procedure with MDL/BIC model selection and train a compact temporal basis encoder to predict per-time-step responsibilities. Each attention block then mixes basis-specific low-rank directions with learned magnitudes in a DoRA-style decomposition, optionally parameter-compressed with Householder reflections to preserve orthogonality at low cost \cite{liu-2024-dora,dong-2024-efficient}. The effective rank thus grows linearly with the selected number of bases, allowing longer or more dynamic videos to receive more adaptation capacity, while storage and inference remain light. Our use of EM responsibilities is inspired by spatial-temporal compaction through mixture modeling in video inversion \cite{li-2023-video}; here, it serves as a teacher to amortize routing at inference.
+
+To integrate AB-LoRA into Video-LLMs, we adopt a three-stage pipeline aligned with recent video-language pretraining practices. Stage-1 aligns visual features to the frozen LLM token space. Stage-2 pretrains the temporal basis encoder on WebVid-scale data using MDL-GMM responsibilities as a teacher \cite{bain-2021-frozen}. Stage-3 instruction-tunes only the AB-LoRA parameters while freezing both the foundation model and the basis encoder, thereby limiting trainable weights and stabilizing training \cite{jin-2024-video}. Our evaluation plan spans Video QA (MSR-VTT-QA, MSVD-QA, ActivityNet-QA), temporal grounding (Charades-STA, ActivityNet-Captions), static Doc/Chart-QA to verify language preservation, and a long-video split. Efficiency is assessed by trainable parameters, peak GPU memory, and wall-time; robustness is probed along video length, motion complexity, and domain shift. Baselines include LoRA-8, DoRA-64, and a SimDA-like K=1 variant \cite{hu-2021-lora,liu-2024-dora,xing-2023-simda}.
+
+AB-LoRA is complementary to representation-level advances such as query-aware keyframe selection, chained localization-answering, and boundary-aware training \cite{yang-2022-zero,yu-2023-self,huang-2023-vtimellm,xu-2024-slot}. It targets the adaptation mechanism itself, enabling capacity to scale with temporal complexity without altering inference-time latency or substantially increasing storage. This design resonates with theoretical insights on the role of rank in expressive power \cite{zeng-2023-the} and with orthogonal parameterizations for efficient adaptation \cite{dong-2024-efficient}.
+
+We validate feasibility through a minimal synthetic sanity check that exercises the entire pipeline. As expected given the tiny backbone and training budget, the quick test does not validate the central hypothesis but surfaces calibration points for the MDL teacher and confirms end-to-end trainability. The full benchmark suite and ablations are prepared for execution.
+
+\begin{itemize}
+  \item \textbf{Adaptive mixture-of-bases PEFT:} A video-adaptive mixture-of-bases PEFT mechanism whose effective rank scales with temporal complexity while storage remains bounded.
+  \item \textbf{Temporal basis encoder:} A temporal basis encoder trained to imitate MDL-GMM responsibilities computed on CLIP features, amortizing per-video routing \cite{bain-2021-frozen,li-2023-video}.
+  \item \textbf{DoRA with Householder compression:} A DoRA-style direction-magnitude parameterization combined with Householder-inspired compression for a strong capacity-efficiency trade-off \cite{liu-2024-dora,dong-2024-efficient}.
+  \item \textbf{Training and evaluation blueprint:} A practical three-stage training recipe, fairness protocols, robustness grids, and PyTorch skeletons enabling reproducible evaluation across Video QA, temporal grounding, and long-video reasoning.
+  \item \textbf{Quick end-to-end validation:} A minimal end-to-end quick test establishing feasibility and informing subsequent calibration.
+\end{itemize}
+
+Looking ahead, we foresee sharing temporal bases across users for personalization and applying MDL-driven adaptive bases to video generation and editing, where temporally coherent latent structures are equally beneficial \cite{guo-2023-animatediff,xing-2023-simda,li-2023-video}.
+
+\section{Related Work}
+Parameter-efficient fine-tuning. LoRA injects low-rank updates into frozen weights, drastically reducing trainable parameters and memory while maintaining competitive quality \cite{hu-2021-lora}. However, its fixed rank limits expressivity under diverse inputs. Theory formally connects expressive power to rank, clarifying why fixed small ranks can be limiting \cite{zeng-2023-the}. DoRA decomposes weight updates into a unit-norm direction and a scalar magnitude, improving capacity and stability without inference overhead \cite{liu-2024-dora}. Flora interprets LoRA as gradient compression and proposes resampling to achieve high-rank updates with sublinear optimizer state memory \cite{hao-2024-flora}. Our approach differs conceptually and operationally: instead of a single shared low-rank subspace, we allocate multiple basis-specific low-rank directions and mix them per time step via video-adaptive responsibilities, making the effective rank grow with temporal complexity while the stored parameters remain modest.
+
+Temporal modeling in video-language. FrozenBiLM adapts frozen bidirectional language models to video QA via masked language modeling with lightweight multimodal connectors, achieving strong zero-shot performance \cite{yang-2022-zero}. SeViLA chains a localizer and an answerer within a single image-language model to obtain language-aware keyframes and alleviate annotation demands \cite{yu-2023-self}. VTimeLLM introduces a boundary-aware curriculum to improve temporal boundary understanding \cite{huang-2023-vtimellm}. Slot-VLM proposes object- and event-wise slots via a SlowFast design that yields semantically decomposed video tokens \cite{xu-2024-slot}. These methods focus on representation and inference, whereas AB-LoRA focuses on the adaptation mechanism, and can be layered atop such systems to better allocate capacity to temporally complex inputs.
+
+Video pretraining and tokenization. Frozen-in-Time demonstrates joint image-video encoders and introduces WebVid, enabling scalable video-text pretraining \cite{bain-2021-frozen}. Video-LaVIT decouples visual and motion tokenization for unified pretraining across images, videos, and text \cite{jin-2024-video}. We leverage CLIP features and WebVid-style data for basis pretraining and adopt a Stage-1 alignment to connect vision to the frozen LLM.
+
+Adaptive decomposition and EM. STEM inversion models dense video features via a compact basis set learned with EM, improving temporal consistency for video editing \cite{li-2023-video}. We adopt the insight that mixture modeling captures temporal structure and use MDL-selected GMM responsibilities as a teacher to train a fast temporal basis encoder. Unlike STEM, our goal is parameter-efficient adaptation for reasoning rather than inversion or editing.
+
+Orthogonal parameterizations. Householder transformations provide compact orthogonal factors and layer-wise scalable ranks for efficient adaptation of ViTs \cite{dong-2024-efficient}. We employ Householder-inspired compression for basis-specific directions to reduce parameters while approximately preserving orthogonality, complementing DoRA's decomposition \cite{liu-2024-dora}.
+
+Temporal adapters in diffusion. AnimateDiff and SimDA validate lightweight temporal modules for adapting image diffusion models to video, emphasizing temporal consistency under PEFT \cite{guo-2023-animatediff,xing-2023-simda}. While these works address generation rather than reasoning, they motivate PEFT designs that respect temporal structure. Our K=1 ablation recovers a SimDA-like shared adapter, isolating the incremental value of adaptive bases.
+
+\section{Background}
+Problem setting and notation. We consider a Video-LLM composed of a frozen language backbone and a frozen vision encoder (e.g., CLIP ViT/B-16) that produces per-frame latent features. Given a video with \(T\) frames, let \(F_t\) denote the latent for frame \(t\). A lightweight projection and positional fusion module converts \(\{F_t\}_{t=1}^T\) into visual tokens and fuses them with text tokens in a causal transformer for instruction following or question answering.
+
+PEFT preliminaries. LoRA adapts a pre-trained weight matrix \(W\) by learning a low-rank update \(\Delta W = A B^\top\) with inner dimension \(r\); at inference \(W + \Delta W\) is used \cite{hu-2021-lora}. The rank \(r\) is fixed per module, which can be restrictive under varying temporal complexity. DoRA decomposes updates into a unit-norm direction and a scalar magnitude, enhancing learning capacity and stability while retaining PEFT efficiency \cite{liu-2024-dora}. The expressive power of low-rank updates is fundamentally tied to available rank \cite{zeng-2023-the}.
+
+MDL-guided mixture modeling. To capture temporal heterogeneity within a video, we consider a mixture model over per-frame latents. For each video, we fit diagonal-covariance Gaussian mixture models (GMMs) in a PCA-reduced latent space and select the number of components \(K\) via MDL/BIC. The posterior responsibilities \(\gamma_{t,k}\) provide soft assignments indicating which temporal basis is active at time \(t\). This idea is related to STEM's EM-based compaction for video inversion \cite{li-2023-video}, but here the responsibilities serve as a teacher signal for amortized routing.
+
+Householder parameterization. Orthogonal or unitary matrices can be represented compactly via sequences of Householder reflections, enabling parameter-efficient approximations of unitary factors and flexible ranks \cite{dong-2024-efficient}. We adopt Householder-inspired compression to reduce the parameter count for basis-specific directions while preserving desirable orthogonality.
+
+Evaluation axes. We focus on: (1) video QA accuracy; (2) temporal grounding quality measured by mean IoU and recall at IoU $\geq$ 0.5; (3) captioning metrics such as BLEU and CIDEr where applicable; (4) temporal consistency measured as average cosine similarity of adjacent-frame features; and (5) efficiency metrics including trainable parameters, peak GPU memory, and wall-time per epoch. These axes directly target known limitations in temporal order understanding and boundary precision \cite{yang-2022-zero,yu-2023-self,huang-2023-vtimellm}.
+
+\section{Method}
+\subsection{Adaptive Mixture-of-Bases Overview}
+AB-LoRA replaces a single static low-rank adapter in each targeted projection with a mixture of \(K\) basis-specific low-rank directions whose combination is modulated over time by per-frame responsibilities. Responsibilities are predicted by a temporal basis encoder trained to imitate MDL-selected GMM responsibilities computed over CLIP latents. Each basis direction uses a DoRA-style decomposition into direction and magnitude, with optional Householder-inspired compression.
+
+\subsection{Mixture-of-Bases Adapter Construction}
+Consider an attention block with hidden size \(D\) applied to \(T\) visual tokens \(X \in \mathbb{R}^{T \times D}\). We instantiate \(K\_{\max}\) basis slots indexed by \(k\). Each basis \(k\) carries a rank-\(r\) direction update \(\Delta V_k \in \mathbb{R}^{D \times D}\) and a scalar magnitude \(m_k\). For a given video, the temporal basis encoder outputs logits over \(K\_{\max}\) per time step, converted into responsibilities \(\gamma_{t,k}\) by a temperature-controlled softmax. If the MDL-selected number of bases \(K\_{\text{sel}}\) is less than \(K\_{\max}\), responsibilities for \(k > K\_{\text{sel}}\) are zeroed. The time-varying update for step \(t\) is
+\[ \Delta W_t = \sum_{k=1}^{K\_{\max}} \gamma_{t,k} \, m_k \, \Delta V_k. \]
+The residual-style application is
+\[ Y_t = X_t \bigl(I + \Delta W_t^{\top}\bigr), \]
+with effective rank per video \(r \cdot K\_{\text{sel}}\) while storage scales as \(r \cdot K\_{\max}\) with \(K\_{\max}\) bounded (e.g., \(\leq 256\)). Thus, capacity grows with temporal complexity while memory remains bounded.
+
+\subsection{Temporal Basis Encoder}
+The encoder is a compact 1D CNN over the sequence \(\{F_t\}\) with two convolutional layers, a \(1\times 1\) projection to \(K\_{\max}\), and an exponential moving average smoother to stabilize logits. A learned temperature controls responsibility sharpness. The encoder is trained as a student to match MDL-GMM responsibilities from the teacher by minimizing a per-video KL divergence.
+
+\subsection{Teacher Responsibilities via EM with MDL/BIC}
+For each training video in basis pretraining, we: (a) PCA-reduce frame latents to a compact subspace; (b) fit diagonal-covariance GMMs for candidate \(K\) values; (c) select \(K\) by MDL/BIC; and (d) compute posterior responsibilities \(\gamma_{t,k}\). The encoder is trained to minimize per-video KL divergence between its predicted distribution (restricted to \(K\_{\text{sel}}\)) and the teacher, amortizing per-video EM at inference by replacing it with one forward pass.
+
+\subsection{DoRA Decomposition and Householder Compression}
+Each \(\Delta V_k\) is parameterized by low-rank factors that are L2-normalized to represent a direction, and \(m_k\) is a learned scalar magnitude, following DoRA to improve learning capacity without inference overhead \cite{liu-2024-dora}. We further apply Householder-inspired compression to parameterize orthogonal factors efficiently, reducing parameters while preserving the ability to represent rotations in feature space \cite{dong-2024-efficient}.
+
+\subsection{Training Regime}
+Stage-1 Feature Alignment: with the language model frozen, train a visual projection adapter and positional fusion to align CLIP features to the LLM token space, following unified video-language pretraining practices \cite{jin-2024-video}. Stage-2 Temporal Basis Pretraining: freeze the LLM and adapters and train only the temporal basis encoder on WebVid-scale data using MDL-GMM teacher responsibilities, minimizing KL divergence per video \cite{bain-2021-frozen}. Stage-3 Instruction Tuning: freeze the basis encoder and train only the AB-LoRA parameters (basis-specific directions and magnitudes) in selected attention blocks, optimizing on curated instruction and QA data while keeping all other weights frozen.
+
+\subsection{Ablations and Diagnostics}
+We include ablations that: (i) disable MDL by fixing \(K\); (ii) remove DoRA to use pure low-rank bases; (iii) set \(K=1\) to emulate SimDA-like temporal sharing \cite{xing-2023-simda}; (iv) toggle Householder compression; and (v) vary rank \(r\). Diagnostics monitor responsibility calibration (ECE and KL to the teacher), the distribution of selected \(K\) versus motion entropy and video length, magnitude sparsity of \(m_k\), and effective rank distributions.
+
+\subsection{Computational Profile}
+AB-LoRA adds a small temporal encoder forward pass and a per-step mixture of tiny low-rank matrices. Memory grows with \(r \cdot K\_{\max}\) but remains bounded and comparable to standard PEFT configurations, while effective rank scales with the selected \(K\) per video.
+
+\subsection{Algorithms}
+\begin{algorithm}
+\caption{MDL-selected EM teacher for responsibilities}
+\begin{algorithmic}
+  \State Input: per-frame latents \(\{F_t\}_{t=1}^T\), candidate set \(\mathcal{K} = \{1,\dots,K\_{\max}\}\)
+  \State Compute PCA projection: \(\tilde{F}_t \leftarrow \text{PCA}(F_t)\)
+  \For{\(K \in \mathcal{K}\)}
+    \State Fit diagonal-covariance GMM with \(K\) components via EM on \(\{\tilde{F}_t\}\)
+    \State Record MDL/BIC score \(\text{MDL}(K)\)
+  \EndFor
+  \State Select \(K\_{\text{sel}} \leftarrow \arg\min_K \text{MDL}(K)\)
+  \State Refit GMM with \(K\_{\text{sel}}\) and compute posteriors \(\gamma_{t,k}\)
+  \State Output: responsibilities \(\{\gamma_{t,k}\}\) and \(K\_{\text{sel}}\)
+\end{algorithmic}
+\end{algorithm}
+
+\begin{algorithm}
+\caption{AB-LoRA forward in one attention block}
+\begin{algorithmic}
+  \State Input: tokens \(X \in \mathbb{R}^{T \times D}\), basis params \(\{\Delta V_k, m_k\}_{k=1}^{K\_{\max}}\), basis encoder \(E\)
+  \State Compute logits: \(\ell_{t,k} \leftarrow E(\{F_t\})\)
+  \State Responsibilities: \(\gamma_{t,k} \leftarrow \text{softmax}_k(\ell_{t,k}/\tau)\); zero out \(k > K\_{\text{sel}}\)
+  \For{\(t=1\) to \(T\)}
+    \State \(\Delta W_t \leftarrow \sum_{k=1}^{K\_{\max}} \gamma_{t,k} \, m_k \, \Delta V_k\)
+    \State \(Y_t \leftarrow X_t (I + \Delta W_t^{\top})\)
+  \EndFor
+  \State Output: \(Y\)
+\end{algorithmic}
+\end{algorithm}
+
+\section{Experimental Setup}
+Base models and injection points. We instantiate AB-LoRA on a frozen Vicuna-7B language backbone with a CLIP ViT/B-16 vision encoder, using a lightweight visual projection and positional fusion module to produce visual tokens. AB-LoRA modules are injected into selected attention projection matrices. Baselines include LoRA-8, DoRA-64, and a SimDA-like variant implemented as \(K=1\) with shared temporal adapters \cite{hu-2021-lora,liu-2024-dora,xing-2023-simda}.
+
+Datasets and tasks. Planned benchmarks cover diverse temporal reasoning demands:
+\begin{itemize}
+  \item Video QA: MSR-VTT-QA, MSVD-QA, ActivityNet-QA; official splits when available.
+  \item Temporal grounding: Charades-STA and ActivityNet-Captions, prompting the model to output time spans.
+  \item Static language preservation: DocVQA and ChartQA to verify no regression on static inputs.
+  \item Long-video reasoning: a long-video split of EgoSchema with 2-3 minute videos.
+\end{itemize}
+
+Sampling and features. Videos are decoded with uniform frame sampling. AB-LoRA targets 64 frames; baselines operate at 16 frames under equal-memory settings. A matched-frames control (16-frame AB-LoRA) disentangles method gains from increased context. CLIP features are computed per frame and normalized. The temporal basis encoder includes an EMA downsampler.
+
+Training protocol. Stage-1 (feature alignment) runs for one epoch with the LLM frozen. Stage-2 (basis pretraining) runs for two epochs using MDL-GMM teacher responsibilities computed in PCA-reduced CLIP latent space, minimizing KL divergence per video \cite{bain-2021-frozen}. Stage-3 (instruction tuning) runs for two epochs on a mixture of Video-ChatGPT, VideoInstruct100k, and benchmark QA data, with the basis encoder frozen and only AB-LoRA parameters and the visual adapter trainable. We use AdamW, cosine learning-rate decay, gradient clipping, mixed precision, and distributed data parallelism. Memory parity across methods is enforced via gradient accumulation and frame-count control; we report peak memory and wall-time per epoch.
+
+Metrics. We evaluate QA accuracy; BLEU and CIDEr for captioning where applicable; temporal grounding using mean IoU and recall at IoU $\geq$ 0.5; temporal consistency via average adjacent-frame feature cosine; and efficiency via trainable parameters, peak GPU memory, and wall-time per epoch. Robustness is measured across bins of video length (10-180 s), motion complexity quartiles defined by optical-flow entropy, and domain shifts (e.g., recipes to sports).
+
+Ablations and diagnostics. Ablations include MDL on/off (fixed \(K\)), DoRA on/off, \(K=1\) (SimDA-equivalent), Householder compression on/off, and rank \(r \in \{2,4,8\}\). Diagnostics include responsibility calibration (ECE and KL to the MDL teacher), \(K\) distributions versus flow entropy and video length, magnitude sparsity of \(m_k\), effective rank distributions, and static-task accuracy to confirm no language regression \cite{xu-2024-slot,huang-2023-vtimellm}.
+
+Minimal sanity check actually executed. To validate end-to-end wiring before large-scale training, we conducted a tiny synthetic quick test using the provided skeletons. Setup: a mock CLIP-style feature extractor (tiny CNN; hidden dimension 64), AB-LoRA with rank \(r=2\) and \(K\_{\max}=8\), and a synthetic shapes dataset of 12 training and 8 evaluation videos. Videos contained colored objects moving with piecewise-constant velocities; QA was a 4-way classification of the number of motion segments; temporal grounding estimated the time of the first change. Stage-2 basis pretraining ran for 6 steps to match MDL-GMM responsibilities; Stage-3 adapter training ran for 12 steps on the synthetic QA/grounding supervision. Responsibilities were computed via MDL-GMM on PCA-reduced features at inference. Recorded metrics: QA accuracy, temporal grounding mean IoU, temporal consistency (adjacent-frame feature cosine), mean selected \(K\), and mean flow entropy. No baselines or standard datasets were executed in this quick test, and no confidence intervals were computed due to the extremely small sample size.
+
+\section{Results}
+We report only the results executed and logged in the minimal synthetic sanity check. Stage-2 basis pretraining completed in 6 steps with a final training loss approximately 0.0000, indicating near-perfect imitation of the MDL-GMM teacher on the tiny dataset. Stage-3 adapter training completed in 12 steps with a final loss of 3.1638. On 8 synthetic evaluation videos, we obtained: QA accuracy of 0.375 (4-way classification), temporal grounding mean IoU of 0.11666666664472222, temporal consistency of 0.9998192435791415 (adjacent-frame feature cosine), mean selected \(K\) of 1.0, and mean flow entropy of 0.30935862273788595.
+
+Interpretation. The quick test demonstrates that the end-to-end AB-LoRA pipeline executes: MDL-based teacher responsibilities are computed, the temporal basis encoder can learn to predict them, and the mixture-of-bases adapter is trainable under supervision. Capacity scaling was not observed: the MDL criterion selected a single basis on average (\(K\_{\text{mean}} = 1.0\)). This collapse is consistent with the tiny feature capacity of the mock backbone, the extremely small training budget, and limited motion separability in the synthetic features. Task performance is weak by design and is not comparable to the planned benchmarks. As no baselines were run in this sanity check, no comparative claims can be made.
+
+Fairness, hyperparameters, and robustness. The quick run did not execute memory-matched baselines, the robustness grid, or long-video evaluations; accordingly, fairness controls (peak memory, wall-time parity) and confidence intervals are deferred to the full experiments. The run used \(r=2\), \(K\_{\max}=8\), and responsibilities computed via MDL-GMM on PCA-reduced features. Temporal consistency was measured as average adjacent-frame feature cosine without optical-flow warping.
+
+Limitations. The minimal setup-tiny backbone, minimal steps, and very small datasets-cannot validate the central hypothesis that adaptive effective rank improves temporal grounding and consistency. The absence of baselines and standard datasets further limits interpretation. These results serve only as pipeline validation and MDL calibration.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{ images/confusion\_matrix\_test.pdf }
+  \caption{Confusion matrix for the quick-test 4-way QA classification in the minimal setup (filename: confusion\_matrix\_test.pdf).}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{ images/training\_loss\_ab\_lora\_pair1.pdf }
+    \caption{AB-LoRA training loss curve showing convergence over 12 steps (filename: training\_loss\_ab\_lora\_pair1.pdf).}
+  \end{subfigure}
+  \hfill
+  \begin{subfigure}{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{ images/training\_loss\_baselines\_pair2.pdf }
+    \caption{Baseline training-loss artifact produced by the logging pipeline (filename: training\_loss\_baselines\_pair2.pdf).}
+  \end{subfigure}
+\end{figure}
+
+\section{Conclusion}
+We presented Adaptive Basis LoRA (AB-LoRA), a parameter-efficient fine-tuning method for Video-LLMs that allocates adaptation capacity in proportion to the temporal complexity of the input. AB-LoRA replaces a single static low-rank update with a mixture of basis-specific low-rank directions whose combination over time is predicted by a temporal basis encoder trained to imitate MDL-GMM responsibilities computed in CLIP latent space \cite{bain-2021-frozen,li-2023-video}. The design combines DoRA's direction-magnitude decomposition with Householder-inspired compression to strengthen the capacity-efficiency trade-off while maintaining the inference efficiency characteristic of PEFT \cite{liu-2024-dora,dong-2024-efficient}. We detailed a three-stage training recipe, evaluation protocols, fairness controls, robustness grids, and ablations, and provided PyTorch skeletons enabling reproducibility.
+
+A minimal synthetic sanity check demonstrated end-to-end feasibility but did not test the core hypothesis. Immediate next steps are to execute the full experimental plan: pretrain the basis encoder with MDL-GMM teachers on WebVid-scale data, instruction-tune with the encoder frozen, and evaluate against LoRA-8, DoRA-64, and SimDA-like baselines under memory-matched settings across Video QA, temporal grounding datasets, static Doc/Chart-QA, and long-video scenarios \cite{hu-2021-lora,liu-2024-dora,xing-2023-simda}. Ablations will isolate the effects of MDL-based \(K\) selection, DoRA, Householder compression, and rank \(r\); diagnostics will verify that selected \(K\) correlates with motion entropy and video length. If confirmed, AB-LoRA would provide a practical, plug-and-play route to temporally consistent, long-video reasoning within tight memory budgets and without additional inference latency. Longer term, we see opportunities to share bases across users for personalization and to apply MDL-driven adaptive bases to video generation and editing where temporally coherent latent structures are similarly beneficial \cite{guo-2023-animatediff,li-2023-video}.
+
+
+\bibliographystyle{plainnat}
+\bibliography{references}
+
+\end{document}
