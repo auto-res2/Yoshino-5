@@ -6,5 +6,82 @@
     "Phi-4 synthetic generation",
     "7B QLoRA portfolio",
     "financial reasoning accuracy"
+  ],
+  "research_study_list": [
+    {
+      "title": "Generative Learning for Financial Time Series with Irregular and Scale-Invariant Patterns"
+    },
+    {
+      "title": "Realistic Synthetic Financial Transactions for Anti-Money Laundering Models"
+    },
+    {
+      "title": "Generating multivariate time series with COmmon Source CoordInated GAN (COSCI-GAN)"
+    },
+    {
+      "title": "Turning the Tables: Biased, Imbalanced, Dynamic Tabular Datasets for ML Evaluation"
+    },
+    {
+      "title": "Synthcity: a benchmark framework for diverse use cases of tabular synthetic data"
+    },
+    {
+      "title": "FinBen: A Holistic Financial Benchmark for Large Language Models"
+    },
+    {
+      "title": "PIXIU: A Comprehensive Benchmark, Instruction Dataset and Large Language Model for Finance"
+    },
+    {
+      "title": "QLoRA: Efficient Finetuning of Quantized LLMs"
+    },
+    {
+      "title": "QLoRA: Efficient Finetuning of Quantized LLMs"
+    },
+    {
+      "title": "LoftQ: LoRA-Fine-Tuning-aware Quantization for Large Language Models"
+    },
+    {
+      "title": "Spontaneous symmetry breaking in generative diffusion models"
+    },
+    {
+      "title": "Conditionally Strongly Log-Concave Generative Models"
+    },
+    {
+      "title": "Self-Correcting Self-Consuming Loops for Generative Model Training"
+    },
+    {
+      "title": "Conditional Generation Using Polynomial Expansions"
+    },
+    {
+      "title": "Patch-Based 3D Natural Scene Generation From a Single Example"
+    },
+    {
+      "title": "QLoRA: Efficient Finetuning of Quantized LLMs"
+    },
+    {
+      "title": "QLoRA: Efficient Finetuning of Quantized LLMs"
+    },
+    {
+      "title": "LoQT: Low-Rank Adapters for Quantized Pretraining"
+    },
+    {
+      "title": "Evaluating Quantized Large Language Models"
+    },
+    {
+      "title": "LoftQ: LoRA-Fine-Tuning-aware Quantization for Large Language Models"
+    },
+    {
+      "title": "ELASTIC: Numerical Reasoning with Adaptive Symbolic Compiler"
+    },
+    {
+      "title": "Measuring Massive Multitask Language Understanding"
+    },
+    {
+      "title": "Detecting Bugs with Substantial Monetary Consequences by LLM and Rule-based Reasoning"
+    },
+    {
+      "title": "FinBen: A Holistic Financial Benchmark for Large Language Models"
+    },
+    {
+      "title": "SubjECTive-QA: Measuring Subjectivity in Earnings Call Transcripts' QA Through Six-Dimensional Feature Analysis"
+    }
   ]
 }
