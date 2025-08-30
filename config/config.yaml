@@ -1,0 +1,14 @@
+# Default configuration for AB-LoRA synthetic experiments
+seed: 123
+output_dir: .research/iteration1/images
+
+# Model and adapter settings
+hidden_dim: 256
+r: 4
+K_max: 16
+mdl_penalty: 1.0
+freeze_basis_encoder_stage3: true
+
+# Training steps
+stage2_steps: 60
+stage3_steps: 120
