@@ -16,6 +16,12 @@
 
 \usepackage[utf8]{inputenc} % allow utf-8 input
 \usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+\usepackage{amsmath}        % math environments and \text
+\usepackage{amssymb}        % math symbols like \varnothing
+\usepackage{graphicx}       % includegraphics
+\usepackage{float}          % H float placement
+\usepackage{algorithm}      % algorithm float
+\usepackage{algpseudocode}  % algorithmicx with \State, \For, ...
 \usepackage{hyperref}       % hyperlinks
 \usepackage{url}            % simple URL typesetting
 \usepackage{booktabs}       % professional-quality tables
@@ -165,7 +171,7 @@ Heuristics based on class frequency or mean loss do not directly reflect gradien
 \State \textbf{Init:} empty buffer \(\mathcal{B} \leftarrow [\,]\); signatures dict \(\mathcal{G} \leftarrow \varnothing\)
 \For{each arriving task \(u\)}
   \State Extract frozen features for \(\mathcal{T}\_u\); train linear probe for 1 epoch
-  \State Accumulate feature-gradients; set signature \(\mathbf{g}\_u \leftarrow \text{L2Norm}(\sum\nabla\_{\!\text{feat}} \mathcal{L}\_{\text{probe}})\)
+  \State Accumulate feature-gradients; set signature \(\mathbf{g}\_u \leftarrow \text{L2Norm}(\sum\nabla_{\!\text{feat}} \mathcal{L}\_{\text{probe}})\)
   \State Store \(\mathcal{G}[u] \leftarrow \mathbf{g}\_u\); append to buffer \(\mathcal{B}.\text{append}(u)\)
   \If{\(|\mathcal{B}| = B\) or reorder trigger}
     \State Compute pairwise scores for \(i,j \in \mathcal{B}\): \(s\_{ij} = \cos(\mathcal{G}[i],\mathcal{G}[j])\);
@@ -190,7 +196,7 @@ We validate STORM in three quick-mode experiments designed for tractability and 
 \subsection{Common implementation defaults}
 Training uses PyTorch with mixed precision for adapter updates and fp32 for probes. Random seeds are set at run start. After training each task, we evaluate on all seen tasks and compute the trajectory of average accuracy to derive final average accuracy, average forgetting, min-ACC, and wc\_drop. We do not assume rehearsal memory or apply additional regularization baselines in these quick runs; comparisons focus on ordering effects. AdamW is used as optimizer \cite{kingma-2014-adam}.
 
-\subsection{Experiment 1 - Synthetic controlled interference}
+\subsection{Experiment 1 - Synthetic controlled interference (\texorpdfstring{$T=6$}{T=6})}
 \textbf{Data.} We generate binary classification tasks from a frozen random feature map with controlled angular separations between task weight vectors, enabling regimes of positive transfer and interference. \textbf{Learner.} A two-layer MLP with a LoRA-like adapter on the first layer serves as the PEFT learner. \textbf{Probe and signature.} A one-epoch linear probe is trained on frozen features; the gradient with respect to features is accumulated and L2-normalized to form the signature. \textbf{Curricula.} STORM, random order, similarity-only (\(\beta = 0\)), and interference-only (\(\alpha = 0\)). \textbf{Training budget.} A fixed small number of epochs per task. \textbf{Metrics.} Final average accuracy, average forgetting, min-ACC, and wc\_drop. We also measure the share of wall-clock time spent on probe training relative to total runtime in this quick setting.
 
 \subsection{Experiment 2 - Vision proxy on split CIFAR-10}
@@ -220,13 +226,13 @@ Overhead: total runtime approximately 2.38 s; probe share approximately 56.1\%. 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\linewidth]{ images/exp1\_accuracy\_storm\_vs\_baselines.pdf }
+\includegraphics[width=0.7\linewidth]{images/exp1_accuracy_storm_vs_baselines.pdf}
 \caption{Accuracy over time for the synthetic experiment, STORM vs baselines.}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\linewidth]{ images/exp1\_training\_loss\_storm\_vs\_baselines.pdf }
+\includegraphics[width=0.7\linewidth]{images/exp1_training_loss_storm_vs_baselines.pdf}
 \caption{Training loss over time for the synthetic experiment.}
 \end{figure}
 
@@ -247,13 +253,13 @@ Interpretation. STORM raises final average accuracy by 0.89 percentage points ov
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\linewidth]{ images/exp2\_accuracy\_vision\_storm\_vs\_baselines.pdf }
+\includegraphics[width=0.7\linewidth]{images/exp2_accuracy_vision_storm_vs_baselines.pdf}
 \caption{Accuracy over time for the vision proxy (split CIFAR-10).}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\linewidth]{ images/exp2\_training\_loss\_vision\_storm\_vs\_baselines.pdf }
+\includegraphics[width=0.7\linewidth]{images/exp2_training_loss_vision_storm_vs_baselines.pdf}
 \caption{Training loss over time for the vision proxy.}
 \end{figure}
 
@@ -276,13 +282,13 @@ Ablations and fairness. The similarity-only ablation underperforms STORM in fina
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\linewidth]{ images/exp3\_accuracy\_nlp\_storm\_vs\_baselines.pdf }
+\includegraphics[width=0.7\linewidth]{images/exp3_accuracy_nlp_storm_vs_baselines.pdf}
 \caption{Accuracy over time for the NLP proxy (synthetic bag-of-words).}
 \end{figure}
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.7\linewidth]{ images/exp3\_training\_loss\_nlp\_storm\_vs\_baselines.pdf }
+\includegraphics[width=0.7\linewidth]{images/exp3_training_loss_nlp_storm_vs_baselines.pdf}
 \caption{Training loss over time for the NLP proxy.}
 \end{figure}
 
