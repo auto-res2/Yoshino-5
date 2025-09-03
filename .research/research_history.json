@@ -1,0 +1,10 @@
+{
+  "research_topic": "Improve continual learning forgetting resistance through intelligent task-ordering strategies on standard continual learning benchmarks (Split-CIFAR, Permuted-MNIST, Split-ImageNet) regarding knowledge retention across sequential task presentation, evaluated against random ordering and existing anti-forgetting methods using 1-3B parameter models with parameter-efficient adaptation techniques, addressing the 2025 lifelong learning challenge by implementing curriculum learning frameworks based on task similarity metrics and gradient interference analysis for minimized catastrophic forgetting in practical deployment scenarios. Research must satisfy rigorous experimental standards: conduct evaluation on minimum 20 tasks per benchmark with statistical significance testing across 5+ random seeds, include comprehensive ablation studies isolating each proposed component's contribution, quantify computational overhead of scheduling decisions, and demonstrate clear performance gains over established baselines including EWC and A-GEM with reproducible implementation.",
+  "queries": [
+    "continual learning curriculum",
+    "task ordering forgetting",
+    "gradient interference continual",
+    "parameter efficient continual",
+    "EWC AGEM continual"
+  ]
+}
