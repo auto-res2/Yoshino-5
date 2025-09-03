@@ -6,5 +6,82 @@
     "gradient interference continual",
     "large model continual",
     "catastrophic forgetting benchmarks"
+  ],
+  "research_study_list": [
+    {
+      "title": "Efficient Continual Learning with Modular Networks and Task-Driven Priors"
+    },
+    {
+      "title": "Linear Mode Connectivity in Multitask and Continual Learning"
+    },
+    {
+      "title": "Scalable and Order-robust Continual Learning with Additive Parameter Decomposition"
+    },
+    {
+      "title": "CLeAR: Continual Learning on Algorithmic Reasoning for Human-like Intelligence"
+    },
+    {
+      "title": "Recasting Continual Learning as Sequence Modeling"
+    },
+    {
+      "title": "Linear Mode Connectivity in Multitask and Continual Learning"
+    },
+    {
+      "title": "The Ideal Continual Learner: An Agent That Never Forgets"
+    },
+    {
+      "title": "Recasting Continual Learning as Sequence Modeling"
+    },
+    {
+      "title": "Efficient Continual Learning with Modular Networks and Task-Driven Priors"
+    },
+    {
+      "title": "Compositional Language Continual Learning"
+    },
+    {
+      "title": "An Effective Dynamic Gradient Calibration Method for Continual Learning"
+    },
+    {
+      "title": "Continual Learning with Global Alignment"
+    },
+    {
+      "title": "Continual evaluation for lifelong learning: Identifying the stability gap"
+    },
+    {
+      "title": "Training for the Future: A Simple Gradient Interpolation Loss to Generalize Along Time"
+    },
+    {
+      "title": "Gradient-based Editing of Memory Examples for Online Task-free Continual Learning"
+    },
+    {
+      "title": "Data Engineering for Scaling Language Models to 128K Context"
+    },
+    {
+      "title": "Scalable Language Model with Generalized Continual Learning"
+    },
+    {
+      "title": "Overcoming Generic Knowledge Loss with Selective Parameter Update"
+    },
+    {
+      "title": "A Practitioner's Guide to Real-World Continual Multimodal Pretraining"
+    },
+    {
+      "title": "Pre-training Differentially Private Models with Limited Public Data"
+    },
+    {
+      "title": "Efficient Continual Learning with Modular Networks and Task-Driven Priors"
+    },
+    {
+      "title": "Continual evaluation for lifelong learning: Identifying the stability gap"
+    },
+    {
+      "title": "How Well Do Unsupervised Learning Algorithms Model Human Real-time and Life-long Learning?"
+    },
+    {
+      "title": "CGLB: Benchmark Tasks for Continual Graph Learning"
+    },
+    {
+      "title": "Is Forgetting Less a Good Inductive Bias for Forward Transfer?"
+    }
   ]
 }
