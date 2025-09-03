@@ -8,13 +8,21 @@ import torch
 from torch import nn
 from torch.utils.data import DataLoader
 
-# Relative imports for models/utilities
-from .train import (
-    SmallCNNBackbone,
-    extract_image_features,
-    BoWBackbone,
-    extract_text_features,
-)
+# Relative imports for models/utilities with fallback for script execution
+try:
+    from .train import (
+        SmallCNNBackbone,
+        extract_image_features,
+        BoWBackbone,
+        extract_text_features,
+    )
+except ImportError:  # When running as a script (no package context)
+    from train import (
+        SmallCNNBackbone,
+        extract_image_features,
+        BoWBackbone,
+        extract_text_features,
+    )
 
 # ------------------------------
 # Utilities
@@ -319,7 +327,10 @@ def make_vision_tasks(dataset: str = 'cifar10', num_tasks: int = 5, seed: int = 
 
 def make_nlp_tasks(num_tasks: int = 5, seed: int = 0, vocab_size: int = 1000, feat_dim: int = 256,
                    n_classes: int = 4, ntr: int = 400, nte: int = 200, quick: bool = True):
-    from .train import SyntheticTextDataset
+    try:
+        from .train import SyntheticTextDataset
+    except ImportError:
+        from train import SyntheticTextDataset
     set_seed(seed)
     tasks = []
     for t in range(num_tasks):

@@ -5,29 +5,53 @@ import yaml
 import numpy as np
 import torch
 
-from .preprocess import (
-    set_seed,
-    get_device,
-    make_linear_tasks,
-    make_vision_tasks,
-    make_nlp_tasks,
-    build_M_from_signatures,
-    greedy_order_from_M,
-    StormController,
-    compute_signature_from_features,
-)
-from .train import (
-    train_sequence_synthetic,
-    train_sequence_vision,
-    train_sequence_nlp,
-)
-from .evaluate import (
-    compute_forgetting_and_stability,
-    plot_accuracy_curves,
-    plot_losses,
-)
+# Support running both as a package (python -m src.main) and as a script (python src/main.py)
+try:
+    from .preprocess import (
+        set_seed,
+        get_device,
+        make_linear_tasks,
+        make_vision_tasks,
+        make_nlp_tasks,
+        build_M_from_signatures,
+        greedy_order_from_M,
+        StormController,
+        compute_signature_from_features,
+    )
+    from .train import (
+        train_sequence_synthetic,
+        train_sequence_vision,
+        train_sequence_nlp,
+    )
+    from .evaluate import (
+        compute_forgetting_and_stability,
+        plot_accuracy_curves,
+        plot_losses,
+    )
+except ImportError:  # fallback for script execution
+    from preprocess import (
+        set_seed,
+        get_device,
+        make_linear_tasks,
+        make_vision_tasks,
+        make_nlp_tasks,
+        build_M_from_signatures,
+        greedy_order_from_M,
+        StormController,
+        compute_signature_from_features,
+    )
+    from train import (
+        train_sequence_synthetic,
+        train_sequence_vision,
+        train_sequence_nlp,
+    )
+    from evaluate import (
+        compute_forgetting_and_stability,
+        plot_accuracy_curves,
+        plot_losses,
+    )
 
-IMAGES_DIR = os.path.join('.research', 'iteration1', 'images')
+IMAGES_DIR = os.path.join('.research', 'iteration2', 'images')
 
 
 def run_experiment1_synthetic(cfg):
@@ -238,7 +262,7 @@ def main():
     else:
         print("[Main] Skipping Exp3")
 
-    print("All plots saved as high-quality PDFs under .research/iteration1/images")
+    print("All plots saved as high-quality PDFs under .research/iteration2/images")
 
 
 if __name__ == '__main__':
