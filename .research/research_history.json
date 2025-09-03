@@ -6,5 +6,82 @@
     "gradient interference mitigation",
     "parameter efficient continual",
     "split CIFAR100 continual"
+  ],
+  "research_study_list": [
+    {
+      "title": "Efficient Continual Learning with Modular Networks and Task-Driven Priors"
+    },
+    {
+      "title": "Linear Mode Connectivity in Multitask and Continual Learning"
+    },
+    {
+      "title": "The Ideal Continual Learner: An Agent That Never Forgets"
+    },
+    {
+      "title": "Recasting Continual Learning as Sequence Modeling"
+    },
+    {
+      "title": "Continual World: A Robotic Benchmark For Continual Reinforcement Learning"
+    },
+    {
+      "title": "Can Graph Learning Improve Planning in LLM-based Agents?"
+    },
+    {
+      "title": "Discovering Non-monotonic Autoregressive Orderings with Variational Inference"
+    },
+    {
+      "title": "Premise Order Matters in Reasoning with Large Language Models"
+    },
+    {
+      "title": "On the Expressivity of Markov Reward"
+    },
+    {
+      "title": "On the Expressivity of Markov Reward"
+    },
+    {
+      "title": "Analyzing and Mitigating Interference in Neural Architecture Search"
+    },
+    {
+      "title": "Analyzing and Mitigating Interference in Neural Architecture Search"
+    },
+    {
+      "title": "Understanding Gradient Regularization in Deep Learning: Efficient Finite-Difference Computation and Implicit Bias"
+    },
+    {
+      "title": "Gradient Surgery for Multi-Task Learning"
+    },
+    {
+      "title": "Interference and Generalization in Temporal Difference Learning"
+    },
+    {
+      "title": "Semantically-Shifted Incremental Adapter-Tuning is A Continual ViTransformer"
+    },
+    {
+      "title": "InfLoRA: Interference-Free Low-Rank Adaptation for Continual Learning"
+    },
+    {
+      "title": "Overcoming Generic Knowledge Loss with Selective Parameter Update"
+    },
+    {
+      "title": "Contextual Transformation Networks for Online Continual Learning"
+    },
+    {
+      "title": "SAFE: Slow and Fast Parameter-Efficient Tuning for Continual Learning with Pre-Trained Models"
+    },
+    {
+      "title": "Wandering within a world: Online contextualized few-shot learning"
+    },
+    {
+      "title": "Rebalancing Batch Normalization for Exemplar-Based Class-Incremental Learning"
+    },
+    {
+      "title": "Loss Decoupling for Task-Agnostic Continual Learning"
+    },
+    {
+      "title": "Continual Learning with Evolving Class Ontologies"
+    },
+    {
+      "title": "Batch Model Consolidation: A Multi-Task Model Consolidation Framework"
+    }
   ]
 }
