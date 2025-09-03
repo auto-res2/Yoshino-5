@@ -6,5 +6,82 @@
     "gradient interference continual",
     "parameter efficient continual",
     "EWC AGEM continual"
+  ],
+  "research_study_list": [
+    {
+      "title": "Efficient Continual Learning with Modular Networks and Task-Driven Priors"
+    },
+    {
+      "title": "Linear Mode Connectivity in Multitask and Continual Learning"
+    },
+    {
+      "title": "The Ideal Continual Learner: An Agent That Never Forgets"
+    },
+    {
+      "title": "Recasting Continual Learning as Sequence Modeling"
+    },
+    {
+      "title": "Continual World: A Robotic Benchmark For Continual Reinforcement Learning"
+    },
+    {
+      "title": "Anatomy of Catastrophic Forgetting: Hidden Representations and Task Semantics"
+    },
+    {
+      "title": "Understanding Forgetting in Continual Learning with Linear Regression"
+    },
+    {
+      "title": "Reinforcement Learning with Fast and Forgetful Memory"
+    },
+    {
+      "title": "Think Before You Act: Decision Transformers with Working Memory"
+    },
+    {
+      "title": "Memoria: Resolving Fateful Forgetting Problem through Human-Inspired Memory Architecture"
+    },
+    {
+      "title": "An Effective Dynamic Gradient Calibration Method for Continual Learning"
+    },
+    {
+      "title": "Continual Learning with Global Alignment"
+    },
+    {
+      "title": "Continual evaluation for lifelong learning: Identifying the stability gap"
+    },
+    {
+      "title": "Training for the Future: A Simple Gradient Interpolation Loss to Generalize Along Time"
+    },
+    {
+      "title": "Gradient-based Editing of Memory Examples for Online Task-free Continual Learning"
+    },
+    {
+      "title": "Semantically-Shifted Incremental Adapter-Tuning is A Continual ViTransformer"
+    },
+    {
+      "title": "InfLoRA: Interference-Free Low-Rank Adaptation for Continual Learning"
+    },
+    {
+      "title": "Overcoming Generic Knowledge Loss with Selective Parameter Update"
+    },
+    {
+      "title": "Contextual Transformation Networks for Online Continual Learning"
+    },
+    {
+      "title": "SAFE: Slow and Fast Parameter-Efficient Tuning for Continual Learning with Pre-Trained Models"
+    },
+    {
+      "title": "Improved Schemes for Episodic Memory-based Lifelong Learning"
+    },
+    {
+      "title": "Generalized Variational Continual Learning"
+    },
+    {
+      "title": "Evolving Standardization for Continual Domain Generalization over Temporal Drift"
+    },
+    {
+      "title": "Online Learned Continual Compression with Adaptive Quantization Modules"
+    },
+    {
+      "title": "Online Continual Learning for Interactive Instruction Following Agents"
+    }
   ]
 }
