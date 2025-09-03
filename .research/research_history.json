@@ -6,5 +6,82 @@
     "gradient interference learning",
     "parameter-efficient continual",
     "task similarity scheduling"
+  ],
+  "research_study_list": [
+    {
+      "title": "Efficient Continual Learning with Modular Networks and Task-Driven Priors"
+    },
+    {
+      "title": "Linear Mode Connectivity in Multitask and Continual Learning"
+    },
+    {
+      "title": "The Ideal Continual Learner: An Agent That Never Forgets"
+    },
+    {
+      "title": "Recasting Continual Learning as Sequence Modeling"
+    },
+    {
+      "title": "Continual World: A Robotic Benchmark For Continual Reinforcement Learning"
+    },
+    {
+      "title": "Anatomy of Catastrophic Forgetting: Hidden Representations and Task Semantics"
+    },
+    {
+      "title": "Understanding Forgetting in Continual Learning with Linear Regression"
+    },
+    {
+      "title": "Reinforcement Learning with Fast and Forgetful Memory"
+    },
+    {
+      "title": "Think Before You Act: Decision Transformers with Working Memory"
+    },
+    {
+      "title": "Memoria: Resolving Fateful Forgetting Problem through Human-Inspired Memory Architecture"
+    },
+    {
+      "title": "Interference and Generalization in Temporal Difference Learning"
+    },
+    {
+      "title": "Analyzing and Mitigating Interference in Neural Architecture Search"
+    },
+    {
+      "title": "Analyzing and Mitigating Interference in Neural Architecture Search"
+    },
+    {
+      "title": "Gradient Surgery for Multi-Task Learning"
+    },
+    {
+      "title": "Understanding Gradient Regularization in Deep Learning: Efficient Finite-Difference Computation and Implicit Bias"
+    },
+    {
+      "title": "InfLoRA: Interference-Free Low-Rank Adaptation for Continual Learning"
+    },
+    {
+      "title": "Semantically-Shifted Incremental Adapter-Tuning is A Continual ViTransformer"
+    },
+    {
+      "title": "SAFE: Slow and Fast Parameter-Efficient Tuning for Continual Learning with Pre-Trained Models"
+    },
+    {
+      "title": "Overcoming Generic Knowledge Loss with Selective Parameter Update"
+    },
+    {
+      "title": "Memory Efficient Continual Learning with Transformers"
+    },
+    {
+      "title": "Neural DAG Scheduling via One-Shot Priority Sampling"
+    },
+    {
+      "title": "Hard Tasks First: Multi-Task Reinforcement Learning Through Task Scheduling"
+    },
+    {
+      "title": "Inductive-bias-driven Reinforcement Learning For Efficient Schedules in Heterogeneous Clusters"
+    },
+    {
+      "title": "Interpretable and Personalized Apprenticeship Scheduling: Learning Interpretable Scheduling Policies from Heterogeneous User Demonstrations"
+    },
+    {
+      "title": "Temporally Correlated Task Scheduling for Sequence Learning"
+    }
   ]
 }
