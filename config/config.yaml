@@ -1,0 +1,12 @@
+# Default configuration for STORM experiments
+seed: 0
+quick: true
+run_exp1: true
+run_exp2: true
+run_exp3: true
+# Vision settings
+dataset: cifar10
+num_tasks: 5
+buffer_size: 3
+# Synthetic settings
+angle_pattern: sweep
