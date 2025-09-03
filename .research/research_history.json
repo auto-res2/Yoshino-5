@@ -24,34 +24,49 @@
       "title": "Continual World: A Robotic Benchmark For Continual Reinforcement Learning"
     },
     {
-      "title": "Can Graph Learning Improve Planning in LLM-based Agents?"
+      "title": "Efficient Continual Learning with Modular Networks and Task-Driven Priors"
     },
     {
-      "title": "Discovering Non-monotonic Autoregressive Orderings with Variational Inference"
+      "title": "Continual Learning of a Mixed Sequence of Similar and Dissimilar Tasks"
     },
     {
-      "title": "Premise Order Matters in Reasoning with Large Language Models"
+      "title": "Theory on Forgetting and Generalization of Continual Learning"
     },
     {
-      "title": "On the Expressivity of Markov Reward"
+      "title": "Scalable and Order-robust Continual Learning with Additive Parameter Decomposition"
     },
     {
-      "title": "On the Expressivity of Markov Reward"
+      "title": "Beyond Not-Forgetting: Continual Learning with Backward Knowledge Transfer"
     },
     {
-      "title": "Analyzing and Mitigating Interference in Neural Architecture Search"
+      "title": "Characterizing Datapoints via Second-Split Forgetting"
     },
     {
-      "title": "Analyzing and Mitigating Interference in Neural Architecture Search"
+      "title": "Continual Forgetting for Pre-trained Vision Models"
     },
     {
-      "title": "Understanding Gradient Regularization in Deep Learning: Efficient Finite-Difference Computation and Implicit Bias"
+      "title": "Does Continual Learning Equally Forget All Parameters?"
     },
     {
-      "title": "Gradient Surgery for Multi-Task Learning"
+      "title": "DKT: Diverse Knowledge Transfer Transformer for Class Incremental Learning"
     },
     {
-      "title": "Interference and Generalization in Temporal Difference Learning"
+      "title": " BEEF: Bi-Compatible Class-Incremental Learning via Energy-Based Expansion and Fusion"
+    },
+    {
+      "title": "An Effective Dynamic Gradient Calibration Method for Continual Learning"
+    },
+    {
+      "title": "Continual Learning with Global Alignment"
+    },
+    {
+      "title": "Continual evaluation for lifelong learning: Identifying the stability gap"
+    },
+    {
+      "title": "Training for the Future: A Simple Gradient Interpolation Loss to Generalize Along Time"
+    },
+    {
+      "title": "Gradient-based Editing of Memory Examples for Online Task-free Continual Learning"
     },
     {
       "title": "Semantically-Shifted Incremental Adapter-Tuning is A Continual ViTransformer"
@@ -67,21 +82,6 @@
     },
     {
       "title": "SAFE: Slow and Fast Parameter-Efficient Tuning for Continual Learning with Pre-Trained Models"
-    },
-    {
-      "title": "Wandering within a world: Online contextualized few-shot learning"
-    },
-    {
-      "title": "Rebalancing Batch Normalization for Exemplar-Based Class-Incremental Learning"
-    },
-    {
-      "title": "Loss Decoupling for Task-Agnostic Continual Learning"
-    },
-    {
-      "title": "Continual Learning with Evolving Class Ontologies"
-    },
-    {
-      "title": "Batch Model Consolidation: A Multi-Task Model Consolidation Framework"
     }
   ]
 }
