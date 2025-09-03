@@ -1,11 +1,11 @@
 {
-  "research_topic": "Improve continual learning forgetting resistance through intelligent task-ordering strategies on standard continual learning benchmarks (Split-CIFAR100 with 20 tasks, Permuted-MNIST with 20 tasks, Split-ImageNet with 15+ tasks) using 1-3B parameter models with parameter-efficient adaptation techniques, implementing curriculum learning frameworks based on task similarity metrics and gradient interference analysis, evaluated with rigorous statistical testing across 5+ random seeds against comprehensive baselines including random ordering, chronological ordering, similarity-based clustering, EWC, A-GEM, and PackNet, with mandatory ablation studies isolating each proposed component's contribution, quantified computational overhead analysis, stability gap measurement, forward/backward transfer evaluation, and complete reproducibility requirements including source code, detailed hyperparameters, and failure case analysis to demonstrate statistically significant improvements in final accuracy, average forgetting reduction, and deployment practicality.",
+  "research_topic": "Improve continual learning forgetting resistance through intelligent task-ordering strategies on standard continual learning benchmarks (Split-CIFAR100 with 20 tasks, Permuted-MNIST with 20 tasks, Split-ImageNet with 15+ tasks) using 1-3B parameter models with parameter-efficient adaptation techniques, implementing curriculum learning frameworks based on task similarity metrics and gradient interference analysis, evaluated with rigorous statistical testing across 5+ random seeds against comprehensive baselines including random ordering, chronological ordering, similarity-based clustering, EWC, A-GEM, and PackNet, with mandatory ablation studies isolating each proposed component's contribution, quantified computational overhead analysis, stability gap measurement, forward/backward transfer evaluation, and complete reproducibility requirements including source code, detailed hyperparameters, and failure case analysis to demonstrate statistically significant improvements in final accuracy, average forgetting reduction, and deployment practicality.Generate all content using standard ASCII characters and common Unicode symbols only, avoiding emoji, special mathematical symbols, or non-standard characters that may cause encoding issues.",
   "queries": [
     "continual learning curriculum",
-    "task ordering strategies",
-    "gradient interference mitigation",
-    "parameter efficient continual",
-    "split CIFAR100 continual"
+    "task ordering continual learning",
+    "split cifar100 forgetting",
+    "gradient interference continual",
+    "parameter efficient continual"
   ],
   "research_study_list": [
     {
