@@ -23,28 +23,7 @@ Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd))
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
-For additional information on amsmath, use the `?' option.
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))
-(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/algorithms/algorithm.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty
-(/usr/share/texlive/texmf-dist/tex/latex/algorithmicx/algorithmicx.sty
-Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
-)
-Document Style - pseudocode environments for use with the `algorithmicx' style
-) (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 (/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
 (/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
 (/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
@@ -66,12 +45,15 @@ Document Style - pseudocode environments for use with the `algorithmicx' style
 (/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 (/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/units/nicefrac.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/units/nicefrac.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty))
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype-pdftex.def)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.cfg))
 (/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
 (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
 No file paper.aux.
@@ -141,12 +123,10 @@ No file paper.aux.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg)
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
-(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
-(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg)
-(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
+) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
@@ -154,391 +134,695 @@ No file paper.aux.
 (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd)
 
-Package natbib Warning: Citation `lange-2022-continual' on page 1 undefined on 
-input line 91.
+Package natbib Warning: Citation `ramasesh-2020-anatomy' on page 1 undefined on
+ input line 85.
 
 
-Package natbib Warning: Citation `chaudhry-2019-continual' on page 1 undefined 
-on input line 93.
+Package natbib Warning: Citation `lee-2021-continual' on page 1 undefined on in
+put line 85.
+
+
+Package natbib Warning: Citation `guha-2024-the' on page 1 undefined on input l
+ine 85.
 
 
 Package natbib Warning: Citation `kirkpatrick-2016-overcoming' on page 1 undefi
-ned on input line 93.
+ned on input line 87.
 
 
-Package natbib Warning: Citation `yoon-2019-scalable' on page 1 undefined on in
-put line 93.
+Package natbib Warning: Citation `li-2016-learning' on page 1 undefined on inpu
+t line 87.
 
 
-Package natbib Warning: Citation `veniat-2020-efficient' on page 1 undefined on
- input line 93.
+Package natbib Warning: Citation `nguyen-2017-variational' on page 1 undefined 
+on input line 87.
 
 
-Package natbib Warning: Citation `fernando-2017-pathnet' on page 1 undefined on
- input line 93.
+Package natbib Warning: Citation `lopezpaz-2017-gradient' on page 1 undefined o
+n input line 87.
 
 
-Package natbib Warning: Citation `alet-2018-modular' on page 1 undefined on inp
-ut line 93.
+Package natbib Warning: Citation `chaudhry-2018-lifelong' on page 1 undefined o
+n input line 87.
 
 
-Package natbib Warning: Citation `lange-2022-continual' on page 1 undefined on 
-input line 93.
-
-
-Package natbib Warning: Citation `chen-2023-forgetting' on page 1 undefined on 
-input line 93.
+Package natbib Warning: Citation `riemer-2018-learning' on page 1 undefined on 
+input line 87.
 
 
 Package natbib Warning: Citation `lin-2024-effective' on page 1 undefined on in
-put line 93.
-
-
-Package natbib Warning: Citation `veniat-2020-efficient' on page 1 undefined on
- input line 93.
+put line 87.
 
 
 Package natbib Warning: Citation `yoon-2019-scalable' on page 1 undefined on in
-put line 93.
+put line 87.
+
+
+Package natbib Warning: Citation `mallya-2018-piggyback' on page 1 undefined on
+ input line 87.
+
+
+Package natbib Warning: Citation `alvarezmelis-2020-geometric' on page 1 undefi
+ned on input line 87.
 
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-
 dist/fonts/enc/dvips/base/8r.enc}]
 
-Package natbib Warning: Citation `author-year-learning' on page 2 undefined on 
-input line 97.
-
-
-Package natbib Warning: Citation `lee-2023-recasting' on page 2 undefined on in
-put line 99.
-
-
-Package natbib Warning: Citation `roth-2024-practitioner' on page 2 undefined o
-n input line 99.
-
-
-Package natbib Warning: Citation `peng-2024-scalable' on page 2 undefined on in
-put line 99.
-
-
-Package natbib Warning: Citation `chaudhry-2019-continual' on page 2 undefined 
-on input line 99.
-
-
-Package natbib Warning: Citation `kirkpatrick-2016-overcoming' on page 2 undefi
-ned on input line 99.
-
-
-Package natbib Warning: Citation `chaudhry-2018-efficient' on page 2 undefined 
-on input line 99.
-
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
-
-Package natbib Warning: Citation `lin-2024-effective' on page 2 undefined on in
-put line 104.
-
-
-Package natbib Warning: Citation `chaudhry-2019-continual' on page 2 undefined 
-on input line 104.
-
-
-Package natbib Warning: Citation `roth-2024-practitioner' on page 2 undefined o
-n input line 108.
-
-
-Package natbib Warning: Citation `author-year-cglb' on page 2 undefined on inpu
-t line 108.
-
-
-Package natbib Warning: Citation `author-year-clear' on page 2 undefined on inp
-ut line 108.
-
-
-Package natbib Warning: Citation `author-year-compositional' on page 2 undefine
-d on input line 108.
-
-
-Package natbib Warning: Citation `author-year-continual' on page 2 undefined on
- input line 108.
-
-
-Package natbib Warning: Citation `author-year-how' on page 2 undefined on input
- line 108.
-
-
-Package natbib Warning: Citation `chaudhry-2019-continual' on page 2 undefined 
-on input line 111.
-
-
-Package natbib Warning: Citation `jin-2020-gradient' on page 2 undefined on inp
-ut line 111.
-
-
-Package natbib Warning: Citation `kirkpatrick-2016-overcoming' on page 2 undefi
-ned on input line 113.
-
-
-Package natbib Warning: Citation `chaudhry-2018-efficient' on page 2 undefined 
-on input line 113.
+Package natbib Warning: Citation `yoon-2019-scalable' on page 2 undefined on in
+put line 89.
 
 
 Package natbib Warning: Citation `lange-2022-continual' on page 2 undefined on 
-input line 113.
+input line 89.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
+
+Package natbib Warning: Citation `alvarezmelis-2020-geometric' on page 2 undefi
+ned on input line 95.
+
+
+Package natbib Warning: Citation `riemer-2018-learning' on page 2 undefined on 
+input line 95.
+
+
+Package natbib Warning: Citation `yoon-2019-scalable' on page 2 undefined on in
+put line 97.
+
+
+Package natbib Warning: Citation `lange-2022-continual' on page 2 undefined on 
+input line 97.
+
+
+Package natbib Warning: Citation `roth-2024-practitioner' on page 2 undefined o
+n input line 101.
+
+
+Package natbib Warning: Citation `bu-2024-pre' on page 2 undefined on input lin
+e 101.
+
+
+Package natbib Warning: Citation `wang-2023-task' on page 2 undefined on input 
+line 101.
+
+
+Package natbib Warning: Citation `zhang-2023-overcoming' on page 2 undefined on
+ input line 101.
+
+
+Package natbib Warning: Citation `mirzadeh-2020-linear' on page 2 undefined on 
+input line 101.
+
+
+Package natbib Warning: Citation `yoon-2019-scalable' on page 2 undefined on in
+put line 101.
+
+
+Package natbib Warning: Citation `kirkpatrick-2016-overcoming' on page 2 undefi
+ned on input line 105.
+
+
+Package natbib Warning: Citation `li-2016-learning' on page 2 undefined on inpu
+t line 105.
+
+
+Package natbib Warning: Citation `nguyen-2017-variational' on page 2 undefined 
+on input line 105.
+
+
+Package natbib Warning: Citation `lopezpaz-2017-gradient' on page 2 undefined o
+n input line 108.
+
+
+Package natbib Warning: Citation `chaudhry-2018-lifelong' on page 2 undefined o
+n input line 108.
+
+
+Package natbib Warning: Citation `riemer-2018-learning' on page 2 undefined on 
+input line 108.
+
+
+Package natbib Warning: Citation `lin-2024-effective' on page 2 undefined on in
+put line 108.
+
+
+Package natbib Warning: Citation `yoon-2019-scalable' on page 2 undefined on in
+put line 111.
+
+
+Package natbib Warning: Citation `mallya-2018-piggyback' on page 2 undefined on
+ input line 111.
+
+
+Package natbib Warning: Citation `veniat-2020-efficient' on page 2 undefined on
+ input line 111.
 
 [2]
 
-Package natbib Warning: Citation `yoon-2019-scalable' on page 3 undefined on in
-put line 115.
+Package natbib Warning: Citation `mirzadeh-2020-linear' on page 3 undefined on 
+input line 114.
 
 
-Package natbib Warning: Citation `veniat-2020-efficient' on page 3 undefined on
- input line 115.
+Package natbib Warning: Citation `ramasesh-2020-anatomy' on page 3 undefined on
+ input line 114.
 
 
-Package natbib Warning: Citation `fernando-2017-pathnet' on page 3 undefined on
- input line 115.
+Package natbib Warning: Citation `lee-2021-continual' on page 3 undefined on in
+put line 114.
 
 
-Package natbib Warning: Citation `alet-2018-modular' on page 3 undefined on inp
-ut line 115.
+Package natbib Warning: Citation `guha-2024-the' on page 3 undefined on input l
+ine 114.
+
+
+Package natbib Warning: Citation `alvarezmelis-2020-geometric' on page 3 undefi
+ned on input line 114.
 
 
 Package natbib Warning: Citation `lange-2022-continual' on page 3 undefined on 
-input line 117.
-
-
-Package natbib Warning: Citation `lin-2024-effective' on page 3 undefined on in
-put line 117.
-
-
-Package natbib Warning: Citation `chen-2023-forgetting' on page 3 undefined on 
-input line 117.
-
-
-Package natbib Warning: Citation `mirzadeh-2020-linear' on page 3 undefined on 
 input line 117.
 
 
 Package natbib Warning: Citation `peng-2024-scalable' on page 3 undefined on in
-put line 119.
+put line 120.
 
 
 Package natbib Warning: Citation `roth-2024-practitioner' on page 3 undefined o
-n input line 119.
+n input line 120.
 
 
-Package natbib Warning: Citation `author-year-cglb' on page 3 undefined on inpu
-t line 121.
+Package natbib Warning: Citation `lopezpaz-2017-gradient' on page 3 undefined o
+n input line 127.
 
 
-Package natbib Warning: Citation `author-year-clear' on page 3 undefined on inp
-ut line 121.
-
-
-Package natbib Warning: Citation `author-year-compositional' on page 3 undefine
-d on input line 121.
-
-
-Package natbib Warning: Citation `author-year-continual' on page 3 undefined on
- input line 121.
-
-
-Package natbib Warning: Citation `author-year-how' on page 3 undefined on input
- line 121.
-
-
-Package natbib Warning: Citation `chaudhry-2019-continual' on page 3 undefined 
-on input line 123.
-
-
-Package natbib Warning: Citation `kirkpatrick-2016-overcoming' on page 3 undefi
-ned on input line 123.
-
-
-Package natbib Warning: Citation `chaudhry-2018-efficient' on page 3 undefined 
-on input line 123.
-
-
-Package natbib Warning: Citation `yoon-2019-scalable' on page 3 undefined on in
-put line 123.
+Package natbib Warning: Citation `chaudhry-2018-lifelong' on page 3 undefined o
+n input line 127.
 
 
 Package natbib Warning: Citation `veniat-2020-efficient' on page 3 undefined on
- input line 123.
+ input line 127.
 
 
-Package natbib Warning: Citation `fernando-2017-pathnet' on page 3 undefined on
- input line 123.
+Package natbib Warning: Citation `ramasesh-2020-anatomy' on page 3 undefined on
+ input line 130.
 
 
-Package natbib Warning: Citation `alet-2018-modular' on page 3 undefined on inp
-ut line 123.
+Package natbib Warning: Citation `lee-2021-continual' on page 3 undefined on in
+put line 130.
 
 
-Package natbib Warning: Citation `lin-2024-effective' on page 3 undefined on in
-put line 123.
+Package natbib Warning: Citation `guha-2024-the' on page 3 undefined on input l
+ine 130.
 
 
-Package natbib Warning: Citation `lee-2023-recasting' on page 3 undefined on in
-put line 123.
-
-
-Package natbib Warning: Citation `lange-2022-continual' on page 3 undefined on 
+Package natbib Warning: Citation `riemer-2018-learning' on page 3 undefined on 
 input line 130.
 
 
-Package natbib Warning: Citation `chen-2023-forgetting' on page 3 undefined on 
-input line 133.
+Package natbib Warning: Citation `alvarezmelis-2020-geometric' on page 3 undefi
+ned on input line 130.
 
+[3]
 
-Package natbib Warning: Citation `lin-2024-effective' on page 3 undefined on in
-put line 133.
-
-
-Package natbib Warning: Citation `chaudhry-2019-continual' on page 3 undefined 
-on input line 133.
-
-
-Package natbib Warning: Citation `kirkpatrick-2016-overcoming' on page 3 undefi
-ned on input line 133.
-
-
-Underfull \vbox (badness 3792) has occurred while \output is active [3]
-
-Package natbib Warning: Citation `chen-2023-forgetting' on page 4 undefined on 
-input line 144.
+Package natbib Warning: Citation `yoon-2019-scalable' on page 4 undefined on in
+put line 136.
 
 
 Package natbib Warning: Citation `lange-2022-continual' on page 4 undefined on 
-input line 144.
+input line 136.
 
 
-Package natbib Warning: Citation `chaudhry-2019-continual' on page 4 undefined 
-on input line 144.
+Package natbib Warning: Citation `alvarezmelis-2020-geometric' on page 4 undefi
+ned on input line 148.
 
 
-Package natbib Warning: Citation `kirkpatrick-2016-overcoming' on page 4 undefi
-ned on input line 144.
+Package natbib Warning: Citation `yoon-2019-scalable' on page 4 undefined on in
+put line 149.
 
 
-Package natbib Warning: Citation `chaudhry-2018-efficient' on page 4 undefined 
-on input line 144.
+Package natbib Warning: Citation `riemer-2018-learning' on page 4 undefined on 
+input line 149.
 
 
-Package natbib Warning: Citation `lin-2024-effective' on page 4 undefined on in
-put line 144.
+Underfull \vbox (badness 1264) has occurred while \output is active [4]
+
+! LaTeX Error: Environment algorithm undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.162 \begin{algorithm}
+                       [H]
+
+! LaTeX Error: \caption outside float.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.163 \caption
+              {DyCLOS: Online Scheduling with Dual Signals}
+
+! LaTeX Error: Environment algorithmic undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.164 \begin{algorithmic}
+                         [1]
+! Undefined control sequence.
+l.165 \State
+             \textbf{Input:} stream of tasks \(\{T_t\}_{t=1}^N\); window siz...
+
+! Undefined control sequence.
+l.166 \State
+             \textbf{Initialize:} prefix \(P \leftarrow [\,]\); queue \(W \l...
+
+! Undefined control sequence.
+l.167 \For
+          {each arriving task \(T_t\)}
+! Undefined control sequence.
+l.168   \State
+               Add \(T_t\) to the end of \(W\); obtain 512-sample probe for ...
+
+! Undefined control sequence.
+l.169   \For
+            {each \(T_j \in P\) or earlier tasks in \(W\)}
+! Undefined control sequence.
+l.170     \State
+                 Compute \(S_{\mathrm{data}}(T_t, T_j)\) in frozen embedding...
+
+! Undefined control sequence.
+l.171     \State
+                 Estimate \(S_{\mathrm{int}}(T_t, T_j)\) via cosine of adapt...
+
+! Undefined control sequence.
+l.172     \State
+                 Set edge costs: \(w(T_t,T_j)\), \(w(T_j,T_t)\) using \(\alp...
+
+! Undefined control sequence.
+l.173   \EndFor
+               
+! Undefined control sequence.
+l.174   \While
+              {the first element of \(W\) is undecided}
+! Undefined control sequence.
+l.175     \State
+                 Let \(W_k\) be the first \(k\) tasks in \(W\)
+! Undefined control sequence.
+l.176     \State
+                 Use beam search of width \(b\) over permutations of \(W_k\)...
+
+! Undefined control sequence.
+l.177     \State
+                 Commit only the first task \(T^*\) of the best ordering: ap...
+
+! Undefined control sequence.
+l.178     \State
+                 Train \(T^*\) using adapters and stability-aware control (S...
+
+! Undefined control sequence.
+l.179   \EndWhile
+                 
+! Undefined control sequence.
+l.180 \EndFor
+             
+
+! LaTeX Error: \begin{document} ended by \end{algorithmic}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.181 \end{algorithmic}
+                       
+
+! LaTeX Error: \begin{document} ended by \end{algorithm}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.182 \end{algorithm}
+                     
+
+Package natbib Warning: Citation `lange-2022-continual' on page 5 undefined on 
+input line 185.
 
 
-Package natbib Warning: Citation `roth-2024-practitioner' on page 4 undefined o
-n input line 144.
+Package natbib Warning: Citation `alvarezmelis-2020-geometric' on page 5 undefi
+ned on input line 191.
 
 
-Package natbib Warning: Citation `peng-2024-scalable' on page 4 undefined on in
-put line 144.
-
-[4]
-
-Package natbib Warning: Citation `lin-2024-effective' on page 5 undefined on in
-put line 159.
+Package natbib Warning: Citation `riemer-2018-learning' on page 5 undefined on 
+input line 191.
 
 
-Package natbib Warning: Citation `chaudhry-2019-continual' on page 5 undefined 
-on input line 159.
+Package natbib Warning: Citation `yoon-2019-scalable' on page 5 undefined on in
+put line 191.
 
 
-Package natbib Warning: Citation `kirkpatrick-2016-overcoming' on page 5 undefi
-ned on input line 159.
+Package natbib Warning: Citation `lange-2022-continual' on page 5 undefined on 
+input line 191.
+
+[5]
+
+Package natbib Warning: Citation `yoon-2019-scalable' on page 6 undefined on in
+put line 199.
 
 
-Package natbib Warning: Citation `chaudhry-2018-efficient' on page 5 undefined 
-on input line 159.
+Package natbib Warning: Citation `lange-2022-continual' on page 6 undefined on 
+input line 199.
 
 
-Package natbib Warning: Citation `kingma-2014-adam' on page 5 undefined on inpu
-t line 162.
-
-
-Package natbib Warning: Citation `veniat-2020-efficient' on page 5 undefined on
- input line 165.
-
-
-Package natbib Warning: Citation `lee-2023-recasting' on page 5 undefined on in
-put line 165.
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active [5]
-
-Package natbib Warning: Citation `kingma-2014-adam' on page 6 undefined on inpu
-t line 197.
-
-
-Package natbib Warning: Citation `author-year-learning' on page 6 undefined on 
-input line 203.
-
-
-Package natbib Warning: Citation `kingma-2014-adam' on page 6 undefined on inpu
-t line 203.
+Package natbib Warning: Citation `roth-2024-practitioner' on page 6 undefined o
+n input line 224.
 
 [6]
 
-Package natbib Warning: Citation `peng-2024-scalable' on page 7 undefined on in
-put line 212.
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.262 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.264   \includegraphics
+                        [width=0.7\linewidth]{ images/accuracy\_baseline.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.264   \includegraphics[width=0.7\linewidth]
+                                             { images/accuracy\_baseline.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.264   \includegraphics[width=0.7\linewidth]
+                                             { images/accuracy\_baseline.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.268 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.270   \includegraphics
+                        [width=0.7\linewidth]{ images/accuracy\_dyclos.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.270   \includegraphics[width=0.7\linewidth]
+                                             { images/accuracy\_dyclos.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.270   \includegraphics[width=0.7\linewidth]
+                                             { images/accuracy\_dyclos.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.274 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.276   \includegraphics
+                        [width=0.7\linewidth]{ images/confusion\_matrix\_dyc...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.276   \includegraphics[width=0.7\linewidth]
+                                             { images/confusion\_matrix\_dyc...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.276   \includegraphics[width=0.7\linewidth]
+                                             { images/confusion\_matrix\_dyc...
 
 
-Package natbib Warning: Citation `roth-2024-practitioner' on page 7 undefined o
-n input line 212.
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.280 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.282   \includegraphics
+                        [width=0.7\linewidth]{ images/exp1\_accuracy\_storm\...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.282   \includegraphics[width=0.7\linewidth]
+                                             { images/exp1\_accuracy\_storm\...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.282   \includegraphics[width=0.7\linewidth]
+                                             { images/exp1\_accuracy\_storm\...
 
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 217.
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.286 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.288   \includegraphics
+                        [width=0.7\linewidth]{ images/exp1\_training\_loss\_...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.288   \includegraphics[width=0.7\linewidth]
+                                             { images/exp1\_training\_loss\_...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.288   \includegraphics[width=0.7\linewidth]
+                                             { images/exp1\_training\_loss\_...
 
 
-Underfull \vbox (badness 2707) has occurred while \output is active [7]
-[8 <./images/exp1_accuracy_storm_vs_baselines.pdf> <./images/exp1_training_loss
-_storm_vs_baselines.pdf>] [9 <./images/exp2_accuracy_vision_storm_vs_baselines.
-pdf> <./images/exp2_training_loss_vision_storm_vs_baselines.pdf>] [10 <./images
-/exp3_accuracy_nlp_storm_vs_baselines.pdf> <./images/exp3_training_loss_nlp_sto
-rm_vs_baselines.pdf>]
+! LaTeX Error: Unknown float option `H'.
 
-Package natbib Warning: Citation `lange-2022-continual' on page 11 undefined on
- input line 298.
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.292 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.294   \includegraphics
+                        [width=0.7\linewidth]{ images/exp2\_accuracy\_vision...
 
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.294   \includegraphics[width=0.7\linewidth]
+                                             { images/exp2\_accuracy\_vision...
 
-Package natbib Warning: Citation `chen-2023-forgetting' on page 11 undefined on
- input line 298.
-
-
-Package natbib Warning: Citation `chaudhry-2019-continual' on page 11 undefined
- on input line 298.
-
-
-Package natbib Warning: Citation `kirkpatrick-2016-overcoming' on page 11 undef
-ined on input line 298.
-
-
-Package natbib Warning: Citation `veniat-2020-efficient' on page 11 undefined o
-n input line 298.
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.294   \includegraphics[width=0.7\linewidth]
+                                             { images/exp2\_accuracy\_vision...
 
 
-Package natbib Warning: Citation `yoon-2019-scalable' on page 11 undefined on i
-nput line 298.
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.298 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.300   \includegraphics
+                        [width=0.7\linewidth]{ images/exp2\_training\_loss\_...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.300   \includegraphics[width=0.7\linewidth]
+                                             { images/exp2\_training\_loss\_...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.300   \includegraphics[width=0.7\linewidth]
+                                             { images/exp2\_training\_loss\_...
 
 
-Package natbib Warning: Citation `lin-2024-effective' on page 11 undefined on i
-nput line 298.
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.304 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.306   \includegraphics
+                        [width=0.7\linewidth]{ images/exp3\_accuracy\_nlp\_s...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.306   \includegraphics[width=0.7\linewidth]
+                                             { images/exp3\_accuracy\_nlp\_s...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.306   \includegraphics[width=0.7\linewidth]
+                                             { images/exp3\_accuracy\_nlp\_s...
 
 
-Package natbib Warning: Citation `roth-2024-practitioner' on page 11 undefined 
-on input line 298.
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.310 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.312   \includegraphics
+                        [width=0.7\linewidth]{ images/exp3\_training\_loss\_...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.312   \includegraphics[width=0.7\linewidth]
+                                             { images/exp3\_training\_loss\_...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.312   \includegraphics[width=0.7\linewidth]
+                                             { images/exp3\_training\_loss\_...
 
 
-Package natbib Warning: Citation `peng-2024-scalable' on page 11 undefined on i
-nput line 298.
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.316 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.318   \includegraphics
+                        [width=0.7\linewidth]{ images/schedule\_costs\_dyclo...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.318   \includegraphics[width=0.7\linewidth]
+                                             { images/schedule\_costs\_dyclo...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.318   \includegraphics[width=0.7\linewidth]
+                                             { images/schedule\_costs\_dyclo...
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.322 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.324   \includegraphics
+                        [width=0.7\linewidth]{ images/training\_loss\_dyclos...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.324   \includegraphics[width=0.7\linewidth]
+                                             { images/training\_loss\_dyclos...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.324   \includegraphics[width=0.7\linewidth]
+                                             { images/training\_loss\_dyclos...
+
+
+Package natbib Warning: Citation `yoon-2019-scalable' on page 7 undefined on in
+put line 331.
+
+
+Package natbib Warning: Citation `lange-2022-continual' on page 7 undefined on 
+input line 331.
+
+
+Package natbib Warning: Citation `alvarezmelis-2020-geometric' on page 7 undefi
+ned on input line 331.
+
+[7]
+
+Package natbib Warning: Citation `riemer-2018-learning' on page 8 undefined on 
+input line 333.
+
+
+Package natbib Warning: Citation `ramasesh-2020-anatomy' on page 8 undefined on
+ input line 333.
+
+
+Package natbib Warning: Citation `lee-2021-continual' on page 8 undefined on in
+put line 333.
+
+
+Package natbib Warning: Citation `guha-2024-the' on page 8 undefined on input l
+ine 333.
+
+
+Package natbib Warning: Citation `veniat-2020-efficient' on page 8 undefined on
+ input line 335.
+
+
+Package natbib Warning: Citation `bu-2024-pre' on page 8 undefined on input lin
+e 335.
+
+
+Package natbib Warning: Citation `wang-2023-task' on page 8 undefined on input 
+line 335.
+
+
+Package natbib Warning: Citation `zhang-2023-overcoming' on page 8 undefined on
+ input line 335.
+
+
+Package natbib Warning: Citation `mirzadeh-2020-linear' on page 8 undefined on 
+input line 335.
 
 No file paper.bbl.
 
 Package natbib Warning: There were undefined citations.
 
-[11] (./paper.aux)
+[8] [9] (./paper.aux)
 kpathsea: Running mktexpk --mfmode / --bdpi 600 --mag 1+0/600 --dpi 600 ectt1000
 mktexpk: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1+0/600; nonstopmode; input ectt1000
 This is METAFONT, Version 2.71828182 (TeX Live 2023/Debian) (preloaded base=mf)
@@ -603,62 +887,82 @@ Package rerunfilecheck Warning: File `paper.out' has changed.
  )
 (see the transcript file for additional information) </home/runner/.texlive2023
 /texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk></usr/share/texlive/texmf
--dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
-y10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm
-10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr
+-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
+y7.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr
 /share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
-Output written on paper.pdf (11 pages, 210921 bytes).
+Output written on paper.pdf (9 pages, 145125 bytes).
 Transcript written on paper.log.
 This is BibTeX, Version 0.99d (TeX Live 2023/Debian)
 The top-level auxiliary file: paper.aux
 The style file: plainnat.bst
 Database file #1: references.bib
-Warning--to sort, need author or key in author-year-learning
-Warning--to sort, need author or key in author-year-cglb
-Warning--to sort, need author or key in author-year-clear
-Warning--to sort, need author or key in author-year-compositional
-Warning--to sort, need author or key in author-year-continual
-Warning--to sort, need author or key in author-year-how
-Warning--empty author in author-year-cglb
-Warning--empty journal in author-year-cglb
-Warning--empty year in author-year-cglb
-Warning--empty author in author-year-clear
-Warning--empty journal in author-year-clear
-Warning--empty year in author-year-clear
-Warning--empty author in author-year-compositional
-Warning--empty journal in author-year-compositional
-Warning--empty year in author-year-compositional
-Warning--empty author in author-year-continual
-Warning--empty journal in author-year-continual
-Warning--empty year in author-year-continual
-Warning--empty author in author-year-how
-Warning--empty journal in author-year-how
-Warning--empty year in author-year-how
-Warning--empty author in author-year-learning
-Warning--empty journal in author-year-learning
-Warning--empty year in author-year-learning
-Warning--empty journal in alet-2018-modular
-Warning--empty journal in chaudhry-2018-efficient
-Warning--empty journal in chaudhry-2019-continual
-Warning--empty journal in fernando-2017-pathnet
-Warning--empty journal in jin-2020-gradient
-Warning--empty journal in kingma-2014-adam
+Repeated entry---line 831 of file references.bib
+ : @article{bu-2024-pre
+ :                     ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 968 of file references.bib
+ : @article{lange-2022-continual
+ :                              ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1065 of file references.bib
+ : @article{lin-2024-effective
+ :                            ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1091 of file references.bib
+ : @article{mirzadeh-2020-linear
+ :                              ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1145 of file references.bib
+ : @article{peng-2024-scalable
+ :                            ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1195 of file references.bib
+ : @article{roth-2024-practitioner
+ :                                ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1226 of file references.bib
+ : @article{veniat-2020-efficient
+ :                               ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1276 of file references.bib
+ : @article{yoon-2019-scalable
+ :                            ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1305 of file references.bib
+ : @article{zhang-2023-overcoming
+ :                               ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 1395 of file references.bib
+ : @article{kirkpatrick-2016-overcoming
+ :                                     ,
+I'm skipping whatever remains of this entry
+Warning--empty journal in alvarezmelis-2020-geometric
+Warning--empty journal in bu-2024-pre
+Warning--empty journal in chaudhry-2018-lifelong
+Warning--empty journal in guha-2024-the
 Warning--empty journal in kirkpatrick-2016-overcoming
 Warning--empty journal in lange-2022-continual
-Warning--empty journal in lee-2023-recasting
+Warning--empty journal in li-2016-learning
 Warning--empty journal in lin-2024-effective
+Warning--empty journal in lopezpaz-2017-gradient
+Warning--empty journal in mallya-2018-piggyback
 Warning--empty journal in mirzadeh-2020-linear
+Warning--empty journal in nguyen-2017-variational
 Warning--empty journal in peng-2024-scalable
+Warning--empty journal in ramasesh-2020-anatomy
+Warning--empty journal in riemer-2018-learning
 Warning--empty journal in roth-2024-practitioner
 Warning--empty journal in veniat-2020-efficient
+Warning--empty journal in wang-2023-task
 Warning--empty journal in yoon-2019-scalable
-(There were 39 warnings)
+Warning--empty journal in zhang-2023-overcoming
+(There were 10 error messages)
 This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
  restricted \write18 enabled.
 entering extended mode
@@ -684,28 +988,7 @@ Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd))
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
-For additional information on amsmath, use the `?' option.
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))
-(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/algorithms/algorithm.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty
-(/usr/share/texlive/texmf-dist/tex/latex/algorithmicx/algorithmicx.sty
-Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
-)
-Document Style - pseudocode environments for use with the `algorithmicx' style
-) (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 (/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
 (/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
 (/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
@@ -727,12 +1010,15 @@ Document Style - pseudocode environments for use with the `algorithmicx' style
 (/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 (/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/units/nicefrac.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/units/nicefrac.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty))
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype-pdftex.def)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.cfg))
 (/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
 (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
 (./paper.aux)
@@ -802,13 +1088,11 @@ Document Style - pseudocode environments for use with the `algorithmicx' style
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
-(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
 (./paper.out) (./paper.out)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg)
-(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
@@ -816,391 +1100,699 @@ Document Style - pseudocode environments for use with the `algorithmicx' style
 (/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd)
 
-Package natbib Warning: Citation `lange-2022-continual' on page 1 undefined on 
-input line 91.
+Package natbib Warning: Citation `ramasesh-2020-anatomy' on page 1 undefined on
+ input line 85.
 
 
-Package natbib Warning: Citation `chaudhry-2019-continual' on page 1 undefined 
-on input line 93.
+Package natbib Warning: Citation `lee-2021-continual' on page 1 undefined on in
+put line 85.
+
+
+Package natbib Warning: Citation `guha-2024-the' on page 1 undefined on input l
+ine 85.
 
 
 Package natbib Warning: Citation `kirkpatrick-2016-overcoming' on page 1 undefi
-ned on input line 93.
+ned on input line 87.
 
 
-Package natbib Warning: Citation `yoon-2019-scalable' on page 1 undefined on in
-put line 93.
+Package natbib Warning: Citation `li-2016-learning' on page 1 undefined on inpu
+t line 87.
 
 
-Package natbib Warning: Citation `veniat-2020-efficient' on page 1 undefined on
- input line 93.
+Package natbib Warning: Citation `nguyen-2017-variational' on page 1 undefined 
+on input line 87.
 
 
-Package natbib Warning: Citation `fernando-2017-pathnet' on page 1 undefined on
- input line 93.
+Package natbib Warning: Citation `lopezpaz-2017-gradient' on page 1 undefined o
+n input line 87.
 
 
-Package natbib Warning: Citation `alet-2018-modular' on page 1 undefined on inp
-ut line 93.
+Package natbib Warning: Citation `chaudhry-2018-lifelong' on page 1 undefined o
+n input line 87.
 
 
-Package natbib Warning: Citation `lange-2022-continual' on page 1 undefined on 
-input line 93.
-
-
-Package natbib Warning: Citation `chen-2023-forgetting' on page 1 undefined on 
-input line 93.
+Package natbib Warning: Citation `riemer-2018-learning' on page 1 undefined on 
+input line 87.
 
 
 Package natbib Warning: Citation `lin-2024-effective' on page 1 undefined on in
-put line 93.
-
-
-Package natbib Warning: Citation `veniat-2020-efficient' on page 1 undefined on
- input line 93.
+put line 87.
 
 
 Package natbib Warning: Citation `yoon-2019-scalable' on page 1 undefined on in
-put line 93.
+put line 87.
+
+
+Package natbib Warning: Citation `mallya-2018-piggyback' on page 1 undefined on
+ input line 87.
+
+
+Package natbib Warning: Citation `alvarezmelis-2020-geometric' on page 1 undefi
+ned on input line 87.
 
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-
 dist/fonts/enc/dvips/base/8r.enc}]
 
-Package natbib Warning: Citation `author-year-learning' on page 2 undefined on 
-input line 97.
-
-
-Package natbib Warning: Citation `lee-2023-recasting' on page 2 undefined on in
-put line 99.
-
-
-Package natbib Warning: Citation `roth-2024-practitioner' on page 2 undefined o
-n input line 99.
-
-
-Package natbib Warning: Citation `peng-2024-scalable' on page 2 undefined on in
-put line 99.
-
-
-Package natbib Warning: Citation `chaudhry-2019-continual' on page 2 undefined 
-on input line 99.
-
-
-Package natbib Warning: Citation `kirkpatrick-2016-overcoming' on page 2 undefi
-ned on input line 99.
-
-
-Package natbib Warning: Citation `chaudhry-2018-efficient' on page 2 undefined 
-on input line 99.
-
-(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
-
-Package natbib Warning: Citation `lin-2024-effective' on page 2 undefined on in
-put line 104.
-
-
-Package natbib Warning: Citation `chaudhry-2019-continual' on page 2 undefined 
-on input line 104.
-
-
-Package natbib Warning: Citation `roth-2024-practitioner' on page 2 undefined o
-n input line 108.
-
-
-Package natbib Warning: Citation `author-year-cglb' on page 2 undefined on inpu
-t line 108.
-
-
-Package natbib Warning: Citation `author-year-clear' on page 2 undefined on inp
-ut line 108.
-
-
-Package natbib Warning: Citation `author-year-compositional' on page 2 undefine
-d on input line 108.
-
-
-Package natbib Warning: Citation `author-year-continual' on page 2 undefined on
- input line 108.
-
-
-Package natbib Warning: Citation `author-year-how' on page 2 undefined on input
- line 108.
-
-
-Package natbib Warning: Citation `chaudhry-2019-continual' on page 2 undefined 
-on input line 111.
-
-
-Package natbib Warning: Citation `jin-2020-gradient' on page 2 undefined on inp
-ut line 111.
-
-
-Package natbib Warning: Citation `kirkpatrick-2016-overcoming' on page 2 undefi
-ned on input line 113.
-
-
-Package natbib Warning: Citation `chaudhry-2018-efficient' on page 2 undefined 
-on input line 113.
+Package natbib Warning: Citation `yoon-2019-scalable' on page 2 undefined on in
+put line 89.
 
 
 Package natbib Warning: Citation `lange-2022-continual' on page 2 undefined on 
-input line 113.
+input line 89.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
+
+Package natbib Warning: Citation `alvarezmelis-2020-geometric' on page 2 undefi
+ned on input line 95.
+
+
+Package natbib Warning: Citation `riemer-2018-learning' on page 2 undefined on 
+input line 95.
+
+
+Package natbib Warning: Citation `yoon-2019-scalable' on page 2 undefined on in
+put line 97.
+
+
+Package natbib Warning: Citation `lange-2022-continual' on page 2 undefined on 
+input line 97.
+
+
+Package natbib Warning: Citation `roth-2024-practitioner' on page 2 undefined o
+n input line 101.
+
+
+Package natbib Warning: Citation `bu-2024-pre' on page 2 undefined on input lin
+e 101.
+
+
+Package natbib Warning: Citation `wang-2023-task' on page 2 undefined on input 
+line 101.
+
+
+Package natbib Warning: Citation `zhang-2023-overcoming' on page 2 undefined on
+ input line 101.
+
+
+Package natbib Warning: Citation `mirzadeh-2020-linear' on page 2 undefined on 
+input line 101.
+
+
+Package natbib Warning: Citation `yoon-2019-scalable' on page 2 undefined on in
+put line 101.
+
+
+Package natbib Warning: Citation `kirkpatrick-2016-overcoming' on page 2 undefi
+ned on input line 105.
+
+
+Package natbib Warning: Citation `li-2016-learning' on page 2 undefined on inpu
+t line 105.
+
+
+Package natbib Warning: Citation `nguyen-2017-variational' on page 2 undefined 
+on input line 105.
+
+
+Package natbib Warning: Citation `lopezpaz-2017-gradient' on page 2 undefined o
+n input line 108.
+
+
+Package natbib Warning: Citation `chaudhry-2018-lifelong' on page 2 undefined o
+n input line 108.
+
+
+Package natbib Warning: Citation `riemer-2018-learning' on page 2 undefined on 
+input line 108.
+
+
+Package natbib Warning: Citation `lin-2024-effective' on page 2 undefined on in
+put line 108.
+
+
+Package natbib Warning: Citation `yoon-2019-scalable' on page 2 undefined on in
+put line 111.
+
+
+Package natbib Warning: Citation `mallya-2018-piggyback' on page 2 undefined on
+ input line 111.
+
+
+Package natbib Warning: Citation `veniat-2020-efficient' on page 2 undefined on
+ input line 111.
 
 [2]
 
-Package natbib Warning: Citation `yoon-2019-scalable' on page 3 undefined on in
-put line 115.
+Package natbib Warning: Citation `mirzadeh-2020-linear' on page 3 undefined on 
+input line 114.
 
 
-Package natbib Warning: Citation `veniat-2020-efficient' on page 3 undefined on
- input line 115.
+Package natbib Warning: Citation `ramasesh-2020-anatomy' on page 3 undefined on
+ input line 114.
 
 
-Package natbib Warning: Citation `fernando-2017-pathnet' on page 3 undefined on
- input line 115.
+Package natbib Warning: Citation `lee-2021-continual' on page 3 undefined on in
+put line 114.
 
 
-Package natbib Warning: Citation `alet-2018-modular' on page 3 undefined on inp
-ut line 115.
+Package natbib Warning: Citation `guha-2024-the' on page 3 undefined on input l
+ine 114.
+
+
+Package natbib Warning: Citation `alvarezmelis-2020-geometric' on page 3 undefi
+ned on input line 114.
 
 
 Package natbib Warning: Citation `lange-2022-continual' on page 3 undefined on 
-input line 117.
-
-
-Package natbib Warning: Citation `lin-2024-effective' on page 3 undefined on in
-put line 117.
-
-
-Package natbib Warning: Citation `chen-2023-forgetting' on page 3 undefined on 
-input line 117.
-
-
-Package natbib Warning: Citation `mirzadeh-2020-linear' on page 3 undefined on 
 input line 117.
 
 
 Package natbib Warning: Citation `peng-2024-scalable' on page 3 undefined on in
-put line 119.
+put line 120.
 
 
 Package natbib Warning: Citation `roth-2024-practitioner' on page 3 undefined o
-n input line 119.
+n input line 120.
 
 
-Package natbib Warning: Citation `author-year-cglb' on page 3 undefined on inpu
-t line 121.
+Package natbib Warning: Citation `lopezpaz-2017-gradient' on page 3 undefined o
+n input line 127.
 
 
-Package natbib Warning: Citation `author-year-clear' on page 3 undefined on inp
-ut line 121.
-
-
-Package natbib Warning: Citation `author-year-compositional' on page 3 undefine
-d on input line 121.
-
-
-Package natbib Warning: Citation `author-year-continual' on page 3 undefined on
- input line 121.
-
-
-Package natbib Warning: Citation `author-year-how' on page 3 undefined on input
- line 121.
-
-
-Package natbib Warning: Citation `chaudhry-2019-continual' on page 3 undefined 
-on input line 123.
-
-
-Package natbib Warning: Citation `kirkpatrick-2016-overcoming' on page 3 undefi
-ned on input line 123.
-
-
-Package natbib Warning: Citation `chaudhry-2018-efficient' on page 3 undefined 
-on input line 123.
-
-
-Package natbib Warning: Citation `yoon-2019-scalable' on page 3 undefined on in
-put line 123.
+Package natbib Warning: Citation `chaudhry-2018-lifelong' on page 3 undefined o
+n input line 127.
 
 
 Package natbib Warning: Citation `veniat-2020-efficient' on page 3 undefined on
- input line 123.
+ input line 127.
 
 
-Package natbib Warning: Citation `fernando-2017-pathnet' on page 3 undefined on
- input line 123.
+Package natbib Warning: Citation `ramasesh-2020-anatomy' on page 3 undefined on
+ input line 130.
 
 
-Package natbib Warning: Citation `alet-2018-modular' on page 3 undefined on inp
-ut line 123.
+Package natbib Warning: Citation `lee-2021-continual' on page 3 undefined on in
+put line 130.
 
 
-Package natbib Warning: Citation `lin-2024-effective' on page 3 undefined on in
-put line 123.
+Package natbib Warning: Citation `guha-2024-the' on page 3 undefined on input l
+ine 130.
 
 
-Package natbib Warning: Citation `lee-2023-recasting' on page 3 undefined on in
-put line 123.
-
-
-Package natbib Warning: Citation `lange-2022-continual' on page 3 undefined on 
+Package natbib Warning: Citation `riemer-2018-learning' on page 3 undefined on 
 input line 130.
 
 
-Package natbib Warning: Citation `chen-2023-forgetting' on page 3 undefined on 
-input line 133.
+Package natbib Warning: Citation `alvarezmelis-2020-geometric' on page 3 undefi
+ned on input line 130.
 
+[3]
 
-Package natbib Warning: Citation `lin-2024-effective' on page 3 undefined on in
-put line 133.
-
-
-Package natbib Warning: Citation `chaudhry-2019-continual' on page 3 undefined 
-on input line 133.
-
-
-Package natbib Warning: Citation `kirkpatrick-2016-overcoming' on page 3 undefi
-ned on input line 133.
-
-
-Underfull \vbox (badness 3792) has occurred while \output is active [3]
-
-Package natbib Warning: Citation `chen-2023-forgetting' on page 4 undefined on 
-input line 144.
+Package natbib Warning: Citation `yoon-2019-scalable' on page 4 undefined on in
+put line 136.
 
 
 Package natbib Warning: Citation `lange-2022-continual' on page 4 undefined on 
-input line 144.
+input line 136.
 
 
-Package natbib Warning: Citation `chaudhry-2019-continual' on page 4 undefined 
-on input line 144.
+Package natbib Warning: Citation `alvarezmelis-2020-geometric' on page 4 undefi
+ned on input line 148.
 
 
-Package natbib Warning: Citation `kirkpatrick-2016-overcoming' on page 4 undefi
-ned on input line 144.
+Package natbib Warning: Citation `yoon-2019-scalable' on page 4 undefined on in
+put line 149.
 
 
-Package natbib Warning: Citation `chaudhry-2018-efficient' on page 4 undefined 
-on input line 144.
+Package natbib Warning: Citation `riemer-2018-learning' on page 4 undefined on 
+input line 149.
 
 
-Package natbib Warning: Citation `lin-2024-effective' on page 4 undefined on in
-put line 144.
+Underfull \vbox (badness 1264) has occurred while \output is active [4]
+
+! LaTeX Error: Environment algorithm undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.162 \begin{algorithm}
+                       [H]
+
+! LaTeX Error: \caption outside float.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.163 \caption
+              {DyCLOS: Online Scheduling with Dual Signals}
+
+! LaTeX Error: Environment algorithmic undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.164 \begin{algorithmic}
+                         [1]
+! Undefined control sequence.
+l.165 \State
+             \textbf{Input:} stream of tasks \(\{T_t\}_{t=1}^N\); window siz...
+
+! Undefined control sequence.
+l.166 \State
+             \textbf{Initialize:} prefix \(P \leftarrow [\,]\); queue \(W \l...
+
+! Undefined control sequence.
+l.167 \For
+          {each arriving task \(T_t\)}
+! Undefined control sequence.
+l.168   \State
+               Add \(T_t\) to the end of \(W\); obtain 512-sample probe for ...
+
+! Undefined control sequence.
+l.169   \For
+            {each \(T_j \in P\) or earlier tasks in \(W\)}
+! Undefined control sequence.
+l.170     \State
+                 Compute \(S_{\mathrm{data}}(T_t, T_j)\) in frozen embedding...
+
+! Undefined control sequence.
+l.171     \State
+                 Estimate \(S_{\mathrm{int}}(T_t, T_j)\) via cosine of adapt...
+
+! Undefined control sequence.
+l.172     \State
+                 Set edge costs: \(w(T_t,T_j)\), \(w(T_j,T_t)\) using \(\alp...
+
+! Undefined control sequence.
+l.173   \EndFor
+               
+! Undefined control sequence.
+l.174   \While
+              {the first element of \(W\) is undecided}
+! Undefined control sequence.
+l.175     \State
+                 Let \(W_k\) be the first \(k\) tasks in \(W\)
+! Undefined control sequence.
+l.176     \State
+                 Use beam search of width \(b\) over permutations of \(W_k\)...
+
+! Undefined control sequence.
+l.177     \State
+                 Commit only the first task \(T^*\) of the best ordering: ap...
+
+! Undefined control sequence.
+l.178     \State
+                 Train \(T^*\) using adapters and stability-aware control (S...
+
+! Undefined control sequence.
+l.179   \EndWhile
+                 
+! Undefined control sequence.
+l.180 \EndFor
+             
+
+! LaTeX Error: \begin{document} ended by \end{algorithmic}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.181 \end{algorithmic}
+                       
+
+! LaTeX Error: \begin{document} ended by \end{algorithm}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.182 \end{algorithm}
+                     
+
+Package natbib Warning: Citation `lange-2022-continual' on page 5 undefined on 
+input line 185.
 
 
-Package natbib Warning: Citation `roth-2024-practitioner' on page 4 undefined o
-n input line 144.
+Package natbib Warning: Citation `alvarezmelis-2020-geometric' on page 5 undefi
+ned on input line 191.
 
 
-Package natbib Warning: Citation `peng-2024-scalable' on page 4 undefined on in
-put line 144.
-
-[4]
-
-Package natbib Warning: Citation `lin-2024-effective' on page 5 undefined on in
-put line 159.
+Package natbib Warning: Citation `riemer-2018-learning' on page 5 undefined on 
+input line 191.
 
 
-Package natbib Warning: Citation `chaudhry-2019-continual' on page 5 undefined 
-on input line 159.
+Package natbib Warning: Citation `yoon-2019-scalable' on page 5 undefined on in
+put line 191.
 
 
-Package natbib Warning: Citation `kirkpatrick-2016-overcoming' on page 5 undefi
-ned on input line 159.
+Package natbib Warning: Citation `lange-2022-continual' on page 5 undefined on 
+input line 191.
+
+[5]
+
+Package natbib Warning: Citation `yoon-2019-scalable' on page 6 undefined on in
+put line 199.
 
 
-Package natbib Warning: Citation `chaudhry-2018-efficient' on page 5 undefined 
-on input line 159.
+Package natbib Warning: Citation `lange-2022-continual' on page 6 undefined on 
+input line 199.
 
 
-Package natbib Warning: Citation `kingma-2014-adam' on page 5 undefined on inpu
-t line 162.
-
-
-Package natbib Warning: Citation `veniat-2020-efficient' on page 5 undefined on
- input line 165.
-
-
-Package natbib Warning: Citation `lee-2023-recasting' on page 5 undefined on in
-put line 165.
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active [5]
-
-Package natbib Warning: Citation `kingma-2014-adam' on page 6 undefined on inpu
-t line 197.
-
-
-Package natbib Warning: Citation `author-year-learning' on page 6 undefined on 
-input line 203.
-
-
-Package natbib Warning: Citation `kingma-2014-adam' on page 6 undefined on inpu
-t line 203.
+Package natbib Warning: Citation `roth-2024-practitioner' on page 6 undefined o
+n input line 224.
 
 [6]
 
-Package natbib Warning: Citation `peng-2024-scalable' on page 7 undefined on in
-put line 212.
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.262 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.264   \includegraphics
+                        [width=0.7\linewidth]{ images/accuracy\_baseline.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.264   \includegraphics[width=0.7\linewidth]
+                                             { images/accuracy\_baseline.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.264   \includegraphics[width=0.7\linewidth]
+                                             { images/accuracy\_baseline.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.268 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.270   \includegraphics
+                        [width=0.7\linewidth]{ images/accuracy\_dyclos.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.270   \includegraphics[width=0.7\linewidth]
+                                             { images/accuracy\_dyclos.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.270   \includegraphics[width=0.7\linewidth]
+                                             { images/accuracy\_dyclos.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.274 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.276   \includegraphics
+                        [width=0.7\linewidth]{ images/confusion\_matrix\_dyc...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.276   \includegraphics[width=0.7\linewidth]
+                                             { images/confusion\_matrix\_dyc...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.276   \includegraphics[width=0.7\linewidth]
+                                             { images/confusion\_matrix\_dyc...
 
 
-Package natbib Warning: Citation `roth-2024-practitioner' on page 7 undefined o
-n input line 212.
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.280 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.282   \includegraphics
+                        [width=0.7\linewidth]{ images/exp1\_accuracy\_storm\...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.282   \includegraphics[width=0.7\linewidth]
+                                             { images/exp1\_accuracy\_storm\...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.282   \includegraphics[width=0.7\linewidth]
+                                             { images/exp1\_accuracy\_storm\...
 
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 217.
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.286 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.288   \includegraphics
+                        [width=0.7\linewidth]{ images/exp1\_training\_loss\_...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.288   \includegraphics[width=0.7\linewidth]
+                                             { images/exp1\_training\_loss\_...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.288   \includegraphics[width=0.7\linewidth]
+                                             { images/exp1\_training\_loss\_...
 
 
-Underfull \vbox (badness 2707) has occurred while \output is active [7]
-[8 <./images/exp1_accuracy_storm_vs_baselines.pdf> <./images/exp1_training_loss
-_storm_vs_baselines.pdf>] [9 <./images/exp2_accuracy_vision_storm_vs_baselines.
-pdf> <./images/exp2_training_loss_vision_storm_vs_baselines.pdf>] [10 <./images
-/exp3_accuracy_nlp_storm_vs_baselines.pdf> <./images/exp3_training_loss_nlp_sto
-rm_vs_baselines.pdf>]
+! LaTeX Error: Unknown float option `H'.
 
-Package natbib Warning: Citation `lange-2022-continual' on page 11 undefined on
- input line 298.
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.292 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.294   \includegraphics
+                        [width=0.7\linewidth]{ images/exp2\_accuracy\_vision...
 
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.294   \includegraphics[width=0.7\linewidth]
+                                             { images/exp2\_accuracy\_vision...
 
-Package natbib Warning: Citation `chen-2023-forgetting' on page 11 undefined on
- input line 298.
-
-
-Package natbib Warning: Citation `chaudhry-2019-continual' on page 11 undefined
- on input line 298.
-
-
-Package natbib Warning: Citation `kirkpatrick-2016-overcoming' on page 11 undef
-ined on input line 298.
-
-
-Package natbib Warning: Citation `veniat-2020-efficient' on page 11 undefined o
-n input line 298.
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.294   \includegraphics[width=0.7\linewidth]
+                                             { images/exp2\_accuracy\_vision...
 
 
-Package natbib Warning: Citation `yoon-2019-scalable' on page 11 undefined on i
-nput line 298.
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.298 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.300   \includegraphics
+                        [width=0.7\linewidth]{ images/exp2\_training\_loss\_...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.300   \includegraphics[width=0.7\linewidth]
+                                             { images/exp2\_training\_loss\_...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.300   \includegraphics[width=0.7\linewidth]
+                                             { images/exp2\_training\_loss\_...
 
 
-Package natbib Warning: Citation `lin-2024-effective' on page 11 undefined on i
-nput line 298.
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.304 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.306   \includegraphics
+                        [width=0.7\linewidth]{ images/exp3\_accuracy\_nlp\_s...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.306   \includegraphics[width=0.7\linewidth]
+                                             { images/exp3\_accuracy\_nlp\_s...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.306   \includegraphics[width=0.7\linewidth]
+                                             { images/exp3\_accuracy\_nlp\_s...
 
 
-Package natbib Warning: Citation `roth-2024-practitioner' on page 11 undefined 
-on input line 298.
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.310 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.312   \includegraphics
+                        [width=0.7\linewidth]{ images/exp3\_training\_loss\_...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.312   \includegraphics[width=0.7\linewidth]
+                                             { images/exp3\_training\_loss\_...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.312   \includegraphics[width=0.7\linewidth]
+                                             { images/exp3\_training\_loss\_...
 
 
-Package natbib Warning: Citation `peng-2024-scalable' on page 11 undefined on i
-nput line 298.
+! LaTeX Error: Unknown float option `H'.
 
-(./paper.bbl [11])
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.316 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.318   \includegraphics
+                        [width=0.7\linewidth]{ images/schedule\_costs\_dyclo...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.318   \includegraphics[width=0.7\linewidth]
+                                             { images/schedule\_costs\_dyclo...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.318   \includegraphics[width=0.7\linewidth]
+                                             { images/schedule\_costs\_dyclo...
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.322 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.324   \includegraphics
+                        [width=0.7\linewidth]{ images/training\_loss\_dyclos...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.324   \includegraphics[width=0.7\linewidth]
+                                             { images/training\_loss\_dyclos...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.324   \includegraphics[width=0.7\linewidth]
+                                             { images/training\_loss\_dyclos...
+
+
+Package natbib Warning: Citation `yoon-2019-scalable' on page 7 undefined on in
+put line 331.
+
+
+Package natbib Warning: Citation `lange-2022-continual' on page 7 undefined on 
+input line 331.
+
+
+Package natbib Warning: Citation `alvarezmelis-2020-geometric' on page 7 undefi
+ned on input line 331.
+
+[7]
+
+Package natbib Warning: Citation `riemer-2018-learning' on page 8 undefined on 
+input line 333.
+
+
+Package natbib Warning: Citation `ramasesh-2020-anatomy' on page 8 undefined on
+ input line 333.
+
+
+Package natbib Warning: Citation `lee-2021-continual' on page 8 undefined on in
+put line 333.
+
+
+Package natbib Warning: Citation `guha-2024-the' on page 8 undefined on input l
+ine 333.
+
+
+Package natbib Warning: Citation `veniat-2020-efficient' on page 8 undefined on
+ input line 335.
+
+
+Package natbib Warning: Citation `bu-2024-pre' on page 8 undefined on input lin
+e 335.
+
+
+Package natbib Warning: Citation `wang-2023-task' on page 8 undefined on input 
+line 335.
+
+
+Package natbib Warning: Citation `zhang-2023-overcoming' on page 8 undefined on
+ input line 335.
+
+
+Package natbib Warning: Citation `mirzadeh-2020-linear' on page 8 undefined on 
+input line 335.
+
+(./paper.bbl [8]
+! Misplaced alignment tab character &.
+l.126 ...k difficulty aware parameter allocation &
+                                                   regularization for
+)
 
 Package natbib Warning: There were undefined citations.
 
-[12] (./paper.aux
+[9] [10] (./paper.aux
 
 Package natbib Warning: Citation(s) may have changed.
 (natbib)                Rerun to get citations correct.
@@ -1208,18 +1800,17 @@ Package natbib Warning: Citation(s) may have changed.
 ) )
 (see the transcript file for additional information) </home/runner/.texlive2023
 /texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk></usr/share/texlive/texmf
--dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
-y10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm
-10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr
+-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
+y7.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr
 /share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/font
 s/type1/urw/times/utmri8a.pfb>
-Output written on paper.pdf (12 pages, 225482 bytes).
+Output written on paper.pdf (10 pages, 164295 bytes).
 Transcript written on paper.log.
 This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
  restricted \write18 enabled.
@@ -1246,28 +1837,7 @@ Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
 (/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd))
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
-For additional information on amsmath, use the `?' option.
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg)
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)))
-(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/algorithms/algorithm.sty
-(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty))
-(/usr/share/texlive/texmf-dist/tex/latex/algorithmicx/algpseudocode.sty
-(/usr/share/texlive/texmf-dist/tex/latex/algorithmicx/algorithmicx.sty
-Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
-)
-Document Style - pseudocode environments for use with the `algorithmicx' style
-) (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 (/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
 (/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
 (/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
@@ -1289,12 +1859,15 @@ Document Style - pseudocode environments for use with the `algorithmicx' style
 (/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 (/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
 (/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
-(/usr/share/texlive/texmf-dist/tex/latex/units/nicefrac.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/units/nicefrac.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty))
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype-pdftex.def)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.cfg))
 (/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
 (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
 (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
 (./paper.aux)
@@ -1364,13 +1937,11 @@ Document Style - pseudocode environments for use with the `algorithmicx' style
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
-[Loading MPS to PDF converter (version 2006.09.02).]
-) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
-(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg))
 (./paper.out) (./paper.out)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg)
-(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
 (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg)
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
@@ -1379,34 +1950,397 @@ Document Style - pseudocode environments for use with the `algorithmicx' style
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd) [1{/var/lib/texmf/fon
 ts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/
 base/8r.enc}] (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
-[2]
-Underfull \vbox (badness 10000) has occurred while \output is active [3]
-[4]
-Underfull \vbox (badness 4505) has occurred while \output is active [5]
+[2] [3] [4]
+
+! LaTeX Error: Environment algorithm undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.162 \begin{algorithm}
+                       [H]
+
+! LaTeX Error: \caption outside float.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.163 \caption
+              {DyCLOS: Online Scheduling with Dual Signals}
+
+! LaTeX Error: Environment algorithmic undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.164 \begin{algorithmic}
+                         [1]
+! Undefined control sequence.
+l.165 \State
+             \textbf{Input:} stream of tasks \(\{T_t\}_{t=1}^N\); window siz...
+
+! Undefined control sequence.
+l.166 \State
+             \textbf{Initialize:} prefix \(P \leftarrow [\,]\); queue \(W \l...
+
+! Undefined control sequence.
+l.167 \For
+          {each arriving task \(T_t\)}
+! Undefined control sequence.
+l.168   \State
+               Add \(T_t\) to the end of \(W\); obtain 512-sample probe for ...
+
+! Undefined control sequence.
+l.169   \For
+            {each \(T_j \in P\) or earlier tasks in \(W\)}
+! Undefined control sequence.
+l.170     \State
+                 Compute \(S_{\mathrm{data}}(T_t, T_j)\) in frozen embedding...
+
+! Undefined control sequence.
+l.171     \State
+                 Estimate \(S_{\mathrm{int}}(T_t, T_j)\) via cosine of adapt...
+
+! Undefined control sequence.
+l.172     \State
+                 Set edge costs: \(w(T_t,T_j)\), \(w(T_j,T_t)\) using \(\alp...
+
+! Undefined control sequence.
+l.173   \EndFor
+               
+! Undefined control sequence.
+l.174   \While
+              {the first element of \(W\) is undecided}
+! Undefined control sequence.
+l.175     \State
+                 Let \(W_k\) be the first \(k\) tasks in \(W\)
+! Undefined control sequence.
+l.176     \State
+                 Use beam search of width \(b\) over permutations of \(W_k\)...
+
+! Undefined control sequence.
+l.177     \State
+                 Commit only the first task \(T^*\) of the best ordering: ap...
+
+! Undefined control sequence.
+l.178     \State
+                 Train \(T^*\) using adapters and stability-aware control (S...
+
+! Undefined control sequence.
+l.179   \EndWhile
+                 
+! Undefined control sequence.
+l.180 \EndFor
+             
+
+! LaTeX Error: \begin{document} ended by \end{algorithmic}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.181 \end{algorithmic}
+                       
+
+! LaTeX Error: \begin{document} ended by \end{algorithm}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.182 \end{algorithm}
+                     
+
+Underfull \vbox (badness 1270) has occurred while \output is active [5]
 [6]
 
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 217.
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.262 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.264   \includegraphics
+                        [width=0.7\linewidth]{ images/accuracy\_baseline.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.264   \includegraphics[width=0.7\linewidth]
+                                             { images/accuracy\_baseline.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.264   \includegraphics[width=0.7\linewidth]
+                                             { images/accuracy\_baseline.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.268 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.270   \includegraphics
+                        [width=0.7\linewidth]{ images/accuracy\_dyclos.pdf }
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.270   \includegraphics[width=0.7\linewidth]
+                                             { images/accuracy\_dyclos.pdf }
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.270   \includegraphics[width=0.7\linewidth]
+                                             { images/accuracy\_dyclos.pdf }
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.274 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.276   \includegraphics
+                        [width=0.7\linewidth]{ images/confusion\_matrix\_dyc...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.276   \includegraphics[width=0.7\linewidth]
+                                             { images/confusion\_matrix\_dyc...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.276   \includegraphics[width=0.7\linewidth]
+                                             { images/confusion\_matrix\_dyc...
 
 
-Underfull \vbox (badness 2707) has occurred while \output is active [7]
-[8 <./images/exp1_accuracy_storm_vs_baselines.pdf> <./images/exp1_training_loss
-_storm_vs_baselines.pdf>] [9 <./images/exp2_accuracy_vision_storm_vs_baselines.
-pdf> <./images/exp2_training_loss_vision_storm_vs_baselines.pdf>] [10 <./images
-/exp3_accuracy_nlp_storm_vs_baselines.pdf> <./images/exp3_training_loss_nlp_sto
-rm_vs_baselines.pdf>] (./paper.bbl [11]) [12] (./paper.aux) )
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.280 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.282   \includegraphics
+                        [width=0.7\linewidth]{ images/exp1\_accuracy\_storm\...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.282   \includegraphics[width=0.7\linewidth]
+                                             { images/exp1\_accuracy\_storm\...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.282   \includegraphics[width=0.7\linewidth]
+                                             { images/exp1\_accuracy\_storm\...
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.286 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.288   \includegraphics
+                        [width=0.7\linewidth]{ images/exp1\_training\_loss\_...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.288   \includegraphics[width=0.7\linewidth]
+                                             { images/exp1\_training\_loss\_...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.288   \includegraphics[width=0.7\linewidth]
+                                             { images/exp1\_training\_loss\_...
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.292 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.294   \includegraphics
+                        [width=0.7\linewidth]{ images/exp2\_accuracy\_vision...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.294   \includegraphics[width=0.7\linewidth]
+                                             { images/exp2\_accuracy\_vision...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.294   \includegraphics[width=0.7\linewidth]
+                                             { images/exp2\_accuracy\_vision...
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.298 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.300   \includegraphics
+                        [width=0.7\linewidth]{ images/exp2\_training\_loss\_...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.300   \includegraphics[width=0.7\linewidth]
+                                             { images/exp2\_training\_loss\_...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.300   \includegraphics[width=0.7\linewidth]
+                                             { images/exp2\_training\_loss\_...
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.304 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.306   \includegraphics
+                        [width=0.7\linewidth]{ images/exp3\_accuracy\_nlp\_s...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.306   \includegraphics[width=0.7\linewidth]
+                                             { images/exp3\_accuracy\_nlp\_s...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.306   \includegraphics[width=0.7\linewidth]
+                                             { images/exp3\_accuracy\_nlp\_s...
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.310 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.312   \includegraphics
+                        [width=0.7\linewidth]{ images/exp3\_training\_loss\_...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.312   \includegraphics[width=0.7\linewidth]
+                                             { images/exp3\_training\_loss\_...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.312   \includegraphics[width=0.7\linewidth]
+                                             { images/exp3\_training\_loss\_...
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.316 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.318   \includegraphics
+                        [width=0.7\linewidth]{ images/schedule\_costs\_dyclo...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.318   \includegraphics[width=0.7\linewidth]
+                                             { images/schedule\_costs\_dyclo...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.318   \includegraphics[width=0.7\linewidth]
+                                             { images/schedule\_costs\_dyclo...
+
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.322 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.324   \includegraphics
+                        [width=0.7\linewidth]{ images/training\_loss\_dyclos...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.324   \includegraphics[width=0.7\linewidth]
+                                             { images/training\_loss\_dyclos...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.324   \includegraphics[width=0.7\linewidth]
+                                             { images/training\_loss\_dyclos...
+
+[7] (./paper.bbl [8]
+! Misplaced alignment tab character &.
+l.126 ...k difficulty aware parameter allocation &
+                                                   regularization for
+) [9] [10] (./paper.aux) )
 (see the transcript file for additional information) </home/runner/.texlive2023
 /texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk></usr/share/texlive/texmf
--dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/
-fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/
-type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/
-public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
-y10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm
-10.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr
+-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/
+type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
+y7.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr
 /share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dist/font
 s/type1/urw/times/utmri8a.pfb>
-Output written on paper.pdf (12 pages, 232860 bytes).
+Output written on paper.pdf (10 pages, 170132 bytes).
 Transcript written on paper.log.
