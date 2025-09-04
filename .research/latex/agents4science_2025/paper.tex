@@ -23,7 +23,12 @@
 \usepackage{nicefrac}
 \usepackage{microtype}
 \usepackage{xcolor}
-
+% Added packages to fix compilation errors
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{float}          % for H float placement specifier
+\usepackage{algorithm}      % algorithm float environment
+\usepackage{algpseudocode}  % algorithmic environment with \State, \For, etc.
 
 \title{Dynamic Curriculum Ordering with Dual Signals for Continual Learning}
 
@@ -261,67 +266,67 @@ Across runs, the adapter recipe and scheduler settings are held constant across 
 \subsection{Figures}
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\linewidth]{ images/accuracy\_baseline.pdf }
+  \includegraphics[width=0.7\linewidth]{images/accuracy_baseline.pdf}
   \caption{Baseline accuracy trajectories across tasks.}
 \end{figure}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\linewidth]{ images/accuracy\_dyclos.pdf }
+  \includegraphics[width=0.7\linewidth]{images/accuracy_dyclos.pdf}
   \caption{DyCLOS accuracy trajectories across tasks.}
 \end{figure}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\linewidth]{ images/confusion\_matrix\_dyclos.pdf }
+  \includegraphics[width=0.7\linewidth]{images/confusion_matrix_dyclos.pdf}
   \caption{Confusion patterns under DyCLOS in a representative evaluation.}
 \end{figure}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\linewidth]{ images/exp1\_accuracy\_storm\_vs\_baselines.pdf }
+  \includegraphics[width=0.7\linewidth]{images/exp1_accuracy_storm_vs_baselines.pdf}
   \caption{Experiment 1 accuracy comparison of DyCLOS versus baselines.}
 \end{figure}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\linewidth]{ images/exp1\_training\_loss\_storm\_vs\_baselines.pdf }
+  \includegraphics[width=0.7\linewidth]{images/exp1_training_loss_storm_vs_baselines.pdf}
   \caption{Experiment 1 training loss comparison of DyCLOS versus baselines.}
 \end{figure}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\linewidth]{ images/exp2\_accuracy\_vision\_storm\_vs\_baselines.pdf }
+  \includegraphics[width=0.7\linewidth]{images/exp2_accuracy_vision_storm_vs_baselines.pdf}
   \caption{Experiment 2 accuracy comparison of DyCLOS versus baselines.}
 \end{figure}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\linewidth]{ images/exp2\_training\_loss\_vision\_storm\_vs\_baselines.pdf }
+  \includegraphics[width=0.7\linewidth]{images/exp2_training_loss_vision_storm_vs_baselines.pdf}
   \caption{Experiment 2 training loss comparison of DyCLOS versus baselines.}
 \end{figure}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\linewidth]{ images/exp3\_accuracy\_nlp\_storm\_vs\_baselines.pdf }
+  \includegraphics[width=0.7\linewidth]{images/exp3_accuracy_nlp_storm_vs_baselines.pdf}
   \caption{Experiment 3 accuracy comparison of DyCLOS versus baselines.}
 \end{figure}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\linewidth]{ images/exp3\_training\_loss\_nlp\_storm\_vs\_baselines.pdf }
+  \includegraphics[width=0.7\linewidth]{images/exp3_training_loss_nlp_storm_vs_baselines.pdf}
   \caption{Experiment 3 training loss comparison of DyCLOS versus baselines.}
 \end{figure}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\linewidth]{ images/schedule\_costs\_dyclos.pdf }
+  \includegraphics[width=0.7\linewidth]{images/schedule_costs_dyclos.pdf}
   \caption{Scheduling costs and edge-weighted path analysis for DyCLOS.}
 \end{figure}
 
 \begin{figure}[H]
   \centering
-  \includegraphics[width=0.7\linewidth]{ images/training\_loss\_dyclos.pdf }
+  \includegraphics[width=0.7\linewidth]{images/training_loss_dyclos.pdf}
   \caption{Training loss trajectories under DyCLOS.}
 \end{figure}
 
@@ -335,7 +340,11 @@ Across three compact evaluations-synthetic vision, class-incremental vision, and
 Future work will extend evaluation to longer streams and larger backbones, report multi-seed confidence intervals and Transfer-Gain as in modular continual benchmarks \cite{veniat-2020-efficient}, and incorporate curriculum constraints for privacy or fairness \cite{bu-2024-pre}. We also plan to jointly optimize ordering and adapter capacity \cite{wang-2023-task,zhang-2023-overcoming} and to explore interactions with mode connectivity \cite{mirzadeh-2020-linear}. By elevating task ordering to a first-class decision, DyCLOS converts a source of variance into a controllable lever, enabling more robust and efficient continual pretraining pipelines.
 
 
+% Wrap bibliography in a group that treats `&` as an ordinary character to avoid alignment errors from unescaped ampersands in .bib entries.
+\begingroup
+\catcode`\&=12
 \bibliographystyle{plainnat}
 \bibliography{references}
+\endgroup
 
 \end{document}
