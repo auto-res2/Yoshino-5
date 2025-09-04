@@ -2,3 +2,7 @@ Traceback (most recent call last):
   File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 8, in <module>
     from .preprocess import (
 ImportError: attempted relative import with no known parent package
+Traceback (most recent call last):
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 10, in <module>
+    from .preprocess import set_seed, build_e1_tasks_vision, build_e3_tasks_text, prepare_output_dirs
+ImportError: attempted relative import with no known parent package
