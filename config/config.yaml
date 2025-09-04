@@ -1,12 +1,28 @@
-# Default configuration for STORM experiments
-seed: 0
-quick: true
-run_exp1: true
-run_exp2: true
-run_exp3: true
-# Vision settings
-dataset: cifar10
-num_tasks: 5
-buffer_size: 3
-# Synthetic settings
-angle_pattern: sweep
+# Default configuration for DyCLOS quick experiment
+seed: 123
+
+# Choose experiment: 'vision_e1' or 'text_e3'
+experiment: vision_e1
+
+# Common params
+num_tasks: 4
+probe_size: 128
+batch_size: 32
+lora_r: 4
+alpha: 1.0
+beta: 1.0
+window_k: 3
+beam_size: 4
+max_batches_grad: 2
+
+# Optimization
+lr: 0.001
+epochs_per_task: 1
+
+# Vision E1 options
+use_fake_data: true
+fast_test: true
+
+# NLP E3 options
+vocab_size: 2000
+seq_len: 48

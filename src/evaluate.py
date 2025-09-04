@@ -1,64 +1,117 @@
 import os
-from typing import Dict, List
+from typing import Dict, List, Any, Optional
 
 import numpy as np
+import torch
 import matplotlib
-matplotlib.use('Agg')
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
-from scipy.stats import spearmanr
+import seaborn as sns
+
+try:
+    from sklearn.metrics import confusion_matrix
+except Exception:
+    confusion_matrix = None
 
 
-def compute_forgetting_and_stability(acc_matrix: np.ndarray) -> Dict:
-    # acc_matrix: steps x tasks
-    final_avg = float(acc_matrix[-1].mean()) if acc_matrix.size else 0.0
-    F = []
-    for j in range(acc_matrix.shape[1]):
-        hist = acc_matrix[:, j]
-        F.append(float(hist.max() - hist[-1]))
-    avg_forgetting = float(np.mean(F)) if F else 0.0
-    mean_over_time = acc_matrix.mean(axis=1) if acc_matrix.size else np.array([0.0])
-    min_acc = float(np.min(mean_over_time)) if mean_over_time.size else 0.0
-    wc_drop = float(np.max(mean_over_time) - np.min(mean_over_time)) if mean_over_time.size else 0.0
-    return dict(final_avg_acc=final_avg, avg_forgetting=avg_forgetting, min_acc=min_acc, wc_drop=wc_drop)
+def ensure_dir(path: str):
+    os.makedirs(path, exist_ok=True)
 
 
-def plot_accuracy_curves(acc_mats: Dict[str, np.ndarray], save_path: str):
-    os.makedirs(os.path.dirname(save_path), exist_ok=True)
-    plt.figure(figsize=(6.0, 3.8))
-    for name, M in acc_mats.items():
-        if M.size == 0:
-            continue
-        plt.plot(np.arange(1, M.shape[0] + 1), M.mean(axis=1), label=name)
-    plt.xlabel('Tasks seen')
-    plt.ylabel('Average accuracy')
-    plt.title('Average accuracy over sequence')
-    plt.legend()
-    plt.grid(True, alpha=0.3)
+def plot_training_loss(loss_history: Dict[int, List[float]], out_dir: str,
+                       title: str = 'Training Loss per Task', filename: str = 'training_loss_dyclos.pdf'):
+    ensure_dir(out_dir)
+    plt.figure(figsize=(6, 4))
+    for task_id, losses in loss_history.items():
+        plt.plot(range(1, len(losses) + 1), losses, marker='o', label=f'Task {task_id}')
+    plt.xlabel('Epoch')
+    plt.ylabel('Loss')
+    plt.title(title)
+    plt.legend(fontsize=8)
     plt.tight_layout()
-    plt.savefig(save_path, bbox_inches='tight')
+    plt.savefig(os.path.join(out_dir, filename), bbox_inches='tight')
     plt.close()
 
 
-def plot_losses(losses: Dict[str, List[float]], save_path: str):
-    os.makedirs(os.path.dirname(save_path), exist_ok=True)
-    plt.figure(figsize=(6.0, 3.8))
-    for name, ls in losses.items():
-        if len(ls) == 0:
-            continue
-        xs = np.arange(len(ls))
-        plt.plot(xs, ls, label=name, linewidth=1.0)
-    plt.xlabel('Update step')
-    plt.ylabel('Training loss')
-    plt.title('Training loss over time')
-    plt.legend()
-    plt.grid(True, alpha=0.3)
+def plot_accuracy_curves(acc_hist: Dict[int, List[float]], out_dir: str,
+                          title: str = 'Per-task Accuracy Over Time', filename: str = 'accuracy_dyclos.pdf'):
+    ensure_dir(out_dir)
+    plt.figure(figsize=(6, 4))
+    for t, accs in acc_hist.items():
+        plt.plot(range(1, len(accs) + 1), accs, marker='s', label=f'Task {t}')
+    plt.xlabel('After Task #')
+    plt.ylabel('Accuracy')
+    plt.ylim(0.0, 1.0)
+    plt.title(title)
+    plt.legend(fontsize=8, ncol=2)
     plt.tight_layout()
-    plt.savefig(save_path, bbox_inches='tight')
+    plt.savefig(os.path.join(out_dir, filename), bbox_inches='tight')
     plt.close()
 
 
-def spearman_correlation_with_empirical(M_values: List[float], empirical_values: List[float]) -> Dict:
-    if len(M_values) == 0 or len(M_values) != len(empirical_values):
-        return {"rho": 0.0, "p": 1.0}
-    rho, p = spearmanr(M_values, empirical_values)
-    return {"rho": float(rho), "p": float(p)}
+def plot_schedule_costs(scheduler, out_dir: str, title: str = 'Schedule Edge Costs', filename: str = 'schedule_costs_dyclos.pdf'):
+    ensure_dir(out_dir)
+    path = scheduler.trained_prefix
+    costs = []
+    edges = []
+    for i in range(len(path) - 1):
+        u, v = path[i], path[i + 1]
+        c = scheduler.edge_cost(u, v)
+        costs.append(c)
+        edges.append(f'{u}->{v}')
+    if costs:
+        plt.figure(figsize=(max(6, len(costs) * 0.7), 3))
+        plt.bar(range(len(costs)), costs)
+        plt.xticks(range(len(costs)), edges, rotation=45)
+        plt.ylabel('Edge Cost')
+        plt.title(title)
+        plt.tight_layout()
+        plt.savefig(os.path.join(out_dir, filename), bbox_inches='tight')
+        plt.close()
+
+
+def plot_confusion_matrix(model, dataloader, n_classes: int, device: Optional[str], out_dir: str,
+                          title: str = 'Confusion Matrix', filename: str = 'confusion_matrix_dyclos.pdf'):
+    if confusion_matrix is None:
+        print('[WARN] sklearn not available; skipping confusion matrix plot')
+        return
+    ensure_dir(out_dir)
+    device = device or ('cuda' if torch.cuda.is_available() else 'cpu')
+    model.eval()
+    all_preds, all_labels = [], []
+    with torch.no_grad():
+        for batch in dataloader:
+            if isinstance(batch, (list, tuple)):
+                x, y = batch
+            else:
+                x, y = batch['input_ids'], batch['labels']
+            x = x.to(device)
+            logits = model(x)
+            preds = logits.argmax(dim=1).cpu().numpy()
+            all_preds.append(preds)
+            all_labels.append(y.numpy())
+    import numpy as np
+    y_true = np.concatenate(all_labels)
+    y_pred = np.concatenate(all_preds)
+    cm = confusion_matrix(y_true, y_pred, labels=list(range(n_classes)))
+    cmn = cm / np.maximum(1, cm.sum(axis=1, keepdims=True))
+    plt.figure(figsize=(5, 4))
+    sns.heatmap(cmn, annot=False, cmap='Blues', cbar=True)
+    plt.xlabel('Predicted')
+    plt.ylabel('True')
+    plt.title(title)
+    plt.tight_layout()
+    plt.savefig(os.path.join(out_dir, filename), bbox_inches='tight')
+    plt.close()
+
+
+def summarize_results(results: Dict[str, Any]) -> str:
+    return (
+        f"Arrival order: {results['arrival_order']}\n"
+        f"DyCLOS order: {results['dyclos_order']}\n"
+        f"DyCLOS  -> Omega-acc={results['dyclos']['Omega-acc']:.4f}, "
+        f"Omega-forg={results['dyclos']['Omega-forg']:.4f}, "
+        f"Probe+Schedule Time (s)={results['dyclos']['probe+schedule_time_s']:.2f}\n"
+        f"Baseline-> Omega-acc={results['baseline']['Omega-acc']:.4f}, "
+        f"Omega-forg={results['baseline']['Omega-forg']:.4f}\n"
+    )
