@@ -2,10 +2,10 @@
   "research_topic": "Improve forgetting resistance in continual learning by developing task-ordering strategies for standard benchmarks using 1–3B parameter models with efficient adaptation, curriculum learning from task similarity and gradient interference, and rigorous evaluation with baselines, ablations, overhead analysis, transfer metrics, and full reproducibility.",
   "queries": [
     "continual learning ordering",
-    "curriculum continual learning",
+    "curriculum catastrophic forgetting",
     "gradient interference continual",
-    "large model continual",
-    "catastrophic forgetting benchmarks"
+    "task similarity lifelong",
+    "large model continual"
   ],
   "research_study_list": [
     {
