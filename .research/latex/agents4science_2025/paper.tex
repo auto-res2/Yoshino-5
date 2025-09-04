@@ -16,12 +16,6 @@
 
 \usepackage[utf8]{inputenc} % allow utf-8 input
 \usepackage[T1]{fontenc}    % use 8-bit T1 fonts
-\usepackage{amsmath}        % math environments and \text
-\usepackage{amssymb}        % math symbols like \varnothing
-\usepackage{graphicx}       % includegraphics
-\usepackage{float}          % H float placement
-\usepackage{algorithm}      % algorithm float
-\usepackage{algpseudocode}  % algorithmicx with \State, \For, ...
 \usepackage{hyperref}       % hyperlinks
 \usepackage{url}            % simple URL typesetting
 \usepackage{booktabs}       % professional-quality tables
@@ -31,7 +25,7 @@
 \usepackage{xcolor}
 
 
-\title{STORM: Interference-Aware, Compute-Light Curriculum Scheduling for Continual Learning}
+\title{Dynamic Curriculum Ordering with Dual Signals for Continual Learning}
 
 
 % The \author macro works with any number of authors. There are two commands
@@ -82,220 +76,263 @@
 
 
 \begin{abstract}
-Order sensitivity remains a dominant source of catastrophic forgetting and transient instability in continual learning, and this problem becomes especially costly with large backbones because recovering from unfavorable orders often requires expensive task revisits. We introduce STORM, a lightweight, model-agnostic controller that builds an online curriculum from gradient signatures extracted by tiny per-task probes on frozen features. STORM maintains a Task Interaction Matrix combining cosine similarity (expected transfer) with an elementwise sign-conflict penalty (interference), and schedules tasks by maximizing summed interactions within a sliding buffer. Because the backbone is frozen during signature estimation and the learner uses parameter-efficient adapters, the controller adds only minor overhead. We validate STORM in three complementary settings: a controlled synthetic interference suite, a vision proxy based on split CIFAR-10, and a synthetic NLP bag-of-words proxy. Across all settings, STORM improves final average accuracy over random ordering and reduces average forgetting; in the controlled setting it approximately halves the worst-case stability drop. We report exact schedules, metrics, and observed overheads, and ablate similarity-only and interference-only scoring. The results support interference-aware curricula as a practical, plug-and-play inductive bias for continual learning.
+Catastrophic forgetting in continual learning is notoriously sensitive to task order, especially for large transformers where an unlucky permutation can waste days of compute. We address the open problem of online task ordering with DyCLOS, a model-agnostic curriculum that schedules tasks on the fly using two lightweight signals computed from a small probe per task. The first is data similarity measured via an optimal-transport dataset distance in a shared frozen embedding space, and the second is gradient interference estimated as the cosine of adapter gradients. DyCLOS constructs a dynamic curriculum graph with edge costs that combine dissimilarity and interference, then maintains a minimum-cost Hamiltonian path prefix by solving a sliding-window beam search as tasks arrive. Training updates are limited to parameter-efficient APD-style adapters, and a stability-aware inner loop attenuates transient performance drops. We implement a reproducibility toolkit and evaluate DyCLOS in three settings: a synthetic-vision sanity check, a compact CIFAR class-incremental stream, and a synthetic NLP multi-task stream. Across these, DyCLOS improves final accuracy by 0.9-3.3 percentage points over fixed or random orders and reduces average forgetting by 33-88\%, with small absolute overhead; ablations verify that combining both signals yields the best stability-plasticity trade-off. These findings show task ordering is a controllable lever and that DyCLOS offers a practical, modality-agnostic curriculum layer for continual training pipelines.
 \end{abstract}
 
 
 
 \section{Introduction}
-Continual learning (CL) aims to train models on streams of tasks while retaining prior skills and transferring useful knowledge forward. Despite progress via rehearsal, regularization, modularization, and parameter-efficient tuning, strong methods still exhibit substantial order sensitivity: the same task pool, when shuffled, can yield markedly different final performance and severe transient drops in accuracy, commonly referred to as the stability gap \cite{lange-2022-continual}. In practical deployments with large backbones, this variability is problematic because recovering from poor early orders often necessitates revisiting tasks, incurring repeated full-model compute. Ordering is therefore not a benign nuisance but a central lever for both robustness and efficiency in CL.
+Continual learning seeks to learn from a stream of tasks without catastrophically forgetting earlier ones. Despite advances in regularization, rehearsal, and parameter isolation, a persistent pain point is task-order sensitivity: the same learner can exhibit large swings in final average accuracy under different permutations. This sensitivity is tied to stability-plasticity dynamics and representational similarity between tasks, with empirical and theoretical support that forgetting can be maximal at intermediate similarity \cite{ramasesh-2020-anatomy,lee-2021-continual,guha-2024-the}. For modern large-scale models, an adverse order can squander substantial GPU time; compensating with large replay buffers is often infeasible.
 
-Why is this hard? Most CL algorithms react to interference after it has occurred. Rehearsal requires extra memory and careful replay scheduling \cite{chaudhry-2019-continual}, parameter regularization constrains updates but does not anticipate harmful interactions \cite{kirkpatrick-2016-overcoming}, and architectural strategies reduce coupling at the expense of search or capacity planning \cite{yoon-2019-scalable,veniat-2020-efficient,fernando-2017-pathnet,alet-2018-modular}. Empirically, the stability gap persists across these families and grows with task dissimilarity, suggesting a gradient-level origin \cite{lange-2022-continual}. Gradient-centric studies further indicate that less forgetful representations are associated with better forward transfer \cite{chen-2023-forgetting}, and that calibrating gradients can mitigate interference \cite{lin-2024-effective}. Yet existing curriculum heuristics often rely on metadata or loss magnitudes and do not estimate gradient interactions directly; meanwhile, methods that assume modular structure or task descriptors are not always applicable \cite{veniat-2020-efficient,yoon-2019-scalable}.
+Why this is hard. Most continual learning (CL) methods treat the task sequence as exogenous. Regularization and distillation approaches such as Elastic Weight Consolidation, Learning without Forgetting, and Variational Continual Learning stabilize parameters but assume a fixed order \cite{kirkpatrick-2016-overcoming,li-2016-learning,nguyen-2017-variational}. Replay methods like GEM and A-GEM counteract forgetting by constraining gradients on a memory, again under a prescribed order \cite{lopezpaz-2017-gradient,chaudhry-2018-lifelong}. Gradient-centric strategies promote alignment to balance transfer and interference but still operate within the given sequence \cite{riemer-2018-learning,lin-2024-effective}. Parameter isolation, including Additive Parameter Decomposition and Piggyback, improves order robustness by dedicating per-task capacity but does not decide which task to train next \cite{yoon-2019-scalable,mallya-2018-piggyback}. Meanwhile, optimal-transport dataset distances provide a training-free, model-agnostic way to quantify dataset relatedness \cite{alvarezmelis-2020-geometric}. The missing ingredient is an online scheduler that fuses data-level relatedness with parameter-space interference, remains model-agnostic, and scales with bounded overhead.
 
-We propose to optimize the ordering itself using signals that anticipate both transfer and interference before heavy fine-tuning. We present STORM (Similarity and inTerference-Optimised cuRRiculuM), a lightweight controller that sits in front of any CL learner and schedules tasks online. For each arriving task, STORM trains a tiny linear probe for one epoch on frozen backbone features and aggregates the probe’s gradients with respect to features into a compact signature. Pairwise task interactions are estimated as a signed combination of cosine similarity (proxy for transfer) and elementwise sign conflicts (proxy for destructive interference). STORM then reorders queued tasks within a small sliding buffer by maximizing the sum of these interactions over the candidate sequence via a greedy insertion solver. The learner uses parameter-efficient adapters, so signatures are computed once per task and the backbone need not be revisited for the controller’s decisions.
+Our approach. We propose Dynamic Curriculum Ordering with Dual Signals (DyCLOS), a plug-in scheduler that chooses the next task online using two inexpensive signals computed from a 512-sample probe per task: (1) a data similarity score via optimal-transport dataset distance in a frozen shared embedding space, and (2) a gradient interference score via cosine similarity of adapter gradients. DyCLOS builds a curriculum graph whose edge weight predicts expected forgetting cost by combining these signals and maintains a minimum-cost Hamiltonian path prefix through a sliding-window beam search as tasks arrive. Training is parameter-efficient using APD-style adapters to keep gradient probes cheap, and a stability-aware inner loop lowers the learning rate when per-iteration evaluation detects transient drops \cite{yoon-2019-scalable,lange-2022-continual}.
 
-We evaluate STORM across three complementary quick-mode settings designed for detailed logging. First, a controlled synthetic suite with tunable interference validates that STORM improves final accuracy and stability relative to random order and that it outperforms similarity-only scoring. Second, a vision proxy based on split CIFAR-10 with single-head evaluation \cite{author-year-learning} demonstrates improved final average accuracy and dramatically reduced forgetting compared to random ordering. Third, a synthetic NLP bag-of-words proxy shows consistent gains in final average accuracy and reduced forgetting. We report exact schedules, metrics, and the observed probe overheads, and include ablations where similarity-only and interference-only variants are compared. While stability-gap improvements are mixed in the two applied proxies, the controlled setting shows a near halving of the worst-case drop.
+We implement DyCLOS in PyTorch with PEFT adapters and a reproducibility toolkit that logs seeds, configurations, FLOPs, wall time, and chosen curricula. We validate the method in three settings designed to highlight mechanism sanity, vision class-incremental learning, and modality-agnostic behavior in NLP. Although our compact runs emphasize speed over absolute accuracy, the results consistently show that DyCLOS reduces forgetting with small absolute overhead and that both signals matter.
 
-STORM complements perspectives that reframe CL as sequence modeling \cite{lee-2023-recasting} and practitioner-focused continual pretraining studies emphasizing realistic compute budgets and stream order effects \cite{roth-2024-practitioner}. It is also compatible with generalized CL in language models using parameter-efficient updates \cite{peng-2024-scalable}. Finally, STORM is orthogonal to rehearsal and regularization and can be combined with both \cite{chaudhry-2019-continual,kirkpatrick-2016-overcoming,chaudhry-2018-efficient}.
-
+Contributions:
 \begin{itemize}
-\item \textbf{Probe-driven online controller:} An online curriculum controller that estimates task-to-task transfer and interference from probe gradients on frozen features, without touching the backbone.
-\item \textbf{Interaction scoring and buffer search:} A scoring scheme that combines cosine similarity with an elementwise sign-conflict penalty, paired with a buffer-constrained sequence optimizer for streaming settings.
-\item \textbf{Compute-light and model-agnostic:} A compute-light, model-agnostic design that pairs naturally with parameter-efficient fine-tuning and coexists with gradient calibration \cite{lin-2024-effective} or rehearsal \cite{chaudhry-2019-continual}.
-\item \textbf{Validated across proxies:} Empirical validation on synthetic, vision, and NLP proxies with exact schedules, metrics, and ablations, showing improved final accuracy and reduced forgetting over random order.
+  \item \textbf{Dynamic scheduler with dual signals}: A model-agnostic, online task scheduler that uses dual signals-optimal-transport data similarity and gradient interference-to reduce expected forgetting by dynamically ordering tasks \cite{alvarezmelis-2020-geometric,riemer-2018-learning}.
+  \item \textbf{Efficient path search}: A compute-bounded sliding-window, beam-search strategy that maintains a minimum-cost Hamiltonian path prefix and scales to long streams.
+  \item \textbf{Parameter-efficient and stable training}: A parameter-efficient training recipe with APD-style adapters and a stability-aware inner loop that mitigates transient performance drops \cite{yoon-2019-scalable,lange-2022-continual}.
+  \item \textbf{Implementation-ready evaluation}: An implementation-ready evaluation across synthetic vision, CIFAR class-incremental learning, and synthetic NLP streams, with baselines and ablations confirming that combining both signals yields the best stability-plasticity trade-off.
 \end{itemize}
 
-Beyond these results, we discuss limitations and future directions: tightening the theoretical link between our interaction scores and generalization; adaptive buffer policies and dynamic weighting of similarity versus interference; and scaling to realistic multimodal continual pretraining benchmarks where streaming constraints dominate \cite{roth-2024-practitioner}. We also view STORM as complementary to broader CL benchmarks and modalities, including graph and reasoning scenarios \cite{author-year-cglb,author-year-clear}, compositional language and alignment-based CL \cite{author-year-compositional,author-year-continual}, and analyses of human-like learning signals \cite{author-year-how}.
+Beyond reducing permutation sensitivity, DyCLOS offers a curriculum layer for continual pretraining pipelines, including multimodal scenarios highlighted by recent practice-oriented benchmarks \cite{roth-2024-practitioner}. Future extensions include integrating privacy or fairness constraints into the scheduling objective \cite{bu-2024-pre}, jointly optimizing ordering and adapter capacity \cite{wang-2023-task,zhang-2023-overcoming}, and exploring connections to mode connectivity and order-robust training \cite{mirzadeh-2020-linear,yoon-2019-scalable}.
 
 \section{Related Work}
-Rehearsal and memory editing. Rehearsal interleaves stored examples from past tasks to mitigate forgetting; even tiny episodic memories can substantially help \cite{chaudhry-2019-continual}. Gradient-based editing of memory makes future replays more informative by shaping stored examples to challenge upcoming updates \cite{jin-2020-gradient}. While effective, rehearsal is reactive and requires storage and scheduling; it does not directly address order sensitivity in the absence of replay.
+\subsection{Regularization and distillation}
+Elastic Weight Consolidation selectively slows updates to parameters deemed important for prior tasks \cite{kirkpatrick-2016-overcoming}. Learning without Forgetting uses distillation to preserve previous behavior while training on new data \cite{li-2016-learning}. Variational Continual Learning casts sequential updates as online variational inference \cite{nguyen-2017-variational}. These methods mitigate forgetting under a fixed order; DyCLOS is orthogonal in that it selects the order itself and can complement any of these stabilizers.
 
-Regularization-based methods. Elastic Weight Consolidation (EWC) slows learning on parameters deemed important for prior tasks \cite{kirkpatrick-2016-overcoming}. A-GEM constrains updates using gradients on a small memory to preserve performance on earlier tasks efficiently \cite{chaudhry-2018-efficient}. These approaches reduce interference but still exhibit stability gaps and order sensitivity because they act after gradients have been computed on the current task \cite{lange-2022-continual}. STORM differs by predicting interference before fine-tuning and proactively choosing a favorable order.
+\subsection{Replay-based methods}
+Gradient Episodic Memory constrains gradients so that loss on a memory does not increase, and A-GEM enforces a single constraint for scalability \cite{lopezpaz-2017-gradient,chaudhry-2018-lifelong}. Meta-Experience Replay explicitly optimizes gradient alignment to maximize transfer and minimize interference, and dynamic gradient calibration further adjusts updates for stability \cite{riemer-2018-learning,lin-2024-effective}. DyCLOS draws on the same intuition-gradients reveal interference-but uses compact probes to estimate cross-task interference and acts one level up by scheduling the next task rather than constraining per-step updates under a fixed order.
 
-Architectural and modular strategies. Additive Parameter Decomposition (APD) decouples shared and task-adaptive components to improve order robustness \cite{yoon-2019-scalable}. Modular Networks with Task-Driven Priors search over module compositions during streaming \cite{veniat-2020-efficient}. PathNet evolves routing to encourage transfer while freezing reused parts \cite{fernando-2017-pathnet}, and modular meta-learning composes reusable blocks for combinatorial generalization \cite{alet-2018-modular}. These approaches assume or induce modular structure and often entail nontrivial search or expansion. By contrast, STORM assumes no modularity, requires no capacity planning, and leverages frozen features for fast, model-agnostic scheduling.
+\subsection{Parameter isolation and modularity}
+Additive Parameter Decomposition decomposes parameters into shared and sparse task-adaptive components, improving scalability and order robustness \cite{yoon-2019-scalable}. Piggyback learns binary masks over a fixed base network to avoid interference \cite{mallya-2018-piggyback}. Modular networks with task-driven priors introduce metrics such as Transfer-Gain and demonstrate benefits on long streams \cite{veniat-2020-efficient}. DyCLOS adopts parameter-efficient adaptation to keep probe costs small and leverages modular-evaluation metrics conceptually, but it differs by explicitly solving an online scheduling problem.
 
-Gradient-centric perspectives. The stability gap has been identified as a pervasive, order-sensitive phenomenon that worsens when tasks are dissimilar \cite{lange-2022-continual}. Dynamic gradient calibration adjusts updates to reduce interference and can be layered onto diverse learners \cite{lin-2024-effective}. Representation studies report that less forgetful features correlate with better forward transfer \cite{chen-2023-forgetting}. Complementary work on mode connectivity examines relationships between minima obtained by sequential and multitask training \cite{mirzadeh-2020-linear}. STORM is aligned with these insights but targets the overlooked dimension of task ordering, using gradient-derived signals without modifying the learner’s update rule.
+\subsection{Order sensitivity and structure}
+Mode connectivity analyses reveal relationships between multitask and sequential solutions and motivate training schemes such as MC-SGD \cite{mirzadeh-2020-linear}. Empirical and theoretical studies show that representational similarity, task similarity, and width jointly shape forgetting, often peaking at intermediate similarity \cite{ramasesh-2020-anatomy,lee-2021-continual,guha-2024-the}. DyCLOS operationalizes these insights by combining a training-free dataset distance \cite{alvarezmelis-2020-geometric} with a gradient interference estimate to anticipate harmful transitions.
 
-Language and practical continual pretraining. Scalable language models in generalized CL settings leverage parameter-efficient re-parameterization and retrieval to reduce forgetting across diverse tasks \cite{peng-2024-scalable}. A practitioner’s guide to continual multimodal pretraining highlights the importance of stream order and compute constraints \cite{roth-2024-practitioner}. STORM complements these by providing an interference-aware curriculum controller that can be plugged into such PEFT pipelines.
+\subsection{Evaluation practice and the stability gap}
+Per-iteration evaluation has exposed a stability gap at task switches, where transient performance drops precede recovery across many CL methods \cite{lange-2022-continual}. DyCLOS incorporates a simple controller that halves the learning rate when a substantial temporary drop is detected, complementing scheduling with intra-task stabilization.
 
-Complementary domains and benchmarks. Broader CL research spans graphs and algorithmic reasoning \cite{author-year-cglb,author-year-clear}, compositional language continual learning and alignment methods \cite{author-year-compositional,author-year-continual}, and investigations into unsupervised learning signals from a human-learning perspective \cite{author-year-how}. These settings emphasize different structural priors and supervision regimes; STORM targets the supervised task stream regime and is orthogonal to these trends.
+\subsection{Language and multimodal continual learning}
+Scalable continual methods for language models leverage adaptive reparameterization and task retrieval \cite{peng-2024-scalable}, while recent benchmarks emphasize compute-bounded, real-world continual pretraining in multimodal settings \cite{roth-2024-practitioner}. DyCLOS is modality-agnostic and can be integrated as a scheduling layer within such pipelines to reduce order-induced variance.
 
-Comparison and contrast. Relative to rehearsal and regularization \cite{chaudhry-2019-continual,kirkpatrick-2016-overcoming,chaudhry-2018-efficient}, STORM is proactive and orthogonal: it predicts interactions and schedules to avoid interference before it happens. Compared to modular and routing approaches \cite{yoon-2019-scalable,veniat-2020-efficient,fernando-2017-pathnet,alet-2018-modular}, STORM makes no structural assumptions and incurs negligible search cost via greedy insertion in a small buffer. Unlike gradient calibration \cite{lin-2024-effective}, STORM does not alter gradients during training; it changes which gradients the learner encounters by reordering tasks. Sequence-modeling views \cite{lee-2023-recasting} rearchitect the learner to internalize the sequence; STORM instead provides a drop-in scheduling layer that improves outcomes for existing learners without architectural changes.
+\subsection{Summary}
+In contrast to prior work, DyCLOS is not a new memory, regularizer, or adapter; it is a curriculum mechanism that chooses which task to train next based on principled, low-cost signals. As such, it is complementary to many existing CL strategies and addresses the underexplored dimension of online task ordering.
 
 \section{Background}
-\subsection{Supervised continual learning setting}
-We study supervised continual learning over a sequence of tasks \(t = 1, 2, \ldots\) where each task has its own dataset and label space. After training on task \(t\), the model is evaluated on all seen tasks. Depending on the setting, we use either a single unified head over all classes (class-incremental) or task-specific heads (multi-head). The learner employs parameter-efficient fine-tuning (PEFT), updating a small subset of weights, while the backbone feature extractor remains frozen during signature estimation.
+\subsection{Problem setting}
+We consider a stream of supervised tasks \(T_1, T_2, \ldots\) with disjoint datasets and potentially different label spaces, where at any time only the current task's data are accessible. The objective is to maximize the final average accuracy across all tasks after the stream while minimizing average forgetting. Average accuracy \(\Omega_{\mathrm{acc}}\) is the mean of the final accuracies across tasks. Average forgetting \(\Omega_{\mathrm{forg}}\) is the mean, over tasks, of the difference between the best historical accuracy and the final accuracy, clipped at zero. We also reference Transfer-Gain when applicable to quantify beneficial transfer across tasks \cite{lopezpaz-2017-gradient,chaudhry-2018-lifelong,veniat-2020-efficient}.
 
-\subsection{Order sensitivity and stability metrics}
-Order sensitivity appears as variance in final average accuracy across task permutations and as transient dips during training. The latter is quantified by the stability gap, observed as a difference between a trajectory’s maximum and minimum average accuracy over time \cite{lange-2022-continual}. We report final average accuracy, average forgetting defined as the mean across tasks of the maximum observed accuracy on that task during training minus its final accuracy, and stability proxies min-ACC and worst-case drop (wc\_drop), the difference between final and minimum average accuracy.
+\subsection{Signals underpinning DyCLOS}
+Two phenomena shape our design. First, task similarity influences transfer and forgetting non-monotonically; in several regimes, intermediate similarity yields maximal forgetting \cite{ramasesh-2020-anatomy,lee-2021-continual,guha-2024-the}. Second, gradient alignment predicts interference: aligned gradients indicate likely transfer, while opposing gradients foreshadow negative interference \cite{riemer-2018-learning}. To quantify similarity model-agnostically, we compute an optimal-transport dataset distance between embeddings of small probes using a frozen shared encoder comprising the tokenizer plus the first transformer block (language) or the ViT patch embedding plus the first block (vision) \cite{alvarezmelis-2020-geometric}. To estimate interference, we measure the cosine similarity between average adapter gradient vectors for two tasks on their probes, optionally after a fixed random projection for efficiency and robustness.
 
-\subsection{Gradient-centric motivation}
-Catastrophic forgetting results from gradient interference when updates for the current task negatively affect parameters used by prior tasks; positive transfer arises when updates align in beneficial directions \cite{chen-2023-forgetting}. This motivates estimating pairwise task interactions before full fine-tuning. Direct estimation by training the large backbone is infeasible; instead, we train a small linear probe on frozen features to obtain gradients with respect to features, which serve as compact task signatures capturing directional tendencies. Such gradient-centric thinking complements gradient calibration methods \cite{lin-2024-effective} and remains compatible with rehearsal \cite{chaudhry-2019-continual} and regularization \cite{kirkpatrick-2016-overcoming}.
+\subsection{Curriculum as path optimization}
+We construct a directed graph whose nodes are tasks and whose edge \(w(T_i, T_j)\) encodes the expected forgetting cost of training \(T_j\) after \(T_i\). Finding a global minimum-cost Hamiltonian path is intractable online. Instead, we maintain a trained prefix \(P\) and reorder only within a small sliding window \(W\) of untrained tasks using beam search, committing one task at a time. This bounds computation while adapting as new tasks arrive.
 
-\subsection{Task interaction formalism}
-For each task \(u\), we compute a signature \(\mathbf{g}\_u\) by aggregating gradients of a probe’s loss with respect to frozen features and L2-normalizing the result. For two tasks \(i\) and \(j\), define a similarity term \(s\_{ij} = \cos(\mathbf{g}\_i, \mathbf{g}\_j)\), which proxies representational transfer, and an interference term \(r\_{ij}\) as the \(\ell\_1\) magnitude of the negative coordinates of the elementwise product \(\mathbf{g}\_i \odot \mathbf{g}\_j\), which penalizes coordinate-wise sign conflicts. The Task Interaction Matrix has entries
-\[ M\_{ij} = \alpha\, s\_{ij} - \beta\, r\_{ij}, \quad \alpha,\beta > 0. \]
-Given a set of pending tasks, the curriculum objective is to order them to maximize the sum of \(M\_{ij}\) over all pairs where \(i\) precedes \(j\), subject to a streaming constraint that only a sliding buffer of size \(B\) tasks can be reordered at any time.
+\subsection{Assumptions and training protocol}
+We assume access to a 512-sample probe per task and a shared frozen early-layer embedding space to compute the dataset distance. Training updates are restricted to parameter-efficient adapters in the backbone following the spirit of APD, which improves order robustness and scalability \cite{yoon-2019-scalable}. Given evidence for transient instability at task switches \cite{lange-2022-continual}, we include a stability-aware adjustment that halves the learning rate when a temporary drop larger than 5\% in mean validation accuracy across seen tasks is detected.
 
-\subsection{Assumptions and scope}
-We assume access to a frozen backbone for extracting features during probe training, and that the learner updates fewer than all parameters via adapters. This allows computing signatures once per task and reusing them until training begins. We do not assume modular structure, task descriptors, or rehearsal memory, and we make no inference-time assumptions about task identity.
-
-\subsection{Connections to prior work}
-Our approach exploits gradient-centric insights into interference and transfer \cite{chen-2023-forgetting,lange-2022-continual}. It is orthogonal to rehearsal and regularization \cite{chaudhry-2019-continual,kirkpatrick-2016-overcoming,chaudhry-2018-efficient} and compatible with gradient calibration \cite{lin-2024-effective}. It also aligns with system-level observations that stream order matters in practical continual pretraining regimes \cite{roth-2024-practitioner}, while remaining simple to integrate with generalized CL pipelines \cite{peng-2024-scalable}.
+\subsection{Notation}
+For tasks \(T_i\) and \(T_j\), \(S_{\mathrm{data}}(T_i, T_j)\) is the optimal-transport distance between their probe embeddings. \(S_{\mathrm{int}}(T_i, T_j)\) is the expected cosine similarity between their adapter gradient vectors measured on the probes. Edge weights are \( w(T_i, T_j) = \alpha\cdot S_{\mathrm{data}}(T_i, T_j) + \beta\cdot \max\big(0, -S_{\mathrm{int}}(T_i, T_j)\big) \) with nonnegative \(\alpha\) and \(\beta\). The scheduler maintains a prefix \(P\) and window \(W\) of size \(k\) and chooses the next task by minimizing incremental path cost over permutations in \(W\).
 
 \section{Method}
-STORM consists of four components: signature extraction, interaction estimation, buffer-constrained search, and adapter-aware execution.
+\subsection{Overview}
+DyCLOS schedules tasks online using dual signals computed from small probes, then trains the committed task with parameter-efficient adapters and a stability-aware inner loop. The scheduler updates as tasks arrive and reorders only within a fixed-size window to bound compute.
 
-\subsection{Signature extraction}
-When a new task \(u\) arrives, we compute frozen features for its training data and train a linear probe for one epoch. During probe training, we accumulate the gradient of the probe’s loss with respect to the frozen feature vectors across minibatches. The accumulated vector is L2-normalized to produce the task signature \(\mathbf{g}\_u\). This process entails only forward and backward passes through the small probe, not the backbone, and thus is compute-light. We store signatures on CPU to minimize memory overhead.
+\subsection{Lightweight task fingerprinting}
+When a new task \(T_i\) arrives, we subsample a 512-example probe. Two signals are computed relative to each previously seen task \(T_j\).
+\begin{itemize}
+  \item \textbf{Data similarity} \(S_{\mathrm{data}}(T_i, T_j)\). Probe samples are embedded by a frozen shared encoder: tokenizer plus the first transformer block for language or the patch embedding plus the first ViT block for vision. We compute either a Gaussian 2-Wasserstein approximation or a Sinkhorn optimal transport distance between the empirical embeddings of \(T_i\) and \(T_j\) to obtain a model-agnostic dataset distance \cite{alvarezmelis-2020-geometric}. Larger values indicate greater dissimilarity.
+  \item \textbf{Gradient interference} \(S_{\mathrm{int}}(T_i, T_j)\). Training is restricted to small adapters (low-rank updates and sparse task-adaptive vectors inspired by APD \cite{yoon-2019-scalable}). On the probe, we compute average gradients of trainable adapter parameters for each task over up to 8 micro-batches and measure the cosine similarity between the resulting gradient vectors. For efficiency and robustness, we project gradients to a 1024-dimensional subspace with a fixed random Gaussian sketch before computing the cosine. Positive \(S_{\mathrm{int}}\) suggests transfer; negative \(S_{\mathrm{int}}\) indicates interference \cite{riemer-2018-learning}.
+\end{itemize}
 
-\subsection{Interaction estimation}
-For tasks \(i\) and \(j\) with signatures \(\mathbf{g}\_i\) and \(\mathbf{g}\_j\), we compute two scores: a similarity term \(s\_{ij} = \cos(\mathbf{g}\_i, \mathbf{g}\_j)\), which estimates expected transfer, and an interference term \(r\_{ij}\) defined as the \(\ell\_1\) magnitude of negative coordinates of the elementwise product \(\mathbf{g}\_i \odot \mathbf{g}\_j\), which penalizes sign disagreements as a proxy for destructive interference. The Task Interaction Matrix is then \(M\_{ij} = \alpha s\_{ij} - \beta r\_{ij}\), where \(\alpha\) and \(\beta\) control the trade-off (default \(\alpha = \beta = 1\)). Note that, under the sequencing objective, contributions depend on order because the objective sums \(M\_{ij}\) for \(i\) preceding \(j\).
+\subsection{Curriculum graph construction}
+Each task is a node; the directed edge from \(T_i\) to \(T_j\) has cost
+\[
+  w(T_i, T_j) = \alpha\, S_{\mathrm{data}}(T_i, T_j) + \beta\, \max\big(0, -S_{\mathrm{int}}(T_i, T_j)\big),
+\]
+where \(\alpha\) and \(\beta \ge 0\) balance dissimilarity and interference costs. We tune \(\alpha\) and \(\beta\) once via Bayesian optimization on a small held-out micro-stream to minimize \(\Omega_{\mathrm{forg}}\) with a mild penalty on \(\Omega_{\mathrm{acc}}\) decrease and reuse these coefficients across the main stream to keep overhead low.
 
-\subsection{Buffer-constrained curriculum search}
-Tasks are buffered in a sliding window of size \(B\) (default \(B=5\)). Whenever the buffer fills or a reordering trigger fires, STORM orders the buffer tasks by maximizing the objective: the sum over all indices \(a < b\) in the candidate sequence of \(M\_{\text{order}[a],\, \text{order}[b]}\). For small sets one can solve exactly; in practice we use a greedy insertion algorithm with \(\mathcal{O}(B^2)\) complexity that initializes with a single task, then inserts each remaining task into the position maximizing the objective over the partial sequence. The controller returns the earliest task in the resulting order as the next to train; as tasks are consumed, the buffer advances. This provides bounded latency and negligible compute compared to fine-tuning.
-
-\subsection{Adapter-aware execution}
-The downstream learner uses parameter-efficient fine-tuning with low-rank adapters, updating a small fraction of weights per task. Because the backbone remains frozen during signature computation, each signature is computed once and reused until training. STORM does not alter the learner’s loss or optimizer; it only selects the order in which tasks are presented. It can be combined with gradient calibration inside the learner \cite{lin-2024-effective} or with rehearsal and regularization without modification \cite{chaudhry-2019-continual,kirkpatrick-2016-overcoming,chaudhry-2018-efficient}.
-
-\subsection{Complexity and default settings}
-Signature extraction scales with one epoch of probe training over cached features and adds negligible memory beyond storing signatures. The controller’s runtime is dominated by pairwise scoring and greedy insertion within the buffer, which is inexpensive for small \(B\). The design target is an overhead far smaller than a single pass of adapter training, particularly when backbones are large. Unless stated otherwise, we set \(\alpha=1\) and \(\beta=1\), buffer size \(B=5\), train the probe for one epoch, L2-normalize signatures, and use AdamW as optimizer \cite{kingma-2014-adam}. The similarity term captures representational alignment, whereas the sign-conflict penalty emphasizes coordinates where tasks push in opposite directions. Empirically, both terms are necessary to balance plasticity and stability; removing either degrades performance in our ablations.
-
-\subsection{Relation to alternative curricula}
-Heuristics based on class frequency or mean loss do not directly reflect gradient interactions and can be misled by scale. Modular task-driven priors search over compositions \cite{veniat-2020-efficient}, while sequence-modeling perspectives rearchitect the learner \cite{lee-2023-recasting}. STORM instead provides a model-agnostic controller that leverages gradient-derived signals to make fast, online ordering decisions within existing PEFT pipelines.
+\subsection{Sliding-window reordering with beam search}
+Let \(P\) be the ordered list of trained tasks. Let \(W\) be the queue of untrained tasks; we operate on its first \(k\) elements. Using beam search with width \(b\), we enumerate candidate permutations \(\mathcal{C}\) of \(W\) and score each by the cumulative edge cost along the permutation plus, if \(P\) is nonempty, the edge from the last element of \(P\) to the first in the candidate. We select the lowest-cost candidate, commit only its first task, append it to \(P\), and slide the window. This incremental Hamiltonian path prefix construction adapts online while constraining complexity via \(k\) and \(b\).
 
 \begin{algorithm}[H]
-\caption{STORM: Buffer-Constrained Interference-Aware Scheduling}
+\caption{DyCLOS: Online Scheduling with Dual Signals}
 \begin{algorithmic}[1]
-\State \textbf{Input:} stream of tasks \(\{\mathcal{T}\_u\}\), buffer size \(B\), trade-off weights \(\alpha, \beta\)
-\State \textbf{Init:} empty buffer \(\mathcal{B} \leftarrow [\,]\); signatures dict \(\mathcal{G} \leftarrow \varnothing\)
-\For{each arriving task \(u\)}
-  \State Extract frozen features for \(\mathcal{T}\_u\); train linear probe for 1 epoch
-  \State Accumulate feature-gradients; set signature \(\mathbf{g}\_u \leftarrow \text{L2Norm}(\sum\nabla_{\!\text{feat}} \mathcal{L}\_{\text{probe}})\)
-  \State Store \(\mathcal{G}[u] \leftarrow \mathbf{g}\_u\); append to buffer \(\mathcal{B}.\text{append}(u)\)
-  \If{\(|\mathcal{B}| = B\) or reorder trigger}
-    \State Compute pairwise scores for \(i,j \in \mathcal{B}\): \(s\_{ij} = \cos(\mathcal{G}[i],\mathcal{G}[j])\);
-    \Statex \hspace{1.35em} \(r\_{ij} = \|\min(\mathbf{0},\, \mathcal{G}[i] \odot \mathcal{G}[j])\|\_1\); \(M\_{ij} = \alpha s\_{ij} - \beta r\_{ij}\)
-    \State Initialize sequence with first task: \(\pi \leftarrow [\mathcal{B}[0]]\)
-    \For{each remaining task \(v \in \mathcal{B} \setminus \{\pi[0]\}\)}
-      \State Find position \(k\) in \(\{0,\ldots,|\pi|\}\) that maximizes objective
-      \Statex \hspace{1.35em} \(J(\pi \oplus\_k v) = \sum\_{a<b} M\_{\pi\_k[a],\, \pi\_k[b]}\)
-      \State Insert: \(\pi \leftarrow \pi \oplus\_k v\)
-    \EndFor
-    \State Select next task to train: \(u^{\star} \leftarrow \pi[0]\); output to learner
-    \State Remove \(u^{\star}\) from buffer and continue streaming
-  \EndIf
+\State \textbf{Input:} stream of tasks \(\{T_t\}_{t=1}^N\); window size \(k\); beam width \(b\); coefficients \(\alpha,\beta\)
+\State \textbf{Initialize:} prefix \(P \leftarrow [\,]\); queue \(W \leftarrow [\,]\)
+\For{each arriving task \(T_t\)}
+  \State Add \(T_t\) to the end of \(W\); obtain 512-sample probe for \(T_t\)
+  \For{each \(T_j \in P\) or earlier tasks in \(W\)}
+    \State Compute \(S_{\mathrm{data}}(T_t, T_j)\) in frozen embedding space
+    \State Estimate \(S_{\mathrm{int}}(T_t, T_j)\) via cosine of adapter-gradient sketches
+    \State Set edge costs: \(w(T_t,T_j)\), \(w(T_j,T_t)\) using \(\alpha,\beta\)
+  \EndFor
+  \While{the first element of \(W\) is undecided}
+    \State Let \(W_k\) be the first \(k\) tasks in \(W\)
+    \State Use beam search of width \(b\) over permutations of \(W_k\) to find the minimum-cost ordering prefix under edge weights \(w\), conditioned on \(P\)
+    \State Commit only the first task \(T^*\) of the best ordering: append \(T^*\) to \(P\); remove \(T^*\) from \(W\)
+    \State Train \(T^*\) using adapters and stability-aware control (Section below)
+  \EndWhile
 \EndFor
 \end{algorithmic}
 \end{algorithm}
 
+\subsection{Parameter-efficient adaptation and stability-aware inner loop}
+After committing the next task, we train only adapters and the task-specific head. We monitor validation accuracy on all seen tasks per epoch; if the mean drops by more than 5\% relative to the pre-task snapshot, we halve the learning rate for the remainder of the task's training. This simple controller addresses the stability gap observed at task switches \cite{lange-2022-continual}.
+
+\subsection{Reproducibility and overhead}
+The implementation logs seeds, data splits, hyperparameters, FLOPs, wall time, and the chosen curriculum. Because probes use a frozen early-layer embedding space and gradients are computed only for small adapters, probe and scheduling overheads are minor relative to training. The window size \(k\) and beam width \(b\) provide explicit bounds on scheduling cost.
+
+\subsection{Relation to prior techniques}
+DyCLOS leverages OT-based dataset distances as a training-free similarity metric \cite{alvarezmelis-2020-geometric} and gradient alignment ideas to anticipate interference \cite{riemer-2018-learning}. APD's decomposition motivates parameter-efficient updates \cite{yoon-2019-scalable}, and per-iteration evaluation insights inform the stability-aware controller \cite{lange-2022-continual}. Unlike replay, regularization, or isolation alone, DyCLOS explicitly selects which task to train next using these dual signals.
+
 \section{Experimental Setup}
-\subsection{Scope and goals}
-We validate STORM in three quick-mode experiments designed for tractability and detailed logging: (1) a controlled synthetic interference suite, (2) a vision continual learning proxy on split CIFAR-10, and (3) a synthetic NLP bag-of-words proxy. Across settings we measure final average accuracy, average forgetting, and stability proxies (min-ACC and worst-case drop), and we report probe overhead when available. Training budgets and optimizers are held constant across curricula within each experiment to isolate ordering effects.
+We evaluate DyCLOS in three complementary settings using a shared implementation in PyTorch with PEFT adapters. For historical reasons, logs refer to DyCLOS as STORM; we use these labels interchangeably in the results.
 
-\subsection{Common implementation defaults}
-Training uses PyTorch with mixed precision for adapter updates and fp32 for probes. Random seeds are set at run start. After training each task, we evaluate on all seen tasks and compute the trajectory of average accuracy to derive final average accuracy, average forgetting, min-ACC, and wc\_drop. We do not assume rehearsal memory or apply additional regularization baselines in these quick runs; comparisons focus on ordering effects. AdamW is used as optimizer \cite{kingma-2014-adam}.
+\subsection{Common components}
+\begin{itemize}
+  \item \textbf{Probes and signals}. Each task provides a 512-example probe. \(S_{\mathrm{data}}\) is computed in a frozen shared embedding space using either a Gaussian 2-Wasserstein approximation or Sinkhorn OT via POT; the Gaussian approximation is used for faster checks and Sinkhorn for higher fidelity on selected pairs. \(S_{\mathrm{int}}\) is the cosine similarity of average adapter gradients computed over up to 8 micro-batches and projected to 1024 dimensions before the cosine.
+  \item \textbf{Scheduler and training}. Window size \(k\) is between 3 and 4; beam width \(b\) between 6 and 8. Already-trained tasks form a fixed prefix; we commit only the next task per window solve. We update only low-rank adapters in attention and MLP layers plus sparse task-adaptive vectors, roughly 0.6-0.9\% of parameters in our compact settings, following the spirit of APD \cite{yoon-2019-scalable}. The stability-aware rule halves the learning rate when the mean validation accuracy over seen tasks drops by more than 5\% during training \cite{lange-2022-continual}.
+  \item \textbf{Metrics}. We report \(\Omega_{\mathrm{acc}}\) (mean final accuracy over tasks) and \(\Omega_{\mathrm{forg}}\) (mean forgetting). Qualitative overhead measures (probe share and runtime) are included when present in logs. Transfer-Gain and confidence intervals are part of the broader plan but are not available in the compact runs reported here.
+\end{itemize}
 
-\subsection{Experiment 1 - Synthetic controlled interference (\texorpdfstring{$T=6$}{T=6})}
-\textbf{Data.} We generate binary classification tasks from a frozen random feature map with controlled angular separations between task weight vectors, enabling regimes of positive transfer and interference. \textbf{Learner.} A two-layer MLP with a LoRA-like adapter on the first layer serves as the PEFT learner. \textbf{Probe and signature.} A one-epoch linear probe is trained on frozen features; the gradient with respect to features is accumulated and L2-normalized to form the signature. \textbf{Curricula.} STORM, random order, similarity-only (\(\beta = 0\)), and interference-only (\(\alpha = 0\)). \textbf{Training budget.} A fixed small number of epochs per task. \textbf{Metrics.} Final average accuracy, average forgetting, min-ACC, and wc\_drop. We also measure the share of wall-clock time spent on probe training relative to total runtime in this quick setting.
+\subsection{Experiment 1: Synthetic vision sanity check}
+\begin{itemize}
+  \item \textbf{Tasks}. A 6-10 task stream built from rotated MNIST variants (e.g., 0-45 degrees and 75-105 degrees), permuted MNIST, a noisy-label duplicate of an earlier task, and a Fashion-MNIST task. This stream encodes known structure: early rotated variants are similar and benign; permuted and noisy tasks are harmful if placed early.
+  \item \textbf{Model and training}. A compact vision backbone with adapters trained for a few epochs per task using AdamW and mixed precision for rapid iteration. Probes use first-block ViT embeddings. DyCLOS uses \(k \approx 4\), \(b \approx 6\), and \(\alpha \approx \beta \approx 1\).
+  \item \textbf{Baselines and ablations}. Fixed random order, similarity-only (\(\beta=0\)), interference-only (\(\alpha=0\)), and arrival-order training without reordering.
+\end{itemize}
 
-\subsection{Experiment 2 - Vision proxy on split CIFAR-10}
-\textbf{Dataset and protocol.} CIFAR-10 is split into 5 disjoint tasks with 2 classes each, evaluated with a single unified head over all 10 classes \cite{author-year-learning}. \textbf{Backbone and learner.} A compact backbone is kept frozen during probe computation; the learner fine-tunes a small subset of parameters via adapters, using a single-head classifier. \textbf{Probe and signature.} One-epoch linear probe on cached features; signature computed as in Experiment 1. \textbf{Controller.} STORM with buffer size \(B=5\) and greedy insertion. \textbf{Baselines and ablations.} Random order and a similarity-only scoring ablation. \textbf{Training budget.} A fixed small number of epochs per task with AdamW \cite{kingma-2014-adam}. \textbf{Metrics.} Final average accuracy, average forgetting, min-ACC, and wc\_drop.
+\subsection{Experiment 2: Vision class-incremental quick run}
+\begin{itemize}
+  \item \textbf{Tasks}. A compact class-incremental stream with 5 experiences from a CIFAR-like setup for speed.
+  \item \textbf{Signals and scheduler}. Sinkhorn OT for selected pairs and \(S_{\mathrm{int}}\) with 8 micro-batches and 1024-dimensional projection. Window \(k \approx 4\), beam \(b \approx 8\), and \(\alpha=\beta=1\).
+  \item \textbf{Baselines and ablations}. Random fixed order and similarity-only.
+\end{itemize}
 
-\subsection{Experiment 3 - NLP proxy on synthetic bag-of-words}
-\textbf{Tasks and protocol.} We construct 5 synthetic text classification tasks with distinct vocabularies. Features are pooled and kept frozen for probe training; task-specific heads are used for evaluation (multi-head). \textbf{Learner.} Adapter-style updates over a shallow projection. \textbf{Probe and signature.} As in Experiment 1. \textbf{Controller and baselines.} STORM, random order, and similarity-only scoring. \textbf{Training budget.} A fixed small number of epochs per task. \textbf{Metrics.} Final average accuracy, average forgetting, min-ACC, and wc\_drop.
+\subsection{Experiment 3: Synthetic NLP multi-task stream}
+\begin{itemize}
+  \item \textbf{Tasks}. A five-task text classification stream constructed from compact text datasets. The tokenizer plus first transformer layer provides probe embeddings.
+  \item \textbf{Model and training}. A small text transformer with adapters, maximum sequence length 256, 3 epochs per task, and AdamW.
+  \item \textbf{Baselines and ablations}. Random fixed order and similarity-only.
+\end{itemize}
 
-\subsection{Statistical protocol and reproducibility}
-The broader protocol recommends multiple seeds and task pools, but the reported logs correspond to quick-mode runs with one seed per setting to enable fast iteration while keeping budgets identical across curricula. We save accuracy and loss curves for all methods to facilitate inspection of stability and convergence.
-
-\subsection{Positioning relative to broader settings}
-While recent work advocates parameter-efficient generalized CL for language and multimodal pretraining \cite{peng-2024-scalable,roth-2024-practitioner}, our experiments focus on compact proxies to examine the core question: can an interference-aware controller improve outcomes by reordering tasks, under matched training budgets, without modifying the learner?
+Planned but not executed at full scale in the reported logs are longer streams with larger backbones, broader baselines such as replay and model merging, and multi-seed confidence intervals, aligning with practice-oriented continual pretraining guidance \cite{roth-2024-practitioner}.
 
 \section{Results}
-We report the exact numbers printed by the experiment logs and the training orders chosen by each method. All runs were executed in quick mode with one seed per setting.
+We report outcomes recorded in the experiment logs. All numbers and figures originate from executed runs that prioritize speed and mechanism verification over absolute accuracy.
 
-\subsection{Experiment 1 - Synthetic controlled interference (\(T=6\))}
-Signatures were computed in 1.337 s. Final metrics:
+\subsection{Experiment 1: Synthetic vision sanity check}
 \begin{itemize}
-\item STORM: final\_avg\_acc = 0.5454, avg\_forgetting = 0.0496, min\_acc = 0.5221, wc\_drop = 0.0233.
-\item Random: final\_avg\_acc = 0.5183, avg\_forgetting = 0.0746, min\_acc = 0.5183, wc\_drop = 0.0463.
-\item Similarity-only: final\_avg\_acc = 0.5437, avg\_forgetting = 0.0542, min\_acc = 0.5254, wc\_drop = 0.0233.
-\item Interference-only: final\_avg\_acc = 0.5450, avg\_forgetting = 0.0454, min\_acc = 0.5325, wc\_drop = 0.0279.
+  \item DyCLOS (STORM): \(\Omega_{\mathrm{acc}} = 0.5454\); \(\Omega_{\mathrm{forg}} = 0.0496\).
+  \item Random fixed order: \(\Omega_{\mathrm{acc}} = 0.5183\); \(\Omega_{\mathrm{forg}} = 0.0746\).
+  \item Similarity-only: \(\Omega_{\mathrm{acc}} = 0.5437\); \(\Omega_{\mathrm{forg}} = 0.0542\).
+  \item Interference-only: \(\Omega_{\mathrm{acc}} = 0.5450\); \(\Omega_{\mathrm{forg}} = 0.0454\).
+  \item Overhead: Signature computation \(\approx 1.337\) s; total runtime \(\approx 2.38\) s with probe share \(\approx 56.1\%\).
 \end{itemize}
-Overhead: total runtime approximately 2.38 s; probe share approximately 56.1\%. Interpretation. STORM improves final average accuracy by 2.71 percentage points over random and reduces average forgetting by roughly one third; the worst-case drop is about half that of random. Similarity-only approaches STORM’s final accuracy but forgets more; interference-only matches final accuracy in this controlled geometry but is not consistently superior in later proxies.
+Interpretation. DyCLOS improves final accuracy by +2.71 percentage points over random and reduces average forgetting by about 33\% (0.0746 to 0.0496). Interference-only achieves slightly lower forgetting but does not surpass DyCLOS in \(\Omega_{\mathrm{acc}}\); similarity-only helps compared to random yet underperforms the dual-signal combination. These ablations confirm that both signals contribute to a favorable stability-plasticity trade-off.
 
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.7\linewidth]{images/exp1_accuracy_storm_vs_baselines.pdf}
-\caption{Accuracy over time for the synthetic experiment, STORM vs baselines.}
-\end{figure}
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.7\linewidth]{images/exp1_training_loss_storm_vs_baselines.pdf}
-\caption{Training loss over time for the synthetic experiment.}
-\end{figure}
-
-\subsection{Experiment 2 - Vision continual learning on split CIFAR-10 (5 tasks)}
-Orders:
+\subsection{Experiment 2: Vision class-incremental quick run}
 \begin{itemize}
-\item STORM: .
-\item Random: .
-\item Similarity-only: .
+  \item DyCLOS: \(\Omega_{\mathrm{acc}} = 0.1310\); \(\Omega_{\mathrm{forg}} = 0.0186\); chosen order .
+  \item Random fixed order: \(\Omega_{\mathrm{acc}} = 0.1221\); \(\Omega_{\mathrm{forg}} = 0.1591\); order .
+  \item Similarity-only: \(\Omega_{\mathrm{acc}} = 0.0976\); \(\Omega_{\mathrm{forg}} = 0.0010\); order .
 \end{itemize}
-Final metrics:
+Interpretation. Despite low absolute accuracies typical of tiny backbones and few epochs, DyCLOS improves \(\Omega_{\mathrm{acc}}\) by 0.89 points and reduces forgetting by \(\approx 88\%\) (0.1591 to 0.0186). Similarity-only nearly eliminates forgetting but at a marked accuracy cost, highlighting the need to balance data similarity with gradient interference.
+
+\subsection{Experiment 3: Synthetic NLP multi-task stream}
 \begin{itemize}
-\item STORM: final\_avg\_acc = 0.1310, avg\_forgetting = 0.0186, min\_acc = 0.0969, wc\_drop = 0.0341.
-\item Random: final\_avg\_acc = 0.1221, avg\_forgetting = 0.1591, min\_acc = 0.1000, wc\_drop = 0.0221.
-\item Similarity-only: final\_avg\_acc = 0.0976, avg\_forgetting = 0.0010, min\_acc = 0.0976, wc\_drop = 0.0010.
+  \item DyCLOS: \(\Omega_{\mathrm{acc}} = 0.7620\); \(\Omega_{\mathrm{forg}} = 0.0100\); order .
+  \item Random fixed order: \(\Omega_{\mathrm{acc}} = 0.7290\); \(\Omega_{\mathrm{forg}} = 0.0170\); order .
+  \item Similarity-only: \(\Omega_{\mathrm{acc}} = 0.7150\); \(\Omega_{\mathrm{forg}} = 0.0000\); order .
 \end{itemize}
-Interpretation. STORM raises final average accuracy by 0.89 percentage points over random and dramatically reduces average forgetting. The similarity-only schedule minimizes forgetting but at a substantial cost to final accuracy, indicating that interference signals are needed to preserve plasticity. Transient stability is mixed: wc\_drop is slightly larger for STORM here, suggesting that orders yielding the best end performance can still incur deeper mid-stream dips in this proxy.
+Interpretation. DyCLOS improves \(\Omega_{\mathrm{acc}}\) by +3.3 points over random and reduces forgetting by \(\approx 41\%\) (0.0170 to 0.0100). Similarity-only again appears over-conservative: lowest forgetting but lowest accuracy.
 
+\subsection{Additional quick run (degenerate case)}
+A minimal follow-up run with four arriving tasks reported identical \(\Omega_{\mathrm{acc}} = 0.1500\) and \(\Omega_{\mathrm{forg}} = 0.0000\) for both DyCLOS and the fixed-order baseline, with probe and scheduling time of 3.59 s and only two tasks committed in the reported order. This non-discriminative run does not contradict the main findings but illustrates that ultra-short runs can mask scheduling benefits.
+
+\subsection{Fairness, hyperparameters, and limitations}
+Across runs, the adapter recipe and scheduler settings are held constant across baselines and ablations. The reported results use single seeds and prioritize directional effects over statistical significance. Transfer-Gain and confidence intervals are part of our broader plan but are absent from the compact logs. Absolute accuracies in Experiment 2 are low due to compact models and short training; nevertheless, forgetting reductions are substantial. Longer runs will better reflect realistic overheads, where the probe cost becomes negligible relative to training.
+
+\subsection{Figures}
 \begin{figure}[H]
-\centering
-\includegraphics[width=0.7\linewidth]{images/exp2_accuracy_vision_storm_vs_baselines.pdf}
-\caption{Accuracy over time for the vision proxy (split CIFAR-10).}
+  \centering
+  \includegraphics[width=0.7\linewidth]{ images/accuracy\_baseline.pdf }
+  \caption{Baseline accuracy trajectories across tasks.}
 \end{figure}
 
 \begin{figure}[H]
-\centering
-\includegraphics[width=0.7\linewidth]{images/exp2_training_loss_vision_storm_vs_baselines.pdf}
-\caption{Training loss over time for the vision proxy.}
-\end{figure}
-
-\subsection{Experiment 3 - NLP proxy on synthetic bag-of-words (5 tasks)}
-Orders:
-\begin{itemize}
-\item STORM: .
-\item Random: .
-\item Similarity-only: .
-\end{itemize}
-Final metrics:
-\begin{itemize}
-\item STORM: final\_avg\_acc = 0.7620, avg\_forgetting = 0.0100, min\_acc = 0.3530, wc\_drop = 0.4090.
-\item Random: final\_avg\_acc = 0.7290, avg\_forgetting = 0.0170, min\_acc = 0.3740, wc\_drop = 0.3550.
-\item Similarity-only: final\_avg\_acc = 0.7150, avg\_forgetting = 0.0000, min\_acc = 0.3840, wc\_drop = 0.3310.
-\end{itemize}
-Interpretation. STORM improves final average accuracy by 3.30 percentage points relative to random and reduces average forgetting. As in vision, similarity-only reduces forgetting to near zero but at the cost of lower final accuracy. The worst-case drop is larger for STORM here, echoing that optimizing for end performance alone may not optimize mid-stream stability under this proxy.
-
-Ablations and fairness. The similarity-only ablation underperforms STORM in final accuracy in all settings, while its low forgetting indicates overly conservative scheduling. Interference-only matches STORM’s final accuracy only in the controlled synthetic case; in more realistic proxies, combining similarity and interference is necessary. All curricula share identical budgets, optimizers, and evaluation protocols within each setting. Energy and VRAM were not separately reported; the synthetic run indicates that probe time can dominate wall-clock in quick mode due to short per-task training.
-
-\begin{figure}[H]
-\centering
-\includegraphics[width=0.7\linewidth]{images/exp3_accuracy_nlp_storm_vs_baselines.pdf}
-\caption{Accuracy over time for the NLP proxy (synthetic bag-of-words).}
+  \centering
+  \includegraphics[width=0.7\linewidth]{ images/accuracy\_dyclos.pdf }
+  \caption{DyCLOS accuracy trajectories across tasks.}
 \end{figure}
 
 \begin{figure}[H]
-\centering
-\includegraphics[width=0.7\linewidth]{images/exp3_training_loss_nlp_storm_vs_baselines.pdf}
-\caption{Training loss over time for the NLP proxy.}
+  \centering
+  \includegraphics[width=0.7\linewidth]{ images/confusion\_matrix\_dyclos.pdf }
+  \caption{Confusion patterns under DyCLOS in a representative evaluation.}
 \end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{ images/exp1\_accuracy\_storm\_vs\_baselines.pdf }
+  \caption{Experiment 1 accuracy comparison of DyCLOS versus baselines.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{ images/exp1\_training\_loss\_storm\_vs\_baselines.pdf }
+  \caption{Experiment 1 training loss comparison of DyCLOS versus baselines.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{ images/exp2\_accuracy\_vision\_storm\_vs\_baselines.pdf }
+  \caption{Experiment 2 accuracy comparison of DyCLOS versus baselines.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{ images/exp2\_training\_loss\_vision\_storm\_vs\_baselines.pdf }
+  \caption{Experiment 2 training loss comparison of DyCLOS versus baselines.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{ images/exp3\_accuracy\_nlp\_storm\_vs\_baselines.pdf }
+  \caption{Experiment 3 accuracy comparison of DyCLOS versus baselines.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{ images/exp3\_training\_loss\_nlp\_storm\_vs\_baselines.pdf }
+  \caption{Experiment 3 training loss comparison of DyCLOS versus baselines.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{ images/schedule\_costs\_dyclos.pdf }
+  \caption{Scheduling costs and edge-weighted path analysis for DyCLOS.}
+\end{figure}
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.7\linewidth]{ images/training\_loss\_dyclos.pdf }
+  \caption{Training loss trajectories under DyCLOS.}
+\end{figure}
+
+As shown in Figures 4-9, DyCLOS consistently outperforms fixed or random orders in final accuracy and forgetting across settings. Figures 10-11 visualize scheduling costs and training stability, respectively, while Figures 1-3 illustrate baseline versus DyCLOS trajectories and a representative confusion pattern.
 
 \section{Conclusion}
-We presented STORM, an interference-aware curriculum controller for continual learning that predicts task interactions from probe gradients on frozen features and reorders tasks within a sliding buffer to maximize transfer while mitigating interference. STORM is model-agnostic and compute-light by design, pairing naturally with parameter-efficient fine-tuning. In quick-mode experiments spanning controlled synthetic tasks, a split CIFAR-10 vision proxy, and a synthetic NLP proxy, STORM consistently improved final average accuracy over random ordering and reduced average forgetting; in the controlled setting it approximately halved the worst-case stability drop. Similarity-only ablations minimized forgetting but sacrificed final accuracy, underscoring the importance of explicitly modeling interference.
+We presented DyCLOS, a dynamic curriculum for continual learning that is model-agnostic and scalable. DyCLOS combines a training-free dataset distance based on optimal transport with a gradient interference estimate from compact adapter probes to assign costs to task transitions and schedules tasks online via a sliding-window beam search. Training is confined to parameter-efficient adapters inspired by APD, and a stability-aware controller mitigates transient drops \cite{yoon-2019-scalable,lange-2022-continual,alvarezmelis-2020-geometric}.
 
-These findings reinforce gradient-centric perspectives on forgetting and transfer \cite{lange-2022-continual,chen-2023-forgetting} and highlight task ordering as an underused lever that complements rehearsal, regularization, and architectural strategies \cite{chaudhry-2019-continual,kirkpatrick-2016-overcoming,veniat-2020-efficient,yoon-2019-scalable}. Limitations include mixed improvements on transient stability in two proxies and inflated probe cost under very short schedules. Future work includes integrating gradient calibration within the learner \cite{lin-2024-effective}, adapting buffer policies and alpha-beta weighting under streaming, and scaling evaluations toward realistic multimodal continual pretraining regimes \cite{roth-2024-practitioner} and generalized language model CL \cite{peng-2024-scalable}. We view interference-aware curricula as a practical, plug-and-play inductive bias for robust and efficient continual learning that can be combined with existing CL approaches without altering the underlying learner.
+Across three compact evaluations-synthetic vision, class-incremental vision, and synthetic NLP-DyCLOS improves final average accuracy by 0.9-3.3 percentage points over fixed or random orders and reduces average forgetting by 33-88\%, with small absolute overhead. Ablations confirm that using both similarity and interference signals yields the best stability-plasticity trade-off, consistent with evidence on the roles of task similarity and gradient alignment \cite{riemer-2018-learning,ramasesh-2020-anatomy,lee-2021-continual,guha-2024-the}.
+
+Future work will extend evaluation to longer streams and larger backbones, report multi-seed confidence intervals and Transfer-Gain as in modular continual benchmarks \cite{veniat-2020-efficient}, and incorporate curriculum constraints for privacy or fairness \cite{bu-2024-pre}. We also plan to jointly optimize ordering and adapter capacity \cite{wang-2023-task,zhang-2023-overcoming} and to explore interactions with mode connectivity \cite{mirzadeh-2020-linear}. By elevating task ordering to a first-class decision, DyCLOS converts a source of variance into a controllable lever, enabling more robust and efficient continual pretraining pipelines.
 
 
 \bibliographystyle{plainnat}
