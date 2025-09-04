@@ -177,6 +177,6 @@ def build_e3_tasks_text(num_tasks: int = 4, probe_size: int = 256, batch_size: i
 
 
 def prepare_output_dirs() -> str:
-    out_dir = os.path.join('.research', 'iteration1', 'images')
+    out_dir = os.path.join('.research', 'iteration2', 'images')
     ensure_dir(out_dir)
     return out_dir

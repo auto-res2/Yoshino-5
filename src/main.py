@@ -7,12 +7,12 @@ from typing import Dict, Any, List
 import yaml
 import torch
 
-from .preprocess import set_seed, build_e1_tasks_vision, build_e3_tasks_text, prepare_output_dirs
-from .train import (
+from preprocess import set_seed, build_e1_tasks_vision, build_e3_tasks_text, prepare_output_dirs
+from train import (
     TinyCNN, TinyTextTransformer, get_trainable_params, ContinualTrainer, DyCLOSScheduler,
     compute_signals_for_new_task_vision, compute_signals_for_new_task_text, run_baseline_fixed_order
 )
-from .evaluate import (
+from evaluate import (
     plot_training_loss, plot_accuracy_curves, plot_schedule_costs, plot_confusion_matrix, summarize_results
 )
 
