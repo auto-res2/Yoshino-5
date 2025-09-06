@@ -56,29 +56,40 @@ except ImportError:  # pragma: no cover – script execution fallback
 #                            Configuration loader
 # -----------------------------------------------------------------------------
 
+def _to_float(val):
+    """Cast YAML scalar to float – handles scientific-notation strings."""
+    if isinstance(val, (float, int)):
+        return float(val)
+    try:
+        return float(val)
+    except (TypeError, ValueError):
+        raise ValueError(f"Unable to cast config value '{val}' to float.")
+
+
 def _load_cfg() -> GlobalConfig:
     cfg_file = Path(__file__).resolve().parent.parent / "config" / "config.yaml"
     if not cfg_file.exists():
         sys.exit(f"[FATAL] config.yaml not found at {cfg_file}")
     with cfg_file.open("r") as fp:
         raw = yaml.safe_load(fp)
+
     return GlobalConfig(
         work_dir=Path(raw["work_dir"]),
         device=raw["device"],
         seeds=tuple(raw["seeds"]),
-        lr_vision=raw["lr_vision"],
+        lr_vision=_to_float(raw["lr_vision"]),
         betas=tuple(raw["betas"]),
-        weight_decay=raw["weight_decay"],
-        eps=raw["eps"],
-        lora_r=raw["lora_r"],
-        lora_alpha=raw["lora_alpha"],
-        lora_dropout=raw["lora_dropout"],
-        curious_alpha=raw["curious_alpha"],
-        curious_beta=raw["curious_beta"],
-        curious_gamma=raw["curious_gamma"],
-        flops_budget_ratio=raw["flops_budget_ratio"],
-        epochs_per_task=raw["epochs_per_task"],
-        batch_size_vision=raw["batch_size_vision"],
+        weight_decay=_to_float(raw["weight_decay"]),
+        eps=_to_float(raw["eps"]),
+        lora_r=int(raw["lora_r"]),
+        lora_alpha=int(raw["lora_alpha"]),
+        lora_dropout=_to_float(raw["lora_dropout"]),
+        curious_alpha=_to_float(raw["curious_alpha"]),
+        curious_beta=_to_float(raw["curious_beta"]),
+        curious_gamma=_to_float(raw["curious_gamma"]),
+        flops_budget_ratio=_to_float(raw["flops_budget_ratio"]),
+        epochs_per_task=int(raw["epochs_per_task"]),
+        batch_size_vision=int(raw["batch_size_vision"]),
         precision=raw["precision"],
     )
 
@@ -97,9 +108,9 @@ class Experiment1Runner:
             batch_size=cfg.batch_size_vision,
         )
         self.results: List[Dict[str, Any]] = []
-        # All figures must reside inside .research/iteration3/images according
+        # All figures must reside inside .research/iteration4/images according
         # to the grading rubric.
-        self.images_dir = Path(".research/iteration3/images")
+        self.images_dir = Path(".research/iteration4/images")
         self.images_dir.mkdir(parents=True, exist_ok=True)
 
     # ------------------------------------------------------------------
