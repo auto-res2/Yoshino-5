@@ -1,9 +1,9 @@
 """src/train.py
-Contains model creation, schedulers and the main ContinualLearner class that
-performs training for one continual–learning run.
-All dataclasses from the original monolithic script have been replaced by a
-light-weight AttrDict so that the configuration loaded from YAML can be
-accessed via the familiar dot notation (cfg.xxx).
+Fixed:
+1. Replaced package-relative imports (``from .evaluate``) with direct sibling imports so the file can be executed when the
+   project is *not* installed as a package but simply launched via ``python src/main.py``.
+2. Added a robust CPU fallback for OTDD distance computation so that CuPy / ``ot.gpu`` is optional – this prevents
+   crashes when a GPU backend is unavailable (common in CI environments).
 """
 from __future__ import annotations
 
@@ -44,7 +44,8 @@ def set_seed(sd: int):
     random.seed(sd)
     np.random.seed(sd)
     torch.manual_seed(sd)
-    torch.cuda.manual_seed_all(sd)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(sd)
 
 
 def device():
@@ -86,6 +87,14 @@ def distilgpt2_with_lora(cfg):
 # schedulers ----------------------------------------------------------------
 # --------------------------------------------------------------------------
 import ot
+
+# optional GPU Sinkhorn ------------------------------------------------------
+try:
+    from ot.gpu import sinkhorn as _gpu_sinkhorn  # type: ignore
+    _HAS_GPU_SINKHORN = True
+except Exception:  # pragma: no cover – any import issue → use CPU fallback
+    _HAS_GPU_SINKHORN = False
+
 class SimilarityCache:
     def __init__(self):
         self.otdd: Dict[tuple, float] = {}
@@ -106,15 +115,30 @@ class CuriousScheduler:
     def _cos_conflict(self, g_new: torch.Tensor, g_ref: torch.Tensor) -> float:
         return -F.cosine_similarity(g_new.flatten(), g_ref.flatten(), dim=0).item()
 
+    # ------------------------------------------------------------------
     def _otdd(self, feat_a: torch.Tensor, feat_b: torch.Tensor) -> float:
         key = (id(feat_a), id(feat_b))
         if key in self.cache.otdd:
             return self.cache.otdd[key]
-        M = ot.dist(feat_a, feat_b, metric="euclidean")
-        a = torch.full((feat_a.size(0),), 1.0 / feat_a.size(0), device=feat_a.device)
-        b = torch.full((feat_b.size(0),), 1.0 / feat_b.size(0), device=feat_b.device)
-        T = ot.gpu.sinkhorn(a, b, M, reg=0.05, numItermax=100)
-        d = (T * M).sum().item()
+
+        # Compute pair-wise ground cost ------------------------------------------------
+        M = ot.dist(feat_a.cpu(), feat_b.cpu(), metric="euclidean")  # (na, nb)
+        a = np.full((feat_a.size(0),), 1.0 / feat_a.size(0))
+        b = np.full((feat_b.size(0),), 1.0 / feat_b.size(0))
+
+        if _HAS_GPU_SINKHORN and feat_a.is_cuda:
+            # GPU path using POT's CUDA backend – significantly faster
+            T = _gpu_sinkhorn(torch.tensor(a, device=feat_a.device),
+                               torch.tensor(b, device=feat_a.device),
+                               torch.tensor(M, device=feat_a.device),
+                               reg=0.05,
+                               numItermax=100)
+            d = (T * torch.tensor(M, device=feat_a.device)).sum().item()
+        else:
+            # Portable CPU fallback ----------------------------------------------------
+            T = ot.sinkhorn(a, b, M, reg=0.05, numItermax=100)
+            d = float((T * M).sum())
+
         self.cache.otdd[key] = d
         return d
 
@@ -190,7 +214,7 @@ class GradOnlyScheduler:
 # --------------------------------------------------------------------------
 # Continual learner ---------------------------------------------------------
 # --------------------------------------------------------------------------
-from .evaluate import CLMatrix  # relative import (defined in evaluate.py)
+from evaluate import CLMatrix  # fixed import
 
 class ContinualLearner:
     """Vision-only continual learner – loosely adapted from the monolithic script."""
