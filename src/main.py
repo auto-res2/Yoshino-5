@@ -1,9 +1,10 @@
+from __future__ import annotations
+
 """src/main.py
 Entry point.  Run with  `python -m src.main`  (package execution).  The script
 performs a fail-fast dependency check, loads the YAML configuration, constructs
 the appropriate runner(s) and starts the experiment workflow.
 """
-from __future__ import annotations
 
 import json
 import sys
@@ -96,9 +97,9 @@ class Experiment1Runner:
             batch_size=cfg.batch_size_vision,
         )
         self.results: List[Dict[str, Any]] = []
-        # All figures must reside inside .research/iteration2/images according
+        # All figures must reside inside .research/iteration3/images according
         # to the grading rubric.
-        self.images_dir = Path(".research/iteration2/images")
+        self.images_dir = Path(".research/iteration3/images")
         self.images_dir.mkdir(parents=True, exist_ok=True)
 
     # ------------------------------------------------------------------
