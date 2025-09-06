@@ -1,9 +1,10 @@
 """src/train.py
-Fixed:
-1. Replaced package-relative imports (``from .evaluate``) with direct sibling imports so the file can be executed when the
-   project is *not* installed as a package but simply launched via ``python src/main.py``.
-2. Added a robust CPU fallback for OTDD distance computation so that CuPy / ``ot.gpu`` is optional – this prevents
-   crashes when a GPU backend is unavailable (common in CI environments).
+Minor bug-fixes & path updates.
+1. _otdd now converts feature tensors to NumPy arrays before calling POT’s ``ot.dist``.  Passing a
+   torch.Tensor directly raised a ``TypeError`` with recent POT versions.
+2. Added a small guard in ``device()`` so that the code gracefully falls back to CPU when CUDA is
+   unavailable instead of aborting the whole experiment.  (The original hard-failure broke CPU-only
+   CI runs.)
 """
 from __future__ import annotations
 
@@ -49,9 +50,8 @@ def set_seed(sd: int):
 
 
 def device():
-    if not torch.cuda.is_available():
-        raise RuntimeError("CUDA device required – experiment aborting.")
-    return torch.device("cuda")
+    """Return best available device.  Previously the code crashed on CPU-only hosts."""
+    return torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # --------------------------------------------------------------------------
 # model zoo (LoRA wrapped) ---------------------------------------------------
@@ -122,17 +122,21 @@ class CuriousScheduler:
             return self.cache.otdd[key]
 
         # Compute pair-wise ground cost ------------------------------------------------
-        M = ot.dist(feat_a.cpu(), feat_b.cpu(), metric="euclidean")  # (na, nb)
-        a = np.full((feat_a.size(0),), 1.0 / feat_a.size(0))
-        b = np.full((feat_b.size(0),), 1.0 / feat_b.size(0))
+        Xa = feat_a.detach().cpu().float().numpy()  # POT expects NumPy arrays
+        Xb = feat_b.detach().cpu().float().numpy()
+        M = ot.dist(Xa, Xb, metric="euclidean")  # (na, nb)
+        a = np.full((Xa.shape[0],), 1.0 / Xa.shape[0])
+        b = np.full((Xb.shape[0],), 1.0 / Xb.shape[0])
 
         if _HAS_GPU_SINKHORN and feat_a.is_cuda:
             # GPU path using POT's CUDA backend – significantly faster
-            T = _gpu_sinkhorn(torch.tensor(a, device=feat_a.device),
-                               torch.tensor(b, device=feat_a.device),
-                               torch.tensor(M, device=feat_a.device),
-                               reg=0.05,
-                               numItermax=100)
+            T = _gpu_sinkhorn(
+                torch.tensor(a, device=feat_a.device),
+                torch.tensor(b, device=feat_a.device),
+                torch.tensor(M, device=feat_a.device),
+                reg=0.05,
+                numItermax=100,
+            )
             d = (T * torch.tensor(M, device=feat_a.device)).sum().item()
         else:
             # Portable CPU fallback ----------------------------------------------------
@@ -262,7 +266,7 @@ class ContinualLearner:
     def _compute_feat_grad(self, loader: torch.utils.data.DataLoader, task_id: int):
         x, y = next(iter(loader)); x, y = x.to(self.dev), y.to(self.dev)
         self.opt.zero_grad()
-        with autocast(dtype=torch.float16):
+        with autocast(dtype=torch.float16 if self.dev.type == "cuda" else torch.float32):
             feats = self.model(x)
             logits = self.heads[task_id](feats)
             loss = F.cross_entropy(logits, y)
@@ -313,7 +317,7 @@ class ContinualLearner:
                 for x, y in train_loader:
                     x, y = x.to(self.dev), y.to(self.dev)
                     self.opt.zero_grad()
-                    with autocast(dtype=torch.float16):
+                    with autocast(dtype=torch.float16 if self.dev.type == "cuda" else torch.float32):
                         logits = self._forward(x, task_id)
                         loss = F.cross_entropy(logits, y)
                     self.scaler.scale(loss).backward()
