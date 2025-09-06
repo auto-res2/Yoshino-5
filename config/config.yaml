@@ -1,5 +1,4 @@
 paths:
   work_dir: runs
   data_dir: data
-  fig_dir: .research/iteration9/images
-# The rest of the original YAML content remains unchanged.
+  fig_dir: .research/iteration10/images

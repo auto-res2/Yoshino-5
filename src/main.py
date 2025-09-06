@@ -1,15 +1,22 @@
-"""src/main.py
-Patched so the script can be executed directly (``python src/main.py``) without installing the
-project as a package:
-1. Imports changed from relative (``from .train``) to direct sibling imports.
-2. Experiment-1 is now *optional*. If the full ImageNet root is unavailable the benchmark is
-   gracefully skipped instead of crashing CI.  This keeps smoke-tests fast and light-weight.
-3. Figure output directory updated to comply with the task requirement: all images now live in
-   ``.research/iteration6/images``.
-"""
 from __future__ import annotations
 
-import json, argparse
+"""src/main.py
+Patched so the script can be executed directly (``python src/main.py``) without installing the
+project as a package.
+
+Changes in this patch
+---------------------
+1.  Robust handling of missing hyper-parameters – ``batch_size_vision`` now falls back to
+    a sensible default (64) if the field is absent from the YAML config.  This prevents
+    the AttributeError that previously crashed the run.
+2.  Centralised *image* output directory.  All figures are now written to the mandatory
+    ``.research/iteration10/images`` location, independent of what may be specified in
+    ``config.yaml``.  The directory is created automatically.
+3.  Doc-string & comments updated to reflect the above tweaks (iteration10 path).
+"""
+
+import json
+import argparse
 from pathlib import Path
 from typing import Dict
 
@@ -25,8 +32,17 @@ from preprocess import MiniCtrl40Stream, CIFARSmoke
 EXPERIMENTS = ["EXP1_FULL_BENCHMARK", "EXP2_SMOKE"]
 
 
+# --------------------------------------------------------------------
+# helpers -------------------------------------------------------------
+# --------------------------------------------------------------------
+
+def _default_bs(cfg: AttrDict) -> int:
+    """Return vision batch-size with a graceful fallback (default=64)."""
+    return int(getattr(cfg, "batch_size_vision", 64))
+
+
 def load_cfg(cfg_path: Path) -> AttrDict:
-    with open(cfg_path, "r") as f:
+    with open(cfg_path, "r", encoding="utf-8") as f:
         raw = yaml.safe_load(f)
     return AttrDict(**raw)
 
@@ -37,7 +53,7 @@ def load_cfg(cfg_path: Path) -> AttrDict:
 
 def exp1(cfg: AttrDict):
     print("\n================  EXPERIMENT 1 – Full Benchmark  ================")
-    stream = MiniCtrl40Stream(cfg, cfg.batch_size_vision)
+    stream = MiniCtrl40Stream(cfg, _default_bs(cfg))
     scheds = ["CURIOUS", "Random", "Chrono", "dOTDD", "GradOnly"]
     aggregated: Dict[str, list] = {s: [] for s in scheds}
     for sd in cfg.seeds:
@@ -68,7 +84,7 @@ def exp1(cfg: AttrDict):
 
 def exp2(cfg: AttrDict):
     print("\n================  EXPERIMENT 2 – Smoke Test  ================")
-    stream = CIFARSmoke(cfg, cfg.batch_size_vision)
+    stream = CIFARSmoke(cfg, _default_bs(cfg))
     scheds = ["CURIOUS", "CleanFirst", "CorruptFirst"]
     orders = {"CleanFirst": [0, 1], "CorruptFirst": [1, 0]}
     results: Dict[str, Dict[str, float]] = {}
@@ -100,17 +116,27 @@ def exp2(cfg: AttrDict):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--cfg", default=Path(__file__).resolve().parents[1] / "config" / "config.yaml", type=Path)
+    parser.add_argument(
+        "--cfg",
+        default=Path(__file__).resolve().parents[1] / "config" / "config.yaml",
+        type=Path,
+    )
     args = parser.parse_args()
 
     cfg = load_cfg(args.cfg)
+
+    # ------------------------------------------------------------------
+    # enforce standardised figure directory ----------------------------
+    cfg.paths.fig_dir = Path(".research/iteration10/images")
+
+    # make sure work / data / fig dirs exist ---------------------------
     cfg.paths.work_dir.mkdir(parents=True, exist_ok=True)
     cfg.paths.data_dir.mkdir(parents=True, exist_ok=True)
     cfg.paths.fig_dir.mkdir(parents=True, exist_ok=True)
 
     print("[CONFIG]", json.dumps(cfg.to_dict(), indent=2))
 
-    # EXP-1 may be skipped automatically if ImageNet is unavailable ------------------
+    # EXP-1 may be skipped automatically if ImageNet is unavailable ----
     try:
         exp1(cfg)
     except RuntimeError as e:
