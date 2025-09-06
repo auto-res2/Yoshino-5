@@ -6,5 +6,82 @@
     "curriculum learning task similarity",
     "gradient interference continual learning",
     "efficient adaptation LLMs"
+  ],
+  "research_study_list": [
+    {
+      "title": "Efficient Continual Learning with Modular Networks and Task-Driven Priors"
+    },
+    {
+      "title": "Continual Learning of a Mixed Sequence of Similar and Dissimilar Tasks"
+    },
+    {
+      "title": "Theory on Forgetting and Generalization of Continual Learning"
+    },
+    {
+      "title": "Scalable and Order-robust Continual Learning with Additive Parameter Decomposition"
+    },
+    {
+      "title": "Beyond Not-Forgetting: Continual Learning with Backward Knowledge Transfer"
+    },
+    {
+      "title": "Does Continual Learning Equally Forget All Parameters?"
+    },
+    {
+      "title": "Gradient Projection Memory for Continual Learning"
+    },
+    {
+      "title": "Gradient Projection Memory for Continual Learning"
+    },
+    {
+      "title": "Graph-Based Continual Learning"
+    },
+    {
+      "title": "Continual evaluation for lifelong learning: Identifying the stability gap"
+    },
+    {
+      "title": "Geometric Dataset Distances via Optimal Transport"
+    },
+    {
+      "title": "Understanding the Complexity Gains of Single-Task RL with a Curriculum"
+    },
+    {
+      "title": "Curriculum Reinforcement Learning via Constrained Optimal Transport"
+    },
+    {
+      "title": "Curriculum Reinforcement Learning via Constrained Optimal Transport"
+    },
+    {
+      "title": "Adaptive Procedural Task Generation for Hard-Exploration Problems"
+    },
+    {
+      "title": "Continual Learning with Global Alignment"
+    },
+    {
+      "title": "An Effective Dynamic Gradient Calibration Method for Continual Learning"
+    },
+    {
+      "title": "Continual Learning in Low-rank Orthogonal Subspaces"
+    },
+    {
+      "title": "InfLoRA: Interference-Free Low-Rank Adaptation for Continual Learning"
+    },
+    {
+      "title": "Gradient-based Editing of Memory Examples for Online Task-free Continual Learning"
+    },
+    {
+      "title": "Tuning LayerNorm in Attention: Towards Efficient Multi-Modal LLM Finetuning"
+    },
+    {
+      "title": "S$^{2}$FT: Efficient, Scalable and Generalizable LLM Fine-tuning by Structured Sparsity"
+    },
+    {
+      "title": "Train-Attention: Meta-Learning Where to Focus in Continual Knowledge Learning"
+    },
+    {
+      "title": "HydraLoRA: An Asymmetric LoRA Architecture for Efficient Fine-Tuning"
+    },
+    {
+      "title": "HydraLoRA: An Asymmetric LoRA Architecture for Efficient Fine-Tuning"
+    }
   ]
 }
