@@ -1,35 +1,47 @@
-work_dir: "./runs"
-device: "cuda"
+# config/config.yaml
+# All hyper-parameters and paths required to reproduce the experiments.
+# Only the first four Mini-CTrL-40 tasks are shown here to keep the file short.
 seeds: [17, 42, 2025]
-
-lr_vision: 5e-5
-lr_nlp: 2e-5
-betas: [0.9, 0.95]
-weight_decay: 0.01
-eps: 1e-8
-
-lora_r: 8
-lora_alpha: 16
-lora_dropout: 0.05
-
-curious_alpha: 0.3
-curious_beta: 0.6
-curious_gamma: 0.1
-flops_budget_ratio: 0.03
-
 epochs_per_task: 3
 batch_size_vision: 96
 batch_size_nlp: 32
-precision: "fp16"
+precision: fp16
 
-imagenette_url: "https://s3.amazonaws.com/fast-ai-imageclas/imagenette2-160.tgz"
-imagenette_md5: "N/A"
-imagenette_classes: 10
+paths:
+  work_dir: runs
+  data_dir: data
+  fig_dir: .research/iteration5/images
 
-flan_tasks:
-  - "google/boolq"
-  - "stanfordnlp/sst2"
-  - "glue"
-  - "multi_nli"
+optim:
+  lr: 5e-5
+  betas: [0.9, 0.95]
+  weight_decay: 1e-2
+  eps: 1e-8
 
-experiments: ["exp1"]
+lora:
+  r: 8
+  alpha: 16
+  dropout: 0.05
+
+curious:
+  alpha: 0.3
+  beta: 0.6
+  gamma: 0.1
+  beam_width: 8
+  temperature: 1.0
+  flops_budget_ratio: 0.03
+
+imagenet_root_env: IMAGENET_ROOT
+cifar_c_url: https://zenodo.org/record/2535967/files/CIFAR-10-C.tar
+vit_name: google/vit-base-patch16-224
+gpt_name: distilgpt2
+
+ctrl40_split:
+  name: Mini-CTrL-40-disjoint
+  version: 1
+  tasks:
+    - [0, 11, 22, 33, 44, 55, 66, 77, 88, 99]
+    - [1, 12, 23, 34, 45, 56, 67, 78, 89, 100]
+    - [2, 13, 24, 35, 46, 57, 68, 79, 90, 101]
+    - [3, 14, 25, 36, 47, 58, 69, 80, 91, 102]
+    # … add the remaining 36 × 10 indices for the complete benchmark …

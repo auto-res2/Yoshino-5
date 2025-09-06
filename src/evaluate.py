@@ -1,34 +1,35 @@
 """src/evaluate.py
-Evaluation utilities: continual-learning metric tracking and plotting helpers.
+Metric utilities separated from training so they can easily be reused by
+alternative learners or for post-hoc analysis only.
 """
 from __future__ import annotations
 
-from typing import Dict
+from pathlib import Path
 import torch
-from torchmetrics.classification import MulticlassAccuracy
+import pandas as pd
+import matplotlib.pyplot as plt
 
-class ContinualMetrics:
-    """Keeps the task × task accuracy matrix and provides CL metrics."""
+__all__ = ["CLMatrix"]
 
-    def __init__(self, n_tasks: int, n_classes: int, device: str = "cpu"):
-        self.acc_matrix = torch.zeros((n_tasks, n_tasks))
-        self.metric = MulticlassAccuracy(num_classes=n_classes).to(device)
-        self.n_tasks = n_tasks
 
-    # ------------------------------------------------------------------
-    def update(self, task_seen: int, task_eval: int, preds: torch.Tensor, tgt: torch.Tensor):
-        acc = self.metric(preds, tgt)
-        self.acc_matrix[task_seen, task_eval] = acc.item()
+class CLMatrix:
+    """In-memory accuracy matrix for continual learning (rows = after task i, columns = task j)."""
+    def __init__(self, n_tasks: int):
+        self.mat = torch.zeros((n_tasks, n_tasks))
+        self.n = n_tasks
 
     # ------------------------------------------------------------------
-    def final_results(self) -> Dict[str, float]:
-        final_acc = self.acc_matrix[-1].mean().item()
-        bwt = (
-            self.acc_matrix[-1, :-1] - torch.diag(self.acc_matrix, diagonal=0)[:-1]
-        ).mean().item()
-        min_acc = self.acc_matrix.min().item()
-        return {
-            "Final_ACC": final_acc * 100,
-            "BWT": bwt * 100,
-            "min_ACC": min_acc * 100,
-        }
+    def update(self, task_seen: int, task_eval: int, acc: float):
+        self.mat[task_seen, task_eval] = acc
+
+    # ------------------------------------------------------------------
+    def final_metrics(self):
+        final_acc = self.mat[-1].mean().item()
+        diag = torch.diag(self.mat)
+        bwt = (self.mat[-1, :-1] - diag[:-1]).mean().item()
+        min_acc = self.mat.min().item()
+        return {"Final_ACC": final_acc * 100, "BWT": bwt * 100, "min_ACC": min_acc * 100}
+
+    # ------------------------------------------------------------------
+    def save_csv(self, path: Path):
+        pd.DataFrame(self.mat.numpy()).to_csv(path, index=False)

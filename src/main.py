@@ -1,161 +1,112 @@
+"""src/main.py
+Entry-point that orchestrates the full benchmark (Mini-CTrL-40) **and** a small
+smoke-test (CIFAR-10-C).  The configuration is read from `config/config.yaml`
+with PyYAML, converted into an AttrDict and then forwarded to the remaining
+modules.
+"""
 from __future__ import annotations
 
-"""src/main.py
-Entry point.  Run with  `python -m src.main`  (package execution).  The script
-performs a fail-fast dependency check, loads the YAML configuration, constructs
-the appropriate runner(s) and starts the experiment workflow.
-"""
-
-import json
-import sys
+import json, argparse
 from pathlib import Path
-from typing import List, Dict, Any
+from typing import Dict
 
-# -----------------------------------------------------------------------------
-#                   Fail-fast: verify all external dependencies
-# -----------------------------------------------------------------------------
-REQUIRED = [
-    ("torch", "pip install torch"),
-    ("torchvision", "pip install torchvision"),
-    ("timm", "pip install timm"),
-    ("transformers", "pip install transformers"),
-    ("peft", "pip install peft"),
-    ("datasets", "pip install datasets"),
-    ("bitsandbytes", "pip install bitsandbytes"),
-    ("matplotlib", "pip install matplotlib"),
-    ("seaborn", "pip install seaborn"),
-    ("fvcore", "pip install fvcore"),
-    ("codecarbon", "pip install codecarbon"),
-    ("torchmetrics", "pip install torchmetrics"),
-    ("pandas", "pip install pandas"),
-    ("yaml", "pip install pyyaml"),
-]
-for mod, hint in REQUIRED:
-    try:
-        __import__(mod)
-    except ImportError:
-        sys.exit(f"[FATAL] Required module '{mod}' not found – {hint} .")
+import yaml
+import matplotlib.pyplot as plt
+import seaborn as sns
 
-import torch  # noqa: E402 – after fail-fast gate
-import yaml   # noqa: E402
-import matplotlib.pyplot as plt  # noqa: E402
-import seaborn as sns  # noqa: E402
-import pandas as pd  # noqa: E402
+from .train import AttrDict, set_seed, ContinualLearner
+from .preprocess import MiniCtrl40Stream, CIFARSmoke
 
-from dataclasses import dataclass, asdict
-
-# Robust local imports (handle script vs. package execution)
-try:
-    from .preprocess import ImagenetteTasks  # type: ignore
-    from .train import VisionTrainer, GlobalConfig  # type: ignore
-except ImportError:  # pragma: no cover – script execution fallback
-    from preprocess import ImagenetteTasks  # type: ignore
-    from train import VisionTrainer, GlobalConfig  # type: ignore
-
-# -----------------------------------------------------------------------------
-#                            Configuration loader
-# -----------------------------------------------------------------------------
-
-def _to_float(val):
-    """Cast YAML scalar to float – handles scientific-notation strings."""
-    if isinstance(val, (float, int)):
-        return float(val)
-    try:
-        return float(val)
-    except (TypeError, ValueError):
-        raise ValueError(f"Unable to cast config value '{val}' to float.")
+# --------------------------------------------------------------------
+EXPERIMENTS = ["EXP1_FULL_BENCHMARK", "EXP2_SMOKE"]
 
 
-def _load_cfg() -> GlobalConfig:
-    cfg_file = Path(__file__).resolve().parent.parent / "config" / "config.yaml"
-    if not cfg_file.exists():
-        sys.exit(f"[FATAL] config.yaml not found at {cfg_file}")
-    with cfg_file.open("r") as fp:
-        raw = yaml.safe_load(fp)
+def load_cfg(cfg_path: Path) -> AttrDict:
+    with open(cfg_path, "r") as f:
+        raw = yaml.safe_load(f)
+    return AttrDict(**raw)
 
-    return GlobalConfig(
-        work_dir=Path(raw["work_dir"]),
-        device=raw["device"],
-        seeds=tuple(raw["seeds"]),
-        lr_vision=_to_float(raw["lr_vision"]),
-        betas=tuple(raw["betas"]),
-        weight_decay=_to_float(raw["weight_decay"]),
-        eps=_to_float(raw["eps"]),
-        lora_r=int(raw["lora_r"]),
-        lora_alpha=int(raw["lora_alpha"]),
-        lora_dropout=_to_float(raw["lora_dropout"]),
-        curious_alpha=_to_float(raw["curious_alpha"]),
-        curious_beta=_to_float(raw["curious_beta"]),
-        curious_gamma=_to_float(raw["curious_gamma"]),
-        flops_budget_ratio=_to_float(raw["flops_budget_ratio"]),
-        epochs_per_task=int(raw["epochs_per_task"]),
-        batch_size_vision=int(raw["batch_size_vision"]),
-        precision=raw["precision"],
-    )
 
-# -----------------------------------------------------------------------------
-#                            Experiment Runners
-# -----------------------------------------------------------------------------
+# --------------------------------------------------------------------
+# EXPERIMENT 1 --------------------------------------------------------
+# --------------------------------------------------------------------
 
-class Experiment1Runner:
-    """End-to-end continual learning benchmark (vision only for this example)."""
-
-    def __init__(self, cfg: GlobalConfig, imagenette_url: str):
-        self.cfg = cfg
-        self.tasks = ImagenetteTasks(
-            root=cfg.work_dir / "imagenette",
-            download_url=imagenette_url,
-            batch_size=cfg.batch_size_vision,
-        )
-        self.results: List[Dict[str, Any]] = []
-        # All figures must reside inside .research/iteration4/images according
-        # to the grading rubric.
-        self.images_dir = Path(".research/iteration4/images")
-        self.images_dir.mkdir(parents=True, exist_ok=True)
-
-    # ------------------------------------------------------------------
-    def run(self):
-        print("\n=========== Experiment 1 – End-to-End Continual-Learning Benchmark ===========")
-        for seed in self.cfg.seeds:
-            print(f"\n--- Seed {seed} ---")
-            trainer = VisionTrainer(self.tasks, self.cfg, seed)
-            res = trainer.train_stream()
+def exp1(cfg: AttrDict):
+    print("\n================  EXPERIMENT 1 – Full Benchmark  ================")
+    stream = MiniCtrl40Stream(cfg, cfg.batch_size_vision)
+    scheds = ["CURIOUS", "Random", "Chrono", "dOTDD", "GradOnly"]
+    aggregated: Dict[str, list] = {s: [] for s in scheds}
+    for sd in cfg.seeds:
+        set_seed(sd)
+        for sname in scheds:
+            print(f"[Seed {sd}] Scheduler={sname}")
+            learner = ContinualLearner(stream, cfg, sname)
+            res = learner.train()
+            aggregated[sname].append(res)
             print(json.dumps(res, indent=2))
-            self.results.append(res)
-        self._summarise()
 
-    # ------------------------------------------------------------------
-    def _summarise(self):
-        df = pd.DataFrame(self.results)
-        means, stds = df.mean(), df.std()
-        print("\n=== Aggregate over seeds ===")
-        for col in df.columns:
-            print(f"{col}: {means[col]:.2f} ± {stds[col]:.2f}")
-        # bar plot
-        plt.figure(figsize=(6, 4))
-        sns.barplot(x=list(range(len(self.results))), y=df["Final_ACC"], palette="deep")
-        for i, v in enumerate(df["Final_ACC"]):
-            plt.text(i, v + 0.5, f"{v:.1f}", ha="center")
-        plt.ylabel("Final ACC (%)")
-        plt.xlabel("Run / Seed")
-        plt.title("Experiment-1 Final Accuracy per seed")
-        out_file = self.images_dir / "final_accuracy.pdf"
-        plt.savefig(out_file, bbox_inches="tight")
-        print(f"\nGenerated figure: {out_file}")
+    # quick bar-plot of final accuracy --------------------------------
+    fig_acc = Path(cfg.paths.fig_dir) / "final_accuracy.pdf"
+    fig_acc.parent.mkdir(parents=True, exist_ok=True)
+    plt.figure(figsize=(6, 4))
+    means = [sum(d["Final_ACC"] for d in aggregated[s]) / len(aggregated[s]) for s in scheds]
+    sns.barplot(x=scheds, y=means)
+    for i, v in enumerate(means):
+        plt.text(i, v + 0.5, f"{v:.1f}", ha="center")
+    plt.ylabel("Final ACC (%)")
+    plt.savefig(fig_acc, bbox_inches="tight")
+    print("[INFO] Figure saved →", fig_acc)
 
-# -----------------------------------------------------------------------------
-#                                    main
-# -----------------------------------------------------------------------------
+
+# --------------------------------------------------------------------
+# EXPERIMENT 2 --------------------------------------------------------
+# --------------------------------------------------------------------
+
+def exp2(cfg: AttrDict):
+    print("\n================  EXPERIMENT 2 – Smoke Test  ================")
+    stream = CIFARSmoke(cfg, cfg.batch_size_vision)
+    scheds = ["CURIOUS", "CleanFirst", "CorruptFirst"]
+    orders = {"CleanFirst": [0, 1], "CorruptFirst": [1, 0]}
+    results: Dict[str, Dict[str, float]] = {}
+
+    for s in scheds:
+        if s == "CURIOUS":
+            learner = ContinualLearner(stream, cfg, "CURIOUS")
+        else:  # monkey-patch deterministic order into Chrono scheduler
+            learner = ContinualLearner(stream, cfg, "Chrono")
+            learner.sched.order = lambda n_tasks, order=orders[s]: order
+        res = learner.train()
+        print(json.dumps(res, indent=2))
+        results[s] = res
+
+    # bar-plot of BWT --------------------------------------------------
+    fig_bwt = Path(cfg.paths.fig_dir) / "bwt_smoke.pdf"
+    plt.figure(); vals = [results[s]["BWT"] for s in scheds]
+    sns.barplot(x=scheds, y=vals)
+    for i, v in enumerate(vals):
+        plt.text(i, v + 0.2, f"{v:.1f}", ha="center")
+    plt.ylabel("BWT (%)")
+    plt.savefig(fig_bwt, bbox_inches="tight")
+    print("[INFO] Figure saved →", fig_bwt)
+
+# --------------------------------------------------------------------
+# main ----------------------------------------------------------------
+# --------------------------------------------------------------------
 
 def main():
-    cfg = _load_cfg()
-    cfg.work_dir.mkdir(parents=True, exist_ok=True)
-    print("[CONFIG]", json.dumps(asdict(cfg), indent=2, default=str))
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--cfg", default=Path(__file__).resolve().parents[1] / "config" / "config.yaml", type=Path)
+    args = parser.parse_args()
 
-    if not torch.cuda.is_available():
-        sys.exit("[FATAL] CUDA device not available – the experiment requires a GPU.")
+    cfg = load_cfg(args.cfg)
+    cfg.paths.work_dir.mkdir(parents=True, exist_ok=True)
+    cfg.paths.data_dir.mkdir(parents=True, exist_ok=True)
+    cfg.paths.fig_dir.mkdir(parents=True, exist_ok=True)
 
-    Experiment1Runner(cfg, imagenette_url="https://s3.amazonaws.com/fast-ai-imageclas/imagenette2-160.tgz").run()
+    print("[CONFIG]", json.dumps(cfg.to_dict(), indent=2))
+    exp1(cfg)
+    exp2(cfg)
+
 
 if __name__ == "__main__":
     main()

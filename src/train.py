@@ -1,223 +1,323 @@
 """src/train.py
-Contains all training–related code: model/optimizer preparation, the CURIOUS
-scheduler and the VisionTrainer.  The trainer is completely parameterised by a
-GlobalConfig object that is created in src/main and handed over so no global
-state is required here.
+Contains model creation, schedulers and the main ContinualLearner class that
+performs training for one continual–learning run.
+All dataclasses from the original monolithic script have been replaced by a
+light-weight AttrDict so that the configuration loaded from YAML can be
+accessed via the familiar dot notation (cfg.xxx).
 """
 from __future__ import annotations
 
-import random
-from dataclasses import dataclass
+import os, random, math, inspect, time, json
 from pathlib import Path
-from typing import Dict, List, Any, Tuple
+from types import SimpleNamespace
+from typing import Dict, List, Any
 
+import numpy as np
 import torch
-import timm
-from peft import get_peft_model, LoraConfig
-from transformers import get_cosine_schedule_with_warmup
-from torch.utils.data import DataLoader
+from torch.cuda.amp import autocast, GradScaler
+from fvcore.nn import FlopCountAnalysis
 from codecarbon import OfflineEmissionsTracker
+import torch.nn.functional as F
 
-# -----------------------------------------------------------------------------
-# Local imports – be robust to being executed either as a package (``python -m
-# src.main``) *or* as a plain script (``python src/main.py``).  The leading dot
-# variant works for the former, the fallback works for the latter.
-# -----------------------------------------------------------------------------
-try:
-    from .evaluate import ContinualMetrics  # type: ignore
-    from .preprocess import ImagenetteTasks  # type: ignore
-except ImportError:  # pragma: no cover  – fallback when run as script
-    from evaluate import ContinualMetrics  # type: ignore
-    from preprocess import ImagenetteTasks  # type: ignore
+# --------------------------------------------------------------------------
+# helpers & utilities -------------------------------------------------------
+# --------------------------------------------------------------------------
+class AttrDict(SimpleNamespace):
+    """Recursively turn a (nested) mapping into an object with attribute access."""
+    def __init__(self, **kwargs):
+        for k, v in kwargs.items():
+            if isinstance(v, dict):
+                v = AttrDict(**v)  # recursion
+            # convert path-like strings automatically so downstream code stays unchanged
+            if isinstance(v, str) and (k.endswith('_dir') or k.endswith('_path') or k.endswith('_root')):
+                v = Path(v)
+            super().__setattr__(k, v)
 
-# -----------------------------------------------------------------------------
-#                               Helper
-# -----------------------------------------------------------------------------
+    def to_dict(self):
+        out = {}
+        for k, v in self.__dict__.items():
+            out[k] = v.to_dict() if isinstance(v, AttrDict) else v
+        return out
 
-def set_seed(seed: int):
-    """Reproducibility helper for python / numpy / pytorch."""
-    import random as _random
-    import numpy as _np
 
-    _random.seed(seed)
-    _np.random.seed(seed)
-    torch.manual_seed(seed)
-    torch.cuda.manual_seed_all(seed)
+def set_seed(sd: int):
+    random.seed(sd)
+    np.random.seed(sd)
+    torch.manual_seed(sd)
+    torch.cuda.manual_seed_all(sd)
 
-# -----------------------------------------------------------------------------
-#                           CURIOUS  Scheduler
-# -----------------------------------------------------------------------------
+
+def device():
+    if not torch.cuda.is_available():
+        raise RuntimeError("CUDA device required – experiment aborting.")
+    return torch.device("cuda")
+
+# --------------------------------------------------------------------------
+# model zoo (LoRA wrapped) ---------------------------------------------------
+# --------------------------------------------------------------------------
+import timm
+from peft import LoraConfig, get_peft_model
+from transformers import AutoModelForCausalLM
+
+def vit_base_with_lora(cfg):
+    """Vision Transformer backbone with LoRA adapters."""
+    base = timm.create_model(cfg.vit_name.split("/")[-1], pretrained=True, num_classes=0)
+    lora_cfg = LoraConfig(
+        r=cfg.lora.r,
+        lora_alpha=cfg.lora.alpha,
+        lora_dropout=cfg.lora.dropout,
+        target_modules=["qkv", "proj"],
+    )
+    return get_peft_model(base, lora_cfg)
+
+
+def distilgpt2_with_lora(cfg):
+    """NLP backbone example (unused in the current vision experiments)."""
+    base = AutoModelForCausalLM.from_pretrained(cfg.gpt_name, torch_dtype=torch.bfloat16)
+    lora_cfg = LoraConfig(
+        r=cfg.lora.r,
+        lora_alpha=cfg.lora.alpha,
+        lora_dropout=cfg.lora.dropout,
+        target_modules=["q_proj", "v_proj", "fc_in", "fc_out"],
+    )
+    return get_peft_model(base, lora_cfg)
+
+# --------------------------------------------------------------------------
+# schedulers ----------------------------------------------------------------
+# --------------------------------------------------------------------------
+import ot
+class SimilarityCache:
+    def __init__(self):
+        self.otdd: Dict[tuple, float] = {}
+        self.grads: Dict[int, torch.Tensor] = {}
+
 
 class CuriousScheduler:
-    """Simplified CURIOUS scheduler – computes utilities from cheap surrogates
-    and draws the next task using a soft Thompson sampling variant.  For the
-    reference implementation we use uniform random surrogates; plug-ins for
-    OTDD etc. can directly modify  _utility()."""
-
-    def __init__(
-        self,
-        alpha: float,
-        beta: float,
-        gamma: float,
-        flops_budget_ratio: float = 0.03,
-        beam_width: int = 8,
-        temperature: float = 1.0,
-    ):
-        self.alpha, self.beta, self.gamma = alpha, beta, gamma
-        self.flops_budget_ratio = flops_budget_ratio
-        self.beam_width = beam_width
-        self.temperature = temperature
-        self._seen_tasks: List[int] = []
-        self._stability: Dict[int, float] = {}
-        self._grad_cache: Dict[int, torch.Tensor] = {}
+    """Implementation of CURIOUS (Compute-budgeted Utility-aware Reordering)."""
+    def __init__(self, cfg):
+        self.cfg = cfg
+        self.alpha, self.beta, self.gamma = cfg.curious.alpha, cfg.curious.beta, cfg.curious.gamma
+        self.tau = cfg.curious.temperature
+        self.cache = SimilarityCache()
+        self.stability: Dict[int, float] = {}
+        self.seen: List[int] = []
 
     # ------------------------------------------------------------------
-    def order_stream(self, tasks: List[dict]):
-        remaining = list(range(len(tasks)))
-        while remaining:
-            if not self._seen_tasks:
-                nxt = remaining.pop(0)
-            else:
-                utilities = [self._utility(cid) for cid in remaining]
-                probs = torch.softmax(torch.tensor(utilities) / self.temperature, dim=0)
-                idx = torch.multinomial(probs, 1).item()
-                nxt = remaining.pop(idx)
-            self._seen_tasks.append(nxt)
-            yield nxt
+    def _cos_conflict(self, g_new: torch.Tensor, g_ref: torch.Tensor) -> float:
+        return -F.cosine_similarity(g_new.flatten(), g_ref.flatten(), dim=0).item()
+
+    def _otdd(self, feat_a: torch.Tensor, feat_b: torch.Tensor) -> float:
+        key = (id(feat_a), id(feat_b))
+        if key in self.cache.otdd:
+            return self.cache.otdd[key]
+        M = ot.dist(feat_a, feat_b, metric="euclidean")
+        a = torch.full((feat_a.size(0),), 1.0 / feat_a.size(0), device=feat_a.device)
+        b = torch.full((feat_b.size(0),), 1.0 / feat_b.size(0), device=feat_b.device)
+        T = ot.gpu.sinkhorn(a, b, M, reg=0.05, numItermax=100)
+        d = (T * M).sum().item()
+        self.cache.otdd[key] = d
+        return d
 
     # ------------------------------------------------------------------
-    def _utility(self, task_id: int):
-        s_d = random.random()
-        s_g = random.random()
-        s_s = self._stability.get(task_id, 0.0)
+    def _utility(self, cid: int, feat_new: torch.Tensor, grad_new: torch.Tensor) -> float:
+        s_d = min((self._otdd(feat_new, self.cache.grads[i][1]) for i in self.seen), default=0.0)
+        s_g = min((self._cos_conflict(grad_new, self.cache.grads[i][0]) for i in self.seen), default=0.0)
+        s_s = self.stability.get(cid, 0.0)
         return self.alpha * s_d + self.beta * s_g + self.gamma * s_s
 
     # ------------------------------------------------------------------
-    def update_after_task(self, task_id: int, forget_score: float, grad_vec: torch.Tensor):
-        self._stability[task_id] = forget_score
-        self._grad_cache[task_id] = grad_vec.detach().cpu()
-
-# -----------------------------------------------------------------------------
-#                               Vision Trainer
-# -----------------------------------------------------------------------------
-
-@dataclass
-class GlobalConfig:  # local copy so train.py is self-contained w.r.t typing
-    work_dir: Path
-    device: str
-    # seeds (list of ints – only used by main loop but included for consistency)
-    seeds: Tuple[int, ...]
-    # optimiser
-    lr_vision: float
-    betas: tuple
-    weight_decay: float
-    eps: float
-    # lora
-    lora_r: int
-    lora_alpha: int
-    lora_dropout: float
-    # curious
-    curious_alpha: float
-    curious_beta: float
-    curious_gamma: float
-    flops_budget_ratio: float
-    # training
-    epochs_per_task: int
-    batch_size_vision: int
-    precision: str
-
-class VisionTrainer:
-    """End-to-end continual learning for Imagenette pseudo-stream."""
-
-    def __init__(self, tasks: ImagenetteTasks, cfg: GlobalConfig, seed: int):
-        set_seed(seed)
-        self.cfg = cfg
-        self.tasks = tasks
-        self.device = cfg.device
-        # ----------------------- Model + LoRA ---------------------------------
-        base = timm.create_model(
-            "vit_base_patch16_224", pretrained=True, num_classes=10
-        ).to(self.device)
-        lora_cfg = LoraConfig(
-            r=cfg.lora_r,
-            lora_alpha=cfg.lora_alpha,
-            lora_dropout=cfg.lora_dropout,
-            target_modules=["qkv", "proj"],
-        )
-        self.model = get_peft_model(base, lora_cfg).train()
-        # ----------------------- Optimiser  &  Scheduler -----------------------
-        self.optimizer = torch.optim.AdamW(
-            self.model.parameters(),
-            lr=cfg.lr_vision,
-            betas=cfg.betas,
-            eps=cfg.eps,
-            weight_decay=cfg.weight_decay,
-        )
-        approx_steps = (
-            len(tasks.tasks)
-            * cfg.epochs_per_task
-            * (len(tasks.tasks[0]["train"]) // cfg.batch_size_vision)
-        )
-        self.lr_sched = get_cosine_schedule_with_warmup(
-            self.optimizer, int(0.2 * approx_steps), approx_steps
-        )
-        self.scaler = torch.cuda.amp.GradScaler()
-        # ----------------------- CURIOUS Scheduler -----------------------------
-        self.scheduler = CuriousScheduler(
-            cfg.curious_alpha,
-            cfg.curious_beta,
-            cfg.curious_gamma,
-            cfg.flops_budget_ratio,
-        )
-        # ----------------------- Energy tracker --------------------------------
-        self.energy_tracker = OfflineEmissionsTracker(
-            project_name="vision", output_dir=str(cfg.work_dir)
-        )
-
-    # ---------------------------------------------------------------------
-    def train_stream(self):
-        n_tasks = len(self.tasks.tasks)
-        metrics = ContinualMetrics(n_tasks=n_tasks, n_classes=10, device=self.device)
-        self.energy_tracker.start()
-        for t_idx in self.scheduler.order_stream(self.tasks.tasks):
-            task = self.tasks.tasks[t_idx]
-            dl_train = self.tasks.dataloader_for(task["train"])
-            self._train_task(dl_train)
-            # evaluate after task
-            for ev_idx in range(t_idx + 1):
-                ev_dl = self.tasks.dataloader_for(self.tasks.tasks[ev_idx]["test"])
-                acc = self._eval(ev_dl)
-                metrics.acc_matrix[t_idx, ev_idx] = acc
-            # simplistic update
-            self.scheduler.update_after_task(t_idx, forget_score=0.0, grad_vec=torch.zeros(1))
-        self.energy_tracker.stop()
-        return metrics.final_results()
+    def propose_next(self, remaining: List[int], feat_bank: Dict[int, torch.Tensor], grad_bank: Dict[int, torch.Tensor]):
+        if not self.seen:
+            choice = remaining[0]
+            self.seen.append(choice)
+            return choice
+        utilities = [self._utility(cid, feat_bank[cid], grad_bank[cid]) for cid in remaining]
+        probs = torch.softmax(torch.tensor(utilities) / self.tau, dim=0)
+        idx = torch.multinomial(probs, 1).item()
+        choice = remaining[idx]
+        self.seen.append(choice)
+        return choice
 
     # ------------------------------------------------------------------
-    def _train_task(self, dataloader: DataLoader):
-        dtype = torch.float16 if self.cfg.precision == "fp16" else torch.bfloat16
-        for _ in range(self.cfg.epochs_per_task):
-            for imgs, labels in dataloader:
-                imgs = imgs.to(self.device, non_blocking=True)
-                labels = labels.to(self.device, non_blocking=True)
-                with torch.cuda.amp.autocast(dtype=dtype):
-                    logits = self.model(imgs)
-                    loss = torch.nn.functional.cross_entropy(logits, labels)
-                self.optimizer.zero_grad()
-                self.scaler.scale(loss).backward()
-                self.scaler.step(self.optimizer)
-                self.scaler.update()
-                self.lr_sched.step()
+    def update_after_task(self, task_id: int, feat: torch.Tensor, grad: torch.Tensor, acc_drop: float):
+        self.cache.grads[task_id] = (grad.detach().cpu(), feat.detach().cpu())
+        self.stability[task_id] = acc_drop
+
+
+class RandomScheduler:
+    def order(self, n_tasks):
+        return random.sample(range(n_tasks), n_tasks)
+
+
+class ChronoScheduler:
+    def order(self, n_tasks):
+        return list(range(n_tasks))
+
+
+class DotddScheduler:
+    """Greedy ordering based on data similarity (dOTDD)."""
+    def __init__(self, feat_bank):
+        self.feat_bank = feat_bank
+
+    def order(self, task_ids: List[int]):
+        remaining = task_ids.copy(); order = []
+        while remaining:
+            if not order:
+                order.append(remaining.pop(0)); continue
+            last = order[-1]
+            dists = [(cid, torch.norm(self.feat_bank[last].mean(0) - self.feat_bank[cid].mean(0)).item()) for cid in remaining]
+            cid = min(dists, key=lambda x: x[1])[0]
+            order.append(cid); remaining.remove(cid)
+        return order
+
+
+class GradOnlyScheduler:
+    """Greedy ordering based on gradient conflict only."""
+    def __init__(self, grad_bank):
+        self.grad_bank = grad_bank
+
+    def order(self, task_ids: List[int]):
+        remaining = task_ids.copy(); order = []
+        while remaining:
+            if not order:
+                order.append(remaining.pop(0)); continue
+            last = order[-1]
+            confs = [(cid, -F.cosine_similarity(self.grad_bank[last].flatten(), self.grad_bank[cid].flatten(), dim=0).item()) for cid in remaining]
+            cid = min(confs, key=lambda x: x[1])[0]
+            order.append(cid); remaining.remove(cid)
+        return order
+
+# --------------------------------------------------------------------------
+# Continual learner ---------------------------------------------------------
+# --------------------------------------------------------------------------
+from .evaluate import CLMatrix  # relative import (defined in evaluate.py)
+
+class ContinualLearner:
+    """Vision-only continual learner – loosely adapted from the monolithic script."""
+    def __init__(self, stream, cfg: AttrDict, scheduler_name: str):
+        self.cfg, self.stream = cfg, stream
+        self.dev = device()
+
+        # create backbone + heads ------------------------------------------------
+        self.model = vit_base_with_lora(cfg).to(self.dev)
+        self.heads = torch.nn.ModuleList([torch.nn.Linear(768, 10) for _ in range(len(stream.tasks))]).to(self.dev)
+
+        # optimiser -------------------------------------------------------------
+        self.opt = torch.optim.AdamW(
+            self.model.parameters(),
+            lr=cfg.optim.lr,
+            betas=tuple(cfg.optim.betas),
+            eps=cfg.optim.eps,
+            weight_decay=cfg.optim.weight_decay,
+        )
+        self.scaler = GradScaler()
+        self.cl_matrix = CLMatrix(len(stream.tasks))
+
+        # pick scheduler --------------------------------------------------------
+        self.sched: Any
+        self._init_scheduler(scheduler_name)
+
+    # ------------------------------------------------------------------
+    def _init_scheduler(self, name: str):
+        if name == "CURIOUS":
+            self.sched = CuriousScheduler(self.cfg)
+        elif name == "Random":
+            self.sched = RandomScheduler()
+        elif name == "Chrono":
+            self.sched = ChronoScheduler()
+        else:
+            # For dOTDD & GradOnly we need feature/gradient banks – they will be built later
+            self.sched = name  # temporary placeholder
+
+    # ------------------------------------------------------------------
+    def _forward(self, x, task_id):
+        feats = self.model(x)
+        return self.heads[task_id](feats)
+
+    # ------------------------------------------------------------------
+    def _compute_feat_grad(self, loader: torch.utils.data.DataLoader, task_id: int):
+        x, y = next(iter(loader)); x, y = x.to(self.dev), y.to(self.dev)
+        self.opt.zero_grad()
+        with autocast(dtype=torch.float16):
+            feats = self.model(x)
+            logits = self.heads[task_id](feats)
+            loss = F.cross_entropy(logits, y)
+        self.scaler.scale(loss).backward()
+        g = torch.cat([p.grad.flatten() for p in self.model.parameters() if p.grad is not None])
+        return feats.detach(), g.detach()
+
+    # ------------------------------------------------------------------
+    def train(self):
+        n_tasks = len(self.stream.tasks)
+        task_ids = list(range(n_tasks))
+
+        # ------------------------------------------------------------------
+        # pre-compute banks (needed for all schedulers except Chrono/Random)
+        feat_bank, grad_bank = {}, {}
+        for tid in task_ids:
+            dl = self.stream.loader(self.stream.tasks[tid]["train"])
+            f, g = self._compute_feat_grad(dl, tid)
+            feat_bank[tid], grad_bank[tid] = f, g
+
+        # if placeholder scheduler, instantiate with banks now -------------
+        if isinstance(self.sched, str):
+            if self.sched == "dOTDD":
+                self.sched = DotddScheduler(feat_bank)
+            elif self.sched == "GradOnly":
+                self.sched = GradOnlyScheduler(grad_bank)
+            else:
+                raise ValueError(f"Unknown scheduler {self.sched}")
+
+        # create order -----------------------------------------------------------
+        if isinstance(self.sched, (DotddScheduler, GradOnlyScheduler)):
+            order = self.sched.order(task_ids)
+        elif isinstance(self.sched, (RandomScheduler, ChronoScheduler)):
+            order = self.sched.order(n_tasks)
+        else:  # CURIOUS
+            remaining, order = task_ids.copy(), []
+            while remaining:
+                cid = self.sched.propose_next(remaining, feat_bank, grad_bank)
+                order.append(cid); remaining.remove(cid)
+
+        # ------------------------------------------------------------------
+        tracker = OfflineEmissionsTracker(project_name="exp", output_dir=str(self.cfg.paths.work_dir))
+        tracker.start()
+
+        for seen_idx, task_id in enumerate(order):
+            train_loader = self.stream.loader(self.stream.tasks[task_id]["train"])
+            for _ in range(self.cfg.epochs_per_task):
+                for x, y in train_loader:
+                    x, y = x.to(self.dev), y.to(self.dev)
+                    self.opt.zero_grad()
+                    with autocast(dtype=torch.float16):
+                        logits = self._forward(x, task_id)
+                        loss = F.cross_entropy(logits, y)
+                    self.scaler.scale(loss).backward()
+                    self.scaler.step(self.opt)
+                    self.scaler.update()
+
+            # quick evaluation --------------------------------------------------
+            for eval_id in range(seen_idx + 1):
+                ev_task = order[eval_id]
+                acc = self._evaluate_task(ev_task)
+                self.cl_matrix.update(seen_idx, eval_id, acc)
+
+            # scheduler feedback ------------------------------------------------
+            if isinstance(self.sched, CuriousScheduler):
+                self.sched.update_after_task(task_id, feat_bank[task_id], grad_bank[task_id], acc_drop=0.0)
+
+        tracker.stop()
+        return self.cl_matrix.final_metrics()
 
     # ------------------------------------------------------------------
     @torch.no_grad()
-    def _eval(self, dataloader: DataLoader):
-        self.model.eval()
-        correct, total = 0, 0
-        for imgs, labels in dataloader:
-            imgs, labels = imgs.to(self.device), labels.to(self.device)
-            preds = self.model(imgs).argmax(1)
-            correct += (preds == labels).sum().item()
-            total += len(labels)
-        self.model.train()
-        return correct / total if total > 0 else 0.0
+    def _evaluate_task(self, task_id: int):
+        loader = self.stream.loader(self.stream.tasks[task_id]["train"])  # train split as proxy
+        correct = total = 0
+        for x, y in loader:
+            x, y = x.to(self.dev), y.to(self.dev)
+            preds = self._forward(x, task_id).argmax(1)
+            correct += (preds == y).sum().item(); total += len(y)
+            if total > 2000:  # evaluation budget guardrail
+                break
+        return correct / total
