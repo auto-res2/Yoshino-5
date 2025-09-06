@@ -2,3 +2,53 @@ Traceback (most recent call last):
   File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 17, in <module>
     from .train import AttrDict, set_seed, ContinualLearner
 ImportError: attempted relative import with no known parent package
+2025-09-06 14:16:04,599 | INFO | agsc.main: ==== Experiment: Offline AGSC on CLUE++ ====
+Generating test split:   0%|          | 0/3861 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 3861/3861 [00:00<00:00, 738449.97 examples/s]
+Generating train split:   0%|          | 0/34334 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 34334/34334 [00:00<00:00, 2842061.05 examples/s]
+Generating validation split:   0%|          | 0/4316 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 4316/4316 [00:00<00:00, 1446357.95 examples/s]
+Generating test split:   0%|          | 0/10000 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 10000/10000 [00:00<00:00, 2166591.25 examples/s]
+Generating train split:   0%|          | 0/53360 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 53360/53360 [00:00<00:00, 2957920.03 examples/s]
+Generating validation split:   0%|          | 0/10000 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 10000/10000 [00:00<00:00, 2241744.52 examples/s]
+Generating test split:   0%|          | 0/13880 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 13880/13880 [00:00<00:00, 1768007.15 examples/s]
+Generating train split:   0%|          | 0/391783 [00:00<?, ? examples/s]Generating train split:  54%|█████▍    | 212000/391783 [00:00<00:00, 2109425.47 examples/s]Generating train split: 100%|██████████| 391783/391783 [00:00<00:00, 2190872.04 examples/s]
+Generating validation split:   0%|          | 0/12241 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 12241/12241 [00:00<00:00, 1925102.18 examples/s]
+Generating test split:   0%|          | 0/2600 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 2600/2600 [00:00<00:00, 273841.51 examples/s]
+Generating train split:   0%|          | 0/12133 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 12133/12133 [00:00<00:00, 358386.79 examples/s]
+Generating validation split:   0%|          | 0/2599 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 2599/2599 [00:00<00:00, 290879.39 examples/s]
+Generating test split:   0%|          | 0/3000 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 3000/3000 [00:00<00:00, 435199.11 examples/s]
+Generating train split:   0%|          | 0/20000 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 20000/20000 [00:00<00:00, 983677.85 examples/s]
+Generating validation split:   0%|          | 0/3000 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 3000/3000 [00:00<00:00, 584110.67 examples/s]
+2025-09-06 14:16:21,815 | WARNING | agsc.preprocess: Config 'clue/wsc' not found – retrying with official name 'cluewsc2020'.
+Generating test split:   0%|          | 0/2574 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 2574/2574 [00:00<00:00, 633911.01 examples/s]
+Generating train split:   0%|          | 0/1244 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 1244/1244 [00:00<00:00, 492097.91 examples/s]
+Generating validation split:   0%|          | 0/304 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 304/304 [00:00<00:00, 172097.24 examples/s]
+2025-09-06 14:16:23,843 | INFO | agsc.train: Loading base model kimihailv/llama-1.3B …
+`torch_dtype` is deprecated! Use `dtype` instead!
+2025-09-06 14:16:24,166 | WARNING | transformers.configuration_utils: `torch_dtype` is deprecated! Use `dtype` instead!
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files:  50%|█████     | 1/2 [00:35<00:35, 35.24s/it]Fetching 2 files: 100%|██████████| 2/2 [00:35<00:00, 17.62s/it]
+2025-09-06 14:17:02,930 | INFO | accelerate.utils.modeling: We will use 90% of the memory on device 0 for storing the model, and 10% for the buffer to avoid OOM. You can set `max_memory` in to a higher value to use more memory (at your own risk).
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:01<00:01,  1.37s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:01<00:00,  1.38it/s]
+2025-09-06 14:17:04,693 | INFO | agsc.train: Applying LoRA (r=64, alpha=32).
+Traceback (most recent call last):
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 149, in <module>
+    main()
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 145, in main
+    run_experiment_clue(cfg["exp1"])
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 84, in run_experiment_clue
+    model, tokenizer = load_llama_lora(
+                       ^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/train.py", line 104, in load_llama_lora
+    tokenizer = AutoTokenizer.from_pretrained(model_id, use_fast=False)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/transformers/models/auto/tokenization_auto.py", line 1125, in from_pretrained
+    return tokenizer_class.from_pretrained(pretrained_model_name_or_path, *inputs, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/transformers/utils/import_utils.py", line 2142, in __getattribute__
+    requires_backends(cls, cls._backends)
+  File "/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/transformers/utils/import_utils.py", line 2128, in requires_backends
+    raise ImportError("".join(failed))
+ImportError: 
+LlamaTokenizer requires the SentencePiece library but it was not found in your environment. Check out the instructions on the
+installation page of its repo: https://github.com/google/sentencepiece#installation and follow the ones
+that match your environment. Please note that you may need to restart your runtime after installation.
+
