@@ -14,33 +14,38 @@ from peft import LoraConfig, get_peft_model
 # -----------------------------------------------------------------------------
 # Monkey-patch -----------------------------------------------------------------
 # -----------------------------------------------------------------------------
-# Many YAML / CLI configurations express the learning-rate in scientific
-# notation as **strings** (e.g. "5e-5").  The standard `torch.optim.AdamW`
-# expects a *float* and will raise a `TypeError` otherwise.  To make the
-# codebase robust to both representations we patch `AdamW` so that it accepts
-# string values and silently converts them to floats before calling the real
-# implementation.  The original class is still accessible via
-# `torch.optim._AdamWOrig` should downstream code need it explicitly.
+# A lot of YAML/CLI configs specify the learning-rate as a *string* (e.g. "5e-5").
+# The stock `torch.optim.AdamW` expects a float and will crash otherwise.  We
+# therefore wrap AdamW so it silently converts string LRs to floats.  To be extra
+# safe we replace *both* torch.optim.AdamW **and** torch.optim.adamw.AdamW so
+# that whatever import style a downstream module uses it will pick up the safe
+# version.
 
-from torch.optim import AdamW as _AdamWOrig  # noqa: E402 (import after torch)
+from torch.optim import AdamW as _AdamWOrig  # noqa: E402 – import after torch
 
 
 class _AdamWSafe(_AdamWOrig):  # type: ignore[misc]
     """Drop-in replacement for AdamW with string-to-float LR conversion."""
 
-    def __init__(self, params, lr=1e-3, *args, **kwargs):  # noqa: D401, ANN001
+    def __init__(self, params, lr=1e-3, *args, **kwargs):  # noqa: ANN001
+        # If the LR comes in as a string ("5e-5", "0.0001", …) convert it.
         if isinstance(lr, str):
             try:
                 lr = float(lr)
-            except ValueError as exc:  # pragma: no cover – should never happen
-                raise ValueError(
-                    f"AdamW received an invalid string for lr: {lr!r}") from exc
+            except ValueError as exc:  # pragma: no cover – defensive
+                raise ValueError(f"AdamW received an invalid lr string: {lr!r}") from exc
         super().__init__(params, lr=float(lr), *args, **kwargs)
 
 
-# Expose original just in case and monkey-patch the optimiser registry.
+# Expose original impl. just in case and patch *both* attribute locations.
+#   1) torch.optim.AdamW                     (most common)
+#   2) torch.optim.adamw.AdamW              (imported via `from … import AdamW`)
+
 torch.optim._AdamWOrig = _AdamWOrig  # type: ignore[attr-defined]
+
 torch.optim.AdamW = _AdamWSafe  # type: ignore[assignment]
+import torch.optim.adamw as _adamw_mod  # noqa: E402  – after patch
+_adamw_mod.AdamW = _AdamWSafe  # type: ignore[attr-defined]
 
 # -----------------------------------------------------------------------------
 # Logger ----------------------------------------------------------------------
@@ -73,10 +78,9 @@ def load_llama_lora(model_id: str, r: int, alpha: int, *, bnb_8bit: bool = True)
 
     bnb_cfg = None
     if bnb_8bit:
-        # Lazy import to avoid missing GPU build on CPU machines.
         try:
             bnb_cfg = BitsAndBytesConfig(load_in_8bit=True, llm_int8_threshold=6.0)
-        except Exception as exc:  # pragma: no cover
+        except Exception as exc:  # pragma: no cover – CPU fallback
             logger.warning("bitsandbytes not available – falling back to fp16: %s", exc)
             bnb_cfg = None
 
