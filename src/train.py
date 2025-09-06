@@ -9,7 +9,7 @@ from __future__ import annotations
 import random
 from dataclasses import dataclass
 from pathlib import Path
-from typing import Dict, List, Any
+from typing import Dict, List, Any, Tuple
 
 import torch
 import timm
@@ -18,8 +18,17 @@ from transformers import get_cosine_schedule_with_warmup
 from torch.utils.data import DataLoader
 from codecarbon import OfflineEmissionsTracker
 
-from .evaluate import ContinualMetrics
-from .preprocess import ImagenetteTasks
+# -----------------------------------------------------------------------------
+# Local imports – be robust to being executed either as a package (``python -m
+# src.main``) *or* as a plain script (``python src/main.py``).  The leading dot
+# variant works for the former, the fallback works for the latter.
+# -----------------------------------------------------------------------------
+try:
+    from .evaluate import ContinualMetrics  # type: ignore
+    from .preprocess import ImagenetteTasks  # type: ignore
+except ImportError:  # pragma: no cover  – fallback when run as script
+    from evaluate import ContinualMetrics  # type: ignore
+    from preprocess import ImagenetteTasks  # type: ignore
 
 # -----------------------------------------------------------------------------
 #                               Helper
@@ -96,6 +105,8 @@ class CuriousScheduler:
 class GlobalConfig:  # local copy so train.py is self-contained w.r.t typing
     work_dir: Path
     device: str
+    # seeds (list of ints – only used by main loop but included for consistency)
+    seeds: Tuple[int, ...]
     # optimiser
     lr_vision: float
     betas: tuple
@@ -209,4 +220,4 @@ class VisionTrainer:
             correct += (preds == labels).sum().item()
             total += len(labels)
         self.model.train()
-        return correct / total
+        return correct / total if total > 0 else 0.0
