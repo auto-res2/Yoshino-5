@@ -1,17 +1,20 @@
 """src/train.py
 Minor bug-fixes & path updates.
-1. _otdd now converts feature tensors to NumPy arrays before calling POT’s ``ot.dist``.  Passing a
-   torch.Tensor directly raised a ``TypeError`` with recent POT versions.
-2. Added a small guard in ``device()`` so that the code gracefully falls back to CPU when CUDA is
-   unavailable instead of aborting the whole experiment.  (The original hard-failure broke CPU-only
-   CI runs.)
+(See header of file for previous notes.)
+
+Changes in this patch
+---------------------
+1.  AttrDict.to_dict now converts every Path instance to str **recursively** so that the
+    resulting object is JSON-serialisable.  This fixes the crash that happened in
+    ``main.py`` when executing ``json.dumps(cfg.to_dict())``.
+2.  No other functional changes – all existing behaviour is preserved.
 """
 from __future__ import annotations
 
 import os, random, math, inspect, time, json
 from pathlib import Path
 from types import SimpleNamespace
-from typing import Dict, List, Any
+from typing import Dict, List, Any, Union
 
 import numpy as np
 import torch
@@ -24,7 +27,12 @@ import torch.nn.functional as F
 # helpers & utilities -------------------------------------------------------
 # --------------------------------------------------------------------------
 class AttrDict(SimpleNamespace):
-    """Recursively turn a (nested) mapping into an object with attribute access."""
+    """Recursively turn a (nested) mapping into an object with attribute access.
+
+    Additionally, ``to_dict`` now converts ``pathlib.Path`` objects to
+    ``str`` so that the output can be safely serialised with ``json``.
+    """
+
     def __init__(self, **kwargs):
         for k, v in kwargs.items():
             if isinstance(v, dict):
@@ -34,11 +42,23 @@ class AttrDict(SimpleNamespace):
                 v = Path(v)
             super().__setattr__(k, v)
 
-    def to_dict(self):
-        out = {}
-        for k, v in self.__dict__.items():
-            out[k] = v.to_dict() if isinstance(v, AttrDict) else v
-        return out
+    # ------------------------------------------------------------------
+    def _serialise(self, obj: Any) -> Any:  # pylint: disable=R0201
+        """Helper used by :py:meth:`to_dict` – makes *everything* JSON-friendly."""
+        if isinstance(obj, AttrDict):
+            return {k: self._serialise(v) for k, v in obj.__dict__.items()}
+        if isinstance(obj, dict):
+            return {k: self._serialise(v) for k, v in obj.items()}
+        if isinstance(obj, (list, tuple)):
+            return [self._serialise(v) for v in obj]
+        if isinstance(obj, Path):
+            return str(obj)
+        return obj
+
+    # ------------------------------------------------------------------
+    def to_dict(self) -> Dict[str, Any]:
+        """Return a *pure* Python dict that can be passed to :pyfunc:`json.dumps`."""
+        return {k: self._serialise(v) for k, v in self.__dict__.items()}
 
 
 def set_seed(sd: int):
@@ -59,6 +79,7 @@ def device():
 import timm
 from peft import LoraConfig, get_peft_model
 from transformers import AutoModelForCausalLM
+
 
 def vit_base_with_lora(cfg):
     """Vision Transformer backbone with LoRA adapters."""
@@ -95,6 +116,7 @@ try:
 except Exception:  # pragma: no cover – any import issue → use CPU fallback
     _HAS_GPU_SINKHORN = False
 
+
 class SimilarityCache:
     def __init__(self):
         self.otdd: Dict[tuple, float] = {}
@@ -103,6 +125,7 @@ class SimilarityCache:
 
 class CuriousScheduler:
     """Implementation of CURIOUS (Compute-budgeted Utility-aware Reordering)."""
+
     def __init__(self, cfg):
         self.cfg = cfg
         self.alpha, self.beta, self.gamma = cfg.curious.alpha, cfg.curious.beta, cfg.curious.gamma
@@ -184,35 +207,57 @@ class ChronoScheduler:
 
 class DotddScheduler:
     """Greedy ordering based on data similarity (dOTDD)."""
+
     def __init__(self, feat_bank):
         self.feat_bank = feat_bank
 
     def order(self, task_ids: List[int]):
-        remaining = task_ids.copy(); order = []
+        remaining = task_ids.copy()
+        order: List[int] = []
         while remaining:
             if not order:
-                order.append(remaining.pop(0)); continue
+                order.append(remaining.pop(0))
+                continue
             last = order[-1]
-            dists = [(cid, torch.norm(self.feat_bank[last].mean(0) - self.feat_bank[cid].mean(0)).item()) for cid in remaining]
+            dists = [
+                (
+                    cid,
+                    torch.norm(self.feat_bank[last].mean(0) - self.feat_bank[cid].mean(0)).item(),
+                )
+                for cid in remaining
+            ]
             cid = min(dists, key=lambda x: x[1])[0]
-            order.append(cid); remaining.remove(cid)
+            order.append(cid)
+            remaining.remove(cid)
         return order
 
 
 class GradOnlyScheduler:
     """Greedy ordering based on gradient conflict only."""
+
     def __init__(self, grad_bank):
         self.grad_bank = grad_bank
 
     def order(self, task_ids: List[int]):
-        remaining = task_ids.copy(); order = []
+        remaining = task_ids.copy()
+        order: List[int] = []
         while remaining:
             if not order:
-                order.append(remaining.pop(0)); continue
+                order.append(remaining.pop(0))
+                continue
             last = order[-1]
-            confs = [(cid, -F.cosine_similarity(self.grad_bank[last].flatten(), self.grad_bank[cid].flatten(), dim=0).item()) for cid in remaining]
+            confs = [
+                (
+                    cid,
+                    -F.cosine_similarity(
+                        self.grad_bank[last].flatten(), self.grad_bank[cid].flatten(), dim=0
+                    ).item(),
+                )
+                for cid in remaining
+            ]
             cid = min(confs, key=lambda x: x[1])[0]
-            order.append(cid); remaining.remove(cid)
+            order.append(cid)
+            remaining.remove(cid)
         return order
 
 # --------------------------------------------------------------------------
@@ -220,15 +265,19 @@ class GradOnlyScheduler:
 # --------------------------------------------------------------------------
 from evaluate import CLMatrix  # fixed import
 
+
 class ContinualLearner:
     """Vision-only continual learner – loosely adapted from the monolithic script."""
+
     def __init__(self, stream, cfg: AttrDict, scheduler_name: str):
         self.cfg, self.stream = cfg, stream
         self.dev = device()
 
         # create backbone + heads ------------------------------------------------
         self.model = vit_base_with_lora(cfg).to(self.dev)
-        self.heads = torch.nn.ModuleList([torch.nn.Linear(768, 10) for _ in range(len(stream.tasks))]).to(self.dev)
+        self.heads = torch.nn.ModuleList([
+            torch.nn.Linear(768, 10) for _ in range(len(stream.tasks))
+        ]).to(self.dev)
 
         # optimiser -------------------------------------------------------------
         self.opt = torch.optim.AdamW(
@@ -264,7 +313,8 @@ class ContinualLearner:
 
     # ------------------------------------------------------------------
     def _compute_feat_grad(self, loader: torch.utils.data.DataLoader, task_id: int):
-        x, y = next(iter(loader)); x, y = x.to(self.dev), y.to(self.dev)
+        x, y = next(iter(loader))
+        x, y = x.to(self.dev), y.to(self.dev)
         self.opt.zero_grad()
         with autocast(dtype=torch.float16 if self.dev.type == "cuda" else torch.float32):
             feats = self.model(x)
@@ -305,7 +355,8 @@ class ContinualLearner:
             remaining, order = task_ids.copy(), []
             while remaining:
                 cid = self.sched.propose_next(remaining, feat_bank, grad_bank)
-                order.append(cid); remaining.remove(cid)
+                order.append(cid)
+                remaining.remove(cid)
 
         # ------------------------------------------------------------------
         tracker = OfflineEmissionsTracker(project_name="exp", output_dir=str(self.cfg.paths.work_dir))
@@ -332,7 +383,9 @@ class ContinualLearner:
 
             # scheduler feedback ------------------------------------------------
             if isinstance(self.sched, CuriousScheduler):
-                self.sched.update_after_task(task_id, feat_bank[task_id], grad_bank[task_id], acc_drop=0.0)
+                self.sched.update_after_task(
+                    task_id, feat_bank[task_id], grad_bank[task_id], acc_drop=0.0
+                )
 
         tracker.stop()
         return self.cl_matrix.final_metrics()
@@ -345,7 +398,8 @@ class ContinualLearner:
         for x, y in loader:
             x, y = x.to(self.dev), y.to(self.dev)
             preds = self._forward(x, task_id).argmax(1)
-            correct += (preds == y).sum().item(); total += len(y)
+            correct += (preds == y).sum().item()
+            total += len(y)
             if total > 2000:  # evaluation budget guardrail
                 break
         return correct / total
