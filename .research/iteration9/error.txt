@@ -9,3 +9,8 @@ Traceback (most recent call last):
     stream = MiniCtrl40Stream(cfg, cfg.batch_size_vision)
                                    ^^^^^^^^^^^^^^^^^^^^^
 AttributeError: 'AttrDict' object has no attribute 'batch_size_vision'
+Traceback (most recent call last):
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 31, in <module>
+    import curriculum as cur  # type: ignore  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'curriculum'
