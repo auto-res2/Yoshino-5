@@ -1,0 +1,11 @@
+/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+Traceback (most recent call last):
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 123, in <module>
+    main()
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 115, in main
+    exp1(cfg)
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 40, in exp1
+    stream = MiniCtrl40Stream(cfg, cfg.batch_size_vision)
+                                   ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'AttrDict' object has no attribute 'batch_size_vision'
