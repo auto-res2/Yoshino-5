@@ -4,3 +4,7 @@ Traceback (most recent call last):
   File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 46, in <module>
     from .preprocess import ImagenetteTasks
 ImportError: attempted relative import with no known parent package
+Traceback (most recent call last):
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 15, in <module>
+    from .train import load_llama_lora
+ImportError: attempted relative import with no known parent package
