@@ -1,11 +1,11 @@
-torch==2.1.2+cu118  --extra-index-url https://download.pytorch.org/whl/cu118
-torchvision==0.16.2+cu118  --extra-index-url https://download.pytorch.org/whl/cu118
+torch==2.1.2
+torchvision==0.16.2
 transformers==4.35.2
 bitsandbytes==0.41.2
 sentencepiece==0.1.99
 peft==0.8.2
 datasets==2.18.0
-avalanche-lib==0.4.0
+avalanche-lib==0.6.0
 numpy==1.26.4
 scipy==1.11.4
 matplotlib==3.8.4

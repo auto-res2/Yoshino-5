@@ -1,6 +1,3 @@
-"""evaluate.py – metrics, statistical analysis & plotting utilities"""
-from __future__ import annotations
-
 import json
 import logging
 from pathlib import Path
@@ -54,6 +51,11 @@ def paired_t(a: List[float], b: List[float]):
 # Plot helpers ---------------------------------------------------------------
 # ---------------------------------------------------------------------------
 
+# All images **must** be stored under this directory (see task instructions)
+_IMG_DIR = Path(".research/iteration8/images")
+_IMG_DIR.mkdir(parents=True, exist_ok=True)
+
+
 def _annotate(ax):
     for p in ax.patches:
         ax.annotate(
@@ -65,8 +67,25 @@ def _annotate(ax):
         )
 
 
-def bar(values: dict, title: str, fname: Path):
-    fname.parent.mkdir(parents=True, exist_ok=True)
+def bar(values: dict, title: str, fname: Path | str):
+    """Draw a simple bar-chart and save it under the mandated images folder.
+
+    Parameters
+    ----------
+    values : dict
+        Mapping *name -> scalar*.
+    title : str
+        Figure title.
+    fname : Path | str
+        Desired **file stem** – the parent directory is ignored so that every
+        image is persisted to ``.research/iteration8/images`` as required by
+        the evaluation harness.
+    """
+
+    # Resolve the final output path inside the designated directory.
+    stem = Path(fname).with_suffix("").name  # keep only the last component
+    out_path = _IMG_DIR / f"{stem}.pdf"
+
     fig, ax = plt.subplots()
     x = list(values.keys())
     y = list(values.values())
@@ -76,5 +95,7 @@ def bar(values: dict, title: str, fname: Path):
     ax.set_title(title)
     ax.set_xticklabels(x, rotation=45, ha="right")
     fig.tight_layout()
-    fig.savefig(fname.with_suffix(".pdf"), bbox_inches="tight")
+    fig.savefig(out_path, bbox_inches="tight")
     plt.close(fig)
+
+    log.info("Saved figure to %s", out_path)
