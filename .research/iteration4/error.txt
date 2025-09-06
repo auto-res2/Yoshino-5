@@ -800,3 +800,42 @@
 Passing `palette` without assigning `hue` is deprecated and will be removed in v0.14.0. Assign the `x` variable to `hue` and set `legend=False` for the same effect.
 
   sns.barplot(x=list(range(len(self.results))), y=df["Final_ACC"], palette="deep")
+2025-09-06 14:11:02,899 | INFO | agsc.main: ==== Experiment: Offline AGSC on CLUE++ ====
+Generating test split:   0%|          | 0/3861 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 3861/3861 [00:00<00:00, 713087.09 examples/s]
+Generating train split:   0%|          | 0/34334 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 34334/34334 [00:00<00:00, 2825665.83 examples/s]
+Generating validation split:   0%|          | 0/4316 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 4316/4316 [00:00<00:00, 1449020.74 examples/s]
+Generating test split:   0%|          | 0/10000 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 10000/10000 [00:00<00:00, 1980220.01 examples/s]
+Generating train split:   0%|          | 0/53360 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 53360/53360 [00:00<00:00, 2943526.07 examples/s]
+Generating validation split:   0%|          | 0/10000 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 10000/10000 [00:00<00:00, 2250525.30 examples/s]
+Generating test split:   0%|          | 0/13880 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 13880/13880 [00:00<00:00, 1873252.45 examples/s]
+Generating train split:   0%|          | 0/391783 [00:00<?, ? examples/s]Generating train split:  54%|█████▍    | 213000/391783 [00:00<00:00, 2117692.62 examples/s]Generating train split: 100%|██████████| 391783/391783 [00:00<00:00, 2172399.12 examples/s]
+Generating validation split:   0%|          | 0/12241 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 12241/12241 [00:00<00:00, 1947003.23 examples/s]
+Generating test split:   0%|          | 0/2600 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 2600/2600 [00:00<00:00, 273087.18 examples/s]
+Generating train split:   0%|          | 0/12133 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 12133/12133 [00:00<00:00, 367433.14 examples/s]
+Generating validation split:   0%|          | 0/2599 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 2599/2599 [00:00<00:00, 290685.48 examples/s]
+Generating test split:   0%|          | 0/3000 [00:00<?, ? examples/s]Generating test split: 100%|██████████| 3000/3000 [00:00<00:00, 439516.29 examples/s]
+Generating train split:   0%|          | 0/20000 [00:00<?, ? examples/s]Generating train split: 100%|██████████| 20000/20000 [00:00<00:00, 943324.56 examples/s]
+Generating validation split:   0%|          | 0/3000 [00:00<?, ? examples/s]Generating validation split: 100%|██████████| 3000/3000 [00:00<00:00, 571457.01 examples/s]
+Traceback (most recent call last):
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 149, in <module>
+    main()
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 145, in main
+    run_experiment_clue(cfg["exp1"])
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 80, in run_experiment_clue
+    clue_ds = CLUESplit(cfg["datasets"])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/preprocess.py", line 45, in __init__
+    ds = load_dataset(dataset_id, config_name)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/datasets/load.py", line 1392, in load_dataset
+    builder_instance = load_dataset_builder(
+                       ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/datasets/load.py", line 1166, in load_dataset_builder
+    builder_instance: DatasetBuilder = builder_cls(
+                                       ^^^^^^^^^^^^
+  File "/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/datasets/builder.py", line 343, in __init__
+    self.config, self.config_id = self._create_builder_config(
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/datasets/builder.py", line 539, in _create_builder_config
+    raise ValueError(
+ValueError: BuilderConfig 'wsc' not found. Available: ['afqmc', 'c3', 'chid', 'cluewsc2020', 'cmnli', 'cmrc2018', 'csl', 'diagnostics', 'drcd', 'iflytek', 'ocnli', 'tnews']
