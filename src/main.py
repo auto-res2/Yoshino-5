@@ -24,8 +24,8 @@ ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-# Directory for all experiment artefacts
-IMAGES_DIR = ROOT / ".research" / "iteration4" / "images"
+# Directory for all experiment artefacts – unified location requested by spec
+IMAGES_DIR = ROOT / ".research" / "iteration6" / "images"
 IMAGES_DIR.mkdir(parents=True, exist_ok=True)
 
 # -----------------------------------------------------------------------------

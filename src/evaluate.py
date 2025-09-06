@@ -1,8 +1,8 @@
+from __future__ import annotations
+
 """
 evaluate.py – continual-learning metrics, statistics and plotting helpers
 """
-from __future__ import annotations
-
 from pathlib import Path
 from typing import List
 
@@ -49,19 +49,26 @@ def paired_ttest(sample_a: List[float], sample_b: List[float]):
 # -----------------------------------------------------------------------------
 
 def line_plot(
-    xs, ys, err, *, xlabel: str, ylabel: str, title: str, fname: Path | str
+    xs,
+    ys,
+    err,
+    *,
+    xlabel: str,
+    ylabel: str,
+    title: str,
+    fname: Path | str,
 ):
-    """Utility which *always* writes into .research/iteration5/images.
+    """Utility which *always* writes into .research/iteration6/images.
 
     Irrespective of the filename suggested by the caller we enforce the new
     requirement that all images must live under
-    ``.research/iteration5/images``.  Only the basename of *fname* is
+    ``.research/iteration6/images``.  Only the basename of *fname* is
     preserved.  The target directory is created on-demand.
     """
 
-    # Resolve central images directory (repo-root/.research/iteration5/images)
+    # Resolve central images directory (repo-root/.research/iteration6/images)
     root = Path(__file__).resolve().parent.parent
-    images_dir = root / ".research" / "iteration5" / "images"
+    images_dir = root / ".research" / "iteration6" / "images"
     images_dir.mkdir(parents=True, exist_ok=True)
 
     if isinstance(fname, (str, Path)):
