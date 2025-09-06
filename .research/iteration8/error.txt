@@ -18,3 +18,7 @@ Traceback (most recent call last):
   File "/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/timm/models/_factory.py", line 134, in create_model
     raise RuntimeError('Unknown model (%s)' % model_name)
 RuntimeError: Unknown model (vit-base-patch16-224)
+Traceback (most recent call last):
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 16, in <module>
+    from . import curriculum as cur
+ImportError: attempted relative import with no known parent package
