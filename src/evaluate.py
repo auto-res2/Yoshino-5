@@ -51,10 +51,30 @@ def paired_ttest(sample_a: List[float], sample_b: List[float]):
 def line_plot(
     xs, ys, err, *, xlabel: str, ylabel: str, title: str, fname: Path | str
 ):
+    """Utility which *always* writes into .research/iteration5/images.
+
+    Irrespective of the filename suggested by the caller we enforce the new
+    requirement that all images must live under
+    ``.research/iteration5/images``.  Only the basename of *fname* is
+    preserved.  The target directory is created on-demand.
+    """
+
+    # Resolve central images directory (repo-root/.research/iteration5/images)
+    root = Path(__file__).resolve().parent.parent
+    images_dir = root / ".research" / "iteration5" / "images"
+    images_dir.mkdir(parents=True, exist_ok=True)
+
+    if isinstance(fname, (str, Path)):
+        fname = Path(fname).name  # keep only the final component
+    else:  # pragma: no cover – defensive
+        raise TypeError("fname must be path-like")
+
+    final_path = images_dir / fname
+
     plt.figure()
     plt.plot(xs, ys, label=title)
     plt.fill_between(xs, ys - err, ys + err, alpha=0.3)
     plt.xlabel(xlabel)
     plt.ylabel(ylabel)
     plt.legend()
-    plt.savefig(str(fname), bbox_inches="tight")
+    plt.savefig(str(final_path), bbox_inches="tight")
