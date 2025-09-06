@@ -1,1 +1,14 @@
-# Please list the required python packages.
+torch>=2.2
+torchvision>=0.17
+timm~=0.9
+transformers>=4.35
+peft>=0.16
+datasets>=2.14
+bitsandbytes>=0.41
+matplotlib
+seaborn
+fvcore
+codecarbon
+torchmetrics
+pandas
+pyyaml
