@@ -52,7 +52,7 @@ def paired_t(a: List[float], b: List[float]):
 # ---------------------------------------------------------------------------
 
 # All images **must** be stored under this directory (see task instructions)
-_IMG_DIR = Path(".research/iteration8/images")
+_IMG_DIR = Path(".research/iteration9/images")
 _IMG_DIR.mkdir(parents=True, exist_ok=True)
 
 
@@ -78,7 +78,7 @@ def bar(values: dict, title: str, fname: Path | str):
         Figure title.
     fname : Path | str
         Desired **file stem** – the parent directory is ignored so that every
-        image is persisted to ``.research/iteration8/images`` as required by
+        image is persisted to ``.research/iteration9/images`` as required by
         the evaluation harness.
     """
 

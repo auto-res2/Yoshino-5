@@ -5,6 +5,7 @@ import hashlib
 import json
 import logging
 import os
+import sys
 import time
 from pathlib import Path
 
@@ -13,14 +14,28 @@ import pandas as pd
 import torch
 import yaml
 
-from . import curriculum as cur
-from . import evaluate as ev
-from . import preprocess as ds
-from . import train as tr
-from . import utils
+# ---------------------------------------------------------------------------
+# When executed as a *stand-alone* script (``python src/main.py``) the module
+# is **not** part of any package.  Relative imports therefore fail.  We detect
+# this situation and manually insert the *src* folder as well as the project
+# root into ``sys.path`` so that subsequent **absolute** imports just work.
+# ---------------------------------------------------------------------------
+_THIS_DIR = Path(__file__).resolve().parent
+_PROJECT_ROOT = _THIS_DIR.parent
+if str(_THIS_DIR) not in sys.path:
+    sys.path.insert(0, str(_THIS_DIR))
+if str(_PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(_PROJECT_ROOT))
+
+# Now simple absolute imports succeed whether ``src`` is a package or not.
+import curriculum as cur  # type: ignore  # noqa: E402
+import evaluate as ev  # type: ignore  # noqa: E402
+import preprocess as ds  # type: ignore  # noqa: E402
+import train as tr  # type: ignore  # noqa: E402
+import utils  # type: ignore  # noqa: E402
 
 # ---------------------------------------------------------------------------
-ROOT = Path(__file__).resolve().parent.parent  # project root (one level up)
+ROOT = _PROJECT_ROOT  # project root (one level up from src)
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s | %(levelname)s | %(name)s: %(message)s",
