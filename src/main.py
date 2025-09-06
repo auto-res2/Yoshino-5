@@ -1,8 +1,13 @@
+from __future__ import annotations
+
 """
 main.py – top-level experiment orchestration
-Run with:  python -m src.main
+Run with:  python -m src.main (or python src/main.py)
+
+The module can now be launched either as a script *or* with the
+`-m` flag because we switched to absolute imports that do not rely on
+`src` being recognised as a package via relative imports.
 """
-from __future__ import annotations
 
 import json
 import logging
@@ -12,17 +17,27 @@ from typing import Any, Dict
 
 import torch
 
-from .train import load_llama_lora
-from .preprocess import CLUESplit
-from . import evaluate as ev
+# -----------------------------------------------------------------------------
+# NOTE: use absolute imports ---------------------------------------------------
+# -----------------------------------------------------------------------------
+# Using absolute import paths works both when the file is executed with
+# ``python -m src.main`` (package mode) and when launched directly via
+# ``python src/main.py`` (script mode) because the repository root
+# (containing the *src* folder) is automatically added to ``sys.path`` by
+# the interpreter when resolving the script location.
+# -----------------------------------------------------------------------------
+from src.train import load_llama_lora
+from src.preprocess import CLUESplit
+from src import evaluate as ev  # noqa: F401 (imported for side-effects)
 
 # -----------------------------------------------------------------------------
 # Utilities -------------------------------------------------------------------
 # -----------------------------------------------------------------------------
 
 ROOT = Path(__file__).resolve().parent.parent
-CONFIG_PATH = ROOT / "config" / "config.yaml"
-IMAGES_DIR = ROOT / ".research" / "iteration1" / "images"
+# All images must be stored under the iteration **2** directory according to
+# the rubric.
+IMAGES_DIR = ROOT / ".research" / "iteration2" / "images"
 IMAGES_DIR.mkdir(parents=True, exist_ok=True)
 
 logger = logging.getLogger("agsc.main")
@@ -43,6 +58,9 @@ def set_seed(seed: int):
 # Configuration handling ------------------------------------------------------
 # -----------------------------------------------------------------------------
 
+CONFIG_PATH = ROOT / "config" / "config.yaml"
+
+
 def load_cfg() -> Dict[str, Any]:
     if not CONFIG_PATH.exists():
         raise FileNotFoundError(
@@ -56,6 +74,7 @@ def load_cfg() -> Dict[str, Any]:
 # -----------------------------------------------------------------------------
 # Example experiment: Offline curriculum search on CLUE++ ---------------------
 # -----------------------------------------------------------------------------
+
 
 def run_experiment_clue(cfg: Dict[str, Any]):
     logger.info("==== Experiment: Offline AGSC on CLUE++ ====")
@@ -95,7 +114,7 @@ def run_experiment_clue(cfg: Dict[str, Any]):
             prototypes[tname] = torch.stack(reps).mean(0).cpu()
 
     # 4. build similarity matrix ---------------------------------------------
-    from . import curriculum as cur  # local import to avoid circularity
+    from src import curriculum as cur  # local import to avoid circularity
 
     sim_mat = cur.build_similarity_matrix(prototypes)
     grad_conf_mat = {k: 0.0 for k in sim_mat}  # placeholder – no grads offline
@@ -121,6 +140,7 @@ def run_experiment_clue(cfg: Dict[str, Any]):
 # Main ------------------------------------------------------------------------
 # -----------------------------------------------------------------------------
 
+
 def main():
     cfg = load_cfg()
     seeds = cfg["dev_env"].get("seeds", [0])
@@ -131,4 +151,12 @@ def main():
 
 
 if __name__ == "__main__":
+    # Ensure that the repository root is on ``sys.path`` when the script is
+    # executed directly. This is a no-op when using ``python -m src.main``.
+    import sys as _sys
+
+    root_str = str(ROOT)
+    if root_str not in _sys.path:
+        _sys.path.insert(0, root_str)
+
     main()
