@@ -1,35 +1,60 @@
-"""src/evaluate.py
-Metric utilities separated from training so they can easily be reused by
-alternative learners or for post-hoc analysis only.
+"""
+evaluate.py – continual-learning metrics, statistics and plotting helpers
 """
 from __future__ import annotations
 
 from pathlib import Path
-import torch
-import pandas as pd
+from typing import List
+
 import matplotlib.pyplot as plt
+import numpy as np
+import scipy.stats as st
 
-__all__ = ["CLMatrix"]
+# -----------------------------------------------------------------------------
+# Metrics ---------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+
+def accuracy(preds: np.ndarray, labels: np.ndarray) -> float:
+    return float((preds == labels).mean())
 
 
-class CLMatrix:
-    """In-memory accuracy matrix for continual learning (rows = after task i, columns = task j)."""
-    def __init__(self, n_tasks: int):
-        self.mat = torch.zeros((n_tasks, n_tasks))
-        self.n = n_tasks
+def backward_transfer(acc_matrix: np.ndarray) -> float:
+    """Average forgetting across tasks (Lopez-Paz & Ranzato, 2017)."""
+    t = acc_matrix.shape[0]
+    diffs = np.tril(acc_matrix, -1) - np.diag(acc_matrix)
+    return float(diffs.sum() / (t * (t - 1) / 2))
 
-    # ------------------------------------------------------------------
-    def update(self, task_seen: int, task_eval: int, acc: float):
-        self.mat[task_seen, task_eval] = acc
 
-    # ------------------------------------------------------------------
-    def final_metrics(self):
-        final_acc = self.mat[-1].mean().item()
-        diag = torch.diag(self.mat)
-        bwt = (self.mat[-1, :-1] - diag[:-1]).mean().item()
-        min_acc = self.mat.min().item()
-        return {"Final_ACC": final_acc * 100, "BWT": bwt * 100, "min_ACC": min_acc * 100}
+def forward_transfer(acc_matrix: np.ndarray) -> float:
+    t = acc_matrix.shape[0]
+    diffs = np.triu(acc_matrix, 1) - np.diag(acc_matrix)
+    return float(diffs.sum() / (t * (t - 1) / 2))
 
-    # ------------------------------------------------------------------
-    def save_csv(self, path: Path):
-        pd.DataFrame(self.mat.numpy()).to_csv(path, index=False)
+# -----------------------------------------------------------------------------
+# Statistics ------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+
+def ci95(vals: List[float]):
+    mean = float(np.mean(vals))
+    se = st.sem(vals)
+    h = float(se * 1.96)
+    return mean, h
+
+
+def paired_ttest(sample_a: List[float], sample_b: List[float]):
+    return st.ttest_rel(sample_a, sample_b)
+
+# -----------------------------------------------------------------------------
+# Plotting --------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+
+def line_plot(
+    xs, ys, err, *, xlabel: str, ylabel: str, title: str, fname: Path | str
+):
+    plt.figure()
+    plt.plot(xs, ys, label=title)
+    plt.fill_between(xs, ys - err, ys + err, alpha=0.3)
+    plt.xlabel(xlabel)
+    plt.ylabel(ylabel)
+    plt.legend()
+    plt.savefig(str(fname), bbox_inches="tight")

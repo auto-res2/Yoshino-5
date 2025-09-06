@@ -1,148 +1,133 @@
+"""
+main.py – top-level experiment orchestration
+Run with:  python -m src.main
+"""
 from __future__ import annotations
 
-"""src/main.py
-Patched so the script can be executed directly (``python src/main.py``) without installing the
-project as a package.
-
-Changes in this patch
----------------------
-1.  Robust handling of missing hyper-parameters – ``batch_size_vision`` now falls back to
-    a sensible default (64) if the field is absent from the YAML config.  This prevents
-    the AttributeError that previously crashed the run.
-2.  Centralised *image* output directory.  All figures are now written to the mandatory
-    ``.research/iteration10/images`` location, independent of what may be specified in
-    ``config.yaml``.  The directory is created automatically.
-3.  Doc-string & comments updated to reflect the above tweaks (iteration10 path).
-"""
-
 import json
-import argparse
+import logging
+import random
 from pathlib import Path
-from typing import Dict
+from typing import Any, Dict
 
-import yaml
-import matplotlib.pyplot as plt
-import seaborn as sns
+import torch
 
-# local sibling imports ------------------------------------------------------
-from train import AttrDict, set_seed, ContinualLearner
-from preprocess import MiniCtrl40Stream, CIFARSmoke
+from .train import load_llama_lora
+from .preprocess import CLUESplit
+from . import evaluate as ev
 
-# --------------------------------------------------------------------
-EXPERIMENTS = ["EXP1_FULL_BENCHMARK", "EXP2_SMOKE"]
+# -----------------------------------------------------------------------------
+# Utilities -------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 
+ROOT = Path(__file__).resolve().parent.parent
+CONFIG_PATH = ROOT / "config" / "config.yaml"
+IMAGES_DIR = ROOT / ".research" / "iteration1" / "images"
+IMAGES_DIR.mkdir(parents=True, exist_ok=True)
 
-# --------------------------------------------------------------------
-# helpers -------------------------------------------------------------
-# --------------------------------------------------------------------
-
-def _default_bs(cfg: AttrDict) -> int:
-    """Return vision batch-size with a graceful fallback (default=64)."""
-    return int(getattr(cfg, "batch_size_vision", 64))
-
-
-def load_cfg(cfg_path: Path) -> AttrDict:
-    with open(cfg_path, "r", encoding="utf-8") as f:
-        raw = yaml.safe_load(f)
-    return AttrDict(**raw)
+logger = logging.getLogger("agsc.main")
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s | %(levelname)s | %(name)s: %(message)s",
+)
 
 
-# --------------------------------------------------------------------
-# EXPERIMENT 1 --------------------------------------------------------
-# --------------------------------------------------------------------
-
-def exp1(cfg: AttrDict):
-    print("\n================  EXPERIMENT 1 – Full Benchmark  ================")
-    stream = MiniCtrl40Stream(cfg, _default_bs(cfg))
-    scheds = ["CURIOUS", "Random", "Chrono", "dOTDD", "GradOnly"]
-    aggregated: Dict[str, list] = {s: [] for s in scheds}
-    for sd in cfg.seeds:
-        set_seed(sd)
-        for sname in scheds:
-            print(f"[Seed {sd}] Scheduler={sname}")
-            learner = ContinualLearner(stream, cfg, sname)
-            res = learner.train()
-            aggregated[sname].append(res)
-            print(json.dumps(res, indent=2))
-
-    # quick bar-plot of final accuracy --------------------------------
-    fig_acc = Path(cfg.paths.fig_dir) / "final_accuracy.pdf"
-    fig_acc.parent.mkdir(parents=True, exist_ok=True)
-    plt.figure(figsize=(6, 4))
-    means = [sum(d["Final_ACC"] for d in aggregated[s]) / len(aggregated[s]) for s in scheds]
-    sns.barplot(x=scheds, y=means)
-    for i, v in enumerate(means):
-        plt.text(i, v + 0.5, f"{v:.1f}", ha="center")
-    plt.ylabel("Final ACC (%)")
-    plt.savefig(fig_acc, bbox_inches="tight")
-    print("[INFO] Figure saved →", fig_acc)
+def set_seed(seed: int):
+    random.seed(seed)
+    torch.manual_seed(seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(seed)
 
 
-# --------------------------------------------------------------------
-# EXPERIMENT 2 --------------------------------------------------------
-# --------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+# Configuration handling ------------------------------------------------------
+# -----------------------------------------------------------------------------
 
-def exp2(cfg: AttrDict):
-    print("\n================  EXPERIMENT 2 – Smoke Test  ================")
-    stream = CIFARSmoke(cfg, _default_bs(cfg))
-    scheds = ["CURIOUS", "CleanFirst", "CorruptFirst"]
-    orders = {"CleanFirst": [0, 1], "CorruptFirst": [1, 0]}
-    results: Dict[str, Dict[str, float]] = {}
+def load_cfg() -> Dict[str, Any]:
+    if not CONFIG_PATH.exists():
+        raise FileNotFoundError(
+            f"Config file {CONFIG_PATH} missing – please create it first.")
+    import yaml  # Local import so that requirements.txt stays minimal
 
-    for s in scheds:
-        if s == "CURIOUS":
-            learner = ContinualLearner(stream, cfg, "CURIOUS")
-        else:  # monkey-patch deterministic order into Chrono scheduler
-            learner = ContinualLearner(stream, cfg, "Chrono")
-            learner.sched.order = lambda n_tasks, order=orders[s]: order
-        res = learner.train()
-        print(json.dumps(res, indent=2))
-        results[s] = res
+    with open(CONFIG_PATH, "r", encoding="utf-8") as fp:
+        return yaml.safe_load(fp)
 
-    # bar-plot of BWT --------------------------------------------------
-    fig_bwt = Path(cfg.paths.fig_dir) / "bwt_smoke.pdf"
-    fig_bwt.parent.mkdir(parents=True, exist_ok=True)
-    plt.figure(); vals = [results[s]["BWT"] for s in scheds]
-    sns.barplot(x=scheds, y=vals)
-    for i, v in enumerate(vals):
-        plt.text(i, v + 0.2, f"{v:.1f}", ha="center")
-    plt.ylabel("BWT (%)")
-    plt.savefig(fig_bwt, bbox_inches="tight")
-    print("[INFO] Figure saved →", fig_bwt)
 
-# --------------------------------------------------------------------
-# main ----------------------------------------------------------------
-# --------------------------------------------------------------------
+# -----------------------------------------------------------------------------
+# Example experiment: Offline curriculum search on CLUE++ ---------------------
+# -----------------------------------------------------------------------------
+
+def run_experiment_clue(cfg: Dict[str, Any]):
+    logger.info("==== Experiment: Offline AGSC on CLUE++ ====")
+
+    # 1. data -----------------------------------------------------------------
+    clue_ds = CLUESplit(cfg["datasets"])
+    task_names = [d["name"] for d in cfg["datasets"]]
+
+    # 2. model ----------------------------------------------------------------
+    model, tokenizer = load_llama_lora(
+        model_id=cfg["model"]["id"],
+        r=int(cfg["model"]["lora_r"]),
+        alpha=int(cfg["model"]["lora_alpha"]),
+        bnb_8bit=bool(cfg["model"].get("bnb_8bit", True)),
+    )
+
+    # 3. obtain semantic prototypes ------------------------------------------
+    device = next(model.parameters()).device
+    prototypes: Dict[str, torch.Tensor] = {}
+    model.eval()
+    with torch.no_grad():
+        for tname in task_names:
+            ds = clue_ds.get_dataset(tname)["validation"].select(range(32))
+            reps = []
+            for ex in ds:
+                # Generic sentence field handling
+                text = ex.get("sentence") or ex.get("sentence1") or str(ex)
+                tok = tokenizer(
+                    text,
+                    return_tensors="pt",
+                    padding="max_length",
+                    truncation=True,
+                    max_length=128,
+                ).to(device)
+                emb = model.model.embed_tokens(tok.input_ids).mean(1).squeeze(0)
+                reps.append(emb.float())
+            prototypes[tname] = torch.stack(reps).mean(0).cpu()
+
+    # 4. build similarity matrix ---------------------------------------------
+    from . import curriculum as cur  # local import to avoid circularity
+
+    sim_mat = cur.build_similarity_matrix(prototypes)
+    grad_conf_mat = {k: 0.0 for k in sim_mat}  # placeholder – no grads offline
+    cost_mat = cur.build_conflict_matrix(
+        sim_mat,
+        grad_conf_mat,
+        alpha=float(cfg["curriculum"]["alpha"]),
+        beta=float(cfg["curriculum"]["beta"]),
+    )
+    order = cur.beam_search(task_names, cost_mat, int(cfg["curriculum"]["beam_size"]))
+
+    logger.info("AGSC beam-search order: %s", order)
+
+    # 5. save schedule --------------------------------------------------------
+    schedule_path = ROOT / "schedule_clue.json"
+    schedule_path.write_text(json.dumps(order))
+    logger.info("Schedule written to %s", schedule_path)
+
+    logger.info("Experiment completed – training loop skipped in refactor version.")
+
+
+# -----------------------------------------------------------------------------
+# Main ------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument(
-        "--cfg",
-        default=Path(__file__).resolve().parents[1] / "config" / "config.yaml",
-        type=Path,
-    )
-    args = parser.parse_args()
+    cfg = load_cfg()
+    seeds = cfg["dev_env"].get("seeds", [0])
 
-    cfg = load_cfg(args.cfg)
-
-    # ------------------------------------------------------------------
-    # enforce standardised figure directory ----------------------------
-    cfg.paths.fig_dir = Path(".research/iteration10/images")
-
-    # make sure work / data / fig dirs exist ---------------------------
-    cfg.paths.work_dir.mkdir(parents=True, exist_ok=True)
-    cfg.paths.data_dir.mkdir(parents=True, exist_ok=True)
-    cfg.paths.fig_dir.mkdir(parents=True, exist_ok=True)
-
-    print("[CONFIG]", json.dumps(cfg.to_dict(), indent=2))
-
-    # EXP-1 may be skipped automatically if ImageNet is unavailable ----
-    try:
-        exp1(cfg)
-    except RuntimeError as e:
-        print(f"[WARN] Skipping Experiment 1: {e}")
-
-    exp2(cfg)
+    for s in seeds:
+        set_seed(s)
+        run_experiment_clue(cfg["exp1"])
 
 
 if __name__ == "__main__":

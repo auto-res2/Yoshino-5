@@ -1,4 +1,75 @@
-paths:
-  work_dir: runs
-  data_dir: data
-  fig_dir: .research/iteration10/images
+dev_env:
+  torch_dtype: fp16
+  seeds:
+    - 0
+    - 11
+    - 21
+    - 42
+    - 77
+  device: cuda
+  mixed_precision: true
+  grad_acc_steps: 1
+
+exp1:
+  datasets:
+    - name: AFQMC
+      hf_name: clue/afqmc
+    - name: TNEWS
+      hf_name: clue/tnews
+    - name: CMNLI
+      hf_name: clue/cmnli
+    - name: IFLYTEK
+      hf_name: clue/iflytek
+    - name: CSL
+      hf_name: clue/csl
+    - name: WSC
+      hf_name: clue/wsc
+  model:
+    id: kimihailv/llama-1.3B
+    lora_r: 64
+    lora_alpha: 32
+    bnb_8bit: true
+  trainer:
+    epochs_per_task: 2
+    batch_size: 8
+    lr: 0.0002
+    warmup_steps: 100
+    early_stop_patience: 3
+  curriculum:
+    method: agsc_offline
+    beam_size: 8
+    alpha: 0.6
+    beta: 0.4
+  baselines:
+    - cat_sim
+    - grad_conf
+    - random_10
+    - chrono
+    - oracle
+
+exp2:
+  datasets: super_glue
+  curriculum:
+    method: agsc_online
+    window_k: 3
+    rollouts: 50
+    linucb_alpha: 0.5
+    epsilon: 0.05
+  baselines:
+    - incoming_fixed
+    - sim_only_online
+
+exp3:
+  datasets: split_cifar100
+  models:
+    - name: vit_base_patch16_224
+      id: google/vit-base-patch16-224-in21k
+      lora_r: 32
+    - name: dinov2_vitg14
+      id: dinov2_vitg14
+      lora_r: 64
+  curriculum:
+    method: agsc_offline
+    alpha: 0.5
+    beta: 0.5
+    beam_size: 8
