@@ -1,12 +1,13 @@
-torch
-transformers
-peft
-bitsandbytes
-datasets
-torchvision
-avalanche-lib
-numpy
-scipy
-matplotlib
-pyyaml
-sentencepiece
+torch==2.1.2+cu118  --extra-index-url https://download.pytorch.org/whl/cu118
+torchvision==0.16.2+cu118  --extra-index-url https://download.pytorch.org/whl/cu118
+transformers==4.35.2
+bitsandbytes==0.41.2
+sentencepiece==0.1.99
+peft==0.8.2
+datasets==2.18.0
+avalanche-lib==0.4.0
+numpy==1.26.4
+scipy==1.11.4
+matplotlib==3.8.4
+pyyaml==6.0.1
+accelerate==0.21.0

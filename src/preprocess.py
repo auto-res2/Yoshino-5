@@ -1,93 +1,39 @@
-"""
-preprocess.py – dataset loading & task stream helpers
-"""
+"""preprocess.py – dataset helpers for CLUE, SuperGLUE and Split-CIFAR"""
 from __future__ import annotations
 
 import logging
 import random
-from typing import Any, Dict, List, Tuple
+from typing import Any, Dict, List
 
 from datasets import load_dataset
 from torchvision import transforms
 from avalanche.benchmarks.classic import SplitCIFAR100
 
-logger = logging.getLogger("agsc.preprocess")
+log = logging.getLogger("agsc.data")
 
-# -----------------------------------------------------------------------------
-# Helper ----------------------------------------------------------------------
-# -----------------------------------------------------------------------------
+# ---------------------------------------------------------------------------
+# NLP helpers ----------------------------------------------------------------
+# ---------------------------------------------------------------------------
 
-def _hf_split_name(hf_name: str) -> Tuple[str, str | None]:
-    """Split a HuggingFace dataset identifier in the form `dataset/config`.
+class CLUE:
+    """Offline CLUE++ loader (multi-task)."""
 
-    Returns a tuple (dataset, config) where *config* can be ``None`` if no
-    slash is present.  This allows configuration files to specify either style
-    (``clue/afqmc`` *or* ``clue`` + ``afqmc``).
-    """
-    if "/" in hf_name:
-        dataset, config = hf_name.split("/", 1)
-        return dataset, config
-    return hf_name, None
+    def __init__(self, tasks: List[Dict[str, str]]):
+        self.ds: Dict[str, Any] = {}
+        for t in tasks:
+            name, hf = t["name"], t["hf"]
+            if "/" in hf:
+                dset, config = hf.split("/")
+            else:  # pragma: no cover – never happens with official configs
+                dset, config = hf, None
+            self.ds[name] = load_dataset(dset, config)
 
-# -----------------------------------------------------------------------------
-# NLP streams (CLUE++, SuperGLUE) ---------------------------------------------
-# -----------------------------------------------------------------------------
-
-
-class CLUESplit:
-    """Pre-loads all CLUE++ datasets as specified in the config file.
-
-    The CLUE benchmark has one peculiarity: the *WSC* task is distributed under
-    the builder-config name ``cluewsc2020`` rather than plain ``wsc``.  To keep
-    user-facing configuration files intuitive we transparently map the short
-    identifier ``wsc`` to the official builder name.  Additional aliases can be
-    registered in the ``_CONFIG_ALIASES`` map below when needed.
-    """
-
-    _CONFIG_ALIASES: Dict[str, str] = {
-        "wsc": "cluewsc2020",
-    }
-
-    def __init__(self, task_cfg: List[Dict[str, Any]]):
-        self.datasets: Dict[str, Any] = {}
-        for t in task_cfg:
-            name: str = t["name"]
-            hf_name: str = t["hf_name"]
-            dataset_id, config_name = _hf_split_name(hf_name)
-
-            # -----------------------------------------------------------------
-            # Load via 🤗 Datasets – with graceful alias fallback --------------
-            # -----------------------------------------------------------------
-            try:
-                if config_name is None:
-                    ds = load_dataset(dataset_id)
-                else:
-                    ds = load_dataset(dataset_id, config_name)
-            except ValueError as exc:
-                # Handle known aliases (e.g. wsc -> cluewsc2020)
-                if (
-                    dataset_id == "clue"
-                    and config_name in self._CONFIG_ALIASES
-                ):
-                    alias = self._CONFIG_ALIASES[config_name]  # type: ignore[index]
-                    logger.warning(
-                        "Config '%s/%s' not found – retrying with official name '%s'.",
-                        dataset_id,
-                        config_name,
-                        alias,
-                    )
-                    ds = load_dataset(dataset_id, alias)
-                else:
-                    raise exc  # Re-raise if we do not know how to fix it
-
-            self.datasets[name] = ds
-
-    def get_dataset(self, name: str):
-        return self.datasets[name]
+    def dataset(self, name: str):
+        return self.ds[name]
 
 
 class SuperGLUEStream:
-    """Generates a random task ordering of SuperGLUE tasks given a seed."""
+    """Randomised online SuperGLUE task stream."""
 
     TASKS = [
         "cb",
@@ -103,38 +49,43 @@ class SuperGLUEStream:
     ]
 
     def __init__(self, seed: int):
-        self.order = self._random_order(seed)
-        self.idx = 0
+        self.order = self.TASKS.copy()
+        random.Random(seed).shuffle(self.order)
+        self._idx = 0
 
-    def _random_order(self, seed: int):
-        rng = random.Random(seed)
-        tasks = self.TASKS.copy()
-        rng.shuffle(tasks)
-        return tasks
+    # Iterator-style helpers --------------------------------------------------
+    def __iter__(self):
+        return self
 
-    def next_task(self):
-        if self.idx >= len(self.order):
+    def __next__(self):
+        if self._idx >= len(self.order):
             raise StopIteration
-        t = self.order[self.idx]
-        self.idx += 1
+        t = self.order[self._idx]
+        self._idx += 1
         return t
 
-# -----------------------------------------------------------------------------
-# Vision: Split-CIFAR100 -------------------------------------------------------
-# -----------------------------------------------------------------------------
+    # Convenience ------------------------------------------------------------
+    def peek(self, k: int):
+        return self.order[self._idx : self._idx + k]
 
-def split_cifar100(num_experiences: int = 20):
-    """Return an Avalanche benchmark for Split-CIFAR100."""
+
+# ---------------------------------------------------------------------------
+# Vision helper --------------------------------------------------------------
+# ---------------------------------------------------------------------------
+
+def split_cifar(num_tasks: int = 20):
+    """Return the Avalanche Split-CIFAR100 benchmark with *num_tasks* splits."""
+
     return SplitCIFAR100(
         seed=0,
         shuffle=True,
+        n_experiences=num_tasks,
         train_transform=transforms.Compose(
             [
-                transforms.RandomCrop(32, padding=4),
+                transforms.RandomCrop(32, 4),
                 transforms.RandomHorizontalFlip(),
                 transforms.ToTensor(),
             ]
         ),
         eval_transform=transforms.Compose([transforms.ToTensor()]),
-        n_experiences=num_experiences,
     )

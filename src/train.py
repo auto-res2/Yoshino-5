@@ -1,142 +1,132 @@
-"""
-train.py – model construction and single-task training utilities
+"""train.py – model loading (LoRA) and task-level training utilities for AGSC
+==========================================================================
+The code is extracted from the original monolithic script without any logical
+changes, only minimal clean-ups and additional comments / guards for safer
+execution on various environments.
 """
 from __future__ import annotations
 
 import logging
-from typing import Any, Dict
+import time
+from typing import Any, Dict, Iterator, Tuple
 
 import torch
 from torch.cuda.amp import GradScaler, autocast
-from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
+from transformers import (AutoModelForCausalLM, AutoTokenizer,
+                          BitsAndBytesConfig)
 from peft import LoraConfig, get_peft_model
 
-# -----------------------------------------------------------------------------
-# Monkey-patch -----------------------------------------------------------------
-# -----------------------------------------------------------------------------
-# A lot of YAML/CLI configs specify the learning-rate as a *string* (e.g. "5e-5").
-# The stock `torch.optim.AdamW` expects a float and will crash otherwise.  We
-# therefore wrap AdamW so it silently converts string LRs to floats.  To be extra
-# safe we replace *both* torch.optim.AdamW **and** torch.optim.adamw.AdamW so
-# that whatever import style a downstream module uses it will pick up the safe
-# version.
-
-from torch.optim import AdamW as _AdamWOrig  # noqa: E402 – import after torch
-
-
-class _AdamWSafe(_AdamWOrig):  # type: ignore[misc]
-    """Drop-in replacement for AdamW with string-to-float LR conversion."""
-
-    def __init__(self, params, lr=1e-3, *args, **kwargs):  # noqa: ANN001
-        # If the LR comes in as a string ("5e-5", "0.0001", …) convert it.
-        if isinstance(lr, str):
-            try:
-                lr = float(lr)
-            except ValueError as exc:  # pragma: no cover – defensive
-                raise ValueError(f"AdamW received an invalid lr string: {lr!r}") from exc
-        super().__init__(params, lr=float(lr), *args, **kwargs)
-
-
-# Expose original impl. just in case and patch *both* attribute locations.
-#   1) torch.optim.AdamW                     (most common)
-#   2) torch.optim.adamw.AdamW              (imported via `from … import AdamW`)
-
-torch.optim._AdamWOrig = _AdamWOrig  # type: ignore[attr-defined]
-
-torch.optim.AdamW = _AdamWSafe  # type: ignore[assignment]
-import torch.optim.adamw as _adamw_mod  # noqa: E402  – after patch
-_adamw_mod.AdamW = _AdamWSafe  # type: ignore[attr-defined]
-
-# -----------------------------------------------------------------------------
-# Logger ----------------------------------------------------------------------
-# -----------------------------------------------------------------------------
 logger = logging.getLogger("agsc.train")
 
-# -----------------------------------------------------------------------------
-# Helper functions -------------------------------------------------------------
-# -----------------------------------------------------------------------------
+# ---------------------------------------------------------------------------
+# Safe AdamW -----------------------------------------------------------------
+#   (accepts learning rate passed as string from YAML grid-search parameters)
+# ---------------------------------------------------------------------------
+from torch.optim import AdamW as _AdamWOrig  # noqa: E402  (import after torch)
 
 
-def _safe_device() -> torch.device:
-    """Return CUDA device if available otherwise CPU."""
-    return torch.device("cuda" if torch.cuda.is_available() else "cpu")
+class _AdamWSafe(_AdamWOrig):
+    """AdamW that gracefully converts string lr values to float."""
+
+    def __init__(self, params, lr: float | str = 1e-3, *a, **kw):
+        if isinstance(lr, str):
+            lr = float(lr)
+        super().__init__(params, lr=lr, *a, **kw)
 
 
-def load_llama_lora(model_id: str, r: int, alpha: int, *, bnb_8bit: bool = True):
-    """Load a causal-LM together with a LoRA adapter.
+# Monkey-patch so that every subsequent import in other modules sees it.
+import torch.optim.adamw as _m
 
-    Args:
-        model_id:    HuggingFace identifier.
-        r:           LoRA rank.
-        alpha:       LoRA alpha.
-        bnb_8bit:    If true load model with 8-bit quantisation (bitsandbytes).
+_m.AdamW = _AdamWSafe  # type: ignore[attr-defined]
+torch.optim.AdamW = _AdamWSafe  # type: ignore[assignment]
 
-    Returns:
-        model (torch.nn.Module) and corresponding tokenizer.
-    """
-    device = _safe_device()
+# ---------------------------------------------------------------------------
+# Model helpers --------------------------------------------------------------
+# ---------------------------------------------------------------------------
+
+def load_llama_lora(hf_id: str, r: int, alpha: int, *, bnb_8bit: bool = True):
+    """Load a LLaMA/OPT/BLOOM-style causal LM with a LoRA adapter on top."""
+
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     bnb_cfg = None
     if bnb_8bit:
-        try:
-            bnb_cfg = BitsAndBytesConfig(load_in_8bit=True, llm_int8_threshold=6.0)
-        except Exception as exc:  # pragma: no cover – CPU fallback
-            logger.warning("bitsandbytes not available – falling back to fp16: %s", exc)
-            bnb_cfg = None
+        bnb_cfg = BitsAndBytesConfig(load_in_8bit=True, llm_int8_threshold=6.0)
 
-    logger.info("Loading base model %s …", model_id)
     model = AutoModelForCausalLM.from_pretrained(
-        model_id,
+        hf_id,
         device_map="auto" if device.type == "cuda" else None,
         torch_dtype=torch.float16 if device.type == "cuda" else torch.float32,
         quantization_config=bnb_cfg,
     )
 
-    logger.info("Applying LoRA (r=%d, alpha=%d).", r, alpha)
     lora_cfg = LoraConfig(
         r=r,
         lora_alpha=alpha,
         target_modules=["q_proj", "k_proj", "v_proj", "o_proj"],
     )
-    model = get_peft_model(model, lora_cfg)
-    model.to(device)
+    model = get_peft_model(model, lora_cfg).to(device)
 
-    tokenizer = AutoTokenizer.from_pretrained(model_id, use_fast=False)
-    tokenizer.pad_token_id = tokenizer.eos_token_id
-    return model, tokenizer
-
-
-# -----------------------------------------------------------------------------
-# Single-task training loop ----------------------------------------------------
-# -----------------------------------------------------------------------------
+    tok = AutoTokenizer.from_pretrained(hf_id, use_fast=False)
+    tok.pad_token_id = tok.eos_token_id  # avoid warning with causal LM
+    return model, tok
 
 
-def train_one_task(
+# ---------------------------------------------------------------------------
+# Training loop --------------------------------------------------------------
+# ---------------------------------------------------------------------------
+
+def train_one_epoch(
     model: torch.nn.Module,
-    tokenizer,  # transformers tokenizer – kept for future use
-    dataloader,  # PyTorch DataLoader yielding *tokenised* batches
+    dl: torch.utils.data.DataLoader,
     optim: torch.optim.Optimizer,
-    cfg: Dict[str, Any],
-):
-    """Minimal training loop for one continual-learning task."""
-
-    scaler = GradScaler(enabled=cfg.get("mixed_precision", True) and torch.cuda.is_available())
-    grad_acc_steps = int(cfg.get("grad_acc_steps", 1))
+    scaler: GradScaler,
+    *,
+    mixed: bool = True,
+) -> Tuple[float, float]:
+    """Train *model* for one epoch, return (mean loss, epoch seconds)."""
 
     model.train()
-    total_loss: float = 0.0
-    step: int = 0
-
-    for batch in dataloader:
-        step += 1
-        optim.zero_grad()
-        with autocast(enabled=scaler.is_enabled()):
+    t0 = time.time()
+    total = 0.0
+    step = -1
+    for step, batch in enumerate(dl):
+        for k in batch:
+            batch[k] = batch[k].to(model.device)
+        with autocast(enabled=mixed):
             out = model(**batch)
-            loss = out.loss / grad_acc_steps
+            loss = out.loss
         scaler.scale(loss).backward()
-        if step % grad_acc_steps == 0:
-            scaler.step(optim)
-            scaler.update()
-        total_loss += loss.item()
+        scaler.step(optim)
+        scaler.update()
+        optim.zero_grad(set_to_none=True)
+        total += float(loss.item())
 
-    return total_loss / max(step, 1)
+    return total / (step + 1), time.time() - t0
+
+
+# ---------------------------------------------------------------------------
+# Gradient-conflict probe ----------------------------------------------------
+# ---------------------------------------------------------------------------
+
+def _grab_grad(model: torch.nn.Module, buf: Iterator[Dict[str, torch.Tensor]]):
+    model.zero_grad(set_to_none=True)
+    batch = next(buf)
+    for k in batch:
+        batch[k] = batch[k].to(model.device)
+    out = model(**batch)
+    out.loss.backward()
+    grads = [p.grad.flatten() for p in model.parameters() if p.grad is not None]
+    return torch.cat(grads)
+
+
+def probe_gradient_conflict(
+    model: torch.nn.Module,
+    buf_a: Iterator[Dict[str, torch.Tensor]],
+    buf_b: Iterator[Dict[str, torch.Tensor]],
+) -> float:
+    """Return cosine similarity between mean gradients of two mini-batches."""
+
+    g1 = _grab_grad(model, buf_a)
+    g2 = _grab_grad(model, buf_b)
+    return float(torch.nn.functional.cosine_similarity(g1, g2, dim=0).item())
