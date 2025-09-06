@@ -12,6 +12,37 @@ from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
 from peft import LoraConfig, get_peft_model
 
 # -----------------------------------------------------------------------------
+# Monkey-patch -----------------------------------------------------------------
+# -----------------------------------------------------------------------------
+# Many YAML / CLI configurations express the learning-rate in scientific
+# notation as **strings** (e.g. "5e-5").  The standard `torch.optim.AdamW`
+# expects a *float* and will raise a `TypeError` otherwise.  To make the
+# codebase robust to both representations we patch `AdamW` so that it accepts
+# string values and silently converts them to floats before calling the real
+# implementation.  The original class is still accessible via
+# `torch.optim._AdamWOrig` should downstream code need it explicitly.
+
+from torch.optim import AdamW as _AdamWOrig  # noqa: E402 (import after torch)
+
+
+class _AdamWSafe(_AdamWOrig):  # type: ignore[misc]
+    """Drop-in replacement for AdamW with string-to-float LR conversion."""
+
+    def __init__(self, params, lr=1e-3, *args, **kwargs):  # noqa: D401, ANN001
+        if isinstance(lr, str):
+            try:
+                lr = float(lr)
+            except ValueError as exc:  # pragma: no cover – should never happen
+                raise ValueError(
+                    f"AdamW received an invalid string for lr: {lr!r}") from exc
+        super().__init__(params, lr=float(lr), *args, **kwargs)
+
+
+# Expose original just in case and monkey-patch the optimiser registry.
+torch.optim._AdamWOrig = _AdamWOrig  # type: ignore[attr-defined]
+torch.optim.AdamW = _AdamWSafe  # type: ignore[assignment]
+
+# -----------------------------------------------------------------------------
 # Logger ----------------------------------------------------------------------
 # -----------------------------------------------------------------------------
 logger = logging.getLogger("agsc.train")
@@ -19,6 +50,7 @@ logger = logging.getLogger("agsc.train")
 # -----------------------------------------------------------------------------
 # Helper functions -------------------------------------------------------------
 # -----------------------------------------------------------------------------
+
 
 def _safe_device() -> torch.device:
     """Return CUDA device if available otherwise CPU."""
@@ -70,10 +102,15 @@ def load_llama_lora(model_id: str, r: int, alpha: int, *, bnb_8bit: bool = True)
     return model, tokenizer
 
 
+# -----------------------------------------------------------------------------
+# Single-task training loop ----------------------------------------------------
+# -----------------------------------------------------------------------------
+
+
 def train_one_task(
     model: torch.nn.Module,
-    tokenizer,  # transformers tokenizer
-    dataloader,  # PyTorch DataLoader that yields already tokenised batches
+    tokenizer,  # transformers tokenizer – kept for future use
+    dataloader,  # PyTorch DataLoader yielding *tokenised* batches
     optim: torch.optim.Optimizer,
     cfg: Dict[str, Any],
 ):
