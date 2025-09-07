@@ -34,12 +34,13 @@ def evaluate_acc(model, loader):
 # 2.  Plotting helpers
 # -----------------------------------------------------------------------------
 
+
 def _get_fig_dir() -> Path:
     """Return the canonical directory for saving all experiment images."""
-    # All figures must reside under .research/iteration11/images according to the
+    # All figures must reside under .research/iteration12/images according to the
     # global repository convention.
     root = Path(__file__).resolve().parent.parent  # repository root
-    fig_dir = root / ".research" / "iteration11" / "images"
+    fig_dir = root / ".research" / "iteration12" / "images"
     fig_dir.mkdir(parents=True, exist_ok=True)
     return fig_dir
 
@@ -55,7 +56,7 @@ def save_barplot(data: Dict[str, float], title: str, fname: Path | None = None):
         Plot title.
     fname : pathlib.Path | None, optional
         Desired file name.  Only the *stem* portion will be honoured – the file
-        will always be stored under `.research/iteration11/images` as required
+        will always be stored under `.research/iteration12/images` as required
         by the CI harness.  If *None*, the title stem will be slugified.
     """
     mpl.use("Agg")  # headless rendering
@@ -66,7 +67,7 @@ def save_barplot(data: Dict[str, float], title: str, fname: Path | None = None):
     ax = sns.barplot(x=list(data.keys()), y=list(data.values()), palette="crest")
     for i, v in enumerate(data.values()):
         ax.text(i, v + 0.002, f"{v:.3f}", ha="center", va="bottom")
-    ax.set_ylim(0, max(data.values()) * 1.15)
+    ax.set_ylim(0, max(data.values()) * 1.15 if data else 1)
     ax.set_ylabel("Accuracy")
     ax.set_title(title)
     plt.tight_layout()
