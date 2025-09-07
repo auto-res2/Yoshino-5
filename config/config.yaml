@@ -1,0 +1,45 @@
+exp1:
+  model:
+    llm_ckpt: nicholasKluge/TeenyTinyLlama-460m
+    vision_ckpt: google/siglip-base-patch16-384
+    lora_rank: 4
+    lora_alpha: 16
+    lora_dropout: 0.05
+    load_in_8bit: true
+  train:
+    epochs_per_task: 3
+    lr: 2e-4
+    warmup_steps: 200
+    batch_size: 6
+    grad_accum: 8
+    max_seq_len: 256
+    weight_decay: 0.01
+    clip_grad_norm: 1.0
+    fp16: true
+  scheduler:
+    type: iatg
+    beam_width: 5
+    delta: 0.2
+  datasets:
+    nlp_tasks:
+      - ni2002
+      - ni2107
+      - ni2109
+      - ni2071
+      - ni2155
+      - ni2233
+      - ni2102
+      - ni1999
+      - ni2301
+      - ni2111
+    cv_stream_split: imagenet_r_10x20.yaml
+  seeds: [11, 29, 42]
+
+exp2:
+  variant_list: [no_grad_sim, no_feat_sim, beam1, no_cc_lora]
+  reuse_stream: exp1
+  seeds: [11, 29, 42]
+
+exp3:
+  anti_curriculum_yaml: ni8_anti_curriculum.yaml
+  seeds: [11, 29, 42]

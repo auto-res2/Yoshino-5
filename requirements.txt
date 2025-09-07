@@ -1,1 +1,14 @@
-# Please list the required python packages.
+torch
+torchvision
+transformers
+datasets
+bitsandbytes
+peft
+pyyaml
+requests
+matplotlib
+seaborn
+networkx
+scipy
+otdd
+numpy
