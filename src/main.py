@@ -1,15 +1,31 @@
 from __future__ import annotations
 
-import yaml
+"""src/main.py
+-------------------------------------------------------------------
+Project entry-point.  Fixes: remove problematic relative imports by
+adding the local "src" directory to ``sys.path`` so that sibling
+modules (train / preprocess / evaluate) can be imported as normal
+absolute modules when running this file directly (i.e. when
+``__package__`` is ``None``).
+"""
+
 import os
+import sys
+import yaml
 import numpy as np
 import torch
-
 from torch.utils.data import DataLoader
 
-from . import train as tr
-from . import preprocess as pp
-from . import evaluate as ev
+# ------------------------------------------------------------------
+# Ensure the current directory ("src") is importable
+# ------------------------------------------------------------------
+SRC_DIR = os.path.dirname(os.path.abspath(__file__))
+if SRC_DIR not in sys.path:
+    sys.path.insert(0, SRC_DIR)
+
+import train as tr  # noqa: E402  pylint: disable=wrong-import-position
+import preprocess as pp  # noqa: E402  pylint: disable=wrong-import-position
+import evaluate as ev  # noqa: E402  pylint: disable=wrong-import-position
 
 # ------------------------------------------------------------------
 # Load configuration ------------------------------------------------
@@ -26,7 +42,7 @@ def experiment_one():
     model_cfg = cfg["model"]
     train_cfg = cfg["train"]
 
-    results_summary = {}
+    results_summary: dict[str, list[float]] = {}
 
     # --------------------------------------------------------------
     # Build dataloaders for each NI task

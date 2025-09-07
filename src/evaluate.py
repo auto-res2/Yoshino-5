@@ -10,7 +10,7 @@ mpl.use("Agg")  # headless backend
 import matplotlib.pyplot as plt
 
 # Images are stored in the research directory requested by the task
-IMG_DIR = os.path.join(".research", "iteration2", "images")
+IMG_DIR = os.path.join(".research", "iteration3", "images")
 os.makedirs(IMG_DIR, exist_ok=True)
 
 # ------------------------------------------------------------------
