@@ -1,10 +1,3 @@
-"""
-main.py – orchestrates all experiments using the refactored modular code base.
-Run with:
-    python -m src.main
-"""
-from __future__ import annotations
-
 import csv
 import math
 import os
@@ -25,6 +18,10 @@ RESULT_DIR = ROOT / "results"
 for _p in (CONFIG_DIR, RESULT_DIR):
     _p.mkdir(parents=True, exist_ok=True)
 
+# Ensure the project root is on PYTHONPATH _before_ any intra-package import
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
 # ------------------------------- config --------------------------------
 CFG_PATH = CONFIG_DIR / "config.yaml"
 if not CFG_PATH.exists():
@@ -33,7 +30,10 @@ with CFG_PATH.open() as f:
     CFG: Dict[str, Any] = yaml.safe_load(f)
 
 # ------------------------------ imports --------------------------------
-from .preprocess import (
+# NOTE: use absolute package imports so that the file can be executed both via
+#   `python -m src.main` *and* `python src/main.py` (the latter is how the CI
+#   harness runs the script, which previously broke relative imports).
+from src.preprocess import (  # noqa: E402  – after sys.path patch
     SEED_SEQUENCE,
     SPLITS,
     collate_pad,
@@ -41,14 +41,14 @@ from .preprocess import (
     set_seed,
     MiniNIDataset,
 )
-from .train import (
+from src.train import (  # noqa: E402
     IATGScheduler,
     _DEVICE,
     get_lora_cfg,
     load_model,
     train_single_epoch,
 )
-from .evaluate import evaluate_acc, save_barplot
+from src.evaluate import evaluate_acc, save_barplot  # noqa: E402
 
 # -------------------------- experiment helpers -------------------------
 
@@ -192,6 +192,4 @@ def main():
 
 
 if __name__ == "__main__":
-    # ensure relative import works when executed as script
-    sys.path.insert(0, str(ROOT))
     main()
