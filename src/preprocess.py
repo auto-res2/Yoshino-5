@@ -22,12 +22,47 @@ class NaturalInstructionTask(Dataset):
         self.split = split
         self.tokenizer = tokenizer
         self.max_len = max_len
-        self.ds = hfds.load_dataset(
-            "Muennighoff/natural-instructions",
-            task_name,
-            split=split,
-            cache_dir=CACHE_DIR,
-        )
+
+        # ------------------------------------------------------------------
+        # The Muennighoff/natural-instructions dataset exposes all tasks under
+        # a single "default" config (no per-task BuilderConfig).  Attempting
+        # to pass the task name as the config therefore raises the ValueError
+        # observed in the logs.  We handle this gracefully by first trying the
+        # user-requested config and, if that fails, falling back to the default
+        # config and filtering for the desired task.
+        # ------------------------------------------------------------------
+        try:
+            # Newer versions of the dataset may add per-task configs – keep the
+            # fast path so our code continues to work if that happens.
+            self.ds = hfds.load_dataset(
+                "Muennighoff/natural-instructions",
+                task_name,  # attempted config name
+                split=split,
+                cache_dir=CACHE_DIR,
+            )
+        except ValueError:
+            # Fallback path – load the full dataset once and slice.
+            full_ds = hfds.load_dataset(
+                "Muennighoff/natural-instructions",
+                split=split,
+                cache_dir=CACHE_DIR,
+            )
+
+            # The dataset stores the task identifier under the key "task_name"
+            # (example: "ni2002").  If this key is absent we also check the
+            # classic Natural-Instructions "task_id" field for robustness.
+            def _match(example):
+                return (
+                    ("task_name" in example and example["task_name"] == task_name)
+                    or ("task_id" in example and example["task_id"] == task_name)
+                )
+
+            filtered = full_ds.filter(_match)
+            if len(filtered) == 0:
+                raise ValueError(
+                    f"Task '{task_name}' not found inside Muennighoff/natural-instructions dataset."
+                )
+            self.ds = filtered
 
     # --------------------------------------------------------------
     def __len__(self):
