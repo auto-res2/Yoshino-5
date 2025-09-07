@@ -1,12 +1,37 @@
 from __future__ import annotations
 
+"""src/preprocess.py
+-------------------------------------------------------------------
+Dataset loading utilities for NLP (Natural-Instructions) and vision
+(ImageNet-R).  This patch mainly mitigates HTTP-429 rate-limit errors
+observed when Hugging Face Hub is hit with hundreds of concurrent HEAD
+requests.  We take two defensive steps:
+
+1.  Disable parallel file downloads in `datasets` via the environment
+    variable ``HF_DATASETS_DOWNLOAD_PARALLELISM``.  This forces the hub
+    client to request files sequentially, dramatically reducing the
+    likelihood of triggering the rate-limit.
+2.  Tell the datasets downloader to keep retrying a bit longer by
+    passing an explicit ``DownloadConfig`` with more retries.
+
+These changes are **fully backwards-compatible** – if internet is
+available everything is fetched as before, only more politely.
+"""
+
 import os
 from typing import List, Dict
 
-import datasets as hfds
-import torch
-from torch.utils.data import Dataset
-from torchvision import transforms
+# ------------------------------------------------------------------
+# BEFORE importing datasets we set the environment variables so that
+# they are picked-up by the library internals.
+# ------------------------------------------------------------------
+os.environ.setdefault("HF_DATASETS_DOWNLOAD_PARALLELISM", "false")  # sequential
+os.environ.setdefault("HF_HUB_DISABLE_PROGRESS_BARS", "1")  # cleaner CI logs
+
+import datasets as hfds  # noqa: E402  (import _after_ env tweak)
+import torch  # noqa: E402
+from torch.utils.data import Dataset  # noqa: E402
+from torchvision import transforms  # noqa: E402
 
 # ------------------------------------------------------------------
 CACHE_DIR = os.environ.get("HF_HOME", os.path.expanduser("~/.cache/huggingface"))
@@ -28,9 +53,8 @@ class NaturalInstructionTask(Dataset):
         self.max_len = max_len
 
         # Some configs are not available; we first attempt to load the desired
-        # split directly.  If that fails (missing builder config or split) we
-        # gracefully fall back to an alternative that exists and slice if
-        # needed so the API call site remains unchanged.
+        # split directly.  If that fails we gracefully fall back so that the
+        # call-site does not have to care.
         self.ds = self._safe_load_dataset(task_name, split)
 
     # --------------------------------------------------------------
@@ -44,10 +68,15 @@ class NaturalInstructionTask(Dataset):
                     or ("task_id" in example and example["task_id"] == task_name)
                 )
 
-            return full.filter(_match)
+            # Serial execution (``num_proc=1``) to avoid extra processes that
+            # could again create parallel requests.
+            return full.filter(_match, num_proc=1)
+
+        # Unified download config with extra retries -------------------------
+        dl_cfg = hfds.DownloadConfig(max_retries=10)
 
         # ------------------------------------------------------------------
-        # 1) Try the fast path – load with the task as config and requested split
+        # 1) Fast path – try to load specific builder-config & split
         # ------------------------------------------------------------------
         try:
             return hfds.load_dataset(
@@ -55,35 +84,29 @@ class NaturalInstructionTask(Dataset):
                 task_name,
                 split=split,
                 cache_dir=CACHE_DIR,
+                download_config=dl_cfg,
             )
         except Exception:
             # ------------------------------------------------------------------
-            # 2) Builder config not found OR split absent – fall back gracefully
-            # ------------------------------------------------------------------
-            #   a) Identify a real split name we can load
+            # 2) Builder config not found OR split absent – graceful fallback
             # ------------------------------------------------------------------
             fallback_split = self._FALLBACK_SPLITS.get(split, None)
             if fallback_split is None:
-                # If the user asked for an unknown split (e.g. "test" absent)
-                # we sample a slice from the train split.
                 fallback_split = "train[:10%]" if split == "validation" else "train"
 
-            # Load the fallback split from the default config (no task filter)
             full_ds = hfds.load_dataset(
                 "Muennighoff/natural-instructions",
                 split=fallback_split,
                 cache_dir=CACHE_DIR,
+                download_config=dl_cfg,
             )
-            # Filter down to the requested task.  If nothing remains we surface
-            # a clear error so the calling code can decide what to do.
+
             filtered = _filter_task(full_ds)
             if len(filtered) == 0:
                 raise ValueError(
                     f"Task '{task_name}' not found inside Muennighoff/natural-instructions dataset."
                 )
 
-            # If we emulated the validation split using a slice of train ensure
-            # the resulting dataset is small(ish) to keep runtime reasonable.
             if split == "validation" and fallback_split.startswith("train"):
                 filtered = filtered.select(range(min(1000, len(filtered))))
             return filtered
@@ -128,12 +151,13 @@ def collate_fn_lm(batch, pad_id: int):
 # ------------------------------------------------------------------
 # Vision  – ImageNet-R subset (optional)
 # ------------------------------------------------------------------
-from torchvision import datasets as tvd  # noqa: E402
+from torchvision import datasets as tvd  # noqa: E402  (kept for backward compat)
 
 class ImageNetRTask(Dataset):
     def __init__(self, class_list: List[str], split: str, transform):
-        hf_ds = hfds.load_dataset("axiong/imagenet-r", split=split, cache_dir=CACHE_DIR)
-        hf_ds = hf_ds.filter(lambda x: x["label"] in class_list)
+        dl_cfg = hfds.DownloadConfig(max_retries=10)
+        hf_ds = hfds.load_dataset("axiong/imagenet-r", split=split, cache_dir=CACHE_DIR, download_config=dl_cfg)
+        hf_ds = hf_ds.filter(lambda x: x["label"] in class_list, num_proc=1)
         self.ds = hf_ds
         self.transform = transform
         self.class_to_idx = {c: i for i, c in enumerate(sorted(class_list))}
