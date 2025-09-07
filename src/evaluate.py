@@ -19,15 +19,18 @@ from .train import _DEVICE  # re-use global device
 # -----------------------------------------------------------------------------
 
 def evaluate_acc(model, loader):
-    """Simple exact-match accuracy for classification-style tasks."""
+    """Exact-match accuracy over target (label) positions only."""
     model.eval()
     correct = total = 0
     with torch.inference_mode():
         for batch in loader:
             batch = {k: v.to(_DEVICE) for k, v in batch.items()}
-            out = model(**batch).logits.argmax(dim=-1)
-            correct += (out == batch["labels"]).float().sum().item()
-            total += batch["labels"].numel()
+            out = model(**{k: v for k, v in batch.items() if k != "labels"})
+            pred = out.logits.argmax(dim=-1)
+            labels = batch["labels"]
+            mask = labels != -100  # only supervise non-ignored positions
+            correct += ((pred == labels) & mask).sum().item()
+            total += mask.sum().item()
     return correct / max(total, 1)
 
 # -----------------------------------------------------------------------------

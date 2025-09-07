@@ -77,19 +77,35 @@ class MiniNIDataset(Dataset):
 
     def __getitem__(self, idx: int):
         r = self.rows[idx]
-        enc = self.tokenizer(
+        # Encode context (instruction + input) and target (output) separately
+        ctx_enc = self.tokenizer(
             r["instruction"] + "\n" + r["input"],
             truncation=True,
             max_length=self.max_len,
             return_tensors="pt",
         )
-        tgt = self.tokenizer(
-            r["output"], truncation=True, max_length=self.max_len, return_tensors="pt"
+        tgt_enc = self.tokenizer(
+            r["output"],
+            truncation=True,
+            max_length=self.max_len,
+            return_tensors="pt",
         )
+
+        ctx_ids = ctx_enc.input_ids.squeeze(0)
+        tgt_ids = tgt_enc.input_ids.squeeze(0)
+
+        # Build combined sequence (context + answer)
+        input_ids = torch.cat([ctx_ids, tgt_ids], dim=0)[: self.max_len]
+        attention_mask = torch.ones_like(input_ids)
+
+        # Prepare labels: ignore context tokens
+        labels = input_ids.clone()
+        labels[: len(ctx_ids)] = -100  # do not predict context
+
         return {
-            "input_ids": enc.input_ids.squeeze(0),
-            "attention_mask": enc.attention_mask.squeeze(0),
-            "labels": tgt.input_ids.squeeze(0),
+            "input_ids": input_ids,
+            "attention_mask": attention_mask,
+            "labels": labels,
         }
 
 
@@ -98,7 +114,8 @@ def collate_pad(batch, pad_id: int):
     out: Dict[str, Any] = {}
     for k in keys:
         tensors = [b[k] for b in batch]
+        pad_val = -100 if k == "labels" else pad_id
         out[k] = torch.nn.utils.rnn.pad_sequence(
-            tensors, batch_first=True, padding_value=pad_id
+            tensors, batch_first=True, padding_value=pad_val
         )
     return out
