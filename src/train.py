@@ -1,3 +1,4 @@
+
 """
 train.py – model, scheduler and training utilities
 """
@@ -68,6 +69,7 @@ class IATGScheduler:  # noqa: D101 – documentation in paper
 
     @staticmethod
     def _proj(g_j: torch.Tensor, g_i: torch.Tensor) -> float:
+        """Scalar length of the projection of g_i onto g_j (normalised)."""
         proj = (torch.dot(g_i, g_j) / (torch.dot(g_j, g_j) + 1e-12)) * g_j
         return proj.norm().item() / (g_i.norm().item() + 1e-12)
 
@@ -98,16 +100,26 @@ class IATGScheduler:  # noqa: D101 – documentation in paper
     # ------------------------- public API -------------------------
 
     def add_task(self, tid: str, g: torch.Tensor, f: torch.Tensor) -> List[str]:
-        self.grads[tid] = g.detach().cpu()
-        self.features[tid] = f.detach().cpu()
+        """Register a new task and recompute the recommended curriculum order.
+
+        The incoming gradient (g) may reside on CUDA when the caller performed
+        backward() on a GPU-resident model.  We explicitly move it to CPU so
+        that all stored tensors live on the same device – this avoids the
+        cross-device dot-product error that surfaced in CI.
+        """
+        g_cpu = g.detach().cpu()
+        f_cpu = f.detach().cpu()
+
+        self.grads[tid] = g_cpu
+        self.features[tid] = f_cpu
         self.G.add_node(tid)
         for j in self.grads:
             if j == tid:
                 continue
             cost = (
-                self.alpha * self._proj(self.grads[j], g)
-                - self._cos(g, self.grads[j])
-                - self.beta * torch.linalg.norm(f - self.features[j]).item()
+                self.alpha * self._proj(self.grads[j], g_cpu)
+                - self._cos(g_cpu, self.grads[j])
+                - self.beta * torch.linalg.norm(f_cpu - self.features[j]).item()
             )
             self.G.add_edge(j, tid, weight=cost)
         return self._beam_search()
