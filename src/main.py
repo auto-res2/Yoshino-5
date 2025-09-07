@@ -1,13 +1,9 @@
-"""src/main.py
-----------------------------------------------------------------------
-Orchestration script.  Execute with:
-    python -m src.main
-"""
 from __future__ import annotations
 
 import yaml
 import os
 import numpy as np
+import torch
 
 from torch.utils.data import DataLoader
 

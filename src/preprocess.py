@@ -1,9 +1,3 @@
-"""src/preprocess.py
-----------------------------------------------------------------------
-Dataset loading & preprocessing utilities.
-Only NLP (Natural-Instructions) branch is included; Vision branch kept
-for completeness.
-"""
 from __future__ import annotations
 
 import os
@@ -43,6 +37,10 @@ class NaturalInstructionTask(Dataset):
         item = self.ds[idx]
         prompt = item.get("instruction", "") + "\n" + item.get("input", "")
         target = item.get("output", "")
+        # The "output" field is often a list of acceptable answers –
+        # use the first one if that is the case.
+        if isinstance(target, list):
+            target = target[0] if len(target) > 0 else ""
         enc = self.tokenizer(
             prompt, truncation=True, max_length=self.max_len, return_tensors="pt"
         )
