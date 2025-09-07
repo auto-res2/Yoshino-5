@@ -137,9 +137,14 @@ def run_exp1():
             print(f"Seed {seed} | {name} → ACC={final_acc:.3f}  BWT={bwt:+.3f}")
             acc_table[name].append(final_acc)
 
+            # Sanity checks specific to the IATG scheduler
             if name == "iatg":
-                assert final_acc > acc_table["random"][-1] + 0.02, "IATG must beat random by ≥2 pp"
                 assert -1 <= bwt <= 1, "BWT numerical sanity failed"
+
+        # ---------------- post-baseline assertions ----------------
+        assert acc_table["iatg"][-1] > acc_table["random"][-1] + 0.02, (
+            "IATG must beat random by ≥2 pp"
+        )
 
     # --------- aggregate statistics & plot ---------
     summary = {k: float(np.mean(v)) for k, v in acc_table.items()}
@@ -155,7 +160,8 @@ def run_exp1():
         for k, vals in acc_table.items():
             writer.writerow([k, *vals])
 
-    save_barplot(summary, "Final ACC – EXP-1", RESULT_DIR / "accuracy_exp1.pdf")
+    # Figure will be automatically stored in the mandated directory by helper
+    save_barplot(summary, "Final ACC – EXP-1", Path("accuracy_exp1.pdf"))
 
 # -----------------------------------------------------------------------------
 # EXP-2 / EXP-3 – heavy benchmarks (kept as stubs for CI)
@@ -181,13 +187,13 @@ def run_exp3():
 # -----------------------------------------------------------------------------
 
 def main():
-    print("================  Continual-Learning Experiments  ================")
+    print("================  Continual-Learning Experiments  ===============")
     run_exp1()
     run_exp2()
     run_exp3()
 
     print("\nAll experiments finished.  Figures produced:")
-    for pdf in RESULT_DIR.glob("*.pdf"):
+    for pdf in (ROOT / ".research" / "iteration11" / "images").glob("*.pdf"):
         print(" -", pdf.name)
 
 
