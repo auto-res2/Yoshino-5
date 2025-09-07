@@ -6,5 +6,82 @@
     "gradient interference continual learning",
     "parameter-efficient adaptation LLM",
     "forgetting resistance benchmarks"
+  ],
+  "research_study_list": [
+    {
+      "title": "Efficient Continual Learning with Modular Networks and Task-Driven Priors"
+    },
+    {
+      "title": "Continual Learning of a Mixed Sequence of Similar and Dissimilar Tasks"
+    },
+    {
+      "title": "Theory on Forgetting and Generalization of Continual Learning"
+    },
+    {
+      "title": "Scalable and Order-robust Continual Learning with Additive Parameter Decomposition"
+    },
+    {
+      "title": "Beyond Not-Forgetting: Continual Learning with Backward Knowledge Transfer"
+    },
+    {
+      "title": "Geometric Dataset Distances via Optimal Transport"
+    },
+    {
+      "title": "Understanding the Complexity Gains of Single-Task RL with a Curriculum"
+    },
+    {
+      "title": "Curriculum Reinforcement Learning via Constrained Optimal Transport"
+    },
+    {
+      "title": "Curriculum Reinforcement Learning via Constrained Optimal Transport"
+    },
+    {
+      "title": "Adaptive Procedural Task Generation for Hard-Exploration Problems"
+    },
+    {
+      "title": "Continual Learning with Global Alignment"
+    },
+    {
+      "title": "An Effective Dynamic Gradient Calibration Method for Continual Learning"
+    },
+    {
+      "title": "Continual Learning in Low-rank Orthogonal Subspaces"
+    },
+    {
+      "title": "InfLoRA: Interference-Free Low-Rank Adaptation for Continual Learning"
+    },
+    {
+      "title": "Gradient-based Editing of Memory Examples for Online Task-free Continual Learning"
+    },
+    {
+      "title": "3-in-1: 2D Rotary Adaptation for Efficient Finetuning, Efficient Batching and Composability"
+    },
+    {
+      "title": "Learn more, but bother less: parameter efficient continual learning"
+    },
+    {
+      "title": "ReFT: Representation Finetuning for Language Models"
+    },
+    {
+      "title": "HydraLoRA: An Asymmetric LoRA Architecture for Efficient Fine-Tuning"
+    },
+    {
+      "title": "HydraLoRA: An Asymmetric LoRA Architecture for Efficient Fine-Tuning"
+    },
+    {
+      "title": "Measuring Forgetting of Memorized Training Examples"
+    },
+    {
+      "title": "Characterizing Datapoints via Second-Split Forgetting"
+    },
+    {
+      "title": "On the Markov Property of Neural Algorithmic Reasoning: Analyses and Methods"
+    },
+    {
+      "title": "What makes unlearning hard and what to do about it"
+    },
+    {
+      "title": "RWKU: Benchmarking Real-World Knowledge Unlearning for Large Language Models"
+    }
   ]
 }
