@@ -1,0 +1,16 @@
+You are using the default legacy behaviour of the <class 'transformers.models.llama.tokenization_llama_fast.LlamaTokenizerFast'>. This is expected, and simply means that the `legacy` (previous) behavior will be used so nothing changes for you. If you want to use the new behaviour, set `legacy=False`. This should only be set if you understand what it means, and thoroughly read the reason why this was added as explained in https://github.com/huggingface/transformers/pull/24565 - if you loaded a llama tokenizer from a GGUF file you can ignore this message.
+Traceback (most recent call last):
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 195, in <module>
+    main()
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 185, in main
+    run_exp1()
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 101, in run_exp1
+    proposed_order = scheduler.add_task(t, grad_vec, feat_vec)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/train.py", line 108, in add_task
+    self.alpha * self._proj(self.grads[j], g)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/train.py", line 71, in _proj
+    proj = (torch.dot(g_i, g_j) / (torch.dot(g_j, g_j) + 1e-12)) * g_j
+            ^^^^^^^^^^^^^^^^^^^
+RuntimeError: Expected all tensors to be on the same device, but got tensor is on cpu, different from other tensors on cuda:0 (when checking argument in method wrapper_CUDA__dot)
