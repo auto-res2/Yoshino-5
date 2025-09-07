@@ -1,40 +1,46 @@
-shared:
-  model:
-    tiny_llama_path: nickypro/tinyllama-110M
-    teeny_llama_path: nicholasKluge/TeenyTinyLlama-460m
-    siglip_path: google/siglip-base-patch16-224
-    quant_cfg:
-      load_in_8bit: true
-    lora:
-      rank: 4
-      alpha: 16
-      dropout: 0.05
-  train:
+experiments:
+  exp1:
+    tasks:
+    - ni2109-mini
+    - ni2002-mini
     epochs: 3
-    lr: 0.0002
-    batch_size: 6
+    batch: 32
+    beam: 3
+  exp2:
+    nlp_tasks:
+    - task1812_sentence_compression
+    - task188_boolq
+    - task610_entity_type
+    - task195_sentiment
+    - task1176_para_class
+    - task1367_causal_judgement
+    - task226_topic_class
+    - task352_emotion
+    - task359_winogrande
+    - task1975_agnews
+    cv_tasks:
+    - imagenet_r_0
+    - imagenet_r_1
+    - imagenet_r_2
+    - imagenet_r_3
+    - imagenet_r_4
+    - imagenet_r_5
+    - imagenet_r_6
+    - imagenet_r_7
+    - imagenet_r_8
+    - imagenet_r_9
+    epochs: 3
+    batch: 6
     grad_accum: 8
-    max_seq_len: 256
-    weight_decay: 0.01
-    clip_grad: 1.0
-    fp16: true
-exp1:
-  tasks:
-    - ni2109
-    - ni2002
-  n_seeds:
-    - 11
-    - 29
-    - 42
-  lora_rank: 2
-  epochs: 1
-  batch_size: 8
-exp2:
-  run_if_env: SKIP_EXP2
-  nlp_stream: cache/nl10.yaml
-  cv_stream: cache/cv10.yaml
-  beam: 5
-exp3:
-  run_if_env: SKIP_EXP3
-  anti_curriculum: cache/ni8_anti.yaml
-  beam: 5
+    lora_rank: 8
+    beam: 5
+datasets:
+  natural_instructions: Muennighoff/natural-instructions
+  imagenet_r: https://people.eecs.berkeley.edu/~hendrycks/imagenet-r.tar
+models:
+  backbone_small: TinyLlama/TinyLlama-1.1B-Chat-v0.3
+  backbone_medium: nicholasKluge/TeenyTinyLlama-460m
+seeds:
+- 11
+- 29
+- 42

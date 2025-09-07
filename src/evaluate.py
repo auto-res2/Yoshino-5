@@ -1,83 +1,48 @@
+"""src/evaluate.py
+Evaluation / metric helpers (token-level F1, Levenshtein-tolerant EM, …).
+"""
 from __future__ import annotations
 
-from pathlib import Path
-from typing import Dict
+from typing import List
 
-import matplotlib as mpl
-import numpy as np
-import seaborn as sns
 import torch
-from matplotlib import pyplot as plt
+from sklearn.metrics import f1_score
 
-from .train import _DEVICE  # re-use global device
 
 # -----------------------------------------------------------------------------
-# 1.  Metrics
+#  Token-level micro-F1 (used in EXP-1)
 # -----------------------------------------------------------------------------
 
-def evaluate_acc(model, loader):
-    """Exact-match accuracy over target (label) positions only."""
-    model.eval()
-    correct = total = 0
-    with torch.inference_mode():
-        for batch in loader:
-            batch = {k: v.to(_DEVICE) for k, v in batch.items()}
-            out = model(**{k: v for k, v in batch.items() if k != "labels"})
-            pred = out.logits.argmax(dim=-1)
-            labels = batch["labels"]
-            mask = labels != -100  # only supervise non-ignored positions
-            correct += ((pred == labels) & mask).sum().item()
-            total += mask.sum().item()
-    return correct / max(total, 1)
+def token_micro_f1(pred: torch.LongTensor, gold: torch.LongTensor) -> float:
+    mask = gold != -100
+    if mask.sum() == 0:
+        return 0.0
+    return f1_score(gold[mask].cpu(), pred[mask].cpu(), average="micro")
+
 
 # -----------------------------------------------------------------------------
-# 2.  Plotting helpers
+#  Sequence-level exact match with Levenshtein tolerance ≤ 1 (EXP-2/3)
 # -----------------------------------------------------------------------------
 
+def _levenshtein(a: str, b: str) -> int:
+    if a == b:
+        return 0
+    if not a:
+        return len(b)
+    if not b:
+        return len(a)
+    prev = list(range(len(b) + 1))
+    for i, ca in enumerate(a, 1):
+        curr = [i]
+        for j, cb in enumerate(b, 1):
+            cost = 0 if ca == cb else 1
+            curr.append(min(prev[j] + 1, curr[-1] + 1, prev[j - 1] + cost))
+        prev = curr
+    return prev[-1]
 
-def _get_fig_dir() -> Path:
-    """Return the canonical directory for saving all experiment images."""
-    # All figures must reside under .research/iteration12/images according to the
-    # global repository convention.
-    root = Path(__file__).resolve().parent.parent  # repository root
-    fig_dir = root / ".research" / "iteration12" / "images"
-    fig_dir.mkdir(parents=True, exist_ok=True)
-    return fig_dir
 
-
-def save_barplot(data: Dict[str, float], title: str, fname: Path | None = None):
-    """Save a PDF bar-plot with value annotations to the mandated image folder.
-
-    Parameters
-    ----------
-    data : Dict[str, float]
-        Mapping from bar label → value.
-    title : str
-        Plot title.
-    fname : pathlib.Path | None, optional
-        Desired file name.  Only the *stem* portion will be honoured – the file
-        will always be stored under `.research/iteration12/images` as required
-        by the CI harness.  If *None*, the title stem will be slugified.
-    """
-    mpl.use("Agg")  # headless rendering
-    sns.set_theme(style="whitegrid")
-
-    # ------------------------------------------------------------------ figure
-    plt.figure(figsize=(6, 4))
-    ax = sns.barplot(x=list(data.keys()), y=list(data.values()), palette="crest")
-    for i, v in enumerate(data.values()):
-        ax.text(i, v + 0.002, f"{v:.3f}", ha="center", va="bottom")
-    ax.set_ylim(0, max(data.values()) * 1.15 if data else 1)
-    ax.set_ylabel("Accuracy")
-    ax.set_title(title)
-    plt.tight_layout()
-
-    # ------------------------------------------------------------- output path
-    fig_dir = _get_fig_dir()
-    if fname is None:
-        safe_stem = title.lower().replace(" ", "_").replace("/", "-")
-        fname = Path(f"{safe_stem}.pdf")
-    final_path = fig_dir / Path(fname).with_suffix(".pdf").name
-
-    plt.savefig(final_path, format="pdf", bbox_inches="tight")
-    print(f"[FIG] saved {final_path.relative_to(fig_dir.parent)}")
+def tolerant_exact_match(preds: List[str], golds: List[str]) -> float:
+    hit = 0
+    for p, g in zip(preds, golds):
+        hit += _levenshtein(p.strip(), g.strip()) <= 1
+    return hit / max(1, len(preds))
