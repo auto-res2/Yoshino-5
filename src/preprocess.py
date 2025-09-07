@@ -17,52 +17,76 @@ CACHE_DIR = os.environ.get("HF_HOME", os.path.expanduser("~/.cache/huggingface")
 class NaturalInstructionTask(Dataset):
     """HF Natural-Instructions wrapper providing tokenised samples."""
 
+    _FALLBACK_SPLITS = {
+        "validation": "test",  # if dataset has no validation split use test
+    }
+
     def __init__(self, task_name: str, split: str, tokenizer, max_len: int = 256):
         self.task_name = task_name
-        self.split = split
+        self.requested_split = split
         self.tokenizer = tokenizer
         self.max_len = max_len
 
-        # ------------------------------------------------------------------
-        # The Muennighoff/natural-instructions dataset exposes all tasks under
-        # a single "default" config (no per-task BuilderConfig).  Attempting
-        # to pass the task name as the config therefore raises the ValueError
-        # observed in the logs.  We handle this gracefully by first trying the
-        # user-requested config and, if that fails, falling back to the default
-        # config and filtering for the desired task.
-        # ------------------------------------------------------------------
-        try:
-            # Newer versions of the dataset may add per-task configs – keep the
-            # fast path so our code continues to work if that happens.
-            self.ds = hfds.load_dataset(
-                "Muennighoff/natural-instructions",
-                task_name,  # attempted config name
-                split=split,
-                cache_dir=CACHE_DIR,
-            )
-        except ValueError:
-            # Fallback path – load the full dataset once and slice.
-            full_ds = hfds.load_dataset(
-                "Muennighoff/natural-instructions",
-                split=split,
-                cache_dir=CACHE_DIR,
-            )
+        # Some configs are not available; we first attempt to load the desired
+        # split directly.  If that fails (missing builder config or split) we
+        # gracefully fall back to an alternative that exists and slice if
+        # needed so the API call site remains unchanged.
+        self.ds = self._safe_load_dataset(task_name, split)
 
-            # The dataset stores the task identifier under the key "task_name"
-            # (example: "ni2002").  If this key is absent we also check the
-            # classic Natural-Instructions "task_id" field for robustness.
+    # --------------------------------------------------------------
+    def _safe_load_dataset(self, task_name: str, split: str):
+        """Robust loader that copes with missing configs / splits."""
+
+        def _filter_task(full):
             def _match(example):
                 return (
                     ("task_name" in example and example["task_name"] == task_name)
                     or ("task_id" in example and example["task_id"] == task_name)
                 )
 
-            filtered = full_ds.filter(_match)
+            return full.filter(_match)
+
+        # ------------------------------------------------------------------
+        # 1) Try the fast path – load with the task as config and requested split
+        # ------------------------------------------------------------------
+        try:
+            return hfds.load_dataset(
+                "Muennighoff/natural-instructions",
+                task_name,
+                split=split,
+                cache_dir=CACHE_DIR,
+            )
+        except Exception:
+            # ------------------------------------------------------------------
+            # 2) Builder config not found OR split absent – fall back gracefully
+            # ------------------------------------------------------------------
+            #   a) Identify a real split name we can load
+            # ------------------------------------------------------------------
+            fallback_split = self._FALLBACK_SPLITS.get(split, None)
+            if fallback_split is None:
+                # If the user asked for an unknown split (e.g. "test" absent)
+                # we sample a slice from the train split.
+                fallback_split = "train[:10%]" if split == "validation" else "train"
+
+            # Load the fallback split from the default config (no task filter)
+            full_ds = hfds.load_dataset(
+                "Muennighoff/natural-instructions",
+                split=fallback_split,
+                cache_dir=CACHE_DIR,
+            )
+            # Filter down to the requested task.  If nothing remains we surface
+            # a clear error so the calling code can decide what to do.
+            filtered = _filter_task(full_ds)
             if len(filtered) == 0:
                 raise ValueError(
                     f"Task '{task_name}' not found inside Muennighoff/natural-instructions dataset."
                 )
-            self.ds = filtered
+
+            # If we emulated the validation split using a slice of train ensure
+            # the resulting dataset is small(ish) to keep runtime reasonable.
+            if split == "validation" and fallback_split.startswith("train"):
+                filtered = filtered.select(range(min(1000, len(filtered))))
+            return filtered
 
     # --------------------------------------------------------------
     def __len__(self):
@@ -72,8 +96,7 @@ class NaturalInstructionTask(Dataset):
         item = self.ds[idx]
         prompt = item.get("instruction", "") + "\n" + item.get("input", "")
         target = item.get("output", "")
-        # The "output" field is often a list of acceptable answers –
-        # use the first one if that is the case.
+        # The "output" field is often a list of acceptable answers – take first.
         if isinstance(target, list):
             target = target[0] if len(target) > 0 else ""
         enc = self.tokenizer(

@@ -7,10 +7,10 @@ import seaborn as sns
 import matplotlib as mpl
 
 mpl.use("Agg")  # headless backend
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt  # noqa: E402
 
 # Images are stored in the research directory requested by the task
-IMG_DIR = os.path.join(".research", "iteration4", "images")
+IMG_DIR = os.path.join(".research", "iteration5", "images")
 os.makedirs(IMG_DIR, exist_ok=True)
 
 # ------------------------------------------------------------------
