@@ -1,45 +1,50 @@
-import os
-from typing import Dict, List
+"""
+evaluate.py – evaluation utilities, statistics & figures
+"""
+from __future__ import annotations
 
-import math
+from pathlib import Path
+from typing import Dict
+
+import matplotlib as mpl
 import numpy as np
 import seaborn as sns
-import matplotlib as mpl
+import torch
+from matplotlib import pyplot as plt
 
-mpl.use("Agg")  # headless backend
-import matplotlib.pyplot as plt  # noqa: E402
+from .train import _DEVICE  # re-use global device
 
-# Images are stored in the research directory requested by the task
-IMG_DIR = os.path.join(".research", "iteration6", "images")
-os.makedirs(IMG_DIR, exist_ok=True)
+# -----------------------------------------------------------------------------
+# 1.  Metrics
+# -----------------------------------------------------------------------------
 
-# ------------------------------------------------------------------
-# Plotting helpers
-# ------------------------------------------------------------------
+def evaluate_acc(model, loader):
+    """Simple exact-match accuracy for classification-style tasks."""
+    model.eval()
+    correct = total = 0
+    with torch.inference_mode():
+        for batch in loader:
+            batch = {k: v.to(_DEVICE) for k, v in batch.items()}
+            out = model(**batch).logits.argmax(dim=-1)
+            correct += (out == batch["labels"]).float().sum().item()
+            total += batch["labels"].numel()
+    return correct / max(total, 1)
 
-def plot_bar(data: Dict[str, float], title: str, filename: str):
-    """Create a PDF barplot with annotated numbers."""
-    names, vals = list(data.keys()), list(data.values())
+# -----------------------------------------------------------------------------
+# 2.  Plotting helpers
+# -----------------------------------------------------------------------------
+
+def save_barplot(data: Dict[str, float], title: str, fname: Path):
+    """Save a PDF barplot with value annotations."""
+    mpl.use("Agg")  # headless rendering
     sns.set_theme(style="whitegrid")
-    plt.figure(figsize=(8, 4))
-    ax = sns.barplot(x=names, y=vals, palette="crest")
-    for i, v in enumerate(vals):
-        ax.text(i, v + 0.005, f"{v:.3f}", ha="center", va="bottom")
+    plt.figure(figsize=(6, 4))
+    ax = sns.barplot(x=list(data.keys()), y=list(data.values()), palette="crest")
+    for i, v in enumerate(data.values()):
+        ax.text(i, v + 0.002, f"{v:.3f}", ha="center", va="bottom")
+    ax.set_ylim(0, max(data.values()) * 1.15)
+    ax.set_ylabel("Accuracy")
     ax.set_title(title)
     plt.tight_layout()
-    path = os.path.join(IMG_DIR, filename)
-    plt.savefig(path, bbox_inches="tight", format="pdf")
-    print("[FIG] saved", path)
-
-# ------------------------------------------------------------------
-# Statistical helper
-# ------------------------------------------------------------------
-
-def summary_ci(values: List[float]):
-    """Return mean and 95% confidence interval of a sample list."""
-    if len(values) == 0:
-        return 0.0, 0.0
-    mean = float(np.mean(values))
-    std = float(np.std(values))
-    ci = 1.96 * std / math.sqrt(len(values))
-    return mean, ci
+    plt.savefig(fname, format="pdf", bbox_inches="tight")
+    print(f"[FIG] saved {fname}")
