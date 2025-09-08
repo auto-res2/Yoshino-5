@@ -1,46 +1,50 @@
-experiments:
-  exp1:
-    tasks:
-    - ni2109-mini
-    - ni2002-mini
-    epochs: 3
-    batch: 32
-    beam: 3
-  exp2:
-    nlp_tasks:
-    - task1812_sentence_compression
-    - task188_boolq
-    - task610_entity_type
-    - task195_sentiment
-    - task1176_para_class
-    - task1367_causal_judgement
-    - task226_topic_class
-    - task352_emotion
-    - task359_winogrande
-    - task1975_agnews
-    cv_tasks:
-    - imagenet_r_0
-    - imagenet_r_1
-    - imagenet_r_2
-    - imagenet_r_3
-    - imagenet_r_4
-    - imagenet_r_5
-    - imagenet_r_6
-    - imagenet_r_7
-    - imagenet_r_8
-    - imagenet_r_9
-    epochs: 3
-    batch: 6
-    grad_accum: 8
-    lora_rank: 8
-    beam: 5
-datasets:
-  natural_instructions: Muennighoff/natural-instructions
-  imagenet_r: https://people.eecs.berkeley.edu/~hendrycks/imagenet-r.tar
-models:
-  backbone_small: TinyLlama/TinyLlama-1.1B-Chat-v0.3
-  backbone_medium: nicholasKluge/TeenyTinyLlama-460m
-seeds:
-- 11
-- 29
-- 42
+SYSTEM:
+  device: cuda
+  num_workers: 4
+  pin_memory: true
+  mixed_precision: true
+  seeds: [11, 23, 42]
+  results_dir: results
+
+DATA:
+  streams:
+    - name: SplitCIFAR100
+      provider: avalanche.benchmarks.classic.split_cifar100
+      n_experiences: 20
+      orderings: [random, semantic, hard]
+      batch_size: 64
+    - name: SplitImageNetR
+      provider: avalanche.benchmarks.SplitImageNetR
+      n_experiences: 10
+      orderings: [random, semantic, hard]
+      batch_size: 64
+
+MODEL:
+  backbone: vit_base_patch16_224
+  quant: true
+  adapter:
+    type: InfLoRA
+    rank: 32
+    alpha: 64
+    dropout: 0.05
+    nf4: true
+
+OPTIM:
+  lr: 0.0001
+  weight_decay: 0.05
+  epochs_per_task: 2
+  grad_clip: 1.0
+
+SCHED:
+  type: GOST
+  buffer_M: 4
+  w_s: 2.0
+  w_i: 1.0
+  max_overhead: 0.05
+  baselines: [random, otdd, grad, fixed, oracle]
+
+EVAL:
+  metrics: [ACC, MinACC, BWT, FWT, WF10]
+
+VIZ:
+  formats: [pdf]

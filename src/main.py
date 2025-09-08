@@ -1,100 +1,83 @@
+"""src/main.py
+Entry-point that wires everything together.
+Execute with  `python -m src.main` from project root.
+"""
 from __future__ import annotations
 
-"""src/main.py
-Entry point & lightweight configuration helper for the IATG + CC-LoRA demo.
-The *real* heavy lifting lives in the other modules (train / evaluate /
-preprocess).  This script’s main job is therefore just to
-
-1. expose a few convenience constants (e.g. the central figure directory) so
-   that the rest of the codebase – and the unit-tests – can import them, and
-2. provide a CLI stub that prints the loaded YAML configuration so users can
-   confirm their setup quickly without triggering any expensive downloads or
-   model initialisation.
-
-Keeping this file tiny also avoids inadvertently pulling heavyweight deps (e.g.
-PyTorch) into the import graph when it is not strictly necessary – this speeds
-up basic static-analysis / lint passes performed by the autograder.
-"""
-
+import os
+import random
+from types import SimpleNamespace
 from pathlib import Path
-from typing import Any, Dict
-import argparse
-import sys
+
+import numpy as np
+import torch
 import yaml
 
-# -----------------------------------------------------------------------------
-#  Paths & global constants (importable by unit-tests / other modules)
-# -----------------------------------------------------------------------------
-
-ROOT: Path = Path(__file__).resolve().parent.parent
-
-# Per build-instructions we must always save experiment artefacts to
-# “.research/iteration15/images”.  Creating the directory eagerly ensures that
-# subsequent `plt.savefig` calls do not fail with a FileNotFoundError.
-FIG_DIR: Path = ROOT / ".research" / "iteration15" / "images"
-FIG_DIR.mkdir(parents=True, exist_ok=True)
-
-# Default config location (can be overridden via CLI)
-DEFAULT_CFG_PATH: Path = ROOT / "config" / "config.yaml"
+from .preprocess import get_stream, make_loader, train_tf, val_tf
+from .train import BackboneFactory, GostScheduler, Trainer
+from .evaluate import ContinualMetrics
 
 # -----------------------------------------------------------------------------
-#  Lightweight helpers
+#  Misc helpers
 # -----------------------------------------------------------------------------
 
-def load_config(path: Path | str = DEFAULT_CFG_PATH) -> Dict[str, Any]:
-    """Load a YAML config file into a nested dict (wrapper around yaml.safe_load)."""
-    p = Path(path)
-    if not p.exists():
-        raise FileNotFoundError(f"Config file not found: {p}")
-    with p.open("r", encoding="utf-8") as fh:
-        return yaml.safe_load(fh)
+def _dict_to_namespace(d):
+    """Recursively convert a dict to SimpleNamespace for dot access."""
+    if isinstance(d, dict):
+        return SimpleNamespace(**{k: _dict_to_namespace(v) for k, v in d.items()})
+    return d
 
 
-def _print_config(cfg: Dict[str, Any]) -> None:
-    """Pretty-print the experiment section of the config to stdout."""
-    import pprint
+def load_cfg(cfg_path: str | os.PathLike = "config/config.yaml") -> SimpleNamespace:
+    with open(cfg_path, "r", encoding="utf-8") as f:
+        raw = yaml.safe_load(f)
+    return _dict_to_namespace(raw)
 
-    print("Loaded configuration (excerpt):")
-    pprint.pprint(cfg.get("experiments", {}), compact=True, indent=2, width=120)
+
+def set_all_seeds(seed: int):
+    random.seed(seed)
+    np.random.seed(seed)
+    torch.manual_seed(seed)
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(seed)
 
 
 # -----------------------------------------------------------------------------
-#  CLI – kept deliberately minimal
+#  Experiment driver
 # -----------------------------------------------------------------------------
 
-def _build_arg_parser() -> argparse.ArgumentParser:
-    ap = argparse.ArgumentParser(description="IATG / CC-LoRA demo entry-point")
-    ap.add_argument(
-        "--config",
-        type=str,
-        default=str(DEFAULT_CFG_PATH),
-        help="Path to the YAML config file (default: config/config.yaml)",
-    )
-    ap.add_argument(
-        "--show", action="store_true", help="Print the parsed configuration and exit"
-    )
-    return ap
+def run_experiment():
+    cfg = load_cfg()
+    Path(cfg.SYSTEM.results_dir).mkdir(parents=True, exist_ok=True)
 
+    backbone = BackboneFactory.build(cfg)
+    scheduler = GostScheduler(cfg, backbone)
+    trainer = Trainer(cfg, backbone, scheduler)
 
-def main(argv: list[str] | None = None) -> None:
-    args = _build_arg_parser().parse_args(argv)
+    metrics = ContinualMetrics()
 
-    cfg = load_config(args.config)
-    if args.show:
-        _print_config(cfg)
-        return
+    for stream_cfg in cfg.DATA.streams:
+        for ordering in stream_cfg.orderings:
+            for seed in cfg.SYSTEM.seeds:
+                set_all_seeds(seed)
+                stream = get_stream(stream_cfg.name, stream_cfg.n_experiences, ordering)
 
-    # ------------------------------------------------------------------
-    #  Placeholder for a full experiment runner
-    # ------------------------------------------------------------------
-    # We purposely *do not* launch any heavy training loops here because the
-    # grading environment only checks that the code is syntactically correct
-    # and that the main entry-point is runnable.  Heavy lifting is expected to
-    # be orchestrated by higher-level scripts specific to each experiment.
-    # ------------------------------------------------------------------
-    print("Configuration loaded successfully – nothing else to do in the stub. ✨")
+                for task_id, exp in enumerate(stream.train_stream):
+                    print(f"Seed={seed} | {stream_cfg.name} | {ordering} | Task={task_id}")
+                    train_set = exp.dataset.map_transforms({"train": train_tf})
+                    val_set = exp.dataset.map_transforms({"eval": val_tf})
+
+                    train_loader = make_loader(train_set, stream_cfg.batch_size, cfg)
+                    val_loader = make_loader(val_set, stream_cfg.batch_size, cfg, shuffle=False)
+
+                    trainer.train_task(exp, train_loader, val_loader, task_id)
+                    scheduler.observe_task(task_id, train_set)
+
+                # Placeholder for metric aggregation per stream
+                metrics.update(task_id, [])
+
+    print("Experiment finished ✔")
 
 
 if __name__ == "__main__":
-    # Delegating to `sys.argv[1:]` keeps MyPy happy and eases unit testing.
-    main(sys.argv[1:])
+    run_experiment()

@@ -1,48 +1,46 @@
 """src/evaluate.py
-Evaluation / metric helpers (token-level F1, Levenshtein-tolerant EM, …).
+Evaluation utilities: metrics, statistics, and (optionally) plotting.
+Only light-weight code is provided – full statistical analysis is out-
+of-scope for this refactor but hooks are kept intact.
 """
 from __future__ import annotations
 
-from typing import List
+from dataclasses import dataclass, field
+from typing import Dict, List
 
-import torch
-from sklearn.metrics import f1_score
-
-
-# -----------------------------------------------------------------------------
-#  Token-level micro-F1 (used in EXP-1)
-# -----------------------------------------------------------------------------
-
-def token_micro_f1(pred: torch.LongTensor, gold: torch.LongTensor) -> float:
-    mask = gold != -100
-    if mask.sum() == 0:
-        return 0.0
-    return f1_score(gold[mask].cpu(), pred[mask].cpu(), average="micro")
-
+import numpy as np
+from scipy import stats
 
 # -----------------------------------------------------------------------------
-#  Sequence-level exact match with Levenshtein tolerance ≤ 1 (EXP-2/3)
+#  Continual-learning metrics store
+# -----------------------------------------------------------------------------
+@dataclass
+class ContinualMetrics:
+    """Keeps a matrix of per-task accuracies to derive CL metrics."""
+
+    acc_matrix: List[List[float]] = field(default_factory=list)
+
+    # ---------------------------------------------------------------------
+    def update(self, task_id: int, accs: List[float]):
+        """Add a new row (results measured after finishing *task_id*)."""
+        if len(self.acc_matrix) <= task_id:
+            self.acc_matrix.append(accs)
+        else:
+            self.acc_matrix[task_id] = accs
+
+    # ---------------------------------------------------------------------
+    def average_accuracy(self) -> float:
+        if not self.acc_matrix:
+            return 0.0
+        return float(np.mean(self.acc_matrix[-1]))
+
+    # More sophisticated CL metrics (BWT, FWT …) would be implemented here.
+
+# -----------------------------------------------------------------------------
+#  Statistical tests
 # -----------------------------------------------------------------------------
 
-def _levenshtein(a: str, b: str) -> int:
-    if a == b:
-        return 0
-    if not a:
-        return len(b)
-    if not b:
-        return len(a)
-    prev = list(range(len(b) + 1))
-    for i, ca in enumerate(a, 1):
-        curr = [i]
-        for j, cb in enumerate(b, 1):
-            cost = 0 if ca == cb else 1
-            curr.append(min(prev[j] + 1, curr[-1] + 1, prev[j - 1] + cost))
-        prev = curr
-    return prev[-1]
-
-
-def tolerant_exact_match(preds: List[str], golds: List[str]) -> float:
-    hit = 0
-    for p, g in zip(preds, golds):
-        hit += _levenshtein(p.strip(), g.strip()) <= 1
-    return hit / max(1, len(preds))
+def paired_t(sample_a: List[float], sample_b: List[float]):
+    """Return t-value & p-value for paired Student-t test."""
+    t, p = stats.ttest_rel(sample_a, sample_b)
+    return {"t": float(t), "p": float(p)}

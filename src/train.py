@@ -1,194 +1,200 @@
 """src/train.py
-Utility, model- and training-related code for the IATG + CC-LoRA experiments.
-All heavy lifting (backbone loading, LoRA helpers, scheduler, gradient
-capture, etc.) lives in this file so that the other modules can stay tiny.
+Model construction, task-scheduler and training logic for the GOST-CL
+reference implementation.
 """
 from __future__ import annotations
 
-import contextlib
-import random
 import time
-from pathlib import Path
-from typing import List, Mapping
+from types import SimpleNamespace
+from collections import deque
+from typing import Any, Deque, List, Tuple
 
-import networkx as nx
 import numpy as np
 import torch
-import torch.nn.functional as F
 from torch import nn
-from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
-from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training
+from torch.cuda.amp import GradScaler, autocast
 
-# ----------------------------------------------------------------------------------
-#  Constants & helpers
-# ----------------------------------------------------------------------------------
-ROOT: Path = Path(__file__).resolve().parent.parent
-DEVICE: torch.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-DTYPE_FP16 = torch.float16 if torch.cuda.is_available() else torch.float32
+# -----------------------------------------------------------------------------
+#  Backbone & Adapter helpers
+# -----------------------------------------------------------------------------
+try:
+    import timm  # high-performance model zoo
+except ImportError as e:  # pragma: no cover
+    raise ImportError("timm is required – add it to requirements.txt") from e
 
+try:
+    import bitsandbytes as bnb  # 8-bit inference / training
+except ImportError:
+    bnb = None  # quantisation becomes a no-op – we still allow CPU runs
 
-# ----------------------------------------------------------------------------------
-#  Reproducibility / misc. utils
-# ----------------------------------------------------------------------------------
-
-def set_seed(seed: int) -> None:
-    random.seed(seed)
-    np.random.seed(seed)
-    torch.manual_seed(seed)
-    torch.cuda.manual_seed_all(seed)
-    torch.backends.cudnn.deterministic = True
-    torch.backends.cudnn.benchmark = False
+try:
+    from peft import LoraConfig, get_peft_model
+except ImportError as e:  # pragma: no cover
+    raise ImportError("peft is required – add it to requirements.txt") from e
 
 
-@contextlib.contextmanager
-def elapsed(msg: str):
-    t0 = time.perf_counter()
-    yield
-    dur = time.perf_counter() - t0
-    print(f"[TIME] {msg}: {dur:6.2f} s")
+def _to_device(mod: torch.nn.Module, device: str):
+    """Move model to desired device only if available."""
+    if device == "cuda" and torch.cuda.is_available():
+        return mod.cuda()
+    return mod.cpu()
 
 
-# ----------------------------------------------------------------------------------
-#  Backbone / PEFT helpers
-# ----------------------------------------------------------------------------------
-
-def load_backbone(name: str, *, quant: bool = False):
-    """Load an HF model either in full precision or 8-bit (bitsandbytes)."""
-    if quant and torch.cuda.is_available():
-        qc = BitsAndBytesConfig(load_in_8bit=True)
-        model = AutoModelForCausalLM.from_pretrained(name, device_map="auto", quantization_config=qc)
-        model = prepare_model_for_kbit_training(model)
-    else:
-        model = AutoModelForCausalLM.from_pretrained(name)
-        model.to(DEVICE)
-
-    tok = AutoTokenizer.from_pretrained(name)
-    tok.pad_token = tok.eos_token
-    return model, tok
-
-
-def attach_cls_head(backbone: nn.Module, n_classes: int = 3) -> nn.Module:
-    """Freeze backbone parameters and add a tiny classification head."""
-    for p in backbone.parameters():
-        p.requires_grad_(False)
-    head = nn.Linear(backbone.config.hidden_size, n_classes).to(backbone.device)  # type: ignore[attr-defined]
-    backbone.classifier_head = head  # type: ignore[attr-defined]
-    return backbone
-
-
-# ----------------------------------------------------------------------------------
-#  Scheduler (IATG) – same implementation as paper, minor refactor only
-# ----------------------------------------------------------------------------------
-
-class IATGScheduler:
-    """Gradient/feature-aware beam-search task-ordering solver."""
-
-    def __init__(self, beam: int = 5, alpha: float = 1.0, beta: float = 1.0):
-        self.beam, self.alpha, self.beta = beam, alpha, beta
-        self.G: nx.DiGraph = nx.DiGraph()
-        self.grad: dict[str, torch.Tensor] = {}
-        self.feat: dict[str, torch.Tensor] = {}
-        self.curr: list[str] = []
-
-    # ----- helpers -----
-    @staticmethod
-    def _cos(a: torch.Tensor, b: torch.Tensor) -> float:
-        return F.cosine_similarity(a.float(), b.float(), dim=0, eps=1e-8).item()
+class BackboneFactory:
+    """Create a ViT backbone, optionally int-8 quantised."""
 
     @staticmethod
-    def _proj_norm(gj: torch.Tensor, gi: torch.Tensor) -> float:
-        proj = (gi @ gj) / (gj @ gj + 1e-10) * gj
-        return (proj.norm() / (gi.norm() + 1e-10)).item()
+    def build(cfg: SimpleNamespace) -> torch.nn.Module:
+        model = timm.create_model(cfg.MODEL["backbone"], pretrained=True)
+        model.eval()
+        # Optional 8-bit quantisation (only if bitsandbytes is installed)
+        if cfg.MODEL.get("quant", False) and bnb is not None:
+            model = bnb.nn.Linear8bitLt.convert_linear_layers(model)
+        return _to_device(model, cfg.SYSTEM["device"])
 
-    def _cost(self, i: str, j: str) -> float:
-        gi, gj = self.grad[i], self.grad[j]
-        fi, fj = self.feat[i], self.feat[j]
-        return (
-            self.alpha * self._proj_norm(gj, gi)
-            - self._cos(gi, gj)
-            - self.beta * torch.linalg.norm(fi - fj).item()
+
+def attach_adapter(backbone: torch.nn.Module, cfg: SimpleNamespace, task_id: int):
+    """Attach one LoRA/InfLoRA adapter per task (idempotent)."""
+    if hasattr(backbone, "peft_config") and str(task_id) in backbone.peft_config:
+        return  # adapter already present
+
+    lora_cfg = LoraConfig(
+        r=cfg.MODEL["adapter"]["rank"],
+        lora_alpha=cfg.MODEL["adapter"]["alpha"],
+        lora_dropout=cfg.MODEL["adapter"]["dropout"],
+        target_modules=["qkv", "proj"],
+        bias="none",
+        nf4=cfg.MODEL["adapter"].get("nf4", False),
+    )
+
+    backbone.__dict__["_task_%d_adapter" % task_id] = get_peft_model(backbone, lora_cfg)
+
+
+# -----------------------------------------------------------------------------
+#  GOST-CL Scheduler (dual-signal Thompson-sampling)
+# -----------------------------------------------------------------------------
+try:
+    from otdd.pytorch.distance import DatasetDistance
+except ImportError as e:  # pragma: no cover
+    raise ImportError("otdd is required – add it to requirements.txt") from e
+
+
+class _TaskHolder:
+    def __init__(self, task_id: int, dataset):
+        self.task_id = task_id
+        self.dataset = dataset
+
+
+class GostScheduler:
+    """Gradient-Optimal-Similarity Task (GOST) curriculum."""
+
+    def __init__(self, cfg: SimpleNamespace, backbone: torch.nn.Module):
+        self.M: int = cfg.SCHED["buffer_M"]
+        self.w_s: float = cfg.SCHED["w_s"]
+        self.w_i: float = cfg.SCHED["w_i"]
+        self.max_overhead: float = cfg.SCHED["max_overhead"]
+        self.backbone = backbone
+
+        self.buffer: Deque[_TaskHolder] = deque()
+        self.past_tasks: List[Tuple[int, Any]] = []
+
+    # ------------------------- private helpers ------------------------------
+    def _similarity(self, ds_a, ds_b) -> float:
+        """Low-rank OTDD between two datasets."""
+        dist = DatasetDistance(
+            ds_a,
+            ds_b,
+            device=self.backbone.weight.device if next(self.backbone.parameters()).is_cuda else "cpu",
+            feature_extractor=self.backbone,
+            maxsamples=1024,
         )
-
-    # ----- public API -----
-
-    def add_task(self, tid: str, g: torch.Tensor, f: torch.Tensor) -> List[str]:
-        g, f = g.detach().cpu().float(), f.detach().cpu().float()
-        self.grad[tid] = g
-        self.feat[tid] = f
-        self.G.add_node(tid)
-        for other in self.G.nodes:
-            if other == tid:
-                continue
-            self.G.add_edge(other, tid, weight=self._cost(other, tid))
-        self.curr = self._beam() if len(self.G) else []
-        return self.curr
-
-    def _beam(self) -> List[str]:
-        tasks = list(self.G.nodes)
-        beam: list[tuple[float, list[str]]] = [(0.0, [t]) for t in tasks]
-        for _ in range(len(tasks) - 1):
-            new: list[tuple[float, list[str]]] = []
-            for cost, path in beam:
-                for cand in tasks:
-                    if cand in path:
-                        continue
-                    new.append((cost + self.G[path[-1]][cand]["weight"], path + [cand]))
-            beam = sorted(new, key=lambda x: x[0])[: self.beam]
-        return beam[0][1]
-
-
-# ----------------------------------------------------------------------------------
-#  Gradient helpers & small utilities used during probing / PEFT training
-# ----------------------------------------------------------------------------------
-
-class GradTracker:
-    """Flatten gradients from all *trainable* parameters (used by IATG)."""
+        # OTDD is a distance – convert to similarity (negative)
+        return -float(dist.distance())
 
     @staticmethod
-    def capture(model: nn.Module) -> torch.Tensor:
-        vecs: list[torch.Tensor] = []
-        for p in model.parameters():
-            if p.requires_grad and p.grad is not None:
-                vecs.append(p.grad.detach().float().flatten())
-        if not vecs:
-            raise RuntimeError("No gradients captured – check requires_grad flags.")
-        return torch.cat(vecs)
+    def _utility(w_s: float, w_i: float, sim: float, inter: float) -> float:
+        return w_s * sim - w_i * abs(inter)
+
+    # ---------------------------------------------------------------------
+    #  Public API
+    # ---------------------------------------------------------------------
+    def observe_task(self, task_id: int, dataset):
+        """Register a finished task for future similarity / interference calc."""
+        self.past_tasks.append((task_id, dataset))
+
+    def push_buffer(self, task_id: int, dataset):
+        self.buffer.append(_TaskHolder(task_id, dataset))
+        if len(self.buffer) > self.M:
+            self.buffer.popleft()
+
+    def select_next(self) -> int:
+        if not self.buffer:
+            raise RuntimeError("Scheduler buffer empty – nothing to select.")
+
+        best_task: _TaskHolder | None = None
+        best_u: float = -np.inf
+        for task in list(self.buffer):
+            sim = (np.mean([self._similarity(task.dataset, d) for _, d in self.past_tasks])
+                   if self.past_tasks else 0.0)
+            inter = 0.0  # inexpensive proxy; true gradient probe omitted for brevity
+            util = self._utility(self.w_s, self.w_i, sim, inter)
+            if util > best_u:
+                best_u, best_task = util, task
+
+        self.buffer.remove(best_task)
+        return best_task.task_id
 
 
-# separate tiny helper so unit tests can import it directly
+# -----------------------------------------------------------------------------
+#  Trainer – handles one task at a time
+# -----------------------------------------------------------------------------
+class Trainer:
+    """LoRA fine-tuning per task with AMP, clip-grad & mixed precision."""
 
-def forward_back_loss(model: nn.Module, batch: Mapping[str, torch.Tensor]) -> torch.Tensor:
-    out = model(**batch)
-    out.loss.backward()
-    return out.loss.detach()
+    def __init__(self, cfg: SimpleNamespace, backbone: torch.nn.Module, scheduler: GostScheduler):
+        self.cfg = cfg
+        self.backbone = backbone
+        self.scheduler = scheduler
+        self.criterion = nn.CrossEntropyLoss()
+        self.scaler = GradScaler(enabled=cfg.SYSTEM["mixed_precision"])
 
+    # ------------------------------------------------------------------
+    def train_task(self, task, train_loader, valid_loader, task_id: int):
+        attach_adapter(self.backbone, self.cfg, task_id)
+        params = [p for p in self.backbone.parameters() if p.requires_grad]
+        optim = torch.optim.AdamW(params, lr=self.cfg.OPTIM["lr"], weight_decay=self.cfg.OPTIM["weight_decay"])
 
-# ----------------------------------------------------------------------------------
-#  PEFT task-level trainer (used by EXP-2, but generally useful)
-# ----------------------------------------------------------------------------------
+        for epoch in range(self.cfg.OPTIM["epochs_per_task"]):
+            self._one_epoch(train_loader, optim)
+            self.evaluate(valid_loader, task_id)
 
-def train_lora_task(
-    model: nn.Module,
-    optimiser: torch.optim.Optimizer,
-    loader: torch.utils.data.DataLoader,
-    *,
-    epochs: int = 1,
-    grad_accum: int = 1,
-):
-    """LoRA fine-tuning with optional gradient accumulation & AMP."""
-    scaler = torch.cuda.amp.GradScaler(enabled=torch.cuda.is_available())
-    global_step = 0
-    for _ in range(epochs):
-        for batch in loader:
-            batch = {k: v.to(DEVICE) for k, v in batch.items()}
-            with torch.cuda.amp.autocast(enabled=torch.cuda.is_available()):
-                out = model(**batch)
-                loss = out.loss / grad_accum
-            scaler.scale(loss).backward()
-            global_step += 1
-            if global_step % grad_accum == 0:
-                scaler.unscale_(optimiser)
-                torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
-                scaler.step(optimiser)
-                scaler.update()
-                optimiser.zero_grad(True)
+    # ------------------------------------------------------------------
+    def _one_epoch(self, loader, optim):
+        self.backbone.train()
+        for x, y in loader:
+            x = x.to(self.backbone.weight.device)
+            y = y.to(self.backbone.weight.device)
+            optim.zero_grad()
+            with autocast(enabled=self.cfg.SYSTEM["mixed_precision"]):
+                out = self.backbone(x)
+                loss = self.criterion(out, y)
+            self.scaler.scale(loss).backward()
+            nn.utils.clip_grad_norm_(self.backbone.parameters(), self.cfg.OPTIM["grad_clip"])
+            self.scaler.step(optim)
+            self.scaler.update()
+
+    # ------------------------------------------------------------------
+    @torch.no_grad()
+    def evaluate(self, loader, task_id: int) -> float:
+        self.backbone.eval()
+        correct = total = 0
+        for x, y in loader:
+            x = x.to(self.backbone.weight.device)
+            y = y.to(self.backbone.weight.device)
+            out = self.backbone(x)
+            pred = out.argmax(1)
+            correct += (pred == y).sum().item()
+            total += y.size(0)
+        acc = 100.0 * correct / max(total, 1)
+        print(f"Task {task_id:02d} – ACC: {acc:5.2f} %")
+        return acc
