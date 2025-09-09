@@ -32,7 +32,7 @@ class SALoRALayer(nn.Module):
 def _register_salora(block: nn.Module, in_proj: nn.Linear, salora_layer: nn.Module, attr_name: str):
     """Utility to (1) move the SALoRA layer to the same device/dtype as the parent
     linear layer, (2) register it as a sub-module of ``block`` (so its parameters
-    are returned by ``model.parameters()`` and moved by ``model.to(device)``), and
+    are returned by ``model.parameters()`` and moved by ``model.to(device)``, and
     (3) patch the forward function of the target projection.
     """
 
@@ -108,49 +108,76 @@ class RLTOPAgent:
         self.gamma = gamma
         self.device = device
 
-    def select_action(self, state):
-        state = torch.FloatTensor(state).to(self.device)
-        probs = self.actor(state)
+    def select_action(self, state, valid_action_count=None):
+        """Samples an action.
+
+        Args:
+            state (np.ndarray | list | torch.Tensor): Current environment state.
+            valid_action_count (int, optional): Number of admissible actions in
+                the *current* decision step. This can be smaller than the
+                actor's maximum ``action_dim`` when the task buffer shrinks.
+        Returns:
+            (action_idx, log_prob) – the sampled *local* action index (0 ≤ idx <
+            ``valid_action_count``) and its log-probability under the current
+            policy.  ``log_prob`` is a torch scalar **already on the correct
+            device** so it can be used directly in loss computations.
+        """
+        state_t = torch.as_tensor(state, dtype=torch.float32, device=self.device)
+        if state_t.dim() == 1:
+            state_t = state_t.unsqueeze(0)  # (1, state_dim)
+
+        probs = self.actor(state_t).squeeze(0)  # (action_dim,)
+
+        if valid_action_count is not None and valid_action_count < probs.shape[0]:
+            probs = probs[:valid_action_count]
+            probs = probs / probs.sum()  # re-normalise so that Σ = 1
+
         dist = Categorical(probs)
         action = dist.sample()
         return action.item(), dist.log_prob(action)
 
     def update(self, state, log_prob, reward, next_state, done):
-        state = torch.FloatTensor(state).to(self.device)
-        next_state = torch.FloatTensor(next_state).to(self.device)
-        reward = torch.tensor(reward, dtype=torch.float32).to(self.device)
-        done = torch.tensor(done, dtype=torch.float32).to(self.device)
-        
-        # Critic update
-        value = self.critic(state)
-        next_value = self.critic(next_state)
-        td_target = reward + self.gamma * next_value * (1 - done)
+        state_t = torch.as_tensor(state, dtype=torch.float32, device=self.device)
+        if state_t.dim() == 1:
+            state_t = state_t.unsqueeze(0)
+
+        next_state_t = torch.as_tensor(next_state, dtype=torch.float32, device=self.device)
+        if next_state_t.dim() == 1:
+            next_state_t = next_state_t.unsqueeze(0)
+
+        reward_t = torch.tensor([reward], dtype=torch.float32, device=self.device)
+        done_t = torch.tensor([done], dtype=torch.float32, device=self.device)
+
+        # Critic update -------------------------------------------------------
+        value = self.critic(state_t)
+        next_value = self.critic(next_state_t)
+        td_target = reward_t + self.gamma * next_value * (1 - done_t)
         advantage = td_target - value
-        
+
         loss_critic = F.mse_loss(value, td_target.detach())
         self.optimizer_critic.zero_grad()
         loss_critic.backward()
         self.optimizer_critic.step()
 
-        # Actor update
-        loss_actor = -log_prob * advantage.detach()
+        # Actor update --------------------------------------------------------
+        loss_actor = -(log_prob * advantage.detach()).mean()
         self.optimizer_actor.zero_grad()
         loss_actor.backward()
         self.optimizer_actor.step()
 
-# --- Metric Calculation ---
+# --- Metric Calculation -------------------------------------------------------
 
 def _get_gradients(model, data_loader, device):
     """Helper to compute gradients for a small batch."""
     model.train()
     images, labels, _ = next(iter(data_loader))
     images, labels = images.to(device), labels.to(device)
-    
+
     model.zero_grad()
     outputs = model(images)
     loss = F.cross_entropy(outputs, labels)
     loss.backward()
-    
+
     grads = []
     for param in model.parameters():
         if param.grad is not None:
@@ -163,7 +190,7 @@ def compute_gradient_interference(model, loader1, loader2, device):
     model_copy = copy.deepcopy(model).to(device)
     grad1 = _get_gradients(model_copy, loader1, device)
     grad2 = _get_gradients(model_copy, loader2, device)
-    
+
     interference = -F.cosine_similarity(grad1, grad2, dim=0)
     return interference.item()
 
@@ -179,7 +206,7 @@ def compute_fisher_similarity(model, loader1, loader2, device):
     if hasattr(model_copy, 'head') and isinstance(model_copy.head, nn.Module):
         for param in model_copy.head.parameters():
             param.requires_grad = False
-    
+
     grad1 = _get_gradients(model_copy, loader1, device)
     grad2 = _get_gradients(model_copy, loader2, device)
 
@@ -187,11 +214,11 @@ def compute_fisher_similarity(model, loader1, loader2, device):
     if hasattr(model_copy, 'head') and isinstance(model_copy.head, nn.Module):
         for param in model_copy.head.parameters():
             param.requires_grad = True
-            
+
     similarity = F.cosine_similarity(grad1, grad2, dim=0)
     return similarity.item()
 
-# --- Main Training Function ---
+# --- Main Training Function ---------------------------------------------------
 
 def get_optimizer(model, config):
     if config['training']['optimizer'].lower() == 'adam8bit':
@@ -204,17 +231,17 @@ def train_task(model, train_loader, optimizer, device, epochs=1):
     """Trains the model on a single task."""
     model.train()
     criterion = nn.CrossEntropyLoss()
-    
+
     for epoch in range(epochs):
         loop = tqdm(train_loader, desc=f"Epoch {epoch+1}/{epochs}")
         for images, labels, _ in loop:
             images, labels = images.to(device), labels.to(device)
-            
+
             optimizer.zero_grad()
             outputs = model(images)
             loss = criterion(outputs, labels)
             loss.backward()
             optimizer.step()
-            
+
             loop.set_postfix(loss=loss.item())
     return model

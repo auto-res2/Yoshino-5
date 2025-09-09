@@ -17,6 +17,7 @@ def calculate_accuracy(model, data_loader, device):
         correct += (predicted == labels).sum().item()
     return 100 * correct / total if total > 0 else 0
 
+
 def evaluate_model(model, task_loaders, seen_tasks_indices, device):
     """
     Evaluates the model on all previously seen tasks.
@@ -28,6 +29,7 @@ def evaluate_model(model, task_loaders, seen_tasks_indices, device):
         accuracies.append(acc)
         print(f"Accuracy on task {task_idx}: {acc:.2f}%")
     return accuracies
+
 
 def calculate_metrics(accuracy_matrix):
     """
@@ -52,16 +54,18 @@ def calculate_metrics(accuracy_matrix):
         # Accuracy on task j after the final task
         final_acc_j = accuracy_matrix[-1, j]
         forgetting += (max_acc_j - final_acc_j)
-    
+
     af = forgetting / (num_tasks - 1) if num_tasks > 1 else 0.0
     return aacc, af
 
-def plot_results(results, save_path):
+
+def plot_results(results, _save_path_ignored):
+    """Plots the evolution of AACC and AF over tasks and saves the figure to
+    the mandated directory: `.research/iteration10/images`. The caller-provided
+    ``save_path`` argument is ignored to comply with the execution rules.
     """
-    Plots the evolution of AACC and AF over tasks.
-    """
-    if not os.path.exists(save_path):
-        os.makedirs(save_path)
+    save_path = ".research/iteration10/images"
+    os.makedirs(save_path, exist_ok=True)
 
     task_indices = range(1, len(results['aacc']) + 1)
 
@@ -84,7 +88,7 @@ def plot_results(results, save_path):
     plt.ylabel('AF (%)')
     plt.grid(True)
     plt.xticks(task_indices)
-    
+
     plt.tight_layout()
     plot_filename = os.path.join(save_path, "aacc_af_plot.png")
     plt.savefig(plot_filename)
