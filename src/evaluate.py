@@ -9,7 +9,7 @@ from pathlib import Path
 from fvcore.nn import FlopCountAnalysis
 
 # Base directory where every image / csv must be stored (see instructions)
-_IMG_BASE_DIR = Path('.research/iteration24/images')
+_IMG_BASE_DIR = Path('.research/iteration25/images')
 
 @torch.no_grad()
 def evaluate_on_all_tasks(model, test_stream, device):
