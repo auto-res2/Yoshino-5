@@ -35,13 +35,36 @@ except ImportError:
     _has_bnb = False
     print("WARNING: `bitsandbytes` not found. 8-bit optimizers will fall back to torch.optim.AdamW.")
 
+""" ---------------------------------------------------------------------------
+Avalanche import compatibility
+---------------------------------------------------------------------------
+The public API of Avalanche has slightly changed across minor versions.  In
+0.5.x the `ReservoirSamplingBuffer` utility lived in `avalanche.storage_policy`
+whereas from 0.6.x onward it was moved to `avalanche.training.storage_policy`.
+The following try / except chain keeps the code robust to both versions without
+forcing a specific pin in `requirements.txt` (we currently use 0.6.x because it
+is the first version with Python 3.11 wheels).
+"""
+
+_has_avalanche = False
+ReplayPlugin = object
+ReservoirSamplingBuffer = object
+
 try:
-    from avalanche.training.plugins import ReplayPlugin
-    from avalanche.storage_policy import ReservoirSamplingBuffer
+    from avalanche.training.plugins import ReplayPlugin as _ReplayPlugin
+    ReplayPlugin = _ReplayPlugin
+
+    try:
+        # Avalanche < 0.6
+        from avalanche.storage_policy import ReservoirSamplingBuffer as _RSB
+    except ImportError:
+        # Avalanche ≥ 0.6
+        from avalanche.training.storage_policy import ReservoirSamplingBuffer as _RSB
+    ReservoirSamplingBuffer = _RSB
     _has_avalanche = True
 except ImportError:
-    _has_avalanche = False
-    ReplayPlugin = ReservoirSamplingBuffer = object
+    print("WARNING: `avalanche-lib` not found. Experience replay baselines will be disabled.")
+
 
 class ContinualVisionModel(nn.Module):
     """A wrapper for a timm backbone with swappable heads and optional adapters."""
@@ -53,11 +76,14 @@ class ContinualVisionModel(nn.Module):
             pretrained=True,
             num_classes=0
         )
-        self.embed_dim = self.backbone.embed_dim
+        # Different timm models expose the embedding size under different names.
+        self.embed_dim = getattr(self.backbone, 'embed_dim', None) or getattr(self.backbone, 'num_features')
 
+        # Freeze backbone weights (we only train head or adapters)
         for param in self.backbone.parameters():
             param.requires_grad = False
 
+        # Optional LoRA adapters (a.k.a. SALoRA in the paper)
         if _has_peft:
             peft_config = LoraConfig(
                 r=config.salora_rank,
@@ -75,9 +101,11 @@ class ContinualVisionModel(nn.Module):
         self.active_head = None
 
     def forward(self, x):
+        # Handle grayscale inputs (e.g. Permuted-MNIST)
         if x.shape[1] == 1:
             x = x.repeat(1, 3, 1, 1)
-        
+            
+        # MLP-Mixer models in timm expect 224×224 ‑ we upsample smaller inputs
         if 'mixer' in self.config.model_name and x.shape[-1] != 224:
             x = nn.functional.interpolate(x, size=(224, 224), mode='bicubic', align_corners=False)
 
@@ -91,6 +119,7 @@ class ContinualVisionModel(nn.Module):
         if task_key not in self.head_bank:
             self.head_bank[task_key] = nn.Linear(self.embed_dim, self.config.classes_per_task)
         self.active_head = task_key
+
 
 class ActorCritic(nn.Module):
     """A simple MLP Actor-Critic agent for task scheduling."""
@@ -116,6 +145,7 @@ class ActorCritic(nn.Module):
         probs = self.actor(state)
         value = self.critic(state)
         return probs, value
+
 
 class A2CAgent:
     def __init__(self, config, device):
@@ -171,14 +201,16 @@ class A2CAgent:
         self.optimizer.step()
         self.memory = []
 
+
 def get_optimizer(model, config):
     params = [p for p in model.parameters() if p.requires_grad]
     if config.optimizer == 'AdamW8bit' and _has_bnb and 'cuda' in str(config.device):
         return bnb.optim.AdamW8bit(params, lr=config.lr, betas=tuple(config.betas), weight_decay=config.weight_decay)
     else:
         if config.optimizer == 'AdamW8bit':
-            print("Falling back to torch.optim.AdamW")
+            print("Falling back to torch.optim.AdamW (8-bit optimizer unavailable).")
         return torch.optim.AdamW(params, lr=config.lr, weight_decay=config.weight_decay)
+
 
 def train_one_epoch(model, loader, optimizer, scaler, device, precision, grad_clip, grad_accum_steps):
     model.train()
@@ -188,11 +220,15 @@ def train_one_epoch(model, loader, optimizer, scaler, device, precision, grad_cl
     for i, (x, y, _) in enumerate(pbar):
         x, y = x.to(device), y.to(device)
         
+        # Re-index labels so they start at 0 for the current head
         unique_labels = torch.unique(y)
         label_map = {int(old_label): new_label for new_label, old_label in enumerate(unique_labels)}
         y = torch.tensor([label_map[int(l)] for l in y], device=device, dtype=torch.long)
 
-        amp_context = torch.cuda.amp.autocast(dtype=torch.bfloat16) if precision == 'bf16' and device.type != 'cpu' else nullcontext()
+        amp_context = (
+            torch.cuda.amp.autocast(dtype=torch.bfloat16)
+            if precision == 'bf16' and device.type != 'cpu' else nullcontext()
+        )
         with amp_context:
             outputs = model(x)
             loss = F.cross_entropy(outputs, y) / grad_accum_steps
@@ -217,7 +253,9 @@ def train_one_epoch(model, loader, optimizer, scaler, device, precision, grad_cl
         pbar.set_postfix({'loss': f"{loss.item() * grad_accum_steps:.4f}"})
     return total_loss / len(loader)
 
+
 def get_gradient_sketch(model, loader, device, precision):
+    """Computes a flat tensor that sketches the current gradient signal."""
     model.train()
     try:
         x, y, _ = next(iter(loader))
@@ -229,7 +267,10 @@ def get_gradient_sketch(model, loader, device, precision):
     label_map = {int(old_label): new_label for new_label, old_label in enumerate(unique_labels)}
     y = torch.tensor([label_map[int(l)] for l in y], device=device, dtype=torch.long)
 
-    amp_context = torch.cuda.amp.autocast(dtype=torch.bfloat16) if precision == 'bf16' and 'cuda' in str(device) else nullcontext()
+    amp_context = (
+        torch.cuda.amp.autocast(dtype=torch.bfloat16)
+        if precision == 'bf16' and device.type == 'cuda' else nullcontext()
+    )
     with amp_context:
         outputs = model(x)
         loss = F.cross_entropy(outputs, y)
@@ -240,7 +281,8 @@ def get_gradient_sketch(model, loader, device, precision):
         if p.grad is not None and p.requires_grad:
             grads.append(p.grad.view(-1).detach().clone())
     model.zero_grad()
-    return torch.cat(grads)
+    return torch.cat(grads) if grads else torch.tensor([]).to(device)
+
 
 def run_strategy(config, benchmark):
     device = torch.device(config.device)
@@ -250,14 +292,20 @@ def run_strategy(config, benchmark):
     metrics = ContinualMetrics(config.num_tasks)
     agent = A2CAgent(config, device) if 'rl_top' in config.policy else None
 
+    # Task ordering ----------------------------------------------------------------
     task_order = list(range(config.num_tasks))
     if config.policy == 'random':
         random.shuffle(task_order)
     
+    # Experience replay plugin ------------------------------------------------------
     replay_plugin = None
     if config.policy == 'er_500':
-        if not _has_avalanche: raise ImportError("Avalanche-lib needed for ER baseline")
-        replay_plugin = ReplayPlugin(mem_size=config.er_buffer_size, storage_policy=ReservoirSamplingBuffer(max_size=config.er_buffer_size))
+        if not _has_avalanche:
+            raise ImportError("Avalanche-lib needed for ER baseline but is not installed.")
+        replay_plugin = ReplayPlugin(
+            mem_size=config.er_buffer_size,
+            storage_policy=ReservoirSamplingBuffer(max_size=config.er_buffer_size)
+        )
 
     all_tasks = benchmark.train_stream
     test_tasks = benchmark.test_stream
@@ -271,12 +319,13 @@ def run_strategy(config, benchmark):
         
         candidate_indices = sorted(list(task_buffer.keys()))
         
+        # ------------------------------------------------ RL-TOP / Greedy selection
         if 'rl_top' in config.policy or 'greedy' in config.policy:
             m = min(config.search_window_m, len(candidate_indices))
             search_indices = candidate_indices[:m]
             
-            s_matrix = np.zeros((m, m))
-            g_matrix = np.zeros((m, m))
+            s_matrix = np.zeros((m, m))  # similarity
+            g_matrix = np.zeros((m, m))  # gradient conflict (negative similarity)
 
             if m > 1:
                 grads = []
@@ -292,16 +341,20 @@ def run_strategy(config, benchmark):
                 for r in range(m):
                     for c in range(r + 1, m):
                         g1, g2 = grads[r], grads[c]
+                        if g1.numel() == 0 or g2.numel() == 0:
+                            continue
+                        similarity = F.cosine_similarity(g1, g2, dim=0).item()
                         if config.policy != 'rl_top_g_only':
-                            s_matrix[r, c] = s_matrix[c, r] = F.cosine_similarity(g1, g2, dim=0).item()
+                            s_matrix[r, c] = s_matrix[c, r] = similarity
                         if config.policy != 'rl_top_s_only':
-                            g_matrix[r, c] = g_matrix[c, r] = -F.cosine_similarity(g1, g2, dim=0).item()
+                            g_matrix[r, c] = g_matrix[c, r] = -similarity
             
             if config.policy == 'similarity_greedy':
                 action = np.argmax(s_matrix[0, 1:]) + 1 if m > 1 else 0
             elif config.policy == 'greedy_g':
                 action = np.argmin(np.mean(g_matrix, axis=1))
             elif 'rl_top' in config.policy:
+                # Build state vector and mask
                 state = np.concatenate([s_matrix.flatten(), g_matrix.flatten(), np.zeros(config.search_window_m)])
                 mask = torch.zeros(config.search_window_m, device=device)
                 mask[:m] = 1.0
@@ -313,6 +366,7 @@ def run_strategy(config, benchmark):
         else:
             current_task_idx = task_order[t]
 
+        # Pop the selected task from the buffer and proceed with training ----------
         current_task = task_buffer.pop(current_task_idx)
         trained_task_indices.append(current_task_idx)
         print(f"Selected Task: {current_task_idx}")
@@ -325,19 +379,34 @@ def run_strategy(config, benchmark):
         else:
             train_dataset = current_task.dataset
 
-        train_loader = DataLoader(train_dataset, batch_size=config.train_batch_size, shuffle=True, num_workers=2, pin_memory=True)
+        train_loader = DataLoader(
+            train_dataset,
+            batch_size=config.train_batch_size,
+            shuffle=True,
+            num_workers=2,
+            pin_memory=True
+        )
         
+        # ---------------- Training loop per task ----------------------------------
         if hasattr(config, 'epochs_per_task'):
             for epoch in range(config.epochs_per_task):
-                train_one_epoch(model, train_loader, optimizer, scaler, device, config.precision, config.clip_grad_norm, config.grad_accum_steps)
+                train_one_epoch(
+                    model, train_loader, optimizer, scaler, device,
+                    config.precision, config.clip_grad_norm, config.grad_accum_steps
+                )
         elif hasattr(config, 'steps_per_task'):
             step = 0
             while step < config.steps_per_task:
-                train_one_epoch(model, train_loader, optimizer, scaler, device, config.precision, config.clip_grad_norm, config.grad_accum_steps)
+                train_one_epoch(
+                    model, train_loader, optimizer, scaler, device,
+                    config.precision, config.clip_grad_norm, config.grad_accum_steps
+                )
                 step += len(train_loader)
         
-        if replay_plugin: replay_plugin.after_training_exp(current_task)
+        if replay_plugin:
+            replay_plugin.after_training_exp(current_task)
 
+        # ---------------- Evaluation on all seen tasks ----------------------------
         task_accuracies = []
         for i in trained_task_indices:
             model.add_or_set_task_head(i)
@@ -351,8 +420,10 @@ def run_strategy(config, benchmark):
         metrics.update(t, full_accuracies)
         print(f"Accuracies on seen tasks: {[f'{a:.2f}' for a in task_accuracies]}")
 
-        if agent: agent.update(rewards=[np.mean(task_accuracies)/100])
+        if agent:
+            agent.update(rewards=[np.mean(task_accuracies) / 100])
     
+    # ---------------- Final metrics & resource usage ------------------------------
     final_aacc = metrics.average_accuracy()
     final_af = metrics.average_forgetting()
     total_time = time.time() - start_time
@@ -366,6 +437,13 @@ def run_strategy(config, benchmark):
 
     print(f"\nFinished policy '{config.policy}' for seed {config.seed}.")
     print(f"  AACC: {final_aacc:.2f}% | AF: {final_af:.2f}% | Time: {total_time:.2f}s")
-    print(f"  FLOPs: {flops/1e9:.2f} GFLOPs | Peak VRAM: {vram:.2f} GB")
+    if flops > 0:
+        print(f"  FLOPs: {flops/1e9:.2f} GFLOPs | Peak VRAM: {vram:.2f} GB")
 
-    return {'AACC': final_aacc, 'AF': final_af, 'time': total_time, 'vram': vram, 'flops': flops}
+    return {
+        'AACC': final_aacc,
+        'AF': final_af,
+        'time': total_time,
+        'vram': vram,
+        'flops': flops
+    }
