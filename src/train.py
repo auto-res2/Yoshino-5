@@ -37,7 +37,7 @@ __all__ = [
 # we do not duplicate code.  The snippet starts after the placeholder comment
 # ``# === ORIGINAL HELPERS BEGIN ===``.
 
-ORIGINAL_HELPERS = r"""
+ORIGINAL_HELPERS = r'''
 # =============================================================
 # Utility: Robust LoRA Injection helper
 # =============================================================
@@ -161,7 +161,7 @@ class RLTOPScheduler:  # pylint: disable=too-few-public-methods
 
     def update_after_task(self, *_args, **_kwargs):
         pass
-"""
+'''
 
 exec(ORIGINAL_HELPERS, globals())
 

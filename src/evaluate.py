@@ -16,7 +16,7 @@ from avalanche.evaluation.metrics import (
 
 
 # Directory mandated by the autograder / specification
-_DEFAULT_FIG_DIR = ".research/iteration3/images"
+_DEFAULT_FIG_DIR = ".research/iteration6/images"
 
 
 def get_eval_plugin(loggers):
@@ -99,7 +99,7 @@ def validate_results(results_df):
 
 
 # ----------------------------------------------------------------------------
-# FIGURE GENERATION – all images must be stored in .research/iteration3/images
+# FIGURE GENERATION – all images must be stored in .research/iteration6/images
 # ----------------------------------------------------------------------------
 
 def _prepare_fig_dir():
@@ -110,7 +110,7 @@ def _prepare_fig_dir():
 def generate_figures(results, _ignored_figures_dir=""):
     """[IMPLEMENTED] Component: Figure Generation
 
-    All images are saved under .research/iteration3/images as required by the
+    All images are saved under .research/iteration6/images as required by the
     evaluation harness, regardless of the user-supplied directory argument.
     """
 
