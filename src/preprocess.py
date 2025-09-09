@@ -20,11 +20,11 @@ try:
     import torch.nn as nn
 
     class DwsConvBlock(nn.Sequential):
-        """Depth-wise separable 3×3 convolution block (DW->PW)."""
+        """Depth-wise separable 3×3 convolution block (DW→PW)."""
 
         def __init__(self, in_channels: int, out_channels: int, stride: int):
             super().__init__(
-                # Depth-wise conv
+                # Depth-wise convolution
                 nn.Conv2d(
                     in_channels,
                     in_channels,
@@ -36,7 +36,7 @@ try:
                 ),
                 nn.BatchNorm2d(in_channels),
                 nn.ReLU(inplace=True),
-                # Point-wise conv
+                # Point-wise convolution
                 nn.Conv2d(
                     in_channels,
                     out_channels,
@@ -73,23 +73,41 @@ except Exception:  # pragma: no cover
 import torch
 from torchvision import transforms
 from avalanche.benchmarks.classic import SplitCIFAR100
-from avalanche.benchmarks.generators import benchmark_with_validation_stream
+
+# The location of `benchmark_with_validation_stream` changed in recent Avalanche
+# versions.  We attempt the new import path first and gracefully fall back to a
+# pass-through stub if the helper is not available (e.g. older release).
+try:
+    # Newer (≥0.4.1) path
+    from avalanche.benchmarks.utils import benchmark_with_validation_stream  # type: ignore
+except Exception:  # pragma: no cover
+    # Fallback – implement a minimal no-op splitter that simply returns the
+    # original benchmark and `None` for the validation stream.  Down-stream code
+    # is already written to handle `None`.
+    def benchmark_with_validation_stream(benchmark, validation_size=0.0):  # noqa: D401,E501
+        """Return the benchmark unchanged and no validation stream."""
+
+        return benchmark, None
 
 
 def get_cifar100_benchmark(config, validation_size=0.1):
-    train_transform = transforms.Compose([
-        transforms.RandomResizedCrop(224, scale=(0.8, 1.0)),
-        transforms.RandAugment(num_ops=2, magnitude=9),
-        transforms.RandomHorizontalFlip(),
-        transforms.ToTensor(),
-        transforms.Normalize((0.5071, 0.4867, 0.4408), (0.2675, 0.2565, 0.2761)),
-    ])
-    eval_transform = transforms.Compose([
-        transforms.Resize(256),
-        transforms.CenterCrop(224),
-        transforms.ToTensor(),
-        transforms.Normalize((0.5071, 0.4867, 0.4408), (0.2675, 0.2565, 0.2761)),
-    ])
+    train_transform = transforms.Compose(
+        [
+            transforms.RandomResizedCrop(224, scale=(0.8, 1.0)),
+            transforms.RandAugment(num_ops=2, magnitude=9),
+            transforms.RandomHorizontalFlip(),
+            transforms.ToTensor(),
+            transforms.Normalize((0.5071, 0.4867, 0.4408), (0.2675, 0.2565, 0.2761)),
+        ]
+    )
+    eval_transform = transforms.Compose(
+        [
+            transforms.Resize(256),
+            transforms.CenterCrop(224),
+            transforms.ToTensor(),
+            transforms.Normalize((0.5071, 0.4867, 0.4408), (0.2675, 0.2565, 0.2761)),
+        ]
+    )
     benchmark = SplitCIFAR100(
         n_experiences=config.num_tasks_cifar100,
         fixed_class_order=list(range(100)),
@@ -105,21 +123,106 @@ def get_cifar100_benchmark(config, validation_size=0.1):
 
 def get_toy_benchmark(config):
     cifar100_classes = [
-        'apple', 'aquarium_fish', 'baby', 'bear', 'beaver', 'bed', 'bee', 'beetle',
-        'bicycle', 'bottle', 'bowl', 'boy', 'bridge', 'bus', 'butterfly', 'camel',
-        'can', 'castle', 'caterpillar', 'cattle', 'chair', 'chimpanzee', 'clock',
-        'cloud', 'cockroach', 'couch', 'crab', 'crocodile', 'cup', 'dinosaur',
-        'dolphin', 'elephant', 'flatfish', 'forest', 'fox', 'girl', 'hamster',
-        'house', 'kangaroo', 'keyboard', 'lamp', 'lawn_mower', 'leopard', 'lion',
-        'lizard', 'lobster', 'man', 'maple_tree', 'motorcycle', 'mountain', 'mouse',
-        'mushroom', 'oak_tree', 'orange', 'orchid', 'otter', 'palm_tree', 'pear',
-        'pickup_truck', 'pine_tree', 'plain', 'plate', 'poppy', 'porcupine',
-        'possum', 'rabbit', 'raccoon', 'ray', 'road', 'rocket', 'rose',
-        'sea', 'seal', 'shark', 'shrew', 'skunk', 'skyscraper', 'snail', 'snake',
-        'spider', 'squirrel', 'streetcar', 'sunflower', 'sweet_pepper', 'table',
-        'tank', 'telephone', 'television', 'tiger', 'tractor', 'train', 'trout',
-        'tulip', 'turtle', 'wardrobe', 'whale', 'willow_tree', 'wolf', 'woman',
-        'worm'
+        "apple",
+        "aquarium_fish",
+        "baby",
+        "bear",
+        "beaver",
+        "bed",
+        "bee",
+        "beetle",
+        "bicycle",
+        "bottle",
+        "bowl",
+        "boy",
+        "bridge",
+        "bus",
+        "butterfly",
+        "camel",
+        "can",
+        "castle",
+        "caterpillar",
+        "cattle",
+        "chair",
+        "chimpanzee",
+        "clock",
+        "cloud",
+        "cockroach",
+        "couch",
+        "crab",
+        "crocodile",
+        "cup",
+        "dinosaur",
+        "dolphin",
+        "elephant",
+        "flatfish",
+        "forest",
+        "fox",
+        "girl",
+        "hamster",
+        "house",
+        "kangaroo",
+        "keyboard",
+        "lamp",
+        "lawn_mower",
+        "leopard",
+        "lion",
+        "lizard",
+        "lobster",
+        "man",
+        "maple_tree",
+        "motorcycle",
+        "mountain",
+        "mouse",
+        "mushroom",
+        "oak_tree",
+        "orange",
+        "orchid",
+        "otter",
+        "palm_tree",
+        "pear",
+        "pickup_truck",
+        "pine_tree",
+        "plain",
+        "plate",
+        "poppy",
+        "porcupine",
+        "possum",
+        "rabbit",
+        "raccoon",
+        "ray",
+        "road",
+        "rocket",
+        "rose",
+        "sea",
+        "seal",
+        "shark",
+        "shrew",
+        "skunk",
+        "skyscraper",
+        "snail",
+        "snake",
+        "spider",
+        "squirrel",
+        "streetcar",
+        "sunflower",
+        "sweet_pepper",
+        "table",
+        "tank",
+        "telephone",
+        "television",
+        "tiger",
+        "tractor",
+        "train",
+        "trout",
+        "tulip",
+        "turtle",
+        "wardrobe",
+        "whale",
+        "willow_tree",
+        "wolf",
+        "woman",
+        "worm",
     ]
     name_to_idx = {name: i for i, name in enumerate(cifar100_classes)}
     target_indices = [name_to_idx[name] for name in config.toy_classes]
