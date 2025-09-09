@@ -1,96 +1,89 @@
-import torch
 import numpy as np
-import matplotlib.pyplot as plt
-import os
+import torch
+import torch.nn.functional as F
+import copy
+from scipy.stats import ttest_rel
+import pandas as pd
 
-@torch.no_grad()
-def calculate_accuracy(model, data_loader, device):
-    """Calculates accuracy for a single task."""
-    model.eval()
-    correct = 0
-    total = 0
-    for images, labels, _ in data_loader:
-        images, labels = images.to(device), labels.to(device)
+def get_gradients(model, data_loader, device, num_classes, precision):
+    model.train()
+    images, labels, _ = next(iter(data_loader))
+    images, labels = images.to(device), labels.to(device)
+    
+    unique_labels = torch.unique(labels)
+    label_map = {int(old_label): new_label for new_label, old_label in enumerate(unique_labels)}
+    labels = torch.tensor([label_map[int(l)] for l in labels], device=device, dtype=torch.long)
+
+    model.zero_grad()
+    dtype = torch.bfloat16 if precision == 'bf16' else torch.float32
+    with torch.cuda.amp.autocast(dtype=dtype):
         outputs = model(images)
-        _, predicted = torch.max(outputs.data, 1)
-        total += labels.size(0)
-        correct += (predicted == labels).sum().item()
-    return 100 * correct / total if total > 0 else 0
+        loss = F.cross_entropy(outputs[:, :num_classes], labels)
+    loss.backward()
+    
+    grads = []
+    for param in model.parameters():
+        if param.grad is not None and param.requires_grad:
+            grads.append(param.grad.view(-1))
+    return torch.cat(grads)
 
+def compute_metric_matrices(model, candidate_dataloaders, device, classes_per_task, precision, ablations):
+    m = len(candidate_dataloaders)
+    s_matrix = np.zeros((m, m))
+    g_matrix = np.zeros((m, m))
+    if m <= 1: return s_matrix, g_matrix
 
-def evaluate_model(model, task_loaders, seen_tasks_indices, device):
-    """
-    Evaluates the model on all previously seen tasks.
-    Returns a list of accuracies for each seen task.
-    """
-    accuracies = []
-    for task_idx in seen_tasks_indices:
-        acc = calculate_accuracy(model, task_loaders[task_idx], device)
-        accuracies.append(acc)
-        print(f"Accuracy on task {task_idx}: {acc:.2f}%")
-    return accuracies
+    grad_vectors = []
+    for loader in candidate_dataloaders:
+        grads = get_gradients(copy.deepcopy(model), loader, device, classes_per_task, precision)
+        grad_vectors.append(grads)
 
+    for r in range(m):
+        for c in range(r + 1, m):
+            grad1, grad2 = grad_vectors[r], grad_vectors[c]
+            if not ablations.get('g_only', False):
+                sim = F.cosine_similarity(grad1, grad2, dim=0).item()
+                s_matrix[r, c] = s_matrix[c, r] = sim
+            
+            if not ablations.get('s_only', False):
+                inter = -F.cosine_similarity(grad1, grad2, dim=0).item()
+                g_matrix[r, c] = g_matrix[c, r] = inter
+    
+    return s_matrix, g_matrix
 
-def calculate_metrics(accuracy_matrix):
-    """
-    Calculates Average Accuracy (AACC) and Average Forgetting (AF).
-    Args:
-        accuracy_matrix (np.array): A T x T matrix where A[i, j] is the accuracy
-                                     on task j after training on task i.
-    """
-    num_tasks = accuracy_matrix.shape[0]
-    if num_tasks == 0:
-        return 0.0, 0.0
-
-    # Average Accuracy (AACC) at the end of training
-    final_accuracies = accuracy_matrix[-1, :]
-    aacc = np.mean(final_accuracies)
-
-    # Average Forgetting (AF)
-    forgetting = 0.0
-    for j in range(num_tasks - 1):
-        # Max accuracy on task j
-        max_acc_j = np.max(accuracy_matrix[:j+2, j])
-        # Accuracy on task j after the final task
-        final_acc_j = accuracy_matrix[-1, j]
-        forgetting += (max_acc_j - final_acc_j)
-
-    af = forgetting / (num_tasks - 1) if num_tasks > 1 else 0.0
-    return aacc, af
-
-
-def plot_results(results, _save_path_ignored):
-    """Plots the evolution of AACC and AF over tasks and saves the figure to
-    the mandated directory: `.research/iteration10/images`. The caller-provided
-    ``save_path`` argument is ignored to comply with the execution rules.
-    """
-    save_path = ".research/iteration10/images"
-    os.makedirs(save_path, exist_ok=True)
-
-    task_indices = range(1, len(results['aacc']) + 1)
-
-    plt.figure(figsize=(12, 5))
-
-    # Plot AACC
-    plt.subplot(1, 2, 1)
-    plt.plot(task_indices, results['aacc'], marker='o', linestyle='-')
-    plt.title('Average Accuracy (AACC) vs. Tasks Trained')
-    plt.xlabel('Number of Tasks Trained')
-    plt.ylabel('AACC (%)')
-    plt.grid(True)
-    plt.xticks(task_indices)
-
-    # Plot AF
-    plt.subplot(1, 2, 2)
-    plt.plot(task_indices, results['af'], marker='s', linestyle='-', color='r')
-    plt.title('Average Forgetting (AF) vs. Tasks Trained')
-    plt.xlabel('Number of Tasks Trained')
-    plt.ylabel('AF (%)')
-    plt.grid(True)
-    plt.xticks(task_indices)
-
-    plt.tight_layout()
-    plot_filename = os.path.join(save_path, "aacc_af_plot.png")
-    plt.savefig(plot_filename)
-    plt.close()
-    print(f"Saved plot to {plot_filename}")
+def analyze_and_print_results(all_results):
+    print("\n--- FINAL RESULTS (Mean ± SD over seeds) ---")
+    summary = {}
+    for policy, metrics in all_results.items():
+        summary[policy] = {
+            'aacc_mean': np.mean(metrics['AACC']),
+            'aacc_std': np.std(metrics['AACC']),
+            'af_mean': np.mean(metrics['AF']),
+            'af_std': np.std(metrics['AF'])
+        }
+    
+    df_data = []
+    for policy, data in summary.items():
+        aacc_str = f"{data['aacc_mean']:.2f} ± {data['aacc_std']:.2f}"
+        af_str = f"{data['af_mean']:.2f} ± {data['af_std']:.2f}"
+        df_data.append([policy, aacc_str, af_str])
+        
+    df = pd.DataFrame(df_data, columns=['Policy', 'AACC (%)', 'AF (%)'])
+    print(df.to_string(index=False))
+    
+    print("\nSummary Dictionary:")
+    print(summary)
+    
+    if 'rl_top' in all_results and 'random' in all_results:
+        best_baseline = 'random'
+        if len(all_results['rl_top']['AACC']) > 1 and len(all_results[best_baseline]['AACC']) > 1:
+            try:
+                stat_aacc, p_aacc = ttest_rel(all_results['rl_top']['AACC'], all_results[best_baseline]['AACC'])
+                stat_af, p_af = ttest_rel(all_results['rl_top']['AF'], all_results[best_baseline]['AF'])
+                print("\nPaired t-test (RL-TOP vs. Random):")
+                print(f"AACC: p-value = {p_aacc:.4f}")
+                print(f"AF: p-value = {p_af:.4f} (lower is better)")
+            except Exception as e:
+                print(f"\nCould not run t-test: {e}")
+    
+    return summary

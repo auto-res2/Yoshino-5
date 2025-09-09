@@ -1,69 +1,56 @@
 import torch
-import numpy as np
-from torchvision import datasets, transforms
-from torch.utils.data import Dataset, Subset
+from torchvision import transforms
+from avalanche.benchmarks.classic import SplitCIFAR100
+from avalanche.benchmarks.generators import benchmark_with_validation_stream
 
-class TaskDataset(Dataset):
-    """A wrapper for a dataset to assign a specific task_id."""
-    def __init__(self, dataset, task_id, transform=None):
-        self.dataset = dataset
-        self.task_id = task_id
-        self.transform = transform
-
-    def __len__(self):
-        return len(self.dataset)
-
-    def __getitem__(self, idx):
-        img, label = self.dataset[idx]
-        if self.transform:
-            img = self.transform(img)
-        # Remap label to be within the task
-        return img, label, self.task_id
-
-def get_datasets(name, num_tasks, data_path):
-    """
-    Prepares continual learning datasets.
-    Currently supports 'Split-CIFAR-100'.
-    """
-    if name.lower() != "split-cifar-100":
-        raise ValueError(f"Dataset '{name}' not supported.")
-
-    transform = transforms.Compose([
-        transforms.Resize((224, 224)),
+def get_cifar100_benchmark(config, validation_size=0.1):
+    train_transform = transforms.Compose([
+        transforms.RandomResizedCrop(224, scale=(0.8, 1.0)),
+        transforms.RandAugment(num_ops=2, magnitude=9),
+        transforms.RandomHorizontalFlip(),
         transforms.ToTensor(),
-        transforms.Normalize(mean=[0.5071, 0.4867, 0.4408], std=[0.2675, 0.2565, 0.2761]),
+        transforms.Normalize((0.5071, 0.4867, 0.4408), (0.2675, 0.2565, 0.2761)),
     ])
+    eval_transform = transforms.Compose([
+        transforms.Resize(256),
+        transforms.CenterCrop(224),
+        transforms.ToTensor(),
+        transforms.Normalize((0.5071, 0.4867, 0.4408), (0.2675, 0.2565, 0.2761)),
+    ])
+    benchmark = SplitCIFAR100(n_experiences=config.num_tasks_cifar100, 
+                              fixed_class_order=list(range(100)),
+                              seed=0, # Use fixed order for comparability
+                              train_transform=train_transform, 
+                              eval_transform=eval_transform, 
+                              dataset_root=config.dataset_root)
+    if validation_size > 0:
+        return benchmark_with_validation_stream(benchmark, validation_size=validation_size)
+    return benchmark, None
 
-    try:
-        train_dataset = datasets.CIFAR100(root=data_path, train=True, download=True)
-        test_dataset = datasets.CIFAR100(root=data_path, train=False, download=True)
-    except Exception as e:
-        print(f"Failed to download CIFAR-100. Please check your network connection or data path permissions.")
-        raise e
+def get_toy_benchmark(config):
+    cifar100_classes = [
+        'apple', 'aquarium_fish', 'baby', 'bear', 'beaver', 'bed', 'bee', 'beetle', 
+        'bicycle', 'bottle', 'bowl', 'boy', 'bridge', 'bus', 'butterfly', 'camel', 
+        'can', 'castle', 'caterpillar', 'cattle', 'chair', 'chimpanzee', 'clock', 
+        'cloud', 'cockroach', 'couch', 'crab', 'crocodile', 'cup', 'dinosaur', 
+        'dolphin', 'elephant', 'flatfish', 'forest', 'fox', 'girl', 'hamster', 
+        'house', 'kangaroo', 'keyboard', 'lamp', 'lawn_mower', 'leopard', 'lion',
+        'lizard', 'lobster', 'man', 'maple_tree', 'motorcycle', 'mountain', 'mouse',
+        'mushroom', 'oak_tree', 'orange', 'orchid', 'otter', 'palm_tree', 'pear',
+        'pickup_truck', 'pine_tree', 'plain', 'plate', 'poppy', 'porcupine',
+        'possum', 'rabbit', 'raccoon', 'ray', 'road', 'rocket', 'rose',
+        'sea', 'seal', 'shark', 'shrew', 'skunk', 'skyscraper', 'snail', 'snake',
+        'spider', 'squirrel', 'streetcar', 'sunflower', 'sweet_pepper', 'table',
+        'tank', 'telephone', 'television', 'tiger', 'tractor', 'train', 'trout',
+        'tulip', 'turtle', 'wardrobe', 'whale', 'willow_tree', 'wolf', 'woman',
+        'worm'
+    ]
+    name_to_idx = {name: i for i, name in enumerate(cifar100_classes)}
+    target_indices = [name_to_idx[name] for name in config.toy_classes]
+    task0_indices = target_indices[:3]
+    task1_indices = target_indices[3:]
 
-    train_tasks = []
-    test_tasks = []
-    
-    classes_per_task = 100 // num_tasks
-    class_order = np.arange(100)
-    # np.random.shuffle(class_order) # Optionally shuffle class order
-
-    for task_id in range(num_tasks):
-        start_class = task_id * classes_per_task
-        end_class = (task_id + 1) * classes_per_task
-        task_classes = class_order[start_class:end_class]
-
-        # --- Training data ---
-        train_indices = [i for i, target in enumerate(train_dataset.targets) if target in task_classes]
-        train_subset = Subset(train_dataset, train_indices)
-        train_task_dataset = TaskDataset(train_subset, task_id, transform=transform)
-        train_tasks.append(train_task_dataset)
-        
-        # --- Test data ---
-        test_indices = [i for i, target in enumerate(test_dataset.targets) if target in task_classes]
-        test_subset = Subset(test_dataset, test_indices)
-        test_task_dataset = TaskDataset(test_subset, task_id, transform=transform)
-        test_tasks.append(test_task_dataset)
-
-    print(f"Successfully created {num_tasks} tasks for Split-CIFAR-100.")
-    return train_tasks, test_tasks
+    return SplitCIFAR100(n_experiences=2,
+                         fixed_class_order=task0_indices + task1_indices,
+                         seed=0,
+                         dataset_root=config.dataset_root)
