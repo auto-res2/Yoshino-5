@@ -1,0 +1,58 @@
+exp:
+  seeds: [42, 2023, 12345]
+  device: auto      # "auto" ⇒ cuda if available else cpu
+  num_workers: 4
+
+experiment1:
+  dataset: SplitCIFAR100
+  num_tasks: 20
+  classes_per_task: 5
+  backbone: torchvision_resnet18
+  pretrained: true
+  adapter:
+    lora_r: 128
+    spectral: true
+  optimisation:
+    epochs: 50
+    batch_size: 64
+    optimiser: SGD
+    lr: 0.05
+    momentum: 0.9
+    weight_decay: 5e-4
+    schedule: cosine
+  baselines: [CLIP_FULL, CLIP_RANDORDER, ER, GPM, MAS, MCSGD]
+  buffer_size: 2048
+  mc_lambda: 0.3
+
+experiment2:
+  dataset: PermutedMNIST
+  num_permutations: 20
+  backbone: mlp
+  hidden: 2048
+  adapter:
+    lora_r: 64
+  optimisation:
+    epochs: 5
+    batch_size: 128
+    optimiser: Adam
+    lr: 5e-4
+  num_random_orders: 100
+
+experiment3:
+  dataset: SplitMiniImageNet
+  tasks: 10
+  classes_per_task: 10
+  backbone: vit_tiny_patch16_224.augreg_in21k
+  adapter:
+    lora_r: 128
+    spectral: true
+  optimisation:
+    epochs: 30
+    batch_size: 32
+    optimiser: AdamW
+    lr: 3e-4
+  online_swap:
+    window: 256
+    K: 50
+    theta: -0.3
+  ablations: [FULL, NO_GRAPH, NO_SWAP, NO_MC, RANDOM]

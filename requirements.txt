@@ -1,1 +1,16 @@
-# Please list the required python packages.
+torch
+torchvision
+timm
+avalanche-lib
+peft
+ptflops
+codecarbon
+scipy
+pandas
+scikit-learn
+seaborn
+matplotlib
+tqdm
+pyyaml
+psutil
+pynvml
