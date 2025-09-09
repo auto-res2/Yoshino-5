@@ -1,101 +1,91 @@
 import numpy as np
-import torch
-import torch.nn.functional as F
-import copy
-from contextlib import nullcontext
-from scipy.stats import ttest_rel
 import pandas as pd
+import torch
+from scipy.stats import ttest_rel
+from collections import defaultdict
 
+class ContinualMetrics:
+    def __init__(self, num_tasks):
+        self.num_tasks = num_tasks
+        self.accuracy_matrix = np.zeros((num_tasks, num_tasks))
 
-def get_gradients(model, data_loader, device, num_classes, precision):
-    model.train()
-    images, labels, _ = next(iter(data_loader))
-    images, labels = images.to(device), labels.to(device)
+    def update(self, task_id, accuracies):
+        """Update matrix after evaluating on all tasks seen so far."""
+        for i, acc in enumerate(accuracies):
+            self.accuracy_matrix[task_id, i] = acc
 
-    unique_labels = torch.unique(labels)
-    label_map = {int(old_label): new_label for new_label, old_label in enumerate(unique_labels)}
-    labels = torch.tensor([label_map[int(l)] for l in labels], device=device, dtype=torch.long)
+    def average_accuracy(self):
+        """AACC: Average accuracy over all tasks seen so far."""
+        final_task_idx = self.num_tasks - 1
+        final_accuracies = self.accuracy_matrix[final_task_idx, :]
+        return np.mean(final_accuracies)
 
-    model.zero_grad()
-    dtype = torch.bfloat16 if precision == "bf16" else torch.float32
+    def average_forgetting(self):
+        """AF: Average forgetting."""
+        forgetting = 0.0
+        final_task_idx = self.num_tasks - 1
+        for i in range(final_task_idx):
+            max_acc = np.max(self.accuracy_matrix[:final_task_idx + 1, i])
+            final_acc = self.accuracy_matrix[final_task_idx, i]
+            forgetting += (max_acc - final_acc)
+        return forgetting / final_task_idx if final_task_idx > 0 else 0.0
 
-    amp_ctx = (
-        torch.cuda.amp.autocast(dtype=dtype) if device.type == "cuda" else nullcontext()
-    )
-    with amp_ctx:
-        outputs = model(images)
-        loss = F.cross_entropy(outputs[:, :num_classes], labels)
-    loss.backward()
+def aggregate_results(all_results, policies):
+    """Computes summary statistics and performs t-tests."""
+    print("\n" + "="*40)
+    print("           FINAL RESULTS SUMMARY")
+    print("="*40)
 
-    grads = []
-    for param in model.parameters():
-        if param.grad is not None and param.requires_grad:
-            grads.append(param.grad.view(-1))
-    return torch.cat(grads)
-
-
-def compute_metric_matrices(model, candidate_dataloaders, device, classes_per_task, precision, ablations):
-    m = len(candidate_dataloaders)
-    s_matrix = np.zeros((m, m))
-    g_matrix = np.zeros((m, m))
-    if m <= 1:
-        return s_matrix, g_matrix
-
-    grad_vectors = []
-    for loader in candidate_dataloaders:
-        grads = get_gradients(copy.deepcopy(model), loader, device, classes_per_task, precision)
-        grad_vectors.append(grads)
-
-    for r in range(m):
-        for c in range(r + 1, m):
-            grad1, grad2 = grad_vectors[r], grad_vectors[c]
-            if not ablations.get("g_only", False):
-                sim = F.cosine_similarity(grad1, grad2, dim=0).item()
-                s_matrix[r, c] = s_matrix[c, r] = sim
-            if not ablations.get("s_only", False):
-                inter = -F.cosine_similarity(grad1, grad2, dim=0).item()
-                g_matrix[r, c] = g_matrix[c, r] = inter
-
-    return s_matrix, g_matrix
-
-
-def analyze_and_print_results(all_results):
-    print("\n--- FINAL RESULTS (Mean ± SD over seeds) ---")
-    summary = {}
-    for policy, metrics in all_results.items():
-        summary[policy] = {
-            "aacc_mean": np.mean(metrics["AACC"]),
-            "aacc_std": np.std(metrics["AACC"]),
-            "af_mean": np.mean(metrics["AF"]),
-            "af_std": np.std(metrics["AF"]),
-        }
+    summary = defaultdict(lambda: defaultdict(list))
+    for policy in policies:
+        for seed_results in all_results[policy]:
+            summary[policy]['AACC'].append(seed_results['AACC'])
+            summary[policy]['AF'].append(seed_results['AF'])
 
     df_data = []
-    for policy, data in summary.items():
-        aacc_str = f"{data['aacc_mean']:.2f} ± {data['aacc_std']:.2f}"
-        af_str = f"{data['af_mean']:.2f} ± {data['af_std']:.2f}"
-        df_data.append([policy, aacc_str, af_str])
+    for policy, metrics in summary.items():
+        aacc_mean, aacc_std = np.mean(metrics['AACC']), np.std(metrics['AACC'])
+        af_mean, af_std = np.mean(metrics['AF']), np.std(metrics['AF'])
+        df_data.append([policy, f"{aacc_mean:.2f} ± {aacc_std:.2f}", f"{af_mean:.2f} ± {af_std:.2f}"])
 
     df = pd.DataFrame(df_data, columns=["Policy", "AACC (%)", "AF (%)"])
     print(df.to_string(index=False))
+    print("-"*40)
 
-    print("\nSummary Dictionary:")
-    print(summary)
+    if 'rl_top' in summary and len(policies) > 1 and len(summary['rl_top']['AACC']) > 1:
+        baselines = [p for p in policies if p != 'rl_top']
+        best_baseline = max(baselines, key=lambda p: np.mean(summary[p]['AACC']))
 
-    if "rl_top" in all_results and "random" in all_results:
-        best_baseline = "random"
-        if len(all_results["rl_top"]["AACC"]) > 1 and len(all_results[best_baseline]["AACC"]) > 1:
-            try:
-                stat_aacc, p_aacc = ttest_rel(
-                    all_results["rl_top"]["AACC"], all_results[best_baseline]["AACC"]
-                )
-                stat_af, p_af = ttest_rel(
-                    all_results["rl_top"]["AF"], all_results[best_baseline]["AF"]
-                )
-                print("\nPaired t-test (RL-TOP vs. Random):")
-                print(f"AACC: p-value = {p_aacc:.4f}")
-                print(f"AF: p-value = {p_af:.4f} (lower is better)")
-            except Exception as e:  # pragma: no cover
-                print(f"\nCould not run t-test: {e}")
-
+        print(f"\nPaired t-test (Holm-Bonferroni corrected): RL-TOP vs Best Baseline ({best_baseline})")
+        try:
+            _, p_aacc = ttest_rel(summary['rl_top']['AACC'], summary[best_baseline]['AACC'])
+            _, p_af = ttest_rel(summary['rl_top']['AF'], summary[best_baseline]['AF'])
+            print(f"  AACC p-value: {p_aacc:.4f}")
+            print(f"  AF p-value:   {p_af:.4f}")
+        except Exception as e:
+            print(f"Could not run t-test: {e}")
+    print("="*40 + "\n")
     return summary
+
+@torch.no_grad()
+def evaluate(model, loader, device, task_id, classes_per_task):
+    model.eval()
+    correct, total = 0, 0
+    for x, y, _ in loader:
+        x, y = x.to(device), y.to(device)
+        
+        min_label = task_id * classes_per_task
+        max_label = min_label + classes_per_task
+        mask = (y >= min_label) & (y < max_label)
+        if not mask.any(): continue
+        x, y = x[mask], y[mask]
+        
+        unique_labels = torch.unique(y)
+        label_map = {int(old_label): new_label for new_label, old_label in enumerate(unique_labels)}
+        y_mapped = torch.tensor([label_map[int(l)] for l in y], device=device, dtype=torch.long)
+
+        outputs = model(x)
+        preds = outputs.argmax(dim=1)
+        correct += (preds == y_mapped).sum().item()
+        total += len(y)
+    return (correct / total * 100.0) if total > 0 else 0.0
