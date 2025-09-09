@@ -1,58 +1,93 @@
-exp:
-  seeds: [42, 2023, 12345]
-  device: auto      # "auto" ⇒ cuda if available else cpu
-  num_workers: 4
-
-experiment1:
-  dataset: SplitCIFAR100
-  num_tasks: 20
-  classes_per_task: 5
-  backbone: torchvision_resnet18
-  pretrained: true
+global:
+  device: cuda
+  seeds:
+    - 12
+    - 35
+    - 71
+    - 123
+    - 2025
+  results_dir: results
+  figures_dir: figures
+  use_wandb: false
+model:
+  name: vit_base_patch16_224.augreg_in21k_ft_in1k
+  use_grad_checkpointing: true
   adapter:
-    lora_r: 128
-    spectral: true
-  optimisation:
-    epochs: 50
-    batch_size: 64
-    optimiser: SGD
-    lr: 0.05
-    momentum: 0.9
-    weight_decay: 5e-4
-    schedule: cosine
-  baselines: [CLIP_FULL, CLIP_RANDORDER, ER, GPM, MAS, MCSGD]
-  buffer_size: 2048
-  mc_lambda: 0.3
-
-experiment2:
-  dataset: PermutedMNIST
-  num_permutations: 20
-  backbone: mlp
-  hidden: 2048
-  adapter:
-    lora_r: 64
-  optimisation:
-    epochs: 5
-    batch_size: 128
-    optimiser: Adam
-    lr: 5e-4
-  num_random_orders: 100
-
-experiment3:
-  dataset: SplitMiniImageNet
-  tasks: 10
-  classes_per_task: 10
-  backbone: vit_tiny_patch16_224.augreg_in21k
-  adapter:
-    lora_r: 128
-    spectral: true
-  optimisation:
-    epochs: 30
-    batch_size: 32
-    optimiser: AdamW
-    lr: 3e-4
-  online_swap:
-    window: 256
-    K: 50
-    theta: -0.3
-  ablations: [FULL, NO_GRAPH, NO_SWAP, NO_MC, RANDOM]
+    type: SALoRA
+    rank: 4
+    target_modules:
+      - qkv
+      - proj
+optimizer:
+  name: AdamW8bit
+  lr: 0.0003
+  betas:
+    - 0.9
+    - 0.95
+  weight_decay: 0.01
+  grad_norm_clip: 1.0
+training:
+  precision: bf16
+  batch_size: 32
+exp1:
+  name: End-to-End Continual-Learning Benchmark
+  datasets:
+    split_cifar100:
+      n_experiences: 10
+      epochs: 1
+    permutted_mnist:
+      n_experiences: 20
+      steps: 2000
+    split_tiny_imagenet:
+      n_experiences: 20
+      epochs: 1
+  baselines:
+    - RL-TOP
+    - Random
+    - Similarity-Greedy
+    - DER
+    - EWC
+  rl_top:
+    window_size: 4
+    hidden_size: 128
+    update_every: 100
+  der:
+    mem_size: 500
+  ewc:
+    ewc_lambda: 100.0
+exp2:
+  name: Ablation of Dual Metrics & RL Policy
+  dataset:
+    name: split_cifar100
+    n_experiences: 10
+    epochs: 1
+  variants:
+    - RL-TOP (S+G)
+    - RL-TOP (S-only)
+    - RL-TOP (G-only)
+    - Heuristic-TOP (Greedy G)
+  rl_top:
+    window_size: 4
+    hidden_size: 128
+    update_every: 100
+    gamma: 0.99
+exp3:
+  name: Robustness to Fuzzy Task Boundaries
+  dataset:
+    name: cifar100_blur
+    window_width: 20
+    shift_every_steps: 200
+    n_pseudo_tasks: 50
+    boundary_lambda: 800
+  batch_size: 64
+  baselines:
+    - RL-TOP
+    - MIR
+    - ER
+    - DER++
+    - Random
+  replay_mem_size: 1000
+  noise_injection:
+    p: 0.2
+    sigma: 0.1
+    duration_steps: 2000

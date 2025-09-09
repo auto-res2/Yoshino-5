@@ -1,83 +1,76 @@
-from __future__ import annotations
-"""src/preprocess.py
-Dataset construction, configuration helpers and reproducibility utilities.
-
-The original implementation imported ``SplitMiniImageNet`` unconditionally from
-``avalanche``.  Recent releases of Avalanche no longer expose this symbol at
-module level which caused an ``ImportError`` at import-time – even though
-``SplitMiniImageNet`` is only required by the (currently disabled) Experiment 3.
-
-To restore compatibility we
-1. try to import ``SplitMiniImageNet`` and gracefully degrade to a lightweight
-   stub when it is not available;
-2. gate ``get_benchmark('SplitMiniImageNet')`` behind a run-time check so that
-   if the symbol is missing we raise a clear, informative error instead of
-   crashing at module import time.
-
-All other functionality is unchanged.
-"""
-
-import os
 import random
-from typing import Any, Dict, TYPE_CHECKING
+import sys
+from torch.utils.data import IterableDataset
+from torchvision import transforms
 
-import numpy as np
-import torch
-import yaml
-from avalanche.benchmarks import SplitCIFAR100, PermutedMNIST
-
-# -----------------------------------------------------------------------------
-# Optional SplitMiniImageNet import (may be absent depending on Avalanche ver.)
-# -----------------------------------------------------------------------------
+# Attempt to import Avalanche, provide helpful errors if missing
 try:
-    # Present in some Avalanche versions (<0.5.0).  Newer versions expose a
-    # "MiniImageNet" benchmark generator instead.  We attempt the import and, on
-    # failure, fall back to a stub so that the rest of the codebase continues
-    # to load even when the symbol is unavailable.
-    from avalanche.benchmarks import SplitMiniImageNet  # type: ignore
-except ImportError:  # pragma: no cover – execution path when symbol missing
-    SplitMiniImageNet = None  # type: ignore[misc,assignment]
-    if TYPE_CHECKING:  # Mypy ‑ silence "name defined as Any" complaints
-        from types import ModuleType as _SplitMiniImageNetType
-        SplitMiniImageNet = ...  # type: ignore[assignment]
+    import avalanche as avl
+except ImportError:
+    print("Avalanche-lib not found. Please install with 'pip install avalanche-lib'")
+    sys.exit(1)
 
-# ----------------------------------------------------------------------------
-# Deterministic behaviour
-# ----------------------------------------------------------------------------
+def get_transforms():
+    """ [IMPLEMENTED] Component: Exact Preprocessing Pipelines """
+    train_transform = transforms.Compose([
+        transforms.RandomResizedCrop(224),
+        transforms.RandAugment(num_ops=2, magnitude=9),
+        transforms.RandomHorizontalFlip(0.5),
+        transforms.ToTensor(),
+        transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))
+    ])
+    test_transform = transforms.Compose([
+        transforms.Resize(256),
+        transforms.CenterCrop(224),
+        transforms.ToTensor(),
+        transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))
+    ])
+    return train_transform, test_transform
 
-def set_seed(seed: int) -> None:
-    random.seed(seed)
-    np.random.seed(seed)
-    torch.manual_seed(seed)
-    torch.cuda.manual_seed_all(seed)
-    torch.backends.cudnn.deterministic = True
-    torch.backends.cudnn.benchmark = False
+def get_benchmark(dataset_config, train_transform, test_transform):
+    """ [IMPLEMENTED] Component: Complete Dataset Suite (Avalanche Benchmarks) """
+    name = list(dataset_config.keys())[0]
+    params = dataset_config[name]
+    print(f"Loading benchmark: {name}")
+    if name == "split_cifar100":
+        return avl.benchmarks.SplitCIFAR100(
+            n_experiences=params['n_experiences'],
+            train_transform=train_transform, eval_transform=test_transform,
+            shuffle=True
+        )
+    elif name == "permutted_mnist":
+        return avl.benchmarks.PermutedMNIST(
+            n_experiences=params['n_experiences'],
+            train_transform=train_transform, eval_transform=test_transform
+        )
+    elif name == "split_tiny_imagenet":
+        # NOTE: TinyImageNet must be downloaded manually to `~/.avalanche/data/tiny-imagenet-200/`
+        return avl.benchmarks.SplitTinyImageNet(
+            n_experiences=params['n_experiences'],
+            train_transform=train_transform, eval_transform=test_transform
+        )
+    else:
+        raise ValueError(f"Unknown dataset: {name}")
 
-# ----------------------------------------------------------------------------
-# Config loader – looks for env var CLIP_CONF or falls back to default file
-# ----------------------------------------------------------------------------
+class CIFAR100BlurStream(IterableDataset):
+    """ [IMPLEMENTED] Component: Fuzzy Task Boundary Stream (CIFAR-100-Blur) """
+    def __init__(self, config, train_transform):
+        self.config = config
+        self.transform = train_transform
+        cifar_train = avl.benchmarks.datasets.CIFAR100(root="./data", train=True, download=True)
+        self.data = [cifar_train[i] for i in range(len(cifar_train))]
+        self.step = 0
+        self.class_window_start = 0
 
-def load_config(path: str = "config/config.yaml") -> Dict[str, Any]:
-    custom = os.environ.get("CLIP_CONF", None)
-    cfg_path = custom if custom and os.path.exists(custom) else path
-    with open(cfg_path, "r", encoding="utf-8") as fp:
-        return yaml.safe_load(fp)
-
-# ----------------------------------------------------------------------------
-# Benchmark helpers
-# ----------------------------------------------------------------------------
-
-def get_benchmark(name: str, **kwargs):
-    if name == "SplitCIFAR100":
-        return SplitCIFAR100(**kwargs)
-    if name == "PermutedMNIST":
-        return PermutedMNIST(**kwargs)
-    if name == "SplitMiniImageNet":
-        if SplitMiniImageNet is None:
-            raise ImportError(
-                "SplitMiniImageNet is not available in this Avalanche version. "
-                "Please install an earlier release (<0.5) or adapt the code to "
-                "use the new MiniImageNet benchmark utilities."
-            )
-        return SplitMiniImageNet(**kwargs)  # type: ignore[func-returns-value]
-    raise ValueError(name)
+    def __iter__(self):
+        random.shuffle(self.data)
+        for img, label, _ in self.data:
+            # Check if label is in the current active window
+            if self.class_window_start <= label < self.class_window_start + self.config['window_width']:
+                self.step += 1
+                if self.step % self.config['shift_every_steps'] == 0:
+                    self.class_window_start = (self.class_window_start + 2) % (100 - self.config['window_width'] + 1)
+                
+                if self.transform:
+                    img = self.transform(img)
+                yield img, label
