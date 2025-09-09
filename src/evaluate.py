@@ -1,163 +1,92 @@
-import os
-import pandas as pd
+import torch
+import numpy as np
 import matplotlib.pyplot as plt
-import seaborn as sns
-from scipy import stats
-import avalanche as avl
-from avalanche.training.plugins import EvaluationPlugin
-from avalanche.evaluation.metrics import (
-    forgetting_metrics,
-    accuracy_metrics,
-    loss_metrics,
-    cpu_usage_metrics,
-    gpu_usage_metrics,
-    timing_metrics,
-)
+import os
 
+@torch.no_grad()
+def calculate_accuracy(model, data_loader, device):
+    """Calculates accuracy for a single task."""
+    model.eval()
+    correct = 0
+    total = 0
+    for images, labels, _ in data_loader:
+        images, labels = images.to(device), labels.to(device)
+        outputs = model(images)
+        _, predicted = torch.max(outputs.data, 1)
+        total += labels.size(0)
+        correct += (predicted == labels).sum().item()
+    return 100 * correct / total if total > 0 else 0
 
-# Directory mandated by the autograder / specification
-_DEFAULT_FIG_DIR = ".research/iteration6/images"
-
-
-def get_eval_plugin(loggers):
-    """[IMPLEMENTED] Component: Statistical Evaluation (Metrics)"""
-    return EvaluationPlugin(
-        accuracy_metrics(minibatch=True, epoch=True, experience=True, stream=True),
-        forgetting_metrics(experience=True, stream=True),
-        loss_metrics(minibatch=True, epoch=True, experience=True, stream=True),
-        timing_metrics(epoch=True, experience=True),
-        cpu_usage_metrics(experience=True),
-        gpu_usage_metrics(0, experience=True),
-        loggers=loggers,
-    )
-
-
-def print_results_table(results):
-    """[IMPLEMENTED] Component: Results Aggregation"""
-    df = pd.DataFrame(results)
-    for metric in ["Stream/Acc_Stream", "Stream/Forgetting_Stream"]:
-        if metric in df.columns:
-            summary = df.groupby("strategy")[metric].agg(["mean", "std"]).reset_index()
-            print(f"\n--- Results for {metric} ---")
-            print(summary)
-
-
-def perform_significance_test(results):
-    """[IMPLEMENTED] Component: Statistical Tests (t-test)"""
-    df = pd.DataFrame(results)
-    strategies = df["strategy"].unique()
-    if "RL-TOP" in strategies and len(strategies) > 1:
-        rl_top_acc = df[df["strategy"] == "RL-TOP"]["Stream/Acc_Stream"]
-        baselines = [s for s in strategies if s != "RL-TOP"]
-        best_baseline_acc = -1
-        best_baseline_name = ""
-        for baseline in baselines:
-            mean_acc = df[df["strategy"] == baseline]["Stream/Acc_Stream"].mean()
-            if mean_acc > best_baseline_acc:
-                best_baseline_acc = mean_acc
-                best_baseline_name = baseline
-
-        if best_baseline_name:
-            baseline_acc = df[df["strategy"] == best_baseline_name]["Stream/Acc_Stream"]
-            t_stat, p_val = stats.ttest_ind(rl_top_acc, baseline_acc, equal_var=False)
-            print(f"\n--- Significance Test (RL-TOP vs {best_baseline_name}) ---")
-            print(f"T-statistic: {t_stat:.4f}, P-value: {p_val:.4f}")
-            if p_val < 0.01:
-                print("Result is statistically significant (p < 0.01)")
-            else:
-                print("Result is not statistically significant (p >= 0.01)")
-
-
-def validate_results(results_df):
-    """[IMPLEMENTED] Component: Results Validation against expectations"""
-    print("\n--- Validating Results against Expected Outcomes ---")
-    if results_df.empty:
-        print("Results dataframe is empty. Cannot validate.")
-        return
-
-    # Example validation for Experiment 1
-    exp1_df = results_df[results_df["experiment"] == "exp1"]
-    if (
-        not exp1_df.empty
-        and "RL-TOP" in exp1_df["strategy"].values
-        and "Random" in exp1_df["strategy"].values
-    ):
-        random_forgetting = exp1_df[exp1_df["strategy"] == "Random"][
-            "Stream/Forgetting_Stream"
-        ].mean()
-        rl_top_forgetting = exp1_df[exp1_df["strategy"] == "RL-TOP"][
-            "Stream/Forgetting_Stream"
-        ].mean()
-        if random_forgetting > 0:
-            reduction = (random_forgetting - rl_top_forgetting) / random_forgetting * 100
-            print(f"Exp1: Forgetting reduction vs Random: {reduction:.2f}% (Target: >= 30%)")
-        else:
-            print("Exp1: Could not calculate forgetting reduction (random forgetting is zero).")
-    else:
-        print("No results for Exp1 to validate (missing RL-TOP or Random strategies).")
-    print("--- Validation complete ---")
-
-
-# ----------------------------------------------------------------------------
-# FIGURE GENERATION – all images must be stored in .research/iteration6/images
-# ----------------------------------------------------------------------------
-
-def _prepare_fig_dir():
-    os.makedirs(_DEFAULT_FIG_DIR, exist_ok=True)
-    return _DEFAULT_FIG_DIR
-
-
-def generate_figures(results, _ignored_figures_dir=""):
-    """[IMPLEMENTED] Component: Figure Generation
-
-    All images are saved under .research/iteration6/images as required by the
-    evaluation harness, regardless of the user-supplied directory argument.
+def evaluate_model(model, task_loaders, seen_tasks_indices, device):
     """
+    Evaluates the model on all previously seen tasks.
+    Returns a list of accuracies for each seen task.
+    """
+    accuracies = []
+    for task_idx in seen_tasks_indices:
+        acc = calculate_accuracy(model, task_loaders[task_idx], device)
+        accuracies.append(acc)
+        print(f"Accuracy on task {task_idx}: {acc:.2f}%")
+    return accuracies
 
-    print("\n--- Generating Figures ---")
-    figures_dir = _prepare_fig_dir()
+def calculate_metrics(accuracy_matrix):
+    """
+    Calculates Average Accuracy (AACC) and Average Forgetting (AF).
+    Args:
+        accuracy_matrix (np.array): A T x T matrix where A[i, j] is the accuracy
+                                     on task j after training on task i.
+    """
+    num_tasks = accuracy_matrix.shape[0]
+    if num_tasks == 0:
+        return 0.0, 0.0
 
-    df = pd.DataFrame(results)
-    figure_registry = []
+    # Average Accuracy (AACC) at the end of training
+    final_accuracies = accuracy_matrix[-1, :]
+    aacc = np.mean(final_accuracies)
 
-    # Figure 1: Performance Comparison (Exp1)
-    exp1_df = df[df["experiment"] == "exp1"].copy()
-    if not exp1_df.empty:
-        exp1_df["AACC"] = exp1_df["Stream/Acc_Stream"] * 100
-        exp1_df["AF"] = exp1_df["Stream/Forgetting_Stream"] * 100
-        plt.figure(figsize=(12, 5))
-        plt.subplot(1, 2, 1)
-        sns.barplot(data=exp1_df, x="strategy", y="AACC", errorbar="sd")
-        plt.title("Experiment 1: Average Accuracy (AACC)")
-        plt.ylabel("Accuracy (%)")
-        plt.xticks(rotation=45)
-        plt.subplot(1, 2, 2)
-        sns.barplot(data=exp1_df, x="strategy", y="AF", errorbar="sd")
-        plt.title("Experiment 1: Average Forgetting (AF)")
-        plt.ylabel("Forgetting (%)")
-        plt.xticks(rotation=45)
-        plt.tight_layout()
-        figname = os.path.join(figures_dir, "exp1_performance_comparison.pdf")
-        plt.savefig(figname)
-        figure_registry.append(figname)
-        plt.close()
-        print(f"Saved: {figname}")
+    # Average Forgetting (AF)
+    forgetting = 0.0
+    for j in range(num_tasks - 1):
+        # Max accuracy on task j
+        max_acc_j = np.max(accuracy_matrix[:j+2, j])
+        # Accuracy on task j after the final task
+        final_acc_j = accuracy_matrix[-1, j]
+        forgetting += (max_acc_j - final_acc_j)
+    
+    af = forgetting / (num_tasks - 1) if num_tasks > 1 else 0.0
+    return aacc, af
 
-    # Figure 2: Ablation Study (Exp2)
-    exp2_df = df[df["experiment"] == "exp2"].copy()
-    if not exp2_df.empty:
-        exp2_df["AACC"] = exp2_df["Stream/Acc_Stream"] * 100
-        plt.figure(figsize=(8, 6))
-        sns.barplot(data=exp2_df, x="strategy", y="AACC", errorbar="sd")
-        plt.title("Experiment 2: Ablation Study on Split-CIFAR-100")
-        plt.ylabel("Average Accuracy (%)")
-        plt.xticks(rotation=45)
-        plt.tight_layout()
-        figname = os.path.join(figures_dir, "exp2_ablation.pdf")
-        plt.savefig(figname)
-        figure_registry.append(figname)
-        plt.close()
-        print(f"Saved: {figname}")
+def plot_results(results, save_path):
+    """
+    Plots the evolution of AACC and AF over tasks.
+    """
+    if not os.path.exists(save_path):
+        os.makedirs(save_path)
 
-    print("--- Figure generation complete ---")
-    return figure_registry
+    task_indices = range(1, len(results['aacc']) + 1)
+
+    plt.figure(figsize=(12, 5))
+
+    # Plot AACC
+    plt.subplot(1, 2, 1)
+    plt.plot(task_indices, results['aacc'], marker='o', linestyle='-')
+    plt.title('Average Accuracy (AACC) vs. Tasks Trained')
+    plt.xlabel('Number of Tasks Trained')
+    plt.ylabel('AACC (%)')
+    plt.grid(True)
+    plt.xticks(task_indices)
+
+    # Plot AF
+    plt.subplot(1, 2, 2)
+    plt.plot(task_indices, results['af'], marker='s', linestyle='-', color='r')
+    plt.title('Average Forgetting (AF) vs. Tasks Trained')
+    plt.xlabel('Number of Tasks Trained')
+    plt.ylabel('AF (%)')
+    plt.grid(True)
+    plt.xticks(task_indices)
+    
+    plt.tight_layout()
+    plot_filename = os.path.join(save_path, "aacc_af_plot.png")
+    plt.savefig(plot_filename)
+    plt.close()
+    print(f"Saved plot to {plot_filename}")

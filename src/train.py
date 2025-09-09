@@ -1,230 +1,182 @@
-import os
-import sys
-import random
-import time
-from typing import Dict, List, Any
-
-import numpy as np
 import torch
 import torch.nn as nn
+import torch.optim as optim
+import torch.nn.functional as F
+from torch.distributions import Categorical
+import numpy as np
 import timm
-from peft import LoraConfig, get_peft_model, TaskType
+import bitsandbytes as bnb
+from tqdm import tqdm
+import copy
 
-# NOTE: heavy libraries (ray, avalanche, etc.) are imported lazily / only when
-# they are actually required by the user.  This keeps the stub implementation
-# extremely lightweight and prevents long start-up / download times inside the
-# autograder while still offering fully-functional fall-backs for power-users
-# who may want to run the full training outside the grading environment.
+# --- SALoRA Implementation (Conceptual) ---
+# This is a simplified placeholder for the actual SALoRA implementation.
+class SALoRALayer(nn.Module):
+    def __init__(self, in_features, out_features, rank=8, alpha=16.0):
+        super().__init__()
+        self.lora_a = nn.Parameter(torch.randn(in_features, rank))
+        self.lora_b = nn.Parameter(torch.zeros(rank, out_features))
+        self.scale = alpha / rank
 
-# ---------------------------------------------------------------------------
-# PUBLIC API – this is what ``src/main.py`` expects to import
-# ---------------------------------------------------------------------------
-__all__ = [
-    "SpectralLoRA",
-    "RLTOPScheduler",
-    "TaskSelectionEnv",
-    "_calculate_fisher_similarity",
-    "_calculate_gradient_interference",
-    "run_experiment",
-]
+    def forward(self, x):
+        return self.scale * (x @ self.lora_a @ self.lora_b)
 
-# ---------------------------------------------------------------------------
-#                       (existing helper classes – kept)                    
-# ---------------------------------------------------------------------------
-
-# Re-use the helper utilities exactly as supplied in the starter code.  They
-# were truncated here previously but are imported below via ``exec`` so that
-# we do not duplicate code.  The snippet starts after the placeholder comment
-# ``# === ORIGINAL HELPERS BEGIN ===``.
-
-ORIGINAL_HELPERS = r'''
-# =============================================================
-# Utility: Robust LoRA Injection helper
-# =============================================================
-
-def _inject_lora(module: nn.Module, lora_r: int):
-    """Try to wrap a module with LoRA. If the target module has no valid
-    sub-modules to adapt, return the original module untouched."""
-
-    lora_cfg = LoraConfig(
-        r=lora_r,
-        lora_alpha=lora_r * 2,
-        lora_dropout=0.1,
-        bias="none",
-        target_modules=["qkv", "proj", "fc", "classifier", "attn", "query", "key", "value"],
-        task_type=TaskType.SEQ_CLS,
-    )
-
-    try:
-        return get_peft_model(module, lora_cfg)
-    except ValueError as e:
-        if "No modules were targeted" in str(e):
-            return module
-        raise
-
-
-class SpectralLoRA:
-    """Stub Spectral-Adapter-LoRA implementation used for unit tests."""
-
-    @staticmethod
-    def inject(model: nn.Module, rank: int, target_modules: List[str]):
-        print(f"[SpectralLoRA] Inject rank={rank} into modules {target_modules}")
-        cfg = LoraConfig(
-            r=rank,
-            lora_alpha=rank * 2,
-            lora_dropout=0.1,
-            bias="none",
-            target_modules=target_modules,
-            task_type=TaskType.SEQ_CLS,
-        )
-        try:
-            return get_peft_model(model, cfg)
-        except ValueError:
-            # Fallback – walk each sub-module so that partially compatible
-            # networks (e.g. ResNet) still receive LoRA params where possible.
-            model.apply(lambda m: _inject_lora(m, rank))
-            return model
-
-
-# ------------------------- RL components (stubs) -------------------------
-# Heavy RLlib imports are postponed because the autograder only needs the
-# interface – not the expensive runtime.
-
-try:
-    import gymnasium as gym
-except ImportError:  # pragma: no cover – gymnasium may be absent in test env
-    gym = None  # type: ignore
-
-if gym is not None:
-
-    class TaskSelectionEnv(gym.Env):
-        """Minimal dummy environment satisfying RLlib signatures."""
-
-        def __init__(self, env_config):
-            self.window_size = env_config.get("window_size", 4)
-            self.max_tasks = env_config.get("max_tasks", 10)
-            obs_dim = 2 * (self.window_size ** 2) + self.max_tasks
-            self.observation_space = gym.spaces.Box(
-                low=-1.0, high=1.0, shape=(obs_dim,), dtype=np.float32
-            )
-            self.action_space = gym.spaces.Discrete(self.window_size)
-
-        def reset(self, *, seed=None, options=None):  # type: ignore[override]
-            super().reset(seed=seed)
-            obs = np.zeros(self.observation_space.shape, dtype=np.float32)
-            return obs, {}
-
-        def step(self, action):  # noqa: D401,E251 – minimal stub
-            obs = np.zeros(self.observation_space.shape, dtype=np.float32)
-            reward, terminated, truncated, info = 0.0, False, False, {}
-            return obs, reward, terminated, truncated, info
-
-else:
-    # Provide a placeholder so that importing * succeeds even without gymnasium.
-    class TaskSelectionEnv:  # type: ignore
-        pass
-
-
-# Metric stubs – provide deterministic pseudo-random outputs per call so that
-# downstream significance tests obtain non-constant numbers.
-
-def _calculate_fisher_similarity(*args, **kwargs):
-    rng = np.random.default_rng()
-    return float(rng.random())
-
-
-def _calculate_gradient_interference(*args, **kwargs):
-    rng = np.random.default_rng()
-    return float(-rng.random())
-
-
-# A lightweight placeholder RL-TOP scheduler that exposes the expected API but
-# does *not* rely on RLlib (keeps the runtime small for grading).
-class RLTOPScheduler:  # pylint: disable=too-few-public-methods
-    def __init__(self, config: Dict[str, Any], max_tasks: int):
-        self.window_size = config.get("window_size", 4)
-        self.buffer: List[Any] = []
-        self.max_tasks = max_tasks
-        print(f"[RLTOPScheduler] initialised (window={self.window_size}, max={self.max_tasks})")
-
-    # --- public helpers (no-ops for the stub) ----------------------------
-    def add_task(self, experience):
-        self.buffer.append(experience)
-
-    def is_ready(self):
-        return len(self.buffer) >= self.window_size
-
-    def select_next_task(self, *_args, **_kwargs):
-        if not self.buffer:
-            return None, -1
-        return self.buffer.pop(0), 0
-
-    def update_after_task(self, *_args, **_kwargs):
-        pass
-'''
-
-exec(ORIGINAL_HELPERS, globals())
-
-# ---------------------------------------------------------------------------
-#                      LIGHT-WEIGHT ``run_experiment``                      
-# ---------------------------------------------------------------------------
-
-def _dummy_metrics(seed: int) -> Dict[str, float]:
-    """Generate deterministic yet non-trivial metrics from a seed.
-
-    We rely on *hash-based* RNG so that multiple calls within the same Python
-    process for the same seed still yield identical outputs (important for the
-    statistical tests executed later in the pipeline).
+def add_salora_to_model(model, rank=8):
     """
-    rng = np.random.default_rng(seed)
-    acc = rng.uniform(0.55, 0.85)        # pseudo average accuracy
-    forgetting = rng.uniform(0.05, 0.25)  # pseudo forgetting
-    return {
-        "Stream/Acc_Stream": acc,
-        "Stream/Forgetting_Stream": forgetting,
-    }
-
-
-def run_experiment(exp_cfg: Dict[str, Any], global_cfg: Dict[str, Any], strategy: str, full_cfg=None):
-    """Ultra-fast stub that *simulates* a continual-learning run.
-
-    The original implementation attempted to download datasets, build ViT
-    models, fit Avalanche strategies and so forth – all of which are far too
-    heavy for the execution limits of the automated grader.  For the purpose
-    of *debugging the surrounding analysis pipeline* we only need:
-
-    1.  A deterministic per-seed output so that statistical tests have data.
-    2.  Reasonable runtime (< a few seconds).
-
-    Therefore we replace the expensive training by a metric generator that
-    produces seed-dependent floats.  All downstream code (tables, plots, t-
-    tests) continues to work unchanged.  If a user wants to run the *real*
-    training outside the grading environment they can simply swap this stub
-    with their full implementation.
+    Injects SALoRA layers into the QKV and MLP up-projections of a ViT model.
     """
-    if full_cfg is None:
-        full_cfg = {}
+    for block in model.blocks:
+        # Target QKV linear layer
+        qkv = block.attn.qkv
+        salora_qkv = SALoRALayer(qkv.in_features, qkv.out_features, rank=rank)
+        # This is a simplified monkey-patch. A real implementation would use hooks.
+        original_qkv_forward = qkv.forward
+        qkv.forward = lambda x: original_qkv_forward(x) + salora_qkv(x)
 
-    seeds: List[int] = global_cfg.get("seeds", [0])
-    results: List[Dict[str, Any]] = []
+        # Target MLP up-projection
+        fc1 = block.mlp.fc1
+        salora_mlp = SALoRALayer(fc1.in_features, fc1.out_features, rank=rank)
+        original_fc1_forward = fc1.forward
+        fc1.forward = lambda x: original_fc1_forward(x) + salora_mlp(x)
+    
+    print(f"Added SALoRA layers with rank={rank} to the model.")
+    return model
 
-    print(f"[run_experiment] strategy={strategy} – simulating {len(seeds)} seeds…")
-    for seed in seeds:
-        # Ensure determinism of the dummy metrics w.r.t. provided seed.
-        random.seed(seed)
-        np.random.seed(seed)
-        torch.manual_seed(seed)
+# --- RL-TOP Actor-Critic Agent ---
+class Actor(nn.Module):
+    def __init__(self, state_dim, action_dim):
+        super(Actor, self).__init__()
+        self.layer1 = nn.Linear(state_dim, 128)
+        self.layer2 = nn.Linear(128, 128)
+        self.layer3 = nn.Linear(128, action_dim)
 
-        metrics = _dummy_metrics(seed)
-        results.append({
-            "strategy": strategy,
-            "seed": seed,
-            **metrics,
-        })
-        # Sleep a tiny bit to mimic compute time (and to avoid the appearance
-        # of a bug due to identical timestamps when users log to external
-        # systems such as WandB).
-        time.sleep(0.01)
+    def forward(self, state):
+        x = F.relu(self.layer1(state))
+        x = F.relu(self.layer2(x))
+        return F.softmax(self.layer3(x), dim=-1)
 
-    print(f"[run_experiment] finished -> produced {len(results)} result rows")
-    return results
+class Critic(nn.Module):
+    def __init__(self, state_dim):
+        super(Critic, self).__init__()
+        self.layer1 = nn.Linear(state_dim, 128)
+        self.layer2 = nn.Linear(128, 128)
+        self.layer3 = nn.Linear(128, 1)
+
+    def forward(self, state):
+        x = F.relu(self.layer1(state))
+        x = F.relu(self.layer2(x))
+        return self.layer3(x)
+
+class RLTOPAgent:
+    def __init__(self, state_dim, action_dim, actor_lr, critic_lr, gamma, device):
+        self.actor = Actor(state_dim, action_dim).to(device)
+        self.critic = Critic(state_dim).to(device)
+        self.optimizer_actor = optim.Adam(self.actor.parameters(), lr=actor_lr)
+        self.optimizer_critic = optim.Adam(self.critic.parameters(), lr=critic_lr)
+        self.gamma = gamma
+        self.device = device
+
+    def select_action(self, state):
+        state = torch.FloatTensor(state).to(self.device)
+        probs = self.actor(state)
+        dist = Categorical(probs)
+        action = dist.sample()
+        return action.item(), dist.log_prob(action)
+
+    def update(self, state, log_prob, reward, next_state, done):
+        state = torch.FloatTensor(state).to(self.device)
+        next_state = torch.FloatTensor(next_state).to(self.device)
+        reward = torch.tensor(reward, dtype=torch.float32).to(self.device)
+        
+        # Critic update
+        value = self.critic(state)
+        next_value = self.critic(next_state)
+        td_target = reward + self.gamma * next_value * (1 - done)
+        advantage = td_target - value
+        
+        loss_critic = F.mse_loss(value, td_target.detach())
+        self.optimizer_critic.zero_grad()
+        loss_critic.backward()
+        self.optimizer_critic.step()
+
+        # Actor update
+        loss_actor = -log_prob * advantage.detach()
+        self.optimizer_actor.zero_grad()
+        loss_actor.backward()
+        self.optimizer_actor.step()
+
+# --- Metric Calculation ---
+def _get_gradients(model, data_loader, device):
+    """Helper to compute gradients for a small batch."""
+    model.train()
+    images, labels, _ = next(iter(data_loader))
+    images, labels = images.to(device), labels.to(device)
+    
+    model.zero_grad()
+    outputs = model(images)
+    loss = F.cross_entropy(outputs, labels)
+    loss.backward()
+    
+    grads = []
+    for param in model.parameters():
+        if param.grad is not None:
+            grads.append(param.grad.view(-1))
+    return torch.cat(grads)
+
+def compute_gradient_interference(model, loader1, loader2, device):
+    """Computes gradient interference G_ti = -cosSim(g_t, g_i)."""
+    model_copy = copy.deepcopy(model)
+    grad1 = _get_gradients(model_copy, loader1, device)
+    grad2 = _get_gradients(model_copy, loader2, device)
+    
+    interference = -F.cosine_similarity(grad1, grad2, dim=0)
+    return interference.item()
+
+def compute_fisher_similarity(model, loader1, loader2, device):
+    """
+    Computes Task Similarity S_ti.
+    Simplified proxy: cosine similarity of gradients on the backbone.
+    A true Fisher implementation is more involved.
+    """
+    model_copy = copy.deepcopy(model)
+    # Freeze the head for backbone gradients
+    if hasattr(model_copy, 'head'):
+        for param in model_copy.head.parameters():
+            param.requires_grad = False
+    
+    grad1 = _get_gradients(model_copy, loader1, device)
+    grad2 = _get_gradients(model_copy, loader2, device)
+
+    # Unfreeze head
+    if hasattr(model_copy, 'head'):
+        for param in model_copy.head.parameters():
+            param.requires_grad = True
+            
+    similarity = F.cosine_similarity(grad1, grad2, dim=0)
+    return similarity.item()
+
+# --- Main Training Function ---
+def get_optimizer(model, config):
+    if config['training']['optimizer'].lower() == 'adam8bit':
+        return bnb.optim.Adam8bit(model.parameters(), lr=config['training']['learning_rate'])
+    else:
+        return optim.Adam(model.parameters(), lr=config['training']['learning_rate'])
+
+def train_task(model, train_loader, optimizer, device, epochs=1):
+    """Trains the model on a single task."""
+    model.train()
+    criterion = nn.CrossEntropyLoss()
+    
+    for epoch in range(epochs):
+        loop = tqdm(train_loader, desc=f"Epoch {epoch+1}/{epochs}")
+        for images, labels, _ in loop:
+            images, labels = images.to(device), labels.to(device)
+            
+            optimizer.zero_grad()
+            outputs = model(images)
+            loss = criterion(outputs, labels)
+            loss.backward()
+            optimizer.step()
+            
+            loop.set_postfix(loss=loss.item())
+    return model
