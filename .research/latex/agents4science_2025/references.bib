@@ -5,3 +5,631 @@
   publisher = {GitHub},
   url       = {https://github.com/airas-org/airas}
 }
+
+% ===========================================
+% REQUIRED CITATIONS
+% These papers must be cited in the manuscript
+% ===========================================
+
+@article{author-year-compositional,
+ title = {Compositional Language Continual Learning}
+}
+
+@article{author-year-initialization,
+ title = {Initialization Noise in Image Gradients and Saliency Maps}
+}
+
+@article{bengio-2020-interference,
+ abstract = {We study the link between generalization and interference in
+temporal-difference (TD) learning. Interference is defined as the inner product
+of two different gradients, representing their alignment. This quantity emerges
+as being of interest from a variety of observations about neural networks,
+parameter sharing and the dynamics of learning. We find that TD easily leads to
+low-interference, under-generalizing parameters, while the effect seems
+reversed in supervised learning. We hypothesize that the cause can be traced
+back to the interplay between the dynamics of interference and bootstrapping.
+This is supported empirically by several observations: the negative
+relationship between the generalization gap and interference in TD, the
+negative effect of bootstrapping on interference and the local coherence of
+targets, and the contrast between the propagation rate of information in TD(0)
+versus TD($\lambda$) and regression tasks such as Monte-Carlo policy
+evaluation. We hope that these new findings can guide the future discovery of
+better bootstrapping methods.},
+ arxiv_url = {https://arxiv.org/pdf/2003.06350v1.pdf},
+ author = {Emmanuel Bengio and Joelle Pineau and Doina Precup},
+ title = {Interference and Generalization in Temporal Difference Learning},
+ year = {2020}
+}
+
+@article{chen-2023-split,
+ abstract = {Uncertainty estimation is crucial for machine learning models to detect
+out-of-distribution (OOD) inputs. However, the conventional discriminative deep
+learning classifiers produce uncalibrated closed-set predictions for OOD data.
+A more robust classifiers with the uncertainty estimation typically require a
+potentially unavailable OOD dataset for outlier exposure training, or a
+considerable amount of additional memory and compute to build ensemble models.
+In this work, we improve on uncertainty estimation without extra OOD data or
+additional inference costs using an alternative Split-Ensemble method.
+Specifically, we propose a novel subtask-splitting ensemble training objective,
+where a common multiclass classification task is split into several
+complementary subtasks. Then, each subtask's training data can be considered as
+OOD to the other subtasks. Diverse submodels can therefore be trained on each
+subtask with OOD-aware objectives. The subtask-splitting objective enables us
+to share low-level features across submodels to avoid parameter and
+computational overheads. In particular, we build a tree-like Split-Ensemble
+architecture by performing iterative splitting and pruning from a shared
+backbone model, where each branch serves as a submodel corresponding to a
+subtask. This leads to improved accuracy and uncertainty estimation across
+submodels under a fixed ensemble computation budget. Empirical study with
+ResNet-18 backbone shows Split-Ensemble, without additional computation cost,
+improves accuracy over a single model by 0.8%, 1.8%, and 25.5% on CIFAR-10,
+CIFAR-100, and Tiny-ImageNet, respectively. OOD detection for the same backbone
+and in-distribution datasets surpasses a single model baseline by,
+correspondingly, 2.2%, 8.1%, and 29.6% mean AUROC.},
+ arxiv_url = {https://arxiv.org/pdf/2312.09148v2.pdf},
+ author = {Anthony Chen and Huanrui Yang and Yulu Gan and Denis A Gudovskiy and Zhen Dong and Haofan Wang and Tomoyuki Okuno and Yohei Nakata and Kurt Keutzer and Shanghang Zhang},
+ title = {Split-Ensemble: Efficient OOD-aware Ensemble via Task and Model Splitting},
+ year = {2023}
+}
+
+@article{geiping-2020-inverting,
+ abstract = {The idea of federated learning is to collaboratively train a neural network
+on a server. Each user receives the current weights of the network and in turns
+sends parameter updates (gradients) based on local data. This protocol has been
+designed not only to train neural networks data-efficiently, but also to
+provide privacy benefits for users, as their input data remains on device and
+only parameter gradients are shared. But how secure is sharing parameter
+gradients? Previous attacks have provided a false sense of security, by
+succeeding only in contrived settings - even for a single image. However, by
+exploiting a magnitude-invariant loss along with optimization strategies based
+on adversarial attacks, we show that is is actually possible to faithfully
+reconstruct images at high resolution from the knowledge of their parameter
+gradients, and demonstrate that such a break of privacy is possible even for
+trained deep networks. We analyze the effects of architecture as well as
+parameters on the difficulty of reconstructing an input image and prove that
+any input to a fully connected layer can be reconstructed analytically
+independent of the remaining architecture. Finally we discuss settings
+encountered in practice and show that even averaging gradients over several
+iterations or several images does not protect the user's privacy in federated
+learning applications in computer vision.},
+ arxiv_url = {https://arxiv.org/pdf/2003.14053v2.pdf},
+ author = {Jonas Geiping and Hartmut Bauermeister and Hannah Dröge and Michael Moeller},
+ github_url = {https://github.com/JonasGeiping/invertinggradients},
+ title = {Inverting Gradients - How easy is it to break privacy in federated learning?},
+ year = {2020}
+}
+
+@article{jordan-2022-repair,
+ abstract = {In this paper we look into the conjecture of Entezari et al. (2021) which
+states that if the permutation invariance of neural networks is taken into
+account, then there is likely no loss barrier to the linear interpolation
+between SGD solutions. First, we observe that neuron alignment methods alone
+are insufficient to establish low-barrier linear connectivity between SGD
+solutions due to a phenomenon we call variance collapse: interpolated deep
+networks suffer a collapse in the variance of their activations, causing poor
+performance. Next, we propose REPAIR (REnormalizing Permuted Activations for
+Interpolation Repair) which mitigates variance collapse by rescaling the
+preactivations of such interpolated networks. We explore the interaction
+between our method and the choice of normalization layer, network width, and
+depth, and demonstrate that using REPAIR on top of neuron alignment methods
+leads to 60%-100% relative barrier reduction across a wide variety of
+architecture families and tasks. In particular, we report a 74% barrier
+reduction for ResNet50 on ImageNet and 90% barrier reduction for ResNet18 on
+CIFAR10.},
+ arxiv_url = {https://arxiv.org/pdf/2211.08403v3.pdf},
+ author = {Keller Jordan and Hanie Sedghi and Olga Saukh and Rahim Entezari and Behnam Neyshabur},
+ github_url = {https://github.com/KellerJordan/REPAIR},
+ title = {REPAIR: REnormalizing Permuted Activations for Interpolation Repair},
+ year = {2022}
+}
+
+@article{ke-2021-continual,
+ abstract = {Existing research on continual learning of a sequence of tasks focused on
+dealing with catastrophic forgetting, where the tasks are assumed to be
+dissimilar and have little shared knowledge. Some work has also been done to
+transfer previously learned knowledge to the new task when the tasks are
+similar and have shared knowledge. To the best of our knowledge, no technique
+has been proposed to learn a sequence of mixed similar and dissimilar tasks
+that can deal with forgetting and also transfer knowledge forward and backward.
+This paper proposes such a technique to learn both types of tasks in the same
+network. For dissimilar tasks, the algorithm focuses on dealing with
+forgetting, and for similar tasks, the algorithm focuses on selectively
+transferring the knowledge learned from some similar previous tasks to improve
+the new task learning. Additionally, the algorithm automatically detects
+whether a new task is similar to any previous tasks. Empirical evaluation using
+sequences of mixed tasks demonstrates the effectiveness of the proposed model.},
+ arxiv_url = {https://arxiv.org/pdf/2112.10017v1.pdf},
+ author = {Zixuan Ke and Bing Liu and Xingchang Huang},
+ github_url = {https://github.com/ZixuanKe/CAT},
+ journal = {NeurIPS 2020},
+ title = {Continual Learning of a Mixed Sequence of Similar and Dissimilar Tasks},
+ year = {2021}
+}
+
+@article{kim-2022-crosssplit,
+ abstract = {We approach the problem of improving robustness of deep learning algorithms
+in the presence of label noise. Building upon existing label correction and
+co-teaching methods, we propose a novel training procedure to mitigate the
+memorization of noisy labels, called CrossSplit, which uses a pair of neural
+networks trained on two disjoint parts of the labelled dataset. CrossSplit
+combines two main ingredients: (i) Cross-split label correction. The idea is
+that, since the model trained on one part of the data cannot memorize
+example-label pairs from the other part, the training labels presented to each
+network can be smoothly adjusted by using the predictions of its peer network;
+(ii) Cross-split semi-supervised training. A network trained on one part of the
+data also uses the unlabeled inputs of the other part. Extensive experiments on
+CIFAR-10, CIFAR-100, Tiny-ImageNet and mini-WebVision datasets demonstrate that
+our method can outperform the current state-of-the-art in a wide range of noise
+ratios.},
+ arxiv_url = {https://arxiv.org/pdf/2212.01674v2.pdf},
+ author = {Jihye Kim and Aristide Baratin and Yan Zhang and Simon Lacoste-Julien},
+ title = {CrossSplit: Mitigating Label Noise Memorization through Data Splitting},
+ year = {2022}
+}
+
+@article{lee-2021-continual,
+ abstract = {Continual learning-the ability to learn many tasks in sequence-is critical
+for artificial learning systems. Yet standard training methods for deep
+networks often suffer from catastrophic forgetting, where learning new tasks
+erases knowledge of earlier tasks. While catastrophic forgetting labels the
+problem, the theoretical reasons for interference between tasks remain unclear.
+Here, we attempt to narrow this gap between theory and practice by studying
+continual learning in the teacher-student setup. We extend previous analytical
+work on two-layer networks in the teacher-student setup to multiple teachers.
+Using each teacher to represent a different task, we investigate how the
+relationship between teachers affects the amount of forgetting and transfer
+exhibited by the student when the task switches. In line with recent work, we
+find that when tasks depend on similar features, intermediate task similarity
+leads to greatest forgetting. However, feature similarity is only one way in
+which tasks may be related. The teacher-student approach allows us to
+disentangle task similarity at the level of readouts (hidden-to-output weights)
+and features (input-to-hidden weights). We find a complex interplay between
+both types of similarity, initial transfer/forgetting rates, maximum
+transfer/forgetting, and long-term transfer/forgetting. Together, these results
+help illuminate the diverse factors contributing to catastrophic forgetting.},
+ arxiv_url = {https://arxiv.org/pdf/2107.04384v1.pdf},
+ author = {Sebastian Lee and Sebastian Goldt and Andrew Saxe},
+ journal = {Proceedings of the 38th International Conference on Machine
+  Learning, PMLR 139:6109-6119, 2021},
+ title = {Continual Learning in the Teacher-Student Setup: Impact of Task Similarity},
+ year = {2021}
+}
+
+@article{lee-2023-recasting,
+ abstract = {In this work, we aim to establish a strong connection between two significant
+bodies of machine learning research: continual learning and sequence modeling.
+That is, we propose to formulate continual learning as a sequence modeling
+problem, allowing advanced sequence models to be utilized for continual
+learning. Under this formulation, the continual learning process becomes the
+forward pass of a sequence model. By adopting the meta-continual learning (MCL)
+framework, we can train the sequence model at the meta-level, on multiple
+continual learning episodes. As a specific example of our new formulation, we
+demonstrate the application of Transformers and their efficient variants as MCL
+methods. Our experiments on seven benchmarks, covering both classification and
+regression, show that sequence models can be an attractive solution for general
+MCL.},
+ arxiv_url = {https://arxiv.org/pdf/2310.11952v2.pdf},
+ author = {Soochan Lee and Jaehyeon Son and Gunhee Kim},
+ github_url = {https://github.com/soochan-lee/cl-as-seq},
+ title = {Recasting Continual Learning as Sequence Modeling},
+ year = {2023}
+}
+
+@article{liao-2023-make,
+ abstract = {Parameter-efficient fine-tuning (PEFT) of pre-trained language models (PLMs)
+has emerged as a highly successful approach, with training only a small number
+of parameters without sacrificing performance and becoming the de-facto
+learning paradigm with the increasing size of PLMs. However, existing PEFT
+methods are not memory-efficient, because they still require caching most of
+the intermediate activations for the gradient calculation, akin to fine-tuning.
+One effective way to reduce the activation memory is to apply a reversible
+model, so the intermediate activations are not necessary to be cached and can
+be recomputed. Nevertheless, modifying a PLM to its reversible variant is not
+straightforward, since the reversible model has a distinct architecture from
+the currently released PLMs. In this paper, we first investigate what is a key
+factor for the success of existing PEFT methods, and realize that it's
+essential to preserve the PLM's starting point when initializing a PEFT method.
+With this finding, we propose memory-efficient fine-tuning (MEFT) that inserts
+adapters into a PLM, preserving the PLM's starting point and making it
+reversible without additional pre-training. We evaluate MEFT on the GLUE
+benchmark and five question-answering tasks with various backbones, BERT,
+RoBERTa, BART and OPT. MEFT significantly reduces the activation memory up to
+84% of full fine-tuning with a negligible amount of trainable parameters.
+Moreover, MEFT achieves the same score on GLUE and a comparable score on the
+question-answering tasks as full fine-tuning. A similar finding is also
+observed for the image classification task.},
+ arxiv_url = {https://arxiv.org/pdf/2306.00477v4.pdf},
+ author = {Baohao Liao and Shaomu Tan and Christof Monz},
+ github_url = {https://github.com/baohaoliao/mefts},
+ title = {Make Pre-trained Model Reversible: From Parameter to Memory Efficient Fine-Tuning},
+ year = {2023}
+}
+
+@article{lin-2022-beyond,
+ abstract = {By learning a sequence of tasks continually, an agent in continual learning
+(CL) can improve the learning performance of both a new task and `old' tasks by
+leveraging the forward knowledge transfer and the backward knowledge transfer,
+respectively. However, most existing CL methods focus on addressing
+catastrophic forgetting in neural networks by minimizing the modification of
+the learnt model for old tasks. This inevitably limits the backward knowledge
+transfer from the new task to the old tasks, because judicious model updates
+could possibly improve the learning performance of the old tasks as well. To
+tackle this problem, we first theoretically analyze the conditions under which
+updating the learnt model of old tasks could be beneficial for CL and also lead
+to backward knowledge transfer, based on the gradient projection onto the input
+subspaces of old tasks. Building on the theoretical analysis, we next develop a
+ContinUal learning method with Backward knowlEdge tRansfer (CUBER), for a fixed
+capacity neural network without data replay. In particular, CUBER first
+characterizes the task correlation to identify the positively correlated old
+tasks in a layer-wise manner, and then selectively modifies the learnt model of
+the old tasks when learning the new task. Experimental studies show that CUBER
+can even achieve positive backward knowledge transfer on several existing CL
+benchmarks for the first time without data replay, where the related baselines
+still suffer from catastrophic forgetting (negative backward knowledge
+transfer). The superior performance of CUBER on the backward knowledge transfer
+also leads to higher accuracy accordingly.},
+ arxiv_url = {https://arxiv.org/pdf/2211.00789v1.pdf},
+ author = {Sen Lin and Li Yang and Deliang Fan and Junshan Zhang},
+ title = {Beyond Not-Forgetting: Continual Learning with Backward Knowledge Transfer},
+ year = {2022}
+}
+
+@article{lin-2023-theory,
+ abstract = {Continual learning (CL), which aims to learn a sequence of tasks, has
+attracted significant recent attention. However, most work has focused on the
+experimental performance of CL, and theoretical studies of CL are still
+limited. In particular, there is a lack of understanding on what factors are
+important and how they affect "catastrophic forgetting" and generalization
+performance. To fill this gap, our theoretical analysis, under
+overparameterized linear models, provides the first-known explicit form of the
+expected forgetting and generalization error. Further analysis of such a key
+result yields a number of theoretical explanations about how
+overparameterization, task similarity, and task ordering affect both forgetting
+and generalization error of CL. More interestingly, by conducting experiments
+on real datasets using deep neural networks (DNNs), we show that some of these
+insights even go beyond the linear models and can be carried over to practical
+setups. In particular, we use concrete examples to show that our results not
+only explain some interesting empirical observations in recent studies, but
+also motivate better practical algorithm designs of CL.},
+ arxiv_url = {https://arxiv.org/pdf/2302.05836v1.pdf},
+ author = {Sen Lin and Peizhong Ju and Yingbin Liang and Ness Shroff},
+ title = {Theory on Forgetting and Generalization of Continual Learning},
+ year = {2023}
+}
+
+@article{mercea-2024-time,
+ abstract = {As foundation models become more popular, there is a growing need to
+efficiently finetune them for downstream tasks. Although numerous adaptation
+methods have been proposed, they are designed to be efficient only in terms of
+how many parameters are trained. They, however, typically still require
+backpropagating gradients throughout the model, meaning that their
+training-time and -memory cost does not reduce as significantly. We propose an
+adaptation method which does not backpropagate gradients through the backbone.
+We achieve this by designing a lightweight network in parallel that operates on
+features from the frozen, pretrained backbone. As a result, our method is
+efficient not only in terms of parameters, but also in training-time and memory
+usage. Our approach achieves state-of-the-art accuracy-parameter trade-offs on
+the popular VTAB benchmark, and we further show how we outperform prior works
+with respect to training-time and -memory usage too. We further demonstrate the
+training efficiency and scalability of our method by adapting a vision
+transformer backbone of 4 billion parameters for the computationally demanding
+task of video classification, without any intricate model parallelism. Here, we
+outperform a prior adaptor-based method which could only scale to a 1 billion
+parameter backbone, or fully-finetuning a smaller backbone, with the same GPU
+and less training time.},
+ arxiv_url = {https://arxiv.org/pdf/2402.02887v1.pdf},
+ author = {Otniel-Bogdan Mercea and Alexey Gritsenko and Cordelia Schmid and Anurag Arnab},
+ title = {Time- Memory- and Parameter-Efficient Visual Adaptation},
+ year = {2024}
+}
+
+@article{mirzadeh-2020-linear,
+ abstract = {Continual (sequential) training and multitask (simultaneous) training are
+often attempting to solve the same overall objective: to find a solution that
+performs well on all considered tasks. The main difference is in the training
+regimes, where continual learning can only have access to one task at a time,
+which for neural networks typically leads to catastrophic forgetting. That is,
+the solution found for a subsequent task does not perform well on the previous
+ones anymore. However, the relationship between the different minima that the
+two training regimes arrive at is not well understood. What sets them apart? Is
+there a local structure that could explain the difference in performance
+achieved by the two different schemes? Motivated by recent work showing that
+different minima of the same task are typically connected by very simple curves
+of low error, we investigate whether multitask and continual solutions are
+similarly connected. We empirically find that indeed such connectivity can be
+reliably achieved and, more interestingly, it can be done by a linear path,
+conditioned on having the same initialization for both. We thoroughly analyze
+this observation and discuss its significance for the continual learning
+process. Furthermore, we exploit this finding to propose an effective algorithm
+that constrains the sequentially learned minima to behave as the multitask
+solution. We show that our method outperforms several state of the art
+continual learning algorithms on various vision benchmarks.},
+ arxiv_url = {https://arxiv.org/pdf/2010.04495v1.pdf},
+ author = {Seyed Iman Mirzadeh and Mehrdad Farajtabar and Dilan Gorur and Razvan Pascanu and Hassan Ghasemzadeh},
+ github_url = {https://github.com/imirzadeh/MC-SGD},
+ title = {Linear Mode Connectivity in Multitask and Continual Learning},
+ year = {2020}
+}
+
+@article{park-2021-federated,
+ abstract = {Federated learning, which shares the weights of the neural network across
+clients, is gaining attention in the healthcare sector as it enables training
+on a large corpus of decentralized data while maintaining data privacy. For
+example, this enables neural network training for COVID-19 diagnosis on chest
+X-ray (CXR) images without collecting patient CXR data across multiple
+hospitals. Unfortunately, the exchange of the weights quickly consumes the
+network bandwidth if highly expressive network architecture is employed.
+So-called split learning partially solves this problem by dividing a neural
+network into a client and a server part, so that the client part of the network
+takes up less extensive computation resources and bandwidth. However, it is not
+clear how to find the optimal split without sacrificing the overall network
+performance. To amalgamate these methods and thereby maximize their distinct
+strengths, here we show that the Vision Transformer, a recently developed deep
+learning architecture with straightforward decomposable configuration, is
+ideally suitable for split learning without sacrificing performance. Even under
+the non-independent and identically distributed data distribution which
+emulates a real collaboration between hospitals using CXR datasets from
+multiple sources, the proposed framework was able to attain performance
+comparable to data-centralized training. In addition, the proposed framework
+along with heterogeneous multi-task clients also improves individual task
+performances including the diagnosis of COVID-19, eliminating the need for
+sharing large weights with innumerable parameters. Our results affirm the
+suitability of Transformer for collaborative learning in medical imaging and
+pave the way forward for future real-world implementations.},
+ arxiv_url = {https://arxiv.org/pdf/2111.01338v2.pdf},
+ author = {Sangjoon Park and Gwanghyun Kim and Jeongsol Kim and Boah Kim and Jong Chul Ye},
+ title = {Federated Split Task-Agnostic  Vision Transformer for COVID-19 CXR Diagnosis},
+ year = {2021}
+}
+
+@article{peng-2023-the,
+ abstract = {The goal of continual learning is to find a model that solves multiple
+learning tasks which are presented sequentially to the learner. A key challenge
+in this setting is that the learner may forget how to solve a previous task
+when learning a new task, a phenomenon known as catastrophic forgetting. To
+address this challenge, many practical methods have been proposed, including
+memory-based, regularization-based, and expansion-based methods. However, a
+rigorous theoretical understanding of these methods remains elusive. This paper
+aims to bridge this gap between theory and practice by proposing a new
+continual learning framework called Ideal Continual Learner (ICL), which is
+guaranteed to avoid catastrophic forgetting by construction. We show that ICL
+unifies multiple well-established continual learning methods and gives new
+theoretical insights into the strengths and weaknesses of these methods. We
+also derive generalization bounds for ICL which allow us to theoretically
+quantify how rehearsal affects generalization. Finally, we connect ICL to
+several classic subjects and research topics of modern interest, which allows
+us to make historical remarks and inspire future directions.},
+ arxiv_url = {https://arxiv.org/pdf/2305.00316v2.pdf},
+ author = {Liangzu Peng and Paris V. Giampouras and René Vidal},
+ title = {The Ideal Continual Learner: An Agent That Never Forgets},
+ year = {2023}
+}
+
+@article{ramasesh-2020-anatomy,
+ abstract = {A central challenge in developing versatile machine learning systems is
+catastrophic forgetting: a model trained on tasks in sequence will suffer
+significant performance drops on earlier tasks. Despite the ubiquity of
+catastrophic forgetting, there is limited understanding of the underlying
+process and its causes. In this paper, we address this important knowledge gap,
+investigating how forgetting affects representations in neural network models.
+Through representational analysis techniques, we find that deeper layers are
+disproportionately the source of forgetting. Supporting this, a study of
+methods to mitigate forgetting illustrates that they act to stabilize deeper
+layers. These insights enable the development of an analytic argument and
+empirical picture relating the degree of forgetting to representational
+similarity between tasks. Consistent with this picture, we observe maximal
+forgetting occurs for task sequences with intermediate similarity. We perform
+empirical studies on the standard split CIFAR-10 setup and also introduce a
+novel CIFAR-100 based task approximating realistic input distribution shift.},
+ arxiv_url = {https://arxiv.org/pdf/2007.07400v1.pdf},
+ author = {Vinay V. Ramasesh and Ethan Dyer and Maithra Raghu},
+ title = {Anatomy of Catastrophic Forgetting: Hidden Representations and Task Semantics},
+ year = {2020}
+}
+
+@article{sehanobish-2024-structured,
+ abstract = {Recent efforts to scale Transformer models have demonstrated rapid progress
+across a wide range of tasks (Wei et al., 2022). However, fine-tuning these
+models for downstream tasks is expensive due to their large parameter counts.
+Parameter-efficient fine-tuning (PEFT) approaches have emerged as a viable
+alternative by allowing us to fine-tune models by updating only a small number
+of parameters. In this work, we propose a general framework for parameter
+efficient fine-tuning (PEFT), based on structured unrestricted-rank matrices
+(SURM) which can serve as a drop-in replacement for popular approaches such as
+Adapters and LoRA. Unlike other methods like LoRA, SURMs provides more
+flexibility in finding the right balance between compactness and
+expressiveness. This is achieved by using low displacement rank matrices
+(LDRMs), which hasn't been used in this context before. SURMs remain
+competitive with baselines, often providing significant quality improvements
+while using a smaller parameter budget. SURMs achieve 5-7% accuracy gains on
+various image classification tasks while replacing low-rank matrices in LoRA.
+It also results in up to 12x reduction of the number of parameters in adapters
+(with virtually no loss in quality) on the GLUE benchmark.},
+ arxiv_url = {https://arxiv.org/pdf/2406.17740v3.pdf},
+ author = {Arijit Sehanobish and Avinava Dubey and Krzysztof Choromanski and Somnath Basu Roy Chowdhury and Deepali Jain and Vikas Sindhwani and Snigdha Chaturvedi},
+ title = {Structured Unrestricted-Rank Matrices for Parameter Efficient Finetuning},
+ year = {2024}
+}
+
+@article{srinivas-2020-rethinking,
+ abstract = {Current methods for the interpretability of discriminative deep neural
+networks commonly rely on the model's input-gradients, i.e., the gradients of
+the output logits w.r.t. the inputs. The common assumption is that these
+input-gradients contain information regarding $p_{\theta} ( y \mid x)$, the
+model's discriminative capabilities, thus justifying their use for
+interpretability. However, in this work we show that these input-gradients can
+be arbitrarily manipulated as a consequence of the shift-invariance of softmax
+without changing the discriminative function. This leaves an open question: if
+input-gradients can be arbitrary, why are they highly structured and
+explanatory in standard models?
+  We investigate this by re-interpreting the logits of standard softmax-based
+classifiers as unnormalized log-densities of the data distribution and show
+that input-gradients can be viewed as gradients of a class-conditional density
+model $p_{\theta}(x \mid y)$ implicit within the discriminative model. This
+leads us to hypothesize that the highly structured and explanatory nature of
+input-gradients may be due to the alignment of this class-conditional model
+$p_{\theta}(x \mid y)$ with that of the ground truth data distribution
+$p_{\text{data}} (x \mid y)$. We test this hypothesis by studying the effect of
+density alignment on gradient explanations. To achieve this alignment we use
+score-matching, and propose novel approximations to this algorithm to enable
+training large-scale models.
+  Our experiments show that improving the alignment of the implicit density
+model with the data distribution enhances gradient structure and explanatory
+power while reducing this alignment has the opposite effect. Overall, our
+finding that input-gradients capture information regarding an implicit
+generative model implies that we need to re-think their use for interpreting
+discriminative models.},
+ arxiv_url = {https://arxiv.org/pdf/2006.09128v2.pdf},
+ author = {Suraj Srinivas and Francois Fleuret},
+ title = {Rethinking the Role of Gradient-based Attribution Methods for Model Interpretability},
+ year = {2020}
+}
+
+@article{veniat-2020-efficient,
+ abstract = {Existing literature in Continual Learning (CL) has focused on overcoming
+catastrophic forgetting, the inability of the learner to recall how to perform
+tasks observed in the past. There are however other desirable properties of a
+CL system, such as the ability to transfer knowledge from previous tasks and to
+scale memory and compute sub-linearly with the number of tasks. Since most
+current benchmarks focus only on forgetting using short streams of tasks, we
+first propose a new suite of benchmarks to probe CL algorithms across these new
+axes. Finally, we introduce a new modular architecture, whose modules represent
+atomic skills that can be composed to perform a certain task. Learning a task
+reduces to figuring out which past modules to re-use, and which new modules to
+instantiate to solve the current task. Our learning algorithm leverages a
+task-driven prior over the exponential search space of all possible ways to
+combine modules, enabling efficient learning on long streams of tasks. Our
+experiments show that this modular architecture and learning algorithm perform
+competitively on widely used CL benchmarks while yielding superior performance
+on the more challenging benchmarks we introduce in this work.},
+ arxiv_url = {https://arxiv.org/pdf/2012.12631v2.pdf},
+ author = {Tom Veniat and Ludovic Denoyer and Marc'Aurelio Ranzato},
+ github_url = {https://github.com/TomVeniat/MNTDP},
+ title = {Efficient Continual Learning with Modular Networks and Task-Driven Priors},
+ year = {2020}
+}
+
+@article{wu-2024-reft,
+ abstract = {Parameter-efficient finetuning (PEFT) methods seek to adapt large neural
+models via updates to a small number of weights. However, much prior
+interpretability work has shown that representations encode rich semantic
+information, suggesting that editing representations might be a more powerful
+alternative. We pursue this hypothesis by developing a family of Representation
+Finetuning (ReFT) methods. ReFT methods operate on a frozen base model and
+learn task-specific interventions on hidden representations. We define a strong
+instance of the ReFT family, Low-rank Linear Subspace ReFT (LoReFT), and we
+identify an ablation of this method that trades some performance for increased
+efficiency. Both are drop-in replacements for existing PEFTs and learn
+interventions that are 15x--65x more parameter-efficient than LoRA. We showcase
+LoReFT on eight commonsense reasoning tasks, four arithmetic reasoning tasks,
+instruction-tuning, and GLUE. In all these evaluations, our ReFTs deliver the
+best balance of efficiency and performance, and almost always outperform
+state-of-the-art PEFTs. We release a generic ReFT training library publicly at
+https://github.com/stanfordnlp/pyreft.},
+ arxiv_url = {https://arxiv.org/pdf/2404.03592v3.pdf},
+ author = {Zhengxuan Wu and Aryaman Arora and Zheng Wang and Atticus Geiger and Dan Jurafsky and Christopher D. Manning and Christopher Potts},
+ github_url = {https://github.com/stanfordnlp/pyreft},
+ title = {ReFT: Representation Finetuning for Language Models},
+ year = {2024}
+}
+
+@article{xu-2023-permutation,
+ abstract = {Revolutionizing the field of deep learning, Transformer-based models have
+achieved remarkable performance in many tasks. Recent research has recognized
+these models are robust to shuffling but are limited to inter-token permutation
+in the forward propagation. In this work, we propose our definition of
+permutation equivariance, a broader concept covering both inter- and intra-
+token permutation in the forward and backward propagation of neural networks.
+We rigorously proved that such permutation equivariance property can be
+satisfied on most vanilla Transformer-based models with almost no adaptation.
+We examine the property over a range of state-of-the-art models including ViT,
+Bert, GPT, and others, with experimental validations. Further, as a
+proof-of-concept, we explore how real-world applications including
+privacy-enhancing split learning, and model authorization, could exploit the
+permutation equivariance property, which implicates wider, intriguing
+application scenarios.},
+ arxiv_url = {https://arxiv.org/pdf/2304.07735v3.pdf},
+ author = {Hengyuan Xu and Liyao Xiang and Hangyu Ye and Dixi Yao and Pengzhi Chu and Baochun Li},
+ github_url = {https://github.com/Doby-Xu/ST},
+ title = {Permutation Equivariance of Transformers and Its Applications},
+ year = {2023}
+}
+
+@article{zhang-2024-spectral,
+ abstract = {Recent developments in Parameter-Efficient Fine-Tuning (PEFT) methods for
+pretrained deep neural networks have captured widespread interest. In this
+work, we study the enhancement of current PEFT methods by incorporating the
+spectral information of pretrained weight matrices into the fine-tuning
+procedure. We investigate two spectral adaptation mechanisms, namely additive
+tuning and orthogonal rotation of the top singular vectors, both are done via
+first carrying out Singular Value Decomposition (SVD) of pretrained weights and
+then fine-tuning the top spectral space. We provide a theoretical analysis of
+spectral fine-tuning and show that our approach improves the rank capacity of
+low-rank adapters given a fixed trainable parameter budget. We show through
+extensive experiments that the proposed fine-tuning model enables better
+parameter efficiency and tuning performance as well as benefits multi-adapter
+fusion.},
+ arxiv_url = {https://arxiv.org/pdf/2405.13952v2.pdf},
+ author = {Fangzhao Zhang and Mert Pilanci},
+ github_url = {https://github.com/pilancilab/spectral_adapter},
+ title = {Spectral Adapter: Fine-Tuning in Spectral Space},
+ year = {2024}
+}
+
+@article{zhu-2020-gap,
+ abstract = {Federated learning frameworks have been regarded as a promising approach to
+break the dilemma between demands on privacy and the promise of learning from
+large collections of distributed data. Many such frameworks only ask
+collaborators to share their local update of a common model, i.e. gradients
+with respect to locally stored data, instead of exposing their raw data to
+other collaborators. However, recent optimization-based gradient attacks show
+that raw data can often be accurately recovered from gradients. It has been
+shown that minimizing the Euclidean distance between true gradients and those
+calculated from estimated data is often effective in fully recovering private
+data. However, there is a fundamental lack of theoretical understanding of how
+and when gradients can lead to unique recovery of original data. Our research
+fills this gap by providing a closed-form recursive procedure to recover data
+from gradients in deep neural networks. We name it Recursive Gradient Attack on
+Privacy (R-GAP). Experimental results demonstrate that R-GAP works as well as
+or even better than optimization-based approaches at a fraction of the
+computation under certain conditions. Additionally, we propose a Rank Analysis
+method, which can be used to estimate the risk of gradient attacks inherent in
+certain network architectures, regardless of whether an optimization-based or
+closed-form-recursive attack is used. Experimental results demonstrate the
+utility of the rank analysis towards improving the network's security. Source
+code is available for download from https://github.com/JunyiZhu-AI/R-GAP.},
+ arxiv_url = {https://arxiv.org/pdf/2010.07733v3.pdf},
+ author = {Junyi Zhu and Matthew Blaschko},
+ github_url = {https://github.com/JunyiZhu-AI/R-GAP},
+ title = {R-GAP: Recursive Gradient Attack on Privacy},
+ year = {2020}
+}
+
+% ===========================================
+% REFERENCE CANDIDATES
+% Additional reference papers for context
+% ===========================================
+
+@article{chaudhry-2018-lifelong,
+ abstract = {In lifelong learning, the learner is presented with a sequence of tasks,
+incrementally building a data-driven prior which may be leveraged to speed up
+learning of a new task. In this work, we investigate the efficiency of current
+lifelong approaches, in terms of sample complexity, computational and memory
+cost. Towards this end, we first introduce a new and a more realistic
+evaluation protocol, whereby learners observe each example only once and
+hyper-parameter selection is done on a small and disjoint set of tasks, which
+is not used for the actual learning experience and evaluation. Second, we
+introduce a new metric measuring how quickly a learner acquires a new skill.
+Third, we propose an improved version of GEM (Lopez-Paz & Ranzato, 2017),
+dubbed Averaged GEM (A-GEM), which enjoys the same or even better performance
+as GEM, while being almost as computationally and memory efficient as EWC
+(Kirkpatrick et al., 2016) and other regularization-based methods. Finally, we
+show that all algorithms including A-GEM can learn even more quickly if they
+are provided with task descriptors specifying the classification tasks under
+consideration. Our experiments on several standard lifelong learning benchmarks
+demonstrate that A-GEM has the best trade-off between accuracy and efficiency.},
+ arxiv_url = {https://arxiv.org/pdf/1812.00420v2.pdf},
+ author = {Arslan Chaudhry and Marc'Aurelio Ranzato and Marcus Rohrbach and Mohamed Elhoseiny},
+ title = {Efﬁcient lifelong learning with a-gem},
+ year = {2018}
+}
