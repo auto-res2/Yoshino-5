@@ -1,37 +1,47 @@
+from __future__ import annotations
 """src/main.py
 Orchestrates the entire continual-learning study.  Usage:
-    python -m src.main
+    python -m src.main   (recommended)
+    python src/main.py   (also supported)
 """
-from __future__ import annotations
-
 import json
 import logging
+import os
 import sys
 import time
 from pathlib import Path
-from typing import Any, Dict, List
+from typing import Any, Dict
 
 import numpy as np
 import torch
 from codecarbon import EmissionsTracker
 
-# local imports – all relative to src/
-from .preprocess import get_benchmark, load_config, set_seed
-from .train import (
+# -----------------------------------------------------------------------------
+# Flexible intra-package import helpers
+# -----------------------------------------------------------------------------
+# Allow running both with `python -m src.main` *and* `python src/main.py` by
+# ensuring that the parent directory (project root) is on `sys.path` so that the
+# absolute `src.*` imports always succeed.
+_PROJECT_ROOT = Path(__file__).resolve().parent.parent
+if str(_PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(_PROJECT_ROOT))
+
+from src.preprocess import get_benchmark, load_config, set_seed  # noqa: E402
+from src.train import (  # noqa: E402
     beam_search_order,
     build_interference_graph,
-    onlinebubbleswap as OnlineBubbleSwap,  # alias for pep8 compatibility
+    OnlineBubbleSwap,
     resnet18_lora_sa,
     train_single_task,
 )
-from .evaluate import verify_implementation, validate_results
+from src.evaluate import verify_implementation, validate_results  # noqa: E402
 
 # -----------------------------------------------------------------------------
 # CONFIGURATION
 # -----------------------------------------------------------------------------
 CFG: Dict[str, Any] = load_config()
 
-# device handling – "auto" in YAML selects cuda when available
+# device handling – "auto" in YAML selects cuda when available else cpu
 if str(CFG["exp"]["device"]).lower() == "auto":
     CFG["exp"]["device"] = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 else:
@@ -41,7 +51,7 @@ else:
 # Experiment 1 – Split-CIFAR-100 (full implementation)
 # -----------------------------------------------------------------------------
 
-def run_experiment1(seed: int) -> Dict[str, Any]:
+def run_experiment1(seed: int):  # → Dict[str, Any]
     set_seed(seed)
     device = CFG["exp"]["device"]
 
@@ -66,21 +76,22 @@ def run_experiment1(seed: int) -> Dict[str, Any]:
             weight_decay=CFG["experiment1"]["optimisation"]["weight_decay"],
         )
 
-        tracker = EmissionsTracker(project_name=f"E1_{method}_seed{seed}")
+        tracker: EmissionsTracker | None
         try:
+            tracker = EmissionsTracker(project_name=f"E1_{method}_seed{seed}")
             tracker.start()
-        except Exception:  # codecarbon may fail on unsupported hardware
+        except Exception:
             logging.warning("CodeCarbon tracker could not start – continuing without CO₂ stats.")
             tracker = None
 
         t0 = time.time()
-        acc_all: List[List[float]] = []
+        acc_all: list[list[float]] = []
         swapper = OnlineBubbleSwap(theta=-0.3, window=256, K=50)
         tasks = list(bench.train_stream)
         if method.startswith("CLIP") and "RANDORDER" not in method:
             tasks = [tasks[i] for i in order]
         elif method == "CLIP_RANDORDER":
-            random.shuffle(tasks)
+            np.random.shuffle(tasks)
 
         for i, task in enumerate(tasks):
             train_single_task(
@@ -96,7 +107,7 @@ def run_experiment1(seed: int) -> Dict[str, Any]:
 
             # evaluate on all seen tasks
             model.eval()
-            seen_acc: List[float] = []
+            seen_acc: list[float] = []
             for seen in tasks[: i + 1]:
                 loader = torch.utils.data.DataLoader(seen.dataset, batch_size=256, shuffle=False)
                 corr = 0
@@ -111,9 +122,15 @@ def run_experiment1(seed: int) -> Dict[str, Any]:
 
         wall = time.time() - t0
         co2 = tracker.stop() if tracker else 0.0
-        results[method] = {"acc": np.array(acc_all), "swaps": swapper.num_swaps, "time": wall, "co2": co2}
+        results[method] = {
+            "acc": np.array(acc_all),
+            "swaps": swapper.num_swaps,
+            "time": wall,
+            "co2": co2,
+        }
 
     return results
+
 
 # -----------------------------------------------------------------------------
 # (Stub) Experiment 2 & 3 – left as exercise, identical structure
@@ -126,6 +143,7 @@ def run_experiment2(seed: int):  # pragma: no cover – refactor only
 def run_experiment3(seed: int):  # pragma: no cover – refactor only
     return {}
 
+
 # -----------------------------------------------------------------------------
 # MAIN
 # -----------------------------------------------------------------------------
@@ -134,7 +152,8 @@ def main() -> None:
     if not verify_implementation():
         sys.exit("✗ Implementation incomplete – aborting.")
 
-    Path(".research/iteration1/images").mkdir(parents=True, exist_ok=True)
+    # All figures / images *must* live under .research/iteration2/images
+    Path(".research/iteration2/images").mkdir(parents=True, exist_ok=True)
 
     all_results: Dict[str, Any] = {"experiment1": []}
     for seed in CFG["exp"]["seeds"]:
