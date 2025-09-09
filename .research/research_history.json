@@ -6,5 +6,82 @@
     "gradient interference forgetting",
     "parameter-efficient adaptation",
     "Split-CIFAR Permuted-MNIST Split-ImageNet"
+  ],
+  "research_study_list": [
+    {
+      "title": "Can Graph Learning Improve Planning in LLM-based Agents?"
+    },
+    {
+      "title": "Discovering Non-monotonic Autoregressive Orderings with Variational Inference"
+    },
+    {
+      "title": "Differentiable Task Graph Learning: Procedural Activity Representation and Online Mistake Detection from Egocentric Videos"
+    },
+    {
+      "title": "Interpretable and Personalized Apprenticeship Scheduling: Learning Interpretable Scheduling Policies from Heterogeneous User Demonstrations"
+    },
+    {
+      "title": "Neural DAG Scheduling via One-Shot Priority Sampling"
+    },
+    {
+      "title": "Linear Mode Connectivity in Multitask and Continual Learning"
+    },
+    {
+      "title": "The Ideal Continual Learner: An Agent That Never Forgets"
+    },
+    {
+      "title": "Recasting Continual Learning as Sequence Modeling"
+    },
+    {
+      "title": "Efficient Continual Learning with Modular Networks and Task-Driven Priors"
+    },
+    {
+      "title": "Compositional Language Continual Learning"
+    },
+    {
+      "title": "Gradient Projection Memory for Continual Learning"
+    },
+    {
+      "title": "Gradient Projection Memory for Continual Learning"
+    },
+    {
+      "title": "Interference and Generalization in Temporal Difference Learning"
+    },
+    {
+      "title": "An Effective Dynamic Gradient Calibration Method for Continual Learning"
+    },
+    {
+      "title": "Measuring Forgetting of Memorized Training Examples"
+    },
+    {
+      "title": "Time- Memory- and Parameter-Efficient Visual Adaptation"
+    },
+    {
+      "title": "Spectral Adapter: Fine-Tuning in Spectral Space"
+    },
+    {
+      "title": "Make Pre-trained Model Reversible: From Parameter to Memory Efficient Fine-Tuning"
+    },
+    {
+      "title": "Structured Unrestricted-Rank Matrices for Parameter Efficient Finetuning"
+    },
+    {
+      "title": "ReFT: Representation Finetuning for Language Models"
+    },
+    {
+      "title": "CrossSplit: Mitigating Label Noise Memorization through Data Splitting"
+    },
+    {
+      "title": "Permutation Equivariance of Transformers and Its Applications"
+    },
+    {
+      "title": "Federated Split Task-Agnostic  Vision Transformer for COVID-19 CXR Diagnosis"
+    },
+    {
+      "title": "Split-Ensemble: Efficient OOD-aware Ensemble via Task and Model Splitting"
+    },
+    {
+      "title": "Self-supervised learning of Split Invariant Equivariant representations"
+    }
   ]
 }
