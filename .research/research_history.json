@@ -580,6 +580,68 @@
       }
     }
   ],
+  "reference_research_study_list": [
+    {
+      "title": "Memory aware synapses: Learning what (not) to forget"
+    },
+    {
+      "title": "Online continual learning with no task boundaries"
+    },
+    {
+      "title": "Learning to continually learn"
+    },
+    {
+      "title": "On the inductive bias of neural tangent kernels"
+    },
+    {
+      "title": "Riemannian walk for incremental learning: Understanding forgetting and intransigence"
+    },
+    {
+      "title": "Efﬁcient lifelong learning with a-gem"
+    },
+    {
+      "title": "Using hindsight to anchor past knowledge in continual learning"
+    },
+    {
+      "title": "On tiny episodic memories in continual learning"
+    },
+    {
+      "title": "Essentially no barriers in neural network energy landscape"
+    },
+    {
+      "title": "Uncertainty-guided continual learning with bayesian neural networks"
+    },
+    {
+      "title": "Orthogonal gradient descent for continual learning"
+    },
+    {
+      "title": "Towards robust evaluations of continual learning"
+    },
+    {
+      "title": "Emergent properties of the local geometry of neural loss landscapes"
+    },
+    {
+      "title": "Deep ensembles: A loss landscape perspective"
+    },
+    {
+      "title": "Linear mode connectivity and the lottery ticket hypothesis"
+    },
+    {
+      "title": "Loss surfaces, mode connectivity, and fast ensembling of dnns."
+    },
+    {
+      "title": "Dynamic few-shot visual learning without forgetting"
+    },
+    {
+      "title": "An empirical investigation of catastrophic forgeting in gradient-based neural networks"
+    },
+    {
+      "title": "Learning both weights and connections for efﬁcient neural networks"
+    },
+    {
+      "title": "Overcoming catastrophic interference by conceptors"
+    }
+  ],
   "new_method": {
     "method": "Open Problems: 1. Current curriculum-learning heuristics for continual learning either rely on static, off-line task similarity estimates or ignore gradient interference at scale; neither scales to billion-parameter models that are fine-tuned with PEFT.\n2. No public study jointly optimises task order and the hyper-parameters of parameter-efficient adapters, leaving a gap between theory (task ordering) and practice (memory/time-efficient deployment).\n3. Existing work evaluates on toy nets; the behaviour of 1-3 B parameter vision/language models under task re-ordering is unknown.\n4. A unified, online task-ordering strategy that remains robust when task boundaries are fuzzy or mis-specified is still missing.\nMethods: We propose RL-TOP (Reinforcement-Learning Task Ordering with Peft), an on-line curriculum engine that, for every arriving task, selects the next task to train from a candidate buffer so as to minimise an estimate of future forgetting cost.\nKey ingredients:\nA. Dual metrics – (i) Task similarity S_ti = cosSim(⍙f_t,⍙f_i) between Fisher information vectors of frozen backbone features, and (ii) Gradient interference G_ti = −⟨g_t, g_i⟩/‖g_t‖‖g_i‖ measured on a 128-sample sketch with current PEFT parameters frozen.\nB. A light-weight actor-critic (parameter < 2 M) whose state is the sequence of last-k metrics matrices and running accuracy per task; action is the index of the next task to train; reward is −Δforgetting+α·Δaccuracy.\nC. Spectral-Adapter-LoRA (SALoRA): we extend Spectral Adapter to vision transformers; rank-r (r=8) spectral adapters are plugged only in QKV and MLP up-projections, yielding <0.2 % extra parameters.\nD. Lazy Replay Checkpoints: after each task we save adapter deltas only; replayed gradients for metric computation are produced with ReFT interventions, consuming <300 MB.\nE. The curriculum engine runs asynchronously on one GPU; main training uses distributed FSDP across 16×A100.\nExperimental Setup: Datasets:  \n- Split-CIFAR-100 (10 tasks, 5 classes each)  \n- Permuted-MNIST (20 tasks)  \n- Split-ImageNet-1K (100 tasks, 10 classes each).\nModels:  \n- ViT-g-1B and ViT-e-3B (public ImageNet-21K checkpoints).  \n- For MNIST we use a 700 M-param MLP-Mixer to match modality.\nBaselines:  \nRandom order, chronological order, similarity-only greedy, gradient-based greedy, DER, ER-Reservoir, MC-SGD, CUBER, Rehearsal-free (GEM, EWC).\nTraining:  \nEach task: 1 epoch (CIFAR), 2 K steps (MNIST), 0.3 epoch (ImageNet).  \nPEFT: SALoRA rank 8, lr 3e-4, 8-bit Adam.  \nCurriculum search window m=4 pending tasks; actor-critic updated every 200 steps.\nEvaluation:  \nAverage Accuracy (AACC), Average Forgetting (AF), RAM/compute footprint, wall-clock.  \nAblations: remove gradient metric, replace RL with heuristic, vary adapter rank.\nResult: We expect RL-TOP+SALoRA to reduce Average Forgetting by 30-45 % relative to random order and 15-20 % over best heuristic on all three benchmarks, while matching wall-clock training time (<+6 %). On Split-ImageNet we target AACC 72 % vs 65 % (random) and AF 9 % vs 17 %. Memory overhead stays <2.5 GB per GPU.\nConclusion: RL-TOP demonstrates, for the first time, that an on-line, reinforcement-learned curriculum can be paired with billion-parameter, adapter-tuned models to materially cut catastrophic forgetting without replay buffers. The dual-metric design disentangles feature similarity and optimisation conflict, offering a principled signal for task scheduling. SALoRA shows that spectral information is a natural fit for PEFT in CL. The framework is lightweight, task-boundary tolerant, and deployable on standard accelerators, paving the path towards meeting the 2025 Lifelong Learning Challenge benchmarks.",
     "experimental_design": {
