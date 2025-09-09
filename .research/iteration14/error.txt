@@ -1,0 +1,29 @@
+Traceback (most recent call last):
+  File "/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/avalanche/models/mobilenetv1.py", line 23, in <module>
+    from pytorchcv.models.mobilenet import DwsConvBlock
+ImportError: cannot import name 'DwsConvBlock' from 'pytorchcv.models.mobilenet' (/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/pytorchcv/models/mobilenet.py)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 15, in <module>
+    from train import ContinualLearner  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/train.py", line 71, in <module>
+    from preprocess import get_cifar100_benchmark  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/preprocess.py", line 3, in <module>
+    from avalanche.benchmarks.classic import SplitCIFAR100
+  File "/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/avalanche/__init__.py", line 1, in <module>
+    from avalanche import benchmarks
+  File "/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/avalanche/benchmarks/__init__.py", line 13, in <module>
+    from .classic import *
+  File "/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/avalanche/benchmarks/classic/__init__.py", line 15, in <module>
+    from .ex_model import *
+  File "/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/avalanche/benchmarks/classic/ex_model.py", line 36, in <module>
+    from avalanche.models import LeNet5, SlimResNet18
+  File "/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/avalanche/models/__init__.py", line 14, in <module>
+    from .mobilenetv1 import MobilenetV1
+  File "/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/avalanche/models/mobilenetv1.py", line 25, in <module>
+    from pytorchcv.models.common import DwsConvBlock
+ImportError: cannot import name 'DwsConvBlock' from 'pytorchcv.models.common' (/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/pytorchcv/models/common/__init__.py)
