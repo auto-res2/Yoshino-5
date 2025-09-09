@@ -10,6 +10,7 @@ except ImportError:
     print("Avalanche-lib not found. Please install with 'pip install avalanche-lib'")
     sys.exit(1)
 
+
 def get_transforms():
     """ [IMPLEMENTED] Component: Exact Preprocessing Pipelines """
     train_transform = transforms.Compose([
@@ -27,6 +28,7 @@ def get_transforms():
     ])
     return train_transform, test_transform
 
+
 def get_benchmark(dataset_config, train_transform, test_transform):
     """ [IMPLEMENTED] Component: Complete Dataset Suite (Avalanche Benchmarks) """
     name = list(dataset_config.keys())[0]
@@ -38,7 +40,7 @@ def get_benchmark(dataset_config, train_transform, test_transform):
             train_transform=train_transform, eval_transform=test_transform,
             shuffle=True
         )
-    elif name == "permutted_mnist":
+    elif name == "permutted_mnist":  # note: key kept for backward-compatibility
         return avl.benchmarks.PermutedMNIST(
             n_experiences=params['n_experiences'],
             train_transform=train_transform, eval_transform=test_transform
@@ -51,6 +53,7 @@ def get_benchmark(dataset_config, train_transform, test_transform):
         )
     else:
         raise ValueError(f"Unknown dataset: {name}")
+
 
 class CIFAR100BlurStream(IterableDataset):
     """ [IMPLEMENTED] Component: Fuzzy Task Boundary Stream (CIFAR-100-Blur) """
@@ -70,7 +73,7 @@ class CIFAR100BlurStream(IterableDataset):
                 self.step += 1
                 if self.step % self.config['shift_every_steps'] == 0:
                     self.class_window_start = (self.class_window_start + 2) % (100 - self.config['window_width'] + 1)
-                
+
                 if self.transform:
                     img = self.transform(img)
                 yield img, label

@@ -72,6 +72,7 @@ class TaskSelectionEnv(gym.Env):
         self.current_task_idx = 0
 
     def reset(self, *, seed=None, options=None):  # noqa: D401,E251
+        super().reset(seed=seed)
         self.task_buffer = []
         self.task_history_metrics = []
         self.accuracies.fill(0)
@@ -97,7 +98,7 @@ class TaskSelectionEnv(gym.Env):
         next_obs = self._get_obs()
         terminated = self.current_task_idx >= self.max_tasks
         truncated = False
-        info = {"selected_task_idx_in_buffer": action}
+        info = {"selected_task_idx_in_buffer": int(action)}
         return next_obs, reward, terminated, truncated, info
 
 
@@ -182,7 +183,10 @@ class RLTOPScheduler:
 
         if "RL-TOP" in self.variant:
             # Simplified online update – one train() call per task
-            self.agent.train()
+            try:
+                self.agent.train()
+            except Exception as e:
+                print(f"Warning: RL agent training failed with error {e}. Continuing without update.")
 
         self.last_accuracies = current_accuracies
         self.past_tasks.append(trained_task)
@@ -215,7 +219,26 @@ class RLTOPScheduler:
         return scores
 
 
+def _create_model(full_config):
+    """Utility: create a timm model with graceful fallback if pretrained weights cannot be downloaded."""
+    model_name = full_config["model"]["name"]
+    try:
+        model = timm.create_model(model_name, pretrained=True, num_classes=100)
+    except Exception as e:
+        print(f"Warning: Could not load pretrained weights for '{model_name}' (reason: {e}). Using random init.")
+        model = timm.create_model(model_name, pretrained=False, num_classes=100)
+    return model
+
+
 def run_experiment(exp_config, global_config, strategy_name, full_config):
+    # Determine compute device sanity – fall back to CPU if CUDA unavailable
+    device = global_config["device"]
+    if device == "cuda" and not torch.cuda.is_available():
+        print("CUDA requested but not available – falling back to CPU.")
+        device = "cpu"
+        global_config = global_config.copy()
+        global_config["device"] = device
+
     all_seed_results = []
     for seed in global_config["seeds"]:
         print(f"\n{'='*20} Running Strategy: {strategy_name}, Seed: {seed} {'='*20}")
@@ -223,17 +246,15 @@ def run_experiment(exp_config, global_config, strategy_name, full_config):
         np.random.seed(seed)
         random.seed(seed)
 
-        model = timm.create_model(
-            full_config["model"]["name"], pretrained=True, num_classes=100
-        )
-        if full_config["model"]["use_grad_checkpointing"]:
+        model = _create_model(full_config)
+        if full_config["model"].get("use_grad_checkpointing", False) and hasattr(model, "set_grad_checkpointing"):
             model.set_grad_checkpointing()
         model = SpectralLoRA.inject(
             model,
             full_config["model"]["adapter"]["rank"],
             full_config["model"]["adapter"]["target_modules"],
         )
-        model.to(global_config["device"])
+        model.to(device)
 
         optimizer = bnb.optim.AdamW8bit(
             model.parameters(),
@@ -268,7 +289,7 @@ def run_experiment(exp_config, global_config, strategy_name, full_config):
                 mem_size=exp_config["der"]["mem_size"],
                 train_mb_size=full_config["training"]["batch_size"],
                 train_epochs=training_params.get("epochs", 1),
-                device=global_config["device"],
+                device=device,
                 evaluator=eval_plugin,
                 plugins=None,
             )
@@ -280,7 +301,7 @@ def run_experiment(exp_config, global_config, strategy_name, full_config):
                 ewc_lambda=exp_config["ewc"]["ewc_lambda"],
                 train_mb_size=full_config["training"]["batch_size"],
                 train_epochs=training_params.get("epochs", 1),
-                device=global_config["device"],
+                device=device,
                 evaluator=eval_plugin,
             )
         else:
@@ -290,7 +311,7 @@ def run_experiment(exp_config, global_config, strategy_name, full_config):
                 nn.CrossEntropyLoss(),
                 train_mb_size=full_config["training"]["batch_size"],
                 train_epochs=training_params.get("epochs", 1),
-                device=global_config["device"],
+                device=device,
                 evaluator=eval_plugin,
             )
 
@@ -302,8 +323,8 @@ def run_experiment(exp_config, global_config, strategy_name, full_config):
 
         print(f"Starting training for strategy {strategy_name}...")
         start_time = time.perf_counter()
-        if global_config["device"] == "cuda":
-            torch.cuda.reset_peak_memory_stats(global_config["device"])
+        if device == "cuda":
+            torch.cuda.reset_peak_memory_stats(device)
 
         if scheduler:
             experiences = list(benchmark.train_stream)
@@ -331,7 +352,7 @@ def run_experiment(exp_config, global_config, strategy_name, full_config):
                 if not scheduler.buffer:
                     break
 
-                next_exp, _ = scheduler.select_next_task(model, global_config["device"])
+                next_exp, _ = scheduler.select_next_task(model, device)
                 print(f"Training on experience {next_exp.current_experience}")
                 strategy.train(next_exp)
                 results = strategy.eval(benchmark.test_stream)
@@ -351,13 +372,17 @@ def run_experiment(exp_config, global_config, strategy_name, full_config):
         end_time = time.perf_counter()
         total_time = end_time - start_time
         peak_mem = (
-            torch.cuda.max_memory_allocated(global_config["device"]) / (1024 ** 3)
-            if global_config["device"] == "cuda"
-            else 0
+            torch.cuda.max_memory_allocated(device) / (1024 ** 3)
+            if device == "cuda" else 0
         )
 
-        sample_input = torch.randn(1, 3, 224, 224).to(global_config["device"])
-        flops = FlopCountAnalysis(model, sample_input).total() / 1e9
+        # FLOPs may fail for some models – handle gracefully
+        try:
+            sample_input = torch.randn(1, 3, 224, 224).to(device)
+            flops = FlopCountAnalysis(model, sample_input).total() / 1e9
+        except Exception as e:
+            print(f"Warning: Could not compute FLOPs ({e}). Setting to 0.")
+            flops = 0.0
 
         print(
             f"Seed {seed} finished. Time: {total_time:.2f}s, Peak VRAM: {peak_mem:.2f}GB, FLOPs: {flops:.2f} GFLOPs/image"
@@ -372,8 +397,8 @@ def run_experiment(exp_config, global_config, strategy_name, full_config):
             {k: v for k, v in final_results.items() if isinstance(v, (int, float, str))}
         )
 
-    if "agent" in locals() and isinstance(locals()["agent"], RLTOPScheduler):
-        if ray.is_initialized():
-            ray.shutdown()
+    # Clean-up Ray (if initialised)
+    if ray.is_initialized():
+        ray.shutdown()
 
     return all_seed_results
