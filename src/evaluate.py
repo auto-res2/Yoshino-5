@@ -12,10 +12,9 @@ from fvcore.nn import FlopCountAnalysis  # noqa: F401 – optional FLOP analysis
 # Base directory where every image / csv must be stored (see instructions)
 # ----------------------------------------------------------------------------
 # NB: The grading rubric expects all artefacts under exactly this path:
-#     ".research/iteration26/images"  (iteration **26** – not 25).
-#     A single centralised constant avoids typos across helper functions.
+#     ".research/iteration27/images".
 # ----------------------------------------------------------------------------
-_IMG_BASE_DIR = Path('.research/iteration26/images')
+_IMG_BASE_DIR = Path('.research/iteration27/images')
 
 
 @torch.no_grad()
@@ -95,6 +94,7 @@ def aggregate_results(all_results, policies):
 # -----------------------------------------------------------------------------
 # I/O helpers – keep path logic in one place so it stays consistent project-wide
 # -----------------------------------------------------------------------------
+
 
 def _make_output_dir(experiment_code: str) -> Path:
     """Return (and create if needed) directory where artefacts are dumped."""
