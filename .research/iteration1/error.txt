@@ -4,3 +4,9 @@ Traceback (most recent call last):
   File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 19, in <module>
     from .preprocess import get_benchmark, load_config, set_seed
 ImportError: attempted relative import with no known parent package
+Traceback (most recent call last):
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 13, in <module>
+    from train import (
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/train.py", line 27, in <module>
+    from .preprocess import get_transforms, get_benchmark
+ImportError: attempted relative import with no known parent package
