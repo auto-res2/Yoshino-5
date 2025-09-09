@@ -1,0 +1,36 @@
+Traceback (most recent call last):
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 13, in <module>
+    from preprocess import get_benchmark
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/preprocess.py", line 28, in <module>
+    from torchvision import transforms  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/torchvision/__init__.py", line 6, in <module>
+    from torchvision import _meta_registrations, datasets, io, models, ops, transforms, utils
+  File "/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/torchvision/models/__init__.py", line 2, in <module>
+    from .convnext import *
+  File "/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/torchvision/models/convnext.py", line 8, in <module>
+    from ..ops.misc import Conv2dNormActivation, Permute
+  File "/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/torchvision/ops/__init__.py", line 1, in <module>
+    from ._register_onnx_ops import _register_custom_op
+  File "/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/torchvision/ops/_register_onnx_ops.py", line 5, in <module>
+    from torch.onnx import symbolic_opset11 as opset11
+  File "/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/torch/onnx/__init__.py", line 46, in <module>
+    from ._internal.exporter import (  # usort:skip. needs to be last to avoid circular import
+  File "/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/torch/onnx/_internal/exporter.py", line 42, in <module>
+    from torch.onnx._internal.fx import (
+  File "/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/torch/onnx/_internal/fx/__init__.py", line 1, in <module>
+    from .patcher import ONNXTorchPatcher
+  File "/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/torch/onnx/_internal/fx/patcher.py", line 11, in <module>
+    import transformers  # type: ignore[import]
+    ^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/transformers/__init__.py", line 27, in <module>
+    from . import dependency_versions_check
+  File "/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/transformers/dependency_versions_check.py", line 16, in <module>
+    from .utils.versions import require_version, require_version_core
+  File "/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/transformers/utils/__init__.py", line 24, in <module>
+    from .auto_docstring import (
+  File "/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/transformers/utils/auto_docstring.py", line 30, in <module>
+    from .generic import ModelOutput
+  File "/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/transformers/utils/generic.py", line 486, in <module>
+    _torch_pytree.register_pytree_node(
+TypeError: _register_pytree_node() got an unexpected keyword argument 'serialized_type_name'
