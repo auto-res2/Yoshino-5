@@ -7,6 +7,7 @@ CIFAR100_STD = (0.2675, 0.2565, 0.2761)
 MNIST_MEAN = (0.1307,)
 MNIST_STD = (0.3081,)
 
+
 def _get_transforms(dataset_name, image_size, is_train):
     if 'cifar' in dataset_name:
         mean, std = CIFAR100_MEAN, CIFAR100_STD
@@ -32,12 +33,13 @@ def _get_transforms(dataset_name, image_size, is_train):
         ])
     raise ValueError(f"Transforms for dataset {dataset_name} not defined.")
 
+
 def get_benchmark(config):
-    """Factory function to get the specified benchmark."""
+    """Factory function to get the specified benchmark. Returns a benchmark object."""
     dataset_name = config.dataset.lower()
     train_transform = _get_transforms(dataset_name, config.image_size, is_train=True)
     eval_transform = _get_transforms(dataset_name, config.image_size, is_train=False)
-    
+
     if 'split_cifar100' in dataset_name:
         benchmark = SplitCIFAR100(
             n_experiences=config.num_tasks,
@@ -55,7 +57,9 @@ def get_benchmark(config):
     else:
         raise ValueError(f"Unknown dataset: {config.dataset}")
 
-    if hasattr(config, 'validation_size') and config.validation_size > 0:
-        return benchmark_with_validation_stream(benchmark, validation_size=config.validation_size)
+    # Optionally add a validation stream – Avalanche returns a *new benchmark* with an
+    # additional validation stream, so we just overwrite the reference.
+    if getattr(config, 'validation_size', 0) and config.validation_size > 0:
+        benchmark = benchmark_with_validation_stream(benchmark, validation_size=config.validation_size)
 
-    return benchmark, None
+    return benchmark

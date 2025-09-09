@@ -8,6 +8,9 @@ import matplotlib.pyplot as plt
 from pathlib import Path
 from fvcore.nn import FlopCountAnalysis
 
+# Base directory where every image / csv must be stored (see instructions)
+_IMG_BASE_DIR = Path('.research/iteration24/images')
+
 @torch.no_grad()
 def evaluate_on_all_tasks(model, test_stream, device):
     """Evaluates the model on the test sets of all tasks seen so far."""
@@ -51,6 +54,7 @@ class ContinualMetrics:
         af /= (self.num_tasks - 1) if self.num_tasks > 1 else 1.0
         return {'AACC': aacc, 'AF': af}
 
+
 def aggregate_results(all_results, policies):
     """Computes summary statistics."""
     summary = defaultdict(lambda: defaultdict(list))
@@ -73,10 +77,18 @@ def aggregate_results(all_results, policies):
     print('='*50 + '\n')
     return df
 
+
+def _make_output_dir(experiment_code: str) -> Path:
+    """Utility that returns (and creates) the directory in which to dump artefacts for
+    this experiment run – centralised here to ensure consistency across helpers."""
+    out_dir = _IMG_BASE_DIR / experiment_code
+    out_dir.mkdir(parents=True, exist_ok=True)
+    return out_dir
+
+
 def plot_results(summary_df: pd.DataFrame, experiment_code: str):
     """Generates and saves a bar plot of AACC and AF."""
-    output_dir = Path(f'../.research/iteration23/images/{experiment_code}')
-    output_dir.mkdir(parents=True, exist_ok=True)
+    output_dir = _make_output_dir(experiment_code)
 
     fig, axes = plt.subplots(1, 2, figsize=(12, 5), dpi=150)
     fig.suptitle(f'Performance Summary - {experiment_code}')
@@ -100,9 +112,9 @@ def plot_results(summary_df: pd.DataFrame, experiment_code: str):
         print(f"Failed to save plot: {e}")
     plt.close(fig)
 
+
 def save_results_csv(raw_results_list: list, summary_df: pd.DataFrame, experiment_code: str):
-    output_dir = Path(f'../.research/iteration23/images/{experiment_code}')
-    output_dir.mkdir(parents=True, exist_ok=True)
+    output_dir = _make_output_dir(experiment_code)
     pd.DataFrame(raw_results_list).to_csv(output_dir / 'raw_results.csv', index=False)
     summary_df.to_csv(output_dir / 'summary_results.csv', index=False)
     print(f"Results CSVs saved in {output_dir}")
