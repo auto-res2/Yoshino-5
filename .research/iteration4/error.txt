@@ -15,3 +15,7 @@ Traceback (most recent call last):
     if weight_decay < 0.0:
        ^^^^^^^^^^^^^^^^^^
 TypeError: '<' not supported between instances of 'str' and 'float'
+Traceback (most recent call last):
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 14, in <module>
+    from train import (
+ImportError: cannot import name 'run_experiment' from 'train' (/home/runner/work/Yoshino-5/Yoshino-5/src/train.py)
