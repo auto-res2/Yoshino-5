@@ -1,0 +1,7 @@
+policy,seed,AACC,AF,error
+random,12,0,100,Current CUDA Device does not support bfloat16. Please switch dtype to float16.
+random,35,0,100,Current CUDA Device does not support bfloat16. Please switch dtype to float16.
+random,71,0,100,Current CUDA Device does not support bfloat16. Please switch dtype to float16.
+rl_top,12,0,100,"The shape of the mask [4] at index 0 does not match the shape of the indexed tensor [1, 4] at index 0"
+rl_top,35,0,100,"The shape of the mask [4] at index 0 does not match the shape of the indexed tensor [1, 4] at index 0"
+rl_top,71,0,100,"The shape of the mask [4] at index 0 does not match the shape of the indexed tensor [1, 4] at index 0"
