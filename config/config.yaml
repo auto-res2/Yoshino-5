@@ -3,13 +3,13 @@ dataset:
   name: "Split-CIFAR-100"
   path: "./data"
   num_tasks: 10
-  classes_per_task: 10 # CIFAR-100 has 100 classes, 10 tasks means 10 classes per task
+  classes_per_task: 10  # CIFAR-100 has 100 classes, 10 tasks means 10 classes per task
 
 # Model Configuration
 model:
-  name: "vit_small_patch16_224" # Using a smaller ViT for demonstration
+  name: "vit_small_patch16_224"  # Using a smaller ViT for demonstration
   pretrained: True
-  num_classes: 100 # Total classes
+  num_classes: 100  # Total classes
 
 # PEFT Configuration (SALoRA)
 peft:
@@ -26,16 +26,16 @@ training:
 
 # RL Agent Configuration
 rl_agent:
-  state_dim: 36 # Placeholder: (m*m S_ti + m*m G_ti + m accuracies) for m=4 -> 16+16+4 = 36
-  action_dim: 4 # Corresponds to search_window_m
+  state_dim: 36  # Placeholder: (m*m S_ti + m*m G_ti + m accuracies) for m=4 -> 16+16+4 = 36
+  action_dim: 4  # Corresponds to search_window_m
   actor_lr: 1.0e-4
   critic_lr: 1.0e-4
-  gamma: 0.99 # Discount factor
-  update_interval: 200 # steps
-  search_window_m: 4 # Number of candidate tasks to choose from
+  gamma: 0.99  # Discount factor
+  update_interval: 200  # steps
+  search_window_m: 4  # Number of candidate tasks to choose from
 
 # Paths
 paths:
-  output_dir: ".research/iteration7"
-  image_dir: ".research/iteration7/images"
+  output_dir: ".research/iteration8"
+  image_dir: ".research/iteration8/images"
   model_dir: "./models"
