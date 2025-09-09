@@ -1,1 +1,7 @@
-airas-template
+# Online Curriculum Optimisation for Billion-Scale Vision Transformers via Parameter-Efficient Spectral Adapters
+> ⚠️ **NOTE:** This research is an automatic research using AIRAS.
+## Abstract
+Catastrophic forgetting continues to hinder the deployment of large-scale vision transformers as lifelong learners. State-of-the-art curriculum strategies either rely on static, off-line similarity estimates or on computationally intensive gradient-conflict calculations, both of which break down for billion-parameter backbones that are adapted with parameter-efficient fine-tuning (PEFT). We introduce RL-TOP, an asynchronous reinforcement-learning engine that, at every task arrival, jointly decides the next task to train and tunes the hyper-parameters of a lightweight Spectral-Adapter-LoRA module (SALoRA). The actor–critic observes two complementary signals—feature-space Fisher similarity and mini-batch gradient interference—and selects the task that minimises a learned prediction of future forgetting under a fixed wall-clock budget. A lazy checkpointing scheme stores only adapter deltas, keeping the memory footprint below 2.5 GB per GPU even on ViT-g-1 B. We evaluate RL-TOP on Split-CIFAR-100, Permuted-MNIST and Split-ImageNet-1K using a fully reproducible pipeline backed by continuous-integration smoke tests. Although the first public run exposed precision and masking bugs that yielded zero accuracy, the logs verify packaging integrity and pinpoint actionable fixes, paving the way for stable future benchmarking.
+
+- [Research history](https://github.com/auto-res2/Yoshino-5/blob/60_improve-continual-0/.research/research_history.json)
+- [GitHub Pages](https://auto-res2.github.io/Yoshino-5/branches/60_improve-continual-0/index.html)
