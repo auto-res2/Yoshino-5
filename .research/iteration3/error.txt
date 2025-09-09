@@ -1,0 +1,43 @@
+/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/torch/cuda/__init__.py:63: FutureWarning: The pynvml package is deprecated. Please install nvidia-ml-py instead. If you did not install pynvml directly, please report this to the maintainers of the package that installed pynvml for you.
+  import pynvml  # type: ignore[import]
+  0%|          | 0.00/169M [00:00<?, ?B/s]  1%|          | 1.80M/169M [00:00<00:09, 18.0MB/s]  6%|▌         | 10.1M/169M [00:00<00:02, 56.3MB/s] 12%|█▏        | 20.0M/169M [00:00<00:01, 75.4MB/s] 18%|█▊        | 29.6M/169M [00:00<00:01, 83.6MB/s] 23%|██▎       | 38.7M/169M [00:00<00:01, 86.2MB/s] 29%|██▉       | 49.1M/169M [00:00<00:01, 92.4MB/s] 35%|███▍      | 58.9M/169M [00:00<00:01, 94.2MB/s] 41%|████      | 68.5M/169M [00:00<00:01, 94.5MB/s] 47%|████▋     | 78.6M/169M [00:00<00:00, 96.5MB/s] 53%|█████▎    | 89.3M/169M [00:01<00:00, 99.5MB/s] 60%|█████▉    | 101M/169M [00:01<00:00, 104MB/s]   66%|██████▌   | 111M/169M [00:01<00:00, 104MB/s] 72%|███████▏  | 122M/169M [00:01<00:00, 105MB/s] 79%|███████▉  | 133M/169M [00:01<00:00, 108MB/s] 85%|████████▌ | 144M/169M [00:01<00:00, 107MB/s] 92%|█████████▏| 155M/169M [00:01<00:00, 108MB/s] 98%|█████████▊| 166M/169M [00:01<00:00, 109MB/s]100%|██████████| 169M/169M [00:01<00:00, 97.5MB/s]
+  0%|          | 0.00/44.7M [00:00<?, ?B/s] 58%|█████▊    | 26.1M/44.7M [00:00<00:00, 273MB/s]100%|██████████| 44.7M/44.7M [00:00<00:00, 280MB/s]
+Traceback (most recent call last):
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 179, in <module>
+    main()
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 160, in main
+    all_results["experiment1"].append(run_experiment1(seed))
+                                      ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 62, in run_experiment1
+    graph = build_interference_graph(bench.train_stream, resnet18_lora_sa, 0.01, device)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/train.py", line 88, in build_interference_graph
+    model: nn.Module = model_fn(lora_r=64, pretrained=True).to(device)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/train.py", line 63, in resnet18_lora_sa
+    backbone.apply(lambda m: _inject_lora(m, lora_r))
+  File "/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1061, in apply
+    module.apply(fn)
+  File "/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1061, in apply
+    module.apply(fn)
+  File "/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1061, in apply
+    module.apply(fn)
+  File "/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1062, in apply
+    fn(self)
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/train.py", line 63, in <lambda>
+    backbone.apply(lambda m: _inject_lora(m, lora_r))
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/train.py", line 43, in _inject_lora
+    return get_peft_model(module, cfg)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/peft/mapping_func.py", line 115, in get_peft_model
+    return PeftModel(
+           ^^^^^^^^^^
+  File "/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/peft/peft_model.py", line 130, in __init__
+    self.base_model = cls(model, {adapter_name: peft_config}, adapter_name)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/peft/tuners/tuners_utils.py", line 209, in __init__
+    self.inject_adapter(self.model, adapter_name, low_cpu_mem_usage=low_cpu_mem_usage, state_dict=state_dict)
+  File "/home/runner/work/_tool/Python/3.11.13/x64/lib/python3.11/site-packages/peft/tuners/tuners_utils.py", line 667, in inject_adapter
+    raise ValueError(error_msg)
+ValueError: No modules were targeted for adaptation. This might be caused by a combination of mismatched target modules and excluded modules. Please check your `target_modules` and `exclude_modules` configuration. You may also have only targeted modules that are marked to be saved (`modules_to_save`).
