@@ -1,24 +1,13 @@
-# --- Core ML & CL Frameworks ---
-# For Tesla-T4 with CUDA 11.8 wheels (CPU fallback if CUDA unavailable)
 torch==2.1.0
 torchvision==0.16.0
-
-# Avalanche ≥ 0.6.0 is the first release that ships Python 3.11 wheels
 avalanche-lib==0.6.0
-
-# --- Model & PEFT ---
 timm==1.0.7
 peft==0.10.0
 bitsandbytes==0.42.0
-
-# --- Utilities & Analysis ---
 fvcore==0.1.5.post20221221
 PyYAML==6.0.1
 pandas==2.2.1
 numpy==1.26.4
 scipy==1.11.4
 matplotlib==3.8.0
-tqdm
-
-# --- Testing ---
-pytest
+tqdm==4.66.2

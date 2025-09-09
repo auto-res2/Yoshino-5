@@ -1,18 +1,21 @@
-experiment_name: 'exp2_split_cifar100'
-description: 'Full Split-CIFAR-100 benchmark to reproduce headline claims.'
-dataset: 'split_cifar100'
-seeds: [12, 35, 71, 123, 2025]
-policies: ['random', 'similarity_greedy', 'er_500', 'rl_top']
+experiment_code: 'exp2_split_cifar100'
+experiment_name: 'Full Split-CIFAR-100 benchmark (headline claim)'
+description: 'Reproduces the headline AACC/AF claims on Split-CIFAR-100 with a ViT-Base model.'
+
+# Execution
 device: 'cuda'
-log_to_wandb: false
+# seed and policy will be set by main.py
 
 # Dataset
+dataset: 'split_cifar100'
 num_tasks: 10
 classes_per_task: 5
 dataset_root: './data'
+validation_size: 0.1
 
-# Model
+# Model (ViT-Base)
 model_name: 'vit_base_patch16_224.augreg_in21k_ft_in1k'
+image_size: 224
 salora_rank: 4
 salora_alpha: 16
 salora_dropout: 0.1
@@ -21,8 +24,7 @@ salora_dropout: 0.1
 epochs_per_task: 1
 train_batch_size: 32
 eval_batch_size: 128
-grad_accum_steps: 4
-optimizer: 'AdamW8bit' # Use 8-bit optimizer
+optimizer: 'AdamW8bit'
 lr: 0.0003
 betas: [0.9, 0.95]
 weight_decay: 0.01
@@ -33,13 +35,6 @@ precision: 'bf16'
 search_window_m: 4
 actor_critic_hidden_dim: 128
 a2c_gamma: 0.99
-exploration_eps_start: 0.4
-exploration_eps_end: 0.05
 
 # Baselines
 er_buffer_size: 500
-
-# Validation
-results_gate:
-  aacc_min: 75.0
-  af_max: 8.0
