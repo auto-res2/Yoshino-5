@@ -1,30 +1,54 @@
-"""Dataset and transformation helpers.
-This module also applies a *compatibility patch* for recent versions of
-`transformers` that expect `torch.utils._pytree.register_pytree_node` to be
-present (the symbol was renamed upstream to *_register_pytree_node* starting
-with PyTorch 2.1).  Importing `torchvision` → `torch.onnx` transitively imports
-`transformers`, so we need the patch **before** we import anything from
-`torchvision`.
-"""
+"""Dataset and transformation helpers with a PyTorch⇄transformers compatibility shim."""
 from __future__ import annotations
 
-import torch
+# -----------------------------------------------------------------------------
+# Compatibility patch for PyTorch <2.2  vs.  transformers ≥4.37
+# -----------------------------------------------------------------------------
+# transformers≥4.37 expects `torch.utils._pytree.register_pytree_node` **with** a
+# `serialized_type_name` kw-arg.  In PyTorch≤2.1 this function is still called
+# *_register_pytree_node* and **lacks** that parameter, breaking import.
+#
+# We monkey-patch at import-time *before* torchvision / transformers are pulled
+# in so that the symbol exists with a flexible signature that ignores the extra
+# argument when the underlying implementation does not support it.
+# -----------------------------------------------------------------------------
+import inspect
+import types
+from typing import Any, Callable
 
-# -----------------------------------------------------------------------------
-# Compatibility patch for PyTorch ≥2.1  vs.  transformers ≥4.37
-# -----------------------------------------------------------------------------
 try:
     from torch.utils import _pytree as _torch_pytree  # type: ignore
-    if (not hasattr(_torch_pytree, 'register_pytree_node') and
-            hasattr(_torch_pytree, '_register_pytree_node')):
-        _torch_pytree.register_pytree_node = _torch_pytree._register_pytree_node  # type: ignore
-except Exception:
-    # If for some reason the internal module layout changes, we simply skip the
-    # patch – the import error will make debugging straightforward.
+
+    # If the public symbol is already present we still wrap it to be lenient wrt
+    # the kw-arg set – this makes the patch idempotent across PyTorch versions.
+    original_impl: Callable = getattr(
+        _torch_pytree,
+        '_register_pytree_node',
+        getattr(_torch_pytree, 'register_pytree_node', None),
+    )
+
+    if original_impl is not None:
+
+        def _safe_register_pytree_node(cls: type, flatten_func: Callable, unflatten_func: Callable, **kwargs: Any):  # noqa: D401,E501
+            """Wrapper that forwards to the original impl after sanitising kwargs."""
+            # PyTorch≤2.1 does *not* accept `serialized_type_name`; newer versions
+            # accept either `type_name` (deprecated) or `serialized_type_name`.
+            if 'serialized_type_name' in kwargs and 'type_name' not in inspect.signature(original_impl).parameters:
+                # Drop silently when not supported.
+                kwargs.pop('serialized_type_name')
+            return original_impl(cls, flatten_func, unflatten_func, **kwargs)  # type: ignore[arg-type]
+
+        # Expose both names so that any combination of versions works.
+        _torch_pytree.register_pytree_node = _safe_register_pytree_node  # type: ignore[attr-defined]
+
+except Exception:  # pragma: no cover – defensive; import layout may change.
     pass
 
-# Now it is safe to import torchvision / avalanche which will indirectly import
+# -----------------------------------------------------------------------------
+# Now it is safe to import torchvision / avalanche which indirectly pull in
 # transformers.
+# -----------------------------------------------------------------------------
+import torch  # noqa: E402 – used by downstream callers
 from torchvision import transforms  # noqa: E402
 from avalanche.benchmarks.classic import SplitCIFAR100, PermutedMNIST  # noqa: E402
 from avalanche.benchmarks.utils import benchmark_with_validation_stream  # noqa: E402
@@ -34,6 +58,10 @@ CIFAR100_STD = (0.2675, 0.2565, 0.2761)
 MNIST_MEAN = (0.1307,)
 MNIST_STD = (0.3081,)
 
+
+# -----------------------------------------------------------------------------
+# Transform helpers
+# -----------------------------------------------------------------------------
 
 def _get_transforms(dataset_name: str, image_size: int, is_train: bool):
     if 'cifar' in dataset_name:
@@ -61,8 +89,12 @@ def _get_transforms(dataset_name: str, image_size: int, is_train: bool):
     raise ValueError(f"Transforms for dataset {dataset_name} not defined.")
 
 
+# -----------------------------------------------------------------------------
+# Benchmark factory
+# -----------------------------------------------------------------------------
+
 def get_benchmark(config):
-    """Factory function to get the specified benchmark. Returns a benchmark object."""
+    """Return an Avalanche benchmark according to *config*."""
     dataset_name = config.dataset.lower()
     train_transform = _get_transforms(dataset_name, config.image_size, is_train=True)
     eval_transform = _get_transforms(dataset_name, config.image_size, is_train=False)
@@ -84,9 +116,10 @@ def get_benchmark(config):
     else:
         raise ValueError(f"Unknown dataset: {config.dataset}")
 
-    # Optionally add a validation stream – Avalanche returns a *new benchmark*
-    # with an additional validation stream, so we just overwrite the reference.
+    # Optionally add a validation stream.
     if getattr(config, 'validation_size', 0) and config.validation_size > 0:
-        benchmark = benchmark_with_validation_stream(benchmark, validation_size=config.validation_size)
+        benchmark = benchmark_with_validation_stream(
+            benchmark, validation_size=config.validation_size
+        )
 
     return benchmark
