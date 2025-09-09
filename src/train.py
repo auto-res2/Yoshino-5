@@ -12,33 +12,65 @@ import copy
 # --- SALoRA Implementation (Conceptual) ---
 # This is a simplified placeholder for the actual SALoRA implementation.
 class SALoRALayer(nn.Module):
-    def __init__(self, in_features, out_features, rank=8, alpha=16.0):
+    """A minimal LoRA-style adapter used by SALoRA.
+
+    It simply projects the input through A (down-projection) and B (up-projection)
+    and rescales the result by ``alpha/rank``.
+    """
+
+    def __init__(self, in_features: int, out_features: int, rank: int = 8, alpha: float = 16.0):
         super().__init__()
-        self.lora_a = nn.Parameter(torch.randn(in_features, rank))
+        self.lora_a = nn.Parameter(torch.randn(in_features, rank) * 0.02)
         self.lora_b = nn.Parameter(torch.zeros(rank, out_features))
+        # the original LoRA paper rescales by alpha / r
         self.scale = alpha / rank
 
-    def forward(self, x):
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
         return self.scale * (x @ self.lora_a @ self.lora_b)
 
-def add_salora_to_model(model, rank=8):
-    """
-    Injects SALoRA layers into the QKV and MLP up-projections of a ViT model.
-    """
-    for block in model.blocks:
-        # Target QKV linear layer
-        qkv = block.attn.qkv
-        salora_qkv = SALoRALayer(qkv.in_features, qkv.out_features, rank=rank)
-        # This is a simplified monkey-patch. A real implementation would use hooks.
-        original_qkv_forward = qkv.forward
-        qkv.forward = lambda x: original_qkv_forward(x) + salora_qkv(x)
 
-        # Target MLP up-projection
+def _register_salora(block: nn.Module, in_proj: nn.Linear, salora_layer: nn.Module, attr_name: str):
+    """Utility to (1) move the SALoRA layer to the same device/dtype as the parent
+    linear layer, (2) register it as a sub-module of ``block`` (so its parameters
+    are returned by ``model.parameters()`` and moved by ``model.to(device)``), and
+    (3) patch the forward function of the target projection.
+    """
+
+    # 1.  Ensure the adapter lives on the same device / dtype as the original layer
+    salora_layer = salora_layer.to(in_proj.weight.device, dtype=in_proj.weight.dtype)
+
+    # 2.  Register – this is crucial so that the optimiser can see the new params
+    setattr(block, attr_name, salora_layer)
+
+    # 3.  Monkey-patch the forward of the *Linear* projection to add the adapter
+    original_forward = in_proj.forward
+
+    def patched_forward(x: torch.Tensor):  # noqa: D401 – simple wrapper
+        return original_forward(x) + salora_layer(x)
+
+    in_proj.forward = patched_forward
+
+
+def add_salora_to_model(model: nn.Module, rank: int = 8, alpha: float = 16.0):
+    """Inject SALoRA adapters into every Transformer block of a timm ViT model.
+
+    The adapters are added to both:
+      • the QKV projection (``block.attn.qkv``)
+      • the MLP up-projection (``block.mlp.fc1``)
+
+    The function returns the patched model for convenience.
+    """
+    for idx, block in enumerate(model.blocks):
+        # ---- QKV adapter ----
+        qkv = block.attn.qkv
+        salora_qkv = SALoRALayer(qkv.in_features, qkv.out_features, rank=rank, alpha=alpha)
+        _register_salora(block, qkv, salora_qkv, f"salora_qkv_{idx}")
+
+        # ---- MLP adapter ----
         fc1 = block.mlp.fc1
-        salora_mlp = SALoRALayer(fc1.in_features, fc1.out_features, rank=rank)
-        original_fc1_forward = fc1.forward
-        fc1.forward = lambda x: original_fc1_forward(x) + salora_mlp(x)
-    
+        salora_fc1 = SALoRALayer(fc1.in_features, fc1.out_features, rank=rank, alpha=alpha)
+        _register_salora(block, fc1, salora_fc1, f"salora_fc1_{idx}")
+
     print(f"Added SALoRA layers with rank={rank} to the model.")
     return model
 
@@ -87,6 +119,7 @@ class RLTOPAgent:
         state = torch.FloatTensor(state).to(self.device)
         next_state = torch.FloatTensor(next_state).to(self.device)
         reward = torch.tensor(reward, dtype=torch.float32).to(self.device)
+        done = torch.tensor(done, dtype=torch.float32).to(self.device)
         
         # Critic update
         value = self.critic(state)
@@ -106,6 +139,7 @@ class RLTOPAgent:
         self.optimizer_actor.step()
 
 # --- Metric Calculation ---
+
 def _get_gradients(model, data_loader, device):
     """Helper to compute gradients for a small batch."""
     model.train()
@@ -123,14 +157,16 @@ def _get_gradients(model, data_loader, device):
             grads.append(param.grad.view(-1))
     return torch.cat(grads)
 
+
 def compute_gradient_interference(model, loader1, loader2, device):
     """Computes gradient interference G_ti = -cosSim(g_t, g_i)."""
-    model_copy = copy.deepcopy(model)
+    model_copy = copy.deepcopy(model).to(device)
     grad1 = _get_gradients(model_copy, loader1, device)
     grad2 = _get_gradients(model_copy, loader2, device)
     
     interference = -F.cosine_similarity(grad1, grad2, dim=0)
     return interference.item()
+
 
 def compute_fisher_similarity(model, loader1, loader2, device):
     """
@@ -138,9 +174,9 @@ def compute_fisher_similarity(model, loader1, loader2, device):
     Simplified proxy: cosine similarity of gradients on the backbone.
     A true Fisher implementation is more involved.
     """
-    model_copy = copy.deepcopy(model)
+    model_copy = copy.deepcopy(model).to(device)
     # Freeze the head for backbone gradients
-    if hasattr(model_copy, 'head'):
+    if hasattr(model_copy, 'head') and isinstance(model_copy.head, nn.Module):
         for param in model_copy.head.parameters():
             param.requires_grad = False
     
@@ -148,7 +184,7 @@ def compute_fisher_similarity(model, loader1, loader2, device):
     grad2 = _get_gradients(model_copy, loader2, device)
 
     # Unfreeze head
-    if hasattr(model_copy, 'head'):
+    if hasattr(model_copy, 'head') and isinstance(model_copy.head, nn.Module):
         for param in model_copy.head.parameters():
             param.requires_grad = True
             
@@ -156,11 +192,13 @@ def compute_fisher_similarity(model, loader1, loader2, device):
     return similarity.item()
 
 # --- Main Training Function ---
+
 def get_optimizer(model, config):
     if config['training']['optimizer'].lower() == 'adam8bit':
         return bnb.optim.Adam8bit(model.parameters(), lr=config['training']['learning_rate'])
     else:
         return optim.Adam(model.parameters(), lr=config['training']['learning_rate'])
+
 
 def train_task(model, train_loader, optimizer, device, epochs=1):
     """Trains the model on a single task."""
