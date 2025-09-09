@@ -1,0 +1,1579 @@
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./paper.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo))
+(./agents4science_2025.sty
+(/usr/share/texlive/texmf-dist/tex/latex/environ/environ.sty
+(/usr/share/texlive/texmf-dist/tex/latex/trimspaces/trimspaces.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/lineno/lineno.sty
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty))))
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/units/nicefrac.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype-pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+No file paper.aux.
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: letterpaper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(92.14519pt, 430.00462pt, 92.14519pt)
+* v-part:(T,H,B)=(95.39737pt, 556.47656pt, 143.09605pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=430.00462pt
+* \textheight=556.47656pt
+* \oddsidemargin=19.8752pt
+* \evensidemargin=19.8752pt
+* \topmargin=-13.87262pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+*geometry* verbose mode - [ newgeometry ] result:
+* driver: pdftex
+* paper: letterpaper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(108.405pt, 397.48499pt, 108.40501pt)
+* v-part:(T,H,B)=(72.26999pt, 650.43pt, 72.27pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=397.48499pt
+* \textheight=650.43pt
+* \oddsidemargin=36.13501pt
+* \evensidemargin=36.13501pt
+* \topmargin=-37.0pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg)
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd)
+
+Package natbib Warning: Citation `liao-2023-make' on page 1 undefined on input 
+line 85.
+
+
+Package natbib Warning: Citation `wu-2024-reft' on page 1 undefined on input li
+ne 85.
+
+
+Package natbib Warning: Citation `mercea-2024-time' on page 1 undefined on inpu
+t line 85.
+
+
+Package natbib Warning: Citation `ramasesh-2020-anatomy' on page 1 undefined on
+ input line 85.
+
+
+Package natbib Warning: Citation `lin-2023-theory' on page 1 undefined on input
+ line 85.
+
+
+Package natbib Warning: Citation `bengio-2020-interference' on page 1 undefined
+ on input line 87.
+
+
+Package natbib Warning: Citation `ke-2021-continual' on page 1 undefined on inp
+ut line 87.
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-
+dist/fonts/enc/dvips/base/8r.enc}]
+
+Package natbib Warning: Citation `zhang-2024-spectral' on page 2 undefined on i
+nput line 91.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
+
+Package natbib Warning: Citation `lin-2022-beyond' on page 2 undefined on input
+ line 102.
+
+
+Package natbib Warning: Citation `geiping-2020-inverting' on page 2 undefined o
+n input line 102.
+
+
+Package natbib Warning: Citation `zhu-2020-gap' on page 2 undefined on input li
+ne 102.
+
+
+Package natbib Warning: Citation `ke-2021-continual' on page 2 undefined on inp
+ut line 106.
+
+
+Package natbib Warning: Citation `bengio-2020-interference' on page 2 undefined
+ on input line 106.
+
+
+Package natbib Warning: Citation `lee-2023-recasting' on page 2 undefined on in
+put line 106.
+
+
+Package natbib Warning: Citation `mercea-2024-time' on page 2 undefined on inpu
+t line 109.
+
+
+Package natbib Warning: Citation `sehanobish-2024-structured' on page 2 undefin
+ed on input line 109.
+
+
+Package natbib Warning: Citation `zhang-2024-spectral' on page 2 undefined on i
+nput line 109.
+
+
+Package natbib Warning: Citation `veniat-2020-efficient' on page 2 undefined on
+ input line 112.
+
+
+Package natbib Warning: Citation `lin-2022-beyond' on page 2 undefined on input
+ line 115.
+
+[2]
+
+! LaTeX Error: Unicode character ^^A (U+0001)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.122 ...ted by an unknown sequence of tasks $T^^A
+                                                  \dots T^^@_N$. After consu...
+
+! Text line contains an invalid character.
+l.122 ...unknown sequence of tasks $T^^A\dots T^^@
+                                                  _N$. After consuming task ...
+
+
+Package natbib Warning: Citation `chaudhry-2018-lifelong' on page 3 undefined o
+n input line 122.
+
+
+Package natbib Warning: Citation `liao-2023-make' on page 3 undefined on input 
+line 125.
+
+
+Package natbib Warning: Citation `zhang-2024-spectral' on page 3 undefined on i
+nput line 125.
+
+! Undefined control sequence.
+l.128 ...radient interference is $G_{ij} = -\tfrac
+                                                  {\langle g_i, g_j \rangle}...
+
+! Undefined control sequence.
+l.128 ... -\tfrac{\langle g_i, g_j \rangle}{\lVert
+                                                   g_i \rVert\,\lVert g_j \r...
+
+! Undefined control sequence.
+l.128 ...angle g_i, g_j \rangle}{\lVert g_i \rVert
+                                                  \,\lVert g_j \rVert}$; pos...
+
+! Undefined control sequence.
+l.128 ...i, g_j \rangle}{\lVert g_i \rVert\,\lVert
+                                                   g_j \rVert}$; positive va...
+
+! Undefined control sequence.
+l.128 ...gle}{\lVert g_i \rVert\,\lVert g_j \rVert
+                                                  }$; positive values denote...
+
+
+Package natbib Warning: Citation `bengio-2020-interference' on page 3 undefined
+ on input line 128.
+
+
+Package natbib Warning: Citation `wu-2024-reft' on page 3 undefined on input li
+ne 138.
+
+[3]
+
+! LaTeX Error: Environment algorithm undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.150 \begin{algorithm}
+                       
+
+! LaTeX Error: \caption outside float.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.151 \caption
+              {RL-TOP Task Scheduling with SALoRA}
+
+! LaTeX Error: Environment algorithmic undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.152 \begin{algorithmic}
+                         [1]
+! Undefined control sequence.
+l.153   \State
+               Initialise policy parameters $\theta$ and value parameters $\...
+
+! Undefined control sequence.
+l.154   \For
+            {each task arrival with ID $u$}
+! Undefined control sequence.
+l.155     \State
+                 Push $u$ into buffer $B$
+! Undefined control sequence.
+l.156     \While
+                {$B$ is not empty}
+! Undefined control sequence.
+l.157       \State
+                   Construct state $s_{\tau}$ from last-$k$ histories of $S$...
+
+! Undefined control sequence.
+l.158       \State
+                   Mask invalid actions from $B$ and sample $a_{\tau} \sim \...
+
+! Undefined control sequence.
+l.159       \State
+                   Train task $a_{\tau}$ for $E$ steps with SALoRA on frozen...
+
+! Undefined control sequence.
+l.160       \State
+                   Estimate Fisher and gradient statistics; update histories...
+
+! Undefined control sequence.
+l.161       \State
+                   Compute reward $r_{\tau} = -\Delta\mathrm{AF} + \alpha\,\...
+
+! Undefined control sequence.
+l.162       \State
+                   Collect trajectory and update $\theta, \psi$ via clipped PPO
+
+! Undefined control sequence.
+l.163       \If
+               {task $a_{\tau}$ is completed}
+! Undefined control sequence.
+l.164         \State
+                     Remove $a_{\tau}$ from $B$
+! Undefined control sequence.
+l.165       \EndIf
+                  
+! Undefined control sequence.
+l.166       \State
+                   $\tau \leftarrow \tau + 1$
+! Undefined control sequence.
+l.167     \EndWhile
+                   
+! Undefined control sequence.
+l.168   \EndFor
+               
+
+! LaTeX Error: \begin{document} ended by \end{algorithmic}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.169 \end{algorithmic}
+                       
+
+! LaTeX Error: \begin{document} ended by \end{algorithm}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.170 \end{algorithm}
+                     
+! Missing $ inserted.
+<inserted text> 
+                $
+l.177 Ten tasks \times
+                       five classes. RandAugment and 224-pixel crops. Backbo...
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.178 
+      
+
+Underfull \hbox (badness 10000) in paragraph at lines 177--178
+\T1/ptm/m/n/10 (+20) Ten tasks $\OMS/cmsy/m/n/10 ^^B\OML/cmm/m/it/10 fiveclasse
+s:RandAugmentand\OT1/cmr/m/n/10 224 \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 pixel
+crops:BackbonetimmViT \OMS/cmsy/m/n/10 ^^@
+
+Underfull \hbox (badness 5119) in paragraph at lines 177--178
+\OML/cmm/m/it/10 base \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 AugReg \OMS/cmsy/m/
+n/10 ^^@ \OML/cmm/m/it/10 IN\OT1/cmr/m/n/10 21\OML/cmm/m/it/10 K; rank\OT1/cmr/
+m/n/10 4\OML/cmm/m/it/10 :Policies \OT1/cmr/m/n/10 : \OML/cmm/m/it/10 random; s
+imilarity \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 greedy; ER \OMS/cmsy/m/n/10 ^^@
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 177--178
+\OT1/cmr/m/n/10 500\OML/cmm/m/it/10 ; RL \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 
+TOP\OT1/cmr/m/n/10 ($\T1/ptm/m/n/10 (+20) m = 4$\OT1/cmr/m/n/10 )\OML/cmm/m/it/
+10 :Oneepochpertask\OT1/cmr/m/n/10 ; \OML/cmm/m/it/10 seeds\OMS/cmsy/m/n/10 f\O
+T1/cmr/m/n/10 12\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 35\OML/cmm/m/it/10 ; \OT1/cm
+r/m/n/10 71\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 123\OML/cmm/m/it/10 ; \OT1/cmr/m/
+n/10 2025\OMS/cmsy/m/n/10 g\OML/cmm/m/it/10 :Metrics \OT1/cmr/m/n/10 :
+
+Underfull \hbox (badness 10000) in paragraph at lines 177--178
+\OML/cmm/m/it/10 AACC; AF; forward=backwardtransfer; expectedcalibrationerror; 
+CIFAR \OMS/cmsy/m/n/10 ^^@
+! Undefined control sequence.
+<recently read> \text 
+                      
+l.183 8-bit AdamW, $\text
+                         {lr} = 3 \times 10^{-4}$, $\beta = (0.9, 0.95)$, we...
+
+[4]
+
+! LaTeX Error: Environment tabularx undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.206 \noindent\begin{tabularx}
+                               {\textwidth}{lXX}
+! Missing number, treated as zero.
+<to be read again> 
+                   }
+l.206 \noindent\begin{tabularx}{\textwidth}
+                                           {lXX}
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   }
+l.206 \noindent\begin{tabularx}{\textwidth}
+                                           {lXX}
+! Misplaced \noalign.
+\hline ->\noalign 
+                  {\ifnum 0=`}\fi \hrule \@height \arrayrulewidth \futurelet...
+l.207 \hline
+            
+! Misplaced alignment tab character &.
+l.208 Policy &
+               AACC\_mean & AF\_mean \\
+! Misplaced alignment tab character &.
+l.208 Policy & AACC\_mean &
+                            AF\_mean \\
+! Misplaced \noalign.
+\hline ->\noalign 
+                  {\ifnum 0=`}\fi \hrule \@height \arrayrulewidth \futurelet...
+l.209 \hline
+            
+
+Underfull \hbox (badness 10000) in paragraph at lines 208--209
+
+! Misplaced alignment tab character &.
+l.210 random &
+               0.0 \% & 100 \% \\
+! Misplaced alignment tab character &.
+l.210 random & 0.0 \% &
+                        100 \% \\
+! Misplaced alignment tab character &.
+l.211 rl\_top &
+                0.0 \% & 100 \% \\
+! Misplaced alignment tab character &.
+l.211 rl\_top & 0.0 \% &
+                         100 \% \\
+! Misplaced \noalign.
+\hline ->\noalign 
+                  {\ifnum 0=`}\fi \hrule \@height \arrayrulewidth \futurelet...
+l.212 \hline
+            
+
+Underfull \hbox (badness 10000) in paragraph at lines 210--212
+
+
+! LaTeX Error: \begin{document} ended by \end{tabularx}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.213 \end{tabularx}
+                    
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.221 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.223   \includegraphics
+                        [width=0.7\linewidth]{ images/performance\_summary.p...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.223   \includegraphics[width=0.7\linewidth]
+                                             { images/performance\_summary.p...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.223   \includegraphics[width=0.7\linewidth]
+                                             { images/performance\_summary.p...
+
+
+Package natbib Warning: Citation `lin-2022-beyond' on page 5 undefined on input
+ line 235.
+
+
+Package natbib Warning: Citation `geiping-2020-inverting' on page 5 undefined o
+n input line 235.
+
+
+Package natbib Warning: Citation `zhu-2020-gap' on page 5 undefined on input li
+ne 235.
+
+No file paper.bbl.
+
+Package natbib Warning: There were undefined citations.
+
+[5] [6] (./paper.aux)
+kpathsea: Running mktexpk --mfmode / --bdpi 600 --mag 1+0/600 --dpi 600 ectt1000
+mktexpk: Running mf-nowin -progname=mf \mode:=ljfour; mag:=1+0/600; nonstopmode; input ectt1000
+This is METAFONT, Version 2.71828182 (TeX Live 2023/Debian) (preloaded base=mf)
+
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/ectt1000.mf
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exbase.mf)
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/ectt.mf
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exroman.mf
+ Ok (/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exaccess.mf
+ Ok) (/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/expseudo.mf
+ Ok) (/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exruwest.mf
+ Ok [192] [193] [194] [195] [196] [197] [198] [199] [200] [201] [202] [203]
+[204] [205] [206] [207] [208] [209] [210] [211] [212] [213] [214] [215]
+[216] [217] [218] [219] [220] [221] [222] [223])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exrlwest.mf
+ Ok [224] [225] [226] [227] [228] [229] [230] [231] [232] [233] [234] [235]
+[236] [237] [238] [239] [240] [241] [242] [243] [244] [245] [246] [247]
+[248] [249] [250] [251] [252] [253] [254] [255])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exrueast.mf
+ Ok [128] [129] [130] [131] [132] [133] [134] [135] [136] [137] [138] [139]
+[140] [141] [142] [143] [144] [145] [146] [147] [148] [149] [150] [151]
+[152] [153] [154] [155] [156] [157])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exrleast.mf
+ Ok [158] [160] [161] [162] [163] [164] [165] [166] [167] [168] [169] [170]
+[171] [172] [173] [174] [175] [176] [177] [178] [179] [180] [181] [182]
+[183] [184] [185] [186] [187] [188])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exbraces.mf
+ Ok [94] [126] [23] [40] [41] [60] [124] [62] [91] [93] [92] [123] [125]
+[95] [127] [32])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/expunct.mf
+ Ok [14] [15] [19] [20] [13] [18] [33] [39] [42] [43] [44] [46] [47] [58]
+[59] [61] [96] [189] [17] [45] [16] [21] [22])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exaccent.mf
+ Ok [0] [1] [2] [3] [4] [5] [6] [7] [8] [9] [10] [11] [12])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exsign.mf
+ Ok [24] [34] [35] [36] [37] [64] [191] [159])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exrlig.mf
+ Ok [25] [26] [28] [27] [29] [30] [31])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exromp.mf
+ Ok [38] [63] [190])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exrulett.mf
+ Ok [65] [66] [67] [68] [69] [70] [71] [72] [73] [74] [75] [76] [77] [78]
+[79] [80] [81] [82] [83] [84] [85] [86] [87] [88] [89] [90])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exrllett.mf
+ Ok [97] [98] [99] [100] [101] [102] [103] [104] [105] [106] [107] [108]
+[109] [110] [111] [112] [113] [114] [115] [116] [117] [118] [119] [120]
+[121] [122])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exrdigit.mf
+ Ok [48] [49] [50] [51] [52] [53] [54] [55] [56] [57])
+(/usr/share/texlive/texmf-dist/fonts/source/jknappen/ec/exmligtb.mf
+ Ok) ) ) )
+Font metrics written on ectt1000.tfm.
+Output written on ectt1000.600gf (256 characters, 43832 bytes).
+Transcript written on ectt1000.log.
+mktexpk: /home/runner/.texlive2023/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk: successfully generated.
+
+
+Package rerunfilecheck Warning: File `paper.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )
+(see the transcript file for additional information) </home/runner/.texlive2023
+/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
+Output written on paper.pdf (6 pages, 136067 bytes).
+Transcript written on paper.log.
+This is BibTeX, Version 0.99d (TeX Live 2023/Debian)
+The top-level auxiliary file: paper.aux
+The style file: plainnat.bst
+Database file #1: references.bib
+Warning--empty journal in bengio-2020-interference
+Warning--empty journal in chaudhry-2018-lifelong
+Warning--empty journal in geiping-2020-inverting
+Warning--empty journal in lee-2023-recasting
+Warning--empty journal in liao-2023-make
+Warning--empty journal in lin-2022-beyond
+Warning--empty journal in lin-2023-theory
+Warning--empty journal in mercea-2024-time
+Warning--empty journal in ramasesh-2020-anatomy
+Warning--empty journal in sehanobish-2024-structured
+Warning--empty journal in veniat-2020-efficient
+Warning--empty journal in wu-2024-reft
+Warning--empty journal in zhang-2024-spectral
+Warning--empty journal in zhu-2020-gap
+(There were 14 warnings)
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./paper.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo))
+(./agents4science_2025.sty
+(/usr/share/texlive/texmf-dist/tex/latex/environ/environ.sty
+(/usr/share/texlive/texmf-dist/tex/latex/trimspaces/trimspaces.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/lineno/lineno.sty
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty))))
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/units/nicefrac.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype-pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(./paper.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: letterpaper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(92.14519pt, 430.00462pt, 92.14519pt)
+* v-part:(T,H,B)=(95.39737pt, 556.47656pt, 143.09605pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=430.00462pt
+* \textheight=556.47656pt
+* \oddsidemargin=19.8752pt
+* \evensidemargin=19.8752pt
+* \topmargin=-13.87262pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+*geometry* verbose mode - [ newgeometry ] result:
+* driver: pdftex
+* paper: letterpaper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(108.405pt, 397.48499pt, 108.40501pt)
+* v-part:(T,H,B)=(72.26999pt, 650.43pt, 72.27pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=397.48499pt
+* \textheight=650.43pt
+* \oddsidemargin=36.13501pt
+* \evensidemargin=36.13501pt
+* \topmargin=-37.0pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+(./paper.out) (./paper.out)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg)
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd)
+
+Package natbib Warning: Citation `liao-2023-make' on page 1 undefined on input 
+line 85.
+
+
+Package natbib Warning: Citation `wu-2024-reft' on page 1 undefined on input li
+ne 85.
+
+
+Package natbib Warning: Citation `mercea-2024-time' on page 1 undefined on inpu
+t line 85.
+
+
+Package natbib Warning: Citation `ramasesh-2020-anatomy' on page 1 undefined on
+ input line 85.
+
+
+Package natbib Warning: Citation `lin-2023-theory' on page 1 undefined on input
+ line 85.
+
+
+Package natbib Warning: Citation `bengio-2020-interference' on page 1 undefined
+ on input line 87.
+
+
+Package natbib Warning: Citation `ke-2021-continual' on page 1 undefined on inp
+ut line 87.
+
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-
+dist/fonts/enc/dvips/base/8r.enc}]
+
+Package natbib Warning: Citation `zhang-2024-spectral' on page 2 undefined on i
+nput line 91.
+
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
+
+Package natbib Warning: Citation `lin-2022-beyond' on page 2 undefined on input
+ line 102.
+
+
+Package natbib Warning: Citation `geiping-2020-inverting' on page 2 undefined o
+n input line 102.
+
+
+Package natbib Warning: Citation `zhu-2020-gap' on page 2 undefined on input li
+ne 102.
+
+
+Package natbib Warning: Citation `ke-2021-continual' on page 2 undefined on inp
+ut line 106.
+
+
+Package natbib Warning: Citation `bengio-2020-interference' on page 2 undefined
+ on input line 106.
+
+
+Package natbib Warning: Citation `lee-2023-recasting' on page 2 undefined on in
+put line 106.
+
+
+Package natbib Warning: Citation `mercea-2024-time' on page 2 undefined on inpu
+t line 109.
+
+
+Package natbib Warning: Citation `sehanobish-2024-structured' on page 2 undefin
+ed on input line 109.
+
+
+Package natbib Warning: Citation `zhang-2024-spectral' on page 2 undefined on i
+nput line 109.
+
+
+Package natbib Warning: Citation `veniat-2020-efficient' on page 2 undefined on
+ input line 112.
+
+
+Package natbib Warning: Citation `lin-2022-beyond' on page 2 undefined on input
+ line 115.
+
+[2]
+
+! LaTeX Error: Unicode character ^^A (U+0001)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.122 ...ted by an unknown sequence of tasks $T^^A
+                                                  \dots T^^@_N$. After consu...
+
+! Text line contains an invalid character.
+l.122 ...unknown sequence of tasks $T^^A\dots T^^@
+                                                  _N$. After consuming task ...
+
+
+Package natbib Warning: Citation `chaudhry-2018-lifelong' on page 3 undefined o
+n input line 122.
+
+
+Package natbib Warning: Citation `liao-2023-make' on page 3 undefined on input 
+line 125.
+
+
+Package natbib Warning: Citation `zhang-2024-spectral' on page 3 undefined on i
+nput line 125.
+
+! Undefined control sequence.
+l.128 ...radient interference is $G_{ij} = -\tfrac
+                                                  {\langle g_i, g_j \rangle}...
+
+! Undefined control sequence.
+l.128 ... -\tfrac{\langle g_i, g_j \rangle}{\lVert
+                                                   g_i \rVert\,\lVert g_j \r...
+
+! Undefined control sequence.
+l.128 ...angle g_i, g_j \rangle}{\lVert g_i \rVert
+                                                  \,\lVert g_j \rVert}$; pos...
+
+! Undefined control sequence.
+l.128 ...i, g_j \rangle}{\lVert g_i \rVert\,\lVert
+                                                   g_j \rVert}$; positive va...
+
+! Undefined control sequence.
+l.128 ...gle}{\lVert g_i \rVert\,\lVert g_j \rVert
+                                                  }$; positive values denote...
+
+
+Package natbib Warning: Citation `bengio-2020-interference' on page 3 undefined
+ on input line 128.
+
+
+Package natbib Warning: Citation `wu-2024-reft' on page 3 undefined on input li
+ne 138.
+
+[3]
+
+! LaTeX Error: Environment algorithm undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.150 \begin{algorithm}
+                       
+
+! LaTeX Error: \caption outside float.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.151 \caption
+              {RL-TOP Task Scheduling with SALoRA}
+
+! LaTeX Error: Environment algorithmic undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.152 \begin{algorithmic}
+                         [1]
+! Undefined control sequence.
+l.153   \State
+               Initialise policy parameters $\theta$ and value parameters $\...
+
+! Undefined control sequence.
+l.154   \For
+            {each task arrival with ID $u$}
+! Undefined control sequence.
+l.155     \State
+                 Push $u$ into buffer $B$
+! Undefined control sequence.
+l.156     \While
+                {$B$ is not empty}
+! Undefined control sequence.
+l.157       \State
+                   Construct state $s_{\tau}$ from last-$k$ histories of $S$...
+
+! Undefined control sequence.
+l.158       \State
+                   Mask invalid actions from $B$ and sample $a_{\tau} \sim \...
+
+! Undefined control sequence.
+l.159       \State
+                   Train task $a_{\tau}$ for $E$ steps with SALoRA on frozen...
+
+! Undefined control sequence.
+l.160       \State
+                   Estimate Fisher and gradient statistics; update histories...
+
+! Undefined control sequence.
+l.161       \State
+                   Compute reward $r_{\tau} = -\Delta\mathrm{AF} + \alpha\,\...
+
+! Undefined control sequence.
+l.162       \State
+                   Collect trajectory and update $\theta, \psi$ via clipped PPO
+
+! Undefined control sequence.
+l.163       \If
+               {task $a_{\tau}$ is completed}
+! Undefined control sequence.
+l.164         \State
+                     Remove $a_{\tau}$ from $B$
+! Undefined control sequence.
+l.165       \EndIf
+                  
+! Undefined control sequence.
+l.166       \State
+                   $\tau \leftarrow \tau + 1$
+! Undefined control sequence.
+l.167     \EndWhile
+                   
+! Undefined control sequence.
+l.168   \EndFor
+               
+
+! LaTeX Error: \begin{document} ended by \end{algorithmic}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.169 \end{algorithmic}
+                       
+
+! LaTeX Error: \begin{document} ended by \end{algorithm}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.170 \end{algorithm}
+                     
+! Missing $ inserted.
+<inserted text> 
+                $
+l.177 Ten tasks \times
+                       five classes. RandAugment and 224-pixel crops. Backbo...
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.178 
+      
+
+Underfull \hbox (badness 10000) in paragraph at lines 177--178
+\T1/ptm/m/n/10 (+20) Ten tasks $\OMS/cmsy/m/n/10 ^^B\OML/cmm/m/it/10 fiveclasse
+s:RandAugmentand\OT1/cmr/m/n/10 224 \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 pixel
+crops:BackbonetimmViT \OMS/cmsy/m/n/10 ^^@
+
+Underfull \hbox (badness 5119) in paragraph at lines 177--178
+\OML/cmm/m/it/10 base \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 AugReg \OMS/cmsy/m/
+n/10 ^^@ \OML/cmm/m/it/10 IN\OT1/cmr/m/n/10 21\OML/cmm/m/it/10 K; rank\OT1/cmr/
+m/n/10 4\OML/cmm/m/it/10 :Policies \OT1/cmr/m/n/10 : \OML/cmm/m/it/10 random; s
+imilarity \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 greedy; ER \OMS/cmsy/m/n/10 ^^@
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 177--178
+\OT1/cmr/m/n/10 500\OML/cmm/m/it/10 ; RL \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 
+TOP\OT1/cmr/m/n/10 ($\T1/ptm/m/n/10 (+20) m = 4$\OT1/cmr/m/n/10 )\OML/cmm/m/it/
+10 :Oneepochpertask\OT1/cmr/m/n/10 ; \OML/cmm/m/it/10 seeds\OMS/cmsy/m/n/10 f\O
+T1/cmr/m/n/10 12\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 35\OML/cmm/m/it/10 ; \OT1/cm
+r/m/n/10 71\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 123\OML/cmm/m/it/10 ; \OT1/cmr/m/
+n/10 2025\OMS/cmsy/m/n/10 g\OML/cmm/m/it/10 :Metrics \OT1/cmr/m/n/10 :
+
+Underfull \hbox (badness 10000) in paragraph at lines 177--178
+\OML/cmm/m/it/10 AACC; AF; forward=backwardtransfer; expectedcalibrationerror; 
+CIFAR \OMS/cmsy/m/n/10 ^^@
+! Undefined control sequence.
+<recently read> \text 
+                      
+l.183 8-bit AdamW, $\text
+                         {lr} = 3 \times 10^{-4}$, $\beta = (0.9, 0.95)$, we...
+
+[4]
+
+! LaTeX Error: Environment tabularx undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.206 \noindent\begin{tabularx}
+                               {\textwidth}{lXX}
+! Missing number, treated as zero.
+<to be read again> 
+                   }
+l.206 \noindent\begin{tabularx}{\textwidth}
+                                           {lXX}
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   }
+l.206 \noindent\begin{tabularx}{\textwidth}
+                                           {lXX}
+! Misplaced \noalign.
+\hline ->\noalign 
+                  {\ifnum 0=`}\fi \hrule \@height \arrayrulewidth \futurelet...
+l.207 \hline
+            
+! Misplaced alignment tab character &.
+l.208 Policy &
+               AACC\_mean & AF\_mean \\
+! Misplaced alignment tab character &.
+l.208 Policy & AACC\_mean &
+                            AF\_mean \\
+! Misplaced \noalign.
+\hline ->\noalign 
+                  {\ifnum 0=`}\fi \hrule \@height \arrayrulewidth \futurelet...
+l.209 \hline
+            
+
+Underfull \hbox (badness 10000) in paragraph at lines 208--209
+
+! Misplaced alignment tab character &.
+l.210 random &
+               0.0 \% & 100 \% \\
+! Misplaced alignment tab character &.
+l.210 random & 0.0 \% &
+                        100 \% \\
+! Misplaced alignment tab character &.
+l.211 rl\_top &
+                0.0 \% & 100 \% \\
+! Misplaced alignment tab character &.
+l.211 rl\_top & 0.0 \% &
+                         100 \% \\
+! Misplaced \noalign.
+\hline ->\noalign 
+                  {\ifnum 0=`}\fi \hrule \@height \arrayrulewidth \futurelet...
+l.212 \hline
+            
+
+Underfull \hbox (badness 10000) in paragraph at lines 210--212
+
+
+! LaTeX Error: \begin{document} ended by \end{tabularx}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.213 \end{tabularx}
+                    
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.221 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.223   \includegraphics
+                        [width=0.7\linewidth]{ images/performance\_summary.p...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.223   \includegraphics[width=0.7\linewidth]
+                                             { images/performance\_summary.p...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.223   \includegraphics[width=0.7\linewidth]
+                                             { images/performance\_summary.p...
+
+
+Package natbib Warning: Citation `lin-2022-beyond' on page 5 undefined on input
+ line 235.
+
+
+Package natbib Warning: Citation `geiping-2020-inverting' on page 5 undefined o
+n input line 235.
+
+
+Package natbib Warning: Citation `zhu-2020-gap' on page 5 undefined on input li
+ne 235.
+
+(./paper.bbl [5])
+
+Package natbib Warning: There were undefined citations.
+
+[6] [7] (./paper.aux
+
+Package natbib Warning: Citation(s) may have changed.
+(natbib)                Rerun to get citations correct.
+
+) )
+(see the transcript file for additional information) </home/runner/.texlive2023
+/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (7 pages, 149267 bytes).
+Transcript written on paper.log.
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex)
+ restricted \write18 enabled.
+entering extended mode
+(./paper.tex
+LaTeX2e <2023-11-01> patch level 1
+L3 programming layer <2024-01-22>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo))
+(./agents4science_2025.sty
+(/usr/share/texlive/texmf-dist/tex/latex/environ/environ.sty
+(/usr/share/texlive/texmf-dist/tex/latex/trimspaces/trimspaces.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/natbib/natbib.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
+(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/lineno/lineno.sty
+(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+(/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/kvsetkeys/kvsetkeys.sty))))
+(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1ptm.fd))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/pdfescape/pdfescape.sty
+(/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
+(/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/hycolor/hycolor.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/auxhook/auxhook.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/share/texlive/texmf-dist/tex/latex/refcount/refcount.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def)
+(/usr/share/texlive/texmf-dist/tex/generic/intcalc/intcalc.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def)
+(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty)
+(/usr/share/texlive/texmf-dist/tex/generic/bitset/bitset.sty
+(/usr/share/texlive/texmf-dist/tex/generic/bigintcalc/bigintcalc.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/base/atbegshi-ltx.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/share/texlive/texmf-dist/tex/latex/base/atveryend-ltx.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
+(/usr/share/texlive/texmf-dist/tex/generic/uniquecounter/uniquecounter.sty)))
+(/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty)
+(/usr/share/texlive/texmf-dist/tex/latex/units/nicefrac.sty
+(/usr/share/texlive/texmf-dist/tex/latex/base/ifthen.sty))
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype-pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.cfg))
+(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def)
+(/usr/share/texlive/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def)
+(./paper.aux)
+*geometry* driver: auto-detecting
+*geometry* detected driver: pdftex
+*geometry* verbose mode - [ preamble ] result:
+* driver: pdftex
+* paper: letterpaper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(92.14519pt, 430.00462pt, 92.14519pt)
+* v-part:(T,H,B)=(95.39737pt, 556.47656pt, 143.09605pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=430.00462pt
+* \textheight=556.47656pt
+* \oddsidemargin=19.8752pt
+* \evensidemargin=19.8752pt
+* \topmargin=-13.87262pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+*geometry* verbose mode - [ newgeometry ] result:
+* driver: pdftex
+* paper: letterpaper
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: 
+* h-part:(L,W,R)=(108.405pt, 397.48499pt, 108.40501pt)
+* v-part:(T,H,B)=(72.26999pt, 650.43pt, 72.27pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=397.48499pt
+* \textheight=650.43pt
+* \oddsidemargin=36.13501pt
+* \evensidemargin=36.13501pt
+* \topmargin=-37.0pt
+* \headheight=12.0pt
+* \headsep=25.0pt
+* \topskip=10.0pt
+* \footskip=30.0pt
+* \marginparwidth=65.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=9.0pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+(./paper.out) (./paper.out)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-ptm.cfg)
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+[Loading MPS to PDF converter (version 2006.09.02).]
+) (/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msa.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-msb.cfg)
+(/usr/share/texlive/texmf-dist/tex/latex/base/t1cmtt.fd)
+(/usr/share/texlive/texmf-dist/tex/latex/psnfss/t1phv.fd) [1{/var/lib/texmf/fon
+ts/map/pdftex/updmap/pdftex.map}{/usr/share/texlive/texmf-dist/fonts/enc/dvips/
+base/8r.enc}] (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd)
+[2]
+
+! LaTeX Error: Unicode character ^^A (U+0001)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.122 ...ted by an unknown sequence of tasks $T^^A
+                                                  \dots T^^@_N$. After consu...
+
+! Text line contains an invalid character.
+l.122 ...unknown sequence of tasks $T^^A\dots T^^@
+                                                  _N$. After consuming task ...
+
+! Undefined control sequence.
+l.128 ...radient interference is $G_{ij} = -\tfrac
+                                                  {\langle g_i, g_j \rangle}...
+
+! Undefined control sequence.
+l.128 ... -\tfrac{\langle g_i, g_j \rangle}{\lVert
+                                                   g_i \rVert\,\lVert g_j \r...
+
+! Undefined control sequence.
+l.128 ...angle g_i, g_j \rangle}{\lVert g_i \rVert
+                                                  \,\lVert g_j \rVert}$; pos...
+
+! Undefined control sequence.
+l.128 ...i, g_j \rangle}{\lVert g_i \rVert\,\lVert
+                                                   g_j \rVert}$; positive va...
+
+! Undefined control sequence.
+l.128 ...gle}{\lVert g_i \rVert\,\lVert g_j \rVert
+                                                  }$; positive values denote...
+
+[3]
+
+! LaTeX Error: Environment algorithm undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.150 \begin{algorithm}
+                       
+
+! LaTeX Error: \caption outside float.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.151 \caption
+              {RL-TOP Task Scheduling with SALoRA}
+
+! LaTeX Error: Environment algorithmic undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.152 \begin{algorithmic}
+                         [1]
+! Undefined control sequence.
+l.153   \State
+               Initialise policy parameters $\theta$ and value parameters $\...
+
+! Undefined control sequence.
+l.154   \For
+            {each task arrival with ID $u$}
+! Undefined control sequence.
+l.155     \State
+                 Push $u$ into buffer $B$
+! Undefined control sequence.
+l.156     \While
+                {$B$ is not empty}
+! Undefined control sequence.
+l.157       \State
+                   Construct state $s_{\tau}$ from last-$k$ histories of $S$...
+
+! Undefined control sequence.
+l.158       \State
+                   Mask invalid actions from $B$ and sample $a_{\tau} \sim \...
+
+! Undefined control sequence.
+l.159       \State
+                   Train task $a_{\tau}$ for $E$ steps with SALoRA on frozen...
+
+! Undefined control sequence.
+l.160       \State
+                   Estimate Fisher and gradient statistics; update histories...
+
+! Undefined control sequence.
+l.161       \State
+                   Compute reward $r_{\tau} = -\Delta\mathrm{AF} + \alpha\,\...
+
+! Undefined control sequence.
+l.162       \State
+                   Collect trajectory and update $\theta, \psi$ via clipped PPO
+
+! Undefined control sequence.
+l.163       \If
+               {task $a_{\tau}$ is completed}
+! Undefined control sequence.
+l.164         \State
+                     Remove $a_{\tau}$ from $B$
+! Undefined control sequence.
+l.165       \EndIf
+                  
+! Undefined control sequence.
+l.166       \State
+                   $\tau \leftarrow \tau + 1$
+! Undefined control sequence.
+l.167     \EndWhile
+                   
+! Undefined control sequence.
+l.168   \EndFor
+               
+
+! LaTeX Error: \begin{document} ended by \end{algorithmic}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.169 \end{algorithmic}
+                       
+
+! LaTeX Error: \begin{document} ended by \end{algorithm}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.170 \end{algorithm}
+                     
+! Missing $ inserted.
+<inserted text> 
+                $
+l.177 Ten tasks \times
+                       five classes. RandAugment and 224-pixel crops. Backbo...
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.178 
+      
+
+Underfull \hbox (badness 10000) in paragraph at lines 177--178
+\T1/ptm/m/n/10 (+20) Ten tasks $\OMS/cmsy/m/n/10 ^^B\OML/cmm/m/it/10 fiveclasse
+s:RandAugmentand\OT1/cmr/m/n/10 224 \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 pixel
+crops:BackbonetimmViT \OMS/cmsy/m/n/10 ^^@
+
+Underfull \hbox (badness 5119) in paragraph at lines 177--178
+\OML/cmm/m/it/10 base \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 AugReg \OMS/cmsy/m/
+n/10 ^^@ \OML/cmm/m/it/10 IN\OT1/cmr/m/n/10 21\OML/cmm/m/it/10 K; rank\OT1/cmr/
+m/n/10 4\OML/cmm/m/it/10 :Policies \OT1/cmr/m/n/10 : \OML/cmm/m/it/10 random; s
+imilarity \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 greedy; ER \OMS/cmsy/m/n/10 ^^@
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 177--178
+\OT1/cmr/m/n/10 500\OML/cmm/m/it/10 ; RL \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 
+TOP\OT1/cmr/m/n/10 ($\T1/ptm/m/n/10 (+20) m = 4$\OT1/cmr/m/n/10 )\OML/cmm/m/it/
+10 :Oneepochpertask\OT1/cmr/m/n/10 ; \OML/cmm/m/it/10 seeds\OMS/cmsy/m/n/10 f\O
+T1/cmr/m/n/10 12\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 35\OML/cmm/m/it/10 ; \OT1/cm
+r/m/n/10 71\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 123\OML/cmm/m/it/10 ; \OT1/cmr/m/
+n/10 2025\OMS/cmsy/m/n/10 g\OML/cmm/m/it/10 :Metrics \OT1/cmr/m/n/10 :
+
+Underfull \hbox (badness 10000) in paragraph at lines 177--178
+\OML/cmm/m/it/10 AACC; AF; forward=backwardtransfer; expectedcalibrationerror; 
+CIFAR \OMS/cmsy/m/n/10 ^^@
+! Undefined control sequence.
+<recently read> \text 
+                      
+l.183 8-bit AdamW, $\text
+                         {lr} = 3 \times 10^{-4}$, $\beta = (0.9, 0.95)$, we...
+
+[4]
+
+! LaTeX Error: Environment tabularx undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.206 \noindent\begin{tabularx}
+                               {\textwidth}{lXX}
+! Missing number, treated as zero.
+<to be read again> 
+                   }
+l.206 \noindent\begin{tabularx}{\textwidth}
+                                           {lXX}
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   }
+l.206 \noindent\begin{tabularx}{\textwidth}
+                                           {lXX}
+! Misplaced \noalign.
+\hline ->\noalign 
+                  {\ifnum 0=`}\fi \hrule \@height \arrayrulewidth \futurelet...
+l.207 \hline
+            
+! Misplaced alignment tab character &.
+l.208 Policy &
+               AACC\_mean & AF\_mean \\
+! Misplaced alignment tab character &.
+l.208 Policy & AACC\_mean &
+                            AF\_mean \\
+! Misplaced \noalign.
+\hline ->\noalign 
+                  {\ifnum 0=`}\fi \hrule \@height \arrayrulewidth \futurelet...
+l.209 \hline
+            
+
+Underfull \hbox (badness 10000) in paragraph at lines 208--209
+
+! Misplaced alignment tab character &.
+l.210 random &
+               0.0 \% & 100 \% \\
+! Misplaced alignment tab character &.
+l.210 random & 0.0 \% &
+                        100 \% \\
+! Misplaced alignment tab character &.
+l.211 rl\_top &
+                0.0 \% & 100 \% \\
+! Misplaced alignment tab character &.
+l.211 rl\_top & 0.0 \% &
+                         100 \% \\
+! Misplaced \noalign.
+\hline ->\noalign 
+                  {\ifnum 0=`}\fi \hrule \@height \arrayrulewidth \futurelet...
+l.212 \hline
+            
+
+Underfull \hbox (badness 10000) in paragraph at lines 210--212
+
+
+! LaTeX Error: \begin{document} ended by \end{tabularx}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.213 \end{tabularx}
+                    
+
+! LaTeX Error: Unknown float option `H'.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.221 \begin{figure}[H]
+                       
+! Undefined control sequence.
+l.223   \includegraphics
+                        [width=0.7\linewidth]{ images/performance\_summary.p...
+
+! Missing number, treated as zero.
+<to be read again> 
+                   ]
+l.223   \includegraphics[width=0.7\linewidth]
+                                             { images/performance\_summary.p...
+
+! Illegal unit of measure (pt inserted).
+<to be read again> 
+                   ]
+l.223   \includegraphics[width=0.7\linewidth]
+                                             { images/performance\_summary.p...
+
+(./paper.bbl [5]) [6] [7] (./paper.aux) )
+(see the transcript file for additional information) </home/runner/.texlive2023
+/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk></usr/share/texlive/texmf
+-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/
+fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/t
+ype1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb
+></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/share/te
+xlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/texlive/texmf-dis
+t/fonts/type1/urw/times/utmri8a.pfb>
+Output written on paper.pdf (7 pages, 151147 bytes).
+Transcript written on paper.log.
