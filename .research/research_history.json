@@ -6,5 +6,82 @@
     "gradient interference task ordering",
     "curriculum ordering continual benchmarks",
     "reducing forgetting curriculum learning"
+  ],
+  "research_study_list": [
+    {
+      "title": "Anatomy of Catastrophic Forgetting: Hidden Representations and Task Semantics"
+    },
+    {
+      "title": "On the Diminishing Returns of Width for Continual Learning"
+    },
+    {
+      "title": "Continual evaluation for lifelong learning: Identifying the stability gap"
+    },
+    {
+      "title": "Theory on Forgetting and Generalization of Continual Learning"
+    },
+    {
+      "title": "An Effective Dynamic Gradient Calibration Method for Continual Learning"
+    },
+    {
+      "title": "Continual Learning of a Mixed Sequence of Similar and Dissimilar Tasks"
+    },
+    {
+      "title": "The Joint Effect of Task Similarity and Overparameterization on Catastrophic Forgetting — An Analytical Model"
+    },
+    {
+      "title": "Disentangling and mitigating the impact of task similarity for continual learning"
+    },
+    {
+      "title": "Prototype-Sample Relation Distillation: Towards Replay-Free Continual Learning"
+    },
+    {
+      "title": "Graph-Based Continual Learning"
+    },
+    {
+      "title": "Gradient Surgery for Multi-Task Learning"
+    },
+    {
+      "title": "Efficiently Identifying Task Groupings for Multi-Task Learning"
+    },
+    {
+      "title": "Efficiently Identifying Task Groupings for Multi-Task Learning"
+    },
+    {
+      "title": "Quantifying Task Priority for Multi-Task Optimization"
+    },
+    {
+      "title": "Recon: Reducing Conflicting Gradients From the Root For Multi-Task Learning"
+    },
+    {
+      "title": "CurBench: Curriculum Learning Benchmark"
+    },
+    {
+      "title": "Efficient Continual Learning with Modular Networks and Task-Driven Priors"
+    },
+    {
+      "title": "When Do Curricula Work?"
+    },
+    {
+      "title": "When Do Curricula Work?"
+    },
+    {
+      "title": "Curriculum Reinforcement Learning via Constrained Optimal Transport"
+    },
+    {
+      "title": "Anatomy of Catastrophic Forgetting: Hidden Representations and Task Semantics"
+    },
+    {
+      "title": "Theory on Forgetting and Generalization of Continual Learning"
+    },
+    {
+      "title": "An Analytical Theory of Curriculum Learning in Teacher-Student Networks"
+    },
+    {
+      "title": "On the Diminishing Returns of Width for Continual Learning"
+    },
+    {
+      "title": "When Do Curricula Work?"
+    }
   ]
 }
