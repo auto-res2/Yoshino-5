@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/home/runner/work/Yoshino-5/Yoshino-5/src/main.py", line 16, in <module>
+    from .preprocess import _set_global_seed, get_cifar100_split
+ImportError: attempted relative import with no known parent package
