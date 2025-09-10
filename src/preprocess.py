@@ -22,13 +22,16 @@ CFG_PATH = pathlib.Path(__file__).resolve().parent.parent / "config" / "config.y
 with open(CFG_PATH, "r", encoding="utf-8") as f:
     CONFIG: dict[str, Any] = yaml.safe_load(f)
 
+
 def _set_global_seed(seed: int):
+    """Set seeds for python, numpy and (if available) CUDA."""
     random.seed(seed)
     np.random.seed(seed)
     torch.manual_seed(seed)
-    torch.cuda.manual_seed_all(seed)
-    torch.backends.cudnn.deterministic = True
-    torch.backends.cudnn.benchmark = False
+    if torch.cuda.is_available():
+        torch.cuda.manual_seed_all(seed)
+        torch.backends.cudnn.deterministic = True
+        torch.backends.cudnn.benchmark = False
 
 # ---------------------------------------------------------------------------
 # Dataset helpers -----------------------------------------------------------
@@ -63,12 +66,13 @@ def _optional_import(name: str):
     except ImportError:
         yield None
 
+
 def get_miniimagenet_split(root: str | pathlib.Path):
     with _optional_import("torchmeta.datasets") as tm:
         if tm is None:
             raise RuntimeError("torchmeta not installed – required for miniImageNet")
         ds = tm.MiniImagenet(root=root, split="train", download=True)
-        tasks = []
+        tasks: List[dict[str, Any]] = []
         for c in range(100):
             class_idxs = ds.class_to_idx[c]
             random.shuffle(class_idxs)

@@ -1,6 +1,6 @@
-torch>=2.0
-torchvision
-torchmetrics
-numpy
-pyyaml
-torchmeta
+torch==2.1.2
+torchvision==0.16.2
+torchmetrics==1.3.2
+numpy>=1.24,<2.0
+pyyaml>=6.0
+# torchmeta is optional and conflicts with recent torch; install manually if needed
