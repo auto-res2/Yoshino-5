@@ -1,0 +1,46 @@
+seed_list:
+  - 42
+  - 716
+  - 880
+  - 1234
+  - 2025
+device: cuda
+mixed_precision: true
+logdir: runs
+exp_ids:
+  exp01: core-benchmark_effectiveness
+  exp02: scalability_efficiency
+  exp03: federated_client_scheduling
+datasets:
+  cifar100:
+    url: https://www.cs.toronto.edu/~kriz/cifar.html
+    split: split50x2
+  miniimagenet:
+    url: https://github.com/renmengye/few-shot-ssl-public
+    split: split100x1
+  ctrl_slong:
+    url: https://github.com/facebookresearch/CTrLBenchmark
+  imagenette:
+    url: https://github.com/fastai/imagenette
+models:
+  resnet18:
+    weights: https://download.pytorch.org/models/resnet18-f37072fd.pth
+  efficientnet_b0: {}
+scheduler:
+  pointer:
+    hidden_size: 256
+    n_layers: 2
+  beam_width: 10
+  sketch_density: 0.01
+  lambda_init: 0.5
+  lambda_lr: 0.0003
+training:
+  optim:
+    lr: 0.03
+    momentum: 0.9
+    weight_decay: 0.0005
+  epochs_per_task:
+    cifar: 10
+    miniimagenet: 8
+    ctrl: 6
+  batch_size: 64
