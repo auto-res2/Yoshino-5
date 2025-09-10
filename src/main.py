@@ -1,11 +1,24 @@
+from __future__ import annotations
 """
 main.py – experiment orchestration / entry-point
 Run with:  python -m src.main  --exp <exp1|exp2|exp3|all>
+This file is expected to be executable both
+  1. as a module  (python -m src.main)  ➜  __package__ == "src"
+  2. as a script  (python src/main.py)  ➜  __package__ is None / ""
+Relative imports ("from .preprocess import …") only work in case (1).
+The previous implementation crashed in case (2) with
+    ImportError: attempted relative import with no known parent package
+We now handle both situations gracefully:
+    • When executed as a script we manually append the project root to
+      sys.path and fall back to absolute (top-level) imports.
+    • When executed as a module we keep the original relative imports.
+No functional behaviour of the program is affected – we only improve
+import robustness.
 """
-from __future__ import annotations
 
 import argparse
 import pathlib
+import sys
 from typing import Any, List
 
 import torch
@@ -13,9 +26,24 @@ import torchvision
 import yaml
 from torch.utils.data import DataLoader, Subset
 
-from .preprocess import _set_global_seed, get_cifar100_split
-from .train import (TaskCLIPScheduler, DERPlusPlusWrapper, train_task)
-from .evaluate import verify_implementation, validate_results
+# ---------------------------------------------------------------------------
+# Dynamic import handling (see doc-string above) -----------------------------
+# ---------------------------------------------------------------------------
+if __package__ in (None, ""):
+    # Running as a script – add project root so that `import src.xxx` works
+    PROJECT_ROOT = pathlib.Path(__file__).resolve().parent.parent
+    if str(PROJECT_ROOT) not in sys.path:
+        sys.path.insert(0, str(PROJECT_ROOT))
+
+    # Fallback to absolute imports (src.<module>)
+    from src.preprocess import _set_global_seed, get_cifar100_split  # type: ignore
+    from src.train import TaskCLIPScheduler, DERPlusPlusWrapper, train_task  # type: ignore
+    from src.evaluate import verify_implementation, validate_results  # type: ignore
+else:
+    # Running with the package context – keep relative imports
+    from .preprocess import _set_global_seed, get_cifar100_split  # noqa: D401
+    from .train import TaskCLIPScheduler, DERPlusPlusWrapper, train_task  # noqa: D401
+    from .evaluate import verify_implementation, validate_results  # noqa: D401
 
 # ---------------------------------------------------------------------------
 # Load configuration --------------------------------------------------------
@@ -44,7 +72,8 @@ def run_experiment_1():
         scheduler = TaskCLIPScheduler(num_tasks=len(tasks), feature_dim=16)
 
         # Learner (DER++) ----------------------------------------------
-        backbone = torchvision.models.resnet18(weights="IMAGENET1K_V1").to(DEVICE)
+        weights_enum = torchvision.models.ResNet18_Weights.IMAGENET1K_V1  # type: ignore[attr-defined]
+        backbone = torchvision.models.resnet18(weights=weights_enum).to(DEVICE)
         learner = DERPlusPlusWrapper(backbone)
 
         buffer: List[int] = []
