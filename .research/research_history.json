@@ -6,5 +6,82 @@
     "gradient interference continual learning",
     "task similarity metrics",
     "parameter-efficient adaptation"
+  ],
+  "research_study_list": [
+    {
+      "title": "Efficient Continual Learning with Modular Networks and Task-Driven Priors"
+    },
+    {
+      "title": "Theory on Forgetting and Generalization of Continual Learning"
+    },
+    {
+      "title": "Continual Learning of a Mixed Sequence of Similar and Dissimilar Tasks"
+    },
+    {
+      "title": "Beyond Not-Forgetting: Continual Learning with Backward Knowledge Transfer"
+    },
+    {
+      "title": "Linear Mode Connectivity in Multitask and Continual Learning"
+    },
+    {
+      "title": "Anatomy of Catastrophic Forgetting: Hidden Representations and Task Semantics"
+    },
+    {
+      "title": "On the Diminishing Returns of Width for Continual Learning"
+    },
+    {
+      "title": "Continual evaluation for lifelong learning: Identifying the stability gap"
+    },
+    {
+      "title": "Theory on Forgetting and Generalization of Continual Learning"
+    },
+    {
+      "title": "An Effective Dynamic Gradient Calibration Method for Continual Learning"
+    },
+    {
+      "title": "Continual Learning with Global Alignment"
+    },
+    {
+      "title": "An Effective Dynamic Gradient Calibration Method for Continual Learning"
+    },
+    {
+      "title": "Continual Learning in Low-rank Orthogonal Subspaces"
+    },
+    {
+      "title": "InfLoRA: Interference-Free Low-Rank Adaptation for Continual Learning"
+    },
+    {
+      "title": "Gradient-based Editing of Memory Examples for Online Task-free Continual Learning"
+    },
+    {
+      "title": "Geometric Dataset Distances via Optimal Transport"
+    },
+    {
+      "title": "Comparing Apples to Oranges: Learning Similarity Functions for Data Produced by Different Distributions"
+    },
+    {
+      "title": "Words are all you need? Language as an approximation for human similarity judgments"
+    },
+    {
+      "title": "Pre-Trained Model Reusability Evaluation for Small-Data Transfer Learning"
+    },
+    {
+      "title": "Pre-Trained Model Reusability Evaluation for Small-Data Transfer Learning"
+    },
+    {
+      "title": "Time- Memory- and Parameter-Efficient Visual Adaptation"
+    },
+    {
+      "title": "Spectral Adapter: Fine-Tuning in Spectral Space"
+    },
+    {
+      "title": "Make Pre-trained Model Reversible: From Parameter to Memory Efficient Fine-Tuning"
+    },
+    {
+      "title": "Structured Unrestricted-Rank Matrices for Parameter Efficient Finetuning"
+    },
+    {
+      "title": "ReFT: Representation Finetuning for Language Models"
+    }
   ]
 }
