@@ -6,5 +6,82 @@
     "curriculum learning catastrophic forgetting",
     "adaptive scheduling continual learning",
     "sequence optimization continual learning"
+  ],
+  "research_study_list": [
+    {
+      "title": "Efficient Continual Learning with Modular Networks and Task-Driven Priors"
+    },
+    {
+      "title": "Theory on Forgetting and Generalization of Continual Learning"
+    },
+    {
+      "title": "Continual Learning of a Mixed Sequence of Similar and Dissimilar Tasks"
+    },
+    {
+      "title": "Beyond Not-Forgetting: Continual Learning with Backward Knowledge Transfer"
+    },
+    {
+      "title": "Linear Mode Connectivity in Multitask and Continual Learning"
+    },
+    {
+      "title": "Anatomy of Catastrophic Forgetting: Hidden Representations and Task Semantics"
+    },
+    {
+      "title": "To Each (Textual Sequence) Its Own: Improving Memorized-Data Unlearning in Large Language Models"
+    },
+    {
+      "title": "Think Before You Act: Decision Transformers with Working Memory"
+    },
+    {
+      "title": "Understanding Forgetting in Continual Learning with Linear Regression"
+    },
+    {
+      "title": "Reinforcement Learning with Fast and Forgetful Memory"
+    },
+    {
+      "title": "Anatomy of Catastrophic Forgetting: Hidden Representations and Task Semantics"
+    },
+    {
+      "title": "On the Diminishing Returns of Width for Continual Learning"
+    },
+    {
+      "title": "Continual evaluation for lifelong learning: Identifying the stability gap"
+    },
+    {
+      "title": "Theory on Forgetting and Generalization of Continual Learning"
+    },
+    {
+      "title": "An Effective Dynamic Gradient Calibration Method for Continual Learning"
+    },
+    {
+      "title": "Online Boundary-Free Continual Learning by Scheduled Data Prior"
+    },
+    {
+      "title": "Uncertainty-guided Continual Learning with Bayesian Neural Networks"
+    },
+    {
+      "title": "Adaptive Plasticity Improvement for Continual Learning"
+    },
+    {
+      "title": "Mitigating Forgetting in Online Continual Learning with  Neuron Calibration"
+    },
+    {
+      "title": "On the Stability-Plasticity Dilemma in Continual Meta-Learning: Theory and Algorithm"
+    },
+    {
+      "title": "Recasting Continual Learning as Sequence Modeling"
+    },
+    {
+      "title": "Compositional Language Continual Learning"
+    },
+    {
+      "title": "Linear Mode Connectivity in Multitask and Continual Learning"
+    },
+    {
+      "title": "Navigating Memory Construction by Global Pseudo-Task Simulation for Continual Learning"
+    },
+    {
+      "title": "Optimizing Spca-based Continual Learning: A Theoretical Approach"
+    }
   ]
 }
