@@ -6,5 +6,82 @@
     "curriculum learning continual forgetting",
     "dynamic task sequencing",
     "continual learning rehearsal scheduling"
+  ],
+  "research_study_list": [
+    {
+      "title": "Efficient Continual Learning with Modular Networks and Task-Driven Priors"
+    },
+    {
+      "title": "Theory on Forgetting and Generalization of Continual Learning"
+    },
+    {
+      "title": "Continual Learning of a Mixed Sequence of Similar and Dissimilar Tasks"
+    },
+    {
+      "title": "Beyond Not-Forgetting: Continual Learning with Backward Knowledge Transfer"
+    },
+    {
+      "title": "Linear Mode Connectivity in Multitask and Continual Learning"
+    },
+    {
+      "title": "Anatomy of Catastrophic Forgetting: Hidden Representations and Task Semantics"
+    },
+    {
+      "title": "Think Before You Act: Decision Transformers with Working Memory"
+    },
+    {
+      "title": "Reinforcement Learning with Fast and Forgetful Memory"
+    },
+    {
+      "title": "To Each (Textual Sequence) Its Own: Improving Memorized-Data Unlearning in Large Language Models"
+    },
+    {
+      "title": "Memoria: Resolving Fateful Forgetting Problem through Human-Inspired Memory Architecture"
+    },
+    {
+      "title": "On the Diminishing Returns of Width for Continual Learning"
+    },
+    {
+      "title": "Theory on Forgetting and Generalization of Continual Learning"
+    },
+    {
+      "title": "Wide Neural Networks Forget Less Catastrophically"
+    },
+    {
+      "title": "Wide Neural Networks Forget Less Catastrophically"
+    },
+    {
+      "title": "Continual evaluation for lifelong learning: Identifying the stability gap"
+    },
+    {
+      "title": "Temporally Correlated Task Scheduling for Sequence Learning"
+    },
+    {
+      "title": "Reinforcement Learning of Implicit and Explicit Control Flow Instructions"
+    },
+    {
+      "title": "Planning from Pixels using Inverse Dynamics Models"
+    },
+    {
+      "title": "Hard Tasks First: Multi-Task Reinforcement Learning Through Task Scheduling"
+    },
+    {
+      "title": "Avoiding Undesired Future with Minimal Cost in Non-Stationary Environments"
+    },
+    {
+      "title": "A simple but strong baseline for online continual learning: Repeated Augmented Rehearsal"
+    },
+    {
+      "title": "On the Effectiveness of Lipschitz-Driven Rehearsal in Continual Learning"
+    },
+    {
+      "title": "Graph-Based Continual Learning"
+    },
+    {
+      "title": "Regularizing Second-Order Influences for Continual Learning"
+    },
+    {
+      "title": "Dark Experience for General Continual Learning: a Strong, Simple Baseline"
+    }
   ]
 }
