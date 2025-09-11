@@ -6,5 +6,82 @@
     "parameter efficient adaptation",
     "gradient interference mitigation",
     "Split-CIFAR Permuted-MNIST Split-ImageNet"
+  ],
+  "research_study_list": [
+    {
+      "title": "Efficient Continual Learning with Modular Networks and Task-Driven Priors"
+    },
+    {
+      "title": "Linear Mode Connectivity in Multitask and Continual Learning"
+    },
+    {
+      "title": "The Ideal Continual Learner: An Agent That Never Forgets"
+    },
+    {
+      "title": "Recasting Continual Learning as Sequence Modeling"
+    },
+    {
+      "title": "Continual World: A Robotic Benchmark For Continual Reinforcement Learning"
+    },
+    {
+      "title": "Anatomy of Catastrophic Forgetting: Hidden Representations and Task Semantics"
+    },
+    {
+      "title": "Theory on Forgetting and Generalization of Continual Learning"
+    },
+    {
+      "title": "Continual Learning of a Mixed Sequence of Similar and Dissimilar Tasks"
+    },
+    {
+      "title": "Beyond Not-Forgetting: Continual Learning with Backward Knowledge Transfer"
+    },
+    {
+      "title": "Continual Learning in the Teacher-Student Setup: Impact of Task Similarity"
+    },
+    {
+      "title": "Time- Memory- and Parameter-Efficient Visual Adaptation"
+    },
+    {
+      "title": "Make Pre-trained Model Reversible: From Parameter to Memory Efficient Fine-Tuning"
+    },
+    {
+      "title": "Spectral Adapter: Fine-Tuning in Spectral Space"
+    },
+    {
+      "title": "ReFT: Representation Finetuning for Language Models"
+    },
+    {
+      "title": "Structured Unrestricted-Rank Matrices for Parameter Efficient Finetuning"
+    },
+    {
+      "title": "Analyzing and Mitigating Interference in Neural Architecture Search"
+    },
+    {
+      "title": "Analyzing and Mitigating Interference in Neural Architecture Search"
+    },
+    {
+      "title": "Understanding Gradient Regularization in Deep Learning: Efficient Finite-Difference Computation and Implicit Bias"
+    },
+    {
+      "title": "Gradient Surgery for Multi-Task Learning"
+    },
+    {
+      "title": "Interference and Generalization in Temporal Difference Learning"
+    },
+    {
+      "title": "CrossSplit: Mitigating Label Noise Memorization through Data Splitting"
+    },
+    {
+      "title": "Permutation Equivariance of Transformers and Its Applications"
+    },
+    {
+      "title": "Federated Split Task-Agnostic  Vision Transformer for COVID-19 CXR Diagnosis"
+    },
+    {
+      "title": "Split-Ensemble: Efficient OOD-aware Ensemble via Task and Model Splitting"
+    },
+    {
+      "title": "Self-supervised learning of Split Invariant Equivariant representations"
+    }
   ]
 }
