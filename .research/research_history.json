@@ -1,0 +1,10 @@
+{
+  "research_topic": "Improve continual learning by reducing catastrophic forgetting through intelligent task-ordering strategies on standard benchmarks (Split-CIFAR, Permuted-MNIST, Split-ImageNet) using 1–3B parameter models with parameter-efficient adaptation, implementing curriculum learning frameworks based on task similarity and gradient interference to address the 2025 lifelong learning challenge in practical deployment scenarios.",
+  "queries": [
+    "continual learning curriculum",
+    "task ordering catastrophic forgetting",
+    "parameter efficient adaptation",
+    "gradient interference mitigation",
+    "Split-CIFAR Permuted-MNIST Split-ImageNet"
+  ]
+}
